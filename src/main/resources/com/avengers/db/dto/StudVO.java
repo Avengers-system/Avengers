@@ -8,7 +8,7 @@ import java.util.Date;
  * 2017.07.10 최초작성
  *
  */
-public class studVO {
+public class StudVO {
 	private String stud_num;//학생 고유번호
 	private String stud_nm;//이름
 	private String stud_eng_nm; //영문이름
