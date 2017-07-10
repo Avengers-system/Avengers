@@ -8,7 +8,7 @@ public class GuadVO {
 	private String guad_num; // 보호자 고유번호
 	private String guad_nm; // 보호자 성명
 	private String guad_rel; // 보호자 관계
-	private String guad_ph;// 보호자 전화번호
+	private String guad_hp;// 보호자 전화번호
 	private String guad_stud; // 학생 고유번호
 
 	public String getGuad_num() {
@@ -35,12 +35,12 @@ public class GuadVO {
 		this.guad_rel = guad_rel;
 	}
 
-	public String getGuad_ph() {
-		return guad_ph;
+	public String getGuad_hp() {
+		return guad_hp;
 	}
 
-	public void setGuad_ph(String guad_ph) {
-		this.guad_ph = guad_ph;
+	public void setGuad_hp(String guad_hp) {
+		this.guad_hp = guad_hp;
 	}
 
 	public String getGuad_stud() {

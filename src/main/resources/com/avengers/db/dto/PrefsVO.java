@@ -24,7 +24,7 @@ public class PrefsVO {
 	private String prfs_addr;//주소
 	private String prfs_zip;//우편번호
 	private String prfs_tel;//전화번호
-	private String prfs_ph;//휴대폰번호
+	private String prfs_hp;//휴대폰번호
 	private String prfs_security;//시큐리티
 	private String prfs_dept;//학과번호
 	
@@ -118,11 +118,11 @@ public class PrefsVO {
 	public void setPrfs_tel(String prfs_tel) {
 		this.prfs_tel = prfs_tel;
 	}
-	public String getPrfs_ph() {
-		return prfs_ph;
+	public String getPrfs_hp() {
+		return prfs_hp;
 	}
-	public void setPrfs_ph(String prfs_ph) {
-		this.prfs_ph = prfs_ph;
+	public void setPrfs_hp(String prfs_hp) {
+		this.prfs_hp = prfs_hp;
 	}
 	public String getPrfs_security() {
 		return prfs_security;
