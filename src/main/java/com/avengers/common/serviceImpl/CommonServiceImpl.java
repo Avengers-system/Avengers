@@ -10,11 +10,7 @@ import com.avengers.db.dto.BoardVO;
 
 public class CommonServiceImpl implements CommonService{
 
-	protected SqlSession sqlSession;
-	
-	public void setSqlSession(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
+
 
 	@Override
 	public int loginConfirm(String id, String pw) throws SQLException{
@@ -29,13 +25,13 @@ public class CommonServiceImpl implements CommonService{
 	}
 
 	@Override
-	public String selectById(String name, String bir, String email, int kinds) throws SQLException{
+	public String selectId(String name, String bir, String email, int kinds) throws SQLException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String selectByPw(String id, String email)throws SQLException {
+	public String selectPw(String id, String email)throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
