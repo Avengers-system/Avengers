@@ -1,5 +1,5 @@
 package com.avengers.admin.lectureManage.validation;
 
-public class aa {
+public class AdminLectureManageValidation {
 
 }

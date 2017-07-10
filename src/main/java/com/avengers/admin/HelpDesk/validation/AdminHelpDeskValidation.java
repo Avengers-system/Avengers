@@ -1,5 +1,5 @@
 package com.avengers.admin.HelpDesk.validation;
 
-public class aa {
+public class AdminHelpDeskValidation {
 
 }
