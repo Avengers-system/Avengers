@@ -1,5 +1,5 @@
 package com.avengers.admin.security;
 
-public class aa {
+public class AdminSecurity {
 
 }

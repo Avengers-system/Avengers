@@ -1,7 +1,12 @@
 package com.avengers.db.dto;
 
 import java.util.Date;
-
+/**
+ * 개인일정의 모든 정보를 관리
+ * @author 배진
+ * 2017.07.10 최초작성
+ * 
+ */
 public class PerschdVO {
 	private int perschd_num; // 개인일정 고유번호
 	private String perschd_title; // 개인일정 제목
