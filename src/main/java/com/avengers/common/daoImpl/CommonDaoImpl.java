@@ -4,12 +4,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.avengers.common.dao.CommonDao;
 import com.avengers.db.dto.BoardVO;
 
 public class CommonDaoImpl implements CommonDao{
 
+	@Autowired
 	protected SqlSession sqlSession;
 	
 	
@@ -32,13 +34,13 @@ public class CommonDaoImpl implements CommonDao{
 	
 
 	@Override
-	public String selectById(String name, String bir, String email, int kinds)throws SQLException {
+	public String selectId(String name, String bir, String email, int kinds)throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String selectByPw(String id, String email)throws SQLException {
+	public String selectPw(String id, String email)throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
