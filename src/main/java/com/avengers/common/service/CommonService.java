@@ -25,8 +25,8 @@ public interface CommonService {
 		//아이디 찾기(생년월일,이메일,이름)
 		//kinds는 학생,교수,관리자 구분 ,ex)1 학생,2 교수,3 관리자
 		//가입된 이메일로 아이디 전송
-		public String selectById(String name,String bir,String email,int kinds)throws SQLException;
+		public String selectId(String name,String bir,String email,int kinds)throws SQLException;
 		
 		//비밀번호 찾기
-		public String selectByPw(String id,String email)throws SQLException;
+		public String selectPw(String id,String email)throws SQLException;
 }
