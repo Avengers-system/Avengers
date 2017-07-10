@@ -6,12 +6,10 @@ import java.util.Date;
  * 학생의 자퇴정보를 관리
  * @author 배진
  * 2017.07.10 최초작성
+ * 2017.07.10 보호자 관련정보 삭제
  */
 public class LsVO {
 	private String ls_num;//자퇴 고유번호
-	private String ls_guad_nm;//보호자 성명
-	private String ls_rel;//보호자 관계
-	private String ls_guad_tel;//보호자 연락처
 	private Date ls_appl_date;//자퇴 신청일
 	private Date ls_appr_date;//관리자 승인일
 	private String ls_appr_check;//관리자 승인여부
@@ -25,24 +23,6 @@ public class LsVO {
 	}
 	public void setLs_num(String ls_num) {
 		this.ls_num = ls_num;
-	}
-	public String getLs_guad_nm() {
-		return ls_guad_nm;
-	}
-	public void setLs_guad_nm(String ls_guad_nm) {
-		this.ls_guad_nm = ls_guad_nm;
-	}
-	public String getLs_rel() {
-		return ls_rel;
-	}
-	public void setLs_rel(String ls_rel) {
-		this.ls_rel = ls_rel;
-	}
-	public String getLs_guad_tel() {
-		return ls_guad_tel;
-	}
-	public void setLs_guad_tel(String ls_guad_tel) {
-		this.ls_guad_tel = ls_guad_tel;
 	}
 	public Date getLs_appl_date() {
 		return ls_appl_date;

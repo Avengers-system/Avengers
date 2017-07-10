@@ -55,7 +55,5 @@ public class PerschdVO {
 	public void setPerschd_psc(String perschd_psc) {
 		this.perschd_psc = perschd_psc;
 	}
-	
-	
 
 }

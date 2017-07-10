@@ -26,7 +26,7 @@ public class AdminVO {
 	private String admin_zip;//우편번호
 	private String admin_tel;//전화번호
 	private String admin_security;//시큐리티
-	private String admin_ph;//휴대폰번호
+	private String admin_hp;//휴대폰번호
 	
 	
 	public String getAdmin_id() {
@@ -131,11 +131,11 @@ public class AdminVO {
 	public void setAdmin_security(String admin_security) {
 		this.admin_security = admin_security;
 	}
-	public String getAdmin_ph() {
-		return admin_ph;
+	public String getAdmin_hp() {
+		return admin_hp;
 	}
-	public void setAdmin_ph(String admin_ph) {
-		this.admin_ph = admin_ph;
+	public void setAdmin_hp(String admin_hp) {
+		this.admin_hp = admin_hp;
 	}
 	
 	
