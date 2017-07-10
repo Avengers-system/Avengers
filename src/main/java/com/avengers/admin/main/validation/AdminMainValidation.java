@@ -1,5 +1,5 @@
 package com.avengers.admin.main.validation;
 
-public class aa {
+public class AdminMainValidation {
 
 }

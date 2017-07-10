@@ -6,6 +6,7 @@ import java.util.Date;
  * 학생에 대한 정보 관리
  * @author 조영훈
  * 2017.07.10 최초작성
+ * 2017.07.10 보호자정보 추가 
  *
  */
 public class StudVO {
@@ -27,9 +28,13 @@ public class StudVO {
 	private String sutd_addr;//주소
 	private String stud_zip;//우편번호
 	private String stud_tel;//전화번호
-	private String sutd_ph;//휴대폰번호
+	private String sutd_hp;//휴대폰번호
 	private String sutd_security;//시큐리티
 	private String stud_dept;//학과번호
+	private String stud_guad_nm;//보호자 이름
+	private String stud_guad_rel;//보호자 관계
+	private String stud_guad_hp;//보호자 핸드폰
+	
 	
 	public String getStud_num() {
 		return stud_num;
@@ -139,11 +144,11 @@ public class StudVO {
 	public void setStud_tel(String stud_tel) {
 		this.stud_tel = stud_tel;
 	}
-	public String getSutd_ph() {
-		return sutd_ph;
+	public String getSutd_hp() {
+		return sutd_hp;
 	}
-	public void setSutd_ph(String sutd_ph) {
-		this.sutd_ph = sutd_ph;
+	public void setSutd_hp(String sutd_hp) {
+		this.sutd_hp = sutd_hp;
 	}
 	public String getSutd_security() {
 		return sutd_security;
