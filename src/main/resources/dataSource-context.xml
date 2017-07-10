@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- oracle mybatis -->
+	<bean id="dataSourceOracle" class="org.apache.commons.dbcp2.BasicDataSource"
+			p:driverClassName="oracle.jdbc.driver.OracleDriver"
+			p:url="jdbc:oracle:thin:@localhost:1521:XE"
+			p:username=""
+			p:password=""
+	/>
+	
+	<bean id="sqlSessionFactoryOracle"
+		class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="dataSourceOracle"
+		p:configLocation="classpath:sql/mybatis/config/mybatis_config.xml"
+	/>
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate"
+		c:sqlSessionFactory-ref="sqlSessionFactoryOracle"
+	/>
+
+	<!-- mysql mybatis -->
+	<bean id="dataSourceMysql" 
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		p:driverClassName="com.mysql.jdbc.Driver"
+		p:url="jdbc:mysql://localhost:3306/board"
+		p:username=""
+		p:password=""
+	/>
+	
+	<bean id="sqlSessionFactoryMysql"
+		class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="dataSourceMysql"
+		p:configLocation="classpath:sql/mybatis/config/mybatis_config.xml"
+	/>
+	<bean id="sqlSessionMysql"
+		class="org.mybatis.spring.SqlSessionTemplate"
+		c:sqlSessionFactory-ref="sqlSessionFactoryMysql"
+	/>
+
+
+</beans>
