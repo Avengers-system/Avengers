@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.BoardVO;
@@ -12,6 +13,7 @@ import com.avengers.db.dto.PerschdVO;
 import com.avengers.db.dto.StudVO;
 import com.avengers.db.dto.TlVO;
 import com.avengers.student.main.service.StudentMainService;
+import com.avengers.student.mypage.dao.StudentMyPageDao;
 
 /**
  * 학생 메인 화면
@@ -21,6 +23,14 @@ import com.avengers.student.main.service.StudentMainService;
  */
 @Service
 public class StudentMainServiceImpl implements StudentMainService{
+
+	@Autowired
+	private StudentMyPageDao myPageDao;
+	
+	
+	public void setMyPageDao(StudentMyPageDao myPageDao) {
+		this.myPageDao = myPageDao;
+	}
 
 	@Override
 	public StudVO selectStudInfo(String stud_num) throws SQLException {
