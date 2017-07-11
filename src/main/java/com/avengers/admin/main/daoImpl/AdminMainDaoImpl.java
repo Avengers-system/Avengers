@@ -4,14 +4,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.avengers.admin.main.dao.AdminMainDao;
 import com.avengers.db.dto.DeptVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.PrfsVO;
 import com.avengers.db.dto.StudVO;
-
+@Repository
 public class AdminMainDaoImpl implements AdminMainDao {
+	@Autowired
 	protected SqlSession sqlSession;
 
 	public void setSqlSession(SqlSession sqlSession) throws SQLException {
