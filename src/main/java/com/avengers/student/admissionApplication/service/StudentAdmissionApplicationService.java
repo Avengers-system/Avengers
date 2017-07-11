@@ -1,4 +1,4 @@
-package com.avengers.student.admissionApplication.dao;
+package com.avengers.student.admissionApplication.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,11 +9,11 @@ import com.avengers.db.dto.TlVO;
 
 /**
  * 수강신청
- * StudentAdmissionApplicationDao interface
+ * StudentAdmissionApplicationService interface
  * @author 관리자
  *2017.07.11
  */
-public interface StudentAdmissionApplicationDao {
+public interface StudentAdmissionApplicationService {
 	//수강 검색
 	//개설강좌 리스트
 	//신청,과목번호,과목명,이수구분,강의실,담당교수,시간표,학점,수강제한인원,수강신청인원,강의계획서
