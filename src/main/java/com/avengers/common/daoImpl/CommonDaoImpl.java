@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.avengers.common.dao.CommonDao;
 import com.avengers.db.dto.BoardVO;
+
 @Repository
 public class CommonDaoImpl implements CommonDao{
 

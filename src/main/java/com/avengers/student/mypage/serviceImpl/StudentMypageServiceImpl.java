@@ -2,6 +2,8 @@ package com.avengers.student.mypage.serviceImpl;
 
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Service;
+
 import com.avengers.db.dto.DeptVO;
 import com.avengers.db.dto.PerschdVO;
 import com.avengers.db.dto.StudVO;
@@ -13,6 +15,7 @@ import com.avengers.student.mypage.service.StudentMypageService;
  * @author 조영훈
  * 최초작성 2017.07.10
  */
+@Service
 public class StudentMypageServiceImpl implements StudentMypageService{
 
 	@Override

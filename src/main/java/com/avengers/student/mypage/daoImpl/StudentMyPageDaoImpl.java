@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.avengers.db.dto.DeptVO;
 import com.avengers.db.dto.PerschdVO;
@@ -15,6 +16,7 @@ import com.avengers.student.mypage.dao.StudentMyPageDao;
  * @author 조영훈
  * 최초작성 2017.07.10
  */
+@Repository
 public class StudentMyPageDaoImpl implements StudentMyPageDao{
 	
 	@Autowired
