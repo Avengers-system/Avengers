@@ -3,6 +3,8 @@ package com.avengers.common.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Repository;
+
 import com.avengers.db.dto.BoardVO;
 
 /**
@@ -11,6 +13,7 @@ import com.avengers.db.dto.BoardVO;
  * @author 조영훈
  * 최조작성 2017.07.10
  */
+@Repository
 public interface CommonDao {
 	
 	//로그인 확인

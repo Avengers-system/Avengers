@@ -3,11 +3,13 @@ package com.avengers.common.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Service;
 
 import com.avengers.common.service.CommonService;
 import com.avengers.db.dto.BoardVO;
 
+
+@Service
 public class CommonServiceImpl implements CommonService{
 
 
