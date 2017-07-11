@@ -3,7 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:c="http://www.springframework.org/schema/c"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<context:component-scan base-package="com.system.avengers"/>
 
 	<!-- oracle mybatis -->
 	<bean id="dataSourceOracle" class="org.apache.commons.dbcp2.BasicDataSource"
@@ -17,6 +21,8 @@
 		class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="dataSourceOracle"
 		p:configLocation="classpath:sql/mybatis/config/mybatis_config.xml"
+		p:typeAliasesPackage="com.system.avengers"
+		p:mapperLocations="classpath:com.avengers.db.sqlconfig.SqlMapConfig.xml"
 	/>
 	<bean id="sqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate"
