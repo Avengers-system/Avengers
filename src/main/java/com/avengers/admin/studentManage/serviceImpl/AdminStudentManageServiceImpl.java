@@ -3,7 +3,6 @@ package com.avengers.admin.studentManage.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.avengers.admin.studentManage.service.AdminStudentManageService;

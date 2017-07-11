@@ -1,47 +1,51 @@
 package com.avengers.student.registryScholarshipManage.serviceImpl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-import com.avengers.db.dto.LoaVO;
-import com.avengers.db.dto.LsVO;
-import com.avengers.db.dto.RtsVO;
+import org.springframework.stereotype.Service;
+
+import com.avengers.db.dto.RegVO;
+import com.avengers.db.dto.ScrapplVO;
 import com.avengers.student.registryScholarshipManage.service.StudentResManageService;
-import com.lowagie.text.Document;
-import com.lowagie.text.pdf.PdfWriter;
 
 
 
-/**
- * 학생 학적관리 
- * StudentResManageServiceImpl 
- * @author 조영훈
- * 최조작성 2017.07.10
- */
+@Service
 public class StudentResManageServiceImpl implements StudentResManageService {
 
 	@Override
-	public void buildPdfDocument(Document document, PdfWriter pdfWriter)
-			throws SQLException {
+	public ArrayList<ScrapplVO> selectScrapplList(String scrappl_stud,
+			HashMap<String, String> map) throws SQLException {
 		// TODO Auto-generated method stub
-
+		return null;
 	}
 
 	@Override
-	public int insertLoa(LoaVO loa) throws SQLException {
+	public int insertScrappl(ScrapplVO scrapplVO) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int insertRts(RtsVO rts) throws SQLException {
+	public ArrayList<RegVO> selectRegList(String reg_stud) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RegVO selectReg(String reg_stud) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateReg(RegVO regVO) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
-	public int insertLs(LsVO ls) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 }

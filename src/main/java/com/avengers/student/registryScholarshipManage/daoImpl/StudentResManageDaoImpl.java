@@ -1,26 +1,19 @@
 package com.avengers.student.registryScholarshipManage.daoImpl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.w3c.dom.views.DocumentView;
+import org.springframework.stereotype.Repository;
 
-import com.avengers.db.dto.LoaVO;
-import com.avengers.db.dto.LsVO;
-import com.avengers.db.dto.RtsVO;
+import com.avengers.db.dto.RegVO;
+import com.avengers.db.dto.ScrapplVO;
 import com.avengers.student.registryScholarshipManage.dao.StudentResManageDao;
-import com.lowagie.text.Document;
-import com.lowagie.text.pdf.PdfWriter;
 
-/**
- * 학생 학적관리 
- * StudentResManageDao interfaceImpl
- * @author 조영훈
- * 최조작성 2017.07.10
- */
+@Repository
 public class StudentResManageDaoImpl implements StudentResManageDao{
-
 	@Autowired
 	protected SqlSession sqlSession;
 	
@@ -29,34 +22,37 @@ public class StudentResManageDaoImpl implements StudentResManageDao{
 	}
 
 	@Override
-	public DocumentView getDocument() {
+	public ArrayList<ScrapplVO> selectScrapplList(String scrappl_stud,
+			HashMap<String, String> map) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void buildPdfDocument(Document document, PdfWriter pdfWriter)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int insertLoa(LoaVO loa) throws SQLException {
+	public int insertScrappl(ScrapplVO scrapplVO) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int insertRts(RtsVO rts) throws SQLException {
+	public ArrayList<RegVO> selectRegList(String reg_stud) throws SQLException {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 
 	@Override
-	public int insertLs(LsVO ls) throws SQLException {
+	public RegVO selectReg(String reg_stud) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateReg(RegVO regVO) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+
+	
 
 }
