@@ -1,5 +1,5 @@
 package com.avengers.professor.studentManage.validation;
 
-public class aa {
+public class ProfessorStudentManageValidation {
 
 }
