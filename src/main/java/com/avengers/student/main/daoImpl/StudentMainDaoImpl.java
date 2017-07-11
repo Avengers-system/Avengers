@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.CnsVO;
@@ -20,6 +21,7 @@ import com.avengers.student.main.dao.StudentMainDao;
  * @author 조영훈
  * 최초작성 2017.07.10
  */
+@Repository
 public class StudentMainDaoImpl implements StudentMainDao{
 
 	@Autowired

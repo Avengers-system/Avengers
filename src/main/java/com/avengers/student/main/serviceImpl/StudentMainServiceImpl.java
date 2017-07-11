@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.CnsVO;
 import com.avengers.db.dto.PerschdVO;
@@ -17,6 +19,7 @@ import com.avengers.student.main.service.StudentMainService;
  * @author 조영훈
  * 최초작성 2017.07.10
  */
+@Service
 public class StudentMainServiceImpl implements StudentMainService{
 
 	@Override
