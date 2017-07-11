@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<context:component-scan base-package="com.system.avengers" />
+	<context:component-scan base-package="com.avengers.test" />
 	<!-- MyBatis -->
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource">
