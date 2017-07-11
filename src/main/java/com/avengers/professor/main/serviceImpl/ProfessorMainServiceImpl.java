@@ -3,6 +3,7 @@ package com.avengers.professor.main.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.BoardVO;
@@ -10,9 +11,17 @@ import com.avengers.db.dto.CnsVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.PerschdVO;
 import com.avengers.db.dto.PrfsVO;
+import com.avengers.professor.main.dao.ProfessorMainDao;
 import com.avengers.professor.main.service.ProfessorMainService;
 @Service
 public class ProfessorMainServiceImpl implements ProfessorMainService {
+
+	@Autowired
+	private ProfessorMainDao proMainDAO;
+	
+	public void setProMainDAO(ProfessorMainDao proMainDAO) {
+		this.proMainDAO = proMainDAO;
+	}
 
 	@Override
 	public PrfsVO selectStudInfo(String stud_num) throws SQLException {

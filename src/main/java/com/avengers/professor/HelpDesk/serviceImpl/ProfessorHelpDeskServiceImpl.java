@@ -3,19 +3,20 @@ package com.avengers.professor.HelpDesk.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.avengers.admin.HelpDesk.service.AdminHelpDeskService;
 import com.avengers.db.dto.BoardVO;
+import com.avengers.professor.HelpDesk.dao.ProfessorHelpDeskDao;
 import com.avengers.professor.HelpDesk.service.ProfessorHelpDeskService;
 @Service
 public class ProfessorHelpDeskServiceImpl implements ProfessorHelpDeskService {
 	
-	protected SqlSession sqlSession;
-
-	public void setSqlSession(SqlSession sqlSession) throws SQLException {
-		this.sqlSession = sqlSession;
+	@Autowired
+	private ProfessorHelpDeskDao proHelpDeskDAO;
+	
+	public void setProHelpDeskDAO(ProfessorHelpDeskDao proHelpDeskDAO) {
+		this.proHelpDeskDAO = proHelpDeskDAO;
 	}
 
 	@Override
