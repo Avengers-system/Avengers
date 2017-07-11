@@ -2,7 +2,6 @@ package com.avengers.common.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import org.springframework.stereotype.Service;
 
 import com.avengers.common.service.CommonService;
