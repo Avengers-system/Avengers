@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:bean xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource" id=""
+				users-by-username-query="select id as username,pwd as password,stay as enabled 
+										 from member
+										 where id=?"
+				authorities-by-username-query="select id as username,authority
+											   from member
+											   where id=?" />
+		</authentication-provider>
+	</authentication-manager>
+
+
+	<http use-expressions="true" access-denied-page="/accessDenied">
+		<intercept-url pattern="/login/loginForm" access="permitAll" />
+		<intercept-url pattern="/login/login" access="permitAll" />
+		<intercept-url pattern="/login/**" access="permitAll" />
+
+		<intercept-url pattern="/admin/**"	access="hasAnyRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/student/**"	access="hasAnyRole('ROLE_STUDENT')" />
+		<intercept-url pattern="/professor/**"	access="hasAnyRole('ROLE_PROFESSOR')" />
+
+		<intercept-url pattern="/main" access="isAuthenticated()" />
+		<intercept-url pattern="/**" access="permitAll" />
+		<form-login login-page="/loginForm" 
+			login-processing-url="/login"
+			username-parameter="id" 
+			password-parameter="pwd" 
+			default-target-url="/main"/>
+		<logout logout-success-url="/logout" delete-cookies="true" />
+
+		<session-management>
+			<concurrency-control max-sessions="1" expired-url="/login_duplicate"/>
+		</session-management>
+
+
+	</http>
+			<!-- 	
+			default-target-url="/member/list"
+	 		-->
+
+</beans:bean>
