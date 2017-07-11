@@ -3,7 +3,6 @@ package com.avengers.admin.HelpDesk.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.avengers.admin.HelpDesk.service.AdminHelpDeskService;

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.avengers.admin.mypage.dao.AdminMypageDao;
 import com.avengers.db.dto.AdminVO;
-import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.PerschdVO;
 @Repository
 public class AdminMypageDaoImpl implements AdminMypageDao {
