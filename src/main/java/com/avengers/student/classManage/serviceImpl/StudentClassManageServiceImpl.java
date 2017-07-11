@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import com.avengers.db.dto.AcVO;
 import com.avengers.db.dto.AsgnVO;
 import com.avengers.db.dto.BoardVO;
@@ -20,6 +22,7 @@ import com.avengers.student.classManage.service.StudentClassManageService;
  * @author 조영훈
  * 2017.07.11
  */
+@Service
 public class StudentClassManageServiceImpl implements StudentClassManageService {
 
 	@Override

@@ -34,14 +34,14 @@ public interface StudentAdmissionApplicationDao {
 	public int insertTlList(ArrayList<TlVO> tlList) throws SQLException;
 	
 	//신청 내역리스트 취소
-	public int deleteTlList(ArrayList<TlVO> tlList) throws SQLException;
+	public int deleteTl(ArrayList<TlVO> tlList) throws SQLException;
 	
 	//장바구니기간에
 	//개설강좌리스트 -> 장바구니리스트
 	public int insertCartList(ArrayList<TlVO> tlList) throws SQLException;
 	
 	//장바구니리스트 취소
-	public int delteCartList(ArrayList<TlVO> tlList) throws SQLException;
+	public int delteCart(ArrayList<TlVO> tlList) throws SQLException;
 	
 	//시간표 보기(신청한 강의)
 	public ArrayList<TlVO> selectStudClass(String tl_stud) throws SQLException;

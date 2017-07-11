@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.TlVO;
 import com.avengers.student.admissionApplication.service.StudentAdmissionApplicationService;
@@ -15,6 +17,8 @@ import com.avengers.student.admissionApplication.service.StudentAdmissionApplica
  * @author 관리자
  *2017.07.11
  */
+
+@Service
 public class StudentAdmissionApplicationServiceImpl implements
 		StudentAdmissionApplicationService {
 
@@ -44,7 +48,7 @@ public class StudentAdmissionApplicationServiceImpl implements
 	}
 
 	@Override
-	public int deleteTlList(ArrayList<TlVO> tlList) throws SQLException {
+	public int deleteTl(ArrayList<TlVO> tlList) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -56,7 +60,7 @@ public class StudentAdmissionApplicationServiceImpl implements
 	}
 
 	@Override
-	public int delteCartList(ArrayList<TlVO> tlList) throws SQLException {
+	public int delteCart(ArrayList<TlVO> tlList) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}

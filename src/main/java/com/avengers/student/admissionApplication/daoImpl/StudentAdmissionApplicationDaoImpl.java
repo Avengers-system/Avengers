@@ -55,7 +55,7 @@ public class StudentAdmissionApplicationDaoImpl implements
 	}
 
 	@Override
-	public int deleteTlList(ArrayList<TlVO> tlList) throws SQLException {
+	public int deleteTl(ArrayList<TlVO> tlList) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -67,7 +67,7 @@ public class StudentAdmissionApplicationDaoImpl implements
 	}
 
 	@Override
-	public int delteCartList(ArrayList<TlVO> tlList) throws SQLException {
+	public int delteCart(ArrayList<TlVO> tlList) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
