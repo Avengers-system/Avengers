@@ -11,6 +11,8 @@
 		<config>src/main/resources/Mongo-Context.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/main/resources/security-context.xml</config>
+		<config>src/main/resources/root-context.xml</config>
 		<config>src/main/resources/servlet-context.xml</config>
 	</autoconfigs>
 	<configSets>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:bean xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="
+					select id as username, pwd as password, enabled
+					from sequrity
+					where id=?"
+				authorities-by-username-query="
+					select id as username, authority
+					from sequrity
+					where id=?"	 />
+		</authentication-provider>
+	</authentication-manager>
+
+
+	<http use-expressions="true" access-denied-page="/accessDenied">
+		<intercept-url pattern="/common/commonLogin" access="permitAll" />
+		<intercept-url pattern="/common/**" access="permitAll" />
+
+		<intercept-url pattern="/admin/**"	access="hasAnyRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/professor/**"	access="hasAnyRole('ROLE_PROF')" />
+		<intercept-url pattern="/student/**"	access="hasAnyRole('ROLE_STUD')" />
+
+		<intercept-url pattern="/main" access="isAuthenticated()" />
+		<intercept-url pattern="/**" access="permitAll" />
+		<form-login login-page="/login" 
+			login-processing-url="/loginForm"
+			username-parameter="id" 
+			password-parameter="pwd" 
+			default-target-url="/main"/>
+		<logout logout-success-url="/logout" delete-cookies="true" />
+
+		<session-management>
+			<concurrency-control max-sessions="1" expired-url="/login_duplicate"/>
+		</session-management>
+
+
+
+	</http>
+
+</beans:bean>
