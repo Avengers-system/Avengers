@@ -4,12 +4,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.avengers.admin.HelpDesk.dao.AdminHelpDeskDao;
 import com.avengers.db.dto.BoardVO;
-
+@Repository
 public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
-	
+	@Autowired
 	protected SqlSession sqlSession;
 
 	public void setSqlSession(SqlSession sqlSession) throws SQLException {
@@ -17,7 +19,7 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 	}
 	
 	@Override
-	public ArrayList<BoardVO> selectBoardList(String bc_num, int firstRow,
+	public ArrayList<BoardVO> selectBoardList(String key,String bc_num, int firstRow,
 			int lastRow)throws SQLException {
 		return null;
 	}

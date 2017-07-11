@@ -4,20 +4,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Service;
 
 import com.avengers.admin.HelpDesk.service.AdminHelpDeskService;
 import com.avengers.db.dto.BoardVO;
-
+@Service
 public class AdminHelpDeskServiceImpl implements AdminHelpDeskService {
 	
-	protected SqlSession sqlSession;
-
-	public void setSqlSession(SqlSession sqlSession) throws SQLException {
-		this.sqlSession = sqlSession;
-	}
 	
 	@Override
-	public ArrayList<BoardVO> selectBoardList(String bc_num, int firstRow,
+	public ArrayList<BoardVO> selectBoardList(String key,String bc_num, int firstRow,
 			int lastRow)throws SQLException {
 		return null;
 	}

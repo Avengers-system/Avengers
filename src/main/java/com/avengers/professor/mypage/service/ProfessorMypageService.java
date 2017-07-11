@@ -1,14 +1,14 @@
-package com.avengers.admin.mypage.dao;
+package com.avengers.professor.mypage.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.avengers.db.dto.AdminVO;
 import com.avengers.db.dto.PerschdVO;
+import com.avengers.db.dto.PrfsVO;
 
-public interface AdminMypageDao {
-	public AdminVO selectAdmin(String admin_id)throws SQLException; //로그인한 관리자의 정보를가져온다.
-	public int updateAdmin(AdminVO adminVO,String admin_id)throws SQLException;//관리자 정보수정
+public interface ProfessorMypageService {
+	public PrfsVO selectPrfs(String prfs_num)throws SQLException; //로그인한 교수의 정보를가져온다.
+	public int updatePrfs(PrfsVO prfsVO,String prfs_num)throws SQLException;//교수 정보수정
 	
 	public ArrayList<PerschdVO> selectPerschdList(String perschd_psc)throws SQLException;//일정 전체목록 읽어오기
 	public PerschdVO selectPerschd(String perschd_num)throws SQLException;//일정 선택 읽어오기

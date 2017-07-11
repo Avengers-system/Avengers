@@ -4,19 +4,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Service;
 
 import com.avengers.admin.main.service.AdminMainService;
 import com.avengers.db.dto.DeptVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.PrfsVO;
 import com.avengers.db.dto.StudVO;
-
+@Service
 public class AdminMainServiceImpl implements AdminMainService {
-	protected SqlSession sqlSession;
-
-	public void setSqlSession(SqlSession sqlSession) throws SQLException {
-		this.sqlSession = sqlSession;
-	}
 	@Override
 	public ArrayList<LctVO> selectLctList()throws SQLException {
 		return null;

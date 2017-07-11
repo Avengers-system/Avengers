@@ -4,20 +4,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.avengers.admin.mypage.dao.AdminMypageDao;
 import com.avengers.db.dto.AdminVO;
 import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.PerschdVO;
-
+@Repository
 public class AdminMypageDaoImpl implements AdminMypageDao {
+	@Autowired
 	protected SqlSession sqlSession;
 
 	public void setSqlSession(SqlSession sqlSession) throws SQLException {
 		this.sqlSession = sqlSession;
 	}
 	@Override
-	public AdminVO selectAdmin()throws SQLException {
+	public AdminVO selectAdmin(String admin_id)throws SQLException {
 		return null;
 	}
 

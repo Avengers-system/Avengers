@@ -4,18 +4,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.avengers.admin.studentManage.dao.AdminStudentManageDao;
 import com.avengers.db.dto.StudVO;
-
+@Repository
 public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
+	@Autowired
 	protected SqlSession sqlSession;
 
 	public void setSqlSession(SqlSession sqlSession) throws SQLException {
 		this.sqlSession = sqlSession;
 	}
 	@Override
-	public ArrayList<StudVO> selectStudList(int firstRow, int lastRow)
+	public ArrayList<StudVO> selectStudList(String key,int firstRow, int lastRow)
 			throws SQLException {
 		return null;
 	}
