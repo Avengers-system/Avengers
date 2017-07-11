@@ -9,13 +9,14 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
-	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- Enables the Spring MVC @Controller programming model -->	
+	
 	<annotation-driven />
-	<view-controller view-name="main" path="/main"/>
-	<view-controller view-name="login/accessDenied" path="/accessDenied"/>
-	<view-controller view-name="login/loginForm" path="/loginForm"/>
-	<view-controller view-name="login/logout" path="/logout"/>
-	<view-controller view-name="login/login_duplicate" path="/login_duplicate"/>
+	<view-controller view-name="common/commonMain" path="/main"/>
+	<view-controller view-name="common/accessDenied" path="/accessDenied"/>
+	<view-controller view-name="common/commonLogin" path="/login"/>
+	<view-controller view-name="common/logout" path="/logout"/>
+	<view-controller view-name="common/commonDuplicate" path="/login_duplicate"/>
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 

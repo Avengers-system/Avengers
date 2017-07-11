@@ -7,30 +7,31 @@
 
 	<authentication-manager>
 		<authentication-provider>
-			<jdbc-user-service data-source-ref="dataSource" id=""
-				users-by-username-query="select id as username,pwd as password,stay as enabled 
-										 from member
-										 where id=?"
-				authorities-by-username-query="select id as username,authority
-											   from member
-											   where id=?" />
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="
+					select id as username, pwd as password, enabled
+					from sequrity
+					where id=?"
+				authorities-by-username-query="
+					select id as username, authority
+					from sequrity
+					where id=?"	 />
 		</authentication-provider>
 	</authentication-manager>
 
 
 	<http use-expressions="true" access-denied-page="/accessDenied">
-		<intercept-url pattern="/login/loginForm" access="permitAll" />
-		<intercept-url pattern="/login/login" access="permitAll" />
-		<intercept-url pattern="/login/**" access="permitAll" />
+		<intercept-url pattern="/common/commonLogin" access="permitAll" />
+		<intercept-url pattern="/common/**" access="permitAll" />
 
 		<intercept-url pattern="/admin/**"	access="hasAnyRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/student/**"	access="hasAnyRole('ROLE_STUDENT')" />
-		<intercept-url pattern="/professor/**"	access="hasAnyRole('ROLE_PROFESSOR')" />
+		<intercept-url pattern="/professor/**"	access="hasAnyRole('ROLE_PROF')" />
+		<intercept-url pattern="/student/**"	access="hasAnyRole('ROLE_STUD')" />
 
 		<intercept-url pattern="/main" access="isAuthenticated()" />
 		<intercept-url pattern="/**" access="permitAll" />
-		<form-login login-page="/loginForm" 
-			login-processing-url="/login"
+		<form-login login-page="/login" 
+			login-processing-url="/loginForm"
 			username-parameter="id" 
 			password-parameter="pwd" 
 			default-target-url="/main"/>
@@ -41,9 +42,8 @@
 		</session-management>
 
 
+
 	</http>
-			<!-- 	
-			default-target-url="/member/list"
-	 		-->
+
 
 </beans:bean>
