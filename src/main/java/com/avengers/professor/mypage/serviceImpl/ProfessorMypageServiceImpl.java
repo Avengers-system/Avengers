@@ -3,14 +3,23 @@ package com.avengers.professor.mypage.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.PerschdVO;
 import com.avengers.db.dto.PrfsVO;
+import com.avengers.professor.mypage.dao.ProfessorMypageDao;
 import com.avengers.professor.mypage.service.ProfessorMypageService;
 
 @Service
 public class ProfessorMypageServiceImpl implements ProfessorMypageService {
+
+	@Autowired
+	private ProfessorMypageDao proMyPageDAO;
+	
+	public void setProMyPageDAO(ProfessorMypageDao proMyPageDAO) {
+		this.proMyPageDAO = proMyPageDAO;
+	}
 
 	@Override
 	public PrfsVO selectPrfs(String prfs_num) throws SQLException {

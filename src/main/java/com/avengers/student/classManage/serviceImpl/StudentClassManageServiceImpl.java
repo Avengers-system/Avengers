@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.AcVO;
@@ -14,6 +15,7 @@ import com.avengers.db.dto.EqVO;
 import com.avengers.db.dto.ExamVO;
 import com.avengers.db.dto.LaVO;
 import com.avengers.db.dto.LctVO;
+import com.avengers.student.classManage.dao.StudentClassManageDao;
 import com.avengers.student.classManage.service.StudentClassManageService;
 
 /**
@@ -24,6 +26,13 @@ import com.avengers.student.classManage.service.StudentClassManageService;
  */
 @Service
 public class StudentClassManageServiceImpl implements StudentClassManageService {
+
+	@Autowired
+	private StudentClassManageDao stuClassDAO;
+	
+	public void setStuClassDAO(StudentClassManageDao stuClassDAO) {
+		this.stuClassDAO = stuClassDAO;
+	}
 
 	@Override
 	public ArrayList<Map<String, String>> selectClassList(String searchKey,

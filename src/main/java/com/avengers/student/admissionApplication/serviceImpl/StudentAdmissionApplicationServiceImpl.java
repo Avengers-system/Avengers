@@ -4,10 +4,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.TlVO;
+import com.avengers.student.admissionApplication.dao.StudentAdmissionApplicationDao;
 import com.avengers.student.admissionApplication.service.StudentAdmissionApplicationService;
 
 
@@ -21,6 +23,13 @@ import com.avengers.student.admissionApplication.service.StudentAdmissionApplica
 @Service
 public class StudentAdmissionApplicationServiceImpl implements
 		StudentAdmissionApplicationService {
+
+	@Autowired
+	private StudentAdmissionApplicationDao stuAdmAppDAO;
+	
+	public void setStuAdmAppDAO(StudentAdmissionApplicationDao stuAdmAppDAO) {
+		this.stuAdmAppDAO = stuAdmAppDAO;
+	}
 
 	@Override
 	public ArrayList<LctVO> selectLctList(Map<String, String> searchKeys)

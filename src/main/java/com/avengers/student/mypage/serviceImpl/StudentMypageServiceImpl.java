@@ -2,11 +2,13 @@ package com.avengers.student.mypage.serviceImpl;
 
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.DeptVO;
 import com.avengers.db.dto.PerschdVO;
 import com.avengers.db.dto.StudVO;
+import com.avengers.student.mypage.dao.StudentMyPageDao;
 import com.avengers.student.mypage.service.StudentMypageService;
 
 /**
@@ -17,6 +19,13 @@ import com.avengers.student.mypage.service.StudentMypageService;
  */
 @Service
 public class StudentMypageServiceImpl implements StudentMypageService{
+
+	@Autowired
+	private StudentMyPageDao stuMypageDAO;
+	
+	public void setStuMypageDAO(StudentMyPageDao stuMypageDAO) {
+		this.stuMypageDAO = stuMypageDAO;
+	}
 
 	@Override
 	public int updateMyInfo(StudVO stud, DeptVO dept) throws SQLException {
