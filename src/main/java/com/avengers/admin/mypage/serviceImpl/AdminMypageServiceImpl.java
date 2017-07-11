@@ -4,17 +4,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Service;
 
 import com.avengers.admin.mypage.service.AdminMypageService;
 import com.avengers.db.dto.AdminVO;
 import com.avengers.db.dto.PerschdVO;
-
+@Service
 public class AdminMypageServiceImpl implements AdminMypageService {
-	protected SqlSession sqlSession;
-
-	public void setSqlSession(SqlSession sqlSession) throws SQLException {
-		this.sqlSession = sqlSession;
-	}
 	@Override
 	public AdminVO selectAdmin()throws SQLException {
 		return null;

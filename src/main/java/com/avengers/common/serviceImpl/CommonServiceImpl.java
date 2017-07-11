@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.avengers.common.service.CommonService;
 import com.avengers.db.dto.BoardVO;
 
-
 @Service
 public class CommonServiceImpl implements CommonService{
 

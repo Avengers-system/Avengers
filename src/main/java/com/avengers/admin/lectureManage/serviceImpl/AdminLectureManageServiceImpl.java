@@ -15,7 +15,7 @@ public class AdminLectureManageServiceImpl implements AdminLectureManageService 
 		this.sqlSession = sqlSession;
 	}
 	@Override
-	public ArrayList<LctVO> selectLctList(int firstRow, int lastRow)throws SQLException {
+	public ArrayList<LctVO> selectLctList(String key,int firstRow, int lastRow)throws SQLException {
 		return null;
 	}
 

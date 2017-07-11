@@ -4,18 +4,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Service;
 
 import com.avengers.admin.studentManage.service.AdminStudentManageService;
 import com.avengers.db.dto.StudVO;
-
+@Service
 public class AdminStudentManageServiceImpl implements AdminStudentManageService {
-	protected SqlSession sqlSession;
-
-	public void setSqlSession(SqlSession sqlSession) throws SQLException {
-		this.sqlSession = sqlSession;
-	}
+	
 	@Override
-	public ArrayList<StudVO> selectStudList(int firstRow, int lastRow)
+	public ArrayList<StudVO> selectStudList(String key,int firstRow, int lastRow)
 			throws SQLException {
 		return null;
 	}

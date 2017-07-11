@@ -1,5 +1,5 @@
 package com.avengers.professor.security;
 
-public class aa {
+public class ProfessorSecurity {
 
 }
