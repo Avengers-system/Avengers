@@ -6,16 +6,6 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
-	<!-- 	DAO -->
-	<bean id="helpDeskDAO" 
-	class="com.avengers.admin.HelpDesk.daoImpl.AdminHelpDeskDaoImpl" 
-	p:client-ref="SqlSession"
-	/>
-	
-	 <bean id="lectureDAO"
-	 class="com.avengers.admin.lectureManage.daoImpl.AdminLectureManageDaoImpl"
-	 p:client-ref="sqlSession"
-	 />
 	
 		
 </beans>
