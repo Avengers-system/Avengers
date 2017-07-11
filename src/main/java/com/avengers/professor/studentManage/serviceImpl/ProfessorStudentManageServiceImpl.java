@@ -3,14 +3,23 @@ package com.avengers.professor.studentManage.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.CnsVO;
 import com.avengers.db.dto.StudVO;
+import com.avengers.professor.studentManage.dao.ProfessorStudentManageDao;
 import com.avengers.professor.studentManage.service.ProfessorStudentManageService;
 
 @Service
 public class ProfessorStudentManageServiceImpl implements ProfessorStudentManageService {
+
+	@Autowired
+	private ProfessorStudentManageDao proStuDAO;
+	
+	public void setProStuDAO(ProfessorStudentManageDao proStuDAO) {
+		this.proStuDAO = proStuDAO;
+	}
 
 	@Override
 	public ArrayList<CnsVO> selectCnsList(String cns_prfs, String key)

@@ -3,9 +3,11 @@ package com.avengers.student.counsel.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.CnsVO;
+import com.avengers.student.counsel.dao.StudentCounselDao;
 import com.avengers.student.counsel.service.StudentCounselService;
 
 
@@ -18,6 +20,12 @@ import com.avengers.student.counsel.service.StudentCounselService;
  */
 @Service
 public class StudentCounselServiceImpl implements StudentCounselService {
+	@Autowired
+	private StudentCounselDao stuCounselDAO;
+	
+	public void setStuCounselDAO(StudentCounselDao stuCounselDAO) {
+		this.stuCounselDAO = stuCounselDAO;
+	}
 
 	@Override
 	public int insertCounsel(CnsVO cns, int firstRow, int endRow)

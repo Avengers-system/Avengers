@@ -3,13 +3,22 @@ package com.avengers.admin.studentManage.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.avengers.admin.studentManage.dao.AdminStudentManageDao;
 import com.avengers.admin.studentManage.service.AdminStudentManageService;
 import com.avengers.db.dto.StudVO;
 @Service
 public class AdminStudentManageServiceImpl implements AdminStudentManageService {
+
+	@Autowired
+	private AdminStudentManageDao amdinStudentDAO;
 	
+	public void setAmdinStudentDAO(AdminStudentManageDao amdinStudentDAO) {
+		this.amdinStudentDAO = amdinStudentDAO;
+	}
+
 	@Override
 	public ArrayList<StudVO> selectStudList(String key,int firstRow, int lastRow)
 			throws SQLException {

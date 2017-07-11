@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.AcVO;
@@ -18,9 +19,17 @@ import com.avengers.db.dto.SaVO;
 import com.avengers.db.dto.SubVO;
 import com.avengers.db.dto.TeVO;
 import com.avengers.db.dto.TlVO;
+import com.avengers.professor.classManage.dao.ProfessorClassManageDao;
 import com.avengers.professor.classManage.service.ProfessorClassManageService;
 @Service
 public class ProfessorClassManageServiceImpl implements ProfessorClassManageService{
+
+	@Autowired
+	private ProfessorClassManageDao proClassDAO;
+	
+	public void setProClassDAO(ProfessorClassManageDao proClassDAO) {
+		this.proClassDAO = proClassDAO;
+	}
 
 	@Override
 	public ArrayList<LctVO> selectLctList(String key, int firstRow, int endRow)

@@ -12,6 +12,7 @@ import com.avengers.db.dto.CnsVO;
 import com.avengers.db.dto.PerschdVO;
 import com.avengers.db.dto.StudVO;
 import com.avengers.db.dto.TlVO;
+import com.avengers.student.main.dao.StudentMainDao;
 import com.avengers.student.main.service.StudentMainService;
 import com.avengers.student.mypage.dao.StudentMyPageDao;
 
@@ -25,11 +26,10 @@ import com.avengers.student.mypage.dao.StudentMyPageDao;
 public class StudentMainServiceImpl implements StudentMainService{
 
 	@Autowired
-	private StudentMyPageDao myPageDao;
+	private StudentMainDao stuMainDao;
 	
-	
-	public void setMyPageDao(StudentMyPageDao myPageDao) {
-		this.myPageDao = myPageDao;
+	public void setStuMainDao(StudentMainDao stuMainDao) {
+		this.stuMainDao = stuMainDao;
 	}
 
 	@Override

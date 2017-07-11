@@ -2,11 +2,13 @@ package com.avengers.student.schoolRegister.serviceImpl;
 
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.LoaVO;
 import com.avengers.db.dto.LsVO;
 import com.avengers.db.dto.RtsVO;
+import com.avengers.student.schoolRegister.dao.StudentSchoolRegisterDao;
 import com.avengers.student.schoolRegister.service.StudentSchoolRegisterService;
 import com.lowagie.text.Document;
 import com.lowagie.text.pdf.PdfWriter;
@@ -18,6 +20,13 @@ import com.lowagie.text.pdf.PdfWriter;
  */
 @Service
 public class StudentSchoolRegisterServiceImpl implements StudentSchoolRegisterService {
+	@Autowired
+	private StudentSchoolRegisterDao stuSchResDAO;
+	
+	public void setStuSchResDAO(StudentSchoolRegisterDao stuSchResDAO) {
+		this.stuSchResDAO = stuSchResDAO;
+	}
+
 	@Override
 	public void buildPdfDocument(Document document, PdfWriter pdfWriter)
 			throws SQLException {

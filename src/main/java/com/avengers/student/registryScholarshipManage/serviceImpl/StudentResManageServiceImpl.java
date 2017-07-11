@@ -4,16 +4,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.RegVO;
 import com.avengers.db.dto.ScrapplVO;
+import com.avengers.student.registryScholarshipManage.dao.StudentResManageDao;
 import com.avengers.student.registryScholarshipManage.service.StudentResManageService;
 
 
 
 @Service
 public class StudentResManageServiceImpl implements StudentResManageService {
+	@Autowired
+	private StudentResManageDao stuResDAO;
+	
+	public void setStuResDAO(StudentResManageDao stuResDAO) {
+		this.stuResDAO = stuResDAO;
+	}
 
 	@Override
 	public ArrayList<ScrapplVO> selectScrapplList(String scrappl_stud,
