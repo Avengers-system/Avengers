@@ -8,10 +8,12 @@
 <title></title>
 </head>
 <body>
-학생메인
+공통 메인
+
 <button onclick="location.href='<%=request.getContextPath()%>/admin/adminMain'">관리자</button>
 <button onclick="location.href='<%=request.getContextPath()%>/professor/professorMain'">교수</button>
 <button onclick="location.href='<%=request.getContextPath()%>/student/studentMain'">학생</button>
 <button onclick="location.href='<%=request.getContextPath()%>/common/logout'">로그아웃</button>
+
 </body>
 </html>

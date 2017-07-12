@@ -29,7 +29,7 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 	}
 
 	@Override
-	public ArrayList<PerschdVO> selectPerschdList(String perschd_psc)throws SQLException {
+	public ArrayList<PerschdVO> selectPerschdList(String perschd_writer)throws SQLException {
 		return null;
 	}
 
@@ -39,12 +39,12 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 	}
 
 	@Override
-	public int insertPerschd(PerschdVO perschdVO, String perschd_psc)throws SQLException {
+	public int insertPerschd(PerschdVO perschdVO)throws SQLException {
 		return 0;
 	}
 
 	@Override
-	public int updatePerschd(PerschdVO perschdVO, String perschd_num)throws SQLException {
+	public int updatePerschd(PerschdVO perschdVO)throws SQLException {
 		return 0;
 	}
 
