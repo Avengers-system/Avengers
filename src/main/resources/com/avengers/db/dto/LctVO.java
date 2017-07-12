@@ -5,12 +5,12 @@ package com.avengers.db.dto;
  * 강의에 대한 정보 관리
  * @author 조영훈
  * 2017.07.10 최초작성
- *
+ * 2017.07.12 lct_atr -> lct_qtr로 수정
  */
 public class LctVO {
 	private String lct_num;//강의 고유번호
 	private String lct_yr;//개설년도
-	private String lct_atr;//개설학기
+	private String lct_qtr;//개설학기
 	private String lct_nm;//강의명
 	private String lct_tb;//강의교재
 	private String lct_cd;//이수구분
@@ -25,6 +25,12 @@ public class LctVO {
 	private String lct_sjt;//과목번호
 	
 	
+	public String getLct_qtr() {
+		return lct_qtr;
+	}
+	public void setLct_qtr(String lct_qtr) {
+		this.lct_qtr = lct_qtr;
+	}
 	public String getLct_num() {
 		return lct_num;
 	}
@@ -37,12 +43,7 @@ public class LctVO {
 	public void setLct_yr(String lct_yr) {
 		this.lct_yr = lct_yr;
 	}
-	public String getLct_atr() {
-		return lct_atr;
-	}
-	public void setLct_atr(String lct_atr) {
-		this.lct_atr = lct_atr;
-	}
+	
 	public String getLct_nm() {
 		return lct_nm;
 	}
