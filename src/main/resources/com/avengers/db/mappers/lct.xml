@@ -4,6 +4,29 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Lct">
+  <!-- 대망의 resultMap 사용부분이다. 이로직을 사용하기 위해 이 주석을 보고있다면 일단 심호흡을 먼저 하도록하자 심신미약자는 다른팀원에게 이로직을 
+  부탁하도록 권장한다. 자 이제 시작이다. 기본적으로 사용하는때는 2테이블 이상 조인을 한뒤에 리턴값이 하나의 VO로는 처리가 안될때 사용한다.
+  resultMap id="MainLct" 이부분은 사용자가 resultMap의 아이디를 임의로 정하는것으로 밑에 resultMap="MainLct" 이부분에 사용된다.
+   type="java.util.HashMap" 이것은 해쉬맵을 사용하겠다는 선언이다.
+   
+   <result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>
+   
+   javaType="java.lang.String"이것은  해쉬맵에 저장할 value타입을 말하는 것이다.
+   column="LCT_NUM" 이것은 DB에 컬럼명과 동일해야하며 이 컬럼의 값이 해쉬맵에 저장되는 value다
+   property="lct_num" 해쉬맵의 키이름으로 사용자가 임의로 지정해준다.
+   
+   이렇게사용한 resultMap은 리스트형태의 HashMap으로 들어간다. 즉 List<HashMap<String,String>>이런식으로 들어간다는거다
+  이것을 jsp에서 출력할때는 이와같이 출력한다.
+  
+  <c:forEach var="lct" items="${lctList }" varStatus="status">
+         <tr>
+            <td>강의번호:${lct.get(status.index).get("lct_num")}</td>
+            <td>강의시간:${lct.get(status.index).get("lr_num")}</td>
+            <td>강의날짜:${lct.get(status.index).get("lr_date")}</td>
+            <td>강의실번호:${lct.get(status.index).get("lr_lct")}</td>
+         </tr>
+      </c:forEach> 
+   --> 
   <resultMap id="MainLct" type="java.util.HashMap">
         <result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>
         <result javaType="java.lang.String" column="LR_NUM" property="lr_num"/>

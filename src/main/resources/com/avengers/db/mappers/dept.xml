@@ -4,8 +4,7 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Dept">
-
-	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
+	<!-- 학과공지게시판을 구하기위해 학과이름을 구하는 구문이다. -->
 	<select id="selectDept" parameterType="java.lang.String" resultType="com.avengers.db.dto.DeptVO">
 		SELECT DEPT_NM FROM DEPARTMENT WHERE DEPT_NUM=#{prfs_dept}  
 	</select>
