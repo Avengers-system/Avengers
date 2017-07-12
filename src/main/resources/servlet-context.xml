@@ -27,7 +27,17 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.avengers" />
-	
+	<!-- 타일즈를 위한 TilesViewResolver, TilesConfigurer -->
+	<beans:bean id="tilesviewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" >
+		<beans:property name="order" value="1"/>
+	</beans:bean>
+	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<beans:property name="definitions">
+			<beans:list>
+				<beans:value>classpath:tiles.xml</beans:value>
+			</beans:list>
+		</beans:property>	
+	</beans:bean>	
 	
 	
 </beans:beans>
