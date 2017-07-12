@@ -31,10 +31,10 @@ public class HomeController {
 		return "member/list";
 	}
 	
-	@RequestMapping("admin/adminMain")
-	public String test(){
-		return "admin/adminMain";
-	}
+//	@RequestMapping("admin/adminMain")
+//	public String test(){
+//		return "admin/adminMain";
+//	}
 	@RequestMapping("student/studentMain")
 	public String test1(){
 		return "student/studentMain";
