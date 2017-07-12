@@ -20,9 +20,8 @@
 	<bean id="sqlSessionFactoryOracle"
 		class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="dataSourceOracle"
-		p:configLocation="classpath:sql/mybatis/config/mybatis_config.xml"
-		p:typeAliasesPackage="com.system.avengers"
-		p:mapperLocations="classpath:com.avengers.db.sqlconfig.SqlMapConfig.xml"
+		p:typeAliasesPackage-ref="com.system.avengers"
+		p:mapperLocations-ref="classpath:com/avengers/db/sqlconfig/SqlMapConfig.xml"
 	/>
 	<bean id="sqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate"
