@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Lct">
+  <resultMap id="MainLct" type="java.util.HashMap">
+        <result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>
+        <result javaType="java.lang.String" column="LR_NUM" property="lr_num"/>
+        <result javaType="java.lang.String" column="LR_DATE" property="lr_date"/>
+        <result javaType="java.lang.String" column="LR_LCT" property="lr_lct"/>
+  </resultMap> 
+
+
+
+	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
+	<select id="selectLctList" parameterType="com.avengers.db.dto.LctVO" resultMap="MainLct">
+		select LCT_NUM,LR_NUM,LR_DATE,LR_LCT
+		from LR, LECTURE  
+		where LR_LCT = LCT_NUM 
+		AND LCT_PRFS = ${lct_prfs}
+		AND LCT_YR = ${lct_yr} 
+		AND LCT_QTR = ${lct_qtr}  
+	</select>
+	
+	
+</mapper>
