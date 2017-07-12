@@ -28,7 +28,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<!-- 아래부분은 매핑할 xml파일이 있는 패키지경로를 설정한다. -->
 		<property name="typeAliasesPackage" value="com.avengers.db.mappers" />
-		<property name="mapperLocations" value="classpath:com/avengers/db/*.xml" />
+		<property name="mapperLocations" value="classpath:com/avengers/db/mappers/*.xml" />
 	</bean>
  
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">

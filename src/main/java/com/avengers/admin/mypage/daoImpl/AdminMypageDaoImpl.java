@@ -20,7 +20,9 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 	}
 	@Override
 	public AdminVO selectAdmin(String admin_id)throws SQLException {
-		return null;
+		AdminVO admin = new AdminVO();
+		admin = (AdminVO) sqlSession.selectOne("admin.selectAdmin",admin_id);
+		return admin;
 	}
 
 	@Override
@@ -30,7 +32,9 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 
 	@Override
 	public ArrayList<PerschdVO> selectPerschdList(String perschd_writer)throws SQLException {
-		return null;
+		ArrayList<PerschdVO> perschdList = new ArrayList<PerschdVO>();
+		perschdList =  (ArrayList<PerschdVO>) sqlSession.selectList("perschd.selectPerschdList", perschd_writer);
+		return perschdList;
 	}
 
 	@Override

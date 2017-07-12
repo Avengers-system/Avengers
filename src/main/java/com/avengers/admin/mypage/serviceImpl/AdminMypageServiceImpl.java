@@ -21,7 +21,9 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 
 	@Override
 	public AdminVO selectAdmin(String admin_id)throws SQLException {
-		return null;
+		AdminVO admin = null;
+		admin = myPageDAO.selectAdmin(admin_id);
+		return admin;
 	}
 
 	@Override
@@ -31,7 +33,9 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 
 	@Override
 	public ArrayList<PerschdVO> selectPerschdList(String perschd_writer)throws SQLException {
-		return null;
+		ArrayList<PerschdVO> perschdList= null;
+		perschdList = myPageDAO.selectPerschdList(perschd_writer);
+		return perschdList;
 	}
 
 	@Override

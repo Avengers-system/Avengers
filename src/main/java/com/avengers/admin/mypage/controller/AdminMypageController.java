@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 
 
+
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,17 +49,20 @@ public class AdminMypageController {
 	@RequestMapping("/myInfo")
 	public String myInfo(Principal principal,Model model){
 		String adminId = principal.getName();
-		String url="admin/myPage/myInfo";
+		String url="/admin/mypage/myInfo";
 		AdminVO admin= null;
 		
 		try {
 			admin = myPageService.selectAdmin(adminId);
+			if(admin != null){
+				model.addAttribute("admin",admin);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		model.addAttribute("admin",admin);
+		System.out.println("!!!!!!!!!!!!myInfo!!!!!!!!!!!!");
 		return url;
 	}
 	
@@ -71,14 +76,21 @@ public class AdminMypageController {
 	public String mySchedule(Principal principal,Model model){
 		String scheduleId = principal.getName(); 
 		ArrayList<PerschdVO> perschdList = null;
-		String url="admin/myPage/mySchedule";
+		String url="/admin/mypage/mySchedule";
+		String message="";
 		try {
 			perschdList =  myPageService.selectPerschdList(scheduleId);
+			if(perschdList != null){
+				model.addAttribute("perschdList",perschdList);
+			}else{
+				message = "입력된 개인정보가 없습니다.";
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		model.addAttribute("perschdList",perschdList);
+		System.out.println("!!!!!!!!!!!!mySchedule!!!!!!!!!!!!");
+		model.addAttribute("message",message);
 		return url;
 	}
 	
