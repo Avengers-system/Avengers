@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="perschd">
+	
+	<select id="getPerschd" parameterType="String" resultType="com.avengers.db.dto.PerschdVO">
+		select * from perschd where perschd_writer=#{perschd_writer}
+	</select>
+	
+	<select id="selectSchoolScheduleList" parameterType="java.lang.String"
+		resultType="com.avengers.db.dto.PerschdVO">
+		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER='UNIV'
+	</select>
+	
+</mapper>
+

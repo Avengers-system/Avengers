@@ -10,8 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.CnsVO;
+import com.avengers.db.dto.DeptVO;
+import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.PerschdVO;
 import com.avengers.db.dto.StudVO;
+import com.avengers.db.dto.StudentMainVO;
+import com.avengers.db.dto.TlLctRequest;
 import com.avengers.db.dto.TlVO;
 import com.avengers.student.main.dao.StudentMainDao;
 
@@ -33,15 +37,16 @@ public class StudentMainDaoImpl implements StudentMainDao{
 
 	@Override
 	public StudVO selectStudInfo(String stud_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		StudVO studVO = (StudVO) sqlSession.selectOne("student.getStudentInfo",stud_num);
+		
+		return studVO;
 	}
 
 	@Override
 	public ArrayList<PerschdVO> selectPerschd(String PSC_WRITER)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		 ArrayList<PerschdVO> perschdList =(ArrayList<PerschdVO>)sqlSession.selectList("perschd.getPerschd",PSC_WRITER);
+		return perschdList;
 	}
 
 	@Override
@@ -51,9 +56,9 @@ public class StudentMainDaoImpl implements StudentMainDao{
 	}
 
 	@Override
-	public ArrayList<CnsVO> selectCnsList(String CNS_STUD) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<CnsVO> selectCnsList(String cns_stud) throws SQLException {
+		ArrayList<CnsVO> cnsList = (ArrayList<CnsVO>)sqlSession.selectList("cns.getCns",cns_stud);
+		return cnsList;
 	}
 
 	@Override
@@ -67,5 +72,57 @@ public class StudentMainDaoImpl implements StudentMainDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public DeptVO selectDept(String dept_num) throws SQLException {
+		
+		DeptVO deptVO =(DeptVO)sqlSession.selectOne("dept.getDept",dept_num);
+		return deptVO;
+	}
+
+	@Override
+	public ArrayList<StudentMainVO> selectLectureList(String tl_stud,String lct_yr, String lct_qtr) throws SQLException {
+		StudentMainVO vo = new StudentMainVO();
+		vo.setTl_stud(tl_stud);
+		vo.setLct_yr(lct_yr);
+		vo.setLct_qtr(lct_qtr);
+		ArrayList<StudentMainVO> LectureList = (ArrayList<StudentMainVO>)sqlSession.selectList("studentMain.getLectureList",vo);
+		return LectureList;
+	}
+
+	@Override
+	public String allGrades(String stud_num) throws SQLException {
+		String allGrades = (String) sqlSession.selectOne("",stud_num);
+		
+		return allGrades;
+	}
+
+	@Override
+	public ArrayList<BoardVO> selectPortalNoticeList() throws SQLException {
+		ArrayList<BoardVO> portalNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("board.selectPortalNoticeList");
+		return portalNoticeList;
+	}
+
+	@Override
+	public ArrayList<BoardVO> selectSchoolNoticeList() throws SQLException {
+		ArrayList<BoardVO> schoolNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("board.selectSchoolNoticeList");
+		return schoolNoticeList;
+	}
+
+	@Override
+	public ArrayList<BoardVO> selectDepartmentNoticeList(String bc_dept) throws SQLException {
+		 ArrayList<BoardVO> departmentNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("board.selectDepartmentNoticeList", bc_dept);
+		return departmentNoticeList;
+	}
+
+	@Override
+	public ArrayList<PerschdVO> selectSchoolScheduleList() throws SQLException {
+		ArrayList<PerschdVO> schoolScheduleList = (ArrayList<PerschdVO>)sqlSession.selectList("perschd.selectSchoolScheduleList");
+		return schoolScheduleList;
+	}
+
+
+
+
 
 }

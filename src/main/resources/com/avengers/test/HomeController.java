@@ -35,10 +35,7 @@ public class HomeController {
 	public String test(){
 		return "admin/adminMain";
 	}
-	@RequestMapping("student/studentMain")
-	public String test1(){
-		return "student/studentMain";
-	}
+
 	@RequestMapping("professor/professorMain")
 	public String test2(){
 		return "professor/professorMain";

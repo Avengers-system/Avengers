@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cns">
+	
+	<select id="getCns" parameterType="String" resultType="com.avengers.db.dto.CnsVO">
+		select * from counsel where cns_stud=#{cns_stud}
+	</select>
+	
+</mapper>
