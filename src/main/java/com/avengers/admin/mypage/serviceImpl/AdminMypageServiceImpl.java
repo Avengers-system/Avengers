@@ -20,8 +20,10 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 	}
 
 	@Override
-	public AdminVO selectAdmin()throws SQLException {
-		return null;
+	public AdminVO selectAdmin(String admin_id)throws SQLException {
+		AdminVO admin = null;
+		admin = myPageDAO.selectAdmin(admin_id);
+		return admin;
 	}
 
 	@Override
@@ -30,8 +32,10 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 	}
 
 	@Override
-	public ArrayList<PerschdVO> selectPerschdList(String perschd_psc)throws SQLException {
-		return null;
+	public ArrayList<PerschdVO> selectPerschdList(String perschd_writer)throws SQLException {
+		ArrayList<PerschdVO> perschdList= null;
+		perschdList = myPageDAO.selectPerschdList(perschd_writer);
+		return perschdList;
 	}
 
 	@Override
@@ -40,12 +44,12 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 	}
 
 	@Override
-	public int insertPerschd(PerschdVO perschdVO, String perschd_psc)throws SQLException {
+	public int insertPerschd(PerschdVO perschdVO)throws SQLException {
 		return 0;
 	}
 
 	@Override
-	public int updatePerschd(PerschdVO perschdVO, String perschd_num)throws SQLException {
+	public int updatePerschd(PerschdVO perschdVO)throws SQLException {
 		return 0;
 	}
 

@@ -10,5 +10,8 @@
 	</select>
 	
 	
+	<select id="getDept" parameterType="String" resultType="com.avengers.db.dto.DeptVO">
+		select * from department where dept_num=#{dept_num}
+	</select>
 	
 </mapper>

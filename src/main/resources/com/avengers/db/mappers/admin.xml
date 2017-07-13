@@ -2,8 +2,25 @@
 <!DOCTYPE mapper
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="admin">
+
+	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
+	<select id="selectAdmin" parameterType="com.avengers.db.dto.AdminVO" resultType="com.avengers.db.dto.AdminVO">
+		SELECT ADMIN_PIC,
+			   ADMIN_ID,
+			   ADMIN_NM,
+			   ADMIN_BIR,
+			   ADMIN_EMAIL,
+			   ADMIN_TEL,
+			   ADMIN_HP,
+			   ADMIN_POST,
+			   ADMIN_BANK
+		FROM ADMIN
+		WHERE ADMIN_ID = #{admin_id}
+	</select>
+	
+	
+
 	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
 	<select id="getAdminInfo" resultType="com.avengers.db.dto.AdminVO" parameterType="string">
 		SELECT * FROM ADMIN WHERE ADMIN_ID = #{adminId}

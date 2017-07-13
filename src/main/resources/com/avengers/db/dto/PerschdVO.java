@@ -15,8 +15,8 @@ public class PerschdVO {
 	private Date perschd_start_date; // 개인일정 시작일
 	private Date perschd_end_date; // 개인일정 종료일
 	private String perschd_writer; // 작성자ID
-	
-	
+
+
 	public String getPerschd_writer() {
 		return perschd_writer;
 	}
