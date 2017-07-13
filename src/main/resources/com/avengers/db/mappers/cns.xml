@@ -3,7 +3,7 @@
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Cns">
+<mapper namespace="cns">
 	<!-- 상담테이블에서 해당 교수가 진행한 상담들을 뽑아오는 구문이다. -->
 	<select id="selectCnsList" parameterType="java.lang.String" resultType="com.avengers.db.dto.CnsVO">
 		SELECT * FROM COUNSEL WHERE CNS_PRFS=#{cns_prfs}  
