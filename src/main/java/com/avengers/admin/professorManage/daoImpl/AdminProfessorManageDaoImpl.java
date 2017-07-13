@@ -20,17 +20,20 @@ public class AdminProfessorManageDaoImpl implements AdminProfessorManageDao {
 	@Override
 	public ArrayList<PrfsVO> selectPrfsList(String key,int firstRow, int lastRow)
 			throws SQLException {
+		sqlSession.selectList("");//쿼리쓰기~~~
 		return null;
 	}
 
 	@Override
 	public PrfsVO selectPrfs(String prfs_num) throws SQLException {
-		return null;
+		 
+		return null;  
 	}
 
 	@Override
 	public int insertPrfs(PrfsVO prfsVO) throws SQLException {
-		return 0;
+		int result = sqlSession.insert("admin.insertProfessor",prfsVO);
+		return result;
 	}
 
 	@Override
@@ -41,6 +44,11 @@ public class AdminProfessorManageDaoImpl implements AdminProfessorManageDao {
 	@Override
 	public int deletePrfs(String prfs_num) throws SQLException {
 		return 0;
+	}
+	@Override
+	public int insertSecurity(PrfsVO prfsVO) {
+		int result = sqlSession.insert("admin.insertSecurity",prfsVO);
+		return result;
 	}
 
 }

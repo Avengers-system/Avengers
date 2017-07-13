@@ -29,4 +29,40 @@
 	<select id="getPersonScheduleInfo" resultType="com.avengers.db.dto.PerschdVO" parameterType="string">
 		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER = #{adminId}
 	</select>
+	
+	
+	<insert id="insertProfessor"  parameterType="com.avengers.db.dto.PrfsVO">
+		INSERT 
+		INTO PROFESSOR
+		VALUES (
+		'2017'|| lpad(prfs_seq.nextval,3,0 ),
+		#prfs_nm#,
+		#prfs_eng_nm#,
+		#prfs_bir#,
+		#prfs_email#,
+		#prfs_pw#,
+		#prfs_regno#,
+		#prfs_gen#,
+		#prgs_pic#,
+		#prfs_act_num#,
+		#prfs_bank#,
+		#prfs_ah#,
+		#prfs_addr#,
+		#prfs_zip#,
+		#prfs_tel#,
+		#prfs_hp#,
+		#prfs_dept#
+		)
+ 	
+	</insert>
+	
+	<insert id="insertSecurity" parameterType="com.avengers.db.dto.PrfsVO">
+	INSERT 
+		INTO SECURITY
+		VALUES (#prfs_num#,
+				#prfs_pw#,
+				'1',
+				'ROLE_PROF' 
+		)
+	</insert>
 </mapper>

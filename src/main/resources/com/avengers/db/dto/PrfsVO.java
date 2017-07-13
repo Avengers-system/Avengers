@@ -25,7 +25,6 @@ public class PrfsVO {
    private String prfs_zip;//우편번호
    private String prfs_tel;//전화번호
    private String prfs_hp;//휴대폰번호
-   private String prfs_security;//시큐리티
    private String prfs_dept;//학과번호
    
    public String getPrfs_num() {
@@ -124,12 +123,7 @@ public class PrfsVO {
    public void setPrfs_hp(String prfs_hp) {
       this.prfs_hp = prfs_hp;
    }
-   public String getPrfs_security() {
-      return prfs_security;
-   }
-   public void setPrfs_security(String prfs_security) {
-      this.prfs_security = prfs_security;
-   }
+   
    public String getPrfs_dept() {
       return prfs_dept;
    }

@@ -90,7 +90,6 @@ public class StudentMainController {
         model.addAttribute("schoolScheduleList",selectSchoolScheduleList);
 //		model.addAttribute("allGrades",allLevelComplete);
 		
-		
 		return "student/studentMain";
 	}
 }

@@ -9,6 +9,7 @@
 	<select id="selectPrfs" parameterType="java.lang.String" resultType="com.avengers.db.dto.PrfsVO">
 		SELECT * FROM PROFESSOR WHERE PRFS_NUM=#{prfs_num}  
 	</select>
+
 	
 	
 </mapper>
