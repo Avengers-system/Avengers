@@ -20,7 +20,7 @@ public interface StudentCounselDao {
 	//상담 조회
 	//기간,교수명,과목, 상담여부로 조회
 	//전체목록
-	public ArrayList<CnsVO> selectCounselList(int firstRow,int endRow) throws SQLException;
+	public ArrayList<CnsVO> selectCounselList(String stud_num) throws SQLException;
 	
 	//key,학생번호로 검색
 	public ArrayList<CnsVO> selectCounselList(String searchKey,String cns_stud,int firstRow,int endRow) throws SQLException;

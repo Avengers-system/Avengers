@@ -1,6 +1,8 @@
 package com.avengers.student.schoolRegister.daoImpl;
 
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +26,6 @@ public class StudentSchoolRegisterDaoImpl implements StudentSchoolRegisterDao {
 	@Autowired
 	protected SqlSession sqlSession;
 	
-	public void setSqlSession(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
 
 	@Override
 	public DocumentView getDocument() {
@@ -57,6 +56,32 @@ public class StudentSchoolRegisterDaoImpl implements StudentSchoolRegisterDao {
 	public int insertLs(LsVO ls) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public HashMap<String, String> selectGradeInfo(String stud_num)
+			throws SQLException {
+		HashMap<String,String> gradeInfo = (HashMap<String,String>)sqlSession.selectOne("certificate.selectGradeInfo",stud_num);
+		return gradeInfo;
+	}
+
+	@Override
+	public List<HashMap<String, String>> selectGradeList(String stud_num)
+			throws SQLException {
+		List<HashMap<String,String>> gradeList = (List<HashMap<String,String>>)sqlSession.selectList("certificate.selectGradeList",stud_num);
+		return gradeList;
+	}
+
+	@Override
+	public int selectAllGrade(String stud_num) throws SQLException {
+		int allGrade = (Integer)sqlSession.selectOne("certificate.selectAllGrade",stud_num);
+		return allGrade;
+	}
+
+	@Override
+	public int selectAllGradeCount(String stud_num) throws SQLException {
+		int allGradeCount = (Integer)sqlSession.selectOne("certificate.selectAllGradeCount",stud_num);
+		return allGradeCount;
 	}
 	
 }

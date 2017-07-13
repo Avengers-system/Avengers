@@ -2,13 +2,30 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
-</head>
-<body>
+
+
+
+<!-- 학생 header -->
+<button id="adminMain">MyPage</button>
+<button id="logout" onclick="schoolRegister_go()">학적관리</button><br/>
+<button id="myInfo">수업관리</button><br/>
+<button id="mySchedule">수강신청</button><br/>
+<button id="mySchedule">등록/장학</button><br/>
+<button id="mySchedule" onclick="counsel_go()" >상담</button><br/>
+<button id="mySchedule" >HelpDesk</button><br/>
+
+<script type="text/javascript">
+	function schoolRegister_go(){
+		location.href="${pageContext.request.contextPath}/student/schoolRegister/certificate";
+	}
+	function counsel_go(){
+		location.href="${pageContext.request.contextPath}/student/counsel/counselList";
+		
+	}
+
+</script>
+
+
 
 <!-- 학생개인정보 -->
 <br>
@@ -127,6 +144,3 @@
             </tr>
          </c:otherwise>
 </c:choose>
-
-</body>
-</html>

@@ -15,4 +15,8 @@
 		select * from counsel where cns_stud=#{cns_stud}
 	</select>
 	
+	<!-- 학생이 상담받은 상담들을 뽑아오는 구문 -->
+	<select id="selectStudentCnsList" parameterType="java.lang.String"	resultType="com.avengers.db.dto.CnsVO">
+		select * from counsel where cns_stud=#{stud_num}
+	</select>
 </mapper>

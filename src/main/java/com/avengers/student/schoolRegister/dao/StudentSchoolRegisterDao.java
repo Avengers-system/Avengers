@@ -1,6 +1,8 @@
 package com.avengers.student.schoolRegister.dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
 
 import org.w3c.dom.views.AbstractView;
 
@@ -17,6 +19,11 @@ import com.lowagie.text.pdf.PdfWriter;
  * 최조작성 2017.07.10
  */
 public interface StudentSchoolRegisterDao extends AbstractView {
+	public HashMap<String, String> selectGradeInfo(String stud_num) throws SQLException;
+	public List<HashMap<String,String>> selectGradeList(String stud_num) throws SQLException;
+	public int selectAllGrade(String stud_num) throws SQLException;
+	public int selectAllGradeCount(String stud_num) throws SQLException;
+	
 			//증명서 발급
 			//발급할 증명서 선택 발급
 			public void buildPdfDocument(Document document,PdfWriter pdfWriter) throws SQLException; 

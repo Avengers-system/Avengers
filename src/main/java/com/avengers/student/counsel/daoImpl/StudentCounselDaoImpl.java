@@ -23,9 +23,6 @@ public class StudentCounselDaoImpl implements StudentCounselDao {
 	@Autowired
 	protected SqlSession sqlSession;
 	
-	public void setSqlSession(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
 
 	@Override
 	public int insertCounsel(CnsVO cns, int firstRow, int endRow)
@@ -35,10 +32,10 @@ public class StudentCounselDaoImpl implements StudentCounselDao {
 	}
 
 	@Override
-	public ArrayList<CnsVO> selectCounselList(int firstRow, int endRow)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<CnsVO> selectCounselList(String stud_num) throws SQLException {
+		ArrayList<CnsVO> counselList = (ArrayList<CnsVO>)sqlSession.selectList("cns.selectStudentCnsList",stud_num);
+			
+		return counselList;
 	}
 
 	@Override

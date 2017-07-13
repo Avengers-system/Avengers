@@ -22,10 +22,6 @@ import com.avengers.student.counsel.service.StudentCounselService;
 public class StudentCounselServiceImpl implements StudentCounselService {
 	@Autowired
 	private StudentCounselDao stuCounselDAO;
-	
-	public void setStuCounselDAO(StudentCounselDao stuCounselDAO) {
-		this.stuCounselDAO = stuCounselDAO;
-	}
 
 	@Override
 	public int insertCounsel(CnsVO cns, int firstRow, int endRow)
@@ -35,10 +31,9 @@ public class StudentCounselServiceImpl implements StudentCounselService {
 	}
 
 	@Override
-	public ArrayList<CnsVO> selectCounselList(int firstRow, int endRow)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<CnsVO> selectCounselList(String stud_num) throws SQLException {
+		ArrayList<CnsVO> counselList = stuCounselDAO.selectCounselList(stud_num);
+		return counselList;
 	}
 
 	@Override

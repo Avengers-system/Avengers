@@ -10,11 +10,11 @@
 			<jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="
 					select id as username, pwd as password, enabled
-					from sequrity
+					from security
 					where id=?"
 				authorities-by-username-query="
 					select id as username, authority
-					from sequrity
+					from security
 					where id=?"	 />
 		</authentication-provider>
 	</authentication-manager>
@@ -37,8 +37,12 @@
 			default-target-url="/main"/>
 		<logout logout-success-url="/logout" delete-cookies="true" />
 
+
+
+		<!-- error-if-maximum-exceeded="true" 이중접속 강제 방지 로그인한 아이디이면 다시 로그인 페이지로 -->
 		<session-management>
-			<concurrency-control max-sessions="1" expired-url="/login_duplicate"/>
+			<concurrency-control max-sessions="1" expired-url="/login_duplicate"
+			  error-if-maximum-exceeded="true"/>
 		</session-management>
 
 

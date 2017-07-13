@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="certificate">
+	<resultMap id="gradeInfo" type="java.util.HashMap">
+	 	<result javaType="java.lang.String" column="STUD_NUM" property="stud_num"/>
+	 	<result javaType="java.lang.String" column="STUD_NM" property="stud_nm"/>
+	 	<result javaType="java.lang.String" column="DEPT_NM" property="dept_nm"/>
+	 	<result javaType="java.lang.String" column="STUD_SCHREG_CODE" property="stud_schreg_code"/>
+ 	 </resultMap>
+ 	 <resultMap type="java.util.HashMap" id="gradeList">
+ 	 	<result javaType="java.lang.String" column="LCT_CRD" property="lct_crd"/>
+ 	 	<result javaType="java.lang.String" column="LCT_NM" property="lct_nm"/>
+ 	 	<result javaType="java.lang.String" column="LCT_YR" property="lct_yr"/>
+ 	 	<result javaType="java.lang.String" column="LCT_QTR" property="lct_qtr"/>
+ 	 	<result javaType="java.lang.String" column="TL_MARK" property="tl_mark"/>
+ 	 	<result javaType="java.lang.String" column="TL_STUD" property="tl_stud"/>
+ 	 	<result javaType="java.lang.String" column="SJT_CD" property="sjt_cd"/>
+ 	 	<result javaType="java.lang.String" column="TL_ASMT_CHECK" property="tl_asmt_check"/>
+ 	 </resultMap>
+
+	<select id="selectGradeInfo" parameterType="java.lang.String" resultMap="gradeInfo">
+		select stud_num, stud_nm, dept_nm, stud_schreg_code
+		from student, department
+		where dept_num = stud_dept
+		and stud_num = #{stud_num}
+	</select>
+	
+	<select id="selectGradeList" parameterType="java.lang.String" resultMap="gradeList">
+		select lct_crd, lct_nm, lct_yr, lct_qtr, tl_mark ,tl_stud, sjt_cd, tl_asmt_check
+		from lecture, tl, subject
+		where tl_lct=lct_num
+		and sjt_num = lct_sjt
+		and tl_stud = #{stud_num}
+		and tl_asmt_check = '1'
+	</select>
+	
+	<select id="selectAllGrade" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select sum(lct_crd) 
+		from lecture, tl, subject
+		where tl_lct=lct_num
+		and sjt_num = lct_sjt
+		and tl_stud = #{stud_num}
+		and tl_asmt_check = '1'
+	</select>
+	<select id="selectAllGradeCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(LCT_CRD) 
+		FROM LECTURE, TL, SUBJECT
+		WHERE TL_LCT=LCT_NUM
+		AND SJT_NUM = LCT_SJT
+		AND TL_STUD = #{stud_num}
+		AND TL_ASMT_CHECK = '1'
+	</select>
+	
+	
+</mapper>
