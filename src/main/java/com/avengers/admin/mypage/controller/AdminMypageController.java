@@ -40,6 +40,13 @@ public class AdminMypageController {
 		this.myPageService = myPageService;
 	}
 	
+	@RequestMapping("/")
+	public String myPage(){
+		String url="/admin/mypage/mypage";
+		return url;
+	}
+	
+	
 	/**
 	 * 개인정보 확인
 	 * @param principal
