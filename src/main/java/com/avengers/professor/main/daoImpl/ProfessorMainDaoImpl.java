@@ -31,9 +31,9 @@ public class ProfessorMainDaoImpl implements ProfessorMainDao {
 	}
 
 	@Override
-	public ArrayList<PerschdVO> selectPerschdList(String psc_writer)
+	public ArrayList<PerschdVO> selectPerschdList(String perschd_writer)
 			throws SQLException {
-		ArrayList<PerschdVO> perschdList = (ArrayList<PerschdVO>)sqlSession.selectList("Perschd.selectPerschdList",psc_writer);
+		ArrayList<PerschdVO> perschdList = (ArrayList<PerschdVO>)sqlSession.selectList("Perschd.selectPerschdList",perschd_writer);
 		return perschdList;
 	}
 

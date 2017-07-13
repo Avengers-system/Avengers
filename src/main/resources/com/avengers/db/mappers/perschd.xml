@@ -5,7 +5,7 @@
 <mapper namespace="Perschd">
 
 	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
-	<select id="selectPerschdList" parameterType="com.avengers.db.dto.PerschdVO" resultType="com.avengers.db.dto.PerschdVO">
+	<select id="selectPerschdList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
 		SELECT 
 			PERSCHD_TITLE,
 			PERSCHD_CONT,
@@ -20,10 +20,7 @@
 	
 
 
-	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
-	<select id="selectPerschdList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
-		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER=#{PSC_WRITER}  
-	</select>
+
 	<select id="selectSchoolScheduleList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
 		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER='UNIV' 
 	</select>
