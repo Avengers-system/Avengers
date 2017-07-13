@@ -2,12 +2,15 @@ package com.avengers.student.admissionApplication.daoImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.avengers.db.dto.CartVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.TlVO;
 import com.avengers.student.admissionApplication.dao.StudentAdmissionApplicationDao;
@@ -25,57 +28,50 @@ public class StudentAdmissionApplicationDaoImpl implements
 	@Autowired
 	protected SqlSession sqlSession;
 	
-	public void setSqlSession(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
 
 	@Override
-	public ArrayList<LctVO> selectLctList(Map<String, String> searchKeys)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<LctVO> selectLctList() throws SQLException {
-		// TODO Auto-generated method stub
+	public ArrayList<LctVO> selectLctList(LctVO lctVO) throws SQLException {
 		return null;
 	}
 
 	@Override
 	public ArrayList<TlVO> selectTlList(String tl_stud) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int insertTlList(ArrayList<TlVO> tlList) throws SQLException {
-		// TODO Auto-generated method stub
+	public int insertTl(TlVO tlVO) throws SQLException {
 		return 0;
 	}
 
 	@Override
-	public int deleteTl(ArrayList<TlVO> tlList) throws SQLException {
-		// TODO Auto-generated method stub
+	public int deleteTl(String tl_num) throws SQLException {
 		return 0;
 	}
 
 	@Override
-	public int insertCartList(ArrayList<TlVO> tlList) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int delteCart(ArrayList<TlVO> tlList) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public ArrayList<TlVO> selectStudClass(String tl_stud) throws SQLException {
-		// TODO Auto-generated method stub
+	public ArrayList<CartVO> selectCartList(String cart_stud)
+			throws SQLException {
 		return null;
 	}
+
+	@Override
+	public int insertCart(CartVO cartVO) throws SQLException {
+		return 0;
+	}
+
+	@Override
+	public int deleteCart(String cart_lct, String cart_stud)
+			throws SQLException {
+		return 0;
+	}
+
+	@Override
+	public List<HashMap<String, String>> selectStudClass(String tl_stud)
+			throws SQLException {
+		return null;
+	}
+
+	
 
 }

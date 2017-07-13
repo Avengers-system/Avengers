@@ -12,7 +12,7 @@
 
 교수 메인
 <button onclick="location.href='<%=request.getContextPath()%>/admin/adminMain'">관리자</button>
-<button onclick="location.href='<%=request.getContextPath()%>/professor/professorMain'">교수</button>
+<button onclick="location.href='${pageContext.request.contextPath}/professor/main'">교수</button>
 <button onclick="location.href='<%=request.getContextPath()%>/student/studentMain'">학생</button>
 <button onclick="location.href='<%=request.getContextPath()%>/common/logout'">로그아웃</button>
 <br>
@@ -48,12 +48,12 @@
 <h6>강의정보</h6>
 <c:choose>
       <c:when test="${not empty lctList}">      
-      <c:forEach var="lct" items="${lctList }" varStatus="status">
+      <c:forEach var="lct" items="${lctList }" >
          <tr>
-            <td>강의번호:${lct.get(status.index).get("lct_num")}</td>
-            <td>강의시간:${lct.get(status.index).get("lr_num")}</td>
-            <td>강의날짜:${lct.get(status.index).get("lr_date")}</td>
-            <td>강의실번호:${lct.get(status.index).get("lr_lct")}</td>
+            <td>강의번호:${lct.lct_num}</td>
+            <td>강의시간:${lct.lr_num}</td>
+            <td>강의날짜:${lct.lr_date}</td>
+            <td>강의실번호:${lct.lr_lct}</td>
          </tr>
       </c:forEach>
          </c:when>

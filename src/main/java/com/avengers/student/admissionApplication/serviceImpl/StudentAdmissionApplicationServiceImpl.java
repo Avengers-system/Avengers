@@ -2,14 +2,16 @@ package com.avengers.student.admissionApplication.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.avengers.db.dto.CartVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.TlVO;
-import com.avengers.student.admissionApplication.dao.StudentAdmissionApplicationDao;
+import com.avengers.student.admissionApplication.daoImpl.StudentAdmissionApplicationDaoImpl;
 import com.avengers.student.admissionApplication.service.StudentAdmissionApplicationService;
 
 
@@ -25,59 +27,52 @@ public class StudentAdmissionApplicationServiceImpl implements
 		StudentAdmissionApplicationService {
 
 	@Autowired
-	private StudentAdmissionApplicationDao stuAdmAppDAO;
+	private StudentAdmissionApplicationDaoImpl stuAdmAppDAO;
 	
-	public void setStuAdmAppDAO(StudentAdmissionApplicationDao stuAdmAppDAO) {
-		this.stuAdmAppDAO = stuAdmAppDAO;
-	}
 
 	@Override
-	public ArrayList<LctVO> selectLctList(Map<String, String> searchKeys)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<LctVO> selectLctList() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<LctVO> selectLctList(LctVO lctVO) throws SQLException {
+		return stuAdmAppDAO.selectLctList(lctVO);
 	}
 
 	@Override
 	public ArrayList<TlVO> selectTlList(String tl_stud) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return stuAdmAppDAO.selectTlList(tl_stud);
 	}
 
 	@Override
-	public int insertTlList(ArrayList<TlVO> tlList) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertTl(TlVO tlVO) throws SQLException {		
+		return stuAdmAppDAO.insertTl(tlVO);
 	}
 
 	@Override
-	public int deleteTl(ArrayList<TlVO> tlList) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteTl(String tl_num) throws SQLException {
+		return stuAdmAppDAO.deleteTl(tl_num);
 	}
 
 	@Override
-	public int insertCartList(ArrayList<TlVO> tlList) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public ArrayList<CartVO> selectCartList(String cart_stud)
+			throws SQLException {
+		return stuAdmAppDAO.selectCartList(cart_stud);
 	}
 
 	@Override
-	public int delteCart(ArrayList<TlVO> tlList) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertCart(CartVO cartVO) throws SQLException {
+		return stuAdmAppDAO.insertCart(cartVO);
 	}
 
 	@Override
-	public ArrayList<TlVO> selectStudClass(String tl_stud) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public int deleteCart(String cart_lct, String cart_stud)
+			throws SQLException {
+		return stuAdmAppDAO.deleteCart(cart_lct, cart_stud);
 	}
+
+	@Override
+	public List<HashMap<String, String>> selectStudClass(String tl_stud)
+			throws SQLException {
+		return stuAdmAppDAO.selectStudClass(tl_stud);
+	}
+
+	
 
 }

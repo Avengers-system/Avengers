@@ -46,5 +46,8 @@
 	<select id="getStudentInfo" parameterType="String" resultType="com.avengers.db.dto.StudVO">
 		select * from student where stud_num=#{stud_num}
 	</select>
+	<select id="getStudentInfo" parameterType="String" resultType="com.avengers.db.dto.StudVO">
+		select * from student where stud_num=#{stud_num}
+	</select>
 	
 </mapper>
