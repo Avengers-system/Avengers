@@ -18,6 +18,7 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 	public void setSqlSession(SqlSession sqlSession) throws SQLException {
 		this.sqlSession = sqlSession;
 	}
+	
 	@Override
 	public AdminVO selectAdmin(String admin_id)throws SQLException {
 		AdminVO admin = new AdminVO();

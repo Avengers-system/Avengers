@@ -39,10 +39,25 @@ public class AdminMypageController {
 	public void setMyPageService(AdminMypageService myPageService) {
 		this.myPageService = myPageService;
 	}
-	
+	/**
+	 * mypage로 가기위한 함수
+	 * @return String
+	 */
 	@RequestMapping("/")
-	public String myPage(){
+	public String myPage(Principal principal,Model model){
+		String adminId = principal.getName();
 		String url="/admin/mypage/mypage";
+		AdminVO admin= null;
+		
+		try {
+			admin = myPageService.selectAdmin(adminId);
+			if(admin != null){
+				model.addAttribute("admin",admin);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return url;
 	}
 	
@@ -56,7 +71,7 @@ public class AdminMypageController {
 	@RequestMapping("/myInfo")
 	public String myInfo(Principal principal,Model model){
 		String adminId = principal.getName();
-		String url="/admin/mypage/myInfo";
+		String url="/admin/mypage/mypage";
 		AdminVO admin= null;
 		
 		try {
@@ -69,7 +84,13 @@ public class AdminMypageController {
 			e.printStackTrace();
 		}
 		
-		System.out.println("!!!!!!!!!!!!myInfo!!!!!!!!!!!!");
+		return url;
+	}
+	
+	@RequestMapping("/myInfoUpdate")
+	public String myInfoUpdate(){
+		String url="";
+		
 		return url;
 	}
 	
@@ -83,7 +104,7 @@ public class AdminMypageController {
 	public String mySchedule(Principal principal,Model model){
 		String scheduleId = principal.getName(); 
 		ArrayList<PerschdVO> perschdList = null;
-		String url="/admin/mypage/mySchedule";
+		String url="/admin/mypage/mypage";
 		String message="";
 		try {
 			perschdList =  myPageService.selectPerschdList(scheduleId);
@@ -96,7 +117,6 @@ public class AdminMypageController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("!!!!!!!!!!!!mySchedule!!!!!!!!!!!!");
 		model.addAttribute("message",message);
 		return url;
 	}

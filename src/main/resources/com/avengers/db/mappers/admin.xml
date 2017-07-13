@@ -9,12 +9,20 @@
 		SELECT ADMIN_PIC,
 			   ADMIN_ID,
 			   ADMIN_NM,
+			   ADMIN_ENG_NM,
+			   ADMIN_REGNO,
 			   ADMIN_BIR,
 			   ADMIN_EMAIL,
 			   ADMIN_TEL,
 			   ADMIN_HP,
 			   ADMIN_POST,
-			   ADMIN_BANK
+			   ADMIN_BANK,
+			   ADMIN_ACT_NUM,
+			   ADMIN_AH,
+			   ADMIN_ADDR,
+			   ADMIN_ZIP,
+			   ADMIN_PW,
+			   ADMIN_GEN
 		FROM ADMIN
 		WHERE ADMIN_ID = #{admin_id}
 	</select>
