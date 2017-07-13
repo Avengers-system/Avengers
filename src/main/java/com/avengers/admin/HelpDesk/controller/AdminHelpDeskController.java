@@ -6,5 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/adminHelpDesk")
 public class AdminHelpDeskController {
-	
+	public static void main(String[] args) {
+		System.out.println("ddd");
+	}
 }
