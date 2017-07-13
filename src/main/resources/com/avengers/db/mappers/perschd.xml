@@ -13,4 +13,10 @@
 		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER='UNIV' 
 	</select>
 	
+	<select id="getPerschd" parameterType="String" resultType="com.avengers.db.dto.PerschdVO">
+		select * from perschd where perschd_writer=#{perschd_writer}
+	</select>
+	
+	
 </mapper>
+

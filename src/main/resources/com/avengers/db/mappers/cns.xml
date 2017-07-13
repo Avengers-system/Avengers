@@ -11,4 +11,8 @@
 	
 	
 	
+	<select id="getCns" parameterType="String" resultType="com.avengers.db.dto.CnsVO">
+		select * from counsel where cns_stud=#{cns_stud}
+	</select>
+	
 </mapper>

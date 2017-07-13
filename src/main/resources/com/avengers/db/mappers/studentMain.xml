@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="studentMain">
+
+	
+	<select id="getLectureList" parameterType="com.avengers.db.dto.StudentMainVO" resultType="com.avengers.db.dto.StudentMainVO">
+		select * from studentmain where tl_stud=#{tl_stud} and lct_yr=#{lct_yr} and lct_qtr=#{lct_qtr}
+	</select>
+	
+</mapper>

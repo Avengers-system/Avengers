@@ -8,7 +8,8 @@
 <title></title>
 </head>
 <body>
-공통 메인1
+
+공통 메인
 
 
 <button onclick="location.href='<%=request.getContextPath()%>/admin/main/adminMain'">관리자</button>
