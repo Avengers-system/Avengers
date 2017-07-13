@@ -13,10 +13,24 @@
 	<select id="selectSchoolNoticeList" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
 		SELECT * FROM BOARD WHERE BOARD_BC='UNIV'  
 	</select>
-	<!-- 게시판중 학과공지사항을 검색하는 구문 각 학과전용 공지사항 코드는 b+학과이름 이다. -->	
-	<select id="selectDepartmentNoticeList" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
-		SELECT * FROM BOARD WHERE BOARD_BC= #{bc_dept}  
+	
+	<!-- 게시판 중 QnA를 검색하는 구문 -->
+	<select id="selectQnaNoticeList" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
+		SELECT * FROM BOARD WHERE BOARD_BC='QNA'  
 	</select>
+	
+	<!-- 게시판 중 FAQ를 검색하는 구문 -->
+	<select id="selectFaqNoticeList" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO">
+		SELECT * FROM BOARD WHERE BOARD_BC=#{board_bc}  
+	</select>
+	
+	<!-- 게시판중 학과공지사항을 검색하는 구문 각 학과전용 공지사항 코드는 b+학과이름 이다. -->	
+	<select id="selectBoardNoticeList" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO">
+		select * from board where BOARD_BC=#{board_bc}
+	</select>
+<!-- 	<select id="selectDepartmentNoticeList" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO"> -->
+<!-- 		SELECT * FROM BOARD WHERE BOARD_BC= #{bc_dept}   -->
+<!-- 	</select> -->
 	
 
 </mapper>

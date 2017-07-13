@@ -7,21 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.admin.HelpDesk.dao.AdminHelpDeskDao;
+import com.avengers.admin.HelpDesk.daoImpl.AdminHelpDeskDaoImpl;
 import com.avengers.admin.HelpDesk.service.AdminHelpDeskService;
 import com.avengers.db.dto.BoardVO;
 @Service
 public class AdminHelpDeskServiceImpl implements AdminHelpDeskService {
 	@Autowired
-	private AdminHelpDeskDao hepDeskDAO;
+	private AdminHelpDeskDaoImpl hepDeskDAO;
 	
-	public void setHepDeskDAO(AdminHelpDeskDao hepDeskDAO) {
+	public void setHepDeskDAO(AdminHelpDeskDaoImpl hepDeskDAO) {
 		this.hepDeskDAO = hepDeskDAO;
 	}
 
 	@Override
-	public ArrayList<BoardVO> selectBoardList(String key,String bc_num, int firstRow,
+	public ArrayList<BoardVO> selectBoardList(BoardVO boardVO, int firstRow,
 			int lastRow)throws SQLException {
-		return null;
+		ArrayList<BoardVO> boardList = hepDeskDAO.selectBoardList(boardVO, firstRow, lastRow);
+		return boardList;
 	}
 
 	@Override

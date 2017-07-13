@@ -48,12 +48,12 @@
 <h6>강의정보</h6>
 <c:choose>
       <c:when test="${not empty lctList}">      
-      <c:forEach var="lct" items="${lctList }" varStatus="status">
+      <c:forEach var="lct" items="${lctList }" >
          <tr>
-            <td>강의번호:${lct.get(status.index).get("lct_num")}</td>
-            <td>강의시간:${lct.get(status.index).get("lr_num")}</td>
-            <td>강의날짜:${lct.get(status.index).get("lr_date")}</td>
-            <td>강의실번호:${lct.get(status.index).get("lr_lct")}</td>
+            <td>강의번호:${lct.lct_num}</td>
+            <td>강의시간:${lct.lr_num}</td>
+            <td>강의날짜:${lct.lr_date}</td>
+            <td>강의실번호:${lct.lr_lct}</td>
          </tr>
       </c:forEach>
          </c:when>

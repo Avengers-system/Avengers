@@ -2,7 +2,9 @@ package com.avengers.admin.HelpDesk.daoImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,10 +21,17 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 	}
 	
 	@Override
-	public ArrayList<BoardVO> selectBoardList(String key,String bc_num, int firstRow,
+	public ArrayList<BoardVO> selectBoardList(BoardVO boardVO, int firstRow,
 			int lastRow)throws SQLException {
-		return null;
+		int offset=firstRow-1;
+		int limit = lastRow-firstRow+1;
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		ArrayList<BoardVO> boardList =(ArrayList<BoardVO>) sqlSession.selectList("Board.selectBoardNoticeList",boardVO,rowBounds);
+		
+		return boardList;
 	}
+	
 	
 	@Override
 	public BoardVO selectBoard(String bc_num)throws SQLException {
