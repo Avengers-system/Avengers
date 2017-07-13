@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Perschd">
+<mapper namespace="perschd">
 
 	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
 	<select id="selectPerschdList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
@@ -16,6 +16,8 @@
 		FROM PERSCHD
 		WHERE PERSCHD_WRITER = #{perschd_writer}
 	</select>
+
+
 
 	<select id="selectSchoolScheduleList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
 		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER='UNIV' 
