@@ -26,14 +26,14 @@ public class ProfessorMainDaoImpl implements ProfessorMainDao {
 	}
 	@Override
 	public PrfsVO selectPrfs(String prfs_num) throws SQLException {
-		PrfsVO prfs=(PrfsVO) sqlSession.selectOne("Prfs.selectPrfs", prfs_num);
+		PrfsVO prfs=(PrfsVO) sqlSession.selectOne("prfs.selectPrfs", prfs_num);
 		return prfs;
 	}
 
 	@Override
-	public ArrayList<PerschdVO> selectPerschdList(String psc_writer)
+	public ArrayList<PerschdVO> selectPerschdList(String perschd_writer)
 			throws SQLException {
-		ArrayList<PerschdVO> perschdList = (ArrayList<PerschdVO>)sqlSession.selectList("Perschd.selectPerschdList",psc_writer);
+		ArrayList<PerschdVO> perschdList = (ArrayList<PerschdVO>)sqlSession.selectList("perschd.selectPerschdList",perschd_writer);
 		return perschdList;
 	}
 
@@ -44,42 +44,42 @@ public class ProfessorMainDaoImpl implements ProfessorMainDao {
 		lctVO.setLct_prfs(lct_prfs);
 		lctVO.setLct_yr(lct_yr);
 		lctVO.setLct_qtr(lct_qtr);
-		List<HashMap<String, String>> lctList = (List<HashMap<String, String>>)sqlSession.selectList("Lct.selectLctList", lctVO);
+		List<HashMap<String, String>> lctList = (List<HashMap<String, String>>)sqlSession.selectList("lct.selectLctList", lctVO);
 		return lctList;
 	}
 
 	@Override
 	public ArrayList<CnsVO> selectCnsList(String cns_prfs) throws SQLException {
-		ArrayList<CnsVO> cnsList = (ArrayList<CnsVO>)sqlSession.selectList("Cns.selectCnsList", cns_prfs);
+		ArrayList<CnsVO> cnsList = (ArrayList<CnsVO>)sqlSession.selectList("cns.selectCnsList", cns_prfs);
 		return cnsList;
 	}
 	
 	@Override
 	public ArrayList<BoardVO> selectPortalNoticeList() {
-		ArrayList<BoardVO> portalNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("Board.selectPortalNoticeList");
+		ArrayList<BoardVO> portalNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("board.selectPortalNoticeList");
 		return portalNoticeList;
 	}
 	
 	@Override
 	public ArrayList<BoardVO> selectSchoolNoticeList() {
-		ArrayList<BoardVO> schoolNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("Board.selectSchoolNoticeList");
+		ArrayList<BoardVO> schoolNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("board.selectSchoolNoticeList");
 		return schoolNoticeList;
 	}
 	
 	@Override
 	public ArrayList<BoardVO> selectDepartmentNoticeList(String bc_dept) {
-		ArrayList<BoardVO> departmentNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("Board.selectDepartmentNoticeList",bc_dept);
+		ArrayList<BoardVO> departmentNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("board.selectDepartmentNoticeList",bc_dept);
 		return departmentNoticeList;
 	}
 	
 	@Override
 	public ArrayList<PerschdVO> selectSchoolScheduleList() {
-		ArrayList<PerschdVO> schoolScheduleList = (ArrayList<PerschdVO>)sqlSession.selectList("Perschd.selectSchoolScheduleList");
+		ArrayList<PerschdVO> schoolScheduleList = (ArrayList<PerschdVO>)sqlSession.selectList("perschd.selectSchoolScheduleList");
 		return schoolScheduleList;
 	}
 	@Override
 	public DeptVO selectDept(String prfs_dept) throws SQLException {
-		DeptVO dept =(DeptVO)sqlSession.selectOne("Dept.selectDept",prfs_dept); 
+		DeptVO dept =(DeptVO)sqlSession.selectOne("dept.selectDept",prfs_dept); 
 		return dept;
 	}
 
