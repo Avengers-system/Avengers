@@ -33,7 +33,7 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 	@Override
 	public ArrayList<PerschdVO> selectPerschdList(String perschd_writer)throws SQLException {
 		ArrayList<PerschdVO> perschdList = new ArrayList<PerschdVO>();
-		perschdList =  (ArrayList<PerschdVO>) sqlSession.selectList("perschd.selectPerschdList", perschd_writer);
+		perschdList =  (ArrayList<PerschdVO>) sqlSession.selectList("Perschd.selectPerschdList", perschd_writer);
 		return perschdList;
 	}
 

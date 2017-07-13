@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Board">
+	<!-- 게시판중 포탈공지사항을 검색하는 구문  -->	
+	<select id="selectPortalNoticeList" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
+		SELECT * FROM BOARD WHERE BOARD_BC='PORTAL'  
+	</select>
+	<!-- 게시판중 학교공지사항을 검색하는 구문  -->	
+	<select id="selectSchoolNoticeList" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
+		SELECT * FROM BOARD WHERE BOARD_BC='UNIV'  
+	</select>
+	<!-- 게시판중 학과공지사항을 검색하는 구문 각 학과전용 공지사항 코드는 b+학과이름 이다. -->	
+	<select id="selectDepartmentNoticeList" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
+		SELECT * FROM BOARD WHERE BOARD_BC= #{bc_dept}  
+	</select>
+	
+
+</mapper>

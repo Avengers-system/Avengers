@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="student">
+	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
+	<select id="getInSchoolCount" resultType="int">
+		SELECT count(*) FROM STUDENT WHERE STUD_SCHREG_CODE = '재학'
+	</select>
+	
+	<select id="getRestSchoolCount" resultType="int">
+		SELECT count(*) FROM STUDENT WHERE STUD_SCHREG_CODE = '휴학'
+	</select>
+	
+	<select id="getLeaveSchoolCount" resultType="int">
+		SELECT count(*) FROM STUDENT WHERE STUD_SCHREG_CODE = '자퇴'
+	</select>
+	
+	<select id="getGetOutSchoolCount" resultType="int">
+		SELECT count(*) FROM STUDENT WHERE STUD_SCHREG_CODE = '제적'
+	</select>
+	
+	<select id="getUntreatedLoa" resultType="com.avengers.db.dto.LoaVO">
+		SELECT LOA_NUM,
+			   LOA_START_DATE,
+			   LOA_END_DATE,
+			   LOA_CAUSE,
+			   LOA_APPL_DATE,
+			   LOA_RS_SHCD_DATE,
+			   LOA_STUD
+		FROM LOA
+		WHERE LOA_APPR_CHECK = '3'
+	</select>
+	
+	<select id="getUntreatedRts" resultType="com.avengers.db.dto.RtsVO">
+		SELECT RTS_NUM,
+			   RTS_DATE,
+			   RTS_CAUSE,
+			   RTS_APPL_DATE,
+			   RTS_STUD
+		FROM RTS
+		WHERE RTS_APPR_CHECK = '3'
+	</select>
+	
+	<select id="getStudentInfo" parameterType="String" resultType="com.avengers.db.dto.StudVO">
+		select * from student where stud_num=#{stud_num}
+	</select>
+	
+</mapper>

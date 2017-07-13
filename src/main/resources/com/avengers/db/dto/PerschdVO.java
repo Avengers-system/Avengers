@@ -2,7 +2,11 @@ package com.avengers.db.dto;
 
 import java.util.Date;
 
-//개인일정의 모든 정보를 관리
+/**
+ * 2017.07.12 perschd_writer 추가 및 perschd_psc 삭제
+ * @author 배진
+ *
+ */
 public class PerschdVO {
 	private int perschd_num; // 개인일정 고유번호
 	private String perschd_title; // 개인일정 제목
@@ -12,7 +16,7 @@ public class PerschdVO {
 	private Date perschd_end_date; // 개인일정 종료일
 	private String perschd_writer; // 작성자ID
 
-	
+
 	public String getPerschd_writer() {
 		return perschd_writer;
 	}
@@ -55,5 +59,4 @@ public class PerschdVO {
 	public void setPerschd_end_date(Date perschd_end_date) {
 		this.perschd_end_date = perschd_end_date;
 	}
-	
 }

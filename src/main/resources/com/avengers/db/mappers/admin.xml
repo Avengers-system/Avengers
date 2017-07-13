@@ -20,4 +20,13 @@
 	</select>
 	
 	
+
+	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
+	<select id="getAdminInfo" resultType="com.avengers.db.dto.AdminVO" parameterType="string">
+		SELECT * FROM ADMIN WHERE ADMIN_ID = #{adminId}
+	</select>
+	
+	<select id="getPersonScheduleInfo" resultType="com.avengers.db.dto.PerschdVO" parameterType="string">
+		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER = #{adminId}
+	</select>
 </mapper>
