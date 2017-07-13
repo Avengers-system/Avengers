@@ -72,7 +72,7 @@ public class AdminMainController {
    }
    @RequestMapping("/admin/professorManage")
    public String professorManage(){
-      String view="";
+	  String view="admin/main/adminProfessorManage";
       return view;
    }
    @RequestMapping("/admin/lectureManage")

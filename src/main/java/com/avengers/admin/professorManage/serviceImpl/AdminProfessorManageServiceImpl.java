@@ -33,9 +33,14 @@ public class AdminProfessorManageServiceImpl implements AdminProfessorManageServ
 	@Override
 	public int insertPrfs(PrfsVO prfsVO) throws SQLException {
 		int result = proDAO.insertPrfs(prfsVO);
+		
+		
 		return result;
 	}
 
+	
+	 
+	
 	@Override
 	public int updatePrfs(PrfsVO prfsVO, String prfs_num) throws SQLException {
 		return 0;

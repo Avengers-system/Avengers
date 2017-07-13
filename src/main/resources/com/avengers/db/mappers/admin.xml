@@ -58,7 +58,7 @@
 	
 	<insert id="insertSecurity" parameterType="com.avengers.db.dto.PrfsVO">
 	INSERT 
-		INTO SECURITY
+		INTO SEQURITY
 		VALUES (#prfs_num#,
 				#prfs_pw#,
 				'1',
