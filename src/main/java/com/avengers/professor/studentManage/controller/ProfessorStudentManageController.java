@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.avengers.db.dto.CnsVO;
@@ -38,23 +39,20 @@ public class ProfessorStudentManageController {
 	
 	@RequestMapping("/studentManage/departmentDetail")
 	public String departmentDetail(HttpServletRequest request, Model model){
-		
 		String stud_num = request.getParameter("stud_num");
 		StudVO studDetail = null;
-		
 		try {
 			studDetail = service.selectStud(stud_num);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		model.addAttribute("studDetail",studDetail);
-		
 		return "professor/studentManage/departmentDetail";
 	}
 
 	@RequestMapping("/counsel/counselList")
 	public String counselList(Principal principal, Model model){
+		System.out.println("tt");
 		String prfs_num = principal.getName();
 		ArrayList<CnsVO> counselList = null;
 		
@@ -69,11 +67,19 @@ public class ProfessorStudentManageController {
 		return "professor/counsel/counselList";
 	}
 	
-	@RequestMapping("/counsel/counselInsert")
+	@RequestMapping("/counsel/counselInsertPage")
 	public String counselInsertPage(Principal principal, Model model){
 		String prfs_num = principal.getName();
 		
+		return "professor/counsel/counselInsertPage";
+	}
+	
+	@RequestMapping("/counsel/counselInsert")
+	public String counselInsert(HttpServletRequest request){
+		String aa = request.getParameter("da");
+		System.out.println(aa);
 		
-		return "professor/counsel/counselInsert";
+//		return "redirect:/counsel/counselList";
+		return "professor/counsel/counselList";
 	}
 }

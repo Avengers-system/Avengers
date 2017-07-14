@@ -6,7 +6,7 @@
 
     상담 리스트
     
- <button onclick="location.href='${pageContext.request.contextPath}/professor/counsel/counselInsert'">등록</button>
+ <button onclick="location.href='${pageContext.request.contextPath}/professor/counsel/counselInsertPage'">등록</button>
    상담일자 / 요일 / 상담신청일자 / 신청학생이름 /
  <c:forEach var="counselList" items="${counselList}">   
  	상담날짜 : ${counselList.cns_date}<br>
