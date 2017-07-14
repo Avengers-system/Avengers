@@ -27,7 +27,8 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 	}
 
 	@Override
-	public int updateAdmin(AdminVO adminVO, String admin_id)throws SQLException {
+	public int updateAdmin(AdminVO adminVO)throws SQLException {
+		int success= sqlSession.update("admin.updateAdmin",adminVO);
 		return 0;
 	}
 

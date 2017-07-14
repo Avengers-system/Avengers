@@ -1,8 +1,17 @@
 package com.avengers.admin.mypage.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+
+
+
+
+
+
 
 
 
@@ -14,8 +23,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.avengers.admin.mypage.service.AdminMypageService;
 import com.avengers.db.dto.AdminVO;
@@ -44,11 +57,18 @@ public class AdminMypageController {
 	 * @return String
 	 */
 	@RequestMapping("/")
-	public String myPage(Principal principal,Model model){
-		String adminId = principal.getName();
-		String url="/admin/mypage/mypage";
+	public String myPage(Principal principal,Model model,HttpSession session){
+		String adminId = "";
 		AdminVO admin= null;
+		String url="/admin/mypage/mypage";
 		
+		if( session.getAttribute("adminId") != null){
+			adminId = (String) session.getAttribute("adminId");
+		} else {
+			adminId = principal.getName();
+			
+		}
+
 		try {
 			admin = myPageService.selectAdmin(adminId);
 			if(admin != null){
@@ -87,10 +107,50 @@ public class AdminMypageController {
 		return url;
 	}
 	
-	@RequestMapping("/myInfoUpdate")
-	public String myInfoUpdate(){
-		String url="";
+	@RequestMapping(value="/myInfoUpdate")
+	public String myInfoUpdate(
+			@RequestParam("file")MultipartFile myImage
+			,@ModelAttribute("admin") AdminVO admin
+			,Model model){
+		String url="redirect:/admin/mypage/";
+		String upload="C:/Users/pc13/git/Avengers/src/main/webapp/resources/myInfo_images";
+		String message="";
+			
+		if(admin == null){
+			System.out.println("null!!!!!!!!!!!!!!!!");
+		}else{
+			System.out.println("not null!!!!!!!!!!!!");
+			System.out.println(admin.getAdmin_pic());
+		}
 		
+		//파일 저장
+		if(!myImage.isEmpty()){
+			File file = new File(upload,myImage.getOriginalFilename());
+			try {
+				myImage.transferTo(file);
+				//파일 이름 vo 저장
+				admin.setAdmin_pic(file.getName());
+				System.out.println("admin.getAdmin_pic():");
+				System.out.println(admin.getAdmin_pic());
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		try {
+			int success = myPageService.updateAdmin(admin);
+			if(success == 1) {
+				message="수정이 완료되었습니다.";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("message",message);
 		return url;
 	}
 	
