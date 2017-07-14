@@ -10,11 +10,11 @@
 			<jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="
 					select id as username, pwd as password, enabled
-					from sequrity
+					from SECURITY
 					where id=?"
 				authorities-by-username-query="
 					select id as username, authority
-					from sequrity
+					from SECURITY
 					where id=?"	 />
 		</authentication-provider>
 	</authentication-manager>

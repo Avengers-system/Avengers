@@ -17,6 +17,5 @@
 	<select id="selectDepartmentNoticeList" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
 		SELECT * FROM BOARD WHERE BOARD_BC= #{bc_dept}  
 	</select>
-	
 
 </mapper>

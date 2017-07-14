@@ -72,9 +72,34 @@ public class AdminMainController {
    }
    @RequestMapping("/admin/professorManage")
    public String professorManage(){
-	  String view="admin/main/adminProfessorManage";
+	  String view="admin/main/professorManage";
       return view;
    }
+   
+    
+   @RequestMapping("/professorInsert")
+   public String professorInsert(Model model){
+	   String view="/admin/professorInsert"; // '/'가 없으면 web-inf/views가 붙음
+	   
+//	   String nextPrfsNum = null;
+//	try {
+//		nextPrfsNum = adminMainService.selectNextPrfsNum();
+//	} catch (SQLException e) {
+//		e.printStackTrace();
+//	}
+//	   model.addAttribute("prfs_num",nextPrfsNum);
+	   return view;
+   }
+   
+   
+   @RequestMapping("/studentInsert")
+   public String studentInsert(Model model){
+	   String view = "/admin/studentInsert";
+	   
+	   return view;
+   }
+   
+   
    @RequestMapping("/admin/lectureManage")
    public String lectureManage(){
       String view="";
