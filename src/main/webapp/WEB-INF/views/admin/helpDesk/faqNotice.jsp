@@ -9,7 +9,7 @@
 
 <h1>faq 정보 출력</h1>
 <c:choose>
-      <c:when test="${not empty faqNoticeList}">      
+      <c:when test="${not empty faqNotice}">      
       <c:forEach var="faqNoticeList" items="${faqNoticeList }">
          <tr>
             <td>번호:${faqNoticeList.board_num}</td><br>

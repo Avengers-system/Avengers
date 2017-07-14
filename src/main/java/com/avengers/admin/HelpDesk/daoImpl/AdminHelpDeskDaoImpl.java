@@ -35,12 +35,19 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 	
 	@Override
 	public BoardVO selectBoard(String bc_num)throws SQLException {
-		return null;
+		
+		BoardVO result = (BoardVO)sqlSession.selectOne("Board.selectBoardOne",bc_num);
+		
+		return result;
 	}
 
 	@Override
-	public int insertBoard(BoardVO boardVO, String bc_num)throws SQLException {
-		return 0;
+	public int insertBoard(BoardVO boardVO)throws SQLException {
+		int boardInsert = sqlSession.update("Board.insertBoard", boardVO);
+		System.out.println("뭔가찍힘");
+		System.out.println(boardVO.getBoard_title());
+		System.out.println(boardVO.getBoard_writer());
+		return boardInsert;
 	}
 
 	@Override

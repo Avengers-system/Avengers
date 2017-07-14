@@ -28,14 +28,11 @@ public class AdminHelpDeskServiceImpl implements AdminHelpDeskService {
 
 	@Override
 	public BoardVO selectBoard(String bc_num)throws SQLException {
-		return null;
+		
+		return hepDeskDAO.selectBoard(bc_num);
 	}
 	
-	@Override
-	public int insertBoard(BoardVO boardVO, String bc_num)throws SQLException {
-		return 0;
-	}
-
+	
 	@Override
 	public int updateBoard(BoardVO boardVO, int board_num, String bc_num)throws SQLException {
 		return 0;
@@ -44,6 +41,12 @@ public class AdminHelpDeskServiceImpl implements AdminHelpDeskService {
 	@Override
 	public int deleteBoard(int board_num, String bc_num)throws SQLException {
 		return 0;
+	}
+
+	@Override
+	public int insertBoard(BoardVO boardVO) throws SQLException {
+		int result = hepDeskDAO.insertBoard(boardVO);
+		return result;
 	}
 
 	

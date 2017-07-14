@@ -20,10 +20,10 @@
       <c:when test="${not empty collegeNoticeList}">      
       <c:forEach var="collegeNoticeList" items="${collegeNoticeList }">
          <tr>
-            <td>번호:${collegeNoticeList.perschd_num}</td>
-            <td>제목:${collegeNoticeList.perschd_title}</td>
-            <td>내용:${collegeNoticeList.perschd_cont}</td>
-            <td>날짜:${collegeNoticeList.perschd_date}</td>
+            <td>번호  :${collegeNoticeList.perschd_num}</td>
+            <td>제목  :${collegeNoticeList.perschd_title}</td>
+            <td>내용  :${collegeNoticeList.perschd_cont}</td>
+            <td>날짜  :${collegeNoticeList.perschd_date}</td>
             <td>시작일:${collegeNoticeList.perschd_start_date}</td>
             <td>종료일:${collegeNoticeList.perschd_end_date}</td>
             <td>작성자:${collegeNoticeList.perschd_writer}</td>
