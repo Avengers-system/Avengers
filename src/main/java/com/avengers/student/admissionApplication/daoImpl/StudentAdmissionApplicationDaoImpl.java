@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.avengers.db.dto.AdmissionApplicationVO;
 import com.avengers.db.dto.CartVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.StudVO;
@@ -30,13 +31,15 @@ public class StudentAdmissionApplicationDaoImpl implements
 	
 
 	@Override
-	public List<HashMap<String, String>> selectLctList(LctVO lctVO) throws SQLException {
-		return null;
+	public List<HashMap<String, String>> selectLctList(AdmissionApplicationVO admissionVO) throws SQLException {
+		List<HashMap<String, String>> selectLctList = (List<HashMap<String, String>>)sqlSession.selectList("admission.selectLctList",admissionVO);
+		return selectLctList;
 	}
 
 	@Override
-	public List<HashMap<String, String>> selectTlList(String tl_stud) throws SQLException {
-		return null;
+	public List<HashMap<String, String>> selectTlList(AdmissionApplicationVO admissionVO) throws SQLException {
+		List<HashMap<String, String>> selectTlList = (List<HashMap<String, String>>)sqlSession.selectList("admission.selectTlList",admissionVO);
+		return selectTlList;
 	}
 
 	@Override
@@ -50,9 +53,10 @@ public class StudentAdmissionApplicationDaoImpl implements
 	}
 
 	@Override
-	public List<HashMap<String, String>> selectCartList(String cart_stud)
+	public List<HashMap<String, String>> selectCartList(AdmissionApplicationVO admissionVO)
 			throws SQLException {
-		return null;
+		List<HashMap<String, String>> selectCartList = (List<HashMap<String, String>>)sqlSession.selectList("admission.selectCartList",admissionVO);
+		return selectCartList;
 	}
 
 	@Override
@@ -74,44 +78,37 @@ public class StudentAdmissionApplicationDaoImpl implements
 
 	@Override
 	public StudVO selectStudMaxCrd(String stud_num) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public CartVO selectCart(CartVO cartVO) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int updateLctMinus(String tl_lct) throws SQLException {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int updateLctPlus(String tl_lct) throws SQLException {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public TlVO selectTl(TlVO tlVO) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ArrayList<TlVO> selectTlList(TlVO tlVO) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	@Override
 	public LctVO selectLct(String tl_lct) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

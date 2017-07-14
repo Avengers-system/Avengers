@@ -34,16 +34,17 @@
 	<button onclick="">시간표보기</button> 
 	<br><br>
 	<!-- 셀렉트박스와 검색 셀렉트박스는 학년,이수구분 -->
-	<form name="searchLecture" method="post">
+	<form action = "/student/admissionApplication" method="post">
 		학년 <select name="sjt_estm_grd">
-			<option value="1">1</option>
+			<option selected="selected" value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
 			<option value="4">4</option>
 		</select> 이수구분 <select name="sjt_cd">
-			<option value="전">전공</option>
-			<option value="교">교양</option>
+			<option selected="selected" value="전%">전공</option>
+			<option value="교%">교양</option>
 		</select> 강의명: <input type="text" name="lct_nm" />
+		<input type = "submit" value="검색">
 	</form>
 	
 	<!-- 강의리스트 -->
@@ -64,7 +65,7 @@
 		</tr>
 		<c:choose>
 			<c:when test="${not empty lectureList}">
-				<c:forEach var="lct" items="${lectureList }">
+				<c:forEach var="lct" items="${lectureList }" varStatus="status">
 					<tr>
 						<c:choose>
 							<c:when test="${term=='사전수강신청' }">
@@ -87,15 +88,15 @@
 							</c:when>
 						</c:choose>
 						
-						<td>${lct.lct_num}</td>
-						<td>${lct.sjt_cd }</td>
-						<td>${lct.lct_nm }</td>
-						<td>${lct.lr_num }</td>
-						<td>${lct.prfs_nm }</td>
-						<td>${lct.lr_date }</td>
-						<td>${lct.lct_crd }</td>
-						<td>${lct.lct_qua_num }</td>
-						<td>${lct.lct_cnt_num }</td>
+						<td>${lct.get(status.index).get("lct_num")}</td>
+						<td>${lct.get(status.index).get("sjt_cd")}</td>
+						<td>${lct.get(status.index).get("lct_nm") }</td>
+						<td>${lct.get(status.index).get("lr_num") }</td>
+						<td>${lct.get(status.index).get("prfs_nm") }</td>
+						<td>${lct.get(status.index).get("lr_date") }</td>
+						<td>${lct.get(status.index).get("lct_crd") }</td>
+						<td>${lct.get(status.index).get("lct_qua_num") }</td>
+						<td>${lct.get(status.index).get("lct_cnt_num") }</td>
 						<td><button name="${lct.lct_num}" onclick="">강의계획서</button></td>
 					</tr>
 				</c:forEach>
@@ -125,7 +126,7 @@
 				</tr>
 				<c:choose>
 					<c:when test="${not empty admissionApplicationList}">
-						<c:forEach var="admission" items="${admissionApplicationList }">
+						<c:forEach var="admission" items="${admissionApplicationList }" varStatus="status">
 							<tr>
 								<td>
 								<form action = "/student/deleteTl" method="post">
@@ -133,13 +134,13 @@
 								<input type = "submit" value="취소">
 								</form>
 								</td>
-								<td>${admission.lct_num}</td>
-								<td>${admission.sjt_cd }</td>
-								<td>${admission.lct_nm }</td>
-								<td>${admission.lr_num }</td>
-								<td>${admission.prfs_nm }</td>
-								<td>${admission.lr_date }</td>
-								<td>${admission.lct_crd }</td>
+								<td>${admission.get(status.index).get("lct_num")}</td>
+								<td>${admission.get(status.index).get("sjt_cd")}</td>
+								<td>${admission.get(status.index).get("lct_nm")}</td>
+								<td>${admission.get(status.index).get("lr_num") }</td>
+								<td>${admission.get(status.index).get("prfs_nm") }</td>
+								<td>${admission.get(status.index).get("lr_date") }</td>
+								<td>${admission.get(status.index).get("lct_crd") }</td>
 								<td><button name="${lct.lct_num}" onclick="">강의계획서</button></td>
 							</tr>
 						</c:forEach>
@@ -191,13 +192,13 @@
 								<td><button onclick="location.href='${pageContext.request.contextPath}/student/insertTl'">신청</button></td>
 							</c:when>
 						</c:choose>
-						<td>${cart.lct_num}</td>
-						<td>${cart.sjt_cd }</td>
-						<td>${cart.lct_nm }</td>
-						<td>${cart.lr_num }</td>
-						<td>${cart.prfs_nm }</td>
-						<td>${cart.lr_date }</td>
-						<td>${cart.lct_crd }</td>
+						<td>${cart.get(status.index).get("lct_num")}</td>
+						<td>${cart.get(status.index).get("sjt_cd") }</td>
+						<td>${cart.get(status.index).get("lct_nm") }</td>
+						<td>${cart.get(status.index).get("lr_num") }</td>
+						<td>${cart.get(status.index).get("prfs_nm") }</td>
+						<td>${cart.get(status.index).get("lr_date") }</td>
+						<td>${cart.get(status.index).get("lct_crd") }</td>
 						
 						<td><button name="${lct.lct_num}" onclick="">강의계획서</button></td>
 					</tr>

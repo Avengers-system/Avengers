@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.avengers.db.dto.AdmissionApplicationVO;
 import com.avengers.db.dto.CartVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.StudVO;
@@ -21,11 +22,11 @@ public interface StudentAdmissionApplicationService {
 	//수강 검색
 		//개설강좌 리스트
 		//신청,과목번호,과목명,이수구분,강의실,담당교수,시간표,학점,수강제한인원,수강신청인원,강의계획서
-		public List<HashMap<String, String>> selectLctList(LctVO lctVO) throws SQLException;
+		public List<HashMap<String, String>> selectLctList(AdmissionApplicationVO lctVO) throws SQLException;
 			
 		//신청내역리스트
 		//학생 번호로 신청 내역리스트 조회
-		public List<HashMap<String, String>> selectTlList(String tl_stud) throws SQLException;
+		public List<HashMap<String, String>> selectTlList(AdmissionApplicationVO tl_stud) throws SQLException;
 		
 		//수강 신청
 		//수강 신청 기간에	
@@ -37,7 +38,7 @@ public interface StudentAdmissionApplicationService {
 		
 		//장바구니기간에
 		//개설강좌리스트 -> 장바구니리스트
-		public List<HashMap<String, String>> selectCartList(String cart_stud)throws SQLException;
+		public List<HashMap<String, String>> selectCartList(AdmissionApplicationVO cart_stud)throws SQLException;
 		
 		public int insertCart(CartVO cartVO) throws SQLException;
 		

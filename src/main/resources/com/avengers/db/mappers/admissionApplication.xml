@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admission">
+	
+	<resultMap id="ApplicationLct" type="java.util.HashMap">
+        <result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>
+        <result javaType="java.lang.String" column="LCT_NM" property="lct_nm"/>
+        <result javaType="java.lang.String" column="LCT_CRD" property="lct_crd"/>
+        <result javaType="java.lang.String" column="LCT_QUA_NUM" property="lct_qua_num"/>
+        <result javaType="java.lang.String" column="LCT_CNT_NUM" property="lct_cnt_num"/>
+        <result javaType="java.lang.String" column="LR_NUM" property="lr_num"/>
+        <result javaType="java.lang.String" column="LR_DATE" property="lr_date"/>
+        <result javaType="java.lang.String" column="SJT_CD" property="sjt_cd"/>
+        <result javaType="java.lang.String" column="PRFS_NM" property="prfs_nm"/>
+  </resultMap> 
+
+
+	<select id="selectLctList" parameterType="com.avengers.db.dto.AdmissionApplicationVO" resultMap="ApplicationLct">
+		select LCT_NUM,LCT_NM,LCT_CRD,LCT_QUA_NUM,LCT_CNT_NUM,LR_NUM,LR_DATE,SJT_CD,PRFS_NM
+		from LECTURE,LR,SUBJECT,PROFESSOR 
+		where SJT_ESTM_GRD=${sjt_estm_grd}
+		AND SJT_CD LIKE ${sjt_cd}
+		AND LCT_NM LIKE '%'${lct_nm}'%'
+		AND SJT_NUM=LCT_SJT
+		AND LCT_NUM=LR_LCT
+		AND LCT_PRFS=PRFS_NM
+	</select>
+	<select id="selectTlList" parameterType="com.avengers.db.dto.AdmissionApplicationVO" resultMap="ApplicationLct">
+		select LCT_NUM,LCT_NM,LCT_CRD,LCT_QUA_NUM,LCT_CNT_NUM,LR_NUM,LR_DATE,SJT_CD,PRFS_NM
+		from LECTURE,LR,SUBJECT,PROFESSOR,TL
+		where SJT_NUM=LCT_SJT
+		AND LCT_NUM=LR_LCT
+		AND LCT_PRFS=PRFS_NM
+		AND TL_STUD=${stud_num}
+	</select>
+	<select id="selectCartList" parameterType="com.avengers.db.dto.AdmissionApplicationVO" resultMap="ApplicationLct">
+		select LCT_NUM,LCT_NM,LCT_CRD,LCT_QUA_NUM,LCT_CNT_NUM,LR_NUM,LR_DATE,SJT_CD,PRFS_NM
+		from LECTURE,LR,SUBJECT,PROFESSOR,CART 
+		where SJT_NUM=LCT_SJT
+		AND LCT_NUM=LR_LCT
+		AND LCT_PRFS=PRFS_NM
+		AND CART_STUD=${stud_num}
+	</select>
+</mapper>

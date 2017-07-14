@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.avengers.db.dto.AdmissionApplicationVO;
 import com.avengers.db.dto.CartVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.StudVO;
@@ -32,12 +33,12 @@ public class StudentAdmissionApplicationServiceImpl implements
 	
 
 	@Override
-	public List<HashMap<String, String>> selectLctList(LctVO lctVO) throws SQLException {
+	public List<HashMap<String, String>> selectLctList(AdmissionApplicationVO lctVO) throws SQLException {
 		return stuAdmAppDAO.selectLctList(lctVO);
 	}
 
 	@Override
-	public List<HashMap<String, String>> selectTlList(String tl_stud) throws SQLException {
+	public List<HashMap<String, String>> selectTlList(AdmissionApplicationVO tl_stud) throws SQLException {
 		return stuAdmAppDAO.selectTlList(tl_stud);
 	}
 
@@ -52,7 +53,7 @@ public class StudentAdmissionApplicationServiceImpl implements
 	}
 
 	@Override
-	public List<HashMap<String, String>> selectCartList(String cart_stud)
+	public List<HashMap<String, String>> selectCartList(AdmissionApplicationVO cart_stud)
 			throws SQLException {
 		return stuAdmAppDAO.selectCartList(cart_stud);
 	}
