@@ -4,19 +4,25 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cns">
+
+		
 	<!-- 상담테이블에서 해당 교수가 진행한 상담들을 뽑아오는 구문이다. -->
 	<select id="selectCnsList" parameterType="java.lang.String" resultType="com.avengers.db.dto.CnsVO">
-		SELECT * FROM COUNSEL WHERE CNS_PRFS=#{cns_prfs}  
+		SELECT cns_num, cns_kind, cns_title, cns_cont, cns_appl_date, cns_date, cns_check, cns_stud, cns_prfs 
+		
+		 from counsel where cns_prfs=#{cns_prfs}  
 	</select>
 	
-	
-	
 	<select id="getCns" parameterType="String" resultType="com.avengers.db.dto.CnsVO">
-		select * from counsel where cns_stud=#{cns_stud}
+		select cns_num, cns_kind, cns_title, cns_cont, cns_appl_date, cns_date, cns_check, cns_stud, cns_prfs
+		 from counsel where cns_stud=#{cns_stud}
 	</select>
 	
 	<!-- 학생이 상담받은 상담들을 뽑아오는 구문 -->
 	<select id="selectStudentCnsList" parameterType="java.lang.String"	resultType="com.avengers.db.dto.CnsVO">
-		select * from counsel where cns_stud=#{stud_num}
+		select cns_num, cns_kind, cns_title, cns_cont, cns_appl_date, cns_date, cns_check, cns_stud, cns_prfs
+		 from counsel where cns_stud=#{stud_num}
 	</select>
+	
+
 </mapper>

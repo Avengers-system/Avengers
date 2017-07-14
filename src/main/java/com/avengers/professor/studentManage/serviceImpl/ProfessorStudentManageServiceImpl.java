@@ -2,6 +2,7 @@ package com.avengers.professor.studentManage.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,15 +18,11 @@ public class ProfessorStudentManageServiceImpl implements ProfessorStudentManage
 	@Autowired
 	private ProfessorStudentManageDao proStuDAO;
 	
-	public void setProStuDAO(ProfessorStudentManageDao proStuDAO) {
-		this.proStuDAO = proStuDAO;
-	}
-
 	@Override
-	public ArrayList<CnsVO> selectCnsList(String cns_prfs, String key)
+	public ArrayList<CnsVO> selectCnsList(String cns_prfs)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<CnsVO> cnsList = proStuDAO.selectCnsList(cns_prfs);
+		return cnsList;
 	}
 
 	@Override
@@ -42,18 +39,20 @@ public class ProfessorStudentManageServiceImpl implements ProfessorStudentManage
 	}
 
 	@Override
-	public ArrayList<StudVO> selectStudList(String prfs_num, String key)
+	public ArrayList<StudVO> selectStudList(String prfs_num)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+
+		ArrayList<StudVO> studentList = proStuDAO.selectStudList(prfs_num);
+		return studentList;
 	}
 
 	@Override
-	public StudVO selectStud(String prfs_num, String stud_num)
+	public StudVO selectStud(String stud_num)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		StudVO studDetail = proStuDAO.selectStud(stud_num);
+		return studDetail;
 	}
+
 
 	
 

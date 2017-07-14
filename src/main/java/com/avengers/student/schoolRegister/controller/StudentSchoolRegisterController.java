@@ -45,6 +45,8 @@ public class StudentSchoolRegisterController {
 		return "/student/schoolRegister/gradeCertificate";
 	}
 	
+	
+	
 	public void createGradeCertificate(HashMap<String,String> gradeInfo,List<HashMap<String,String>> gradeList, int allGrade, int allGradeCount){
 		//pdf 만들기
 	}

@@ -2,6 +2,7 @@ package com.avengers.professor.studentManage.daoImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +17,12 @@ public class ProfessorStudentManageDaoImpl implements ProfessorStudentManageDao 
 	@Autowired
 	protected SqlSession sqlSession;
 
-	public void setSqlSession(SqlSession sqlSession) throws SQLException {
-		this.sqlSession = sqlSession;
-	}
 
 	@Override
-	public ArrayList<CnsVO> selectCnsList(String cns_prfs, String key)
+	public ArrayList<CnsVO> selectCnsList(String cns_prfs)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<CnsVO> cnsList = (ArrayList<CnsVO>)sqlSession.selectList("cns.selectCnsList",cns_prfs);
+		return cnsList;
 	}
 
 	@Override
@@ -41,18 +39,20 @@ public class ProfessorStudentManageDaoImpl implements ProfessorStudentManageDao 
 	}
 
 	@Override
-	public ArrayList<StudVO> selectStudList(String prfs_num, String key)
+	public ArrayList<StudVO> selectStudList(String prfs_num)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<StudVO> studentList = (ArrayList<StudVO>)sqlSession.selectList("student.selectDepartmentStudentList",prfs_num);
+		
+		return studentList;
 	}
 
 	@Override
-	public StudVO selectStud(String prfs_num, String stud_num)
+	public StudVO selectStud(String stud_num)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		StudVO studDetail = (StudVO)sqlSession.selectOne("student.getStudentInfo",stud_num);
+		return studDetail;
 	}
+
 
 	
 }
