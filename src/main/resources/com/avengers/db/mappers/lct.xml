@@ -18,7 +18,7 @@
    이렇게사용한 resultMap은 리스트형태의 HashMap으로 들어간다. 즉 List<HashMap<String,String>>이런식으로 들어간다는거다
   이것을 jsp에서 출력할때는 이와같이 출력한다.
   
-  <c:forEach var="lct" items="${lctList }" varStatus="status">
+  <c:forEach var="lct" items="${lctList }" varStatus="status" >
          <tr>
             <td>강의번호:${lct.get(status.index).get("lct_num")}</td>
             <td>강의시간:${lct.get(status.index).get("lr_num")}</td>
@@ -44,7 +44,9 @@
 		AND LCT_PRFS = ${lct_prfs}
 		AND LCT_YR = ${lct_yr} 
 		AND LCT_QTR = ${lct_qtr}  
+		
 	</select>
+	
 	
 	
 	

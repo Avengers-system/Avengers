@@ -17,14 +17,27 @@ public class LctVO {
 	private String lct_estm_grd;//개설학년
 	private String lct_cont;//강의내용
 	private int lct_qua_num;//학생정원
+	private int lct_cnt_num;//현재학생인원
 	private int lct_me_rate;//중간고사비율
 	private int lct_fe_rate;//기말고사비율
 	private int lct_atdc_rate;//출결비율
 	private int asgn_rate;//과제비율
 	private String lct_prfs;//교수번호
 	private String lct_sjt;//과목번호
+	private String lct_crd;//강의학점
 	
-	
+	public int getLct_cnt_num() {
+		return lct_cnt_num;
+	}
+	public void setLct_cnt_num(int lct_cnt_num) {
+		this.lct_cnt_num = lct_cnt_num;
+	}
+	public String getLct_crd() {
+		return lct_crd;
+	}
+	public void setLct_crd(String lct_crd) {
+		this.lct_crd = lct_crd;
+	}
 	public String getLct_qtr() {
 		return lct_qtr;
 	}

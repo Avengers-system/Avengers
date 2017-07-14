@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.CartVO;
 import com.avengers.db.dto.LctVO;
+import com.avengers.db.dto.StudVO;
 import com.avengers.db.dto.TlVO;
 import com.avengers.student.admissionApplication.daoImpl.StudentAdmissionApplicationDaoImpl;
 import com.avengers.student.admissionApplication.service.StudentAdmissionApplicationService;
@@ -31,12 +32,12 @@ public class StudentAdmissionApplicationServiceImpl implements
 	
 
 	@Override
-	public ArrayList<LctVO> selectLctList(LctVO lctVO) throws SQLException {
+	public List<HashMap<String, String>> selectLctList(LctVO lctVO) throws SQLException {
 		return stuAdmAppDAO.selectLctList(lctVO);
 	}
 
 	@Override
-	public ArrayList<TlVO> selectTlList(String tl_stud) throws SQLException {
+	public List<HashMap<String, String>> selectTlList(String tl_stud) throws SQLException {
 		return stuAdmAppDAO.selectTlList(tl_stud);
 	}
 
@@ -51,7 +52,7 @@ public class StudentAdmissionApplicationServiceImpl implements
 	}
 
 	@Override
-	public ArrayList<CartVO> selectCartList(String cart_stud)
+	public List<HashMap<String, String>> selectCartList(String cart_stud)
 			throws SQLException {
 		return stuAdmAppDAO.selectCartList(cart_stud);
 	}
@@ -62,15 +63,51 @@ public class StudentAdmissionApplicationServiceImpl implements
 	}
 
 	@Override
-	public int deleteCart(String cart_lct, String cart_stud)
+	public int deleteCart(CartVO cartVO)
 			throws SQLException {
-		return stuAdmAppDAO.deleteCart(cart_lct, cart_stud);
+		return stuAdmAppDAO.deleteCart(cartVO);
 	}
 
 	@Override
 	public List<HashMap<String, String>> selectStudClass(String tl_stud)
 			throws SQLException {
 		return stuAdmAppDAO.selectStudClass(tl_stud);
+	}
+
+	@Override
+	public StudVO selectStudMaxCrd(String stud_num) throws SQLException {
+		return stuAdmAppDAO.selectStudMaxCrd(stud_num);
+	}
+
+	@Override
+	public CartVO selectCart(CartVO cartVO) throws SQLException {
+		return stuAdmAppDAO.selectCart(cartVO);
+	}
+
+	@Override
+	public int updateLctMinus(String tl_lct) throws SQLException {
+		return stuAdmAppDAO.updateLctMinus(tl_lct);
+	}
+
+	@Override
+	public int updateLctPlus(String tl_lct) throws SQLException {
+		return stuAdmAppDAO.updateLctPlus(tl_lct);
+	}
+
+	@Override
+	public TlVO selectTl(TlVO tlVO) throws SQLException {
+		return stuAdmAppDAO.selectTl(tlVO);
+	}
+
+	@Override
+	public ArrayList<TlVO> selectTlList(TlVO tlVO) throws SQLException {
+		return stuAdmAppDAO.selectTlList(tlVO);
+	}
+
+
+	@Override
+	public LctVO selectLct(String tl_lct) throws SQLException {
+		return stuAdmAppDAO.selectLct(tl_lct);
 	}
 
 	
