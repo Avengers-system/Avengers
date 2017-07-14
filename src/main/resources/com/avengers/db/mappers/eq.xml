@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="eq">
+	<select id="selectEqList" parameterType="java.lang.String" resultType="com.avengers.db.dto.EqVO">
+		SELECT EQ_NUM,
+			EQ_QTNA,
+			EQ_QTN,
+			EQ_QTN_TYPE,
+			EQ_EXMP_ONE,
+			EQ_EXMP_TWO,
+			EQ_EXMP_THREE,
+			EQ_EXMP_FOUR
+		FROM   EQ, EXAM
+		WHERE  EXAM_NUM = EQ_EXAM
+		AND    EXAM_NUM = #{exam_num}
+	</select>
+	
+</mapper>

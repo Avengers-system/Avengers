@@ -128,5 +128,11 @@
          </c:otherwise>
 </c:choose>
 
+<button onclick="location.href='<%=request.getContextPath()%>/student/classManage/classMain'">관리자</button>
+
+
+
+
+
 </body>
 </html>

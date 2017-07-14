@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,24 @@ public class StudentMainController {
 	private StudentMainService studentMainService;
 	
 	
-	
+	@RequestMapping("student/classManage/classMain")
+	public String studentClassManage(Principal principal, Model model){
+		String view = "student/classManage/classMain";
+		
+		String stud_num = principal.getName();
+		
+		ArrayList<Map<String, String>> classList = null;
+		
+		try {
+			classList = studentMainService.selectClassList(stud_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("classList", classList);
+		
+		return view;
+	}
 	
 	@RequestMapping("student/studentMain")
 	public String studentMain(Principal principal, Model model){

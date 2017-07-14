@@ -14,6 +14,7 @@ import com.avengers.db.dto.EqVO;
 import com.avengers.db.dto.ExamVO;
 import com.avengers.db.dto.LaVO;
 import com.avengers.db.dto.LctVO;
+import com.avengers.db.dto.TeVO;
 
 
 
@@ -35,7 +36,17 @@ public interface StudentClassManageService {
 		
 		//전체목록
 		public ArrayList<Map<String, String>> selectClassList(int firstRow,int endRow) throws SQLException;
-
+		
+		//배현상
+		//강의계획서
+		public Map<String, String> selectDetailLct(String lct_num) throws SQLException; 
+		
+		//배현상
+		public ArrayList<Map<String, String>> selectExamList(Map<String,String> key) throws SQLException;
+		
+		//배현상
+		//시험화면에서 응시버튼을 누를 경우 화면에 뿌려질 시험문제리스트
+		public ArrayList<EqVO> selectEqList(String exam_num) throws SQLException; 
 		
 		//////강의 상세 페이지
 		

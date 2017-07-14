@@ -114,7 +114,14 @@ public class StudentMainServiceImpl implements StudentMainService{
 		return selectSchoolScheduleList;
 	}
 
-	
+	//배현상
+	//강의목록
+	@Override
+	public ArrayList<Map<String, String>> selectClassList(String stud_num)
+			throws SQLException {
+		ArrayList<Map<String, String>> classList = stuMainDao.selectClassList(stud_num);
+		return classList;
+	}
 
 
 

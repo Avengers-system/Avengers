@@ -15,6 +15,7 @@ import com.avengers.db.dto.EqVO;
 import com.avengers.db.dto.ExamVO;
 import com.avengers.db.dto.LaVO;
 import com.avengers.db.dto.LctVO;
+import com.avengers.db.dto.TeVO;
 import com.avengers.student.classManage.dao.StudentClassManageDao;
 import com.avengers.student.classManage.service.StudentClassManageService;
 
@@ -189,6 +190,32 @@ public class StudentClassManageServiceImpl implements StudentClassManageService 
 	public int insertAsessMentofLecture(LaVO la) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	
+	//배현상
+	//강의계획서
+	@Override
+	public Map<String, String> selectDetailLct(String lct_num)
+			throws SQLException {
+		Map<String, String> detailLct = stuClassDAO.selectDetailLct(lct_num);
+		return detailLct;
+	}
+	//배현상
+	//시험리스트 불러오기
+	@Override
+	public ArrayList<Map<String, String>> selectExamList(Map<String, String> key)
+			throws SQLException {
+		ArrayList<Map<String, String>> examList = stuClassDAO.selectExamList(key);
+		return examList;
+	}
+
+	//배현상
+	//시험화면에서 응시버튼을 누를 경우 화면에 뿌려질 시험문제 리스트
+	@Override
+	public ArrayList<EqVO> selectEqList(String exam_num) throws SQLException {
+		ArrayList<EqVO> teList = stuClassDAO.selectEqList(exam_num);
+		return teList;
 	}
 
 }

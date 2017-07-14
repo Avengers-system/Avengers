@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="exam">
+	
+	<!-- 학과공지게시판을 구하기위해 학과이름을 구하는 구문이다. -->
+	<resultMap id="examForm" type="java.util.HashMap">
+		<result javaType="java.lang.String" column="SJT_NM" property="sjt_nm"/>
+		<result javaType="java.lang.String" column="LCT_NM_CLASS" property="lct_nm_class"/>
+		<result javaType="java.lang.String" column="EXAM_TYPE" property="exam_type"/>
+		<result javaType="java.lang.String" column="EXAM_DATE" property="exam_date"/>
+		<result javaType="java.lang.String" column="EXAM_START_DATE" property="exam_start_date"/>
+		<result javaType="java.lang.String" column="EXAM_END_DATE" property="exam_end_date"/>
+		<result javaType="java.lang.String" column="TE_CHECK" property="te_check"/>
+		<result javaType="java.lang.String" column="TE_NUM" property="te_num"/>
+		<result javaType="java.lang.String" column="EXAM_NUM" property="exam_num"/>
+	</resultMap>
+	
+	<select id="selectExamList" parameterType="map" resultMap="examForm">
+		SELECT SJT_NM
+			,SUBSTR(LCT_NM,-1) AS LCT_NM
+			,case when EXAM_TYPE = 1 then '중간고사' else '기말고사' end AS EXAM_TYPE
+			,TO_CHAR(EXAM_DATE,'YY/MM/DD') AS EXAM_DATE
+			,TO_CHAR(EXAM_START_DATE,'HH24:MI:SS') AS EXAM_START_DATE
+			,TO_CHAR(EXAM_END_DATE,'HH24:MI:SS') AS EXAM_END_DATE
+			,case when TE_CHECK = 1 then '응시' else '미응시' end AS TE_CHECK
+			,TE_NUM
+			,EXAM_NUM
+		FROM  LECTURE, EXAM, TE, SUBJECT
+		WHERE LCT_NUM = EXAM_LCT
+		AND   EXAM_NUM = TE_EXAM
+		AND   LCT_SJT = SJT_NUM
+		AND   TE_STUD = #{te_stud}
+		AND   LCT_NUM = #{lct_num}
+	</select>
+	
+	
+</mapper>
+
