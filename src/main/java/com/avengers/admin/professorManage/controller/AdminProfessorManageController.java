@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.avengers.admin.professorManage.service.AdminProfessorManageService;
 import com.avengers.db.dto.CommandPrfsVO;
 import com.avengers.db.dto.PrfsVO;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminProfessorManageController {
 
 	@Autowired
@@ -33,7 +35,7 @@ public class AdminProfessorManageController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/admin/professorManage")
+	@RequestMapping("/professorManage")
 	public String professorList(Principal principal, Model model) {
 
 		List<PrfsVO> professorList = null;
@@ -41,34 +43,102 @@ public class AdminProfessorManageController {
 		// key??
 		String key = principal.getName();
 		try {
-			professorList = adminProfessorManageService.selectPrfsList(key, 1,	10);
+//			professorList = adminProfessorManageService.selectPrfsList(key, 1,	10);
+			professorList = adminProfessorManageService.selectPrfsList();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		model.addAttribute("professorList", professorList);
 
-		return "admin/adminProfessorManage.jsp";
+		return "admin/main/professorManage";
 	}
 
+	
+	/**
+	 * 교수 상세보기
+	 * @param prfs_num
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/professorManage/detail")
+	public String professorDetail(
+			@RequestParam("prfs_num") String prfs_num,
+			Model model){
+		PrfsVO prfsVO = new PrfsVO();
+		try {
+			prfsVO = adminProfessorManageService.selectPrfs(prfs_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("professor",prfsVO);
+		return "admin/professorDetail";
+	}
+	
+	
+	/**
+	 * 교수수정하기 
+	 * @param commandPrfsVO
+	 * @param prfs_num
+	 * @param request
+	 * @param multipartFile
+	 * @return
+	 */
+	@RequestMapping(value = "/updateProfessor")
+	public String updateProfessor(
+						CommandPrfsVO commandPrfsVO,
+						@RequestParam("prfs_num") String prfs_num,
+						MultipartHttpServletRequest request,
+						@RequestParam("prfs_pic") MultipartFile multipartFile
+						){
+		
+		String upload = "C:/Users/pc15/git/Avengers/src/main/webapp/resources/admin_professor_images/"
+				+ multipartFile.getOriginalFilename();
+		
+		if (!multipartFile.isEmpty()) {
+			File file = new File(upload, multipartFile.getOriginalFilename()+"$$"+ System.currentTimeMillis());
+
+			PrfsVO prfsVO = new PrfsVO();
+			prfsVO = commandPrfsVO.toPrfsVO();
+			try {
+				multipartFile.transferTo(file); // 깃 위치로 전송
+			} catch (IllegalStateException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} 
+			
+			try {
+				adminProfessorManageService.updatePrfs(prfsVO, prfs_num);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			}
+			System.out.println("성공");
+		}
+		
+		return "admin/main/professorManage";
+	}
+	
+	
+	
 	/**
 	 * 교수등록하기
-	 * 
 	 * @param prfsVO
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/admin/insertProfessor", method = RequestMethod.POST, headers = ("content-type=multipart/*"))
-	public String insertStudent(CommandPrfsVO commandPrfsVO,
+	@RequestMapping(value = "/insertProfessor", headers = ("content-type=multipart/*"))
+	public String insertProfessor(CommandPrfsVO commandPrfsVO,
 			MultipartHttpServletRequest request,
-			@RequestParam("prgs_pic") MultipartFile multipartFile) {
+			@RequestParam("prfs_pic") MultipartFile multipartFile) {
 
 		// 깃 경로 (동일)
 		String upload = "C:/Users/pc15/git/Avengers/src/main/webapp/resources/admin_professor_images/"
 				+ multipartFile.getOriginalFilename();
 
 		if (!multipartFile.isEmpty()) {
-			File file = new File(upload, multipartFile.getOriginalFilename()
-					+ "$$" + System.currentTimeMillis());
+			File file = new File(upload, multipartFile.getOriginalFilename());
 
 			PrfsVO prfsVO = new PrfsVO();
 			prfsVO = commandPrfsVO.toPrfsVO();
@@ -77,7 +147,7 @@ public class AdminProfessorManageController {
 				multipartFile.transferTo(file); // 깃 위치로 전송
 				adminProfessorManageService.insertPrfs(prfsVO);
 				// security에도 enabled와 role정보 추가해주기
-				adminProfessorManageService.insertPrfs(prfsVO);
+//				adminProfessorManageService.insertSecurity(prfsVO);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -88,8 +158,7 @@ public class AdminProfessorManageController {
 			System.out.println("성공");
 		}
 
-		int result = 0;
-
 		return "admin/main/professorManage"; // redirect??
 	}
+	
 }

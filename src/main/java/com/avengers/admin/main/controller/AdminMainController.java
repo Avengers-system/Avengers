@@ -65,14 +65,15 @@ public class AdminMainController {
 //    return redirect:admin/main/adminMain; 다른 RequestMapping으로 이동
       return view;
    }
+   
    @RequestMapping("/admin/studentManage")
    public String studentManage(){
-      String view="";
+      String view="/admin/main/studentManage";
       return view;
    }
    @RequestMapping("/admin/professorManage")
    public String professorManage(){
-	  String view="admin/main/professorManage";
+	  String view="/admin/main/professorManage";
       return view;
    }
    

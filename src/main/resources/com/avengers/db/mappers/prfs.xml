@@ -10,6 +10,11 @@
 		SELECT * FROM PROFESSOR WHERE PRFS_NUM=#{prfs_num}  
 	</select>
 
-	
-	
+ 	<select id="selectCount" resultType="java.lang.String">
+		SELECT COUNT(*) FROM PROFESSOR	
+	</select>
+
+ 	<select id="selectAllPrfs" resultType="com.avengers.db.dto.PrfsVO">
+		SELECT * FROM PROFESSOR	
+	</select>
 </mapper>

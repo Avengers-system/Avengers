@@ -25,7 +25,9 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 
 	@Override
 	public StudVO selectStud(String stud_num) throws SQLException {
-		return null;
+		StudVO studVO = null;
+		studVO = (StudVO)sqlSession.selectOne("student.selectStud",stud_num);
+		return studVO;
 	}
 
 	@Override
@@ -42,6 +44,12 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 	@Override
 	public int deleteStud(String stud_num) throws SQLException {
 		return 0;
+	}
+	@Override
+	public ArrayList<StudVO> selectStudList() throws SQLException {
+		ArrayList<StudVO> studList = new ArrayList<StudVO>();
+		studList = (ArrayList<StudVO>)sqlSession.selectList("student.selectAllStud");
+		return studList;
 	}
 
 }

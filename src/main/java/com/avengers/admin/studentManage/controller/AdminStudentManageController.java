@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,7 +25,7 @@ import com.avengers.db.dto.PrfsVO;
 import com.avengers.db.dto.StudVO;
 
 @Controller
-@RequestMapping("/admin/StudentManage")
+@RequestMapping("/admin")
 public class AdminStudentManageController {
 
 	@Autowired
@@ -36,12 +37,42 @@ public class AdminStudentManageController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/adminStudentManage")
+	@RequestMapping("/studentManage")
 	public String studentList(Principal principal, Model model){
-		
-		
-	return "asdf";	
+		List<StudVO> studList = null;
+
+		// key??
+		String key = principal.getName();
+		try {
+			studList = adminStudentManageService.selectStudList();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("studentList", studList);
+		return "admin/main/studentManage"; 
 	}
+	
+	/**
+	 * 학생 상세보기
+	 * @param stud_num
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/studentManage/detail")
+	public String studentDetail(
+			@RequestParam("stud_num") String stud_num,
+			Model model){
+		
+		StudVO studVO = new StudVO();
+		try {
+			studVO = adminStudentManageService.selectStud(stud_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("student",studVO);
+		return "admin/studentDetail";
+	}
+	
 	
 	
 	

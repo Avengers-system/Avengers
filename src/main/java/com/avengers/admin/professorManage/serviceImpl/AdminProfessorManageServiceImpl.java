@@ -27,7 +27,8 @@ public class AdminProfessorManageServiceImpl implements AdminProfessorManageServ
 
 	@Override
 	public PrfsVO selectPrfs(String prfs_num) throws SQLException {
-		return null;
+		
+		return proDAO.selectPrfs(prfs_num);
 	}
 
 	@Override
@@ -43,7 +44,8 @@ public class AdminProfessorManageServiceImpl implements AdminProfessorManageServ
 	
 	@Override
 	public int updatePrfs(PrfsVO prfsVO, String prfs_num) throws SQLException {
-		return 0;
+		int result = proDAO.updatePrfs(prfsVO, prfs_num);
+		return result;
 	}
 
 	@Override
@@ -55,6 +57,12 @@ public class AdminProfessorManageServiceImpl implements AdminProfessorManageServ
 	public int insertSecurity(PrfsVO prfsVO2) {
 		int result = proDAO.insertSecurity(prfsVO2);
 		return result;
+	}
+
+	@Override
+	public ArrayList<PrfsVO> selectPrfsList() throws SQLException {
+		ArrayList<PrfsVO> prfsList = proDAO.selectPrfsList();
+		return prfsList;
 	}
 
 }

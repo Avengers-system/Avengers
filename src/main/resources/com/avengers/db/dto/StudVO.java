@@ -25,7 +25,7 @@ public class StudVO {
 	private String stud_act_num;//계좌번호
 	private String stud_bank;//은행명
 	private String stud_ah;//예금주
-	private String sutd_addr;//주소
+	private String stud_addr;//주소
 	private String stud_zip;//우편번호
 	private String stud_tel;//전화번호
 	private String stud_hp;//휴대폰번호
@@ -146,11 +146,11 @@ public class StudVO {
 	public void setStud_ah(String stud_ah) {
 		this.stud_ah = stud_ah;
 	}
-	public String getSutd_addr() {
-		return sutd_addr;
+	public String getStud_addr() {
+		return stud_addr;
 	}
-	public void setSutd_addr(String sutd_addr) {
-		this.sutd_addr = sutd_addr;
+	public void setStud_addr(String stud_addr) {
+		this.stud_addr = stud_addr;
 	}
 	public String getStud_zip() {
 		return stud_zip;

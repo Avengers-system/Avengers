@@ -16,9 +16,8 @@
 <button onclick="location.href='<%=request.getContextPath()%>/common/logout'">로그아웃</button>
 
 <button onclick="location.href='<%=request.getContextPath()%>/admin/professorManage'">교수목록</button>
-<button onclick="location.href='<%=request.getContextPath()%>/admin/professorInsert'">교수추가하기</button>
-<button onclick="location.href='<%=request.getContextPath()%>/admin/insertProfessor'">학생목록</button>
-<button onclick="location.href='<%=request.getContextPath()%>/admin/studentInsert'">학생추가하기</button>
+
+<button onclick="location.href='<%=request.getContextPath()%>/admin/studentManage'">학생목록</button>
 
 <br/>
 <h1>관리자 정보 출력</h1>
