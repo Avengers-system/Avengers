@@ -25,13 +25,13 @@
 		AND LCT_NUM=LR_LCT
 		AND LCT_PRFS=PRFS_NUM
 		<if test="sjt_estm_grd != null">
-		AND SJT_ESTM_GRD=${sjt_estm_grd}
+		AND SJT_ESTM_GRD=#{sjt_estm_grd}
 		</if>
 		<if test="sjt_cd != null">
-		AND SJT_CD LIKE ${sjt_cd}
+		AND SJT_CD LIKE #{sjt_cd}
 		</if>
 		<if test="lct_nm != null">
-		AND LCT_NM LIKE '%'||${lct_nm}||'%'
+		AND LCT_NM LIKE '%'||#{lct_nm}||'%'
 		</if>		
 	</select>
 	<select id="selectTlList" parameterType="com.avengers.db.dto.AdmissionApplicationVO" resultMap="ApplicationLct">
@@ -41,7 +41,7 @@
 		AND LCT_NUM=LR_LCT
 		AND LCT_PRFS=PRFS_NUM
 		<if test="stud_num !=null">
-		AND TL_STUD=${stud_num}
+		AND TL_STUD=#{stud_num}
 		AND TL_LCT=LCT_NUM
 		</if>		
 	</select>
@@ -52,7 +52,7 @@
 		AND LCT_NUM=LR_LCT
 		AND LCT_PRFS=PRFS_NUM
 		<if test="stud_num != null">
-		AND CART_STUD=${stud_num}
+		AND CART_STUD=#{stud_num}
 		AND CART_LCT=LCT_NUM
 		</if>		
 	</select>

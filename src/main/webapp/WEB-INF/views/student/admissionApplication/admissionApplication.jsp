@@ -34,7 +34,7 @@
 	<button onclick="">시간표보기</button> 
 	<br><br>
 	<!-- 셀렉트박스와 검색 셀렉트박스는 학년,이수구분 -->
-	<form action = "/student/admissionApplication" method="post">
+	<form action = "${pageContext.request.contextPath}/student/admissionApplication" method="post">
 		학년 <select name="sjt_estm_grd">
 			<option selected="selected" value="1">1</option>
 			<option value="2">2</option>
@@ -71,7 +71,7 @@
 							<c:when test="${term=='사전수강신청' }">
 								<!-- 장바구니목록에 들감 -->
 								<td>
-								<form action = "/student/insertCart" method="post">
+								<form action = "${pageContext.request.contextPath}/student/insertCart" method="post">
 								<input type="hidden" name="cart_lct" value="${lct.lct_num}" />
 								<input type = "submit" value="신청">
 								</form>
@@ -80,7 +80,7 @@
 							<c:when test="${term=='본수강신청' }">								
 								<!-- 강의신청목록에 들감 -->
 								<td>
-								<form action = "/student/insertTl" method="post">
+								<form action = "${pageContext.request.contextPath}/student/insertTl" method="post">
 								<input type="hidden" name="lct_num" value="${lct.lct_num}" />
 								<input type = "submit" value="신청">
 								</form>
@@ -88,15 +88,15 @@
 							</c:when>
 						</c:choose>
 						
-						<td>${lct.get(status.index).get("lct_num")}</td>
-						<td>${lct.get(status.index).get("sjt_cd")}</td>
-						<td>${lct.get(status.index).get("lct_nm") }</td>
-						<td>${lct.get(status.index).get("lr_num") }</td>
-						<td>${lct.get(status.index).get("prfs_nm") }</td>
-						<td>${lct.get(status.index).get("lr_date") }</td>
-						<td>${lct.get(status.index).get("lct_crd") }</td>
-						<td>${lct.get(status.index).get("lct_qua_num") }</td>
-						<td>${lct.get(status.index).get("lct_cnt_num") }</td>
+						<td>${lct.get("lct_num")}</td>
+						<td>${lct.get("sjt_cd")}</td>
+						<td>${lct.get("lct_nm") }</td>
+						<td>${lct.get("lr_num") }</td>
+						<td>${lct.get("prfs_nm") }</td>
+						<td>${lct.get("lr_date") }</td>
+						<td>${lct.get("lct_crd") }</td>
+						<td>${lct.get("lct_qua_num") }</td>
+						<td>${lct.get("lct_cnt_num") }</td>
 						<td><button name="${lct.lct_num}" onclick="">강의계획서</button></td>
 					</tr>
 				</c:forEach>
@@ -129,18 +129,18 @@
 						<c:forEach var="admission" items="${admissionApplicationList }" varStatus="status">
 							<tr>
 								<td>
-								<form action = "/student/deleteTl" method="post">
+								<form action = "${pageContext.request.contextPath}/student/deleteTl" method="post">
 								<input type="hidden" name="tl_num" value="${admission.get(status.index).get('tl_num')}" />
 								<input type = "submit" value="취소">
 								</form>
 								</td>
-								<td>${admission.get(status.index).get("lct_num")}</td>
-								<td>${admission.get(status.index).get("sjt_cd")}</td>
-								<td>${admission.get(status.index).get("lct_nm")}</td>
-								<td>${admission.get(status.index).get("lr_num") }</td>
-								<td>${admission.get(status.index).get("prfs_nm") }</td>
-								<td>${admission.get(status.index).get("lr_date") }</td>
-								<td>${admission.get(status.index).get("lct_crd") }</td>
+								<td>${admission.get("lct_num")}</td>
+								<td>${admission.get("sjt_cd")}</td>
+								<td>${admission.get("lct_nm")}</td>
+								<td>${admission.get("lr_num") }</td>
+								<td>${admission.get("prfs_nm") }</td>
+								<td>${admission.get("lr_date") }</td>
+								<td>${admission.get("lct_crd") }</td>
 								<td><button name="${lct.lct_num}" onclick="">강의계획서</button></td>
 							</tr>
 						</c:forEach>
@@ -182,7 +182,7 @@
 						<c:choose>
 							<c:when test="${term=='사전수강신청' }">
 								<td>
-								<form action = "/student/deleteCart" method="post">
+								<form action = "${pageContext.request.contextPath}/student/deleteCart" method="post">
 								<input type="hidden" name="cart_lct" value="${cart.get(status.index).get('lct_num')}" />
 								<input type = "submit" value="취소">
 								</form>
@@ -190,20 +190,20 @@
 							</c:when>
 							<c:when test="${term=='본수강신청' }">
 								<td>
-								<form action = "/student/insertTl" method="post">
+								<form action = "${pageContext.request.contextPath}/student/insertTl" method="post">
 								<input type="hidden" name="lct_num" value="${cart.get(status.index).get('lct_num')}" />
 								<input type = "submit" value="신청">
 								</form>
 								</td>
 							</c:when>
 						</c:choose>
-						<td>${cart.get(status.index).get("lct_num")}</td>
-						<td>${cart.get(status.index).get("sjt_cd") }</td>
-						<td>${cart.get(status.index).get("lct_nm") }</td>
-						<td>${cart.get(status.index).get("lr_num") }</td>
-						<td>${cart.get(status.index).get("prfs_nm") }</td>
-						<td>${cart.get(status.index).get("lr_date") }</td>
-						<td>${cart.get(status.index).get("lct_crd") }</td>
+						<td>${cart.get("lct_num")}</td>
+						<td>${cart.get("sjt_cd") }</td>
+						<td>${cart.get("lct_nm") }</td>
+						<td>${cart.get("lr_num") }</td>
+						<td>${cart.get("prfs_nm") }</td>
+						<td>${cart.get("lr_date") }</td>
+						<td>${cart.get("lct_crd") }</td>
 						
 						<td><button name="${lct.lct_num}" onclick="">강의계획서</button></td>
 					</tr>
