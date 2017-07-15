@@ -11,16 +11,19 @@
 <button id="myInfo">수업관리</button><br/>
 <button id="mySchedule">수강신청</button><br/>
 <button id="mySchedule">등록/장학</button><br/>
-<button id="mySchedule" onclick="counsel_go()" >상담</button><br/>
+<button id="mySchedule" onclick="counselList_go()" >상담목록</button><br/>
+<button id="mySchedule" onclick="counselApply_go()" >상담신청</button><br/>
 <button id="mySchedule" >HelpDesk</button><br/>
 
 <script type="text/javascript">
 	function schoolRegister_go(){
 		location.href="${pageContext.request.contextPath}/student/schoolRegister/certificate";
 	}
-	function counsel_go(){
+	function counselList_go(){
 		location.href="${pageContext.request.contextPath}/student/counsel/counselList";
-		
+	}
+	function counselApply_go(){
+		location.href="${pageContext.request.contextPath}/student/counsel/counselApplyPage";
 	}
 
 </script>

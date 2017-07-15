@@ -33,9 +33,12 @@ public class ProfessorStudentManageServiceImpl implements ProfessorStudentManage
 	}
 
 	@Override
-	public CnsVO updateCns(CnsVO cnsVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public void updateCns(CnsVO cnsVO) throws SQLException {
+		System.out.println("!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!");
+		System.out.println(cnsVO.getCns_num());
+		System.out.println(cnsVO.getCns_title());
+		
+		proStuDAO.updateCns(cnsVO);
 	}
 
 	@Override
@@ -52,6 +55,22 @@ public class ProfessorStudentManageServiceImpl implements ProfessorStudentManage
 		StudVO studDetail = proStuDAO.selectStud(stud_num);
 		return studDetail;
 	}
+
+	@Override
+	public void counselDateInsert(String cns_date, String cns_prfs,
+			 String cns_kind) throws SQLException {
+
+			proStuDAO.counselDateInsert(cns_date, cns_prfs,  cns_kind);
+		
+	}
+
+	@Override
+	public CnsVO cnsDetail(String cns_num) throws SQLException {
+
+		CnsVO vo = proStuDAO.cnsDetail(cns_num);
+		return vo;
+	}
+
 
 
 	

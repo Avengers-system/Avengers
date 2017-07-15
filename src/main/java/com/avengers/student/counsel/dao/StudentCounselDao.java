@@ -2,6 +2,7 @@ package com.avengers.student.counsel.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.avengers.db.dto.CnsVO;
 
@@ -13,6 +14,7 @@ import com.avengers.db.dto.CnsVO;
  *2017.07.11
  */
 public interface StudentCounselDao {
+	public ArrayList<CnsVO> selectCounselDateList(String cns_date) throws SQLException;
 	//상담 신청(입력)
 	//상담 신청 교수,날짜 및 기간 선택 , 내용 입력
 	public int insertCounsel(CnsVO cns,int firstRow,int endRow)throws SQLException;

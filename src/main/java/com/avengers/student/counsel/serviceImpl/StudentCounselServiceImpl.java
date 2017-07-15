@@ -2,6 +2,7 @@ package com.avengers.student.counsel.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,14 @@ public class StudentCounselServiceImpl implements StudentCounselService {
 			int endRow) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+
+	@Override
+	public ArrayList<CnsVO> selectCounselDateList(String cns_date)
+			throws SQLException {
+		ArrayList<CnsVO> list = stuCounselDAO.selectCounselDateList(cns_date);
+		return list;
 	}
 
 }

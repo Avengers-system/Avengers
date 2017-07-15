@@ -9,10 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.avengers.db.dto.CnsVO;
+import com.avengers.db.dto.CounselInsertVO;
 import com.avengers.db.dto.StudVO;
 import com.avengers.professor.studentManage.service.ProfessorStudentManageService;
 
@@ -75,11 +76,69 @@ public class ProfessorStudentManageController {
 	}
 	
 	@RequestMapping("/counsel/counselInsert")
-	public String counselInsert(HttpServletRequest request){
-		String aa = request.getParameter("da");
-		System.out.println(aa);
+	public String counselInsert(@ModelAttribute CounselInsertVO vo, Principal principal, Model model){
+		System.out.println(vo.getDate());
+		String date = vo.getDate();
+		String prfs_num = principal.getName();
+		String cns_kind = vo.getKind();
+		ArrayList<CnsVO> counselList = null;
+		try {
+			
+			service.counselDateInsert(date,prfs_num,cns_kind);
+			counselList = service.selectCnsList(prfs_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 		
-//		return "redirect:/counsel/counselList";
+		model.addAttribute("counselList",counselList);
 		return "professor/counsel/counselList";
 	}
+	
+	@RequestMapping("/counsel/counselDetail")
+	public String counselDetail(HttpServletRequest request, Model model){
+		String cns_num = request.getParameter("cns_num");
+		CnsVO vo = null;
+		System.out.println(cns_num);
+		try {
+			vo = service.cnsDetail(cns_num);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("cnsDetail",vo);
+		return "professor/counsel/counselDetail";
+	}
+	
+	@RequestMapping("/counsel/counselUpdatePage")
+	public String counselUpdatePage(HttpServletRequest request, Model model){
+		String cns_num = request.getParameter("cns_num");
+		CnsVO vo = null;
+		System.out.println(cns_num);
+		try {
+			vo = service.cnsDetail(cns_num);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("cnsDetail",vo);
+		
+		return "professor/counsel/counselUpdatePage";
+	}
+	
+	@RequestMapping("/counsel/counselUpdate")
+	public String counselUpdate(@ModelAttribute CnsVO cnsVO,  Model model){
+		CnsVO vo = null;
+		try {
+			
+			service.updateCns(cnsVO);
+			vo = service.cnsDetail(cnsVO.getCns_num());
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("cnsDetail",vo);
+		return "professor/counsel/counselDetail";
+	}
+	
 }
