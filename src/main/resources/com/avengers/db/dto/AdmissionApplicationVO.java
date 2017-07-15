@@ -5,7 +5,14 @@ public class AdmissionApplicationVO {
 	private String sjt_cd;
 	private String lct_nm;
 	private String stud_num;
+	private String tl_num;
 	
+	public String getTl_num() {
+		return tl_num;
+	}
+	public void setTl_num(String tl_num) {
+		this.tl_num = tl_num;
+	}
 	public String getStud_num() {
 		return stud_num;
 	}

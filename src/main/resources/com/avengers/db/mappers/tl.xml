@@ -9,4 +9,37 @@
 		select * from tl where tl_stud=#{stud_num}
 	</select>
 	
+	
+	<insert id="insertTl" parameterType="com.avengers.db.dto.TlVO" >
+		INSERT INTO TL(TL_NUM, TL_APPL_DATE, TL_STUD, TL_LCT)
+		VALUES('TL'||TL_SEQ.NEXTVAL, SYSDATE, ${tl_stud}, ${tl_lct});
+	</insert>
+	
+	<delete id="deleteTl" parameterType="String" >
+		DELETE FROM TL WHERE TL_NUM=#{tl_num}
+	</delete>
+	
+	<select id="selectTl" parameterType="com.avengers.db.dto.TlVO" resultType="com.avengers.db.dto.TlVO">
+		SELECT * FROM TL WHERE 1=1
+		<if test="tl_stud != null">
+		AND TL_STUD=${tl_stud}
+		</if>
+		<if test="tl_lct != null">
+		AND TL_LCT=${tl_lct}
+		</if>
+		<if test="tl_num != null">
+		AND TL_NUM=${tl_num}
+		</if>		 
+	</select>
+	
+	<select id="slectTl_lctList" parameterType="com.avengers.db.dto.TlVO" resultType="com.avengers.db.dto.TlVO">
+		SELECT TL_LCT FROM TL WHERE 1=1
+		<if test="tl_lct != null">
+		AND TL_LCT=${tl_lct}
+		</if>
+		<if test="tl_num != null">
+		AND TL_NUM=${tl_num}
+		</if>		 
+	</select>
+	
 </mapper>

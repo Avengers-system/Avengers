@@ -89,7 +89,7 @@ public interface StudentAdmissionApplicationService {
 		 * @return
 		 * @throws SQLException
 		 */
-		public ArrayList<TlVO> selectTlList(TlVO tlVO)throws SQLException;
+		public ArrayList<TlVO> selectTl_LCTList(TlVO tlVO)throws SQLException;
 		/**
 		 * 수강신청 이전에  LCT_QUA_NUM != LCT_CNT_NUM 최대수강신청인원이 현재 수강신청한 인원과 같지않아야 신청할수있도록
 		 * 값을 비교해준다.

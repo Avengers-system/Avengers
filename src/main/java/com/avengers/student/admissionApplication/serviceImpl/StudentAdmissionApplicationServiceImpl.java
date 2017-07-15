@@ -101,8 +101,8 @@ public class StudentAdmissionApplicationServiceImpl implements
 	}
 
 	@Override
-	public ArrayList<TlVO> selectTlList(TlVO tlVO) throws SQLException {
-		return stuAdmAppDAO.selectTlList(tlVO);
+	public ArrayList<TlVO> selectTl_LCTList(TlVO tlVO) throws SQLException {
+		return stuAdmAppDAO.selectTl_LCTList(tlVO);
 	}
 
 

@@ -28,7 +28,7 @@
 	<br> 학년 : ${studentInfo.stud_grd}
 	<br> 학적상태 : ${studentInfo.stud_schreg_code}
 	<br> 최대 신청가능 학점 : ${studentInfo.stud_max_crd}
-	<br> 남은 신청가능 학점 : ${cur_score}
+	<br> 현재 신청 학점 : ${cur_score}
 	<br> 
 	<!-- 시간표보기 -->
 	<button onclick="">시간표보기</button> 
@@ -81,7 +81,7 @@
 								<!-- 강의신청목록에 들감 -->
 								<td>
 								<form action = "/student/insertTl" method="post">
-								<input type="hidden" name="tl_lct" value="${lct.lct_num}" />
+								<input type="hidden" name="lct_num" value="${lct.lct_num}" />
 								<input type = "submit" value="신청">
 								</form>
 								</td>
@@ -130,7 +130,7 @@
 							<tr>
 								<td>
 								<form action = "/student/deleteTl" method="post">
-								<input type="hidden" name="tl_num" value="${admission.tl_num}" />
+								<input type="hidden" name="tl_num" value="${admission.get(status.index).get('tl_num')}" />
 								<input type = "submit" value="취소">
 								</form>
 								</td>
@@ -183,13 +183,18 @@
 							<c:when test="${term=='사전수강신청' }">
 								<td>
 								<form action = "/student/deleteCart" method="post">
-								<input type="hidden" name="cart_lct" value="${cart.lct_num}" />
+								<input type="hidden" name="cart_lct" value="${cart.get(status.index).get('lct_num')}" />
 								<input type = "submit" value="취소">
 								</form>
 								</td>
 							</c:when>
 							<c:when test="${term=='본수강신청' }">
-								<td><button onclick="location.href='${pageContext.request.contextPath}/student/insertTl'">신청</button></td>
+								<td>
+								<form action = "/student/insertTl" method="post">
+								<input type="hidden" name="lct_num" value="${cart.get(status.index).get('lct_num')}" />
+								<input type = "submit" value="신청">
+								</form>
+								</td>
 							</c:when>
 						</c:choose>
 						<td>${cart.get(status.index).get("lct_num")}</td>

@@ -47,9 +47,22 @@
 		
 	</select>
 	
+	<select id="selectLct" parameterType="String" resultMap="com.avengers.db.dto.LctVO">
+		select *
+		from LECTURE  
+		where LCT_NUM = #{tl_lct} 
+		
+	</select>
 	
+	<update id="updateLctMinus" parameterType="String" >
+		UPDATE LECTURE 
+		SET LCT_CNT_NUM=LCT_CNT_NUM-1
+		WHERE LCT_NUM=#{tl_lct}
+	</update>
 	
-	
-	
-	
+	<update id="updateLctPlus" parameterType="String" >
+		UPDATE LECTURE 
+		SET LCT_CNT_NUM=LCT_CNT_NUM+1 
+		WHERE LCT_NUM=#{tl_lct}
+	</update>
 </mapper>

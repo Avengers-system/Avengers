@@ -44,12 +44,14 @@ public class StudentAdmissionApplicationDaoImpl implements
 
 	@Override
 	public int insertTl(TlVO tlVO) throws SQLException {
-		return 0;
+		int insertTl = (int)sqlSession.insert("tl.insertTl",tlVO);
+		return insertTl;
 	}
 
 	@Override
 	public int deleteTl(String tl_num) throws SQLException {
-		return 0;
+		int deleteTl = (int)sqlSession.delete("tl.deleteTl",tl_num);
+		return deleteTl;
 	}
 
 	@Override
@@ -61,13 +63,15 @@ public class StudentAdmissionApplicationDaoImpl implements
 
 	@Override
 	public int insertCart(CartVO cartVO) throws SQLException {
-		return 0;
+		int insertCart = (int)sqlSession.insert("cart.insertCart",cartVO);
+		return insertCart;
 	}
 
 	@Override
 	public int deleteCart(CartVO cartVO)
 			throws SQLException {
-		return 0;
+		int deleteCart = (int)sqlSession.delete("cart.deleteCart",cartVO);
+		return deleteCart;
 	}
 
 	@Override
@@ -78,38 +82,45 @@ public class StudentAdmissionApplicationDaoImpl implements
 
 	@Override
 	public StudVO selectStudMaxCrd(String stud_num) throws SQLException {
-		return null;
+		StudVO selectStudMaxCrd = (StudVO)sqlSession.selectOne("student.getStudentInfo",stud_num);
+		return selectStudMaxCrd;
 	}
 
 	@Override
 	public CartVO selectCart(CartVO cartVO) throws SQLException {
-		return null;
+		CartVO selectCart = (CartVO)sqlSession.selectOne("admission.selectCartList",cartVO);
+		return selectCart;
 	}
 
 	@Override
 	public int updateLctMinus(String tl_lct) throws SQLException {
-		return 0;
+		int updateLctMinus = (int)sqlSession.update("lct.updateLctMinus",tl_lct);
+		return updateLctMinus;
 	}
 
 	@Override
 	public int updateLctPlus(String tl_lct) throws SQLException {
-		return 0;
+		int updateLctPlus = (int)sqlSession.update("lct.updateLctPlus",tl_lct);
+		return updateLctPlus;
 	}
 
 	@Override
 	public TlVO selectTl(TlVO tlVO) throws SQLException {
-		return null;
+		TlVO selectTl =(TlVO)sqlSession.selectOne("tl.selectTL",tlVO);
+		return selectTl;
 	}
 
 	@Override
-	public ArrayList<TlVO> selectTlList(TlVO tlVO) throws SQLException {
-		return null;
+	public ArrayList<TlVO> selectTl_LCTList(TlVO tlVO) throws SQLException {
+		ArrayList<TlVO> selectTl_LCTList = (ArrayList<TlVO>)sqlSession.selectList("tl.slectTl_lctList", tlVO);
+		return selectTl_LCTList;
 	}
 
 
 	@Override
 	public LctVO selectLct(String tl_lct) throws SQLException {
-		return null;
+		LctVO selectLct =(LctVO)sqlSession.selectOne("lct.selectLct",tl_lct);
+		return selectLct;
 	}
 
 	
