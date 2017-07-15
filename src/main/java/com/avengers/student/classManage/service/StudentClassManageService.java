@@ -48,6 +48,10 @@ public interface StudentClassManageService {
 		//시험화면에서 응시버튼을 누를 경우 화면에 뿌려질 시험문제리스트
 		public ArrayList<EqVO> selectEqList(String exam_num) throws SQLException; 
 		
+		//배현상
+		//학생이 시험제출버튼을 눌렀을 때 학생답안을 저장
+		public int insertSa(ArrayList<Map<String, String>> saList) throws SQLException;
+		
 		//////강의 상세 페이지
 		
 		//강의계획서

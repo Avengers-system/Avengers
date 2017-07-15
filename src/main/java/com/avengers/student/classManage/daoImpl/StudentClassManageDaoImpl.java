@@ -220,4 +220,16 @@ public class StudentClassManageDaoImpl implements StudentClassManageDao{
 		return eqList;
 	}
 
+	//배현상
+	//학생이 시험제출버튼을 눌렀을 때 학생답안을 저장
+	@Override
+	public int insertSa(ArrayList<Map<String, String>> saList)
+			throws SQLException {
+		int result = 0;
+		for(int i=0; i<saList.size(); i++){
+			result += sqlSession.insert("sa.insertSa", saList.get(i));
+		}
+		return result;
+	}
+
 }

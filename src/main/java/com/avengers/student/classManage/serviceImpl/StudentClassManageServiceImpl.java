@@ -217,5 +217,14 @@ public class StudentClassManageServiceImpl implements StudentClassManageService 
 		ArrayList<EqVO> teList = stuClassDAO.selectEqList(exam_num);
 		return teList;
 	}
+	
+	//배현상
+	//학생이 시험제출버튼을 눌렀을 때 학생답안을 저장
+	@Override
+	public int insertSa(ArrayList<Map<String, String>> saList)
+			throws SQLException {
+		int result = stuClassDAO.insertSa(saList);
+		return result;
+	}
 
 }

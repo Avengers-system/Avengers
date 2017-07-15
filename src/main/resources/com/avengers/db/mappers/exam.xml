@@ -16,6 +16,7 @@
 		<result javaType="java.lang.String" column="TE_CHECK" property="te_check"/>
 		<result javaType="java.lang.String" column="TE_NUM" property="te_num"/>
 		<result javaType="java.lang.String" column="EXAM_NUM" property="exam_num"/>
+		<result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>
 	</resultMap>
 	
 	<select id="selectExamList" parameterType="map" resultMap="examForm">
@@ -28,6 +29,7 @@
 			,case when TE_CHECK = 1 then '응시' else '미응시' end AS TE_CHECK
 			,TE_NUM
 			,EXAM_NUM
+			,LCT_NUM
 		FROM  LECTURE, EXAM, TE, SUBJECT
 		WHERE LCT_NUM = EXAM_LCT
 		AND   EXAM_NUM = TE_EXAM

@@ -18,7 +18,7 @@
 		응시여부 : ${exam.get("te_check") }<br/>
 		응시고유번호 : ${exam.get("te_num") }<br/>
 		시험고유번호 : ${exam.get("exam_num") }<br/>
-		<button onclick="location.href='<%=request.getContextPath()%>/student/classManage/lectureTakeExam?exam_num=${exam.get('exam_num') }'">응시</button>
+		<button onclick="location.href='<%=request.getContextPath()%>/student/classManage/lectureTakeExam?exam_num=${exam.get('exam_num') }&te_num=${exam.get('te_num') }&lct_num=${exam.get('lct_num') }'">응시</button>
 	</c:forEach>
 </body>
 </html>
