@@ -19,42 +19,42 @@
 	<c:when test="${not empty admin}">
 		<form name="adminInfo" method="post" enctype="multipart/form-data" action="${myContextPath}/admin/mypage/myInfoUpdate">
 			사진:<img src="<%=request.getContextPath()%>/resources/myInfo_images/${admin.admin_pic}" width="100pt"/>
-					<input type="hidden" name="myImage" value="${admin.admin_pic}"/>
 					 <input type="file"  name="file" onclick="ImageChange_go()"/><br/>
-				아이디:<input type="text" name="adminId" value="${admin.admin_id}"/><br/>
-				비밀번호:<input type="text" name="amindPw" value="${admin.admin_pw}"/><br/>
-				이름:<input type="text" name="adminNm" value="${admin.admin_nm}" readonly="readonly"/><br/>
-				직급:<input type="text" name="adminPost" value="${admin.admin_post}" readonly="readonly"/><br/>
-				영문이름:<input type="text" name="amdminEngNm" value="${admin.admin_eng_nm}" /><br/>
-				생년월일:<fmt:formatDate value="${admin.admin_bir}" type="date" pattern="YYYY/MM/dd" /><br/>
+				아이디:<input type="text" name="admin_id" value="${admin.admin_id}"/><br/>
+				비밀번호:<input type="text" name="admin_pw" value="${admin.admin_pw}"/><br/>
+				이름:<input type="text" name="admin_nm" value="${admin.admin_nm}" readonly="readonly"/><br/>
+				직급:<input type="text" name="admin_post" value="${admin.admin_post}" readonly="readonly"/><br/>
+				영문이름:<input type="text" name="admin_eng_nm" value="${admin.admin_eng_nm}" /><br/>
+				생년월일:<input  type="text" name="admin_bir" value="${admin.admin_bir}"/><br/>
 				주민등록번호:<input type="text" name="admin_regno" value="${admin.admin_regno}" readonly="readonly"/><br/>
 				성별:<input type="text" name="admin_gen" value="${admin.admin_gen}" readonly="readonly"/><br/>
-				이메일:<input type="text" name="adminEmail" value="${admin.admin_email}"/><br/>
-				전화번호:<input type="text" name="adminTel" value="${admin.admin_tel}" /><br/>
-				휴대폰번호:<input type="text" name="adminHp" value="${admin.admin_hp}"/><br/>
-				주소:<input type="text" name="adminAddr" value="${admin.admin_addr}"/><br/>
-				우편번호:<input type="text" name="addrZip" value="${admin.admin_zip}"/><br/>
-				은행명:<input type="text" name="adminBank" value="${admin.admin_bank}"/><br/>
-				계좌번호:<input type="text" name="adminActNum" value="${admin.admin_act_num}"/><br/>
+				이메일:<input type="text" name="admin_email" value="${admin.admin_email}"/><br/>
+				전화번호:<input type="text" name="admin_tel" value="${admin.admin_tel}" /><br/>
+				주소:<input type="text" name="admin_addr" value="${admin.admin_addr}"/><br/>
+				우편번호:<input type="text" name="admin_zip " value="${admin.admin_zip }"/><br/>
+				은행명:<input type="text" name="admin_bank" value="${admin.admin_bank}"/><br/>
+				계좌번호:<input type="text" name="admin_act_num" value="${admin.admin_act_num}"/><br/>
+				예금주:<input type="text" name="admin_ah" value="${admin.admin_ah}"/><br/>
 				<input type="submit" value="수정"/>
 		</form>
 	</c:when>
 </c:choose>
 </div>
-<div class="mySchdule">
+<div class="mySchedule">
 	<c:choose>
 		<c:when test="${not empty perschdList}">
 			<c:forEach var="perschd" items="${perschdList}">
-				<tr>
-					<td>번호:${perschd.perschd_num}</td>
-					<td>제목:${perschd.perschd_title}</td>
-					<td>내용:${perschd.perschd_cont}</td>
-					<td>작성자:${perschd.perschd_writer}</td>
-					<td>작성일:${perschd.perschd_date}</td>
-					<td>시작일:${perschd.perschd_start_date}</td>
-					<td>종료일:${perschd.perschd_end_date}</td>
-				</tr>
-				<br/>
+				<form name="scheduleDetail" method="post" action="${myContextPath}/admin/mypage/myScheduleDetail">
+					번호:<input type="text" name="perschd_num" value="${perschd.perschd_num}"><br/>
+					제목:<input type="text" name="perschd_title" value="${perschd.perschd_title}"><br/>
+					내용:<textarea rows="5" cols="10" name="perschd_cont"></textarea>	<br/>		
+					작성자:<input type="text" name="perschd_writer" value="${perschd.perschd_writer}"><br/>
+					시작일:<input type="text" name="perschd_start_date" value="${perschd.perschd_start_date}">
+					종료일 <input type="text" name="perschd_end_date" value="${perschd.perschd_end_date}"/><br/>
+					<input type="submit" value="상세보기"/>
+					<br/>
+					<br/>
+				</form>
 			</c:forEach>
 		</c:when>
 	</c:choose>
@@ -86,7 +86,6 @@ function ImageChange_go(){
 		
 		reader.readAsDataURL(file);	
 }
-
 </script>
 </body>
 </html>

@@ -41,7 +41,9 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 
 	@Override
 	public PerschdVO selectPerschd(String perschd_num)throws SQLException {
-		return null;
+		PerschdVO perschdVO = null;
+		perschdVO = (PerschdVO) sqlSession.selectOne("perschd.getPerschd", perschd_num);
+		return perschdVO;
 	}
 
 	@Override

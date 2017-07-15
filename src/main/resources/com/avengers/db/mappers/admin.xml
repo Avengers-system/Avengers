@@ -11,7 +11,7 @@
 			   ADMIN_NM,
 			   ADMIN_ENG_NM,
 			   ADMIN_REGNO,
-			   ADMIN_BIR,
+			   TO_CHAR(ADMIN_BIR,'YY-MM-DD'),
 			   ADMIN_EMAIL,
 			   ADMIN_TEL,
 			   ADMIN_HP,
@@ -31,21 +31,22 @@
 		UPDATE ADMIN
 		SET 
 			ADMIN_ID= #{admin_id},
+			ADMIN_PW = #{admin_pw},
 			ADMIN_NM = #{admin_nm},
-			ADMIN_PIC = #{admin_pic},
+			ADMIN_PIC=#{admin_pic},
+			ADMIN_BIR=TO_DATE(#(admin_bir),'YY-MM-DD'),
+			ADMIN_POST = #{admin_post},
 			ADMIN_ENG_NM = #{admin_eng_nm},
 			ADMIN_REGNO = #{admin_regno},
 			ADMIN_EMAIL = #{admin_email},
+			ADMIN_GEN = #{admin_gen},
 			ADMIN_TEL = #{admin_tel},
 			ADMIN_HP = #{admin_hp},
-			ADMIN_POST = #{admin_post},
+			ADMIN_ADDR = #{admin_addr},
+			ADMIN_ZIP = #{admin_zip},
 			ADMIN_BANK = #{admin_bank},
 			ADMIN_ACT_NUM = #{admin_act_num},
-			ADMIN_AH = #{admin_ah},
-			ADMIN_ADDR = #{admin_addr},
-			ADMIN_ZIP = #{admin_zip}
-			ADMIN_PW = #{admin_pw},
-			ADMIN_GEN = #{admin_gen}
+			ADMIN_AH = #{admin_ah}
 		WHERE ADMIN_ID=#{admin_id}	
 	</update>
 	

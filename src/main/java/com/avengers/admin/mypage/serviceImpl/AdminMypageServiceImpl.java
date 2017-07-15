@@ -41,7 +41,9 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 
 	@Override
 	public PerschdVO selectPerschd(String perschd_num)throws SQLException {
-		return null;
+		PerschdVO pershcdVO = null;
+		pershcdVO = myPageDAO.selectPerschd(perschd_num);
+		return pershcdVO;
 	}
 
 	@Override

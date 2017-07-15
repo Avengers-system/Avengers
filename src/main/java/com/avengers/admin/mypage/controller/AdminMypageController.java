@@ -112,16 +112,10 @@ public class AdminMypageController {
 			@RequestParam("file")MultipartFile myImage
 			,@ModelAttribute("admin") AdminVO admin
 			,Model model){
-		String url="redirect:/admin/mypage/";
+		String url="redirect:/admin/mypage/?message=";
 		String upload="C:/Users/pc13/git/Avengers/src/main/webapp/resources/myInfo_images";
 		String message="";
 			
-		if(admin == null){
-			System.out.println("null!!!!!!!!!!!!!!!!");
-		}else{
-			System.out.println("not null!!!!!!!!!!!!");
-			System.out.println(admin.getAdmin_pic());
-		}
 		
 		//파일 저장
 		if(!myImage.isEmpty()){
@@ -130,8 +124,6 @@ public class AdminMypageController {
 				myImage.transferTo(file);
 				//파일 이름 vo 저장
 				admin.setAdmin_pic(file.getName());
-				System.out.println("admin.getAdmin_pic():");
-				System.out.println(admin.getAdmin_pic());
 			} catch (IllegalStateException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -151,7 +143,7 @@ public class AdminMypageController {
 		}
 		
 		model.addAttribute("message",message);
-		return url;
+		return url+message;
 	}
 	
 	/**
@@ -192,20 +184,21 @@ public class AdminMypageController {
 			@RequestParam(value="perschd_num",defaultValue="0")String perschd_num,
 			Model model
 			){
-		String url="admin/mypage/myScheduleDetail";
+		String url="/admin/mypage/myScheduleDetail";
 		String message="";
+		PerschdVO perschd = null;
 			//등록된 일정이 있다면, 등록된 일정을 보여준다.
 			//등록된 일정이 없다면, 새로운 세부화면을 보여준다.
 			if(perschd_num != null){
 				try {
-					PerschdVO perschd = myPageService.selectPerschd(perschd_num);
+					perschd = myPageService.selectPerschd(perschd_num);
 					message="해당날짜에 등록된 일정이 없습니다.";
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				model.addAttribute("message",message);
-				model.addAttribute("perschd_num",perschd_num);
+				model.addAttribute("perschd",perschd);
 			}
 		return url;
 	}
