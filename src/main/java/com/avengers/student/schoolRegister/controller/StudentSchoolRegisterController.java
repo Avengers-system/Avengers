@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.avengers.student.schoolRegister.service.StudentSchoolRegisterService;
 
 @Controller
-@RequestMapping("/student/schoolRegister")
+@RequestMapping("/student")
 public class StudentSchoolRegisterController {
 
 	@Autowired
 	private StudentSchoolRegisterService service;
 	
 	
-	@RequestMapping("/certificate")
+	@RequestMapping("/schoolRegister/certificate")
 	public String certificate(){
 		return "/student/schoolRegister/certificate";
 	}
 	
-	@RequestMapping("/gradeCertificate")
+	@RequestMapping("/schoolRegister/gradeCertificate")
 	public String gradeCertificate(Principal principal, Model model){
 		String stud_num = principal.getName();
 		HashMap<String,String> gradeInfo = null; //성명,학번,학과,학적상태

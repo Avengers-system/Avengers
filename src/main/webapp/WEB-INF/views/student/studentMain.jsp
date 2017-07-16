@@ -2,43 +2,58 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+
+</style>
+<!-- UserHeader -->
+<div class="col-md-12" id="commonUserHeader">
+	<ul class="nav nav-tabs">
+		<li role="presentation" class="active"><a href="#">Main</a></li>
+		<li role="presentation"><a href="#">My Page</a></li>
+		<li role="presentation"><a href="${pageContext.request.contextPath}/student/schoolRegister/certificate">학적</a></li>
+		<li role="presentation"><a href="#">수업</a></li>
+		<li role="presentation"><a href="#">수강신청</a></li>
+		<li role="presentation"><a href="#">등록&장학</a></li>
+		<li role="presentation"><a href="${pageContext.request.contextPath}/student/counsel/counselList">상담</a></li>
+		<li role="presentation"><a href="#">Help Desk</a></li>
+	</ul>
+</div>
+
+<!-- Content -->
+<div class="col-md-2" id="commonLeftSide">
+	<!-- 개인정보 -->
+	<div class="col-xs-12">
+		<br> 개인정보<br> 이름 : ${studentInfo.stud_nm}<br> 학과:${dept.dept_nm }<br>
+		학년:${studentInfo.stud_grd}<br> 학적상태 :${studentInfo.stud_schreg_code}<br> <br>
+	</div>
+	
+	<!-- 개인일정 -->
+	<div class="col-xs-12"></div>
+
+
+</div>
+<div class="col-md-10" id="commonRightSide">
+<!-- 수강현황 -->
+<c:forEach var="lectureList" items="${lectureList}">
+	강의명 : ${lectureList.lct_nm}<br>
+	강의요일 :${lectureList.lr_date}<br>
+	강의시간 :${lectureList.lr_hour}<br>
+	강의실명:${lectureList.lrc_nm}<br>
+</c:forEach>
+<!-- 상담현황 -->
+<c:forEach var="consult" items="${consultList}">
+	상담제목: ${consult.cns_title}<br>
+	상담여부 : ${consult.cns_check}<br>
+</c:forEach>
+</div>
 
 
 
-<!-- 학생 header -->
-<button id="adminMain">MyPage</button>
-<button id="logout" onclick="schoolRegister_go()">학적관리</button><br/>
-<button id="myInfo">수업관리</button><br/>
-<button id="mySchedule">수강신청</button><br/>
-<button id="mySchedule">등록/장학</button><br/>
-<button id="mySchedule" onclick="counselList_go()" >상담목록</button><br/>
-<button id="mySchedule" onclick="counselApply_go()" >상담신청</button><br/>
-<button id="mySchedule" >HelpDesk</button><br/>
-
-<script type="text/javascript">
-	function schoolRegister_go(){
-		location.href="${pageContext.request.contextPath}/student/schoolRegister/certificate";
-	}
-	function counselList_go(){
-		location.href="${pageContext.request.contextPath}/student/counsel/counselList";
-	}
-	function counselApply_go(){
-		location.href="${pageContext.request.contextPath}/student/counsel/counselApplyPage";
-	}
-
-</script>
 
 
 
-<!-- 학생개인정보 -->
-<br>
-개인정보<br>
 
-이름 : ${studentInfo.stud_nm}<br>
-학과:${dept.dept_nm }<br>
-학년:${studentInfo.stud_grd}<br>
-학적상태 :${studentInfo.stud_schreg_code}<br>
-<br>
+
 <!-- 개인일정  -->
 개인일정<br>
 
@@ -48,20 +63,10 @@
 </c:forEach>
 <br>
 수강현황
-<!-- 수강현황 -->
-<c:forEach var="lectureList" items="${lectureList}">
-	강의명 : ${lectureList.lct_nm}<br>
-	강의요일 :${lectureList.lr_date}<br>
-	강의시간 :${lectureList.lr_hour}<br>
-	강의실명:${lectureList.lrc_nm}<br>
-</c:forEach>
+
 <br>
 상담현황
-<!-- 상담현황 -->
-<c:forEach var="consult" items="${consultList}">
-	상담제목: ${consult.cns_title}<br>
-	상담여부 : ${consult.cns_check}<br>
-</c:forEach>
+
 
 <!-- 학사관련 (이수학기,총이수학점,수강신청 등) -->
 
