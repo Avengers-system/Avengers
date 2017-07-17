@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.avengers.db.dto.AdmissionApplicationVO;
 import com.avengers.db.dto.CartVO;
 import com.avengers.db.dto.LctVO;
+import com.avengers.db.dto.LrVO;
 import com.avengers.db.dto.StudVO;
 import com.avengers.db.dto.TlVO;
 import com.avengers.student.admissionApplication.dao.StudentAdmissionApplicationDao;
@@ -121,6 +122,12 @@ public class StudentAdmissionApplicationDaoImpl implements
 	public LctVO selectLct(String tl_lct) throws SQLException {
 		LctVO selectLct =(LctVO)sqlSession.selectOne("lct.selectLct",tl_lct);
 		return selectLct;
+	}
+
+	@Override
+	public LrVO selectLr(String lct_num) throws SQLException {
+		LrVO selectLr = (LrVO)sqlSession.selectOne("lr.selectLr_hour",lct_num);
+		return selectLr;
 	}
 
 	

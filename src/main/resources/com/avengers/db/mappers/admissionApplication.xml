@@ -12,6 +12,7 @@
         <result javaType="java.lang.String" column="LCT_CNT_NUM" property="lct_cnt_num"/>
         <result javaType="java.lang.String" column="LR_NUM" property="lr_num"/>
         <result javaType="java.lang.String" column="LR_DATE" property="lr_date"/>
+        <result javaType="java.lang.String" column="LR_HOUR" property="lr_hour"/>
         <result javaType="java.lang.String" column="SJT_CD" property="sjt_cd"/>
         <result javaType="java.lang.String" column="PRFS_NM" property="prfs_nm"/>
         <result javaType="java.lang.String" column="TL_NUM" property="tl_num"/>
@@ -35,7 +36,7 @@
 		</if>		
 	</select>
 	<select id="selectTlList" parameterType="com.avengers.db.dto.AdmissionApplicationVO" resultMap="ApplicationLct">
-		select LCT_NUM,LCT_NM,LCT_CRD,LCT_QUA_NUM,LCT_CNT_NUM,LR_NUM,LR_DATE,SJT_CD,PRFS_NM,TL_NUM
+		select LCT_NUM,LCT_NM,LCT_CRD,LCT_QUA_NUM,LCT_CNT_NUM,LR_NUM,LR_DATE,LR_HOUR,SJT_CD,PRFS_NM,TL_NUM
 		from LECTURE,LR,SUBJECT,PROFESSOR,TL
 		where LCT_SJT=SJT_NUM
 		AND LCT_NUM=LR_LCT

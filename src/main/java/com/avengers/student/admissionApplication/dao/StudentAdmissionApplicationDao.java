@@ -8,6 +8,7 @@ import java.util.List;
 import com.avengers.db.dto.AdmissionApplicationVO;
 import com.avengers.db.dto.CartVO;
 import com.avengers.db.dto.LctVO;
+import com.avengers.db.dto.LrVO;
 import com.avengers.db.dto.StudVO;
 import com.avengers.db.dto.TlVO;
 
@@ -101,4 +102,11 @@ public interface StudentAdmissionApplicationDao {
 	 * @throws SQLException
 	 */
 	public LctVO selectLct(String tl_lct)throws SQLException;
+	/**
+	 * 수강신청시 중복되는 시간대에 수강신청을 하는것을 막기위해서 수강신청하려는 강의의 시간을 가져오는 메서드
+	 * @param lct_num
+	 * @return
+	 * @throws SQLException
+	 */
+	public LrVO selectLr(String lct_num)throws SQLException;
 }
