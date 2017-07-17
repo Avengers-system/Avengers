@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -143,30 +144,33 @@ public class AdminProfessorManageController {
 	}
 	
 	
-	
 	/**
 	 * 교수등록하기
 	 * @param prfsVO
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/insertProfessor", headers = ("content-type=multipart/*"))
+	@RequestMapping(value = "/insertProfessor")
 	public String insertProfessor(CommandPrfsVO commandPrfsVO,
-			MultipartHttpServletRequest request,
-			@RequestParam("prfs_pic") MultipartFile multipartFile) {
+			HttpSession session
+//			, @RequestParam("prfs_pic") MultipartFile multipartFile) {
+			){
 
+		PrfsVO prfsVO = new PrfsVO();
+		prfsVO = commandPrfsVO.toPrfsVO();
+
+		System.out.println("생년월일포맷 : "+prfsVO.getPrfs_bir());
 		// 깃 경로 (동일)
-		String upload = "C:/Users/pc15/git/Avengers/src/main/webapp/resources/admin_professor_images/"
-				+ multipartFile.getOriginalFilename();
+		String upload = session.getServletContext().getRealPath("/admin_professor_images/");
 
-		if (!multipartFile.isEmpty()) {
-			File file = new File(upload, multipartFile.getOriginalFilename());
+		if (!prfsVO.getPrfs_pic().isEmpty()) {
+			File file = new File(upload, prfsVO.getPrfs_pic());
 
-			PrfsVO prfsVO = new PrfsVO();
-			prfsVO = commandPrfsVO.toPrfsVO();
+//			prfsVO.setPrfs_bir(req.getParameter("prfs_bir"));
+			
 
 			try {
-				multipartFile.transferTo(file); // 깃 위치로 전송
+				commandPrfsVO.getPrfs_pic().transferTo(file); // 깃 위치로 전송
 				adminProfessorManageService.insertPrfs(prfsVO);
 				// security에도 enabled와 role정보 추가해주기
 //				adminProfessorManageService.insertSecurity(prfsVO);

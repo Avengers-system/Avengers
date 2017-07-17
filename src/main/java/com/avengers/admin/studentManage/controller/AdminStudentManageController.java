@@ -111,8 +111,8 @@ public class AdminStudentManageController {
 	
 	
 	@RequestMapping(value = "/insertStudent", 
-					method=RequestMethod.POST,
-					headers = ("content-type=multipart/*"))
+//					method=RequestMethod.POST,
+					headers = ("content-type=multipart/form-data"))
 	
 	public String insertStudent(
 								CommandStudVO commandStudVO,
@@ -147,7 +147,7 @@ public class AdminStudentManageController {
 
 		int result = 0;
 
-		return "admin/main/studentManage"; //redirect??
+		return "admin/main/studentManage"; //redirect
 	}
 	
 	

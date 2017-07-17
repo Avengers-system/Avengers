@@ -1,6 +1,9 @@
 package com.avengers.db.dto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -13,7 +16,7 @@ public class CommandPrfsVO {
 	private String prfs_num; // 교수번호
 	private String prfs_nm;// 이름
 	private String prfs_eng_nm;// 영문이름
-	private Date prfs_bir;// 생년월일
+	private String prfs_bir;// 생년월일
 	private String prfs_email;// 이메일
 	private String prfs_pw;// 비밀번호
 	private String prfs_regno;// 주민등록번호
@@ -52,11 +55,12 @@ public class CommandPrfsVO {
 		this.prfs_eng_nm = prfs_eng_nm;
 	}
 
-	public Date getPrfs_bir() {
+	
+	public String getPrfs_bir() {
 		return prfs_bir;
 	}
 
-	public void setPrfs_bir(Date prfs_bir) {
+	public void setPrfs_bir(String prfs_bir) {
 		this.prfs_bir = prfs_bir;
 	}
 
@@ -170,7 +174,11 @@ public class CommandPrfsVO {
 		prfsVO.setPrfs_addr(prfs_addr);
 		prfsVO.setPrfs_ah(prfs_ah);
 		prfsVO.setPrfs_bank(prfs_bank);
-		prfsVO.setPrfs_bir(prfs_bir);
+		try {
+			prfsVO.setPrfs_bir(new SimpleDateFormat("yyyy-mm-dd").parse(prfs_bir));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		prfsVO.setPrfs_dept(prfs_dept);
 		prfsVO.setPrfs_email(prfs_email);
 		prfsVO.setPrfs_eng_nm(prfs_eng_nm);
@@ -182,7 +190,7 @@ public class CommandPrfsVO {
 		prfsVO.setPrfs_regno(prfs_regno);
 		prfsVO.setPrfs_tel(prfs_tel);
 		prfsVO.setPrfs_zip(prfs_zip);
-		prfsVO.setPrfs_pic(prfs_pic.getName());  
+		prfsVO.setPrfs_pic(prfs_pic.getOriginalFilename());  
 		return prfsVO;
 	}
 
