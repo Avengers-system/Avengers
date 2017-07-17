@@ -43,7 +43,8 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 
 	@Override
 	public int deleteStud(String stud_num) throws SQLException {
-		return 0;
+		int result = sqlSession.delete("admin.deleteStudent",stud_num);
+		return result;
 	}
 	@Override
 	public ArrayList<StudVO> selectStudList() throws SQLException {

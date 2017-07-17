@@ -74,6 +74,28 @@ public class AdminProfessorManageController {
 		return "admin/professorDetail";
 	}
 	
+	/**
+	 * 교수 삭제하기 
+	 * @param prfs_num
+	 * @return
+	 */
+	@RequestMapping("/deleteProfessor")
+	public String deleteProfessor(@RequestParam("prfs_num") String prfs_num,
+									Model model){
+		if(prfs_num!=null || prfs_num!=""){
+			
+			try {
+				adminProfessorManageService.deletePrfs(prfs_num);
+				System.out.println(prfs_num + "번 교수 삭제!");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			//enabled 만 1로 바꾸면 됨?/??
+			String msg = "삭제 완료되었습니다.";
+			model.addAttribute("msg",msg);
+		}
+	return "admin/main/professorManage";	
+	}
 	
 	/**
 	 * 교수수정하기 
@@ -83,7 +105,7 @@ public class AdminProfessorManageController {
 	 * @param multipartFile
 	 * @return
 	 */
-	@RequestMapping(value = "/updateProfessor")
+	@RequestMapping(value = "/professorManage/update")
 	public String updateProfessor(
 						CommandPrfsVO commandPrfsVO,
 						@RequestParam("prfs_num") String prfs_num,

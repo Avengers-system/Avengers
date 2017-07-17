@@ -45,7 +45,10 @@ public class AdminProfessorManageDaoImpl implements AdminProfessorManageDao {
 
 	@Override
 	public int deletePrfs(String prfs_num) throws SQLException {
-		return 0;
+		int result = sqlSession.delete("admin.deleteProfessor",prfs_num);
+		
+		System.out.println("dao : "+ result + ", prfs_num : "+prfs_num);
+		return result;
 	}
 	@Override
 	public int insertSecurity(PrfsVO prfsVO) {

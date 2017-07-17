@@ -38,7 +38,8 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 
 	@Override
 	public int deleteStud(String stud_num) throws SQLException {
-		return 0;
+		int result = amdinStudentDAO.deleteStud(stud_num);
+		return result;
 	}
 
 	@Override

@@ -2,9 +2,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:if test="${msg !=null}">
+		<script>
+		 alert('zz');
+		</script>
+
+</c:if> 
  
+ 
+<button onclick="location.href='${pageContext.request.contextPath}/admin/professorInsert'">교수추가하기</button>
 
 <h1>교수목록 리스트 </h1>
+<br/>
  
  <c:forEach var="professor" items="${professorList }">
 	교수 번호 : ${professor.prfs_num}<br/>
@@ -21,8 +31,6 @@
 <br/>
 <br/>
 <br/>
-<br/>
-<button onclick="location.href='${pageContext.request.contextPath}/admin/professorInsert'">교수추가하기</button>
 <br/>
 <br/>
  

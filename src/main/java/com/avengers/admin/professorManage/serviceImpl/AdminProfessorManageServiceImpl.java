@@ -50,7 +50,8 @@ public class AdminProfessorManageServiceImpl implements AdminProfessorManageServ
 
 	@Override
 	public int deletePrfs(String prfs_num) throws SQLException {
-		return 0;
+		int result = proDAO.deletePrfs(prfs_num);
+		return result;
 	}
 
 	@Override

@@ -4,6 +4,19 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
 
+	<!-- delete -->
+
+	<update id="deleteStudent" parameterType="java.lang.String">
+	UPDATE SECURITY
+		SET ENABLED = '0'
+		WHERE ID = #{stud_num jdbcType=VARCHAR}
+	</update>
+
+	<update id="deleteProfessor" parameterType="java.lang.String">
+	UPDATE SECURITY
+	SET ENABLED = '0'
+	WHERE ID = #{prfs_num jdbcType=VARCHAR}
+	</update>
 
 	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
 	<select id="selectAdmin" parameterType="com.avengers.db.dto.AdminVO" resultType="com.avengers.db.dto.AdminVO">
@@ -40,22 +53,22 @@
 		INTO PROFESSOR
 		VALUES (
 		'2017'|| lpad(prfs_seq.nextval,3,0 ),
-		#prfs_nm#,
-		#prfs_eng_nm#,
-		#prfs_bir#,
-		#prfs_email#,
-		#prfs_pw#,
-		#prfs_regno#,
-		#prfs_gen#,
-		#prgs_pic#,
-		#prfs_act_num#,
-		#prfs_bank#,
-		#prfs_ah#,
-		#prfs_addr#,
-		#prfs_zip#,
-		#prfs_tel#,
-		#prfs_hp#,
-		#prfs_dept#
+		#{prfs_nm},
+		#{prfs_eng_nm},
+		#{prfs_bir},
+		#{prfs_email},
+		#{prfs_pw},
+		#{prfs_regno},
+		#{prfs_gen},
+		#{prfs_pic},
+		#{prfs_act_num},
+		#{prfs_bank},
+		#{prfs_ah},
+		#{prfs_addr},
+		#{prfs_zip},
+		#{prfs_tel},
+		#{prfs_hp},
+		#{prfs_dept}
 		)
  	
 	</insert>
@@ -78,32 +91,32 @@
 	INSERT 
 		INTO STUDENT
 		VALUES(
-			#STUD_NUM#,
-			#STUD_NM#,	
-			#STUD_ENG_NM#,	
-			#STUD_BIR#,	
-			#STUD_EMAIL#,	
-			#STUD_PW#,	
-			#STUD_GRD#,	
-			#STUD_REGNO#,	
-			#STUD_GEN#,	
-			#STUD_QTR#,	
-			#STUD_SCHREG_CODE#,	
-			#STUD_PIC#,	
-			#STUD_ACT_NUM#,	
-			#STUD_BANK#,	
-			#STUD_AH#,	
-			#STUD_ADDR#,	
-			#STUD_ZIP#,	
-			#STUD_TEL#,	
-			#STUD_HP#,	
-			#STUD_DEPT#,	
-			#STUD_GUAD_NM#,	
-			#STUD_GUAD_REL#,	
-			#STUD_GUAD_HP#,	
+			#{STUD_NUM},
+			#{STUD_NM},	
+			#{STUD_ENG_NM},	
+			#{STUD_BIR},	
+			#{STUD_EMAIL},	
+			#{STUD_PW},	
+			#{STUD_GRD},	
+			#{STUD_REGNO},	
+			#{STUD_GEN},	
+			#{STUD_QTR},	
+			#{STUD_SCHREG_CODE},	
+			#{STUD_PIC},	
+			#{STUD_ACT_NUM},	
+			#{STUD_BANK},	
+			#{STUD_AH},	
+			#{STUD_ADDR},	
+			#{STUD_ZIP},	
+			#{STUD_TEL},	
+			#{STUD_HP},	
+			#{STUD_DEPT},	
+			#{STUD_GUAD_NM},	
+			#{STUD_GUAD_REL},	
+			#{STUD_GUAD_HP},	
 			'1',
 			'ROLE_STUD',	
-			#STUD_MAX_CRD#	
+			#{STUD_MAX_CRD}	
 		)
 	
 	</insert>

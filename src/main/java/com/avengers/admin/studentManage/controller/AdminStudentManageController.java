@@ -32,6 +32,31 @@ public class AdminStudentManageController {
 	private AdminStudentManageService adminStudentManageService;
 	
 	/**
+	 * 학생삭제하기 
+	 * @param prfs_num
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/deleteStudent")
+	public String deleteStudent(@RequestParam("stud_num") String stud_num,
+									Model model){
+		if(stud_num!=null || stud_num!=""){
+			
+			try {
+				adminStudentManageService.deleteStud(stud_num);
+				System.out.println(stud_num + "번 학생 삭제!");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			//enabled 만 1로 바꾸면 됨?/??
+			String msg = "삭제 완료되었습니다.";
+			model.addAttribute("msg",msg);
+		}
+	return "admin/main/studentManage";	
+	}
+	
+	
+	/**
 	 * 학생 리스트 조회
 	 * @param principal
 	 * @param model
