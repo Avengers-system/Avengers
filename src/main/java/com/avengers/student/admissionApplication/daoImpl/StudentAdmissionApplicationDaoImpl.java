@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.avengers.db.dto.AdmissionApplicationVO;
+import com.avengers.db.dto.AtdcVO;
+import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.CartVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.LrVO;
@@ -128,6 +130,30 @@ public class StudentAdmissionApplicationDaoImpl implements
 	public LrVO selectLr(String lct_num) throws SQLException {
 		LrVO selectLr = (LrVO)sqlSession.selectOne("lr.selectLr_hour",lct_num);
 		return selectLr;
+	}
+
+	@Override
+	public TlVO selectTl_num(TlVO tlVO) throws SQLException {
+		TlVO selectTl_num =(TlVO)sqlSession.selectOne("tl.selectTl_num",tlVO);
+		return selectTl_num;
+	}
+
+	@Override
+	public BoardVO selectUnivschdList(BoardVO boardVO) throws SQLException {
+		BoardVO selectUnivschdList=(BoardVO)sqlSession.selectOne("board.selectUnivschdList",boardVO);
+		return selectUnivschdList;
+	}
+
+	@Override
+	public int insertAtdc(AtdcVO atdcVO) throws SQLException {
+		int insertAtdc=(int)sqlSession.insert("atdc.insertAtdc",atdcVO);
+		return insertAtdc;
+	}
+
+	@Override
+	public int deleteAtdc(String tl_num) throws SQLException {
+		int deleteAtdc=(int)sqlSession.delete("atdc.deleteAtdc",tl_num);
+		return deleteAtdc;
 	}
 
 	

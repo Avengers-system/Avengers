@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.avengers.db.dto.AdmissionApplicationVO;
+import com.avengers.db.dto.AtdcVO;
+import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.CartVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.LrVO;
@@ -109,4 +111,22 @@ public interface StudentAdmissionApplicationService {
 		 * @throws SQLException
 		 */
 		public LrVO selectLr(String lct_num)throws SQLException;
+		/**
+		 * 출석부 ATDC 입력을 위하여 tl_num을 구하는 쿼리
+		 * @param tlVO
+		 * @return
+		 * @throws SQLException
+		 */
+		public TlVO selectTl_num(TlVO tlVO)throws SQLException;
+		/**
+		 * 개강일을 구하기위해 사용하는 학사일정 검색쿼리
+		 * @param boardVO
+		 * @return
+		 * @throws SQLException
+		 */
+		public BoardVO selectUnivschdList(BoardVO boardVO)throws SQLException;
+		
+		public int insertAtdc(AtdcVO atdcVO) throws SQLException;
+		
+		public int deleteAtdc(String tl_num ) throws SQLException;
 }
