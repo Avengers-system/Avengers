@@ -27,9 +27,15 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 		int limit = lastRow-firstRow+1;
 		RowBounds rowBounds = new RowBounds(offset,limit);
 		
+		System.out.println("다오");
+		System.out.println(boardVO.getBoard_writer());
+		System.out.println(boardVO.getBoard_date());
+		System.out.println(boardVO.getBoard_bc());
+		System.out.println(boardVO.getBoard_num());
 		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
 		boardList = (ArrayList<BoardVO>) sqlSession.selectList("Board.selectBoardNoticeList",boardVO,rowBounds);
 		
+		System.out.println("다오후");
 		return boardList;
 	}
 	
