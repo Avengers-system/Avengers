@@ -4,6 +4,11 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="te">
-	
+	<!-- 응시여부 업데이트 구문 -->
+	<update id="updateTeCheck" parameterType="java.lang.String">
+		UPDATE TE
+		SET TE_CHECK = '1' 
+		WHERE TE_NUM=#{te_num}
+	</update>
 	
 </mapper>

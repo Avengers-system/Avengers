@@ -9,5 +9,6 @@
 <body>
 <button onclick="location.href='<%=request.getContextPath()%>/student/classManage/lectureDetail?lct_num=${lct_num}'">강의계획서</button>
 <button onclick="location.href='<%=request.getContextPath()%>/student/classManage/lectureExam?lct_num=${lct_num}'">시험</button>
+<button onclick="location.href='<%=request.getContextPath()%>/student/classManage/lectureAsgn?lct_num=${lct_num }'">과제</button>
 </body>
 </html>

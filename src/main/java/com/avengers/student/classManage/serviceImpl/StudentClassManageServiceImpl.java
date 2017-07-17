@@ -15,6 +15,7 @@ import com.avengers.db.dto.EqVO;
 import com.avengers.db.dto.ExamVO;
 import com.avengers.db.dto.LaVO;
 import com.avengers.db.dto.LctVO;
+import com.avengers.db.dto.SubVO;
 import com.avengers.db.dto.TeVO;
 import com.avengers.student.classManage.dao.StudentClassManageDao;
 import com.avengers.student.classManage.service.StudentClassManageService;
@@ -224,6 +225,36 @@ public class StudentClassManageServiceImpl implements StudentClassManageService 
 	public int insertSa(ArrayList<Map<String, String>> saList)
 			throws SQLException {
 		int result = stuClassDAO.insertSa(saList);
+		return result;
+	}
+
+	@Override
+	public int updateTeCheck(String te_num)
+			throws SQLException {
+		int result = stuClassDAO.updateTeCheck(te_num);
+		return result;
+	}
+	
+	//배현상
+	//과목화면에 뿌려질 리스트
+	@Override
+	public ArrayList<Map<String, String>> selectAsgnList(Map<String, String> key)
+			throws SQLException {
+		ArrayList<Map<String, String>> asgnList = stuClassDAO.selectAsgnList(key);
+
+		return asgnList;
+	}
+
+	@Override
+	public Map<String, String> selectAsgnInfo(Map<String, String> key)
+			throws SQLException {
+		Map<String, String> asgnInfo = stuClassDAO.selectAsgnInfo(key);
+		return asgnInfo;
+	}
+
+	@Override
+	public int updateSubmissionCheck(SubVO subVO) throws SQLException {
+		int result = stuClassDAO.updateSubmissionCheck(subVO);
 		return result;
 	}
 

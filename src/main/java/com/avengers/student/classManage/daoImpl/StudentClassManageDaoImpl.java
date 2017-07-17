@@ -3,6 +3,7 @@ package com.avengers.student.classManage.daoImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,7 +17,7 @@ import com.avengers.db.dto.EqVO;
 import com.avengers.db.dto.ExamVO;
 import com.avengers.db.dto.LaVO;
 import com.avengers.db.dto.LctVO;
-import com.avengers.db.dto.TeVO;
+import com.avengers.db.dto.SubVO;
 import com.avengers.student.classManage.dao.StudentClassManageDao;
 
 
@@ -229,6 +230,41 @@ public class StudentClassManageDaoImpl implements StudentClassManageDao{
 		for(int i=0; i<saList.size(); i++){
 			result += sqlSession.insert("sa.insertSa", saList.get(i));
 		}
+		return result;
+	}
+	
+	//배현상
+	//학생의 응시테이블 응시여부 '응시'로 업데이트
+	@Override
+	public int updateTeCheck(String te_num)
+			throws SQLException {
+		int result = 0;
+		result = sqlSession.update("te.updateTeCheck", te_num);
+		return result;
+	}
+
+	//배현상
+	//과목화면에 뿌릴 리스트
+	@Override
+	public ArrayList<Map<String, String>> selectAsgnList(Map<String, String> key)
+			throws SQLException {
+		
+		ArrayList<Map<String, String>> asgnList = (ArrayList<Map<String, String>>) sqlSession.selectList("asgn.selectAsgnInfoList", key);
+		return asgnList;
+	}
+
+	@Override
+	public Map<String, String> selectAsgnInfo(Map<String, String> key)
+			throws SQLException {
+		Map<String, String> asgnInfo = (Map<String, String>) sqlSession.selectOne("asgn.selectAsgnInfo", key);
+		return asgnInfo;
+	}
+
+	//배현상
+	//학생이 과목제출버튼을 누른 경우
+	@Override
+	public int updateSubmissionCheck(SubVO subVO) throws SQLException {
+		int result = sqlSession.update("submission.updateSubmissionCheck", subVO);
 		return result;
 	}
 

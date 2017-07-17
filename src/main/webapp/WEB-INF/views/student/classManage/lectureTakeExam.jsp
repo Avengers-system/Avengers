@@ -71,7 +71,7 @@
 		
 		$('textarea').blur(function(){
 			if(!$(this).val()){
-				
+				//처음 쓰고 다 지우고 확인누르면 들어가짐 ㅠㅠ
 			} else{
 				if(index == 0){
 					qtnas[index] = $(this).attr("id");
