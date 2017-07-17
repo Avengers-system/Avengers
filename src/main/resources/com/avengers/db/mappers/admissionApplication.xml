@@ -40,7 +40,7 @@
 		where LCT_SJT=SJT_NUM
 		AND LCT_NUM=LR_LCT
 		AND LCT_PRFS=PRFS_NUM
-		<if test="stud_num !=null">
+		<if test="stud_num != null">
 		AND TL_STUD=#{stud_num}
 		AND TL_LCT=LCT_NUM
 		</if>		

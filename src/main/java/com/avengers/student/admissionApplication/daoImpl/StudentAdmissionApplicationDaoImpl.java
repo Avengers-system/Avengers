@@ -88,7 +88,7 @@ public class StudentAdmissionApplicationDaoImpl implements
 
 	@Override
 	public CartVO selectCart(CartVO cartVO) throws SQLException {
-		CartVO selectCart = (CartVO)sqlSession.selectOne("admission.selectCartList",cartVO);
+		CartVO selectCart = (CartVO)sqlSession.selectOne("cart.selectCart",cartVO);
 		return selectCart;
 	}
 
@@ -106,7 +106,7 @@ public class StudentAdmissionApplicationDaoImpl implements
 
 	@Override
 	public TlVO selectTl(TlVO tlVO) throws SQLException {
-		TlVO selectTl =(TlVO)sqlSession.selectOne("tl.selectTL",tlVO);
+		TlVO selectTl =(TlVO)sqlSession.selectOne("tl.selectTl",tlVO);
 		return selectTl;
 	}
 

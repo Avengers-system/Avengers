@@ -11,7 +11,7 @@
 	</select>
 	<!-- 장바구니에 추가하는 구문  -->	
 	<insert id="insertCart" parameterType="com.avengers.db.dto.CartVO">
-		INSERT INTO CART(CART_STUD,CART_LCT,CART_APPL_CHECK) VALUES (#{cart_stud},#{cart_lct},'NO')   
+		INSERT INTO CART(CART_STUD,CART_LCT,CART_APPL_CHECK) VALUES (#{cart_stud},#{cart_lct},'1')   
 	</insert>
 	<!-- 선택한 정보를 장바구니에서 삭제하는 구문 -->	
 	<delete id="deleteCart" parameterType="com.avengers.db.dto.CartVO" >
