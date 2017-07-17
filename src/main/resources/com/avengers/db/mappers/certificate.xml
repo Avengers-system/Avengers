@@ -34,7 +34,7 @@
 		where tl_lct=lct_num
 		and sjt_num = lct_sjt
 		and tl_stud = #{stud_num}
-		and tl_asmt_check = '1'
+		and tl_asmt_check = '2'
 	</select>
 	
 	<select id="selectAllGrade" parameterType="java.lang.String" resultType="java.lang.Integer">
@@ -43,7 +43,7 @@
 		where tl_lct=lct_num
 		and sjt_num = lct_sjt
 		and tl_stud = #{stud_num}
-		and tl_asmt_check = '1'
+		and tl_asmt_check = '2'
 	</select>
 	<select id="selectAllGradeCount" parameterType="java.lang.String" resultType="java.lang.Integer">
 		SELECT count(LCT_CRD) 
@@ -51,7 +51,7 @@
 		WHERE TL_LCT=LCT_NUM
 		AND SJT_NUM = LCT_SJT
 		AND TL_STUD = #{stud_num}
-		AND TL_ASMT_CHECK = '1'
+		AND TL_ASMT_CHECK = '2'
 	</select>
 	
 	

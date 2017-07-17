@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rts">
+	
+	<select id="selectBackList" parameterType="java.lang.String" resultType="com.avengers.db.dto.RtsVO">
+		select * from rts where rts_stud=#{stud_num}
+	</select>
+	
+		<insert id="insertBack" parameterType="com.avengers.db.dto.RtsVO">
+		insert into rts(rts_num, rts_date, rts_cause, rts_appl_date, rts_appr_check, rts_appr_date, rts_stud, rts_admin)
+		values(#{rts_num},#{rts_date},#{rts_cause},#{rts_appl_date},#{rts_appr_check},#{rts_appr_date},#{rts_stud},#{rts_admin})
+	</insert>
+	
+</mapper>

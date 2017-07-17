@@ -1,6 +1,7 @@
 package com.avengers.student.schoolRegister.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,7 +22,12 @@ public interface StudentSchoolRegisterService {
 		public List<HashMap<String,String>> selectGradeList(String stud_num) throws SQLException;
 		public int selectAllGrade(String stud_num) throws SQLException;
 		public int selectAllGradeCount(String stud_num) throws SQLException;
-		
+		public void applyLeave(LoaVO vo) throws SQLException;
+		public void applyBack(RtsVO vo) throws SQLException;
+		public void applyDropOff(LsVO vo) throws SQLException;
+		public ArrayList<LsVO> selectDropOffList(String stud_num) throws SQLException;
+		public ArrayList<LoaVO> selectLeaveList(String stud_num) throws SQLException;
+		public ArrayList<RtsVO> selectBackList(String stud_num) throws SQLException;
 		
 	//증명서 발급
 		//발급할 증명서 선택 발급

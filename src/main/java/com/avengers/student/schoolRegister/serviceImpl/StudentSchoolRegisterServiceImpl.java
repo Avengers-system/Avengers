@@ -1,6 +1,7 @@
 package com.avengers.student.schoolRegister.serviceImpl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class StudentSchoolRegisterServiceImpl implements StudentSchoolRegisterSe
 	public void buildPdfDocument(Document document, PdfWriter pdfWriter)
 			throws SQLException {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -75,5 +76,45 @@ public class StudentSchoolRegisterServiceImpl implements StudentSchoolRegisterSe
 	public int selectAllGradeCount(String stud_num) throws SQLException {
 		int allGradeCount = stuSchResDAO.selectAllGradeCount(stud_num);
 		return allGradeCount;
+	}
+
+	@Override
+	public ArrayList<LoaVO> selectLeaveList(String stud_num)
+			throws SQLException {
+
+		ArrayList<LoaVO> leaveList = stuSchResDAO.selectLeaveList(stud_num);
+		return leaveList;
+	}
+
+	@Override
+	public ArrayList<RtsVO> selectBackList(String stud_num) throws SQLException {
+		ArrayList<RtsVO> backList = stuSchResDAO.selectBackList(stud_num);
+		
+		return backList;
+	}
+
+	@Override
+	public void applyLeave(LoaVO vo) throws SQLException {
+
+		stuSchResDAO.applyLeave(vo);
+	}
+
+	@Override
+	public void applyBack(RtsVO vo) throws SQLException {
+
+		stuSchResDAO.applyBack(vo);
+	}
+
+	@Override
+	public ArrayList<LsVO> selectDropOffList(String stud_num)
+			throws SQLException {
+		ArrayList<LsVO> dropList= stuSchResDAO.selectDropOffList(stud_num);
+		return dropList;
+	}
+
+	@Override
+	public void applyDropOff(LsVO vo) throws SQLException {
+		stuSchResDAO.applyDropOff(vo);
+		
 	}
 }

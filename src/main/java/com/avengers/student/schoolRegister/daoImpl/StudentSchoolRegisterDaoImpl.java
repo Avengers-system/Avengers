@@ -1,6 +1,7 @@
 package com.avengers.student.schoolRegister.daoImpl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -82,6 +83,42 @@ public class StudentSchoolRegisterDaoImpl implements StudentSchoolRegisterDao {
 	public int selectAllGradeCount(String stud_num) throws SQLException {
 		int allGradeCount = (Integer)sqlSession.selectOne("certificate.selectAllGradeCount",stud_num);
 		return allGradeCount;
+	}
+
+	@Override
+	public ArrayList<LoaVO> selectLeaveList(String stud_num)
+			throws SQLException {
+		ArrayList<LoaVO> leaveList = (ArrayList<LoaVO>)sqlSession.selectList("loa.selectLeaveList",stud_num);
+		return leaveList;
+	}
+
+	@Override
+	public ArrayList<RtsVO> selectBackList(String stud_num) throws SQLException {
+		ArrayList<RtsVO> backList = (ArrayList<RtsVO>)sqlSession.selectList("rts.selectBackList",stud_num);
+		return backList;
+	}
+
+	@Override
+	public void applyLeave(LoaVO vo) throws SQLException {
+		sqlSession.insert("loa.insertLeave",vo);
+	}
+
+	@Override
+	public void applyBack(RtsVO vo) throws SQLException {
+		sqlSession.insert("rts.insertBack",vo);
+	}
+
+	@Override
+	public ArrayList<LsVO> selectDropOffList(String stud_num)
+			throws SQLException {
+		ArrayList<LsVO> dropList =(ArrayList<LsVO>)sqlSession.selectList("ls.selectLsList",stud_num);
+		return dropList;
+	}
+
+	@Override
+	public void applyDropOff(LsVO vo) throws SQLException {
+
+		sqlSession.insert("ls.insertLs",vo);
 	}
 	
 }
