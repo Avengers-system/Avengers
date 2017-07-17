@@ -11,35 +11,65 @@
 	</select>
 	
 	<select id="selectBoardOne" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
-		SELECT * FROM BOARD WHERE BOARD_num=#{BOARD_num} 
+		SELECT
+			   board_num
+			  ,board_title
+			  ,board_cont
+			  ,board_date
+			  ,board_writer
+			  ,board_af
+			  ,board_bc
+			  ,board_count 
+		 FROM BOARD WHERE BOARD_num=#{BOARD_num} 
+	</select>
+	
+	<select id="insertBaseData" resultType="com.avengers.db.dto.BoardVO">
+		SELECT
+			BOARD_SEQ.NEXTVAL as board_num
+			,sysdate as board_date
+		FROM dual
 	</select>
 	
 	
-	
 	<!-- 게시판중 포탈공지사항을 입력하는 구문  -->	
-	<insert id="insertBoard" parameterType="com.avengers.db.dto.BoardVO">
+	<insert id="insertBoard" parameterType="map">
 		INSERT INTO BOARD(
-		 board_title
+		BOARD_NUM
+		,BOARD_TITLE
 		,BOARD_CONT
 		,BOARD_WRITER
 		,BOARD_DATE
 		,BOARD_AF
 		,BOARD_BC
-		,BOARD_NUM
+		,BOARD_COUNT
 		)
 		VALUES(
-		#{board_title, jdbcType=VARCHAR}
+		#{BOARD_NUM, jdbcType=VARCHAR}
+		,#{BOARD_TITLE, jdbcType=VARCHAR}
 		,#{BOARD_CONT, jdbcType=VARCHAR}
 		,#{BOARD_WRITER, jdbcType=VARCHAR}
-		,#{BOARD_DATE, jdbcType=VARCHAR}
+		,SYSDATE
 		,#{BOARD_AF, jdbcType=VARCHAR}
 		,#{BOARD_BC, jdbcType=VARCHAR}
-		,#{BOARD_NUM, jdbcType=VARCHAR}
+		,0
 		)
-		
-		
 
 	</insert>
+	
+	<update id="updateBoard" parameterType="map">
+	update board set BOARD_TITLE=#{BOARD_TITLE, jdbcType=VARCHAR}
+					,BOARD_CONT=#{BOARD_CONT, jdbcType=VARCHAR}
+					,BOARD_DATE=sysdate
+					,BOARD_AF=#{BOARD_AF, jdbcType=VARCHAR}
+               where BOARD_NUM=#{BOARD_NUM, jdbcType=VARCHAR}
+	</update>
+
+	<update id="deleteBoard" parameterType="int">
+	delete from Board where
+					  board_num=#{board_num}
+					 
+	</update>
+	
 <!-- 	<update id="updatePortalBoard" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO"> -->
 <!-- 		update member set pwd=#{pwd} where id=#{id} -->
 <!-- 	</update> -->
@@ -88,7 +118,15 @@
 <!-- 	</update> -->
 	
 	<select id="selectBoardNoticeList" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO">
-		select * from board where BOARD_BC=#{board_bc}
+		select board_num
+			  ,board_title
+			  ,board_cont
+			  ,to_char(board_date, 'YY/MM/DD')
+			  ,board_writer
+			  ,board_af
+			  ,board_bc
+			  ,board_count
+		 from board where BOARD_BC=#{board_bc}
 	</select>
 <!-- 	<update id="insertDeptBoard" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO"> -->
 <!-- 		select * from board where BOARD_BC=#{board_bc} -->

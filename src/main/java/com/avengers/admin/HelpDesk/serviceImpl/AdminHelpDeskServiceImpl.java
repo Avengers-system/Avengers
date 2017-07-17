@@ -3,50 +3,57 @@ package com.avengers.admin.HelpDesk.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.avengers.admin.HelpDesk.dao.AdminHelpDeskDao;
 import com.avengers.admin.HelpDesk.daoImpl.AdminHelpDeskDaoImpl;
 import com.avengers.admin.HelpDesk.service.AdminHelpDeskService;
 import com.avengers.db.dto.BoardVO;
 @Service
 public class AdminHelpDeskServiceImpl implements AdminHelpDeskService {
 	@Autowired
-	private AdminHelpDeskDaoImpl hepDeskDAO;
+	private AdminHelpDeskDaoImpl helpDeskDAO;
 	
-	public void setHepDeskDAO(AdminHelpDeskDaoImpl hepDeskDAO) {
-		this.hepDeskDAO = hepDeskDAO;
+	public void setHelpDeskDAO(AdminHelpDeskDaoImpl helpDeskDAO) {
+		this.helpDeskDAO = helpDeskDAO;
 	}
 
 	@Override
 	public ArrayList<BoardVO> selectBoardList(BoardVO boardVO, int firstRow,
 			int lastRow)throws SQLException {
-		ArrayList<BoardVO> boardList = hepDeskDAO.selectBoardList(boardVO, firstRow, lastRow);
+		ArrayList<BoardVO> boardList = helpDeskDAO.selectBoardList(boardVO, firstRow, lastRow);
 		return boardList;
 	}
 
 	@Override
 	public BoardVO selectBoard(String bc_num)throws SQLException {
 		
-		return hepDeskDAO.selectBoard(bc_num);
+		return helpDeskDAO.selectBoard(bc_num);
 	}
 	
 	
 	@Override
-	public int updateBoard(BoardVO boardVO, int board_num, String bc_num)throws SQLException {
-		return 0;
+	public int updateBoard(BoardVO boardVO)throws SQLException {
+		int result = helpDeskDAO.updateBoard(boardVO);
+				return result;
 	}
 
 	@Override
-	public int deleteBoard(int board_num, String bc_num)throws SQLException {
-		return 0;
+	public int deleteBoard(int board_num)throws SQLException {
+		int result = helpDeskDAO.deleteBoard(board_num);
+		return result;
 	}
 
 	@Override
 	public int insertBoard(BoardVO boardVO) throws SQLException {
-		int result = hepDeskDAO.insertBoard(boardVO);
+		int result = helpDeskDAO.insertBoard(boardVO);
 		return result;
+	}
+
+	@Override
+	public BoardVO selectInsertBaseData() throws SQLException {
+		return helpDeskDAO.selectInsertBaseData();
 	}
 
 	

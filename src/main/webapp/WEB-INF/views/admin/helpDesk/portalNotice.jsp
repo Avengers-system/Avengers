@@ -14,8 +14,9 @@
 <c:choose>
       <c:when test="${not empty portalNoticeList}">      
       <c:forEach var="portalNoticeList" items="${portalNoticeList }">
+      <hr color="black">
          <tr>
-            <td>번호:${portalNoticeList.board_num}</td><br>
+            <td>게시판번호:${portalNoticeList.board_num}</td><br>
            <a href="${pageContext.request.contextPath}/admin/portalDetail?board_num=${portalNoticeList.board_num}">
            <td>제목:${portalNoticeList.board_title}</td></a><br>
             <td>내용:${portalNoticeList.board_cont}</td><br>

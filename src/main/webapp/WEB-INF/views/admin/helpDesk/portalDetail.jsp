@@ -8,27 +8,22 @@
 
 <h1>포털 소식 출력</h1>
 
-<script>
-	function updatePortal(){
-		location.href='portalUpdate.jsp';
-	}
-</script>
-
-
 <c:choose>
-      <c:when test="${not empty portalNoticeList}">      
-         <tr>
-            <td>번호:${portalNoticeList.board_num}</td><br>
-            <td>제목:${portalNoticeList.board_title}</td></a><br>
-            <td>내용:${portalNoticeList.board_cont}</td><br>
-            <td>날짜:${portalNoticeList.board_date}</td><br>
-            <td>작성자:${portalNoticeList.board_writer}</td><br>
-            <td>첨부일:${portalNoticeList.board_af}</td><br>
-            <td>게시판분류 고유번호:${portalNoticeList.board_bc}</td><br>
-         </tr>
+      <c:when test="${not empty portalNoticeList}">
+      <form name="updatePortalBoard" action="portalUpdate">
          
-         <input type="button" value="수정" onlick=""> 
-		<input type="button" value="삭제">
+          숫자:<input type="text" name="board_num" value="${portalNoticeList.board_num}" readonly><br>
+          제목:<input type="text" name="board_title" value="${portalNoticeList.board_title}"><br>
+          내용:<input type="text" name="board_cont" value="${portalNoticeList.board_cont}"><br>
+<%--           날짜:<input type="text" name="board_date" value="${portalNoticeList.board_date}" readonly> --%>
+          작성자:<input type="text" name="board_writer" value="${portalNoticeList.board_writer}" readonly><br>
+          첨부파일?:<input type="text" name="board_af" value="${portalNoticeList.board_af}"><br>
+          게시판분류고유번호:<input type="text" name="board_bc" value="${portalNoticeList.board_bc}" readonly><br>
+         
+        <input type="submit" value="수정"> 
+		<a href="portalDelete?board_num=${portalNoticeList.board_num}"><input type="button" value="삭제"></a>
+      </form>      
+         
          
          </c:when>
          <c:otherwise>

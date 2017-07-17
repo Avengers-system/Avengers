@@ -27,7 +27,8 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 		int limit = lastRow-firstRow+1;
 		RowBounds rowBounds = new RowBounds(offset,limit);
 		
-		ArrayList<BoardVO> boardList =(ArrayList<BoardVO>) sqlSession.selectList("Board.selectBoardNoticeList",boardVO,rowBounds);
+		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
+		boardList = (ArrayList<BoardVO>) sqlSession.selectList("Board.selectBoardNoticeList",boardVO,rowBounds);
 		
 		return boardList;
 	}
@@ -38,12 +39,25 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 		
 		BoardVO result = (BoardVO)sqlSession.selectOne("Board.selectBoardOne",bc_num);
 		
+		
+		System.out.println("dao"+result.getBoard_date());
+		
 		return result;
 	}
 
 	@Override
 	public int insertBoard(BoardVO boardVO)throws SQLException {
-		int boardInsert = sqlSession.update("Board.insertBoard", boardVO);
+		
+		HashMap map = new HashMap();
+		
+		map.put("BOARD_NUM", boardVO.getBoard_num());
+		map.put("BOARD_TITLE", boardVO.getBoard_title());
+		map.put("BOARD_CONT", boardVO.getBoard_cont());
+		map.put("BOARD_WRITER", boardVO.getBoard_writer());
+		map.put("BOARD_AF", boardVO.getBoard_af());		
+		map.put("BOARD_BC", boardVO.getBoard_bc());
+				
+		int boardInsert = sqlSession.update("Board.insertBoard", map);
 		System.out.println("뭔가찍힘");
 		System.out.println(boardVO.getBoard_title());
 		System.out.println(boardVO.getBoard_writer());
@@ -51,15 +65,32 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 	}
 
 	@Override
-	public int updateBoard(BoardVO boardVO, int board_num, String bc_num)throws SQLException {
-		return 0;
+	public int updateBoard(BoardVO boardVO)throws SQLException {
+		HashMap map = new HashMap();
+
+		map.put("BOARD_NUM", boardVO.getBoard_num());
+		map.put("BOARD_TITLE", boardVO.getBoard_title());
+		map.put("BOARD_CONT", boardVO.getBoard_cont());
+		map.put("BOARD_AF", boardVO.getBoard_af());	
+		int boardUpdate = sqlSession.update("Board.updateBoard", map);
+		
+		return boardUpdate;
 	}
 
 	@Override
-	public int deleteBoard(int board_num, String bc_num)throws SQLException {
-		return 0;
+	public int deleteBoard(int board_num)throws SQLException {
+		int result = sqlSession.delete("Board.deleteBoard",board_num);
+		return result;
 	}
 
+	@Override
+	public BoardVO selectInsertBaseData() throws SQLException {
+		BoardVO boardVo;
+		System.out.println("insertForm Dao");
+		boardVo = (BoardVO) sqlSession.selectOne("Board.insertBaseData");
+		
+		return boardVo;
+	}
 	
 
 }

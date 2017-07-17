@@ -10,6 +10,7 @@ public interface AdminHelpDeskService {
 		public ArrayList<BoardVO> selectBoardList(BoardVO boardVO,int firstRow,int lastRow)throws SQLException;//게시판글 전체목록 읽어오기
 		public BoardVO selectBoard(String bc_num)throws SQLException;//게시판글 선택 읽어오기
 		public int insertBoard(BoardVO boardVO)throws SQLException;//게시판글 등록
-		public int updateBoard(BoardVO boardVO,int board_num,String bc_num)throws SQLException;//게시판글 수정
-		public int deleteBoard(int board_num,String bc_num)throws SQLException;//게시판글 삭제
+		public int updateBoard(BoardVO boardVO)throws SQLException;//게시판글 수정
+		public int deleteBoard(int board_num)throws SQLException;//게시판글 삭제
+		public BoardVO selectInsertBaseData() throws SQLException;
 }

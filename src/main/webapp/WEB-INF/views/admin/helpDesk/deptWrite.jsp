@@ -10,7 +10,7 @@
 
 <form name="insertDeptBoard2" action="/insertDeptBoard2" >
 
-	숫자    :<input type="text" name="board_num"><br>
+	게시판번호    :<input type="text" name="board_num"><br>
 	제목    :<input type="text" name="board_title"><br>
 	내용    :<input type="text" name="board_cont"><br>
 	날짜    :<input type="text" name="board_date"><br>
