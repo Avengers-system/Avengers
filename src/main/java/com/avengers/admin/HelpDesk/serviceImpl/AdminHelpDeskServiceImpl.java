@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,8 +59,14 @@ public class AdminHelpDeskServiceImpl implements AdminHelpDeskService {
 	}
 
 	@Override
-	public ArrayList<BoardVO> searchBoardList(String board_title) throws SQLException {
-		return helpDeskDAO.selectSearchList(board_title);
+	public ArrayList<BoardVO> searchBoardList(BoardVO boardVO) throws SQLException {
+		return helpDeskDAO.selectSearchList(boardVO);
+	}
+
+	@Override
+	public int updateBoardCount(String board_num, String board_count)
+			throws SQLException {
+		return helpDeskDAO.updateBoardCount(board_num, board_count);
 	}
 
 	

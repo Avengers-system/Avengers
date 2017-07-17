@@ -156,7 +156,7 @@ public class AdminHelpDeskController {
 	public String adminPortalList(Model model, Principal principal){
 
 		BoardVO boardVO = new BoardVO();
-		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
+		ArrayList<BoardVO> boardList = null;
 
 		String key = principal.getName();
 		String bc_num = "PORTAL";
@@ -261,9 +261,11 @@ public class AdminHelpDeskController {
 	 * 
 	 * */
 	@RequestMapping("/portalDetail")
-	public String detailPortal(@RequestParam("board_num")String board_num, Model model){
+	public String detailPortal(@RequestParam("board_num")String board_num,
+			@RequestParam("board_count")String board_count, Model model){
 		BoardVO boardVo=null;
 		try {
+			adminHelpDeskService.updateBoardCount(board_num, board_count);
 			boardVo = adminHelpDeskService.selectBoard(board_num);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -281,22 +283,22 @@ public class AdminHelpDeskController {
 	public String portalSearch(@RequestParam("board_title")String board_title,
 														   Model model, Principal principal){
 
+		ArrayList<BoardVO> boardList = null;
+		
 		BoardVO boardVO = new BoardVO();
-
-		String key = principal.getName();
 		String bc_num = "PORTAL";
 		boardVO.setBoard_bc(bc_num);
-		boardVO.setBoard_writer(key);
 		boardVO.setBoard_title(board_title);
+		
 		System.out.println("서치하러드러왔다"+board_title);
 		try {
 			
-			ArrayList<BoardVO> board = adminHelpDeskService.searchBoardList(board_title);
+			boardList = adminHelpDeskService.searchBoardList(boardVO);
 			//boardList = adminHelpDeskService.selectBoardList(boardVO,1,5);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("portalNoticeList", boardVO);
+		model.addAttribute("portalNoticeList", boardList);
 		return "admin/helpDesk/portalNotice";
 		
 	}

@@ -27,8 +27,10 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 		int limit = lastRow-firstRow+1;
 		RowBounds rowBounds = new RowBounds(offset,limit);
 		
-		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
-		boardList = (ArrayList<BoardVO>) sqlSession.selectList("Board.selectBoardNoticeList",boardVO,rowBounds);
+		HashMap map = new HashMap();
+		map.put("BOARD_BC", boardVO.getBoard_bc());
+		System.out.println(map.get("BOARD_BC"));
+		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("Board.selectBoardNoticeList",map,rowBounds);
 		
 		return boardList;
 	}
@@ -99,9 +101,23 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 	}
 
 	@Override
-	public ArrayList<BoardVO> selectSearchList(String board_title) {
-		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("Board.selectSearchList", board_title);
+	public ArrayList<BoardVO> selectSearchList(BoardVO boardVO) {
+		HashMap map = new HashMap();
+
+		map.put("BOARD_BC", boardVO.getBoard_bc());
+		map.put("BOARD_TITLE", boardVO.getBoard_title());
+		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("Board.selectSearchList", map);
 		return boardList;
+	}
+
+	public int updateBoardCount(String board_num, String board_count) throws SQLException{
+		HashMap map = new HashMap();
+		
+		map.put("BOARD_NUM", board_num);
+		map.put("BOARD_COUNT", board_count);
+		int result = (int) sqlSession.update("Board.updateBoardCount", map);
+		
+		return result;
 	}
 
 	

@@ -25,13 +25,14 @@
       <hr color="black">
          <tr>
             <td>게시판번호:${portalNoticeList.board_num}</td><br>
-           <a href="${pageContext.request.contextPath}/admin/portalDetail?board_num=${portalNoticeList.board_num}">
+           <a href="${pageContext.request.contextPath}/admin/portalDetail?board_num=${portalNoticeList.board_num}&board_count=${portalNoticeList.board_count}">
            <td>제목:${portalNoticeList.board_title}</td></a><br>
             <td>내용:${portalNoticeList.board_cont}</td><br>
             <td>날짜:${portalNoticeList.board_date}</td><br>
             <td>작성자:${portalNoticeList.board_writer}</td><br>
             <td>첨부일:${portalNoticeList.board_af}</td><br>
             <td>게시판분류 고유번호:${portalNoticeList.board_bc}</td><br>
+            <td>조회수:${portalNoticeList.board_count}</td><br>
          </tr>
         
       </c:forEach>
