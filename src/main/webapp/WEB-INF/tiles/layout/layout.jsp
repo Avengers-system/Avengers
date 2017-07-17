@@ -37,32 +37,36 @@
 
 <style>
 #commonHeader{
-	background-color: red;
+	background-color: #F8F8F8;
+	border-radius: 20px; 
 	min-height: 80px;
 }
 #commonContent{
-	background-color: lightgray;
+	background-color: lightgray; 
 	min-height:960px;
 }
 #commonFooter{
-	background-color: red;
+ 	background-color: red; 
 	min-height: 60px;
 }
 #commonUserHeader{
-	background-color: orange;
+ 	background-color: orange; 
 	min-height: 80px;
 }
 #commonLeftSide{
-	background-color: blue;
+ 	background-color: blue; 
 	min-height: 900px;
 }
 #commonRightSide{
-	background-color: lightblue;
+ 	background-color: lightblue; 
 	min-height: 900px;
 }
 
 #commonUserHeader>ul>li{
 	font-size: 28px;
+}
+#commonHeaderSort{
+	padding-top: 10px;
 }
 </style>
 
@@ -70,7 +74,9 @@
 <!-- Common Header -->
 <div class="container-fluid">
     <div class="row" id="commonHeader">
-		<tiles:insertAttribute name="header" />
+    	<div id="commonHeaderSort">
+			<tiles:insertAttribute name="header"/>
+		</div>
     </div>
 </div>
 

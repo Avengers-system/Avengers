@@ -40,6 +40,9 @@
 			</beans:list>
 		</beans:property>	
 	</beans:bean>	
+
+	<!-- aJax 페이징처리 -->	
+	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
 	
 	
 </beans:beans>

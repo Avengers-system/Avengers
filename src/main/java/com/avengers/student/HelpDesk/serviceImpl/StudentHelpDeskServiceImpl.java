@@ -2,6 +2,8 @@ package com.avengers.student.HelpDesk.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +51,19 @@ public class StudentHelpDeskServiceImpl implements StudentHelpDeskService {
 	public int deleteBoard(int board_num, String bc_num) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectBoardList(Map<String, Object> map)
+			throws Exception {
+		
+		return stuHelpDeskDAO.selectBoardList(map);
+	}
+
+	@Override
+	public ArrayList<BoardVO> selectFAQList() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

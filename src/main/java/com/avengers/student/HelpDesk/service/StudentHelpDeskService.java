@@ -2,6 +2,8 @@ package com.avengers.student.HelpDesk.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import com.avengers.db.dto.BoardVO;
 
@@ -15,6 +17,8 @@ public interface StudentHelpDeskService {
 	// 학교,학과,학사일정,Q&A,FAQ포털공지게시판
 	// 게시판글 전체목록 읽어오기
 	// 검색조건을 추가하여 검색가능
+	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception;
+	public ArrayList<BoardVO> selectFAQList() throws SQLException;
 	public ArrayList<BoardVO> selectBoardList(String bc_num, String key,
 			int firstRow, int lastRow) throws SQLException;
 	

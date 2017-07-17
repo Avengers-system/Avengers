@@ -3,4 +3,4 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 
 
-        <div class="col-xs-12">푸터</div>
+        <div class="col-xs-12">CopyRight_Avengers</div>

@@ -35,13 +35,16 @@
 			username-parameter="id" 
 			password-parameter="pwd" 
 			default-target-url="/main"/>
-		<logout logout-success-url="/logout" delete-cookies="true" />
+		<logout logout-success-url="/logout" delete-cookies="JSESSIONID" invalidate-session="true" />
 
 
 
 		<!-- error-if-maximum-exceeded="true" 이중접속 강제 방지 로그인한 아이디이면 다시 로그인 페이지로 -->
 		<session-management invalid-session-url="/loginForm">
-			<concurrency-control max-sessions="1" expired-url="/login_duplicate"/>
+			<concurrency-control max-sessions="1"
+			error-if-maximum-exceeded="true"
+			 expired-url="/login_duplicate"
+			 />
 		</session-management>
 
 	</http>
