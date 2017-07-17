@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.AdmissionApplicationVO;
+import com.avengers.db.dto.AtdcVO;
+import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.CartVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.LrVO;
@@ -115,6 +117,26 @@ public class StudentAdmissionApplicationServiceImpl implements
 	@Override
 	public LrVO selectLr(String lct_num) throws SQLException {
 		return stuAdmAppDAO.selectLr(lct_num);
+	}
+
+	@Override
+	public TlVO selectTl_num(TlVO tlVO) throws SQLException {
+		return stuAdmAppDAO.selectTl_num(tlVO);
+	}
+
+	@Override
+	public BoardVO selectUnivschdList(BoardVO boardVO) throws SQLException {
+		return stuAdmAppDAO.selectUnivschdList(boardVO);
+	}
+
+	@Override
+	public int insertAtdc(AtdcVO atdcVO) throws SQLException {
+		return stuAdmAppDAO.insertAtdc(atdcVO);
+	}
+
+	@Override
+	public int deleteAtdc(String tl_num) throws SQLException {
+		return stuAdmAppDAO.deleteAtdc(tl_num);
 	}
 
 

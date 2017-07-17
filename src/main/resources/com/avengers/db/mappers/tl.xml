@@ -39,4 +39,14 @@
 		</if>		 
 	</select>
 	
+	<select id="selectTl_num" parameterType="com.avengers.db.dto.TlVO" resultType="com.avengers.db.dto.TlVO">
+		SELECT TL_NUM FROM TL WHERE 1=1		
+		<if test="tl_stud != null">
+		AND TL_STUD=#{tl_stud}
+		</if>
+		<if test="tl_lct != null">
+		AND TL_LCT=#{tl_lct}
+		</if>		 
+	</select>
+	
 </mapper>
