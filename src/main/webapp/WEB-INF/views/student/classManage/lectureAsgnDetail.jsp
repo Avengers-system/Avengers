@@ -40,7 +40,8 @@
 			var formData = $("#submission").serialize();
 			
 			alert( JSON.stringify(formData));
-			console.log();
+			console.log(JSON.stringify(formData));
+			alert(JSON.stringify(formData));
 			/**
 			{
 					 submission : formData
@@ -53,7 +54,7 @@
 				, type :'post'
 				, dataType : 'json'
 				, data : {
-					 	submission : formData
+					 	submission :  JSON.stringify(formData)
 						,asgn_num : asgn
 					}
 				,success : onSuccess()

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -251,7 +252,7 @@ public class StudentClassManageController {
 	
 	@RequestMapping(value="student/classManage/lectureAsgnSubmit", method = RequestMethod.POST)
 	@ResponseBody
-	public void studentLectureAsgnSubmit(@ModelAttribute(value="submission")SubVO subVO,
+	public void studentLectureAsgnSubmit(@ModelAttribute(value="submission") SubVO subVO,
 											@RequestParam(value="asgn_num") String asgn_num,
 											HttpServletRequest request, Principal principal, 
 											Model model){
