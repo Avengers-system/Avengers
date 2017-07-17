@@ -11,6 +11,14 @@
 
 
 <h1>포털 소식 출력</h1>
+ <form action="<%=request.getContextPath()%>/admin/portalSearch?board_title=
+      ${portalSearch.board_title}">
+      <input type="text" placeholder="글 제목을 입력해주세요" name="board_title">
+      
+      <input type="submit" value="검색">
+  </form>
+  
+       <a href="<%=request.getContextPath()%>/admin/portalWriteForm">글쓰기</a>
 <c:choose>
       <c:when test="${not empty portalNoticeList}">      
       <c:forEach var="portalNoticeList" items="${portalNoticeList }">

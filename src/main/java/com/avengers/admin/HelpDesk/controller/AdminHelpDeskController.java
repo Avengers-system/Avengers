@@ -26,7 +26,7 @@ public class AdminHelpDeskController {
 	 * helpDeskMain 페이지
 	 * 
 	 * */
-	@RequestMapping("/main/helpDeskMain1")
+	@RequestMapping("/main/helpDeskMain")
 	public String helpDeskMain(Model model, Principal principal){
 
 		String key = principal.getName();
@@ -69,7 +69,7 @@ public class AdminHelpDeskController {
 		//Qna테이블
 		BoardVO qnaVO = new BoardVO();
 		ArrayList<BoardVO> qnaList = new ArrayList<BoardVO>();
-		String qna_nm="DEPT";
+		String qna_nm="QNA";
 		qnaVO.setBoard_bc(qna_nm);
 		qnaVO.setBoard_writer(key);
 
@@ -78,10 +78,10 @@ public class AdminHelpDeskController {
 		try {
 			deptList = adminHelpDeskService.selectBoardList(deptVO,1,2); // 학과리스트
 			portalList = adminHelpDeskService.selectBoardList(portalVO,1,2); //포털리스트
-//		    collegeList = adminHelpDeskService.selectBoardList(collegeVO, 1,2);//학부리스트
-		  //univList = adminHelpDeskService.selectBoardList(univVO, 1,2);// 학교리스트
-		  //faqList = adminHelpDeskService.selectBoardList(faqVO, 1, 2);//faq리스트
-		  //qnaList = adminHelpDeskService.selectBoardList(qnaVO, 1, 2);//qna리스트
+		    collegeList = adminHelpDeskService.selectBoardList(collegeVO, 1,2);//학부리스트
+		  univList = adminHelpDeskService.selectBoardList(univVO, 1,2);// 학교리스트
+		  faqList = adminHelpDeskService.selectBoardList(faqVO, 1, 2);//faq리스트
+		  qnaList = adminHelpDeskService.selectBoardList(qnaVO, 1, 2);//qna리스트
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -90,9 +90,9 @@ public class AdminHelpDeskController {
 		model.addAttribute("deptNoticeList", deptList);// 학과리스트
 		model.addAttribute("portalNoticeList", portalList); // 포털리스트
 		model.addAttribute("collegeNoticeList", collegeList);// 학부리스트
-//		model.addAttribute("schoolNoticeList", univList);// 학교리스트
-//		model.addAttribute("faqNoticeList", faqList);// faq리스트
-//		model.addAttribute("qnaNoticeList", qnaList);//qna리스트
+		model.addAttribute("schoolNoticeList", univList);// 학교리스트
+		model.addAttribute("faqNoticeList", faqList);// faq리스트
+		model.addAttribute("qnaNoticeList", qnaList);//qna리스트
 
 
 		return "admin/main/helpDeskMain";
@@ -109,7 +109,7 @@ public class AdminHelpDeskController {
 		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
 
 		String key = principal.getName();
-		String bc_num = "PORTAL";
+		String bc_num = "DEPT";
 		boardVO.setBoard_bc(bc_num);
 		boardVO.setBoard_writer(key);
 		try {
@@ -255,8 +255,51 @@ public class AdminHelpDeskController {
 		}
 		return "redirect:portalNoticeList";
 	}
+	
+	/**
+	 *포탈상세보기
+	 * 
+	 * */
+	@RequestMapping("/portalDetail")
+	public String detailPortal(@RequestParam("board_num")String board_num, Model model){
+		BoardVO boardVo=null;
+		try {
+			boardVo = adminHelpDeskService.selectBoard(board_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("portalNoticeList",boardVo);
+		return "admin/helpDesk/portalDetail";
+	}
+	
 
+	/**
+	 * 포털 search
+	 * **/
 
+	@RequestMapping("portalSearch")
+	public String portalSearch(@RequestParam("board_title")String board_title,
+														   Model model, Principal principal){
+
+		BoardVO boardVO = new BoardVO();
+
+		String key = principal.getName();
+		String bc_num = "PORTAL";
+		boardVO.setBoard_bc(bc_num);
+		boardVO.setBoard_writer(key);
+		boardVO.setBoard_title(board_title);
+		System.out.println("서치하러드러왔다"+board_title);
+		try {
+			
+			ArrayList<BoardVO> board = adminHelpDeskService.searchBoardList(board_title);
+			//boardList = adminHelpDeskService.selectBoardList(boardVO,1,5);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("portalNoticeList", boardVO);
+		return "admin/helpDesk/portalNotice";
+		
+	}
 	//	@RequestMapping("/insertDeptBoard")
 	//	public String adminDeptWrite(Model model, Principal principal){
 	//		
@@ -349,15 +392,5 @@ public class AdminHelpDeskController {
 		return "admin/helpDesk/faqWrite";
 	}
 
-	@RequestMapping("/portalDetail")
-	public String detailPortal(@RequestParam("board_num")String board_num, Model model){
-		BoardVO boardVo=null;
-		try {
-			boardVo = adminHelpDeskService.selectBoard(board_num);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("portalNoticeList",boardVo);
-		return "admin/helpDesk/portalDetail";
-	}
+	
 }

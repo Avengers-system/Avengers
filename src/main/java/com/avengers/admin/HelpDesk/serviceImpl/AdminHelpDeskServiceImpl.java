@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +55,11 @@ public class AdminHelpDeskServiceImpl implements AdminHelpDeskService {
 	@Override
 	public BoardVO selectInsertBaseData() throws SQLException {
 		return helpDeskDAO.selectInsertBaseData();
+	}
+
+	@Override
+	public ArrayList<BoardVO> searchBoardList(String board_title) throws SQLException {
+		return helpDeskDAO.selectSearchList(board_title);
 	}
 
 	

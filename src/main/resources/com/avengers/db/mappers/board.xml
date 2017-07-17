@@ -23,6 +23,13 @@
 		 FROM BOARD WHERE BOARD_num=#{BOARD_num} 
 	</select>
 	
+	<select id="selectSearchList" parameterType="java.lang.String" 
+	resultType="com.avengers.db.dto.BoardVO">
+	SELECT * FROM BOARD WHERE  BOARD_TITLE LIKE '%'||#{BOARD_TITLE}||'%' 
+	AND BOARD_BC=#{BOARD_BC}  
+
+	</select>
+	
 	<select id="insertBaseData" resultType="com.avengers.db.dto.BoardVO">
 		SELECT
 			BOARD_SEQ.NEXTVAL as board_num
