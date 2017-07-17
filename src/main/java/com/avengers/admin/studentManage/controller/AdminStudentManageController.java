@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,45 @@ public class AdminStudentManageController {
 	private AdminStudentManageService adminStudentManageService;
 	
 	/**
+	 * 학생등록하기
+	 * @param commandStudVO
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value = "/insertStudent")
+	public String insertStudent(CommandStudVO commandStudVO, HttpSession session){
+		
+		StudVO studVO = new StudVO();
+		studVO = commandStudVO.toStudVO();
+		
+		// 깃 경로 (동일)
+				String upload = session.getServletContext().getRealPath("resources/admin_student_images");		
+				if (!studVO.getStud_pic().isEmpty()) {
+					File file = new File(upload, studVO.getStud_pic());
+		 
+					try {
+						commandStudVO.getStud_pic().transferTo(file); // 깃 위치로 전송
+						
+						adminStudentManageService.insertStud(studVO);
+						
+						studVO.setStud_num(adminStudentManageService.selectStudNum());
+						adminStudentManageService.insertSecurity(studVO);
+						
+					} catch (SQLException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (IllegalStateException e) {
+						e.printStackTrace();
+					}
+					System.out.println("성공");
+				}
+				
+			return "admin/main/studentManage"; 
+	}
+	
+	
+	/**
 	 * 학생삭제하기 
 	 * @param prfs_num
 	 * @param model
@@ -48,7 +88,7 @@ public class AdminStudentManageController {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			//enabled 만 1로 바꾸면 됨?/??
+			//enabled 만 1로 바꾸면 됨 
 			String msg = "삭제 완료되었습니다.";
 			model.addAttribute("msg",msg);
 		}
@@ -96,58 +136,6 @@ public class AdminStudentManageController {
 		}
 		model.addAttribute("student",studVO);
 		return "admin/studentDetail";
-	}
-	
-	
-	
-	
-	/**
-	 * 학생 등록하기 
-	 * @param studVO
-	 * @param request
-	 * @param multipartFile
-	 * @return
-	 */
-	
-	
-	@RequestMapping(value = "/insertStudent", 
-//					method=RequestMethod.POST,
-					headers = ("content-type=multipart/form-data"))
-	
-	public String insertStudent(
-								CommandStudVO commandStudVO,
-								MultipartHttpServletRequest request,
-								@RequestParam("stud_pic") MultipartFile multipartFile) {
-
-		// 깃 경로 (동일)
-		String upload = "C:/Users/pc15/git/Avengers/src/main/webapp/resources/admin_student_images/"+multipartFile.getOriginalFilename();
-
-		if (!multipartFile.isEmpty()) {
-			File file = new File(upload, multipartFile.getOriginalFilename()
-					+ "$$" + System.currentTimeMillis());
-
-			StudVO studVO = new StudVO();
-			studVO = commandStudVO.toStudVO();
-
-			try {
-				multipartFile.transferTo(file); //깃 위치로 전송
-				adminStudentManageService.insertStud(studVO);
-				// security에도 enabled와 role정보 추가해주기
-				adminStudentManageService.insertStud(studVO);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("성공");
-		}
-
-		int result = 0;
-
-		return "admin/main/studentManage"; //redirect
 	}
 	
 	

@@ -3,9 +3,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
+<button onclick="location.href='<%=request.getContextPath()%>/admin/studentInsert'">학생추가하기</button>
 
 <h1>학생목록 리스트 </h1>
- 
+<br/>
+<br/>
  <c:forEach var="student" items="${studentList}"> <br/>
 	학번 : ${student.stud_num } <br/>
 	이름 : <a href="studentManage/detail?stud_num=${student.stud_num}">${student.stud_nm}</a> <br/>
@@ -19,11 +21,9 @@
 	<hr/>
  </c:forEach>
 
+
 <br/>
 <br/>
-<br/>
-<br/>
-<button onclick="location.href='<%=request.getContextPath()%>/admin/professorInsert'">교수추가하기</button>
 <br/>
 <br/>
  

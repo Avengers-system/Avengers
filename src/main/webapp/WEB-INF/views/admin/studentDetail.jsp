@@ -25,6 +25,6 @@
 <br/>
 <br/>
 <br/>
-<button onclick="location.href='<%=request.getContextPath()%>/admin/deleteStudent?stud_num=${professor.stud_num}'">삭제하기</button>
+<button onclick="location.href='<%=request.getContextPath()%>/admin/deleteStudent?stud_num=${student.stud_num}'">삭제하기</button>
 <br/>
 <br/>

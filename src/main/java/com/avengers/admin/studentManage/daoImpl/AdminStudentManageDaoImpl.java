@@ -32,7 +32,8 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 
 	@Override
 	public int insertStud(StudVO studVO) throws SQLException {
-		return 0;
+		int result = sqlSession.insert("admin.insertStudent",studVO);
+		return result;
 	}
 
 	@Override
@@ -44,13 +45,29 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 	@Override
 	public int deleteStud(String stud_num) throws SQLException {
 		int result = sqlSession.delete("admin.deleteStudent",stud_num);
+		System.out.println("dao : "+ result + ", stud_num : "+stud_num);
 		return result;
 	}
+	
 	@Override
 	public ArrayList<StudVO> selectStudList() throws SQLException {
 		ArrayList<StudVO> studList = new ArrayList<StudVO>();
 		studList = (ArrayList<StudVO>)sqlSession.selectList("student.selectAllStud");
 		return studList;
 	}
+	
+	@Override
+	public String selectStudNum() throws SQLException {
+		String stud_num = (String) sqlSession.selectOne("admin.studNumCurr");
+		System.out.println(stud_num);
+		return stud_num;
+	}
+	@Override
+	public int insertSecurity(StudVO studVO) {
+		int result = sqlSession.insert("admin.insertStudSecurity",studVO);
+		System.out.println("dao!!!"+studVO.getStud_num()+","+studVO.getStud_pw());
+		return result;
+	}
+ 
 
 }

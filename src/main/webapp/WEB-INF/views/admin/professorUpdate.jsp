@@ -18,7 +18,6 @@
 	 <hr/>
 	 
 	 </form>
-	 
 	 <input type="submit" value="수정">
 	 
 <!-- 	 delete * from board where id="3" and id="s"  -->

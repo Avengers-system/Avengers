@@ -48,4 +48,17 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 		studentList = amdinStudentDAO.selectStudList();
 		return studentList;
 	}
+
+
+	@Override
+	public String selectStudNum() throws SQLException {
+		String studNum = amdinStudentDAO.selectStudNum();
+		return studNum;
+	}
+
+
+	@Override
+	public void insertSecurity(StudVO studVO) {
+		amdinStudentDAO.insertSecurity(studVO);
+	}
 }

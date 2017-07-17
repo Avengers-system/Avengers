@@ -10,7 +10,7 @@
 		 <input type="hidden" name="prfs_num" ><br>
 		 이름                     <input type="text" name="prfs_nm"/> <br>
 		 영문이름                 <input type="text" name="prfs_eng_nm"/> <br>
-		 생년월일                 <input type="date" name="prfs_bir"/> <br>
+		 생년월일                 <input type="data" name="prfs_bir"/> <br>
 		 이메일                   <input type="text" name="prfs_email"/> <br>
 		 비밀번호                 <input type="text" name="prfs_pw"/> <br>
 		 주민등록번호             <input type="text" name="prfs_regno"/> <br>
@@ -23,8 +23,10 @@
 		 우편번호                 <input type="text" name="prfs_zip"/> <br>
 		 전화번호                 <input type="text" name="prfs_tel"/> <br>
 		 휴대폰번호               <input type="text" name="prfs_hp"/> <br>
-		 교수학과번호                 <input type="text" name="prfs_dept"/> <br>
-		 
+<!-- dept_num뽑아야됨 -->
+		 교수학과번호                 
+		 <select name="prfs_dept">
+		 </select>
 		 
 		 <input type="submit" value="등록하기">
 		 

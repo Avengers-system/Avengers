@@ -91,7 +91,7 @@ public class AdminProfessorManageController {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			//enabled 만 1로 바꾸면 됨?/??
+			//enabled 만 1로 바꾸면 됨 
 			String msg = "삭제 완료되었습니다.";
 			model.addAttribute("msg",msg);
 		}
@@ -159,21 +159,20 @@ public class AdminProfessorManageController {
 		PrfsVO prfsVO = new PrfsVO();
 		prfsVO = commandPrfsVO.toPrfsVO();
 
-		System.out.println("생년월일포맷 : "+prfsVO.getPrfs_bir());
 		// 깃 경로 (동일)
-		String upload = session.getServletContext().getRealPath("/admin_professor_images/");
-
+		String upload = session.getServletContext().getRealPath("resources/admin_professor_images");		
+		
 		if (!prfsVO.getPrfs_pic().isEmpty()) {
 			File file = new File(upload, prfsVO.getPrfs_pic());
-
-//			prfsVO.setPrfs_bir(req.getParameter("prfs_bir"));
-			
-
+ 
 			try {
 				commandPrfsVO.getPrfs_pic().transferTo(file); // 깃 위치로 전송
+				
 				adminProfessorManageService.insertPrfs(prfsVO);
-				// security에도 enabled와 role정보 추가해주기
-//				adminProfessorManageService.insertSecurity(prfsVO);
+				
+				prfsVO.setPrfs_num(adminProfessorManageService.selectPrfsNum());
+				adminProfessorManageService.insertSecurity(prfsVO);
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
