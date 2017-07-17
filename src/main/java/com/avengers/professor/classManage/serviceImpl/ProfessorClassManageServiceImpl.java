@@ -3,6 +3,7 @@ package com.avengers.professor.classManage.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -244,6 +245,20 @@ public class ProfessorClassManageServiceImpl implements ProfessorClassManageServ
 	public LaVO selectLa(String la_num) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ArrayList<Map<String, String>> selectPrfsLecture(String prfs_num)
+			throws SQLException {
+		ArrayList<Map<String, String>> prfsLctList = proClassDAO.selectPrfsLecture(prfs_num);
+		return prfsLctList;
+	}
+
+	@Override
+	public Map<String, String> selectDetailLct(String lct_num)
+			throws SQLException {
+		Map<String,String> lctInfo = proClassDAO.selectDetailLct(lct_num);
+		return lctInfo;
 	}
 
 

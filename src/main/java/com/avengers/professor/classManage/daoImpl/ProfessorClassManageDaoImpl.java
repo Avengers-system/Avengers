@@ -3,6 +3,7 @@ package com.avengers.professor.classManage.daoImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -243,6 +244,20 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 	public LaVO selectLa(String la_num) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ArrayList<Map<String, String>> selectPrfsLecture(String prfs_num)
+			throws SQLException {
+		ArrayList<Map<String, String>> prfsLctList = (ArrayList<Map<String, String>>) sqlSession.selectList("Lct.selectPrfsLecture", prfs_num);
+		return prfsLctList;
+	}
+
+	@Override
+	public Map<String, String> selectDetailLct(String lct_num)
+			throws SQLException {
+		Map<String, String> lctInfo = (Map<String, String>) sqlSession.selectOne("Lct.selectDetailLecture", lct_num);
+		return lctInfo;
 	}
 	
 

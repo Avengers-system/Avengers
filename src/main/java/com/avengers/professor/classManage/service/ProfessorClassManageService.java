@@ -3,6 +3,7 @@ package com.avengers.professor.classManage.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 import com.avengers.db.dto.AcVO;
 import com.avengers.db.dto.AsgnVO;
@@ -63,4 +64,16 @@ public interface ProfessorClassManageService {
 		//강의평가보기
 		public ArrayList<LaVO> selectLaList(int firstRow,int endRow) throws SQLException; //수강평가 전체 리스트를 불러온다.
 		public LaVO selectLa(String la_num ) throws SQLException; //특정 수강평가를 조회한다.
+		
+		//배현상
+		//강의리스트
+		public ArrayList<Map<String, String>> selectPrfsLecture(String prfs_num) throws SQLException;
+		
+		//강의계획서
+		public Map<String, String> selectDetailLct(String lct_num) throws SQLException;
+		
+		
+		
+		
+		
 }

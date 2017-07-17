@@ -9,9 +9,6 @@
 		SET    SUB_CHECK = '1'
 			  ,SUB_TITLE = #{sub_title}
 			  ,SUB_CONT = #{sub_cont}
-			  <if test="sub_af != null">
-    		  ,SUB_AF=#{sub_af}
-      		  </if>
 			  ,SUB_DATE = SYSDATE
 		WHERE  SUB_STUD = #{sub_stud}
 		AND    SUB_ASGN = #{sub_asgn}

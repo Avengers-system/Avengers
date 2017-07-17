@@ -201,8 +201,6 @@ public class StudentClassManageDaoImpl implements StudentClassManageDao{
 	public Map<String, String> selectDetailLct(String lct_num)
 			throws SQLException {
 		Map<String, String> detailLct = (Map<String, String>) sqlSession.selectOne("Lct.selectDetailLecture", lct_num);
-		System.out.println(lct_num);
-		System.out.println(detailLct);
 		return detailLct;
 	}
 	//배현상 시험리스트

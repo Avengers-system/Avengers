@@ -250,16 +250,13 @@ public class StudentClassManageController {
 		return view;
 	}
 	
-	@RequestMapping(value="student/classManage/lectureAsgnSubmit", method = RequestMethod.POST)
-	@ResponseBody
-	public void studentLectureAsgnSubmit(@ModelAttribute(value="submission") SubVO subVO,
-											@RequestParam(value="asgn_num") String asgn_num,
-											HttpServletRequest request, Principal principal, 
-											Model model){
-		System.out.println(asgn_num);
-		System.out.println(subVO.getSub_title());
+	@RequestMapping(value="student/classManage/lectureAsgnSubmit")
+	public String studentLectureAsgnSubmit(HttpServletRequest request, Principal principal ){
+		SubVO subVO = new SubVO();
+		subVO.setSub_title((String)request.getAttribute("sub_title"));
+		subVO.setSub_cont((String)request.getAttribute("sub_cont"));
 		subVO.setSub_stud(principal.getName());
-		subVO.setSub_asgn(asgn_num);
+		subVO.setSub_asgn((String)request.getAttribute("asgn_num"));
 		
 		int result = -1;
 		try {
@@ -267,11 +264,12 @@ public class StudentClassManageController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		String message = null;
 		if(result > 0){
-			String message = "정상적으로 완료되었습니다.";
+			message = "정상적으로 완료되었습니다.";
 		} else {
-			String message = "비정상적으로 종료되었습니다.";
+			message = "비정상적으로 종료되었습니다.";
 		}
+		return "redirect:lectureAsgn?lct_num"+(String)request.getParameter("lct_num");
 	}
 }

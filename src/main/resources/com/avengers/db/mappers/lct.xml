@@ -117,8 +117,33 @@
 		AND   SJT_DEPT=DEPT_NUM
 		AND   LCT_PRFS = PRFS_NUM
 		AND   LCT_NUM = #{lct_num}
+	</select>
 	
 	
+	<resultMap id="prfsLecture" type="java.util.HashMap">
+		<result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>
+		<result javaType="java.lang.String" column="LCT_NM" property="lct_nm"/>
+		<result javaType="java.lang.String" column="LCT_NM_CLASS" property="lct_nm_class"/>
+		<result javaType="java.lang.String" column="LCT_YR" property="lct_yr"/>
+		<result javaType="java.lang.String" column="LCT_QTR" property="lct_qtr"/>
+		<result javaType="java.lang.String" column="LR_DATE" property="lr_date"/>
+		<result javaType="java.lang.String" column="LR_LRC" property="lr_lrc"/>
+	</resultMap>
+	
+	<select id="selectPrfsLecture" parameterType="java.lang.String" resultMap="prfsLecture">
+		SELECT LCT_NUM
+		      ,REGEXP_REPLACE(LCT_NM,'.{1}$') AS LCT_NM
+		      ,SUBSTR(LCT_NM,-1) AS LCT_NM_CLASS
+		      ,LCT_YR
+		      ,LCT_QTR
+		      ,LR_DATE
+		      ,LR.LR_LRC
+		FROM   LECTURE, PROFESSOR, LR, LRC
+		WHERE  LCT_PRFS = PRFS_NUM
+		AND    LCT_NUM = LR_LCT
+		AND    LR_LRC = LRC.LRC_CODE
+		AND    PRFS_NUM = #{prfs_num}
+		ORDER BY LCT_YR DESC, LCT_QTR DESC
 	</select>
 	
 	

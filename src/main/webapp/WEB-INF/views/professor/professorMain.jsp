@@ -16,6 +16,7 @@
 <button onclick="location.href='<%=request.getContextPath()%>/student/studentMain'">학생</button>
 <button onclick="location.href='<%=request.getContextPath()%>/common/logout'">로그아웃</button>
 <br>
+<button onclick="location.href='<%=request.getContextPath()%>/professor/classManage/classMain'">수업관리</button>
 <h6>교수개인정보</h6>
 <c:choose>
 	<c:when test="${not empty prfs }">

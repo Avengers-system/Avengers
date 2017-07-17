@@ -9,9 +9,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+	
 	과제제출화면
 	<div style="background:light-gray">
 		<form>
+			<input type="text" name="lct_num" value="${asgn.get('lct_num') }"/>
 			강의명 : <input type="text" name="lct_nm" value="${asgn.get('lct_nm') }"/>
 			분반 : <input type="text" name="lct_nm_class" value="${asgn.get('lct_nm_class') }"/>
 			과제명 : <input type="text" name="asgn_nm" value="${asgn.get('asgn_nm') }"/><br/>
@@ -24,49 +26,41 @@
 	</div>
 	-----------------------------------------------------------------------------------------------
 	<form name="submission" id="submission">
+		<input type="text" name="asgn_num" value="${asgn_num}"/>
 		제목 : <input type="text" name="sub_title"/><br/>
 		내용 : <br/><textarea cols="100" rows="10" name="sub_cont"></textarea><br/>
 		첨부파일 : <input type="file" name="sub_af">
-		<input type="button" id="submitBtn" value="제출"/>
+		<input type="button" onclick="<%=request.getContextPath()%>/student/classManage/lectureAsgnSubmit?lct_num=${asgn.get('lct_num')}" value="제출"/>
 	</form>
 	
 </body>
 <script>
-	$(function(){
-		$("#submitBtn").click(function(){
-			var asgn = '<c:out value="${asgn_num}"/>';
-			asgn = encodeURIComponent(asgn);
-			asgn = asgn.replace("'", "%27");
-			var formData = $("#submission").serialize();
+// 	$(function(){
+// 		$("#submitBtn").click(function(){
+// 			var asgn = '<c:out value="${asgn_num}"/>';
+// 			asgn = encodeURIComponent(asgn);
+// 			asgn = asgn.replace("'", "%27");
+// 			var formData = $("#submission").serialize();
+// 			alert(asgn+""+formData);
+// 			$.post({
+// 				url : '/student/classManage/lectureAsgnSubmit'
+// 				, type :'post'
+// 				, cache : false
+// 				, data : {
+// 					 	"submission" : formData
+// 						,"asgn_num" : asgn
+// 					}
+// 				,success : onSuccess()
+// 			});
 			
-			alert( JSON.stringify(formData));
-			console.log(JSON.stringify(formData));
-			alert(JSON.stringify(formData));
-			/**
-			{
-					 submission : formData
-					,asgn_num : asgn
-				}
-			*/
 			
-			$.ajax({
-				url : '<%=request.getContextPath()%>/student/classManage/lectureAsgnSubmit'
-				, type :'post'
-				, dataType : 'json'
-				, data : {
-					 	submission :  JSON.stringify(formData)
-						,asgn_num : asgn
-					}
-				,success : onSuccess()
-			});
-		})
-	});
+// 		})
+// 	});
 	
-	function onSuccess(){
-		var lct = '<c:out value="${asgn.get(lct_num)}"/>';
-		lct = encodeURIComponent(lct);
-		lct = lct.replace("'", "%27");
-		location.href="<%=request.getContextPath()%>/student/classManage/lectureAsgn?lct_num="+lct;
-	}
+// 	function onSuccess(){
+// 		var lct_num = document.getElementsByName("lct_num")[0].value;
+		
+<%-- 		location.href="<%=request.getContextPath()%>/student/classManage/lectureAsgn?lct_num="+lct_num; --%>
+// 	}
 </script>
 </html>
