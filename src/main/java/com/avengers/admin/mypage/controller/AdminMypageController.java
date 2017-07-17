@@ -157,7 +157,10 @@ public class AdminMypageController {
 	 * @return string
 	 */
 	@RequestMapping("/mySchedule")
-	public String mySchedule(Principal principal,Model model){
+	public String mySchedule(
+			Principal principal,
+			HttpSession session,
+			Model model){
 		String scheduleId = principal.getName(); 
 		ArrayList<PerschdVO> perschdList = null;
 		String url="/admin/mypage/mypage";
@@ -166,6 +169,7 @@ public class AdminMypageController {
 			perschdList =  myPageService.selectPerschdList(scheduleId);
 			if(perschdList != null){
 				model.addAttribute("perschdList",perschdList);
+				message="개인정보가 조회되었습니다.";
 			}else{
 				message = "입력된 개인정보가 없습니다.";
 			}
@@ -173,7 +177,7 @@ public class AdminMypageController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		model.addAttribute("message",message);
+		session.setAttribute("message", message);
 		return url;
 	}
 	
@@ -186,6 +190,7 @@ public class AdminMypageController {
 	@RequestMapping("/myScheduleDetail")
 	public String myScheduleDetails(
 			@ModelAttribute(value="scheduleDetail")PerschdVO perschd,
+			HttpSession session,
 			Model model
 			){
 		String url="/admin/mypage/myScheduleDetail";
@@ -200,7 +205,7 @@ public class AdminMypageController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				model.addAttribute("message",message);
+				session.setAttribute("message", message);
 				model.addAttribute("perschd",perschd);
 			}
 		return url;

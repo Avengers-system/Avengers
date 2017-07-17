@@ -13,6 +13,10 @@
 <div class="myScheduleDetail">
 <c:set var="alertPerschd" value="${message}"/>
 <c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
+<c:if test="${!empty message }">
+	<script type="text/javascript">alert('${message}');</script>
+	<c:remove var="message" scope="session"/>
+</c:if>
 <c:choose>
 		<c:when test="${not empty perschd}">
 				<form name="scheduleDetail" id="scheduleDetail">

@@ -10,6 +10,10 @@
 </head>
 <body>
 <c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
+<c:if test="${!empty message }">
+	<script type="text/javascript">alert('${message}');</script>
+	<c:remove var="message" scope="session"/>
+</c:if>
 <h1>mypage</h1>
 <button onclick="myInfo_go()">개인정보</button><br/>
 <button onclick="mySchedule_go()">개인일정관리</button><br/>
