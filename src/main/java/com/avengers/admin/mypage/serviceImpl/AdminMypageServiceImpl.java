@@ -40,7 +40,7 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 	}
 
 	@Override
-	public PerschdVO selectPerschd(String perschd_num)throws SQLException {
+	public PerschdVO selectPerschd(int perschd_num)throws SQLException {
 		PerschdVO pershcdVO = null;
 		pershcdVO = myPageDAO.selectPerschd(perschd_num);
 		return pershcdVO;
@@ -53,12 +53,16 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 
 	@Override
 	public int updatePerschd(PerschdVO perschdVO)throws SQLException {
-		return 0;
+		int success = -1; 
+		success = myPageDAO.updatePerschd(perschdVO);
+		return success;
 	}
 
 	@Override
-	public int deletePerschd(String perschd_num)throws SQLException {
-		return 0;
+	public int deletePerschd(int perschd_num)throws SQLException {
+		int success= -1;
+		success = myPageDAO.deletePerschd(perschd_num);
+		return success;
 	}
 
 }

@@ -11,7 +11,7 @@
 			   ADMIN_NM,
 			   ADMIN_ENG_NM,
 			   ADMIN_REGNO,
-			   TO_CHAR(ADMIN_BIR,'YY-MM-DD'),
+			   ADMIN_BIR,
 			   ADMIN_EMAIL,
 			   ADMIN_TEL,
 			   ADMIN_HP,
@@ -33,8 +33,10 @@
 			ADMIN_ID= #{admin_id},
 			ADMIN_PW = #{admin_pw},
 			ADMIN_NM = #{admin_nm},
-			ADMIN_PIC=#{admin_pic},
-			ADMIN_BIR=TO_DATE(#(admin_bir),'YY-MM-DD'),
+			<if test="${admin_pic} != null">
+				ADMIN_PIC=#{admin_pic},
+			</if>
+			ADMIN_BIR=TO_DATE(#{admin_bir},'YYYY-MM-DD HH24:MI:SS'),
 			ADMIN_POST = #{admin_post},
 			ADMIN_ENG_NM = #{admin_eng_nm},
 			ADMIN_REGNO = #{admin_regno},

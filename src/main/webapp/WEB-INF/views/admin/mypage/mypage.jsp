@@ -14,6 +14,8 @@
 <button onclick="myInfo_go()">개인정보</button><br/>
 <button onclick="mySchedule_go()">개인일정관리</button><br/>
 <br/>
+<br/>
+<br/>
 <div class="mypage">
 <c:choose>
 	<c:when test="${not empty admin}">
@@ -30,6 +32,7 @@
 				성별:<input type="text" name="admin_gen" value="${admin.admin_gen}" readonly="readonly"/><br/>
 				이메일:<input type="text" name="admin_email" value="${admin.admin_email}"/><br/>
 				전화번호:<input type="text" name="admin_tel" value="${admin.admin_tel}" /><br/>
+				휴대폰번호:<input type="text" name="admin_hp" value="${admin.admin_hp}"><br/>
 				주소:<input type="text" name="admin_addr" value="${admin.admin_addr}"/><br/>
 				우편번호:<input type="text" name="admin_zip " value="${admin.admin_zip }"/><br/>
 				은행명:<input type="text" name="admin_bank" value="${admin.admin_bank}"/><br/>
@@ -45,10 +48,10 @@
 		<c:when test="${not empty perschdList}">
 			<c:forEach var="perschd" items="${perschdList}">
 				<form name="scheduleDetail" method="post" action="${myContextPath}/admin/mypage/myScheduleDetail">
-					번호:<input type="text" name="perschd_num" value="${perschd.perschd_num}"><br/>
+					번호:<input type="text" name="perschd_num" value="${perschd.perschd_num}" readonly="readonly"><br/>
 					제목:<input type="text" name="perschd_title" value="${perschd.perschd_title}"><br/>
-					내용:<textarea rows="5" cols="10" name="perschd_cont"></textarea>	<br/>		
-					작성자:<input type="text" name="perschd_writer" value="${perschd.perschd_writer}"><br/>
+					내용:<textarea rows="5" cols="10" name="perschd_cont">${perschd.perschd_cont}</textarea>	<br/>		
+					작성자:<input type="text" name="perschd_writer" value="${perschd.perschd_writer}" readonly="readonly"><br/>
 					시작일:<input type="text" name="perschd_start_date" value="${perschd.perschd_start_date}">
 					종료일 <input type="text" name="perschd_end_date" value="${perschd.perschd_end_date}"/><br/>
 					<input type="submit" value="상세보기"/>
@@ -61,6 +64,8 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
+//관리자가 아이디가 admin이면 개인정보를 변경할 수 있다.
+//readonly remove
 $(function(){
 	if('${admin.admin_post}' == "총괄"){
 			$("input").removeAttr("readonly");

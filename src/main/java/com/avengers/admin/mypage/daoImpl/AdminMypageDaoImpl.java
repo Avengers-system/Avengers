@@ -28,8 +28,9 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 
 	@Override
 	public int updateAdmin(AdminVO adminVO)throws SQLException {
-		int success= sqlSession.update("admin.updateAdmin",adminVO);
-		return 0;
+		int success= -1;
+		success = sqlSession.update("admin.updateAdmin",adminVO);
+		return success;
 	}
 
 	@Override
@@ -40,7 +41,7 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 	}
 
 	@Override
-	public PerschdVO selectPerschd(String perschd_num)throws SQLException {
+	public PerschdVO selectPerschd(int perschd_num)throws SQLException {
 		PerschdVO perschdVO = null;
 		perschdVO = (PerschdVO) sqlSession.selectOne("perschd.getPerschd", perschd_num);
 		return perschdVO;
@@ -53,12 +54,16 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 
 	@Override
 	public int updatePerschd(PerschdVO perschdVO)throws SQLException {
-		return 0;
+		int success = -1;
+		success = sqlSession.update("perschd.updateSchd", perschdVO);
+		return success;
 	}
 
 	@Override
-	public int deletePerschd(String perschd_num)throws SQLException {
-		return 0;
+	public int deletePerschd(int perschd_num)throws SQLException {
+		int success = -1;
+		success = sqlSession.delete("perschd.deleteSchd", perschd_num);
+		return success;
 	}
 
 	

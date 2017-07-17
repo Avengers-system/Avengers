@@ -24,10 +24,22 @@
 		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER='UNIV' 
 	</select>
 	
-	<select id="getPerschd" parameterType="String" resultType="com.avengers.db.dto.PerschdVO">
-		SELECT * FROM PERSCHD WHERE PERSCHD_NUM=#{perschd_num} AND PERSCHD_WRITER=#{perschd_writer}
+	<select id="getPerschd" parameterType="Integer" resultType="com.avengers.db.dto.PerschdVO">
+		SELECT * FROM PERSCHD WHERE PERSCHD_NUM=#{perschd_num} 
 	</select>
 	
+	<update id="updateSchd" parameterType="com.avengers.db.dto.PerschdVO">
+		UPDATE PERSCHD
+		SET PERSCHD_TITLE = #{perschd_title},
+			PERSCHD_CONT= #{perschd_cont},
+			PERSCHD_START_DATE = TO_DATE(#{perschd_start_date},'YYYY-MM-DD HH24:MI:SS'),
+			PERSCHD_END_DATE = TO_DATE(#{perschd_end_date},'YYYY-MM-DD HH24:MI:SS')
+		WHERE PERSCHD_NUM=#{perschd_num} 
+	</update>
+	
+	<delete id="deleteSchd" parameterType="java.lang.String">
+		DELETE FROM PERSCHD WHERE PERSCHD_NUM=#{perschd_num}
+	</delete>
 	
 </mapper>
 
