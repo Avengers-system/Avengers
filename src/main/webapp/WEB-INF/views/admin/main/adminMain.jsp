@@ -102,7 +102,7 @@
 		location.href="${myContextPath}/admin/main/adminMain";
 	}
 	function logout_go(){
-		location.href="${myContextPath}/common/logout";
+		location.href="${myContextPath}/logout";
 	}
 	function mypage_go(){
 		location.href="${myContextPath}/admin/mypage/";

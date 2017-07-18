@@ -82,7 +82,7 @@ public class AdminMainDaoImpl implements AdminMainDao {
 	}
 	@Override
 	public ArrayList<PerschdVO> selectPerschdList(String adminId) throws SQLException {
-		ArrayList<PerschdVO> personScheduleList = (ArrayList<PerschdVO>) sqlSession.selectList("Perschd.selectPerschdList1", adminId);
+		ArrayList<PerschdVO> personScheduleList = (ArrayList<PerschdVO>) sqlSession.selectList("perschd.selectPerschdList", adminId);
 		return personScheduleList;
 	}
 	@Override

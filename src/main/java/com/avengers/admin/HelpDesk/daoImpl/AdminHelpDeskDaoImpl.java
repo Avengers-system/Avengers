@@ -30,7 +30,7 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 		HashMap map = new HashMap();
 		map.put("BOARD_BC", boardVO.getBoard_bc());
 		System.out.println(map.get("BOARD_BC"));
-		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("Board.selectBoardNoticeList",map,rowBounds);
+		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("board.selectBoardNoticeList",map,rowBounds);
 		
 		return boardList;
 	}
@@ -45,7 +45,7 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 	@Override
 	public BoardVO selectBoard(String bc_num)throws SQLException {
 		
-		BoardVO result = (BoardVO)sqlSession.selectOne("Board.selectBoardOne",bc_num);
+		BoardVO result = (BoardVO)sqlSession.selectOne("board.selectBoardOne",bc_num);
 		
 		
 		System.out.println("dao"+result.getBoard_date());
@@ -65,7 +65,7 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 		map.put("BOARD_AF", boardVO.getBoard_af());		
 		map.put("BOARD_BC", boardVO.getBoard_bc());
 				
-		int boardInsert = sqlSession.update("Board.insertBoard", map);
+		int boardInsert = sqlSession.update("board.insertBoard", map);
 		System.out.println("뭔가찍힘");
 		System.out.println(boardVO.getBoard_title());
 		System.out.println(boardVO.getBoard_writer());
@@ -80,14 +80,14 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 		map.put("BOARD_TITLE", boardVO.getBoard_title());
 		map.put("BOARD_CONT", boardVO.getBoard_cont());
 		map.put("BOARD_AF", boardVO.getBoard_af());	
-		int boardUpdate = sqlSession.update("Board.updateBoard", map);
+		int boardUpdate = sqlSession.update("board.updateBoard", map);
 		
 		return boardUpdate;
 	}
 
 	@Override
 	public int deleteBoard(int board_num)throws SQLException {
-		int result = sqlSession.delete("Board.deleteBoard",board_num);
+		int result = sqlSession.delete("board.deleteBoard",board_num);
 		return result;
 	}
 
@@ -95,7 +95,7 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 	public BoardVO selectInsertBaseData() throws SQLException {
 		BoardVO boardVo;
 		System.out.println("insertForm Dao");
-		boardVo = (BoardVO) sqlSession.selectOne("Board.insertBaseData");
+		boardVo = (BoardVO) sqlSession.selectOne("board.insertBaseData");
 		
 		return boardVo;
 	}
@@ -106,7 +106,7 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 
 		map.put("BOARD_BC", boardVO.getBoard_bc());
 		map.put("BOARD_TITLE", boardVO.getBoard_title());
-		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("Board.selectSearchList", map);
+		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("board.selectSearchList", map);
 		return boardList;
 	}
 
@@ -115,7 +115,7 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 		
 		map.put("BOARD_NUM", board_num);
 		map.put("BOARD_COUNT", board_count);
-		int result = (int) sqlSession.update("Board.updateBoardCount", map);
+		int result = (int) sqlSession.update("board.updateBoardCount", map);
 		
 		return result;
 	}
