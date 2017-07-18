@@ -34,8 +34,32 @@ public class StudVO {
 	private String stud_guad_nm;//보호자 이름
 	private String stud_guad_rel;//보호자 관계
 	private String stud_guad_hp;//보호자 핸드폰
+	private String stud_max_crd;//최대신청가능 학점
 	
-	
+	public String getStud_guad_nm() {
+		return stud_guad_nm;
+	}
+	public void setStud_guad_nm(String stud_guad_nm) {
+		this.stud_guad_nm = stud_guad_nm;
+	}
+	public String getStud_guad_rel() {
+		return stud_guad_rel;
+	}
+	public void setStud_guad_rel(String stud_guad_rel) {
+		this.stud_guad_rel = stud_guad_rel;
+	}
+	public String getStud_guad_hp() {
+		return stud_guad_hp;
+	}
+	public void setStud_guad_hp(String stud_guad_hp) {
+		this.stud_guad_hp = stud_guad_hp;
+	}
+	public String getStud_max_crd() {
+		return stud_max_crd;
+	}
+	public void setStud_max_crd(String stud_max_crd) {
+		this.stud_max_crd = stud_max_crd;
+	}
 	public String getStud_num() {
 		return stud_num;
 	}
