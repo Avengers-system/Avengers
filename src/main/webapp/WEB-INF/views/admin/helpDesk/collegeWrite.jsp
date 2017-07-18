@@ -18,10 +18,9 @@
 	날짜    :<input type="text" name="board_date" readonly value="${insertBoard.board_date}"><br>
 	<%User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); %>
 	작성자  :<input type="text" name="board_writer" readonly value="<%=user.getUsername()%>"><br>
-	첨부일  :<input type="text" name="board_af"><br>
+	첨부파일  :<input type="file" name="board_af"><br>
 	분류번호:<input type="text" name="board_bc" readonly value="COLLEGE"><br>
 	조회수:<input type="text" name="board_count" readonly value="0"><br>
-	
 	<input type="submit" value="등록"> 
 	
 	

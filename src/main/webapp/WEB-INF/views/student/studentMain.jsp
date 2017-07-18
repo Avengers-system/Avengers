@@ -17,7 +17,7 @@
 			<input type="button" value="수강신청" onclick="location.href='${pageContext.request.contextPath}/student/admissionApplication'"> 
 			<input type="button" value="등록/장학"	onclick="location.href='scholarshipRegister.jsp'"> 
 			<input type="button" value="상담" onclick="location.href='consultGo.jsp'">
-			<input type="button" value="Help Desk">
+			<input type="button" value="HelpDesk" onclick="location.href='${pageContext.request.contextPath}/student/helpDeskMain'">
 
 		</div>
 	</div>

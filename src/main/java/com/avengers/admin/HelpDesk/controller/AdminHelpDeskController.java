@@ -1,10 +1,13 @@
 package com.avengers.admin.HelpDesk.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.avengers.admin.HelpDesk.service.AdminHelpDeskService;
 import com.avengers.db.dto.BoardVO;
@@ -232,8 +236,11 @@ public class AdminHelpDeskController {
 	 * 2.게시판 글쓰기
 	 * */
 	@RequestMapping("/portalWriteForm")//포털게시판 글쓰기 양식
-	public String adminPortalWriteForm(@ModelAttribute BoardVO boardVO, Model model,
+	public String adminPortalWriteForm(
+			@ModelAttribute BoardVO boardVO
+			,Model model,
 			String bc_num){
+				
 		BoardVO boardVo=null;
 
 		System.out.println("controller" + bc_num);
@@ -244,7 +251,6 @@ public class AdminHelpDeskController {
 		}
 		model.addAttribute("insertBoard",boardVo);
 
-		System.out.println(boardVo.getBoard_num()+"controller");
 		return "admin/helpDesk/portalWrite";
 	}
 	
@@ -269,7 +275,6 @@ public class AdminHelpDeskController {
 			String bc_num){
 		BoardVO boardVo=null;
 		
-		System.out.println("controller" + bc_num);
 		try {
 			boardVo = adminHelpDeskService.selectInsertBaseData();
 		} catch (SQLException e) {
@@ -330,27 +335,75 @@ public class AdminHelpDeskController {
 
 	/**글쓰기 저장하는 곳*/
 	@RequestMapping("/portalWrite")// 포털게시판 글쓰기 저장
-	public String adminPortalWrite(HttpServletRequest req, Model model,
-			String bc_num){
+	public String adminPortalWrite(HttpServletRequest req,
+			 @RequestParam("board_af")MultipartFile af
+			,@ModelAttribute BoardVO boardVO
+			,Model model
+			, HttpSession sesssion){
+		
+			String url = "redirect:portalNoticeList";
+			String upload = sesssion.getServletContext().
+					getRealPath("resources/board_pics");
+			String message="수정이 실패하였습니다";
+			
+			//파일저장
+			
+			
+			if (!af.isEmpty()) {
+				File file = new File(upload, af.getOriginalFilename());
+				
+				try {
+					af.transferTo(file);
+					boardVO.setBoard_af(file.getName());
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+			try {
+				int success = adminHelpDeskService.insertBoard(boardVO);
+				if (success >=1) {
+					message="수정이 완료되었습니다";
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			sesssion.setAttribute("message", message);
+			return url;
+			
+			
+			
+			/*if (!boardVO.getBoard_af().isEmpty()) {
+				File file = new File(upload, boardVO.getBoard_af());
+				
+				try {
+					af.transferTo(file);
+					adminHelpDeskService.insertBoard(boardVO);
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}*/
 
-		BoardVO boardVO = new BoardVO();
-		boardVO.setBoard_num(Integer.parseInt(req.getParameter("board_num")));
-		boardVO.setBoard_title(req.getParameter("board_title"));
-		boardVO.setBoard_cont(req.getParameter("board_cont"));
-		boardVO.setBoard_af(req.getParameter("board_af"));
-		boardVO.setBoard_writer(req.getParameter("board_writer"));
-		boardVO.setBoard_bc("PORTAL");
-
-		System.out.println(boardVO.getBoard_cont()+"service");
-
-		try {
-			adminHelpDeskService.insertBoard(boardVO);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-
-		return "redirect:portalNoticeList";
+//			boardVO.setBoard_num(Integer.parseInt(req.getParameter("board_num")));
+//			boardVO.setBoard_title(req.getParameter("board_title"));
+//			boardVO.setBoard_cont(req.getParameter("board_cont"));
+//			boardVO.setBoard_af(req.getParameter("board_af"));
+//			boardVO.setBoard_writer(req.getParameter("board_writer"));
+//			boardVO.setBoard_bc("PORTAL");
+			
+//		return "redirect:portalNoticeList";
 	}
 	
 	@RequestMapping("/deptWrite")// 학과게시판 글쓰기 저장
@@ -376,6 +429,8 @@ public class AdminHelpDeskController {
 		
 		return "redirect:deptNoticeList";
 	}
+	
+	
 	@RequestMapping("/faqWrite")// FAQ게시판 글쓰기 저장
 	public String adminFaqWrite(HttpServletRequest req, Model model,
 			String bc_num){

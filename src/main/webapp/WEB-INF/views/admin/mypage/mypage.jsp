@@ -23,7 +23,8 @@
 <div class="mypage">
 <c:choose>
 	<c:when test="${not empty admin}">
-		<form name="adminInfo" method="post" enctype="multipart/form-data" action="${myContextPath}/admin/mypage/myInfoUpdate">
+		<form name="adminInfo" method="post" enctype="multipart/form-data" 
+		action="${myContextPath}/admin/mypage/myInfoUpdate">
 			사진:<img src="<%=request.getContextPath()%>/resources/myInfo_images/${admin.admin_pic}" width="100pt"/>
 					 <input type="file"  name="file" onclick="ImageChange_go()"/><br/>
 				아이디:<input type="text" name="admin_id" value="${admin.admin_id}"/><br/>
