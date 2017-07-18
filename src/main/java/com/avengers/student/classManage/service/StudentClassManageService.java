@@ -14,6 +14,7 @@ import com.avengers.db.dto.EqVO;
 import com.avengers.db.dto.ExamVO;
 import com.avengers.db.dto.LaVO;
 import com.avengers.db.dto.LctVO;
+import com.avengers.db.dto.SubVO;
 
 
 
@@ -35,8 +36,37 @@ public interface StudentClassManageService {
 		
 		//전체목록
 		public ArrayList<Map<String, String>> selectClassList(int firstRow,int endRow) throws SQLException;
-
 		
+		//배현상
+		//강의계획서
+		public Map<String, String> selectDetailLct(String lct_num) throws SQLException; 
+		
+		//배현상
+		public ArrayList<Map<String, String>> selectExamList(Map<String,String> key) throws SQLException;
+		
+		//배현상
+		//시험화면에서 응시버튼을 누를 경우 화면에 뿌려질 시험문제리스트
+		public ArrayList<EqVO> selectEqList(String exam_num) throws SQLException; 
+		
+		//배현상
+		//학생이 시험제출버튼을 눌렀을 때 학생답안을 저장
+		public int insertSa(ArrayList<Map<String, String>> saList) throws SQLException;
+		
+		//배현상
+		//학생의 응시테이블 응시여부 '응시'로 업데이트
+		public int updateTeCheck(String te_num) throws SQLException;
+		
+		//배현상
+		//과목화면에 뿌려질 리스트
+		public ArrayList<Map<String, String>> selectAsgnList(Map<String, String> key) throws SQLException;
+		
+		//배현상
+		//과목상세페이지
+		public Map<String, String> selectAsgnInfo(Map<String, String> key) throws SQLException;
+		
+		//배현상
+		//학생이 과목제출버튼을 누른 경우 업데이트 구문
+		public int updateSubmissionCheck(SubVO subVO) throws SQLException;
 		//////강의 상세 페이지
 		
 		//강의계획서

@@ -3,5 +3,4 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 
 
-푸터입니다.
-
+        <div class="col-xs-12">CopyRight_Avengers</div>

@@ -5,5 +5,5 @@
 
 <script>
 alert("로그아웃 완료");
-location.href='<%=request.getContextPath()%>/login';
+location.href='${pageContext.request.contextPath}/login';
 </script>

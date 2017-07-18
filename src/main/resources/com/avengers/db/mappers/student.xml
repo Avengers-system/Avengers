@@ -4,7 +4,7 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="student">
-	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
+
 	<select id="getInSchoolCount" resultType="int">
 		SELECT count(*) FROM STUDENT WHERE STUD_SCHREG_CODE = '재학'
 	</select>
@@ -45,6 +45,13 @@
 	
 	<select id="getStudentInfo" parameterType="String" resultType="com.avengers.db.dto.StudVO">
 		select * from student where stud_num=#{stud_num}
+	</select>
+	
+	<select id="selectDepartmentStudentList" parameterType="String" resultType="com.avengers.db.dto.StudVO">
+		SELECT STUD_NUM, STUD_NM, STUD_SCHREG_CODE, STUD_GRD
+		FROM STUDENT, PROFESSOR
+		WHERE PRFS_DEPT = STUD_DEPT
+		AND PRFS_NUM = #{prfs_num}
 	</select>
 	
 </mapper>

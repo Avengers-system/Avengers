@@ -1,10 +1,13 @@
 package com.avengers.student.admissionApplication.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -331,8 +334,51 @@ public class StudentAdmissionApplicationController {
 		   return "redirect:admissionApplication";
 	   }
 	   
-	   
-	   
+	   /**
+	    * 시간표 pdf 보기
+	    * @param model
+	    * @return
+	    */
+	   @RequestMapping("/pdfView")
+	   public String pageRankPdfView(Model model,Principal principal){
+		   AdmissionApplicationVO admissionVO = new AdmissionApplicationVO();
+		   HashMap<String,String> timeList = new HashMap<String,String>();
+		   admissionVO.setStud_num(principal.getName());
+		   try {
+			List<HashMap<String,String>> admissionApplicationList=studentService.selectTlList(admissionVO);
+			for (HashMap<String, String> admissionMap : admissionApplicationList) {
+				//해쉬맵리스트에서 수강한강좌 하나씩 꺼내서 그중에 시간 구해옴
+				String lr_hour = admissionMap.get("lr_hour");
+				String lct_nm =  admissionMap.get("lct_nm");
+				String prfs_nm =  admissionMap.get("prfs_nm");
+				// /로 자름
+				String[] arr1 = lr_hour.split("/");
+				
+				// /로 자른 애들 수만큼 반복
+				for (String hour : arr1) {
+					// ""으로 자름 결국 문자 하나씩 나옴
+					String[] arr2 = hour.split("");
+					for (int i = 2; i < arr2.length; i++) {
+						timeList.put(arr2[1]+arr2[i], lct_nm+" - "+prfs_nm);
+					}
+				}
+			}
+						
+					
+				
+			
+			
+			
+			
+			
+			
+			model.addAttribute("TlList", timeList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  
+		   
+	      return "pagePDFView"; 
+	   }
 	   
 	   
 }

@@ -5,6 +5,53 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
+
+<select id="getFAQListCount" parameterType="com.avengers.db.dto.BoardVO" resultType="int">
+    SELECT COUNT(*)  FROM BOARD WHERE BOARD_BC ='FAQ'  
+        <if test="searchFiled != null and searchFiled != ''">
+            AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
+        </if>
+</select>
+ 
+<select id="getFAQList" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO">
+    SELECT 
+         a.BOARD_NUM, a.BOARD_TITLE, a.BOARD_CONT, a.BOARD_WRITER, a.BOARD_DATE, a.BOARD_AF, a.BOARD_COUNT, a.BOARD_BC
+    FROM (
+        SELECT ROWNUM rnum, s.*
+        FROM (
+            SELECT  BOARD_NUM, BOARD_TITLE, BOARD_CONT, BOARD_WRITER, BOARD_DATE, BOARD_AF, BOARD_COUNT, BOARD_BC
+            FROM BOARD
+            WHERE BOARD_BC ='FAQ'
+            <if test="searchFiled != null and searchFiled != ''">
+                AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
+            </if>
+            ORDER BY BOARD_NUM DESC
+        )s
+    )a 
+WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
+</select>
+
+<select id="getFAQDetail" parameterType="int" resultType="com.avengers.db.dto.BoardVO">
+	select * from board where board_num=#{board_num}
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 	<!-- 게시판중 포탈공지사항을 검색하는 구문  -->	
 	<select id="selectPortalNoticeList" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
 		SELECT * FROM BOARD WHERE BOARD_BC=#{BOARD_BC}  
@@ -129,6 +176,7 @@
 		 from board where BOARD_BC=#{BOARD_BC}
 	</select>
 	
+
 	<update id="updateBoardCount" parameterType="map">
 		update board
 		set BOARD_COUNT = #{BOARD_COUNT} + 1
@@ -145,6 +193,7 @@
 <!-- 		select * from board where BOARD_BC=#{board_bc} -->
 <!-- 	</update> -->
 	
+
 
 
 	<!-- 학사일정게시판 조회 -->	
