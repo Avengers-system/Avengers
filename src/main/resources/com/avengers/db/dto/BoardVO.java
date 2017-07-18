@@ -15,6 +15,15 @@ public class BoardVO extends PageVO{
 	private Date board_date;// 게시판 작성일
 	private String board_af;// 첨부일
 	private String board_bc;// 게시판분류 고유번호
+	private String board_count;// 게시판분류 고유번호
+
+	public String getBoard_count() {
+		return board_count;
+	}
+
+	public void setBoard_count(String board_count) {
+		this.board_count = board_count;
+	}
 
 	public int getBoard_num() {
 		return board_num;

@@ -83,14 +83,14 @@ public class StudentMainController {
 			studVO = studentMainService.selectStudInfo(stud_num);
 			deptVO = studentMainService.selectDept(studVO.getStud_dept());
 		    bc_dept = "b"+deptVO.getDept_nm();
-			perschdList = studentMainService.selectPerschd(stud_num);
-			studentLectureList = studentMainService.selectLectureList(stud_num,lct_yr,lct_qtr);
-			studentConsult = studentMainService.selectCnsList(stud_num);
-			
-			selectPortalNoticeList = studentMainService.selectPortalNoticeList();
-			selectSchoolNoticeList = studentMainService.selectSchoolNoticeList();
-			selectDepartmentNoticeList = studentMainService.selectDepartmentNoticeList(bc_dept);
-			selectSchoolScheduleList = studentMainService.selectSchoolScheduleList();
+//			perschdList = studentMainService.selectPerschd(stud_num);
+//			studentLectureList = studentMainService.selectLectureList(stud_num,lct_yr,lct_qtr);
+//			studentConsult = studentMainService.selectCnsList(stud_num);
+//			
+//			selectPortalNoticeList = studentMainService.selectPortalNoticeList();
+//			selectSchoolNoticeList = studentMainService.selectSchoolNoticeList();
+//			selectDepartmentNoticeList = studentMainService.selectDepartmentNoticeList(bc_dept);
+//			selectSchoolScheduleList = studentMainService.selectSchoolScheduleList();
 			
 //			allLevelComplete = studentMainService.allGrades(stud_num);
 			

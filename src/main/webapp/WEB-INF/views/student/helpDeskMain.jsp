@@ -10,7 +10,6 @@
 </head>
 
 <style>
-<<<<<<< HEAD
 </style>
 
 <body>
