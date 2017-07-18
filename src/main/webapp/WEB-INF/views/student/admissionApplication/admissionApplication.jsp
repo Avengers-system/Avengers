@@ -31,7 +31,7 @@
 	<br> 현재 신청 학점 : ${cur_score}
 	<br> 
 	<!-- 시간표보기 -->
-	<button onclick="${pageContext.request.contextPath}/student/pdfView">시간표보기</button> 
+	<button onclick="location.href='${pageContext.request.contextPath}/student/pdfView'">시간표보기</button> 
 	<br><br>
 	<!-- 셀렉트박스와 검색 셀렉트박스는 학년,이수구분 -->
 	<form action = "${pageContext.request.contextPath}/student/admissionApplication" method="post">
