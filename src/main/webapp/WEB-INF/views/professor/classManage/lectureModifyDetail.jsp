@@ -42,6 +42,14 @@
 		<input type="submit" value="수정"/>
 <%-- 		<input type="submit" onclick="location.href='<%=request.getContextPath()%>/professor/classManage/lectureModify?lct_num=${detailLct.get('lct_num') }'" value="수정"/> --%>
 	</form>
-		<button onclick="location.href='<%=request.getContextPath()%>/professor/classManage/lectureDetail?lct_num=${detailLct.get('lct_num')}'">취소</button>
+		<button onclick="location.href='<%=request.getContextPath()%>/professor/classManage/lectureDetail'">취소</button>
+		
+		
+		
+		
+		
+<!-- 		평가방법이 100%가 넘는 경우 체크해야됨 -->
+<!-- 		교재를 입력안하는 경우도 해야되고 -->
+<!-- 		강의내용을 작성 안하는 경우도 생각해야됨 -->
 </body>
 </html>

@@ -11,4 +11,17 @@
 		WHERE TE_NUM=#{te_num}
 	</update>
 	
+	<!-- 시험을 등록하면 자동으로 학생들을 응시테이블에 insert -->
+	<insert id="insertStudTe" parameterType="java.util.HashMap">
+		INSERT INTO TE(TE_NUM, TE_CHECK, TE_STUD, TE_EXAM)
+		SELECT 'TE'||TE_SEQ.NEXTVAL
+			  ,'2'
+			  ,STUD_NUM
+			  ,#{exam_num}
+		FROM   STUDENT, TL
+		WHERE  STUD_NUM = TL_STUD
+		AND    TL_LCT = #{lct_num}
+	</insert>
+	
+	
 </mapper>

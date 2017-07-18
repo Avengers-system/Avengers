@@ -200,7 +200,7 @@ public class StudentClassManageDaoImpl implements StudentClassManageDao{
 	@Override
 	public Map<String, String> selectDetailLct(String lct_num)
 			throws SQLException {
-		Map<String, String> detailLct = (Map<String, String>) sqlSession.selectOne("Lct.selectDetailLecture", lct_num);
+		Map<String, String> detailLct = (Map<String, String>) sqlSession.selectOne("lct.selectDetailLecture", lct_num);
 		return detailLct;
 	}
 	//배현상 시험리스트

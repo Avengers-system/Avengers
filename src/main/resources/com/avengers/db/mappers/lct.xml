@@ -3,7 +3,7 @@
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Lct">
+<mapper namespace="lct">
   <!-- 대망의 resultMap 사용부분이다. 이로직을 사용하기 위해 이 주석을 보고있다면 일단 심호흡을 먼저 하도록하자 심신미약자는 다른팀원에게 이로직을 
   부탁하도록 권장한다. 자 이제 시작이다. 기본적으로 사용하는때는 2테이블 이상 조인을 한뒤에 리턴값이 하나의 VO로는 처리가 안될때 사용한다.
   resultMap id="MainLct" 이부분은 사용자가 resultMap의 아이디를 임의로 정하는것으로 밑에 resultMap="MainLct" 이부분에 사용된다.
@@ -146,6 +146,23 @@
 		ORDER BY LCT_YR DESC, LCT_QTR DESC
 	</select>
 	
+	<update id="updateLctInfo" parameterType="com.avengers.db.dto.LctVO">
+		UPDATE LECTURE
+		SET    LCT_ME_RATE = #{lct_me_rate}
+		      ,LCT_FE_RATE = #{lct_fe_rate}
+		      ,LCT_ASGN_RATE = #{lct_asgn_rate}
+		      ,LCT_ATDC_RATE = #{lct_atdc_rate}
+		      ,LCT_TB = #{lct_tb}
+		      ,LCT_CONT = #{lct_cont}
+		WHERE  LCT_NUM = #{lct_num}
+	</update>
 	
-	
+	<!-- 시험기본키에 쓸 년도와 학기 들고오는 쿼리문 -->
+	<select id="selectLctYearQtr" parameterType="java.lang.String" resultType="com.avengers.db.dto.LctVO">
+		SELECT LCT_YR
+			  ,LCT_QTR
+		FROM   LECTURE
+		WHERE  LCT_NUM = #{lct_num}
+	</select>
+	<!-- 밥먹고 와서 다오, 서비스 완성하고 기본키만들자 -->
 </mapper>

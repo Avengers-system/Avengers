@@ -125,7 +125,7 @@ public class StudentMainDaoImpl implements StudentMainDao{
 	@Override
 	public ArrayList<Map<String, String>> selectClassList(String stud_num)
 			throws SQLException {
-		ArrayList<Map<String, String>> classList = (ArrayList<Map<String, String>>) sqlSession.selectList("Lct.selectTlList", stud_num);
+		ArrayList<Map<String, String>> classList = (ArrayList<Map<String, String>>) sqlSession.selectList("lct.selectTlList", stud_num);
 		return classList;
 	}
 

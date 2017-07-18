@@ -38,7 +38,7 @@
 		4.강의내용<br/>
 		<textarea rows="10" cols="100" readonly>${detailLct.get('lct_cont')}</textarea>
 	</form>
-	<button onclick="location.href='<%=request.getContextPath()%>/professor/classManage/lectureModifyDetail?lct_num=${detailLct.get('lct_num') }'">수정</button>
-	<button onclick="location.href='<%=request.getContextPath()%>/professor/classManage/lectureMain?lct_num=${detailLct.get('lct_num') }'">뒤로가기</button> 
+	<button onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureModifyDetail'">수정</button>
+	<button onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureMain'">뒤로가기</button> 
 </body>
 </html>

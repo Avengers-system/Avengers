@@ -18,7 +18,7 @@
 		분반 : ${ prfsLct.get("lct_nm_class")}<br/>
 		강의시간 : ${ prfsLct.get("lr_date")}<br/>
 		강의실 : ${ prfsLct.get("lr_lrc")}
-		<button onclick="location.href='<%=request.getContextPath()%>/professor/classManage/lectureMain?lct_num=${prfsLct.get('lct_num')}'">강의홈이동</button>
+		<button onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureMain?lct_num=${prfsLct.get('lct_num')}'">강의홈이동</button>
 	</c:forEach>
 </body>
 </html>

@@ -24,8 +24,8 @@
 			,SUBSTR(LCT_NM,-1) AS LCT_NM
 			,case when EXAM_TYPE = 1 then '중간고사' else '기말고사' end AS EXAM_TYPE
 			,TO_CHAR(EXAM_DATE,'YY/MM/DD') AS EXAM_DATE
-			,TO_CHAR(EXAM_START_DATE,'HH24:MI:SS') AS EXAM_START_DATE
-			,TO_CHAR(EXAM_END_DATE,'HH24:MI:SS') AS EXAM_END_DATE
+			,EXAM_START_DATE
+			,EXAM_END_DATE
 			,case when TE_CHECK = 1 then '응시' else '미응시' end AS TE_CHECK
 			,TE_NUM
 			,EXAM_NUM
@@ -38,6 +38,55 @@
 		AND   LCT_NUM = #{lct_num}
 	</select>
 	
+	<resultMap id="prfsExamList" type="java.util.HashMap">
+		<result javaType="java.lang.String" column="EXAM_NUM" property="exam_num"/>
+		<result javaType="java.lang.String" column="LCT_YR" property="lct_yr"/>
+		<result javaType="java.lang.String" column="LCT_QTR" property="lct_qtr"/>
+		<result javaType="java.lang.String" column="LCT_NM" property="lct_nm"/>
+		<result javaType="java.lang.String" column="LCT_NM_CLASS" property="lct_nm_class"/>
+		<result javaType="java.lang.String" column="EXAM_TYPE" property="exam_type"/>
+		<result javaType="java.lang.String" column="EXAM_DATE" property="exam_date"/>
+		<result javaType="java.lang.String" column="EXAM_START_DATE" property="exam_start_date"/>
+		<result javaType="java.lang.String" column="EXAM_END_DATE" property="exam_end_date"/>
+	</resultMap>
+	
+	<select id="selectPrfsExamList" parameterType="java.util.HashMap" resultMap="prfsExamList">
+		SELECT EXAM_NUM
+		      ,LCT_YR
+		      ,LCT_QTR
+		      ,REGEXP_REPLACE(LCT_NM,'.{1}$') AS LCT_NM
+		      ,SUBSTR(LCT_NM,-1) AS LCT_NM_CLASS
+		      ,case when EXAM_TYPE = 1 then '중간고사' else '기말고사' end AS EXAM_TYPE
+		      ,TO_CHAR(EXAM_DATE,'YY/MM/DD') AS EXAM_DATE
+		      ,EXAM_START_DATE
+		      ,EXAM_END_DATE
+		FROM   EXAM, PROFESSOR, LECTURE
+		WHERE  EXAM_LCT = LCT_NUM
+		AND    PRFS_NUM = LCT_PRFS
+		AND    PRFS_NUM = #{prfs_num}
+		AND    LCT_NUM = #{lct_num}
+	</select>
+	
+	<insert id="insertExam" parameterType="com.avengers.db.dto.ExamVO">
+		INSERT INTO EXAM(EXAM_NUM, EXAM_TYPE, EXAM_DATE, EXAM_START_DATE, EXAM_END_DATE, EXAM_LCT)
+		VALUES(#{exam_num}||'E'||lpad(EXAM_SEQ.nextval,5,0), #{exam_type}, TO_DATE(#{exam_date},'yyyy/mm/dd'), #{exam_start_date} , #{exam_end_date} ,#{exam_lct})
+	</insert>
+	
+	<!-- 방금 등록한 시험 기본키 가져오기 -->
+	<select id="selectExamPk" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT EXAM_NUM
+		FROM EXAM
+		WHERE EXAM_LCT = #{exam_lct}
+		AND   EXAM_CHECK = '2'
+		ORDER BY EXAM_NUM DESC
+	</select>
+	
+	<!-- 학생등록을 완료한 시험은 exam_check를 1로 업데이트해줌(응시테이블에 학생들을 등록했다) -->
+	<update id="updateExamCheck" parameterType="java.lang.String">
+		UPDATE EXAM
+		SET    EXAM_CHECK = '1'
+		WHERE  EXAM_NUM = #{exam_num}
+	</update>
 	
 </mapper>
 

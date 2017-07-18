@@ -6,16 +6,21 @@
 <mapper namespace="eq">
 	<select id="selectEqList" parameterType="java.lang.String" resultType="com.avengers.db.dto.EqVO">
 		SELECT EQ_NUM,
-			EQ_QTNA,
-			EQ_QTN,
-			EQ_QTN_TYPE,
-			EQ_EXMP_ONE,
-			EQ_EXMP_TWO,
-			EQ_EXMP_THREE,
-			EQ_EXMP_FOUR
+				EQ_QTNA,
+				EQ_QTN,
+				EQ_QTN_TYPE,
+				EQ_EXMP_ONE,
+				EQ_EXMP_TWO,
+				EQ_EXMP_THREE,
+				EQ_EXMP_FOUR
 		FROM   EQ, EXAM
 		WHERE  EXAM_NUM = EQ_EXAM
 		AND    EXAM_NUM = #{exam_num}
 	</select>
 	
+	<select id="selectEqAllDataList" parameterType="java.lang.String" resultType="com.avengers.db.dto.EqVO">
+		SELECT *
+		FROM   EQ
+		WHERE  EQ_EXAM = #{exam_num}
+	</select>
 </mapper>

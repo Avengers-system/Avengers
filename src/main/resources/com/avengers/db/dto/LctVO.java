@@ -20,7 +20,7 @@ public class LctVO {
 	private int lct_me_rate;//중간고사비율
 	private int lct_fe_rate;//기말고사비율
 	private int lct_atdc_rate;//출결비율
-	private int asgn_rate;//과제비율
+	private int lct_asgn_rate;//과제비율
 	private String lct_prfs;//교수번호
 	private String lct_sjt;//과목번호
 	
@@ -98,11 +98,11 @@ public class LctVO {
 	public void setLct_atdc_rate(int lct_atdc_rate) {
 		this.lct_atdc_rate = lct_atdc_rate;
 	}
-	public int getAsgn_rate() {
-		return asgn_rate;
+	public int getLct_asgn_rate() {
+		return lct_asgn_rate;
 	}
-	public void setAsgn_rate(int asgn_rate) {
-		this.asgn_rate = asgn_rate;
+	public void setLct_asgn_rate(int lct_asgn_rate) {
+		this.lct_asgn_rate = lct_asgn_rate;
 	}
 	public String getLct_prfs() {
 		return lct_prfs;

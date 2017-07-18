@@ -44,7 +44,7 @@ public class ProfessorMainDaoImpl implements ProfessorMainDao {
 		lctVO.setLct_prfs(lct_prfs);
 		lctVO.setLct_yr(lct_yr);
 		lctVO.setLct_qtr(lct_qtr);
-		List<HashMap<String, String>> lctList = (List<HashMap<String, String>>)sqlSession.selectList("Lct.selectLctList", lctVO);
+		List<HashMap<String, String>> lctList = (List<HashMap<String, String>>)sqlSession.selectList("lct.selectLctList", lctVO);
 		return lctList;
 	}
 

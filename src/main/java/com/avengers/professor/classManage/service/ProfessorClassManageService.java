@@ -23,7 +23,6 @@ public interface ProfessorClassManageService {
 		public ArrayList<LctVO> selectLctList(String key,int firstRow,int endRow) throws SQLException; //강의 전체 리스트를 불러온다.
 		public LctVO selectLct(String lct_num ) throws SQLException; //검색한 특정 강의를 불러온다.
 		public int insertLct(LctVO lctVO) throws SQLException; //강의계획서에 보여줄 내용을 등록한다.
-		public int updateLct(LctVO lctVO,String lct_num) throws SQLException; //강의계획서에 보여줄 내용을 수정한다.
 		//시험관리-시험조회
 		public ArrayList<ExamVO> selectExamList(String key,int firstRow,int endRow) throws SQLException; //해당과목의 시험전체 리스트를 불러온다.
 		public ExamVO selectExam(String exam_num) throws SQLException; //선택한 특정 시험의 상세정보를 가져온다.
@@ -31,7 +30,6 @@ public interface ProfessorClassManageService {
 		public int deleteExam(String exam_num) throws SQLException; //해당 시험을 삭제한다.
 		//시험관리-응시자조회
 		public ArrayList<TeVO> selectTeList(String key,String exam_lct,int firstRow,int endRow) throws SQLException; //현재 강의에 대한 시험 응시현황을 불러온다.먼저 exam테이블에 강의고유번호로 시험고유번호를 구한뒤 te에서 시험고유번호로 검색한다.
-		public ArrayList<EqVO> selectEqList(String exam_num) throws SQLException; //교수가 클릭한 시험에대한 문제정보들을 불러온다.
 		public ArrayList<SaVO> selectSaList(String te_num) throws SQLException; //교수가 응시확인 화면에서 클릭한 해당항목에 대한 학생의 답안들을 불러온다.
 		public int insertTe(TeVO teVO) throws SQLException; //교수가 학생이 응시한 시험에대해 채점을 한다.
 		public int updateTe(TeVO teVO,String te_num) throws SQLException; //시험의 채점에 대해서 수정할수있다.
@@ -65,15 +63,25 @@ public interface ProfessorClassManageService {
 		public ArrayList<LaVO> selectLaList(int firstRow,int endRow) throws SQLException; //수강평가 전체 리스트를 불러온다.
 		public LaVO selectLa(String la_num ) throws SQLException; //특정 수강평가를 조회한다.
 		
-		//배현상
+		//배현상---------------------------------------------------
 		//강의리스트
 		public ArrayList<Map<String, String>> selectPrfsLecture(String prfs_num) throws SQLException;
-		
 		//강의계획서
 		public Map<String, String> selectDetailLct(String lct_num) throws SQLException;
-		
-		
-		
-		
-		
+		//강의계획서 업데이트
+		public int updateLct(LctVO lctVO) throws SQLException;
+		//교수의 시험리스트
+		public ArrayList<Map<String, String>> selectPrfsExamList(Map<String, String> key) throws SQLException;
+		//강의의 년도와 학기 가져오기
+		public LctVO selectLctYearQtr(String lct_num) throws SQLException;
+		//시험등록
+		public int insertExam(ExamVO examVO) throws SQLException;
+		//등록한 시험에 대해 학생들을 자동으로 응시테이블에 insert하기 위해 방금 등록한 시험의 기본키를 가져오자
+		public ArrayList<String> selectExamPk(String exam_lct) throws SQLException;
+		//응시테이블에 학생을 등록하자
+		public int insertStudTe(Map<String, String> key) throws SQLException;
+		//응시테이블에 학생등록을 완료한 시험은 exam_check를 1로 업데이트해준다.
+		public int updateExamCheck(String exam_num) throws SQLException;
+		//교수가 클릭한 시험에대한 문제정보들을 불러온다.
+		public ArrayList<EqVO> selectEqList(String exam_num) throws SQLException;
 }
