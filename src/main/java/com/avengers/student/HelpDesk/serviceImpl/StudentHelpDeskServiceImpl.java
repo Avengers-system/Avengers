@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.BoardVO;
+import com.avengers.db.dto.EmpVO;
 import com.avengers.student.HelpDesk.dao.StudentHelpDeskDao;
 import com.avengers.student.HelpDesk.service.StudentHelpDeskService;
 
@@ -53,6 +54,14 @@ public class StudentHelpDeskServiceImpl implements StudentHelpDeskService {
 		return 0;
 	}
 
+
+	@Override
+	public ArrayList<BoardVO> selectFAQList(BoardVO boardVO) throws SQLException {
+		ArrayList<BoardVO> list = stuHelpDeskDAO.selectFAQList(boardVO);
+		
+		return list;
+	}
+
 	@Override
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map)
 			throws Exception {
@@ -61,9 +70,35 @@ public class StudentHelpDeskServiceImpl implements StudentHelpDeskService {
 	}
 
 	@Override
-	public ArrayList<BoardVO> selectFAQList() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public int getTotalCount() throws SQLException {
+		
+		return stuHelpDeskDAO.getTotalCount();
+	}
+
+	@Override
+	public int getEmpListCount(EmpVO empVO) {
+		return stuHelpDeskDAO.getEmpListCount(empVO);
+	}
+
+	@Override
+	public List<EmpVO> getEmpList(EmpVO empVO) {
+		return stuHelpDeskDAO.getEmpList(empVO);
+	}
+
+	@Override
+	public int getFAQListCount(BoardVO boardVO) {
+		return stuHelpDeskDAO.getFAQListCount(boardVO);
+	}
+
+	@Override
+	public List<BoardVO> getFAQList(BoardVO boardVO) {
+		return stuHelpDeskDAO.getFAQList(boardVO);
+	}
+
+	@Override
+	public BoardVO getStudentFAQDetail(int board_num) {
+		
+		return stuHelpDeskDAO.getStudentFAQDetail(board_num);
 	}
 
 }

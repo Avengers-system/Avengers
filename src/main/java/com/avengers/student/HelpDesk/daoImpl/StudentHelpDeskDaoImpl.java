@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import com.avengers.db.dto.BoardVO;
+import com.avengers.db.dto.EmpVO;
 import com.avengers.student.HelpDesk.dao.StudentHelpDeskDao;
 
 /**
@@ -23,11 +24,12 @@ import com.avengers.student.HelpDesk.dao.StudentHelpDeskDao;
 public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 
 	@Autowired
-	protected SqlSession SqlSession;
+	protected SqlSession sqlSession;
 	
 	public void setSqlSession(SqlSession sqlSession) {
-		SqlSession = sqlSession;
+		sqlSession = sqlSession;
 	}
+	
 
 	@Override
 	public ArrayList<BoardVO> selectBoardList(String bc_num, String key,
@@ -62,31 +64,80 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 	}
 
 	@Override
-	public Object selectPagingList(String queryId, Object params)
-			throws SQLException {
-		Map<String,Object> map=(Map<String,Object>)params;
+	public ArrayList<BoardVO> selectFAQList(BoardVO boardVO) throws SQLException {
 		
-		String strPageIndex = (String)map.get("PAGE_INDEX");
-		String strPageRow = (String)map.get("PAGE_ROW");
-		int nPageIndex = 0;
-		int nPageRow = 20;
-		if(StringUtils.isEmpty(strPageIndex)==false){
-			nPageIndex = Integer.parseInt(strPageIndex)-1;
-		}
-		if(StringUtils.isEmpty(strPageRow)==false){
-			nPageRow = Integer.parseInt(strPageRow);
-		}
-		
-		map.put("START", (nPageIndex * nPageRow)+1);
-		map.put("END", (nPageIndex * nPageRow)+nPageRow);
-		
-		return SqlSession.selectList(queryId,map);
+		ArrayList<BoardVO> list = (ArrayList<BoardVO>) sqlSession.selectList("board.getStudentFAQList");
+		return list;
 	}
+
+
+	@Override
+	public Object selectPagingList(String queryId, Object params) {
+	    Map<String,Object> map = (Map<String,Object>)params;
+	     
+	    String strPageIndex = (String)map.get("PAGE_INDEX");
+	    String strPageRow = (String)map.get("PAGE_ROW");
+	    int nPageIndex = 0;
+	    int nPageRow = 20;
+	     
+	    if(StringUtils.isEmpty(strPageIndex) == false){
+	        nPageIndex = Integer.parseInt(strPageIndex)-1;
+	    }
+	    if(StringUtils.isEmpty(strPageRow) == false){
+	        nPageRow = Integer.parseInt(strPageRow);
+	    }
+	    map.put("START", (nPageIndex * nPageRow) + 1);
+	    map.put("END", (nPageIndex * nPageRow) + nPageRow);
+	     
+	    return sqlSession.selectList(queryId, map);
+	}
+
 
 	@Override
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map)
 			throws Exception {
-		return (List<Map<String, Object>>)selectPagingList("sample.selectBoardList", map);
+		
+		return (List<Map<String, Object>>)selectPagingList("board.selectFAQList", map);
 	}
+
+
+	@Override
+	public int getTotalCount() throws SQLException {
+		
+		
+		return (Integer)sqlSession.selectOne("board.getFAQListCount");
+	}
+
+
+	@Override
+	public int getEmpListCount(EmpVO empVO) {
+		return (Integer)sqlSession.selectOne("board.getEmpListCount",empVO);
+	}
+
+
+	@Override
+	public List<EmpVO> getEmpList(EmpVO empVO) {
+		return (List<EmpVO>)sqlSession.selectList("board.getEmpList",empVO);
+	}
+
+
+	@Override
+	public int getFAQListCount(BoardVO boardVO) {
+		return (Integer)sqlSession.selectOne("board.getFAQListCount",boardVO);
+	}
+
+
+	@Override
+	public List<BoardVO> getFAQList(BoardVO boardVO) {
+		return (List<BoardVO>)sqlSession.selectList("board.getFAQList",boardVO);
+	}
+
+
+	@Override
+	public BoardVO getStudentFAQDetail(int board_num) {
+		return (BoardVO)sqlSession.selectOne("board.getFAQDetail",board_num);
+	}
+
+
 
 }
