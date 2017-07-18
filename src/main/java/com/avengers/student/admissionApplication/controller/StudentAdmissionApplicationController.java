@@ -1,10 +1,13 @@
 package com.avengers.student.admissionApplication.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -331,8 +334,24 @@ public class StudentAdmissionApplicationController {
 		   return "redirect:admissionApplication";
 	   }
 	   
-	   
-	   
+	   /**
+	    * 시간표 pdf 보기
+	    * @param model
+	    * @return
+	    */
+	   @RequestMapping("/pdfView")
+	   public String pageRankPdfView(Model model,Principal principal){
+		   AdmissionApplicationVO admissionVO = new AdmissionApplicationVO();
+		   admissionVO.setStud_num(principal.getName());
+		   try {
+			List<HashMap<String,String>> admissionApplicationList=studentService.selectTlList(admissionVO);
+			model.addAttribute("TlList", admissionApplicationList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}  
+		   
+	      return "pagePDFView"; 
+	   }
 	   
 	   
 }
