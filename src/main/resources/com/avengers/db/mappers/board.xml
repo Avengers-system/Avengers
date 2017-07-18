@@ -68,4 +68,15 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 
 	
 	
+
+	<!-- 학사일정게시판 조회 -->	
+	<select id="selectUnivschdList" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO">
+		SELECT * FROM BOARD 
+		WHERE BOARD_BC= 'UNIVSCHD' 
+		AND BOARD_TITLE LIKE #{board_title}||'%'
+		<if test="board_cont != null">
+		AND BOARD_CONT = #{board_cont}
+		</if>
+	</select>
+
 </mapper>

@@ -6,10 +6,11 @@
 
 	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
 	<select id="selectPerschdList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
-		SELECT 
+		SELECT
+			PERSCHD_NUM,
 			PERSCHD_TITLE,
 			PERSCHD_CONT,
-			PERSCHD_DATE,
+			TO_CHAR(PERSCHD_DATE,'YYYY-MM-DD'),
 			PERSCHD_START_DATE,
 			PERSCHD_END_DATE,
 			PERSCHD_WRITER
@@ -17,16 +18,26 @@
 		WHERE PERSCHD_WRITER = #{perschd_writer}
 	</select>
 
-
-
 	<select id="selectSchoolScheduleList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
 		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER='UNIV' 
 	</select>
 	
-	<select id="getPerschd" parameterType="String" resultType="com.avengers.db.dto.PerschdVO">
-		select * from perschd where perschd_writer=#{perschd_writer}
+	<select id="getPerschd" parameterType="Integer" resultType="com.avengers.db.dto.PerschdVO">
+		SELECT * FROM PERSCHD WHERE PERSCHD_NUM=#{perschd_num} 
 	</select>
 	
+	<update id="updateSchd" parameterType="com.avengers.db.dto.PerschdVO">
+		UPDATE PERSCHD
+		SET PERSCHD_TITLE = #{perschd_title},
+			PERSCHD_CONT= #{perschd_cont},
+			PERSCHD_START_DATE = TO_DATE(#{perschd_start_date},'YYYY-MM-DD HH24:MI:SS'),
+			PERSCHD_END_DATE = TO_DATE(#{perschd_end_date},'YYYY-MM-DD HH24:MI:SS')
+		WHERE PERSCHD_NUM=#{perschd_num} 
+	</update>
+	
+	<delete id="deleteSchd" parameterType="java.lang.String">
+		DELETE FROM PERSCHD WHERE PERSCHD_NUM=#{perschd_num}
+	</delete>
 	
 </mapper>
 

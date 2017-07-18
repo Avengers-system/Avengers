@@ -12,8 +12,8 @@ public class AdminVO {
 	private String admin_id;//아이디
 	private String admin_nm;//이름
 	private String admin_post;//직급
-	private String amin_eng_nm;//영문이름
-	private Date admin_bir;//생년월일
+	private String admin_eng_nm;//영문이름
+	private String admin_bir;//생년월일
 	private String admin_email;//이메일
 	private String admin_pw;//비밀번호
 	private String admin_regno;//주민등록번호
@@ -47,16 +47,18 @@ public class AdminVO {
 	public void setAdmin_post(String admin_post) {
 		this.admin_post = admin_post;
 	}
-	public String getAmin_eng_nm() {
-		return amin_eng_nm;
+	
+	public String getAdmin_eng_nm() {
+		return admin_eng_nm;
 	}
-	public void setAmin_eng_nm(String amin_eng_nm) {
-		this.amin_eng_nm = amin_eng_nm;
+	public void setAdmin_eng_nm(String admin_eng_nm) {
+		this.admin_eng_nm = admin_eng_nm;
 	}
-	public Date getAdmin_bir() {
+
+	public String getAdmin_bir() {
 		return admin_bir;
 	}
-	public void setAdmin_bir(Date admin_bir) {
+	public void setAdmin_bir(String admin_bir) {
 		this.admin_bir = admin_bir;
 	}
 	public String getAdmin_email() {
