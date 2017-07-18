@@ -54,4 +54,13 @@
 		AND PRFS_NUM = #{prfs_num}
 	</select>
 	
+	
+	<select id="selectAllStud" resultType="com.avengers.db.dto.StudVO">
+		SELECT * FROM STUDENT
+	</select>
+
+	<select id="selectStud" parameterType="String" resultType="com.avengers.db.dto.StudVO">
+		SELECT * FROM STUDENT
+		WHERE stud_num = #{stud_num}
+	</select>
 </mapper>

@@ -1,6 +1,10 @@
 package com.avengers.db.dto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 교수에 대한 정보 관리
@@ -8,16 +12,16 @@ import java.util.Date;
  * @author 조영훈 2017.07.10 최초작성
  *
  */
-public class PrfsVO {
+public class CommandPrfsVO {
 	private String prfs_num; // 교수번호
 	private String prfs_nm;// 이름
 	private String prfs_eng_nm;// 영문이름
-	private Date prfs_bir;// 생년월일
+	private String prfs_bir;// 생년월일
 	private String prfs_email;// 이메일
 	private String prfs_pw;// 비밀번호
 	private String prfs_regno;// 주민등록번호
 	private String prfs_gen;// 성별
-	private String prfs_pic;// 증명사진
+	private MultipartFile prfs_pic;// 증명사진
 	private String prfs_act_num;// 계좌번호
 	private String prfs_bank;// 은행명
 	private String prfs_ah;// 예금주
@@ -51,11 +55,12 @@ public class PrfsVO {
 		this.prfs_eng_nm = prfs_eng_nm;
 	}
 
-	public Date getPrfs_bir() {
+	
+	public String getPrfs_bir() {
 		return prfs_bir;
 	}
 
-	public void setPrfs_bir(Date prfs_bir) {
+	public void setPrfs_bir(String prfs_bir) {
 		this.prfs_bir = prfs_bir;
 	}
 
@@ -91,11 +96,11 @@ public class PrfsVO {
 		this.prfs_gen = prfs_gen;
 	}
 
-	public String getPrfs_pic() {
+	public MultipartFile getPrfs_pic() {
 		return prfs_pic;
 	}
 
-	public void setPrfs_pic(String prfs_pic) {
+	public void setPrfs_pic(MultipartFile prfs_pic) {
 		this.prfs_pic = prfs_pic;
 	}
 
@@ -161,6 +166,32 @@ public class PrfsVO {
 
 	public void setPrfs_dept(String prfs_dept) {
 		this.prfs_dept = prfs_dept;
+	}
+
+	public PrfsVO toPrfsVO() {
+		PrfsVO prfsVO = new PrfsVO();
+		prfsVO.setPrfs_act_num(prfs_act_num);
+		prfsVO.setPrfs_addr(prfs_addr);
+		prfsVO.setPrfs_ah(prfs_ah);
+		prfsVO.setPrfs_bank(prfs_bank);
+		try {
+			prfsVO.setPrfs_bir(new SimpleDateFormat("yyyy-mm-dd").parse(prfs_bir));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		prfsVO.setPrfs_dept(prfs_dept);
+		prfsVO.setPrfs_email(prfs_email);
+		prfsVO.setPrfs_eng_nm(prfs_eng_nm);
+		prfsVO.setPrfs_gen(prfs_gen);
+		prfsVO.setPrfs_hp(prfs_hp);
+		prfsVO.setPrfs_nm(prfs_nm);
+		prfsVO.setPrfs_num(prfs_num);
+		prfsVO.setPrfs_pw(prfs_pw);
+		prfsVO.setPrfs_regno(prfs_regno);
+		prfsVO.setPrfs_tel(prfs_tel);
+		prfsVO.setPrfs_zip(prfs_zip);
+		prfsVO.setPrfs_pic(prfs_pic.getOriginalFilename());  
+		return prfsVO;
 	}
 
 }

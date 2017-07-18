@@ -13,15 +13,19 @@
 <button id="mySchedule" onclick="mySchedule_go()">개인일정관리</button><br/>
 
 <script type="text/javascript">
+	
 	function adminMain_go(){
 		location.href="${myContextPath}/admin/adminMain";
 	}
+	
 	function logout_go(){
 		location.href="${myContextPath}/common/logout";
 	}
+	
 	function myInfo_go(){
 		location.href="${myContextPath}/admin/mypage/myInfo";
 	}
+	
 	function mySchedule_go(){
 		location.href="${myContextPath}/admin/mypage/mySchedule";
 	}
