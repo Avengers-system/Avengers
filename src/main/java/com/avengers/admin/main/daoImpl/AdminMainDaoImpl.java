@@ -82,21 +82,19 @@ public class AdminMainDaoImpl implements AdminMainDao {
 	}
 	@Override
 	public ArrayList<PerschdVO> selectPerschdList(String adminId) throws SQLException {
-		ArrayList<PerschdVO> personScheduleList = (ArrayList<PerschdVO>) sqlSession.selectList("admin.getPersonScheduleInfo", adminId);
+		ArrayList<PerschdVO> personScheduleList = (ArrayList<PerschdVO>) sqlSession.selectList("Perschd.selectPerschdList1", adminId);
 		return personScheduleList;
 	}
 	@Override
 	public ArrayList<Map<String, String>> selectScrapplList()
 			throws SQLException {
 		ArrayList<Map<String, String>> scrapplList = (ArrayList<Map<String, String>>) sqlSession.selectList("scrappl.getUntreatedScrappl");
-		System.out.println(scrapplList);
 		return scrapplList;
 	}
 	@Override
 	public ArrayList<Map<String, Object>> selectPrfsOfDeptList()
 			throws SQLException {
 		ArrayList<Map<String, Object>> prfsOfDeptList = (ArrayList<Map<String, Object>>) sqlSession.selectList("department.getPfrsOfDeptList");
-		System.out.println(prfsOfDeptList);
 		return prfsOfDeptList;
 	}
 

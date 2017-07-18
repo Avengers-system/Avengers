@@ -21,9 +21,6 @@ public class ProfessorMainDaoImpl implements ProfessorMainDao {
 	@Autowired
 	protected SqlSession sqlSession;
 
-	public void setSqlSession(SqlSession sqlSession) throws SQLException {
-		this.sqlSession = sqlSession;
-	}
 	@Override
 	public PrfsVO selectPrfs(String prfs_num) throws SQLException {
 		PrfsVO prfs=(PrfsVO) sqlSession.selectOne("prfs.selectPrfs", prfs_num);

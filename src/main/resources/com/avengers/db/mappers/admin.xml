@@ -58,7 +58,7 @@
 		SELECT * FROM ADMIN WHERE ADMIN_ID = #{adminId}
 	</select>
 	
-	<select id="getPersonScheduleInfo" resultType="com.avengers.db.dto.PerschdVO" parameterType="string">
-		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER = #{adminId}
-	</select>
+<!-- 	<select id="getPersonScheduleInfo" resultType="com.avengers.db.dto.PerschdVO" parameterType="string"> -->
+<!-- 		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER = #{adminId} -->
+<!-- 	</select> -->
 </mapper>
