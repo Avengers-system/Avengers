@@ -1,8 +1,18 @@
 package com.avengers.admin.mypage.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+
+
+
+
+
+
+
 
 
 
@@ -14,8 +24,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.avengers.admin.mypage.service.AdminMypageService;
 import com.avengers.db.dto.AdminVO;
@@ -39,6 +54,35 @@ public class AdminMypageController {
 	public void setMyPageService(AdminMypageService myPageService) {
 		this.myPageService = myPageService;
 	}
+	/**
+	 * mypage로 가기위한 함수
+	 * @return String
+	 */
+	@RequestMapping("/")
+	public String myPage(Principal principal,Model model,HttpSession session){
+		String adminId = "";
+		AdminVO admin= null;
+		String url="/admin/mypage/mypage";
+		
+		if( session.getAttribute("adminId") != null){
+			adminId = (String) session.getAttribute("adminId");
+		} else {
+			adminId = principal.getName();
+			
+		}
+
+		try {
+			admin = myPageService.selectAdmin(adminId);
+			if(admin != null){
+				model.addAttribute("admin",admin);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return url;
+	}
+	
 	
 	/**
 	 * 개인정보 확인
@@ -49,7 +93,7 @@ public class AdminMypageController {
 	@RequestMapping("/myInfo")
 	public String myInfo(Principal principal,Model model){
 		String adminId = principal.getName();
-		String url="/admin/mypage/myInfo";
+		String url="/admin/mypage/mypage";
 		AdminVO admin= null;
 		
 		try {
@@ -62,7 +106,47 @@ public class AdminMypageController {
 			e.printStackTrace();
 		}
 		
-		System.out.println("!!!!!!!!!!!!myInfo!!!!!!!!!!!!");
+		return url;
+	}
+	
+	@RequestMapping(value="/myInfoUpdate")
+	public String myInfoUpdate(
+			@RequestParam("file")MultipartFile myImage
+			,@ModelAttribute("admin") AdminVO admin
+			,HttpSession session
+			,Model model){
+		String url="redirect:/admin/mypage/";
+		String upload="C:/Users/pc13/git/Avengers/src/main/webapp/resources/myInfo_images";
+		String message="수정이 실패하였습니다.";
+		
+		
+		//파일 저장
+		if(!myImage.isEmpty()){
+			File file = new File(upload,myImage.getOriginalFilename());
+			try {
+				myImage.transferTo(file);
+				//파일 이름 vo 저장
+				admin.setAdmin_pic(file.getName());
+				System.out.println(admin.getAdmin_pic());
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		try {
+			int success = myPageService.updateAdmin(admin);
+			if(success >= 1) {
+				message="수정이 완료되었습니다.";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		session.setAttribute("message",message);
 		return url;
 	}
 	
@@ -73,15 +157,19 @@ public class AdminMypageController {
 	 * @return string
 	 */
 	@RequestMapping("/mySchedule")
-	public String mySchedule(Principal principal,Model model){
+	public String mySchedule(
+			Principal principal,
+			HttpSession session,
+			Model model){
 		String scheduleId = principal.getName(); 
 		ArrayList<PerschdVO> perschdList = null;
-		String url="/admin/mypage/mySchedule";
+		String url="/admin/mypage/mypage";
 		String message="";
 		try {
 			perschdList =  myPageService.selectPerschdList(scheduleId);
 			if(perschdList != null){
 				model.addAttribute("perschdList",perschdList);
+				message="개인정보가 조회되었습니다.";
 			}else{
 				message = "입력된 개인정보가 없습니다.";
 			}
@@ -89,8 +177,7 @@ public class AdminMypageController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("!!!!!!!!!!!!mySchedule!!!!!!!!!!!!");
-		model.addAttribute("message",message);
+		session.setAttribute("message", message);
 		return url;
 	}
 	
@@ -102,23 +189,24 @@ public class AdminMypageController {
 	 */
 	@RequestMapping("/myScheduleDetail")
 	public String myScheduleDetails(
-			@RequestParam(value="perschd_num",defaultValue="0")String perschd_num,
+			@ModelAttribute(value="scheduleDetail")PerschdVO perschd,
+			HttpSession session,
 			Model model
 			){
-		String url="admin/mypage/myScheduleDetail";
+		String url="/admin/mypage/myScheduleDetail";
 		String message="";
 			//등록된 일정이 있다면, 등록된 일정을 보여준다.
 			//등록된 일정이 없다면, 새로운 세부화면을 보여준다.
-			if(perschd_num != null){
+			if(perschd != null){
 				try {
-					PerschdVO perschd = myPageService.selectPerschd(perschd_num);
+					perschd = myPageService.selectPerschd(perschd.getPerschd_num());
 					message="해당날짜에 등록된 일정이 없습니다.";
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				model.addAttribute("message",message);
-				model.addAttribute("perschd_num",perschd_num);
+				session.setAttribute("message", message);
+				model.addAttribute("perschd",perschd);
 			}
 		return url;
 	}
@@ -156,17 +244,18 @@ public class AdminMypageController {
 	 * @param model
 	 * @return String
 	 */
-	@RequestMapping("/myScheduleDelete")
-	public String myScheduleDelete(
-			@RequestParam(value="perschd_num")String perschd_num,
+	@RequestMapping(value="/myScheduleDelete",method = RequestMethod.POST)
+	public void myScheduleDelete(
+			@ModelAttribute(value="scheduleDetail")PerschdVO perschd,
 			HttpSession session
 			){
+		System.out.println("perschd_num:!!!!!!!!!!:"+perschd.getPerschd_num());
 		String url="redirect:/admin/mypage/mySchedule";
 		String message="일정 삭제를 실패하였습니다.";
 		
 		try {
-			int success = myPageService.deletePerschd(perschd_num);
-			if(success==1){
+			int success = myPageService.deletePerschd(perschd.getPerschd_num());
+			if(success != -1){
 				message="일정 삭제를 성공하였습니다.";
 			}
 		} catch (SQLException e) {
@@ -174,7 +263,6 @@ public class AdminMypageController {
 			e.printStackTrace();
 		}
 		session.setAttribute("message", message);
-		return url;
 	}
 	/**
 	 * 일정수정
@@ -182,18 +270,21 @@ public class AdminMypageController {
 	 * @param session
 	 * @return String
 	 */
-	@RequestMapping("/myScheduleUpdate")
-	public String myScheduleUpdate(
-			@RequestParam(value="perschdVO")PerschdVO perschd,
+	@RequestMapping(value="/myScheduleUpdate",method = RequestMethod.POST)
+	@ResponseBody
+	public void myScheduleUpdate(
+			@ModelAttribute(value="scheduleDetail")PerschdVO perschd,
 			HttpSession session
 			){
-		String url="redirect:/admin/mypage/mySchedule";
-		String message="일정 수정을 실패하였습니다.";
-		
+		String message="";
 		try {
 			int success = myPageService.updatePerschd(perschd);
-			if(success == 1){
+			if(success != -1){
 				message="일정 수정을 성공하였습니다.";
+				System.out.println(message);
+			} else if(success == -1){
+				message="일정 수정을 실패하였습니다.";
+				System.out.println(message);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -201,6 +292,5 @@ public class AdminMypageController {
 		}
 		
 		session.setAttribute("message", message);
-		return url;
 	}
 }

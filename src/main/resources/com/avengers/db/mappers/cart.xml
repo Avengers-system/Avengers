@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cart">
+	<!-- 장바구니 정보를 선택해오는 구문 -->	
+	<select id="selectCart" parameterType="com.avengers.db.dto.CartVO" resultType="com.avengers.db.dto.CartVO">
+		SELECT * FROM CART WHERE CART_STUD=#{cart_stud} AND CART_LCT=#{cart_lct}  
+	</select>
+	<!-- 장바구니에 추가하는 구문  -->	
+	<insert id="insertCart" parameterType="com.avengers.db.dto.CartVO">
+		INSERT INTO CART(CART_STUD,CART_LCT,CART_APPL_CHECK) VALUES (#{cart_stud},#{cart_lct},'1')   
+	</insert>
+	<!-- 선택한 정보를 장바구니에서 삭제하는 구문 -->	
+	<delete id="deleteCart" parameterType="com.avengers.db.dto.CartVO" >
+		DELETE FROM CART WHERE CART_STUD=#{cart_stud} AND CART_LCT=#{cart_lct}
+	</delete>
+	
+	
+</mapper>

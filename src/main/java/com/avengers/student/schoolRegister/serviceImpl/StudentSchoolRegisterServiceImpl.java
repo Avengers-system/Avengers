@@ -1,6 +1,9 @@
 package com.avengers.student.schoolRegister.serviceImpl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,15 +26,12 @@ public class StudentSchoolRegisterServiceImpl implements StudentSchoolRegisterSe
 	@Autowired
 	private StudentSchoolRegisterDao stuSchResDAO;
 	
-	public void setStuSchResDAO(StudentSchoolRegisterDao stuSchResDAO) {
-		this.stuSchResDAO = stuSchResDAO;
-	}
 
 	@Override
 	public void buildPdfDocument(Document document, PdfWriter pdfWriter)
 			throws SQLException {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -50,5 +50,71 @@ public class StudentSchoolRegisterServiceImpl implements StudentSchoolRegisterSe
 	public int insertLs(LsVO ls) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public HashMap<String, String> selectGradeInfo(String stud_num)
+			throws SQLException {
+		HashMap<String, String> gradeInfo = stuSchResDAO.selectGradeInfo(stud_num);
+		return gradeInfo;
+	}
+
+	@Override
+	public List<HashMap<String, String>> selectGradeList(String stud_num)
+			throws SQLException {
+		List<HashMap<String, String>> gradeList = stuSchResDAO.selectGradeList(stud_num);
+		return gradeList;
+	}
+
+	@Override
+	public int selectAllGrade(String stud_num) throws SQLException {
+		int allGrade = stuSchResDAO.selectAllGrade(stud_num);
+		return allGrade;
+	}
+
+	@Override
+	public int selectAllGradeCount(String stud_num) throws SQLException {
+		int allGradeCount = stuSchResDAO.selectAllGradeCount(stud_num);
+		return allGradeCount;
+	}
+
+	@Override
+	public ArrayList<LoaVO> selectLeaveList(String stud_num)
+			throws SQLException {
+
+		ArrayList<LoaVO> leaveList = stuSchResDAO.selectLeaveList(stud_num);
+		return leaveList;
+	}
+
+	@Override
+	public ArrayList<RtsVO> selectBackList(String stud_num) throws SQLException {
+		ArrayList<RtsVO> backList = stuSchResDAO.selectBackList(stud_num);
+		
+		return backList;
+	}
+
+	@Override
+	public void applyLeave(LoaVO vo) throws SQLException {
+
+		stuSchResDAO.applyLeave(vo);
+	}
+
+	@Override
+	public void applyBack(RtsVO vo) throws SQLException {
+
+		stuSchResDAO.applyBack(vo);
+	}
+
+	@Override
+	public ArrayList<LsVO> selectDropOffList(String stud_num)
+			throws SQLException {
+		ArrayList<LsVO> dropList= stuSchResDAO.selectDropOffList(stud_num);
+		return dropList;
+	}
+
+	@Override
+	public void applyDropOff(LsVO vo) throws SQLException {
+		stuSchResDAO.applyDropOff(vo);
+		
 	}
 }

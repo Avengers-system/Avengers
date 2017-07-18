@@ -7,7 +7,7 @@ import java.util.Date;
  * @author 배진 
  * 2017.07.10 최초작성
  */
-public class BoardVO {
+public class BoardVO extends PageVO{
 	private int board_num;// 게시판 고유번호
 	private String board_title;// 게시판제목
 	private String board_cont;// 게시판내용

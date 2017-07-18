@@ -22,6 +22,7 @@ import com.avengers.db.dto.ExamVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.RegistryExamVO;
 import com.avengers.professor.classManage.service.ProfessorClassManageService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProfessorClassManageController {

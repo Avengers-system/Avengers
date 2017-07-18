@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="loa">
+	
+	<select id="selectLeaveList" parameterType="java.lang.String" resultType="com.avengers.db.dto.LoaVO">
+		select * from loa where loa_stud=#{stud_num}
+	</select>
+	
+	<insert id="insertLeave" parameterType="com.avengers.db.dto.LoaVO">
+		insert into loa(loa_num,loa_start_date,loa_end_date,loa_cause,loa_appl_date,loa_appr_date,loa_appr_check,loa_rs_shcd_date,loa_stud,loa_admin)
+		values(#{loa_num},#{loa_start_date},#{loa_end_date},#{loa_cause},#{loa_appl_date},#{loa_appr_date},#{loa_appr_check},#{loa_rs_shcd_date},#{loa_stud},#{loa_admin})
+	</insert>
+	
+</mapper>

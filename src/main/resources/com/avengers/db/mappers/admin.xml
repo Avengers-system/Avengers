@@ -9,16 +9,48 @@
 		SELECT ADMIN_PIC,
 			   ADMIN_ID,
 			   ADMIN_NM,
+			   ADMIN_ENG_NM,
+			   ADMIN_REGNO,
 			   ADMIN_BIR,
 			   ADMIN_EMAIL,
 			   ADMIN_TEL,
 			   ADMIN_HP,
 			   ADMIN_POST,
-			   ADMIN_BANK
+			   ADMIN_BANK,
+			   ADMIN_ACT_NUM,
+			   ADMIN_AH,
+			   ADMIN_ADDR,
+			   ADMIN_ZIP,
+			   ADMIN_PW,
+			   ADMIN_GEN
 		FROM ADMIN
 		WHERE ADMIN_ID = #{admin_id}
 	</select>
 	
+	<update id="updateAdmin" parameterType="com.avengers.db.dto.AdminVO">
+		UPDATE ADMIN
+		SET 
+			ADMIN_ID= #{admin_id},
+			ADMIN_PW = #{admin_pw},
+			ADMIN_NM = #{admin_nm},
+			<if test="${admin_pic} != null">
+				ADMIN_PIC=#{admin_pic},
+			</if>
+			ADMIN_BIR=TO_DATE(#{admin_bir},'YYYY-MM-DD HH24:MI:SS'),
+			ADMIN_POST = #{admin_post},
+			ADMIN_ENG_NM = #{admin_eng_nm},
+			ADMIN_REGNO = #{admin_regno},
+			ADMIN_EMAIL = #{admin_email},
+			ADMIN_GEN = #{admin_gen},
+			ADMIN_TEL = #{admin_tel},
+			ADMIN_HP = #{admin_hp},
+			ADMIN_ADDR = #{admin_addr},
+			ADMIN_ZIP = #{admin_zip},
+			ADMIN_BANK = #{admin_bank},
+			ADMIN_ACT_NUM = #{admin_act_num},
+			ADMIN_AH = #{admin_ah}
+		WHERE ADMIN_ID=#{admin_id}	
+	</update>
 	
 
 	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->

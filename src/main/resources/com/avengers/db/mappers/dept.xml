@@ -3,7 +3,7 @@
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Dept">
+<mapper namespace="dept">
 	<!-- 학과공지게시판을 구하기위해 학과이름을 구하는 구문이다. -->
 	<select id="selectDept" parameterType="java.lang.String" resultType="com.avengers.db.dto.DeptVO">
 		SELECT DEPT_NM FROM DEPARTMENT WHERE DEPT_NUM=#{prfs_dept}  

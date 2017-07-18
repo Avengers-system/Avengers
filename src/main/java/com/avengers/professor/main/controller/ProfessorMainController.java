@@ -81,6 +81,9 @@ public class ProfessorMainController {
 			model.addAttribute("schoolScheduleList",schoolScheduleList );
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (NullPointerException e){
+			return view;
+			
 		}
 		   return view;
 	   }

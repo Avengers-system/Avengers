@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ls">
+	
+	<select id="selectLsList" parameterType="java.lang.String" resultType="com.avengers.db.dto.LsVO">
+		select * from ls where ls_stud=#{stud_num}
+	</select>
+	
+	<insert id="insertLs" parameterType="com.avengers.db.dto.LsVO">
+		insert into ls(ls_num,ls_appl_date,ls_appr_date,ls_appr_check,ls_ftf_cont,ls_stud,ls_admin)
+		values(#{ls_num},#{ls_appl_date},#{ls_appr_date},#{ls_appr_check},#{ls_ftf_cont},#{ls_stud},#{ls_admin})
+	</insert>
+	
+</mapper>

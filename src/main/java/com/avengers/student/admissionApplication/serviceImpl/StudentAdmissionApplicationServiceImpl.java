@@ -2,14 +2,21 @@ package com.avengers.student.admissionApplication.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.avengers.db.dto.AdmissionApplicationVO;
+import com.avengers.db.dto.AtdcVO;
+import com.avengers.db.dto.BoardVO;
+import com.avengers.db.dto.CartVO;
 import com.avengers.db.dto.LctVO;
+import com.avengers.db.dto.LrVO;
+import com.avengers.db.dto.StudVO;
 import com.avengers.db.dto.TlVO;
-import com.avengers.student.admissionApplication.dao.StudentAdmissionApplicationDao;
+import com.avengers.student.admissionApplication.daoImpl.StudentAdmissionApplicationDaoImpl;
 import com.avengers.student.admissionApplication.service.StudentAdmissionApplicationService;
 
 
@@ -25,59 +32,114 @@ public class StudentAdmissionApplicationServiceImpl implements
 		StudentAdmissionApplicationService {
 
 	@Autowired
-	private StudentAdmissionApplicationDao stuAdmAppDAO;
+	private StudentAdmissionApplicationDaoImpl stuAdmAppDAO;
 	
-	public void setStuAdmAppDAO(StudentAdmissionApplicationDao stuAdmAppDAO) {
-		this.stuAdmAppDAO = stuAdmAppDAO;
+
+	@Override
+	public List<HashMap<String, String>> selectLctList(AdmissionApplicationVO lctVO) throws SQLException {
+		return stuAdmAppDAO.selectLctList(lctVO);
 	}
 
 	@Override
-	public ArrayList<LctVO> selectLctList(Map<String, String> searchKeys)
+	public List<HashMap<String, String>> selectTlList(AdmissionApplicationVO tl_stud) throws SQLException {
+		return stuAdmAppDAO.selectTlList(tl_stud);
+	}
+
+	@Override
+	public int insertTl(TlVO tlVO) throws SQLException {		
+		return stuAdmAppDAO.insertTl(tlVO);
+	}
+
+	@Override
+	public int deleteTl(String tl_num) throws SQLException {
+		return stuAdmAppDAO.deleteTl(tl_num);
+	}
+
+	@Override
+	public List<HashMap<String, String>> selectCartList(AdmissionApplicationVO cart_stud)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return stuAdmAppDAO.selectCartList(cart_stud);
 	}
 
 	@Override
-	public ArrayList<LctVO> selectLctList() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public int insertCart(CartVO cartVO) throws SQLException {
+		return stuAdmAppDAO.insertCart(cartVO);
 	}
 
 	@Override
-	public ArrayList<TlVO> selectTlList(String tl_stud) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public int deleteCart(CartVO cartVO)
+			throws SQLException {
+		return stuAdmAppDAO.deleteCart(cartVO);
 	}
 
 	@Override
-	public int insertTlList(ArrayList<TlVO> tlList) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<HashMap<String, String>> selectStudClass(String tl_stud)
+			throws SQLException {
+		return stuAdmAppDAO.selectStudClass(tl_stud);
 	}
 
 	@Override
-	public int deleteTl(ArrayList<TlVO> tlList) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public StudVO selectStudMaxCrd(String stud_num) throws SQLException {
+		return stuAdmAppDAO.selectStudMaxCrd(stud_num);
 	}
 
 	@Override
-	public int insertCartList(ArrayList<TlVO> tlList) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public CartVO selectCart(CartVO cartVO) throws SQLException {
+		return stuAdmAppDAO.selectCart(cartVO);
 	}
 
 	@Override
-	public int delteCart(ArrayList<TlVO> tlList) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateLctMinus(String tl_lct) throws SQLException {
+		return stuAdmAppDAO.updateLctMinus(tl_lct);
 	}
 
 	@Override
-	public ArrayList<TlVO> selectStudClass(String tl_stud) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public int updateLctPlus(String tl_lct) throws SQLException {
+		return stuAdmAppDAO.updateLctPlus(tl_lct);
 	}
+
+	@Override
+	public TlVO selectTl(TlVO tlVO) throws SQLException {
+		return stuAdmAppDAO.selectTl(tlVO);
+	}
+
+	@Override
+	public ArrayList<TlVO> selectTl_LCTList(TlVO tlVO) throws SQLException {
+		return stuAdmAppDAO.selectTl_LCTList(tlVO);
+	}
+
+
+	@Override
+	public LctVO selectLct(String tl_lct) throws SQLException {
+		return stuAdmAppDAO.selectLct(tl_lct);
+	}
+
+	@Override
+	public LrVO selectLr(String lct_num) throws SQLException {
+		return stuAdmAppDAO.selectLr(lct_num);
+	}
+
+	@Override
+	public TlVO selectTl_num(TlVO tlVO) throws SQLException {
+		return stuAdmAppDAO.selectTl_num(tlVO);
+	}
+
+	@Override
+	public BoardVO selectUnivschdList(BoardVO boardVO) throws SQLException {
+		return stuAdmAppDAO.selectUnivschdList(boardVO);
+	}
+
+	@Override
+	public int insertAtdc(AtdcVO atdcVO) throws SQLException {
+		return stuAdmAppDAO.insertAtdc(atdcVO);
+	}
+
+	@Override
+	public int deleteAtdc(String tl_num) throws SQLException {
+		return stuAdmAppDAO.deleteAtdc(tl_num);
+	}
+
+
+	
 
 }

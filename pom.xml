@@ -44,6 +44,7 @@
 			<artifactId>google-api-data-spreadsheet-v3</artifactId>
 			<version>1.0.10-alpha</version>
 		</dependency>
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -291,9 +292,17 @@
 
 		<!-- json 변환 -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.3.3</version>
+
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.6.4</version>
+		</dependency>
+		 
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.6.4</version>
+
 		</dependency>
 
 		<!-- Aspectjweaver -->
@@ -312,6 +321,10 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+		
+
+
+
 	</dependencies>
 	<build>
 		<plugins>
