@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="atdc">
+	
+	<insert id="insertAtdc" parameterType="com.avengers.db.dto.AtdcVO" >
+		INSERT INTO ATTENDENCE(ATDC_NUM,ATDC_DATE,ATDC_TL) VALUES ('ATDC'||ATDC_SEQ.NEXTVAL,#{atdc_date},#{atdc_tl})   
+	</insert>
+	
+	<delete id="deleteAtdc" parameterType="java.lang.String" >
+		DELETE FROM ATTENDENCE WHERE ATDC_TL=#{atdc_tl}
+	</delete>
+	
+
+</mapper>

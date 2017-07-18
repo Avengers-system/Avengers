@@ -23,9 +23,6 @@ public class ProfessorMainServiceImpl implements ProfessorMainService {
 	@Autowired
 	private ProfessorMainDaoImpl proMainDAO;
 	
-	public void setProMainDAO(ProfessorMainDaoImpl proMainDAO) {
-		this.proMainDAO = proMainDAO;
-	}
 
 	@Override
 	public PrfsVO selectPrfs(String prfs_num) throws SQLException {

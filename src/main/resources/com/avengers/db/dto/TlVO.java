@@ -67,6 +67,13 @@ public class TlVO {
 	public void setTl_lct(String tl_lct) {
 		this.tl_lct = tl_lct;
 	}
+	@Override
+	public String toString() {
+		return "TlVO [tl_num=" + tl_num + ", tl_appl_date=" + tl_appl_date
+				+ ", tl_asmt_check=" + tl_asmt_check + ", tl_point=" + tl_point
+				+ ", tl_lev=" + tl_lev + ", tl_mark=" + tl_mark + ", tl_stud="
+				+ tl_stud + ", tl_lct=" + tl_lct + "]";
+	}
 	
 	
 	

@@ -89,14 +89,12 @@ public class AdminMainDaoImpl implements AdminMainDao {
 	public ArrayList<Map<String, String>> selectScrapplList()
 			throws SQLException {
 		ArrayList<Map<String, String>> scrapplList = (ArrayList<Map<String, String>>) sqlSession.selectList("scrappl.getUntreatedScrappl");
-		System.out.println(scrapplList);
 		return scrapplList;
 	}
 	@Override
 	public ArrayList<Map<String, Object>> selectPrfsOfDeptList()
 			throws SQLException {
 		ArrayList<Map<String, Object>> prfsOfDeptList = (ArrayList<Map<String, Object>>) sqlSession.selectList("department.getPfrsOfDeptList");
-		System.out.println(prfsOfDeptList);
 		return prfsOfDeptList;
 	}
 
