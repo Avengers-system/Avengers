@@ -26,4 +26,5 @@ public interface AdminMainService {
 	public ArrayList<PerschdVO> getPerschdList(String adminId) throws SQLException; //개인일정 정보를 가져온다.
 	public ArrayList<Map<String,String>> getScrapplList() throws SQLException; //미처리된 장학신청정보를 가져온다.
 	public ArrayList<Map<String,Object>> getPrfsOfDeptList() throws SQLException; //학과당 교수의 수를 가져온다.
+	public String selectNextPrfsNum()throws SQLException; //다음교수번호가져오기
 }
