@@ -101,4 +101,10 @@ public class AdminMainServiceImpl implements AdminMainService {
 		return prfsOfDeptList;
 	}
 
+	@Override
+	public String selectNextPrfsNum() throws SQLException {
+		String nextPrfsNum = mainDAO.selectNextPrfsNum();
+		return nextPrfsNum;
+	}
+
 }

@@ -11,4 +11,7 @@ public interface AdminStudentManageDao {
 	public int insertStud(StudVO studVO)throws SQLException;//학생 등록
 	public int updateStud(StudVO studVO,String stud_num)throws SQLException;//학생 수정
 	public int deleteStud(String stud_num)throws SQLException;//학생 삭제
+	public ArrayList<StudVO> selectStudList() throws SQLException;//학생 전체목록
+	public String selectStudNum()throws SQLException; //학생번호(최근)
+	public int insertSecurity(StudVO studVO); //시큐리티등록
 }

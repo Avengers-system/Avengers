@@ -21,27 +21,52 @@ public class AdminProfessorManageServiceImpl implements AdminProfessorManageServ
 	@Override
 	public ArrayList<PrfsVO> selectPrfsList(String key,int firstRow, int lastRow)
 			throws SQLException {
-		return null;
+		
+		return proDAO.selectPrfsList(key, firstRow, lastRow);
 	}
 
 	@Override
 	public PrfsVO selectPrfs(String prfs_num) throws SQLException {
-		return null;
+		return proDAO.selectPrfs(prfs_num);
 	}
 
+	
 	@Override
 	public int insertPrfs(PrfsVO prfsVO) throws SQLException {
-		return 0;
+		int result = proDAO.insertPrfs(prfsVO);
+		return result;
 	}
 
+	 
+	
 	@Override
 	public int updatePrfs(PrfsVO prfsVO, String prfs_num) throws SQLException {
-		return 0;
+		int result = proDAO.updatePrfs(prfsVO, prfs_num);
+		return result;
 	}
 
 	@Override
 	public int deletePrfs(String prfs_num) throws SQLException {
-		return 0;
+		int result = proDAO.deletePrfs(prfs_num);
+		return result;
+	}
+
+	@Override
+	public int insertSecurity(PrfsVO prfsVO) {
+		int result = proDAO.insertSecurity(prfsVO);
+		return result;
+	}
+
+	@Override
+	public ArrayList<PrfsVO> selectPrfsList() throws SQLException {
+		ArrayList<PrfsVO> prfsList = proDAO.selectPrfsList();
+		return prfsList;
+	}
+
+	@Override
+	public String selectPrfsNum() throws SQLException {
+		String prfsNum = proDAO.selectPrfsNum();
+		return prfsNum;
 	}
 
 }

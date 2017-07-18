@@ -97,5 +97,13 @@ public class AdminMainDaoImpl implements AdminMainDao {
 		ArrayList<Map<String, Object>> prfsOfDeptList = (ArrayList<Map<String, Object>>) sqlSession.selectList("department.getPfrsOfDeptList");
 		return prfsOfDeptList;
 	}
+	/**
+	 * 다음번등록할교수번호찾기
+	 */
+	@Override
+	public String selectNextPrfsNum() throws SQLException {
+		String nextPrfsNum = (String)sqlSession.selectOne("admin.getProfNum");
+		return nextPrfsNum;
+	}
 
 }
