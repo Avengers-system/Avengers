@@ -7,7 +7,7 @@
 <mapper namespace="atdc">
 	
 	<insert id="insertAtdc" parameterType="com.avengers.db.dto.AtdcVO" >
-		INSERT INTO ATTENDENCE(ATDC_NUM,ATDC_DATE,ATDC_TL) VALUES ('ATDC'||ATDC_SEQ.NEXTVAL,#{atdc_date},#{atdc_tl})   
+		INSERT INTO ATTENDENCE(ATDC_NUM,ATDC_DATE,ATDC_TL,ATDC_CHECK) VALUES ('ATDC'||ATDC_SEQ.NEXTVAL,#{atdc_date},#{atdc_tl},'4')   
 	</insert>
 	
 	<delete id="deleteAtdc" parameterType="java.lang.String" >
