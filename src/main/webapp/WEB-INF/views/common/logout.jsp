@@ -5,5 +5,5 @@
 
 <script>
 alert("로그아웃 완료");
-location.href='${pageContext.request.contextPath}/login';
+location.href="<c:url value='j_spring_security_logout'/>";
 </script>
