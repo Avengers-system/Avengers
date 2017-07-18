@@ -51,7 +51,8 @@
 	<h3>강의리스트</h3>
 	<table>
 		<tr>
-			<td>신청</td>
+			<td>장바구니담기</td>
+			<td>수강신청</td>
 			<td>강의번호</td>
 			<td>이수구분</td>
 			<td>강의명</td>
@@ -66,19 +67,15 @@
 		<c:choose>
 			<c:when test="${not empty lectureList}">
 				<c:forEach var="lct" items="${lectureList }" varStatus="status">
-					<tr>
-						<c:choose>
-							<c:when test="${term=='사전수강신청' }">
-								<!-- 장바구니목록에 들감 -->
+					<tr>						
 								<td>
 								<form action = "${pageContext.request.contextPath}/student/insertCart" method="post">
 								<input type="hidden" name="cart_lct" value="${lct.get('lct_num')}" />
-								<input type = "submit" value="신청">
+								<input type = "submit" value="장바구니담기">
 								</form>
 								</td>
-							</c:when>
+						<c:choose>		
 							<c:when test="${term=='본수강신청' }">								
-								<!-- 강의신청목록에 들감 -->
 								<td>
 								<form action = "${pageContext.request.contextPath}/student/insertTl" method="post">
 								<input type="hidden" name="lct_num" value="${lct.get('lct_num')}" />
@@ -158,10 +155,8 @@
 	<h3>장바구니리스트</h3>
 	<table>
 		<tr>
-			<c:choose>
-				<c:when test="${term=='사전수강신청' }">
-					<td>취소</td>
-				</c:when>
+			<td>취소</td>
+			<c:choose>				
 				<c:when test="${term=='본수강신청' }">
 					<td>신청</td>
 				</c:when>
@@ -179,15 +174,14 @@
 			<c:when test="${not empty cartList}">
 				<c:forEach var="cart" items="${cartList }">
 					<tr>
-						<c:choose>
-							<c:when test="${term=='사전수강신청' }">
+						
 								<td>
 								<form action = "${pageContext.request.contextPath}/student/deleteCart" method="post">
 								<input type="hidden" name="cart_lct" value="${cart.get('lct_num')}" />
 								<input type = "submit" value="취소">
 								</form>
 								</td>
-							</c:when>
+						<c:choose>		
 							<c:when test="${term=='본수강신청' }">
 								<td>
 								<form action = "${pageContext.request.contextPath}/student/insertTl" method="post">
