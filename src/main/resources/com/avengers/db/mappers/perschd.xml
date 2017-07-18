@@ -16,9 +16,6 @@
 		FROM PERSCHD
 		WHERE PERSCHD_WRITER = #{perschd_writer}
 	</select>
-	
-	
-
 
 
 	<select id="selectSchoolScheduleList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
