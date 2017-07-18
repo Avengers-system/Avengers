@@ -27,12 +27,7 @@
          </tr>
       </c:forEach> 
    --> 
-	 <resultMap id="MainLct" type="java.util.HashMap">
-	       <result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>
-	       <result javaType="java.lang.String" column="LR_NUM" property="lr_num"/>
-	       <result javaType="java.lang.String" column="LR_DATE" property="lr_date"/>
-	       <result javaType="java.lang.String" column="LR_LCT" property="lr_lct"/>
-	 </resultMap> 
+
   <resultMap id="MainLct" type="java.util.HashMap">
         <result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>
         <result javaType="java.lang.String" column="LR_NUM" property="lr_num"/>
