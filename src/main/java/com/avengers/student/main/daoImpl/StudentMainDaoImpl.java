@@ -45,7 +45,7 @@ public class StudentMainDaoImpl implements StudentMainDao{
 	@Override
 	public ArrayList<PerschdVO> selectPerschd(String PSC_WRITER)
 			throws SQLException {
-		 ArrayList<PerschdVO> perschdList =(ArrayList<PerschdVO>)sqlSession.selectList("perschd.getPerschd",PSC_WRITER);
+		 ArrayList<PerschdVO> perschdList =(ArrayList<PerschdVO>)sqlSession.selectList("perschd.selectPerschdList",PSC_WRITER);
 		return perschdList;
 	}
 
