@@ -1,12 +1,29 @@
+<%@page import="org.springframework.security.core.userdetails.User"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+    <%@ page trimDirectiveWhitespaces="true"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-</body>
-</html>
+
+	
+<h1>학사일정등록(풀캘린더)</h1>
+
+
+<form name="insertCollegeBoard" action="collegeWrite">
+
+	게시판번호    :<input type="text" name="board_num" readonly value="${insertBoard.board_num}"><br>
+	제목    :<input type="text" name="board_title"><br>
+	내용    :<input type="text" name="board_cont"><br>
+	날짜    :<input type="text" name="board_date" readonly value="${insertBoard.board_date}"><br>
+	<%User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); %>
+	작성자  :<input type="text" name="board_writer" readonly value="<%=user.getUsername()%>"><br>
+	첨부일  :<input type="text" name="board_af"><br>
+	분류번호:<input type="text" name="board_bc" readonly value="COLLEGE"><br>
+	조회수:<input type="text" name="board_count" readonly value="0"><br>
+	
+	<input type="submit" value="등록"> 
+	
+	
+</form>
+

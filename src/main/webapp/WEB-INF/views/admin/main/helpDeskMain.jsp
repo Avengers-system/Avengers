@@ -14,7 +14,7 @@
 
 <body>
 헬프데스크메인<br><hr color="orange">
-<button onclick="location.href='<%=request.getContextPath()%>/admin/schoolNoticeList'">학교공지</button>
+<button onclick="location.href='<%=request.getContextPath()%>/admin/univNoticeList'">학교공지</button>
 <button onclick="location.href='<%=request.getContextPath()%>/admin/deptNoticeList'">학과공지</button>
 <button onclick="location.href='<%=request.getContextPath()%>/admin/collegeNoticeList'">학사일정</button>
 <button onclick="location.href='<%=request.getContextPath()%>/admin/portalNoticeList'">포털소식</button>
@@ -23,7 +23,7 @@
 
 <br/>
 
-<h1>학과 정보 출력</h1>
+ <a href="${pageContext.request.contextPath}/admin/deptNoticeList"><h1>학과게시판</h1></a>
 <div>
 <hr border="2px gray dotted">
 <c:choose>
@@ -50,7 +50,7 @@
 </div>
 
 
-<h1>포털 정보 출력</h1>
+<a href="${pageContext.request.contextPath}/admin/portalNoticeList"><h1>포털게시판</h1></a>
 <div>
 <hr border="2px gray dotted">
 <c:choose>
@@ -78,12 +78,12 @@
 </c:choose>
 
 </div>
-<h1>학부 정보 출력</h1>
+<a href="${pageContext.request.contextPath}/admin/collegeNoticeList"><h1>학부게시판</h1></a>
 <div>
+<hr border="2px gray dotted">
 <c:choose>
       <c:when test="${not empty collegeNoticeList}">      
       <c:forEach var="collegeNoticeList" items="${collegeNoticeList }" >
-<hr color="violet">
          <tr>
             <td>번호:${collegeNoticeList.board_num}</td>
              <td><a href="<%=request.getContextPath()%>/admin/collegeNoticeList">제목:${collegeNoticeList.board_title}</a></td>
@@ -108,7 +108,7 @@
 </div>
 
 
-<h1>학교정보출력</h1>
+<a href="${pageContext.request.contextPath}/admin/univNoticeList"><h1>학교게시판</h1></a>
 <div>
 <hr border="2px gray dotted">
 <c:choose>
@@ -136,7 +136,7 @@
 </c:choose>
 
 </div>
-<h1>faq 정보 출력</h1>
+<a href="${pageContext.request.contextPath}/admin/faqNoticeList"><h1>FAQ</h1></a>
 <div>
 <hr border="2px gray dotted">
 <c:choose>
@@ -164,7 +164,7 @@
 </c:choose>
 
 </div>
-<h1>Qna 정보 출력</h1>
+<a href="${pageContext.request.contextPath}/admin/qnaNoticeList"><h1>Q&A</h1></a>
 <div>
 <hr border="2px gray dotted">
 <c:choose>

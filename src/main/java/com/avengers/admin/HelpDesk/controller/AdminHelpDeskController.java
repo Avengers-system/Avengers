@@ -98,61 +98,13 @@ public class AdminHelpDeskController {
 		return "admin/main/helpDeskMain";
 	}
 
+	
 	/**
-	 * 학과게시판조회
+	 * 1.게시판조회
 	 * 
 	 * */
-	@RequestMapping("/deptNoticeList")
-	public String adminDeptList(Model model, Principal principal){
-
-		BoardVO boardVO = new BoardVO();
-		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
-
-		String key = principal.getName();
-		String bc_num = "DEPT";
-		boardVO.setBoard_bc(bc_num);
-		boardVO.setBoard_writer(key);
-		try {
-			boardList = adminHelpDeskService.selectBoardList(boardVO,1,5);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("deptNoticeList", boardList);
-
-		return "admin/helpDesk/deptNotice";
-
-	}
-
-	/**
-	 * faq게시판조회
-	 * 
-	 * */
-	@RequestMapping("/faqNoticeList")
-	public String adminFaqList(Model model, Principal principal){
-
-		BoardVO boardVO = new BoardVO();
-		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
-
-		String key = principal.getName();
-		String bc_num = "UNIV";
-		boardVO.setBoard_bc(bc_num);
-		boardVO.setBoard_writer(key);
-		try {
-			boardList = adminHelpDeskService.selectBoardList(boardVO,1,5);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("faqNoticeList", boardList);
-
-		return "admin/helpDesk/faqNotice";
-
-	}
-
-	/**
-	 * portal게시판조회
-	 * 
-	 * */
-	@RequestMapping("portalNoticeList")
+	
+	@RequestMapping("portalNoticeList")//포털게시판조회
 	public String adminPortalList(Model model, Principal principal){
 
 		BoardVO boardVO = new BoardVO();
@@ -172,13 +124,113 @@ public class AdminHelpDeskController {
 		return "admin/helpDesk/portalNotice";
 
 	}
+	
+	@RequestMapping("/deptNoticeList")//학과게시판조회
+	public String adminDeptList(Model model, Principal principal){
 
-	/**
-	 * 포털게시판  글쓰기
-	 * 
+		BoardVO boardVO = new BoardVO();
+		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
+
+		String key = principal.getName();
+		String bc_num = "DEPT";
+		boardVO.setBoard_bc(bc_num);
+		boardVO.setBoard_writer(key);
+		try {
+			boardList = adminHelpDeskService.selectBoardList(boardVO,1,5);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("deptNoticeList", boardList);
+
+		return "admin/helpDesk/deptNotice";
+
+	}
+	
+	@RequestMapping("faqNoticeList")//FAQ게시판조회
+	public String adminFaqList(Model model, Principal principal){
+
+		BoardVO boardVO = new BoardVO();
+		ArrayList<BoardVO> boardList = null;
+
+		String key = principal.getName();
+		String bc_num = "FAQ";
+		boardVO.setBoard_bc(bc_num);
+		boardVO.setBoard_writer(key);
+		try {
+			boardList = adminHelpDeskService.selectBoardList(boardVO,1,5);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("faqNoticeList", boardList);
+		System.out.println(boardList.get(0).getBoard_date());
+		return "admin/helpDesk/faqNotice";
+
+	}
+	@RequestMapping("qnaNoticeList")//Q&A 게시판조회
+	public String adminQnaList(Model model, Principal principal){
+		
+		BoardVO boardVO = new BoardVO();
+		ArrayList<BoardVO> boardList = null;
+		
+		String key = principal.getName();
+		String bc_num = "QNA";
+		boardVO.setBoard_bc(bc_num);
+		boardVO.setBoard_writer(key);
+		try {
+			boardList = adminHelpDeskService.selectBoardList(boardVO,1,5);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("qnaNoticeList", boardList);
+		System.out.println(boardList.get(0).getBoard_date());
+		return "admin/helpDesk/qnaNotice";
+		
+	}
+	@RequestMapping("univNoticeList")// 학교게시판조회
+	public String adminUnivList(Model model, Principal principal){
+		
+		BoardVO boardVO = new BoardVO();
+		ArrayList<BoardVO> boardList = null;
+		
+		String key = principal.getName();
+		String bc_num = "UNIV";
+		boardVO.setBoard_bc(bc_num);
+		boardVO.setBoard_writer(key);
+		try {
+			boardList = adminHelpDeskService.selectBoardList(boardVO,1,5);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("univNoticeList", boardList);
+		System.out.println(boardList.get(0).getBoard_date());
+		return "admin/helpDesk/univNotice";
+		
+	}
+	
+	@RequestMapping("collegeNoticeList")// 학사일정조회
+	public String adminCollegeList(Model model, Principal principal){
+		
+		BoardVO boardVO = new BoardVO();
+		ArrayList<BoardVO> boardList = null;
+		
+		String key = principal.getName();
+		String bc_num = "COLLEGE";
+		boardVO.setBoard_bc(bc_num);
+		boardVO.setBoard_writer(key);
+		try {
+			boardList = adminHelpDeskService.selectBoardList(boardVO,1,5);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("collegeNoticeList", boardList);
+		System.out.println(boardList.get(0).getBoard_date());
+		return "admin/helpDesk/collegeNotice";
+		
+	}
+	/***
+	 * 2.게시판 글쓰기
 	 * */
-
-	@RequestMapping("/portalWriteForm")
+	@RequestMapping("/portalWriteForm")//포털게시판 글쓰기 양식
 	public String adminPortalWriteForm(@ModelAttribute BoardVO boardVO, Model model,
 			String bc_num){
 		BoardVO boardVo=null;
@@ -194,13 +246,89 @@ public class AdminHelpDeskController {
 		System.out.println(boardVo.getBoard_num()+"controller");
 		return "admin/helpDesk/portalWrite";
 	}
+	
+	@RequestMapping("/deptWriteForm")// 학과게시판 글쓰기 양식
+	public String adminDeptWriteForm(@ModelAttribute BoardVO boardVO, Model model,
+			String bc_num){
+		BoardVO boardVo=null;
 
-	/**
-	 * 포털게시판  글쓰기
-	 * 
-	 * */
+		System.out.println("controller" + bc_num);
+		try {
+			boardVo = adminHelpDeskService.selectInsertBaseData();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("insertBoard",boardVo);
 
-	@RequestMapping("/portalWrite")
+		System.out.println(boardVo.getBoard_num()+"controller");
+		return "admin/helpDesk/deptWrite";
+	}
+	@RequestMapping("/faqWriteForm")// FAQ게시판 글쓰기 양식
+	public String adminFaqWriteForm(@ModelAttribute BoardVO boardVO, Model model,
+			String bc_num){
+		BoardVO boardVo=null;
+		
+		System.out.println("controller" + bc_num);
+		try {
+			boardVo = adminHelpDeskService.selectInsertBaseData();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("insertBoard",boardVo);
+		
+		System.out.println(boardVo.getBoard_num()+"controller");
+		return "admin/helpDesk/faqWrite";
+	}
+	@RequestMapping("/qnaWriteForm")// Q&A게시판 글쓰기 양식
+	public String adminQnaWriteForm(@ModelAttribute BoardVO boardVO, Model model,
+			String bc_num){
+		BoardVO boardVo=null;
+		
+		System.out.println("controller" + bc_num);
+		try {
+			boardVo = adminHelpDeskService.selectInsertBaseData();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("insertBoard",boardVo);
+		
+		System.out.println(boardVo.getBoard_num()+"controller");
+		return "admin/helpDesk/qnaWrite";
+	}
+	@RequestMapping("/univWriteForm")// 학교게시판 글쓰기 양식
+	public String adminUnivWriteForm(@ModelAttribute BoardVO boardVO, Model model,
+			String bc_num){
+		BoardVO boardVo=null;
+		
+		try {
+			boardVo = adminHelpDeskService.selectInsertBaseData();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("insertBoard",boardVo);
+		
+		System.out.println(boardVo.getBoard_num()+"controller");
+		return "admin/helpDesk/univWrite";
+	}
+	
+	@RequestMapping("/collegeWriteForm")// 학사일정등록하기 양식
+	public String adminCollegeWriteForm(@ModelAttribute BoardVO boardVO, Model model,
+			String bc_num){
+		BoardVO boardVo=null;
+		
+		try {
+			boardVo = adminHelpDeskService.selectInsertBaseData();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("insertBoard",boardVo);
+		
+		System.out.println(boardVo.getBoard_num()+"controller");
+		return "admin/helpDesk/collegeWrite";
+	}
+
+	/**글쓰기 저장하는 곳*/
+	@RequestMapping("/portalWrite")// 포털게시판 글쓰기 저장
 	public String adminPortalWrite(HttpServletRequest req, Model model,
 			String bc_num){
 
@@ -210,7 +338,7 @@ public class AdminHelpDeskController {
 		boardVO.setBoard_cont(req.getParameter("board_cont"));
 		boardVO.setBoard_af(req.getParameter("board_af"));
 		boardVO.setBoard_writer(req.getParameter("board_writer"));
-		boardVO.setBoard_bc(req.getParameter("board_bc"));
+		boardVO.setBoard_bc("PORTAL");
 
 		System.out.println(boardVO.getBoard_cont()+"service");
 
@@ -223,12 +351,130 @@ public class AdminHelpDeskController {
 
 		return "redirect:portalNoticeList";
 	}
+	
+	@RequestMapping("/deptWrite")// 학과게시판 글쓰기 저장
+	public String adminDeptWrite(HttpServletRequest req, Model model,
+			String bc_num){
+		
+		BoardVO boardVO = new BoardVO();
+		boardVO.setBoard_num(Integer.parseInt(req.getParameter("board_num")));
+		boardVO.setBoard_title(req.getParameter("board_title"));
+		boardVO.setBoard_cont(req.getParameter("board_cont"));
+		boardVO.setBoard_af(req.getParameter("board_af"));
+		boardVO.setBoard_writer(req.getParameter("board_writer"));
+		boardVO.setBoard_bc(req.getParameter("board_bc"));
+		
+		System.out.println(boardVO.getBoard_cont()+"service");
+		
+		try {
+			adminHelpDeskService.insertBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return "redirect:deptNoticeList";
+	}
+	@RequestMapping("/faqWrite")// FAQ게시판 글쓰기 저장
+	public String adminFaqWrite(HttpServletRequest req, Model model,
+			String bc_num){
+		
+		BoardVO boardVO = new BoardVO();
+		boardVO.setBoard_num(Integer.parseInt(req.getParameter("board_num")));
+		boardVO.setBoard_title(req.getParameter("board_title"));
+		boardVO.setBoard_cont(req.getParameter("board_cont"));
+		boardVO.setBoard_af(req.getParameter("board_af"));
+		boardVO.setBoard_writer(req.getParameter("board_writer"));
+		boardVO.setBoard_bc(req.getParameter("board_bc"));
+		
+		System.out.println(boardVO.getBoard_cont()+"service");
+		
+		try {
+			adminHelpDeskService.insertBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return "redirect:faqNoticeList";
+	}
+	
+	@RequestMapping("/qnaWrite")// Q&A게시판 글쓰기 저장
+	public String adminQnaWrite(HttpServletRequest req, Model model,
+			String bc_num){
+		
+		BoardVO boardVO = new BoardVO();
+		boardVO.setBoard_num(Integer.parseInt(req.getParameter("board_num")));
+		boardVO.setBoard_title(req.getParameter("board_title"));
+		boardVO.setBoard_cont(req.getParameter("board_cont"));
+		boardVO.setBoard_af(req.getParameter("board_af"));
+		boardVO.setBoard_writer(req.getParameter("board_writer"));
+		boardVO.setBoard_bc("QNA");
+		
+		System.out.println(boardVO.getBoard_cont()+"service");
+		
+		try {
+			adminHelpDeskService.insertBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return "redirect:qnaNoticeList";
+	}
+	@RequestMapping("/univWrite")// 학교게시판 글쓰기 저장
+	public String adminUnivWrite(HttpServletRequest req, Model model,
+			String bc_num){
+		
+		BoardVO boardVO = new BoardVO();
+		boardVO.setBoard_num(Integer.parseInt(req.getParameter("board_num")));
+		boardVO.setBoard_title(req.getParameter("board_title"));
+		boardVO.setBoard_cont(req.getParameter("board_cont"));
+		boardVO.setBoard_af(req.getParameter("board_af"));
+		boardVO.setBoard_writer(req.getParameter("board_writer"));
+		boardVO.setBoard_bc(req.getParameter("board_bc"));
+		
+		System.out.println(boardVO.getBoard_cont()+"service");
+		
+		try {
+			adminHelpDeskService.insertBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return "redirect:univNoticeList";
+	}
+	
+	@RequestMapping("/collegeWrite")// 학사일정등록 
+	public String adminCollegeWrite(HttpServletRequest req, Model model,
+			String bc_num){
+		
+		BoardVO boardVO = new BoardVO();
+		boardVO.setBoard_num(Integer.parseInt(req.getParameter("board_num")));
+		boardVO.setBoard_title(req.getParameter("board_title"));
+		boardVO.setBoard_cont(req.getParameter("board_cont"));
+		boardVO.setBoard_af(req.getParameter("board_af"));
+		boardVO.setBoard_writer(req.getParameter("board_writer"));
+		boardVO.setBoard_bc(req.getParameter("board_bc"));
+		
+		System.out.println(boardVO.getBoard_cont()+"service");
+		
+		try {
+			adminHelpDeskService.insertBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return "redirect:collegeNoticeList";
+	}
 
 	/**
-	 * 포털 update
+	 * 3.게시판 수정
 	 * **/
 
-	@RequestMapping("/portalUpdate")
+	@RequestMapping("/portalUpdate")// 포털게시판수정
 	public String portalUpdate(
 			String bc_num, HttpServletRequest req){
 		BoardVO boardVO = new BoardVO();
@@ -243,8 +489,90 @@ public class AdminHelpDeskController {
 		}
 		return "redirect:portalNoticeList";
 	}
+	
+	@RequestMapping("/deptUpdate")// 학과게시판수정
+	public String deptUpdate(
+			String bc_num, HttpServletRequest req){
+		BoardVO boardVO = new BoardVO();
+		boardVO.setBoard_num(Integer.parseInt(req.getParameter("board_num")));
+		boardVO.setBoard_title(req.getParameter("board_title"));
+		boardVO.setBoard_cont(req.getParameter("board_cont"));
+		boardVO.setBoard_af(req.getParameter("board_af"));
+		try {
+			adminHelpDeskService.updateBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "redirect:deptNoticeList";
+	}
+	@RequestMapping("/faqUpdate")// FAQ게시판수정
+	public String faqUpdate(
+			String bc_num, HttpServletRequest req){
+		BoardVO boardVO = new BoardVO();
+		boardVO.setBoard_num(Integer.parseInt(req.getParameter("board_num")));
+		boardVO.setBoard_title(req.getParameter("board_title"));
+		boardVO.setBoard_cont(req.getParameter("board_cont"));
+		boardVO.setBoard_af(req.getParameter("board_af"));
+		try {
+			adminHelpDeskService.updateBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "redirect:faqNoticeList";
+	}
+	
+	@RequestMapping("/qnaUpdate")// Q&A게시판수정
+	public String qnaUpdate(
+			String bc_num, HttpServletRequest req){
+		BoardVO boardVO = new BoardVO();
+		boardVO.setBoard_num(Integer.parseInt(req.getParameter("board_num")));
+		boardVO.setBoard_title(req.getParameter("board_title"));
+		boardVO.setBoard_cont(req.getParameter("board_cont"));
+		boardVO.setBoard_af(req.getParameter("board_af"));
+		try {
+			adminHelpDeskService.updateBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "redirect:qnaNoticeList";
+	}
+	@RequestMapping("/univUpdate")// 대학게시판수정
+	public String univUpdate(
+			String bc_num, HttpServletRequest req){
+		BoardVO boardVO = new BoardVO();
+		boardVO.setBoard_num(Integer.parseInt(req.getParameter("board_num")));
+		boardVO.setBoard_title(req.getParameter("board_title"));
+		boardVO.setBoard_cont(req.getParameter("board_cont"));
+		boardVO.setBoard_af(req.getParameter("board_af"));
+		try {
+			adminHelpDeskService.updateBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "redirect:univNoticeList";
+	}
+	
+	@RequestMapping("/collegeUpdate")// 학사일정수정
+	public String collegeUpdate(
+			String bc_num, HttpServletRequest req){
+		BoardVO boardVO = new BoardVO();
+		boardVO.setBoard_num(Integer.parseInt(req.getParameter("board_num")));
+		boardVO.setBoard_title(req.getParameter("board_title"));
+		boardVO.setBoard_cont(req.getParameter("board_cont"));
+		boardVO.setBoard_af(req.getParameter("board_af"));
+		try {
+			adminHelpDeskService.updateBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "redirect:collegeNoticeList";
+	}
 
-	@RequestMapping("portalDelete")
+	/**
+	 * 4.글 삭제
+	 * 
+	 * **/
+	@RequestMapping("portalDelete")// 포털게시판 글 삭제
 	public String portalDelete(String board_num){
 		int bNum = Integer.parseInt(board_num);
 		System.out.println(bNum);
@@ -256,11 +584,68 @@ public class AdminHelpDeskController {
 		return "redirect:portalNoticeList";
 	}
 	
+	@RequestMapping("deptDelete")// 학과게시판 글 삭제
+	public String deptDelete(String board_num){
+		int bNum = Integer.parseInt(board_num);
+		System.out.println(bNum);
+		try {
+			adminHelpDeskService.deleteBoard(bNum);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "redirect:deptNoticeList";
+	}
+	@RequestMapping("faqDelete")// FAQ게시판 글 삭제
+	public String faqDelete(String board_num){
+		int bNum = Integer.parseInt(board_num);
+		System.out.println(bNum);
+		try {
+			adminHelpDeskService.deleteBoard(bNum);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "redirect:faqNoticeList";
+	}
+	
+	@RequestMapping("qnaDelete")// QNA게시판 글 삭제
+	public String qnaDelete(String board_num){
+		int bNum = Integer.parseInt(board_num);
+		System.out.println(bNum);
+		try {
+			adminHelpDeskService.deleteBoard(bNum);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "redirect:qnaNoticeList";
+	}
+	@RequestMapping("univDelete")// 대학게시판 글 삭제
+	public String univDelete(String board_num){
+		int bNum = Integer.parseInt(board_num);
+		System.out.println(bNum);
+		try {
+			adminHelpDeskService.deleteBoard(bNum);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "redirect:univNoticeList";
+	}
+	@RequestMapping("collegeDelete")//학사일정 삭제
+	public String collegeDelete(String board_num){
+		int bNum = Integer.parseInt(board_num);
+		System.out.println(bNum);
+		try {
+			adminHelpDeskService.deleteBoard(bNum);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "redirect:collegeNoticeList";
+	}
+	
 	/**
-	 *포탈상세보기
+	 *5.상세보기
 	 * 
 	 * */
-	@RequestMapping("/portalDetail")
+	@RequestMapping("/portalDetail") // 포털게시판 글 상세보기
 	public String detailPortal(@RequestParam("board_num")String board_num,
 			@RequestParam("board_count")String board_count, Model model){
 		BoardVO boardVo=null;
@@ -274,12 +659,81 @@ public class AdminHelpDeskController {
 		return "admin/helpDesk/portalDetail";
 	}
 	
+	@RequestMapping("/deptDetail")// 학과게시판 글 상세보기
+	public String detailDept(@RequestParam("board_num")String board_num,
+			@RequestParam("board_count")String board_count, Model model){
+		BoardVO boardVo=null;
+		try {
+			adminHelpDeskService.updateBoardCount(board_num, board_count);
+			boardVo = adminHelpDeskService.selectBoard(board_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("deptNoticeList",boardVo);
+		return "admin/helpDesk/deptDetail";
+	}
+	
+	@RequestMapping("/faqDetail")// FAQ게시판 글 상세보기
+	public String detailFaq(@RequestParam("board_num")String board_num,
+			@RequestParam("board_count")String board_count, Model model){
+		BoardVO boardVo=null;
+		try {
+			adminHelpDeskService.updateBoardCount(board_num, board_count);
+			boardVo = adminHelpDeskService.selectBoard(board_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("faqNoticeList",boardVo);
+		return "admin/helpDesk/faqDetail";
+	}
+	
+	@RequestMapping("/qnaDetail")// QNA게시판 글 상세보기
+	public String detailQna(@RequestParam("board_num")String board_num,
+			@RequestParam("board_count")String board_count, Model model){
+		BoardVO boardVo=null;
+		try {
+			adminHelpDeskService.updateBoardCount(board_num, board_count);
+			boardVo = adminHelpDeskService.selectBoard(board_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("qnaNoticeList",boardVo);
+		return "admin/helpDesk/qnaDetail";
+	}
+	@RequestMapping("/univDetail")// 대학게시판 글 상세보기
+	public String detailUniv(@RequestParam("board_num")String board_num,
+			@RequestParam("board_count")String board_count, Model model){
+		BoardVO boardVo=null;
+		try {
+			adminHelpDeskService.updateBoardCount(board_num, board_count);
+			boardVo = adminHelpDeskService.selectBoard(board_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("univNoticeList",boardVo);
+		return "admin/helpDesk/univDetail";
+	}
+	
+	@RequestMapping("/collegeDetail")// 학사일정 상세보기
+	public String detailCollege(@RequestParam("board_num")String board_num,
+			@RequestParam("board_count")String board_count, Model model){
+		BoardVO boardVo=null;
+		try {
+			adminHelpDeskService.updateBoardCount(board_num, board_count);
+			boardVo = adminHelpDeskService.selectBoard(board_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("collegeNoticeList",boardVo);
+		return "admin/helpDesk/collegeDetail";
+	}
+	
 
 	/**
-	 * 포털 search
+	 * 6.검색 search
 	 * **/
 
-	@RequestMapping("portalSearch")
+	@RequestMapping("portalSearch") // 포털게시판 글 검색
 	public String portalSearch(@RequestParam("board_title")String board_title,
 														   Model model, Principal principal){
 
@@ -290,7 +744,6 @@ public class AdminHelpDeskController {
 		boardVO.setBoard_bc(bc_num);
 		boardVO.setBoard_title(board_title);
 		
-		System.out.println("서치하러드러왔다"+board_title);
 		try {
 			
 			boardList = adminHelpDeskService.searchBoardList(boardVO);
@@ -302,97 +755,116 @@ public class AdminHelpDeskController {
 		return "admin/helpDesk/portalNotice";
 		
 	}
-	//	@RequestMapping("/insertDeptBoard")
-	//	public String adminDeptWrite(Model model, Principal principal){
-	//		
-	//
-	//	  	BoardVO boardVO = new BoardVO();
-	//	  	String key = principal.getName();
-	//	  	String bc_num = "UNIV";
-	//	  	boardVO.setBoard_bc(bc_num);
-	//	  	boardVO.setBoard_writer(key);
-	//	  	int insertBoard =0;
-	//	  	try {
-	//			insertBoard= adminHelpDeskService.insertBoard(boardVO);
-	//		} catch (SQLException e) {
-	//			// TODO Auto-generated catch block
-	//			e.printStackTrace();
-	//		}
-	//	  	model.addAttribute("insertDeptBoard",insertBoard);
-	//	  	
-	//	  	return "admin/helpDesk/deptWrite";
-	//	    
-	//	}
-	/**
-	 * 학과등록하기
-	 * 
-	 * **/
-
-	// 입력받는 곳
-	@RequestMapping("/insertDeptBoard")
-	public String insertDeptBoard(@ModelAttribute BoardVO boardVO, Model model, String bc_num){
-
-		return "admin/helpDesk/deptWrite";
-	}
-
-	/**
-	 * 학과등록내용보내기
-	 * 
-	 * **/
-	@RequestMapping("/insertDeptBoard2")
-	public String insertDeptBoard2(@ModelAttribute BoardVO boardVO, Model model, 
-			@RequestParam("bc_num")String bc_num){
-
+	
+	@RequestMapping("deptSearch")// 학과게시판 글 검색
+	public String deptSearch(@RequestParam("board_title")String board_title,
+			Model model, Principal principal){
+		
+		ArrayList<BoardVO> boardList = null;
+		
+		BoardVO boardVO = new BoardVO();
+		String bc_num = "DEPT";
+		boardVO.setBoard_bc(bc_num);
+		boardVO.setBoard_title(board_title);
+		
 		try {
-			adminHelpDeskService.insertBoard(boardVO);
+			
+			boardList = adminHelpDeskService.searchBoardList(boardVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return "admin/helpDesk/deptWrite";
+		model.addAttribute("deptNoticeList", boardList);
+		return "admin/helpDesk/deptNotice";
+		
 	}
-
-
-
-	/**
-	 * Faq등록하기
-	 * 
-	 * **/
-	// 입력받는 곳
-	@RequestMapping("/insertFaqBoard")
-	public String insertFaqBoard(@ModelAttribute BoardVO boardVO, Model model, String bc_num){
-
-		//		boardVO.setBoard_title(bc_num);
-		//		boardVO.setBoard_cont(bc_num);
-		//		boardVO.setBoard_writer(bc_num);
-		//		boardVO.setBoard_bc(bc_num);
-		//		
-		//		try {
-		//			adminHelpDeskService.insertBoard(boardVO);
-		//		} catch (SQLException e) {
-		//			e.printStackTrace();
-		//		}
-		return "admin/helpDesk/faqWrite";
-	}
-
-	/**
-	 * 학과등록내용보내기
-	 * 
-	 * **/
-	@RequestMapping("/insertFaqBoard2")
-	public String insertFaqBoard2(@ModelAttribute BoardVO boardVO, Model model, String bc_num){
-
-		//		boardVO.setBoard_title(bc_num);
-		//		boardVO.setBoard_cont(bc_num);
-		//		boardVO.setBoard_writer(bc_num);
-		//		boardVO.setBoard_bc(bc_num);
-
+	
+	@RequestMapping("faqSearch")// FAQ 글 검색
+	public String faqSearch(@RequestParam("board_title")String board_title,
+			Model model, Principal principal){
+		
+		ArrayList<BoardVO> boardList = null;
+		
+		BoardVO boardVO = new BoardVO();
+		String bc_num = "FAQ";
+		boardVO.setBoard_bc(bc_num);
+		boardVO.setBoard_title(board_title);
+		
 		try {
-			adminHelpDeskService.insertBoard(boardVO);
+			
+			boardList = adminHelpDeskService.searchBoardList(boardVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return "admin/helpDesk/faqWrite";
+		model.addAttribute("faqNoticeList", boardList);
+		return "admin/helpDesk/faqNotice";
+		
 	}
-
+	@RequestMapping("qnaSearch")// QNA 글 검색
+	public String qnaSearch(@RequestParam("board_title")String board_title,
+			Model model, Principal principal){
+		
+		ArrayList<BoardVO> boardList = null;
+		
+		BoardVO boardVO = new BoardVO();
+		String bc_num = "QNA";
+		boardVO.setBoard_bc(bc_num);
+		boardVO.setBoard_title(board_title);
+		
+		try {
+			
+			boardList = adminHelpDeskService.searchBoardList(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("qnaNoticeList", boardList);
+		return "admin/helpDesk/qnaNotice";
+		
+	}
+	
+	@RequestMapping("univSearch")// 대학 글 검색
+	public String univSearch(@RequestParam("board_title")String board_title,
+			Model model, Principal principal){
+		
+		ArrayList<BoardVO> boardList = null;
+		
+		BoardVO boardVO = new BoardVO();
+		String bc_num = "UNIV";
+		boardVO.setBoard_bc(bc_num);
+		boardVO.setBoard_title(board_title);
+		
+		try {
+			
+			boardList = adminHelpDeskService.searchBoardList(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("univNoticeList", boardList);
+		return "admin/helpDesk/univNotice";
+		
+	}
+	@RequestMapping("collegeSearch")// 학사일정 검색
+	public String collegeSearch(@RequestParam("board_title")String board_title,
+			Model model, Principal principal){
+		
+		ArrayList<BoardVO> boardList = null;
+		
+		BoardVO boardVO = new BoardVO();
+		String bc_num = "UNIV";
+		boardVO.setBoard_bc(bc_num);
+		boardVO.setBoard_title(board_title);
+		
+		try {
+			
+			boardList = adminHelpDeskService.searchBoardList(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("collegeNoticeList", boardList);
+		return "admin/helpDesk/collegeNotice";
+		
+	}
+	
+	
+	
 	
 }

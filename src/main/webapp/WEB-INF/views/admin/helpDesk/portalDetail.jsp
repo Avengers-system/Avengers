@@ -6,7 +6,7 @@
 
 	
 
-<h1>포털 소식 출력</h1>
+<h1>포털소식 상세보기 출력</h1>
 
 <c:choose>
       <c:when test="${not empty portalNoticeList}">

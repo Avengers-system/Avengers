@@ -4,30 +4,33 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<h1>학사일정1학기/ 2학기</h1>
-<h1>학사일정 입력</h1>
-<form name="insertCollegeBoard">
-	제목<input type="text" name="perschd_title">
-	내용<input type="text" name="perschd_cont">
-	시작일<input type="text" name="perschd_start_date">	
-	종료일<input type="text" name="perschd_end_date">	
-	등록<input type="submit">
-</form>
-<br/>
+	
 
-<h1>일정보기</h1>
+<h1>학사일정 출력</h1>
+ <form action="<%=request.getContextPath()%>/admin/collegeSearch?board_title=
+      ${collegeSearch.board_title}">
+      <input type="text" placeholder="글 제목을 입력해주세요" name="board_title">
+      
+      <input type="submit" value="검색">
+  </form>
+  
+       <a href="<%=request.getContextPath()%>/admin/collegeWriteForm">글쓰기</a>
 <c:choose>
       <c:when test="${not empty collegeNoticeList}">      
       <c:forEach var="collegeNoticeList" items="${collegeNoticeList }">
+      <hr color="black">
          <tr>
-            <td>번호  :${collegeNoticeList.perschd_num}</td>
-            <td>제목  :${collegeNoticeList.perschd_title}</td>
-            <td>내용  :${collegeNoticeList.perschd_cont}</td>
-            <td>날짜  :${collegeNoticeList.perschd_date}</td>
-            <td>시작일:${collegeNoticeList.perschd_start_date}</td>
-            <td>종료일:${collegeNoticeList.perschd_end_date}</td>
-            <td>작성자:${collegeNoticeList.perschd_writer}</td>
+            <td>게시판번호:${collegeNoticeList.board_num}</td><br/>
+           <a href="${pageContext.request.contextPath}/admin/collegeDetail?board_num=${collegeNoticeList.board_num}&board_count=${collegeNoticeList.board_count}">
+           <td>제목:${collegeNoticeList.board_title}</td></a><br/>
+            <td>내용:${collegeNoticeList.board_cont}</td><br/>
+            <td>날짜:${collegeNoticeList.board_date}</td><br/>
+            <td>작성자:${collegeNoticeList.board_writer}</td><br/>
+            <td>첨부파일:${collegeNoticeList.board_af}</td><br/>
+            <td>게시판코드:${collegeNoticeList.board_bc}</td><br/>
+            <td>조회수:${collegeNoticeList.board_count}</td><br/>
          </tr>
+        
       </c:forEach>
          </c:when>
          <c:otherwise>
