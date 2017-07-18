@@ -68,5 +68,3 @@
 	}
 </script>
 </html>
-=======
->>>>>>> refs/heads/master
