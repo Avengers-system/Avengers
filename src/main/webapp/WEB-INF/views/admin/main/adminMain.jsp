@@ -6,16 +6,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
 <title></title>
 </head>
 <body>
 관리자메인
-<button onclick="location.href='<%=request.getContextPath()%>/admin/adminMain'">관리자</button>
-<button onclick="location.href='<%=request.getContextPath()%>/professor/professorMain'">교수</button>
+<button onclick="location.href='<%=request.getContextPath()%>/admin/main/adminMain'">관리자</button>
+<button onclick="location.href='${pageContext.request.contextPath}/professor/main'">교수</button>
 <button onclick="location.href='<%=request.getContextPath()%>/student/studentMain'">학생</button>
 <button onclick="location.href='<%=request.getContextPath()%>/admin/main/helpDeskMain'">helpDesk</button>
-<button onclick="location.href='<%=request.getContextPath()%>/common/logout'">로그아웃</button>
-
+<button id="adminMain" onclick="adminMain_go()">관리자</button><br/>
+<button id="myPage" onclick="mypage_go()">mypage</button>
+<button id="profPage">교수관리</button>
+<button id="studPage">학생관리</button>
+<button id="classPage">강의관리</button>
+<button id="boardPage">HelpDesk</button>
+<button id="logout" onclick="logout_go()">로그아웃</button><br/>
+<br/>
+<br/>
+<br/>
 <br/>
 <h1>관리자 정보 출력</h1>
 아이디 : ${admin.admin_id}<br/>
@@ -87,4 +96,17 @@
 	${dept.dept_nm }의 교수의 수 : ${dept.count }<br/><br/>
 </c:forEach>
 </body>
+
+<script type="text/javascript">
+	function adminMain_go(){
+		location.href="${myContextPath}/admin/main/adminMain";
+	}
+	function logout_go(){
+		location.href="${myContextPath}/common/logout";
+	}
+	function mypage_go(){
+		location.href="${myContextPath}/admin/mypage/";
+	}
+
+</script>
 </html>

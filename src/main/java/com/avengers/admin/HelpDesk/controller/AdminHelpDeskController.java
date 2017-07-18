@@ -19,6 +19,7 @@ import com.avengers.db.dto.BoardVO;
 @RequestMapping("/admin")
 @Controller
 public class AdminHelpDeskController {
+
 	@Autowired
 	private AdminHelpDeskService adminHelpDeskService;
 
@@ -867,4 +868,5 @@ public class AdminHelpDeskController {
 	
 	
 	
+
 }

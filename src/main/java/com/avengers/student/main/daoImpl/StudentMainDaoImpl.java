@@ -45,7 +45,7 @@ public class StudentMainDaoImpl implements StudentMainDao{
 	@Override
 	public ArrayList<PerschdVO> selectPerschd(String PSC_WRITER)
 			throws SQLException {
-		 ArrayList<PerschdVO> perschdList =(ArrayList<PerschdVO>)sqlSession.selectList("Perschd.getPerschd",PSC_WRITER);
+		 ArrayList<PerschdVO> perschdList =(ArrayList<PerschdVO>)sqlSession.selectList("perschd.selectPerschdList",PSC_WRITER);
 		return perschdList;
 	}
 
@@ -57,7 +57,7 @@ public class StudentMainDaoImpl implements StudentMainDao{
 
 	@Override
 	public ArrayList<CnsVO> selectCnsList(String cns_stud) throws SQLException {
-		ArrayList<CnsVO> cnsList = (ArrayList<CnsVO>)sqlSession.selectList("Cns.getCns",cns_stud);
+		ArrayList<CnsVO> cnsList = (ArrayList<CnsVO>)sqlSession.selectList("cns.getCns",cns_stud);
 		return cnsList;
 	}
 
@@ -76,7 +76,7 @@ public class StudentMainDaoImpl implements StudentMainDao{
 	@Override
 	public DeptVO selectDept(String dept_num) throws SQLException {
 		
-		DeptVO deptVO =(DeptVO)sqlSession.selectOne("Dept.getDept",dept_num);
+		DeptVO deptVO =(DeptVO)sqlSession.selectOne("dept.getDept",dept_num);
 		return deptVO;
 	}
 
@@ -99,25 +99,25 @@ public class StudentMainDaoImpl implements StudentMainDao{
 
 	@Override
 	public ArrayList<BoardVO> selectPortalNoticeList() throws SQLException {
-		ArrayList<BoardVO> portalNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("Board.selectPortalNoticeList");
+		ArrayList<BoardVO> portalNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("board.selectPortalNoticeList");
 		return portalNoticeList;
 	}
 
 	@Override
 	public ArrayList<BoardVO> selectSchoolNoticeList() throws SQLException {
-		ArrayList<BoardVO> schoolNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("Board.selectSchoolNoticeList");
+		ArrayList<BoardVO> schoolNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("board.selectSchoolNoticeList");
 		return schoolNoticeList;
 	}
 
 	@Override
 	public ArrayList<BoardVO> selectDepartmentNoticeList(String bc_dept) throws SQLException {
-		 ArrayList<BoardVO> departmentNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("Board.selectDepartmentNoticeList", bc_dept);
+		 ArrayList<BoardVO> departmentNoticeList = (ArrayList<BoardVO>)sqlSession.selectList("board.selectDepartmentNoticeList", bc_dept);
 		return departmentNoticeList;
 	}
 
 	@Override
 	public ArrayList<PerschdVO> selectSchoolScheduleList() throws SQLException {
-		ArrayList<PerschdVO> schoolScheduleList = (ArrayList<PerschdVO>)sqlSession.selectList("Perschd.selectSchoolScheduleList");
+		ArrayList<PerschdVO> schoolScheduleList = (ArrayList<PerschdVO>)sqlSession.selectList("perschd.selectSchoolScheduleList");
 		return schoolScheduleList;
 	}
 

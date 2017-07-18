@@ -3,7 +3,7 @@
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Lct">
+<mapper namespace="lct">
   <!-- 대망의 resultMap 사용부분이다. 이로직을 사용하기 위해 이 주석을 보고있다면 일단 심호흡을 먼저 하도록하자 심신미약자는 다른팀원에게 이로직을 
   부탁하도록 권장한다. 자 이제 시작이다. 기본적으로 사용하는때는 2테이블 이상 조인을 한뒤에 리턴값이 하나의 VO로는 처리가 안될때 사용한다.
   resultMap id="MainLct" 이부분은 사용자가 resultMap의 아이디를 임의로 정하는것으로 밑에 resultMap="MainLct" 이부분에 사용된다.
@@ -18,12 +18,12 @@
    이렇게사용한 resultMap은 리스트형태의 HashMap으로 들어간다. 즉 List<HashMap<String,String>>이런식으로 들어간다는거다
   이것을 jsp에서 출력할때는 이와같이 출력한다.
   
-  <c:forEach var="lct" items="${lctList }" varStatus="status">
+  <c:forEach var="lct" items="#{lctList }" varStatus="status" >
          <tr>
-            <td>강의번호:${lct.get(status.index).get("lct_num")}</td>
-            <td>강의시간:${lct.get(status.index).get("lr_num")}</td>
-            <td>강의날짜:${lct.get(status.index).get("lr_date")}</td>
-            <td>강의실번호:${lct.get(status.index).get("lr_lct")}</td>
+            <td>강의번호:#{lct.get("lct_num")}</td>
+            <td>강의시간:#{lct.get("lr_num")}</td>
+            <td>강의날짜:#{lct.get("lr_date")}</td>
+            <td>강의실번호:#{lct.get("lr_lct")}</td>
          </tr>
       </c:forEach> 
    --> 
@@ -33,19 +33,36 @@
         <result javaType="java.lang.String" column="LR_DATE" property="lr_date"/>
         <result javaType="java.lang.String" column="LR_LCT" property="lr_lct"/>
   </resultMap> 
+  
 
 
 
-	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
 	<select id="selectLctList" parameterType="com.avengers.db.dto.LctVO" resultMap="MainLct">
 		select LCT_NUM,LR_NUM,LR_DATE,LR_LCT
 		from LR, LECTURE  
 		where LR_LCT = LCT_NUM 
-		AND LCT_PRFS = ${lct_prfs}
-		AND LCT_YR = ${lct_yr} 
-		AND LCT_QTR = ${lct_qtr}  
+		AND LCT_PRFS = #{lct_prfs}
+		AND LCT_YR =  #{lct_yr} 
+		AND LCT_QTR =  #{lct_qtr}  
+		
 	</select>
 	
+	<select id="selectLct" parameterType="String" resultType="com.avengers.db.dto.LctVO">
+		select *
+		from LECTURE  
+		where LCT_NUM = #{tl_lct} 
+		
+	</select>
 	
+	<update id="updateLctMinus" parameterType="String" >
+		UPDATE LECTURE 
+		SET LCT_CNT_NUM=LCT_CNT_NUM-1
+		WHERE LCT_NUM=#{tl_lct}
+	</update>
 	
+	<update id="updateLctPlus" parameterType="String" >
+		UPDATE LECTURE 
+		SET LCT_CNT_NUM=LCT_CNT_NUM+1 
+		WHERE LCT_NUM=#{tl_lct}
+	</update>
 </mapper>
