@@ -54,6 +54,14 @@ public class StudentResManageServiceImpl implements StudentResManageService {
 		return 0;
 	}
 
+	@Override
+	public HashMap<String, String> selectResSchHistory(String stud_num)
+			throws SQLException {
+		HashMap<String, String> resSchStudent = null;
+		resSchStudent = stuResDAO.selectresSchStudent(stud_num);
+		return resSchStudent;
+	}
+
 
 
 }

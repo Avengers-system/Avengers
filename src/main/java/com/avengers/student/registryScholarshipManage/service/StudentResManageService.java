@@ -12,6 +12,11 @@ import com.avengers.db.dto.ScrapplVO;
 
 public interface StudentResManageService  {
 	/**
+	 * 학생 장학이력/신청조회 탭에서
+	 * 학생정보 조회
+	 */
+	public HashMap<String, String> selectResSchHistory(String stud_num) throws SQLException;
+	/**
 	 * 장학이력,신청조회
 	 * 학생고유번호로 장학정보를 검색한뒤에 승인여부가 승인일경우엔 장학이력 테이블에 데이터를 넣고
 	 * 승인이 취소되었거나 혹은 아직 신청중인경우에는 신청조회목록으로 들어간다.
