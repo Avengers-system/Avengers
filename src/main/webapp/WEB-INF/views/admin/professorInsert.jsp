@@ -3,186 +3,107 @@
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   
      
-<form name="insertProfessor"  method="post" 
-	action="${pageContext.request.contextPath }/admin/insertProfessor" 
-	  enctype="multipart/form-data">
-	  
-	  <fieldset>
-		<legend>교수 등록</legend>
-				<div class="input-group">
-				<input type="hidden" name="prfs_num">
-				 <span class="input-group-addon" >이름</span>
-				  <input type="text" class="form-control" name="prfs_nm" >
-				</div>
-				<br>
-				<div class="input-group">
-				 <span class="input-group-addon" >영문이름</span>
-				  <input type="text" class="form-control" placeholder="홍길동" name="prfs_nm" value="${professor.prfs_nm}">
-				</div>
-				<br>
-				<div class="input-group">
-				 <span class="input-group-addon" >영문이름</span>
-				  <input type="text" class="form-control" name="prfs_eng_nm" value="${professor.prfs_eng_nm}">
-				</div>
-				<br>
-				<div class="input-group">
-				 <span class="input-group-addon" >학과번호</span>
-				  <input type="text" class="form-control" name="prfs_dept" value="${professor.prfs_dept}">
-				</div>
+<style>
 
-		                  <input type="text" name="prfs_eng_nm"/> <br>
-		 생년월일                 <input type="data" name="prfs_bir"/> <br>
-		 이메일                   <input type="text" name="prfs_email"/> <br>
-		 비밀번호                 <input type="text" name="prfs_pw"/> <br>
-		 주민등록번호             <input type="text" name="prfs_regno"/> <br>
-		 성별                     <input type="text" name="prfs_gen"/> <br>
-		 사진경로                 <input type="file" name="prfs_pic"/> <br>
-		 계좌번호                 <input type="text" name="prfs_act_num"/> <br>
-		 은행명                   <input type="text" name="prfs_bank"/> <br>
-		 예금주                   <input type="text" name="prfs_ah"/> <br>
-		 주소                     <input type="text" name="prfs_addr"/> <br>
-		 우편번호                 <input type="text" name="prfs_zip"/> <br>
-		 전화번호                 <input type="text" name="prfs_tel"/> <br>
-		 휴대폰번호               <input type="text" name="prfs_hp"/> <br>
-<!-- dept_num뽑아야됨 -->
-		 학과                 
-		 <select name="prfs_dept" class="selectpicker">
-			<option value="DEPT1">멀티미디어공학과</option> 
-			<option value="DEPT2">컴퓨터공학과</option> 
-			<option value="DEPT3">영어영문학과</option> 
-			<option value="DEPT4">문예창작학과</option> 
-			<option value="DEPT5">경영학과</option> 
-			<option value="DEPT6">회계학과</option> 
-			<option value="DEPT7">간호학과</option> 
-			<option value="DEPT8">생활체육학과</option> 
-			<option value="DEPT9">국어교육과</option> 
-			<option value="DEPT10">수학교육과</option> 
-		 </select>
-		 
-		 <input type="submit" value="등록하기">
-		 
-</form>
-  
-   <form action="#">
-   
-      
-      <div class="container">
-         <div class="essen">
-            <div class="imfom">
-               <div class="form-group">
-                  <label class="control-label col-sm-2" for="id">아이디</label>
-                  <div class="col-sm-6">
-                    <div class="input-group">
-                      <input type="text" class="form-control" id="mem_id" name="id" placeholder="아이디를 입력하세요.">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" id="idCheck" type="button">중복확인</button>
-                         <span class="msgCheckId"></span>
-                      </span>
-                    </div>
-                  </div>
-                  
-               </div>
+/* 	input.form-control{ */
+/* 	width:35%; */
+/* 	} */
+	
+	
+	div>.filess{
+	margin-left:60px;width:130px; height:150px;
+	}
+	
+	div>#profile-image{
+    border: 1px solid gray;
+    margin: 0 auto;
+    height: 150px;
+    width: 130px;
+	}
 
-               <div class="form-group">
-                  <label class="control-label col-sm-2" for="pwd1">비밀번호</label>
-                  <div class="col-sm-6">
-                     <input type="password" class="form-control" id="pwd1"
-                        placeholder="비밀번호를 입력하세요." name="pwd1">
-                  </div>
-               </div>
-               
-               <div class="form-group">
-                  <label class="control-label col-sm-2" for="pwd1">비밀번호확인</label>
-                  <div class="col-sm-6">
-                     <input type="password" class="form-control" id="pwd2"
-                        placeholder="위와 같은 비밀번호를 입력하세요." name="pwd2">
-                  </div>
-               </div>
-               
-               <div class="form-group">
-                  <label class="control-label col-sm-2" for="name">이름</label>
-                  <div class="col-lg-6">
-                    <div class="input-group">
-                      <input type="text" class="form-control" id="name"
-                        placeholder="이름을 입력하세요." name="name" aria-label="name">
-                      <span class="input-group-addon">
-                      <label><input type="checkbox" aria-label="name">&nbsp;&nbsp;공개</label>
-                      </span>
-                    </div>
-                  </div>
-               </div>
-               
-               <div class="form-group">
-                  <label class="control-label col-sm-2" for="birth">생년월일</label>
-                  <div class="col-sm-6">
-                     <input type="date" class="form-control" id="bir"
-                        placeholder="year" name="bir">
-                  </div>
-               </div>
-               
-               <div class="form-group">
-                  <label class="control-label col-sm-2" for="name">전화번호</label>
-                  <div class="col-lg-6">
-                    <div class="input-group">
-                      <input type="tel" class="form-control" id="tel"
-                        placeholder="전화번호를 입력하세요." name="tel" aria-label="tel">
-                    </div>
-                  </div>
-               </div>
+ 
+	
+	fieldset {
+    min-width: 0;
+    padding: 0;
+    border: 2px solid #b5bdd0;
+/*     width: 400px; */
+    margin: 0 auto;
+}
+	
+	
+.checkbox label, .radio label {
+    min-height: 20px;
+    padding-left: 40px;
+    padding-right: 10px;
+    font-weight: 400;
+    cursor: pointer;
+}
 
-               <div class="form-group">
-                  <label class="control-label col-sm-2" for="email">이메일</label>
-                  <div class="col-lg-6">
-                    <div class="input-group">
-                      <input type="email" class="form-control" id="email"
-                        placeholder="이메일을 입력하세요." name="email" aria-label="email">
-                    </div>
-                  </div>
-               </div>
-               
-<script>
-//우편번호 검색
-$(function(){
-   $('#zip-btn').on('click',function(){
-      var url = "signup/zipSearch.jsp";
-      window.open(url,"우편번호검색","width=500 height=400");      
-   });
-});
-</script>
+ .image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+   }
+   .image-preview-input input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      filter: alpha(opacity=0);
+   }
+   .image-preview-input-title {
+       margin-left:2px;
+   }
+ 
+   img {
+      cursor:pointer;
+   }
+   .files-crw {
+      width : 165px;
+      height: 220px;
+   }
 
-               <div class="form-group">
-                  <label class="control-label col-sm-2" for="zip">우편번호</label>
-                  <div class="col-sm-6">
-                    <div class="input-group">
-                      <input type="text" class="form-control" id="zip" 
-                         placeholder="우편번호 버튼을 눌러주세요" name="zip" disabled>
-                      <span class="input-group-btn">
-                        <button id="zip-btn"class="btn btn-default" type="button">우편번호</button>
-                      </span>
-                    </div>
-                  </div>
-               </div>
-               
-               <div class="form-group">
-                  <label class="control-label col-sm-2" for="addr">주소</label>
-                  <div class="col-sm-6">
-                     <input type="text" class="form-control" id="add1"
-                        placeholder="주소는 자동으로 입력 됩니다." name="addr" disabled>
-                  </div>
-               </div>
-               <div class="form-group">
-                  <label class="control-label col-sm-2" for="addr">상세주소</label>
-                  <div class="col-sm-6">
-                     <input type="text" class="form-control" id="add2"
-                        placeholder="상세주소 입력하세요" name="addr">
-                  </div>
-               </div>
-            </div>
-         </div>
-         </div>
-      </fieldset>
-      </form>
+ .control-label{
+/*  width : 100px; */
+ }
 
+
+
+.input-group .form-control:last-child, .input-group-addon:last-child {
+    border-top-left-radius: 0;
+    width: 300px;
+    border-bottom-left-radius: 0;
+}
+
+	div#prof_inform{
+		margin-top:50px;
+
+
+
+	}
+
+
+
+</style>
+
+ 
+<!-- Admin Header -->
+<%@include file="common/topCategory.jsp"%>
+
+<!-- Content -->
+<div class="col-md-2" id="commonLeftSide">
+   <%@include file="common/mainSideCategory.jsp" %>   
+</div>
+<div class="col-md-10" id="commonRightSide">
+     
 <script>
 $(function() {
    //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
@@ -196,7 +117,7 @@ $(function() {
            // Set preview image into the popover data-content
            reader.onload = function (e) {
                $(".image-preview-input-title").text("변경");
-                $(".image-preview-filename").val(file.name);            
+                $("#image-preview-filename").val(file.name);            
                $("#profile-image").attr('src', e.target.result);
            }        
            reader.readAsDataURL(file);
@@ -211,72 +132,148 @@ $(function() {
         //Set preview image into the popover data-content
         reader.onload = function (e) {
             $(".image-preview-input-title").text("변경");
-            $(".image-preview-filename").val(file.name);            
+            $("#image-preview-filename").val(file.name);            
             $("#profile-image").attr('src', e.target.result);
         }        
         reader.readAsDataURL(file);
     });
    
-     
+ 
+ 
 });
 </script>
 
-   <!-- 선택사항 -->
-   <form class="form-horizontal" action="#">
-   <fieldset class="signup_cas_fs">
-      <legend id="choice" class="signup_cas_ld">선택사항<span> : 클릭!</span></legend>
-      <div class="contSelect hide">
-         <div class="box-body">
-            <div class="col-sm-3">
-               <div class="filess" style="width:290px; height:400px;">
-                  <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
-                     id="profile-image" class="img-circle img-responsive">
-                  <input id="profile-image-input"  accept="image/png, image/jpeg, image/gif" class="hidden" type="file">
-                  <div style="color:#999;">그림을 클릭하여 이미지를 변경합니다.</div>   
-               </div>
-            </div>
-             
-            <div class="form-group">
-               <label class="control-label col-sm-1" for="upload">이미지</label>
-               <div class="col-sm-4">
-                 <div class="input-group">
-                   <input type="text" class="form-control image-preview-filename" placeholder="사진 파일을 업로드 하세요." disabled="disabled">
-                   <span class="input-group-btn">
-                     <div class="btn btn-default image-preview-input">
-                           <span class="glyphicon glyphicon-folder-open" />
-                           <span class="image-preview-input-title">업로드</span>
-                           <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/>
-                        </div>
-                   </span>
-                 </div>
-               </div>
-                
-               <p id="enter"></p>
-               <p id="enter"></p>
-               
-               <label class="control-label col-sm-1" for="nickname">닉네임</label>
-               <div class="col-sm-4">
-                 <div class="input-group">
-                   <input type="text" class="form-control" id="nick" name="id" placeholder="닉네임을 입력하세요.">
-                   <span class="input-group-btn">
-                     <button class="btn btn-default" id="nickCheck" type="button">중복확인</button>
-                       <span class="msgCheckNick"></span>
-                   </span>
-                 </div>
-               </div>
-               
-               <p id="enter"></p>
-               <div id="add-textField"></div>
-               <p id="enter"></p>
  
-               
-            </div>
-         </div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
   
-    
-      </div>
-   </fieldset>
-   
- 
-   </form>
- 
+  	<div class="col-md-12">
+  		
+ 		 <form name="insertProfessor"  method="post" action="${pageContext.request.contextPath }/admin/insertProfessor" enctype="multipart/form-data">
+
+
+	<h2>교수 등록</h2>
+  	
+  	
+  	
+  		<div class="col-md-12" style="margin-top:30px;">
+  		   <!-- 이미지 미리보기 -->
+               <div class="filess" >
+                  <img  style="height:150px;width:130px;" alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+                     id="profile-image" class="img-circle img-responsive">
+                  <input style="width:100px;" id="profile-image-input"  accept="image/png, image/jpeg, image/gif" class="hidden" type="file">
+               </div>
+              
+              
+               <label class='control-label'>이미지</label>
+	                   <span class="input-group-btn">
+	                   
+	                   		<input type="text" class="form-control" style="width:230px;" id="image-preview-filename" disabled="disabled">
+	                   		<div class="btn btn-default image-preview-input">
+	                           <input type="file" accept="image/png, image/jpeg, image/gif" name="prfs_pic"/>
+	                           <span class="image-preview-input-title">업로드</span>
+	                        </div>
+	                   </span>
+              
+  		</div> 
+
+
+	<div class="col-md-12" id="prof_inform">
+	
+				<div class="col-md-5">
+	
+
+					  <input type="hidden" name="prfs_num">
+					
+					<fieldset>
+					
+					  <label class='control-label'>이름</label>
+					  <input type="text" class="form-control" name="prfs_nm" >
+					  
+					  <label class='control-label'>영문이름</label>
+					  <input type="text" class="form-control"  name="prfs_eng_nm">
+		  		
+				      <label class='control-label'>학과</label><br/>
+					  <select name="prfs_dept" class="selectpicker show-tick">
+						<option value="DEPT1">멀티미디어공학과</option> 
+						<option value="DEPT2">컴퓨터공학과</option> 
+						<option value="DEPT3">영어영문학과</option> 
+						<option value="DEPT4">문예창작학과</option> 
+						<option value="DEPT5">경영학과</option> 
+						<option value="DEPT6">회계학과</option> 
+						<option value="DEPT7">간호학과</option> 
+						<option value="DEPT8">생활체육학과</option> 
+						<option value="DEPT9">국어교육과</option> 
+						<option value="DEPT10">수학교육과</option> 
+					 </select>
+				<br>
+				 
+				
+					<label class='control-label'>주민등록번호</label>
+				  	<input type="text" class="form-control" name="prfs_bir"  >
+				
+					<label class='control-label'>생년월일</label>
+					<input type="date" class="form-control" >
+					<input type="hidden" name="prfs_regno" value="${ }">
+					 
+
+					
+					<label class='control-label'>전화번호</label>
+				  	<input type="text" class="form-control" name="prfs_tel"  >
+				
+					<label class='control-label'>계좌번호</label>
+					<input type="text" class="form-control" name="prfs_act_num"  >
+					
+					</fieldset>
+					</div>
+
+
+					
+					<div class="col-md-5 col-md-offset-1">
+					<fieldset>
+					<label class='control-label'>은행명</label>
+					<input type="text" class="form-control" name="prfs_bank"  >
+					
+					<label class='control-label'>예금주</label>
+					<input type="text" class="form-control" name="prfs_ah"  >
+
+					<label class='control-label'>우편번호</label>
+					<input type="text" class="form-control" name="prfs_zip"  >
+					
+					 <label class='control-label'>주소</label>
+     				 <input type="text" class="form-control" name="prfs_addr"  >
+					
+					 <label class='control-label'>휴대폰번호</label>
+					 <input type="text" class="form-control" name="prfs_hp"  >
+
+					 <label class='control-label'>이메일</label>
+					 <input type="text" class="form-control" name="prfs_email"  >
+
+					 <label class='control-label'>비밀번호</label>
+					 <input type="text" class="form-control" name="prfs_pw"  >
+					
+					 <label class='control-label'>성별</label>
+					 <div class="radio" >
+					      <label><input type="radio" name="optradio">남자</label>
+					      <label><input type="radio" name="optradio">여자</label>
+				    </div>
+				    
+				    </fieldset>
+				    </div>
+				</div>
+	  	</div>
+				 
+				<div class="input-group">
+				
+				
+		 <input type="submit" value="등록하기">
+				</div>
+  		</div> 
+  
+  	</div>
+  </div>
+</div>
+  
+      </form>
+ </div>

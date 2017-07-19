@@ -33,6 +33,7 @@ public class AdminProfessorManageServiceImpl implements AdminProfessorManageServ
 	
 	@Override
 	public int insertPrfs(PrfsVO prfsVO) throws SQLException {
+		prfsVO.
 		int result = proDAO.insertPrfs(prfsVO);
 		return result;
 	}
