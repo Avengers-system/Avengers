@@ -59,4 +59,8 @@ public interface StudentMainService {
 		
 	   //포털소식,학교공지,학과공지,학사일정 조회
 		public ArrayList<BoardVO> selectBoradList();
+		
+		//배현상
+		//강의목록
+		public ArrayList<Map<String, String>> selectClassList(String stud_num) throws SQLException;
 }

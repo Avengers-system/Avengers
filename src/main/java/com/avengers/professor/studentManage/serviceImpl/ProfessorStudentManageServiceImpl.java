@@ -2,6 +2,7 @@ package com.avengers.professor.studentManage.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,15 +18,11 @@ public class ProfessorStudentManageServiceImpl implements ProfessorStudentManage
 	@Autowired
 	private ProfessorStudentManageDao proStuDAO;
 	
-	public void setProStuDAO(ProfessorStudentManageDao proStuDAO) {
-		this.proStuDAO = proStuDAO;
-	}
-
 	@Override
-	public ArrayList<CnsVO> selectCnsList(String cns_prfs, String key)
+	public ArrayList<CnsVO> selectCnsList(String cns_prfs)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<CnsVO> cnsList = proStuDAO.selectCnsList(cns_prfs);
+		return cnsList;
 	}
 
 	@Override
@@ -36,24 +33,45 @@ public class ProfessorStudentManageServiceImpl implements ProfessorStudentManage
 	}
 
 	@Override
-	public CnsVO updateCns(CnsVO cnsVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public void updateCns(CnsVO cnsVO) throws SQLException {
+		System.out.println("!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!");
+		System.out.println(cnsVO.getCns_num());
+		System.out.println(cnsVO.getCns_title());
+		
+		proStuDAO.updateCns(cnsVO);
 	}
 
 	@Override
-	public ArrayList<StudVO> selectStudList(String prfs_num, String key)
+	public ArrayList<StudVO> selectStudList(String prfs_num)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+
+		ArrayList<StudVO> studentList = proStuDAO.selectStudList(prfs_num);
+		return studentList;
 	}
 
 	@Override
-	public StudVO selectStud(String prfs_num, String stud_num)
+	public StudVO selectStud(String stud_num)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		StudVO studDetail = proStuDAO.selectStud(stud_num);
+		return studDetail;
 	}
+
+	@Override
+	public void counselDateInsert(String cns_date, String cns_prfs,
+			 String cns_kind) throws SQLException {
+
+			proStuDAO.counselDateInsert(cns_date, cns_prfs,  cns_kind);
+		
+	}
+
+	@Override
+	public CnsVO cnsDetail(String cns_num) throws SQLException {
+
+		CnsVO vo = proStuDAO.cnsDetail(cns_num);
+		return vo;
+	}
+
+
 
 	
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resSchManage">
+	<resultMap id="resSchMap" type="java.util.HashMap" >
+		<result javaType="java.lang.String" column="STUD_NUM" property="stud_num"/>
+		<result javaType="java.lang.String" column="STUD_GRD" property="stud_grd"/>
+		<result javaType="java.lang.String" column="STUD_NM" property="stud_nm"/>
+		<result javaType="java.lang.String" column="STUD_QTR" property="stud_qtr"/>
+		<result javaType="java.langString" column="STUD_BANK" property="stud_bank"/>
+		<result javaType="java.lang.String" column="STUD_ACT_NUM" property="stud_act_num"/>	
+		<result javaType="java.lang.String" column="DEPT_NM" property="dept_nm"/>
+		<result javaType="java.lang.Integer" column="TL_POINT" property="tl_point"/>
+		<result javaType="java.lang.String" column="TL_LEV" property="tl_lev"/>
+		<result javaType="java.lang.Integer" column="TL_MARK" property="tl_mark"/>
+		<result javaType="java.lang.String" column="LCT_CRD" property="lct_crd"/>
+	</resultMap>
+	
+	
+	<select id="resSchStudent" parameterType="java.util.HashMap" resultMap="resSchMap">
+		SELECT S.STUD_NUM "학번",
+				S.STUD_GRD "학년",
+				S.STUD_NM "이름",
+				S.STUD_QTR "현재학기",
+				S.STUD_BANK "은행",
+				S.STUD_ACT_NUM "계좌번호",
+				S.STUD_DEPT "학과번호(학생)",
+				S.STUD_SCHREG_CODE "학적상태",
+				S.STUD_ADDR "주소",
+				D.DEPT_NM "학과이름(학과)",
+				D.DEPT_COL "단과대번호",
+				T.TL_LCT "수강번호",
+				TO_CHAR(T.TL_POINT) "강의점수",
+				T.TL_LEV "등급",
+				TO_CHAR(T.TL_MARK) "평점",
+				L.LCT_CRD "학점"
+		FROM STUDENT S,DEPARTMENT D,TL T,LECTURE L
+		WHERE S.STUD_NUM =#{stud_num}
+		AND S.STUD_DEPT = D.DEPT_NUM
+		AND S.STUD_NUM = T.TL_STUD
+		AND T.TL_LCT = L.LCT_NUM
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+
+<button onclick="location.href='${request.getContextPath()%>/admin/myInfo}'">개인정보</button><br/>
+<button onclick="location.href='${request.getContextPath()%>/admin/mySchedule}'">개인일정관리</button><br/>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 <c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
 <c:if test="${!empty message }">
 	<script type="text/javascript">alert('${message}');</script>
@@ -23,7 +22,8 @@
 <div class="mypage">
 <c:choose>
 	<c:when test="${not empty admin}">
-		<form name="adminInfo" method="post" enctype="multipart/form-data" action="${myContextPath}/admin/mypage/myInfoUpdate">
+		<form name="adminInfo" method="post" enctype="multipart/form-data" 
+		action="${myContextPath}/admin/mypage/myInfoUpdate">
 			사진:<img src="<%=request.getContextPath()%>/resources/myInfo_images/${admin.admin_pic}" width="100pt"/>
 					 <input type="file"  name="file" onclick="ImageChange_go()"/><br/>
 				아이디:<input type="text" name="admin_id" value="${admin.admin_id}"/><br/>
@@ -96,5 +96,4 @@ function ImageChange_go(){
 		reader.readAsDataURL(file);	
 }
 </script>
-</body>
-</html>
+

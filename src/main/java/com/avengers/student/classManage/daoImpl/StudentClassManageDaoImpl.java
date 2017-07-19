@@ -3,6 +3,7 @@ package com.avengers.student.classManage.daoImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,6 +17,7 @@ import com.avengers.db.dto.EqVO;
 import com.avengers.db.dto.ExamVO;
 import com.avengers.db.dto.LaVO;
 import com.avengers.db.dto.LctVO;
+import com.avengers.db.dto.SubVO;
 import com.avengers.student.classManage.dao.StudentClassManageDao;
 
 
@@ -191,6 +193,77 @@ public class StudentClassManageDaoImpl implements StudentClassManageDao{
 	public int insertAsessMentofLecture(LaVO la) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	
+	//배현상 강의계획서
+	@Override
+	public Map<String, String> selectDetailLct(String lct_num)
+			throws SQLException {
+		Map<String, String> detailLct = (Map<String, String>) sqlSession.selectOne("lct.selectDetailLecture", lct_num);
+		return detailLct;
+	}
+	//배현상 시험리스트
+	@Override
+	public ArrayList<Map<String, String>> selectExamList(Map<String, String> key)
+			throws SQLException {
+		ArrayList<Map<String,String>> examList = (ArrayList<Map<String, String>>) sqlSession.selectList("exam.selectExamList", key);
+		return examList;
+	}
+
+	//배현상
+	//시험화면에서 응시버튼을 눌렀을 경우 화면에 뿌려줄 시험문제리스트
+	@Override
+	public ArrayList<EqVO> selectEqList(String exam_num) throws SQLException {
+		ArrayList<EqVO> eqList = (ArrayList<EqVO>) sqlSession.selectList("eq.selectEqList", exam_num);
+		return eqList;
+	}
+
+	//배현상
+	//학생이 시험제출버튼을 눌렀을 때 학생답안을 저장
+	@Override
+	public int insertSa(ArrayList<Map<String, String>> saList)
+			throws SQLException {
+		int result = 0;
+		for(int i=0; i<saList.size(); i++){
+			result += sqlSession.insert("sa.insertSa", saList.get(i));
+		}
+		return result;
+	}
+	
+	//배현상
+	//학생의 응시테이블 응시여부 '응시'로 업데이트
+	@Override
+	public int updateTeCheck(String te_num)
+			throws SQLException {
+		int result = 0;
+		result = sqlSession.update("te.updateTeCheck", te_num);
+		return result;
+	}
+
+	//배현상
+	//과목화면에 뿌릴 리스트
+	@Override
+	public ArrayList<Map<String, String>> selectAsgnList(Map<String, String> key)
+			throws SQLException {
+		
+		ArrayList<Map<String, String>> asgnList = (ArrayList<Map<String, String>>) sqlSession.selectList("asgn.selectAsgnInfoList", key);
+		return asgnList;
+	}
+
+	@Override
+	public Map<String, String> selectAsgnInfo(Map<String, String> key)
+			throws SQLException {
+		Map<String, String> asgnInfo = (Map<String, String>) sqlSession.selectOne("asgn.selectAsgnInfo", key);
+		return asgnInfo;
+	}
+
+	//배현상
+	//학생이 과목제출버튼을 누른 경우
+	@Override
+	public int updateSubmissionCheck(SubVO subVO) throws SQLException {
+		int result = sqlSession.update("submission.updateSubmissionCheck", subVO);
+		return result;
 	}
 
 }

@@ -10,9 +10,9 @@ import java.util.Date;
 public class ExamVO {
 	private String exam_num; // 시험 고유번호
 	private String exam_type; // 시험종류
-	private Date exam_date; // 시험일
-	private Date exam_start_date; // 시작시간
-	private Date exam_end_date; // 종료시간
+	private String exam_date; // 시험일
+	private String exam_start_date; // 시작시간
+	private String exam_end_date; // 종료시간
 	private String exam_lct; // 강의 고유번호
 
 	public String getExam_num() {
@@ -31,27 +31,27 @@ public class ExamVO {
 		this.exam_type = exam_type;
 	}
 
-	public Date getExam_date() {
+	public String getExam_date() {
 		return exam_date;
 	}
 
-	public void setExam_date(Date exam_date) {
+	public void setExam_date(String exam_date) {
 		this.exam_date = exam_date;
 	}
 
-	public Date getExam_start_date() {
+	public String getExam_start_date() {
 		return exam_start_date;
 	}
 
-	public void setExam_start_date(Date exam_start_date) {
+	public void setExam_start_date(String exam_start_date) {
 		this.exam_start_date = exam_start_date;
 	}
 
-	public Date getExam_end_date() {
+	public String getExam_end_date() {
 		return exam_end_date;
 	}
 
-	public void setExam_end_date(Date exam_end_date) {
+	public void setExam_end_date(String exam_end_date) {
 		this.exam_end_date = exam_end_date;
 	}
 

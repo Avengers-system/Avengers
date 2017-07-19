@@ -51,8 +51,14 @@ public class StudentResManageDaoImpl implements StudentResManageDao{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
 
+	@Override
+	public HashMap<String, String> selectresSchStudent(String stud_num)
+			throws SQLException {
+		HashMap<String, String> resSchStudent = new HashMap<String, String>();
+		resSchStudent = (HashMap<String, String>) sqlSession.selectOne("resSchManage.resSchStudent", stud_num);
+		return resSchStudent;
+	}
 	
 
 }
