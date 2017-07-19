@@ -114,7 +114,12 @@
 								<td>${lct.get("lct_crd") }</td>
 								<td>${lct.get("lct_qua_num") }</td>
 								<td>${lct.get("lct_qua_num") - lct.get("lct_cnt_num") }</td>
-								<td><button name="${lct.get('lct_num')}" onclick="">강의계획서</button></td>
+								<td>
+								<form action = "${pageContext.request.contextPath}/student/lectureDetail" method="post">
+								<input type="hidden" name="lct_num" value="${lct.get('lct_num')}" />
+								<input type = "submit" value="강의계획서">
+								</form>
+								</td>
 							</tr>
 						</c:forEach>
 					</c:when>
@@ -175,7 +180,12 @@
 											<td>${admission.get("prfs_nm") }</td>
 											<td>${admission.get("lr_date") }</td>
 											<td>${admission.get("lct_crd") }</td>
-											<td><button name="${admission.get('tl_num')}" onclick="">강의계획서</button></td>
+											<td>
+											<form action = "${pageContext.request.contextPath}/student/lectureDetail" method="post">
+											<input type="hidden" name="lct_num" value="${admission.get('lct_num')}" />
+											<input type = "submit" value="강의계획서">
+											</form>
+											</td>
 										</tr>
 									</c:forEach>
 								</c:when>
@@ -213,13 +223,12 @@
 						<c:when test="${not empty cartList}">
 							<c:forEach var="cart" items="${cartList }">
 								<tr>
-									
-											<td>
-											<form action = "${pageContext.request.contextPath}/student/deleteCart" method="post">
-											<input type="hidden" name="cart_lct" value="${cart.get('lct_num')}" />
-											<input type = "submit" value="취소">
-											</form>
-											</td>
+									<td>
+									<form action = "${pageContext.request.contextPath}/student/deleteCart" method="post">
+									<input type="hidden" name="cart_lct" value="${cart.get('lct_num')}" />
+									<input type = "submit" value="취소">
+									</form>
+									</td>
 									<c:choose>		
 										<c:when test="${term=='본수강신청' }">
 											<td>
@@ -236,9 +245,13 @@
 									<td>${cart.get("lr_num") }</td>
 									<td>${cart.get("prfs_nm") }</td>
 									<td>${cart.get("lr_date") }</td>
-									<td>${cart.get("lct_crd") }</td>
-									
-									<td><button name="${cart.get('lct_num')}" onclick="">강의계획서</button></td>
+									<td>${cart.get("lct_crd") }</td>									
+									<td>
+									<form action = "${pageContext.request.contextPath}/student/lectureDetail" method="post">
+									<input type="hidden" name="lct_num" value="${cart.get('lct_num')}" />
+									<input type = "submit" value="강의계획서">
+									</form>
+									</td>
 								</tr>
 							</c:forEach>
 						</c:when>
