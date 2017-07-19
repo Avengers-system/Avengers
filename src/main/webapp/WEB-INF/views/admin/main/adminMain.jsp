@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <!-- Admin Header -->
@@ -11,43 +11,7 @@
 <div class="col-md-2" id="commonLeftSide">
 	<%@include file="../common/mainSideCategory.jsp" %>	
 </div>
-<div class="col-md-10" id="commonRightSide">
-							
-							
-							
-							관리자메인
-							<button onclick="location.href='<%=request.getContextPath()%>/admin/adminMain'">관리자</button>
-							<button onclick="location.href='<%=request.getContextPath()%>/professor/professorMain'">교수</button>
-							<button onclick="location.href='<%=request.getContextPath()%>/student/studentMain'">학생</button>
-							<button onclick="location.href='<%=request.getContextPath()%>/common/logout'">로그아웃</button>
-							<button onclick="location.href='<%=request.getContextPath()%>/admin/professorManage'">교수목록</button>
-							<button onclick="location.href='<%=request.getContextPath()%>/admin/studentManage'">학생목록</button>
-							
-							
-							<c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
-							
-							관리자메인
-							
-							<button id="adminMain" onclick="adminMain_go()">관리자</button>
-							<button id="logout" onclick="logout_go()">로그아웃</button><br/>
-							<button id="myInfo" onclick="myInfo_go()">개인정보</button><br/>
-							<button id="mySchedule" onclick="mySchedule_go()">개인일정관리</button><br/>
-							<button id="adminMain" onclick="adminMain_go()">관리자</button><br/>
-							<button id="myPage" onclick="mypage_go()">mypage</button>
-							<button id="profPage">교수관리</button>
-							<button id="studPage">학생관리</button>
-							<button id="classPage">강의관리</button>
-							<button id="boardPage">HelpDesk</button>
-							<button id="logout" onclick="logout_go()">로그아웃</button><br/>
-							<br/>
-							<br/>
-							<br/>
-							<br/>
-							
-							
-							<br/>
-							<br/>
-							
+<div class="col-md-10" id="commonRightSide">							
 							<h1>학생 수 정보 출력</h1>
 							재학생 수 : ${studStatus.get(0) } <br/>
 							휴학생 수 : ${studStatus.get(1) } <br/>
@@ -103,33 +67,5 @@
 							   ${dept.dept_nm }의 교수의 수 : ${dept.count }<br/><br/>
 							</c:forEach>
 							
-							<script type="text/javascript">
-							   function adminMain_go(){
-							      location.href="${myContextPath}/admin/main/adminMain";
-							   }
-							   function logout_go(){
-							      location.href="${myContextPath}/common/logout";
-							   }
-							   function myInfo_go(){
-							      location.href="${myContextPath}/admin/mypage/myInfo";
-							   }
-							   function mySchedule_go(){
-							      location.href="${myContextPath}/admin/mypage/mySchedule";
-							   }
 							
-							</script>
-							
-							
-							<script type="text/javascript">
-								function adminMain_go(){
-									location.href="${myContextPath}/admin/main/adminMain";
-								}
-								function logout_go(){
-									location.href="${myContextPath}/logout";
-								}
-								function mypage_go(){
-									location.href="${myContextPath}/admin/mypage/";
-								}
-							
-							</script>
 </div>
