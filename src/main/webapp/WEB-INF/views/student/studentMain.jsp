@@ -11,7 +11,7 @@
 		<li role="presentation" class="active"><a href="#">Main</a></li>
 		<li role="presentation"><a href="#">My Page</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/schoolRegister/certificate">학적</a></li>
-		<li role="presentation"><a href="#">수업</a></li>
+		<li role="presentation"><a href="${pageContext.request.contextPath}/student/classManage/classMain">수업</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/admissionApplication">수강신청</a></li>
 		<li role="presentation"><a href="#">등록&장학</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/counsel/counselList">상담</a></li>
@@ -19,17 +19,6 @@
 	</ul>
 </div>
 
-	<!-- 학생개인정보 -->
-	<br> 개인정보
-	<br> 이름 : ${studentInfo.stud_nm}
-	<br> 학과:${dept.dept_nm }
-	<br> 학년:${studentInfo.stud_grd}
-	<br> 학적상태 :${studentInfo.stud_schreg_code}
-	<br>
-	<br>
-	<!-- 개인일정  -->
-	개인일정
-	<br>
 
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
@@ -259,4 +248,3 @@
 			</tr>
 		</c:otherwise>
 	</c:choose>
-	<button onclick="location.href='<%=request.getContextPath()%>/student/classManage/classMain'">관리자</button>
