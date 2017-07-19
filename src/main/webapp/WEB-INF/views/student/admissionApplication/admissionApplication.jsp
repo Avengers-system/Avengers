@@ -9,17 +9,6 @@
 <title></title>
 </head>
 <body>
-	<div class="row">
-		<div class="col-sm-12" id="studentTopCategory">
-			<input type="button" value="My Page"> 
-			<input type="button" value="학적관리" onclick="location.href='schoolRegister.jsp'"> 
-			<input type="button" value="수업관리" onclick="location.href='lecture.jsp'">
-			<input type="button" value="수강신청" onclick="location.href='${pageContext.request.contextPath}/student/admissionApplication'">
-			<input type="button" value="등록/장학"onclick="location.href='scholarshipRegister.jsp'"> 
-			<input type="button" value="상담" onclick="location.href='consultGo.jsp'">
-			<input type="button" value="Help Desk">
-		</div>
-	</div>
 
 	<!-- 학생개인정보 -->
 	<h3> 개인정보 </h3>

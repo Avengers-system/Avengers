@@ -25,3 +25,4 @@
 	 location.href="${pageContext.request.contextPath}/logout";
  }
 </script>
+
