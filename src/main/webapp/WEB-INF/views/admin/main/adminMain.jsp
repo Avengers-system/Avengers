@@ -30,7 +30,7 @@
 <button id="adminMain" onclick="adminMain_go()">관리자</button><br/>
 <button id="myPage" onclick="mypage_go()">mypage</button>
 <button id="profPage" onclick="location.href='${pageContext.request.contextPath}/admin/professorManage'" >교수관리</button>
-<button id="studPage">학생관리</button>
+<button id="studPage" onclick="location.href='${pageContext.request.contextPath}/admin/studentManage'">학생관리</button>
 <button id="classPage">강의관리</button>
 <button id="boardPage">HelpDesk</button>
 <button id="logout" onclick="logout_go()">로그아웃</button><br/>
