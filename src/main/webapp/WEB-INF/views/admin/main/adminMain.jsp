@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
+
 <!-- Admin Header -->
 <%@include file="../common/topCategory.jsp"%>
 
@@ -111,7 +112,7 @@
 							      location.href="${myContextPath}/common/logout";
 							   }
 							   function myInfo_go(){
-							      location.href="${myContextPath}/admin/mypage/myInfo";
+							      location.href="<%=request.getContextPath()%>/admin/mypage/myInfo";
 							   }
 							   function mySchedule_go(){
 							      location.href="${myContextPath}/admin/mypage/mySchedule";

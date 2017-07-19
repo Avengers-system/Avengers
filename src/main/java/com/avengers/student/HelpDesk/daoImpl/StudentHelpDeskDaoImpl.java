@@ -139,5 +139,18 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 	}
 
 
+	@Override
+	public void updateStudentFAQ(BoardVO boardVO) {
+		sqlSession.update("board.updateStudentFAQ",boardVO);
+		
+	}
+
+
+	@Override
+	public void deleteStudentFAQ(BoardVO boardVO) {
+		sqlSession.delete("board.deleteStudentFAQ",boardVO);
+	}
+
+
 
 }
