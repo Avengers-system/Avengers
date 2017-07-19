@@ -8,7 +8,7 @@
 		<result javaType="java.lang.String" column="STUD_GRD" property="stud_grd"/>
 		<result javaType="java.lang.String" column="STUD_NM" property="stud_nm"/>
 		<result javaType="java.lang.String" column="STUD_QTR" property="stud_qtr"/>
-		<result javaType="java.langString" column="STUD_BANK" property="stud_bank"/>
+		<result javaType="java.lang.String" column="STUD_BANK" property="stud_bank"/>
 		<result javaType="java.lang.String" column="STUD_ACT_NUM" property="stud_act_num"/>	
 		<result javaType="java.lang.String" column="DEPT_NM" property="dept_nm"/>
 		<result javaType="java.lang.Integer" column="TL_POINT" property="tl_point"/>
