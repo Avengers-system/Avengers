@@ -63,11 +63,5 @@
 			</div>
 		</div>
 	</header>
-
-
-<<<<<<< HEAD
-헤더입니다
-<button onclick="location.href='<%=request.getContextPath()%>/logout'">로그아웃</button>
-=======
 </div>
->>>>>>> refs/remotes/origin/master
+
