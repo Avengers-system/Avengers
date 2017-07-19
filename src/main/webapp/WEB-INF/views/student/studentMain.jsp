@@ -3,15 +3,6 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-	<div class="row">
-		<div class="col-sm-12" id="studentTopCategory">
-			<input type="button" value="My Page"> 
-			<input type="button" value="학적관리" onclick="location.href='schoolRegister.jsp'"> 
-			<input type="button" value="수업관리" onclick="location.href='lecture.jsp'">
-			<input type="button" value="수강신청" onclick="location.href='${pageContext.request.contextPath}/student/admissionApplication'"> 
-			<input type="button" value="등록/장학"	onclick="location.href='scholarshipRegister.jsp'"> 
-			<input type="button" value="상담" onclick="location.href='consultGo.jsp'">
-			<input type="button" value="HelpDesk" onclick="location.href='${pageContext.request.contextPath}/student/helpDeskMain'">
 
 
 <!-- UserHeader -->
@@ -21,15 +12,13 @@
 		<li role="presentation"><a href="#">My Page</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/schoolRegister/certificate">학적</a></li>
 		<li role="presentation"><a href="#">수업</a></li>
-		<li role="presentation"><a href="#">수강신청</a></li>
+		<li role="presentation"><a href="${pageContext.request.contextPath}/student/admissionApplication">수강신청</a></li>
 		<li role="presentation"><a href="#">등록&장학</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/counsel/counselList">상담</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/helpDesk/studentFAQList">Help Desk</a></li>
 	</ul>
 </div>
 
-		</div>
-	</div>
 	<!-- 학생개인정보 -->
 	<br> 개인정보
 	<br> 이름 : ${studentInfo.stud_nm}

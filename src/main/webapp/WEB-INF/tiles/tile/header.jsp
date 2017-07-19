@@ -46,7 +46,7 @@
 			<div class="logout">
 				남은 시간 : 00 분 00초 
 				<input type="button" value="연장"	class="btn btn-info" id="button1" /> 
-				<input type="button" value="로그아웃" onclick="location.href='#'" class="btn btn-info" id="button1" />
+				<input type="button" value="로그아웃" onclick="location.href='${pageContext.request.contextPath}/logout'" class="btn btn-info" id="button1" />
 			</div>
 
 			<div class="12u" style="margin: 0 auto; float: left; width: 100%;">
