@@ -4,7 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
  
-
+<style>
+	#professorTable,  #professorTable td{
+		border : 2px solid black;
+	}
+</style>
 
 <c:if test="${msg !=null}">
 		<script>
@@ -18,18 +22,50 @@
 
 <h1>교수목록 리스트 </h1>
 <br/>
- 
- <c:forEach var="professor" items="${professorList }">
-	교수 번호 : ${professor.prfs_num}<br/>
-	교수 이름 : <a href="professorManage/detail?prfs_num=${professor.prfs_num}">${professor.prfs_nm}</a><br/>
-	교수 영문이름 : ${professor.prfs_eng_nm}<br/>
-	학과번호 : ${professor.prfs_dept}<br/>
-	생년월일 : ${professor.prfs_bir}<br/>
-	주민등록번호 : ${professor.prfs_regno}<br/>
-	성별 : ${professor.prfs_gen}<br/>
-	휴대폰번호 : ${professor.prfs_hp}<br/>
-	 <hr/>
- </c:forEach>
+
+ <table id="professorTable">
+		 <c:forEach var="professor" items="${professorList }">
+ 			<tr>
+	 		<td>교수 번호</td>
+	 		<td>${professor.prfs_num}</td>
+	 		</tr>
+ 			<tr>
+	 		<td>교수 이름</td>
+	 		<td><a href="professorManage/detail?prfs_num=${professor.prfs_num}">${professor.prfs_nm}</a></td>
+	 		</tr>
+ 			<tr>
+	 		<td>영문이름</td>
+	 		<td>${professor.prfs_eng_nm}</td>
+	 		</tr>
+ 			<tr>
+	 		<td>학과번호</td>
+	 		<td>${professor.prfs_dept}</td>
+	 		</tr>
+ 			<tr>
+	 		<td>생년월일</td>
+	 		<td>${professor.prfs_bir}</td>
+	 		</tr>
+ 			<tr>
+	 		<td>주민등록번호</td>
+	 		<td>${professor.prfs_regno}</td>
+	 		</tr>
+ 			<tr>
+	 		<td>성별</td>
+	 		<c:choose>
+					<c:when test="${professor.prfs_gen == '1'} ">
+						<td>남자</td>
+					</c:when>
+					<c:otherwise>
+						<td>여자</td>
+				  	</c:otherwise>
+			</c:choose>
+	 		</tr>
+ 			<tr>
+	 		<td>휴대폰번호</td>
+	 		<td>${professor.prfs_hp}</td>
+	 		</tr>
+		 </c:forEach>
+</table>
 
 <br/>
 <br/>

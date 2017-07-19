@@ -41,11 +41,13 @@ width:120px;
 				<div class="input-group">
 				 <span class="input-group-addon" >생년월일</span>
 				  <input type="text" class="form-control" name="prfs_bir" value="${professor.prfs_bir}">
-				</div>		
+				</div>	
+				<br>	
 				<div class="input-group">
 				 <span class="input-group-addon" >주민등록번호</span>
 				  <input type="text" class="form-control" name="prfs_regno" value="${professor.prfs_regno}">
-				</div>		
+				</div>
+				<br>		
 				<div class="input-group">
 				 <span class="input-group-addon" >성별</span>
 				
@@ -58,6 +60,7 @@ width:120px;
 				  	</c:otherwise>
 				  	</c:choose>
 				</div>		
+				<br>
 				<div class="input-group">
 				 <span class="input-group-addon" >휴대폰번호</span>
 				  <input type="text" class="form-control" name="prfs_hp" value="${professor.prfs_hp}">
