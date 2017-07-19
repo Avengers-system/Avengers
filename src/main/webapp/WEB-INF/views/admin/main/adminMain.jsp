@@ -25,9 +25,11 @@
 <button id="myInfo" onclick="myInfo_go()">개인정보</button><br/>
 <button id="mySchedule" onclick="mySchedule_go()">개인일정관리</button><br/>
 >>>>>>> branch 'master' of https://github.com/Avengers-system/Avengers.git
+
+
 <button id="adminMain" onclick="adminMain_go()">관리자</button><br/>
 <button id="myPage" onclick="mypage_go()">mypage</button>
-<button id="profPage">교수관리</button>
+<button id="profPage" onclick="location.href='${pageContext.request.contextPath}/admin/professorManage'" >교수관리</button>
 <button id="studPage">학생관리</button>
 <button id="classPage">강의관리</button>
 <button id="boardPage">HelpDesk</button>

@@ -9,10 +9,7 @@
 <title></title>
 </head>
 
-<style>
-<<<<<<< HEAD
-</style>
-
+ 
 <body>
 헬프데스크메인<br><hr color="orange">
 <button onclick="location.href='<%=request.getContextPath()%>/admin/univNoticeList'">학교공지</button>

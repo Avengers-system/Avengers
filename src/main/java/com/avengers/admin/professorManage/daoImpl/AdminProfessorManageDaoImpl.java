@@ -28,7 +28,7 @@ public class AdminProfessorManageDaoImpl implements AdminProfessorManageDao {
 	@Override
 	public PrfsVO selectPrfs(String prfs_num) throws SQLException {
 		PrfsVO prfsVO = new PrfsVO();
-		prfsVO = (PrfsVO)sqlSession.selectOne("Prfs.selectPrfs",prfs_num);
+		prfsVO = (PrfsVO)sqlSession.selectOne("prfs.selectPrfs",prfs_num);
 		return prfsVO;  
 	}
 
@@ -59,14 +59,14 @@ public class AdminProfessorManageDaoImpl implements AdminProfessorManageDao {
 	}
 	@Override
 	public int selectCountPrfs() {
-		int result = (Integer) sqlSession.selectOne("Prfs.selectCount");
+		int result = (Integer) sqlSession.selectOne("prfs.selectCount");
 		return result;
 	}
 	
 	
 	@Override
 	public ArrayList<PrfsVO> selectPrfsList() throws SQLException {
-		ArrayList<PrfsVO> prfsList = (ArrayList<PrfsVO>) sqlSession.selectList("Prfs.selectAllPrfs");
+		ArrayList<PrfsVO> prfsList = (ArrayList<PrfsVO>) sqlSession.selectList("prfs.selectAllPrfs");
 		return prfsList;
 	}
 	@Override
