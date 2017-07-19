@@ -27,6 +27,7 @@
          </tr>
       </c:forEach> 
    --> 
+
   <resultMap id="MainLct" type="java.util.HashMap">
         <result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>
         <result javaType="java.lang.String" column="LR_NUM" property="lr_num"/>
@@ -35,7 +36,36 @@
   </resultMap> 
   
 
+	<resultMap id="takeLecture" type="java.util.HashMap">
+		<result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>
+		<result javaType="java.lang.String" column="LCT_NM" property="lct_nm"/>
+		<result javaType="java.lang.String" column="LCT_NM_CLASS" property="lct_nm_class"/>
+		<result javaType="java.lang.String" column="PRFS_NM" property="prfs_nm"/>
+		<result javaType="java.lang.String" column="LR_DATE" property="lr_date"/>
+		<result javaType="java.lang.String" column="LR_LRC" property="lr_lrc"/>
+	</resultMap>
 
+	<resultMap id="detailLecture" type="java.util.HashMap">
+		<result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>	
+		<result javaType="java.lang.String" column="PRFS_NM" property="prfs_nm"/>	
+		<result javaType="java.lang.String" column="PRFS_EMAIL" property="prfs_email"/>	
+		<result javaType="java.lang.String" column="LCT_NM_CLASS" property="lct_nm_class"/>	
+		<result javaType="java.lang.String" column="PRFS_HP" property="prfs_hp"/>	
+		<result javaType="java.lang.String" column="SJT_NM" property="sjt_nm"/>	
+		<result javaType="java.lang.String" column="SJT_CRD" property="sjt_crd"/>	
+		<result javaType="java.lang.String" column="SJT_CD" property="sjt_cd"/>	
+		<result javaType="java.lang.String" column="SJT_ESTM_GRD" property="sjt_estm_grd"/>	
+		<result javaType="java.lang.String" column="DEPT_NM" property="dept_nm"/>	
+		<result javaType="java.lang.String" column="SJT_SMY" property="sjt_smy"/>	
+		<result javaType="java.lang.String" column="LCT_ME_RATE" property="lct_me_rate"/>	
+		<result javaType="java.lang.String" column="LCT_FE_RATE" property="lct_fe_rate"/>	
+		<result javaType="java.lang.String" column="LCT_ASGN_RATE" property="lct_asgn_rate"/>	
+		<result javaType="java.lang.String" column="LCT_ATDC_RATE" property="lct_atdc_rate"/>	
+		<result javaType="java.lang.String" column="LCT_TB" property="lct_tb"/>	
+		<result javaType="java.lang.String" column="LCT_CONT" property="lct_cont"/>	
+	</resultMap>
+	
+	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
 
 	<select id="selectLctList" parameterType="com.avengers.db.dto.LctVO" resultMap="MainLct">
 		select LCT_NUM,LR_NUM,LR_DATE,LR_LCT
@@ -54,12 +84,102 @@
 		
 	</select>
 	
+	<!-- 수강중인 과목을 가져오기 위한 el문 -->
+	<select id="selectTlList" parameterType="java.lang.String" resultMap="takeLecture">
+		select LCT_NUM
+			  ,REGEXP_REPLACE(LCT_NM,'.{1}$') AS LCT_NM
+			  ,SUBSTR(LCT_NM,-1) AS LCT_NM_CLASS
+			  ,PRFS_NM
+			  ,LR_DATE
+			  ,LR_LRC
+		from  STUDENT, LECTURE, TL, PROFESSOR, LR, LRC
+		WHERE STUD_NUM = TL_STUD
+		AND   LCT_NUM = TL_LCT
+		AND   PRFS_NUM = LCT_PRFS
+		AND   LCT_NUM = LR_LCT
+		AND   LR_LRC = LRC_CODE
+		AND   STUD_NUM = #{stud_num}
+		GROUP BY LCT_NUM,LCT_NM, LR_LRC, PRFS_NM, LR_DATE
+		ORDER BY LCT_NUM
+	</select>
 	<update id="updateLctMinus" parameterType="String" >
 		UPDATE LECTURE 
 		SET LCT_CNT_NUM=LCT_CNT_NUM-1
 		WHERE LCT_NUM=#{tl_lct}
 	</update>
 	
+	<!-- 강의계획서의 내용들을 가져오기 위한 쿼리문 -->
+	<select id="selectDetailLecture" parameterType="java.lang.String" resultMap="detailLecture">
+		SELECT LCT_NUM
+		     ,PRFS_NM
+		     ,PRFS_EMAIL
+		     ,SUBSTR(LCT_NM,-1) AS LCT_NM_CLASS
+		     ,PRFS_HP
+		     ,SJT_NM
+		     ,SJT_CRD
+		     ,SJT_CD
+		     ,SJT_ESTM_GRD
+		     ,DEPT_NM
+		     ,SJT_SMY
+		     ,LCT_ME_RATE
+		     ,LCT_FE_RATE
+		     ,LCT_ASGN_RATE
+		     ,LCT_ATDC_RATE
+		     ,LCT_TB
+		     ,LCT_CONT
+		FROM  SUBJECT, LECTURE, DEPARTMENT, PROFESSOR
+		WHERE SJT_NUM=LCT_SJT
+		AND   SJT_DEPT=DEPT_NUM
+		AND   LCT_PRFS = PRFS_NUM
+		AND   LCT_NUM = #{lct_num}
+	</select>
+	
+	
+	<resultMap id="prfsLecture" type="java.util.HashMap">
+		<result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>
+		<result javaType="java.lang.String" column="LCT_NM" property="lct_nm"/>
+		<result javaType="java.lang.String" column="LCT_NM_CLASS" property="lct_nm_class"/>
+		<result javaType="java.lang.String" column="LCT_YR" property="lct_yr"/>
+		<result javaType="java.lang.String" column="LCT_QTR" property="lct_qtr"/>
+		<result javaType="java.lang.String" column="LR_DATE" property="lr_date"/>
+		<result javaType="java.lang.String" column="LR_LRC" property="lr_lrc"/>
+	</resultMap>
+	
+	<select id="selectPrfsLecture" parameterType="java.lang.String" resultMap="prfsLecture">
+		SELECT LCT_NUM
+		      ,REGEXP_REPLACE(LCT_NM,'.{1}$') AS LCT_NM
+		      ,SUBSTR(LCT_NM,-1) AS LCT_NM_CLASS
+		      ,LCT_YR
+		      ,LCT_QTR
+		      ,LR_DATE
+		      ,LR.LR_LRC
+		FROM   LECTURE, PROFESSOR, LR, LRC
+		WHERE  LCT_PRFS = PRFS_NUM
+		AND    LCT_NUM = LR_LCT
+		AND    LR_LRC = LRC.LRC_CODE
+		AND    PRFS_NUM = #{prfs_num}
+		ORDER BY LCT_YR DESC, LCT_QTR DESC
+	</select>
+	
+	<update id="updateLctInfo" parameterType="com.avengers.db.dto.LctVO">
+		UPDATE LECTURE
+		SET    LCT_ME_RATE = #{lct_me_rate}
+		      ,LCT_FE_RATE = #{lct_fe_rate}
+		      ,LCT_ASGN_RATE = #{lct_asgn_rate}
+		      ,LCT_ATDC_RATE = #{lct_atdc_rate}
+		      ,LCT_TB = #{lct_tb}
+		      ,LCT_CONT = #{lct_cont}
+		WHERE  LCT_NUM = #{lct_num}
+	</update>
+	
+	<!-- 시험기본키에 쓸 년도와 학기 들고오는 쿼리문 -->
+	<select id="selectLctYearQtr" parameterType="java.lang.String" resultType="com.avengers.db.dto.LctVO">
+		SELECT LCT_YR
+			  ,LCT_QTR
+		FROM   LECTURE
+		WHERE  LCT_NUM = #{lct_num}
+	</select>
+	<!-- 밥먹고 와서 다오, 서비스 완성하고 기본키만들자 -->
 	<update id="updateLctPlus" parameterType="String" >
 		UPDATE LECTURE 
 		SET LCT_CNT_NUM=LCT_CNT_NUM+1 

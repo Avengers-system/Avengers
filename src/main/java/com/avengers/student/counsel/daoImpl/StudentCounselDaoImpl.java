@@ -2,6 +2,7 @@ package com.avengers.student.counsel.daoImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,6 @@ public class StudentCounselDaoImpl implements StudentCounselDao {
 	@Autowired
 	protected SqlSession sqlSession;
 	
-	public void setSqlSession(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
 
 	@Override
 	public int insertCounsel(CnsVO cns, int firstRow, int endRow)
@@ -35,10 +33,10 @@ public class StudentCounselDaoImpl implements StudentCounselDao {
 	}
 
 	@Override
-	public ArrayList<CnsVO> selectCounselList(int firstRow, int endRow)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<CnsVO> selectCounselList(String stud_num) throws SQLException {
+		ArrayList<CnsVO> counselList = (ArrayList<CnsVO>)sqlSession.selectList("cns.selectStudentCnsList",stud_num);
+			
+		return counselList;
 	}
 
 	@Override
@@ -53,6 +51,15 @@ public class StudentCounselDaoImpl implements StudentCounselDao {
 			int endRow) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+
+
+	@Override
+	public ArrayList<CnsVO> selectCounselDateList(String cns_date)
+			throws SQLException {
+		ArrayList<CnsVO> list = (ArrayList<CnsVO>)sqlSession.selectList("cns.selectCnsDateList",cns_date);
+		return list;
 	}
 
 }

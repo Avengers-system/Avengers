@@ -3,6 +3,7 @@ package com.avengers.professor.classManage.daoImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +51,9 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 	}
 
 	@Override
-	public int updateLct(LctVO lctVO, String lct_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateLct(LctVO lctVO) throws SQLException {
+		int result = sqlSession.update("lct.updateLctInfo", lctVO);
+		return result;
 	}
 
 	@Override
@@ -87,11 +88,7 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 		return null;
 	}
 
-	@Override
-	public ArrayList<EqVO> selectEqList(String exam_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public ArrayList<SaVO> selectSaList(String te_num) throws SQLException {
@@ -244,8 +241,65 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
+	//배현상--------------------------------------------------
+	@Override
+	public ArrayList<Map<String, String>> selectPrfsLecture(String prfs_num)
+			throws SQLException {
+		ArrayList<Map<String, String>> prfsLctList = (ArrayList<Map<String, String>>) sqlSession.selectList("lct.selectPrfsLecture", prfs_num);
+		return prfsLctList;
+	}
+
+	@Override
+	public Map<String, String> selectDetailLct(String lct_num)
+			throws SQLException {
+		Map<String, String> lctInfo = (Map<String, String>) sqlSession.selectOne("lct.selectDetailLecture", lct_num);
+		return lctInfo;
+	}
+
+	@Override
+	public ArrayList<Map<String, String>> selectPrfsExamList(
+			Map<String, String> key) throws SQLException {
+		ArrayList<Map<String, String>> prfsExamList = (ArrayList<Map<String, String>>) sqlSession.selectList("exam.selectPrfsExamList", key);
+		return prfsExamList;
+	}
+
+	@Override
+	public LctVO selectLctYearQtr(String lct_num) throws SQLException {
+		LctVO lctVO = (LctVO) sqlSession.selectOne("lct.selectLctYearQtr", lct_num);
+		return lctVO;
+	}
+
+	@Override
+	public int insertExam(ExamVO examVO) throws SQLException {
+		int result = sqlSession.insert("exam.insertExam", examVO);
+		return result;
+	}
+
+	@Override
+	public ArrayList<String> selectExamPk(String exam_lct) throws SQLException {
+		//기본키 역순정렬, 시험에 대해 학생을 등록했는지 안했는지에 대한 exam_check 를 검사(1,등록/2,미등록)
+		ArrayList<String> examPkList = (ArrayList<String>) sqlSession.selectList("exam.selectExamPk", exam_lct);
+		return examPkList;
+	}
+
+	@Override
+	public int insertStudTe(Map<String, String> key) throws SQLException {
+		int result = sqlSession.insert("te.insertStudTe", key);
+		return result;
+	}
+
+	@Override
+	public int updateExamCheck(String exam_num) throws SQLException {
+		int result = sqlSession.update("exam.updateExamCheck", exam_num);
+		return result;
+	}
+	
+	@Override
+	public ArrayList<EqVO> selectEqList(String exam_num) throws SQLException {
+		ArrayList<EqVO> eqList = (ArrayList<EqVO>) sqlSession.selectList("eq.selectEqAllDataList", exam_num);
+		return eqList;
+	}
 	
 
 }

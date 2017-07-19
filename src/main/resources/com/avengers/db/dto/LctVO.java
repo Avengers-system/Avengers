@@ -104,7 +104,6 @@ public class LctVO {
 	public void setLct_atdc_rate(int lct_atdc_rate) {
 		this.lct_atdc_rate = lct_atdc_rate;
 	}
-	
 	public String getLct_prfs() {
 		return lct_prfs;
 	}
