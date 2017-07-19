@@ -3,6 +3,7 @@ package com.avengers.professor.classManage.controller;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ import com.avengers.db.dto.ExamVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.RegistryExamVO;
 import com.avengers.professor.classManage.service.ProfessorClassManageService;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -249,6 +251,7 @@ public class ProfessorClassManageController {
 		String view = "professor/classManage/lectureExamQn";
 		
 		String exam_num = request.getParameter("exam_num");
+		String division = request.getParameter("division");
 		
 		ArrayList<EqVO> eqList = null;
 		
@@ -259,7 +262,55 @@ public class ProfessorClassManageController {
 		}
 		
 		model.addAttribute("eqList", eqList);
+		model.addAttribute("exam_num",exam_num);
+		
+		if(division.equals("1")){
+			view = "professor/classManage/lectureExamQn";
+		} else {
+			view = "professor/classManage/lectureRegistryExamQn";
+		}
 		
 		return view;
 	}
+	//똑같은 거라 구분자를 넣어서 가는게 나을 꺼 같긴한데
+//	@RequestMapping("professor/classManage/lectureRegistryExamQn")
+//	public String professorLectureRegistryExamQn(HttpServletRequest request, Model model){
+//		String view = "professor/classManage/lectureRegistryExamQn";
+//		
+//		String exam_num = request.getParameter("exam_num");
+//		
+//		ArrayList<EqVO> eqList = null;
+//		
+//		try {
+//			eqList = pcmService.selectEqList(exam_num);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		model.addAttribute("eqList", eqList);
+//		model.addAttribute("exam_num",exam_num);
+//		
+//		return view;
+//	}
+	
+	
+	//시험문제
+//	@RequestMapping("adsfasd")
+//	public String sadfawselfj(HttpServletRequest request){
+//		Enumeration<String> asdfasd =  request.getParameterNames();
+//		ArrayList<String> eq_qtnparamsNames = new ArrayList<String>();
+//		ArrayList<String> eq_qtnaramsNames = new ArrayList<String>();
+//		while (asdfasd.hasMoreElements()) {
+//			String paramName = (String) asdfasd.nextElement();
+//			if (paramName.contains("eq_qtn")) {
+//				eq_qtnparamsNames.add(paramName);
+//			}
+//		}
+//		
+//		for (int i = 0; i < paramsNames.size(); i++) {
+//			ajtVO vo = new asdfasdVO();
+//			vo.setSsdf(request.getParameter(paramsNames.get(i)));
+//		}
+//		return null;
+//	}
 }
