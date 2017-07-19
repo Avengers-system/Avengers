@@ -3,25 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script>
-	
-// 	$(function(){
-// 		$.ajax({
-// 			url : '',
-// 			type : 'get',
-// 			success : function(res){
-// 				var code="";
-// 				$.each(res,function(i,dept){
-// 					code+= "<option value='"+dept.num+"'>"+dept.name+"</option>";
-// 				})
-// 				$('#department').html(code);
-// 			},
-// 			dataType : 'json'
-// 		})
-		
-// 	})
-	
-</script>
+ 
 
 
 <c:if test="${msg !=null}">

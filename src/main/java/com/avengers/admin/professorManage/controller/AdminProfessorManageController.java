@@ -158,6 +158,7 @@ public class AdminProfessorManageController {
 
 		PrfsVO prfsVO = new PrfsVO();
 		prfsVO = commandPrfsVO.toPrfsVO();
+		System.out.println("야 왜안나와 "+prfsVO.getPrfs_dept());
 
 		// 깃 경로 (동일)
 		String upload = session.getServletContext().getRealPath("resources/admin_professor_images");		
