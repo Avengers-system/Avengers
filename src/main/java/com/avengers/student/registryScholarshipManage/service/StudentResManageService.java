@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import com.avengers.db.dto.RegVO;
 import com.avengers.db.dto.ScrapplVO;
+import com.avengers.db.dto.resSchStudentVO;
 
 
 
@@ -15,7 +16,7 @@ public interface StudentResManageService  {
 	 * 학생 장학이력/신청조회 탭에서
 	 * 학생정보 조회
 	 */
-	public HashMap<String, String> selectResSchHistory(String stud_num) throws SQLException;
+	public ArrayList<resSchStudentVO> selectResSchHistory(String stud_num) throws SQLException;
 	/**
 	 * 장학이력,신청조회
 	 * 학생고유번호로 장학정보를 검색한뒤에 승인여부가 승인일경우엔 장학이력 테이블에 데이터를 넣고

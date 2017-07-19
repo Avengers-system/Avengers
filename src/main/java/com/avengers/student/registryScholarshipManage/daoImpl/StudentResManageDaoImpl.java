@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.avengers.db.dto.RegVO;
 import com.avengers.db.dto.ScrapplVO;
+import com.avengers.db.dto.resSchStudentVO;
 import com.avengers.student.registryScholarshipManage.dao.StudentResManageDao;
 
 @Repository
@@ -53,11 +54,11 @@ public class StudentResManageDaoImpl implements StudentResManageDao{
 	}
 
 	@Override
-	public HashMap<String, String> selectresSchStudent(String stud_num)
+	public ArrayList<resSchStudentVO> selectresSchStudent(String stud_num)
 			throws SQLException {
-		HashMap<String, String> resSchStudent = new HashMap<String, String>();
-		resSchStudent = (HashMap<String, String>) sqlSession.selectOne("resSchManage.resSchStudent", stud_num);
-		return resSchStudent;
+		ArrayList<resSchStudentVO> resSchStudentList = new ArrayList<resSchStudentVO>();
+		resSchStudentList =  (ArrayList<resSchStudentVO>) sqlSession.selectList("resSchManage.resSchStudent",stud_num);
+		return resSchStudentList;
 	}
 	
 

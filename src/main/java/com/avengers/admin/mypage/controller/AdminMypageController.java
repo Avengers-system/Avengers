@@ -93,18 +93,18 @@ public class AdminMypageController {
 	@RequestMapping("/myInfo")
 	public String myInfo(Principal principal,Model model){
 		String adminId = principal.getName();
-		String url="/admin/mypage/mypage";
-		AdminVO admin= null;
-		
-		try {
-			admin = myPageService.selectAdmin(adminId);
-			if(admin != null){
-				model.addAttribute("admin",admin);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		String url="admin/mypage/mypage";
+//		AdminVO admin= null;
+//		
+//		try {
+//			admin = myPageService.selectAdmin(adminId);
+//			if(admin != null){
+//				model.addAttribute("admin",admin);
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		return url;
 	}

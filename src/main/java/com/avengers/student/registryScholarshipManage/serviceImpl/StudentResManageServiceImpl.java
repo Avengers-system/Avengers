@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.RegVO;
 import com.avengers.db.dto.ScrapplVO;
+import com.avengers.db.dto.resSchStudentVO;
 import com.avengers.student.registryScholarshipManage.dao.StudentResManageDao;
 import com.avengers.student.registryScholarshipManage.service.StudentResManageService;
 
@@ -55,9 +56,9 @@ public class StudentResManageServiceImpl implements StudentResManageService {
 	}
 
 	@Override
-	public HashMap<String, String> selectResSchHistory(String stud_num)
+	public ArrayList<resSchStudentVO> selectResSchHistory(String stud_num)
 			throws SQLException {
-		HashMap<String, String> resSchStudent = null;
+		ArrayList<resSchStudentVO> resSchStudent = null;
 		resSchStudent = stuResDAO.selectresSchStudent(stud_num);
 		return resSchStudent;
 	}

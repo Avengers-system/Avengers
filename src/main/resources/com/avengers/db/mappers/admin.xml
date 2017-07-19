@@ -52,7 +52,7 @@
 			ADMIN_ID= #{admin_id},
 			ADMIN_PW = #{admin_pw},
 			ADMIN_NM = #{admin_nm},
-			<if test="${admin_pic} != null">
+			<if test="admin_pic != null">
 				ADMIN_PIC=#{admin_pic},
 			</if>
 			ADMIN_BIR=TO_DATE(#{admin_bir},'YYYY-MM-DD HH24:MI:SS'),

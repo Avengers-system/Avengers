@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
+<c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
 <!-- Admin Header -->
 <%@include file="../common/topCategory.jsp"%>
 
@@ -23,8 +24,8 @@
 							<button onclick="location.href='<%=request.getContextPath()%>/admin/professorManage'">교수목록</button>
 							<button onclick="location.href='<%=request.getContextPath()%>/admin/studentManage'">학생목록</button>
 							
+
 							
-							<c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
 							
 							관리자메인
 							
@@ -111,7 +112,7 @@
 							      location.href="${myContextPath}/common/logout";
 							   }
 							   function myInfo_go(){
-							      location.href="${myContextPath}/admin/mypage/myInfo";
+							      location.href="<%=request.getContextPath()%>/admin/mypage/myInfo";
 							   }
 							   function mySchedule_go(){
 							      location.href="${myContextPath}/admin/mypage/mySchedule";

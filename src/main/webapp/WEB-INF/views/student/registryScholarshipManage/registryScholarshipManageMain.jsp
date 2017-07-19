@@ -1,30 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
+<%@ page import="java.util.*,java.text.*" %>
+<%
+	Date date = new Date();
+	SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+	String strDate = simpleDate.format(date);
+	Calendar cal = Calendar.getInstance();
+%>
+
 <c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
-<body>
-<h1>등록/장학금관리</h1>
-<h3>장학이력/신청조회</h3>
-<div class="resScholMain">
-	<input type="button" value="장학이력/신청조회" onclick="location.href='${pageContext.request.contextPath}/student/registryScholarshipManage'"/> 
-	<input type="button" value="장학금신청" onclick="location.href='${pageContext.request.contextPath}/student/admissionApplication'"/> 	
-	<input type="button" value="등록금이력조회" onclick="location.href='${pageContext.request.contextPath}/student/admissionApplication'"/> 
-	<input type="button" value="등록금관리" onclick="location.href='${pageContext.request.contextPath}/student/admissionApplication'"/> 	
-	<input type="button" value="logout" onclick="logout_go()"/><br/>
+<!-- student Header -->
+<%@include file="../common/topCategory.jsp" %>
+
+<!--side Category-->
+<div class="col-md-2" id="commonLeftSide">
+	<%@include file="../common/resSchSideCategory.jsp" %>
 </div>
-년도:<input type="text" name="">
+<div class="col-md-10" id="commonRightSide">
+	장학이력<br/>
+	년도<select>
+		 <option value="${cal.get(Calendar.YEAR)}" selected="selected">2017</option>
+	   </select>
+	학기<select>
+		<option value="1" selected="selected">1</option>
+	</select>
+	대학<input type="text" name="col_nm" value="${col_nm}" readonly="readonly">
+	전공<input type="text" name="dept_nm" value="${dept_nm}" readonly="readonly">
+	학년<input type="text" name="stud_grd" value="${stud_grd}" readonly="readonly">
+	<br/>
+	평점평균<input type="text" name="average rating" value="${average_rating}" readonly="readonly">
+	취득학점<input type="text" name="grades" value="${grades}" readonly="readonly">
+	학번<input type="text" name="stud_num" value="${stud_num}" readonly="readonly">
+	이름<input type="text" name="stud_nm" value="${stud_nm}" readonly="readonly"/>
+	
+</div>
 
 
-</body>
+
+
+
+
+
 <script type="text/javascript">
 	function logout_go(){
 		location.href="${myContextPath}/common/logout";
 	}
 </script>
-</html>

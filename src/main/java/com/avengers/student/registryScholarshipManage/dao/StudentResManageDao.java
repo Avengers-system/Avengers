@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import com.avengers.db.dto.RegVO;
 import com.avengers.db.dto.ScrapplVO;
+import com.avengers.db.dto.resSchStudentVO;
 
 
 
@@ -19,7 +20,7 @@ public interface StudentResManageDao {
 	 * 학생 장학이력/신청조회 탭에서
 	 * 학생정보 조회
 	 */
-	public HashMap<String, String> selectresSchStudent(String stud_num) throws SQLException;
+	public ArrayList<resSchStudentVO> selectresSchStudent(String stud_num) throws SQLException;
 	
 	/**
 	 * 장학이력,신청조회
