@@ -1,7 +1,10 @@
 package com.avengers.admin.professorManage.serviceImpl;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,8 +36,21 @@ public class AdminProfessorManageServiceImpl implements AdminProfessorManageServ
 	
 	@Override
 	public int insertPrfs(PrfsVO prfsVO) throws SQLException {
-		prfsVO.
-		int result = proDAO.insertPrfs(prfsVO);
+		String regno = prfsVO.getPrfs_regno();
+		System.out.println("데이트타입!!!"+regno);
+		
+		Date birth = new Date();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yy/mm/dd");
+			try {
+				birth = sdf.parse(regno);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+		System.out.println("데이트타입변경후 : "+birth+", "+birth.getClass().getName());
+		
+			int result = proDAO.insertPrfs(prfsVO);
 		return result;
 	}
 

@@ -215,7 +215,7 @@ $(function() {
 				
 					<label class='control-label'>생년월일</label>
 					<input type="date" class="form-control" >
-					<input type="hidden" name="prfs_regno" value="${ }">
+					<input type="hidden" name="prfs_regno">
 					 
 
 					
