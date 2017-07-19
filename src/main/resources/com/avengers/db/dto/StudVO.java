@@ -25,41 +25,15 @@ public class StudVO {
 	private String stud_act_num;//계좌번호
 	private String stud_bank;//은행명
 	private String stud_ah;//예금주
-	private String sutd_addr;//주소
+	private String stud_addr;//주소
 	private String stud_zip;//우편번호
 	private String stud_tel;//전화번호
-	private String sutd_hp;//휴대폰번호
-	private String sutd_security;//시큐리티
+	private String stud_hp;//휴대폰번호
 	private String stud_dept;//학과번호
 	private String stud_guad_nm;//보호자 이름
 	private String stud_guad_rel;//보호자 관계
 	private String stud_guad_hp;//보호자 핸드폰
 	private String stud_max_crd;//최대신청가능 학점
-	
-	public String getStud_guad_nm() {
-		return stud_guad_nm;
-	}
-	public void setStud_guad_nm(String stud_guad_nm) {
-		this.stud_guad_nm = stud_guad_nm;
-	}
-	public String getStud_guad_rel() {
-		return stud_guad_rel;
-	}
-	public void setStud_guad_rel(String stud_guad_rel) {
-		this.stud_guad_rel = stud_guad_rel;
-	}
-	public String getStud_guad_hp() {
-		return stud_guad_hp;
-	}
-	public void setStud_guad_hp(String stud_guad_hp) {
-		this.stud_guad_hp = stud_guad_hp;
-	}
-	public String getStud_max_crd() {
-		return stud_max_crd;
-	}
-	public void setStud_max_crd(String stud_max_crd) {
-		this.stud_max_crd = stud_max_crd;
-	}
 	public String getStud_num() {
 		return stud_num;
 	}
@@ -150,11 +124,11 @@ public class StudVO {
 	public void setStud_ah(String stud_ah) {
 		this.stud_ah = stud_ah;
 	}
-	public String getSutd_addr() {
-		return sutd_addr;
+	public String getStud_addr() {
+		return stud_addr;
 	}
-	public void setSutd_addr(String sutd_addr) {
-		this.sutd_addr = sutd_addr;
+	public void setStud_addr(String stud_addr) {
+		this.stud_addr = stud_addr;
 	}
 	public String getStud_zip() {
 		return stud_zip;
@@ -168,17 +142,11 @@ public class StudVO {
 	public void setStud_tel(String stud_tel) {
 		this.stud_tel = stud_tel;
 	}
-	public String getSutd_hp() {
-		return sutd_hp;
+	public String getStud_hp() {
+		return stud_hp;
 	}
-	public void setSutd_hp(String sutd_hp) {
-		this.sutd_hp = sutd_hp;
-	}
-	public String getSutd_security() {
-		return sutd_security;
-	}
-	public void setSutd_security(String sutd_security) {
-		this.sutd_security = sutd_security;
+	public void setStud_hp(String stud_hp) {
+		this.stud_hp = stud_hp;
 	}
 	public String getStud_dept() {
 		return stud_dept;
@@ -186,8 +154,30 @@ public class StudVO {
 	public void setStud_dept(String stud_dept) {
 		this.stud_dept = stud_dept;
 	}
+	public String getStud_guad_nm() {
+		return stud_guad_nm;
+	}
+	public void setStud_guad_nm(String stud_guad_nm) {
+		this.stud_guad_nm = stud_guad_nm;
+	}
+	public String getStud_guad_rel() {
+		return stud_guad_rel;
+	}
+	public void setStud_guad_rel(String stud_guad_rel) {
+		this.stud_guad_rel = stud_guad_rel;
+	}
+	public String getStud_guad_hp() {
+		return stud_guad_hp;
+	}
+	public void setStud_guad_hp(String stud_guad_hp) {
+		this.stud_guad_hp = stud_guad_hp;
+	}
+	public String getStud_max_crd() {
+		return stud_max_crd;
+	}
+	public void setStud_max_crd(String stud_max_crd) {
+		this.stud_max_crd = stud_max_crd;
+	}
 	
-	
-
 
 }

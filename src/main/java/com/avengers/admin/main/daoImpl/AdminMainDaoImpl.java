@@ -82,7 +82,7 @@ public class AdminMainDaoImpl implements AdminMainDao {
 	}
 	@Override
 	public ArrayList<PerschdVO> selectPerschdList(String adminId) throws SQLException {
-		ArrayList<PerschdVO> personScheduleList = (ArrayList<PerschdVO>) sqlSession.selectList("Perschd.selectPerschdList1", adminId);
+		ArrayList<PerschdVO> personScheduleList = (ArrayList<PerschdVO>) sqlSession.selectList("perschd.selectPerschdList", adminId);
 		return personScheduleList;
 	}
 	@Override
@@ -96,6 +96,14 @@ public class AdminMainDaoImpl implements AdminMainDao {
 			throws SQLException {
 		ArrayList<Map<String, Object>> prfsOfDeptList = (ArrayList<Map<String, Object>>) sqlSession.selectList("department.getPfrsOfDeptList");
 		return prfsOfDeptList;
+	}
+	/**
+	 * 다음번등록할교수번호찾기
+	 */
+	@Override
+	public String selectNextPrfsNum() throws SQLException {
+		String nextPrfsNum = (String)sqlSession.selectOne("admin.getProfNum");
+		return nextPrfsNum;
 	}
 
 }

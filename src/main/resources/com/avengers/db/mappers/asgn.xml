@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="asgn">
+	<resultMap id="asgnList" type="java.util.HashMap">
+		<result javaType="java.lang.String" column="ASGN_NUM" property="asgn_num"/>
+		<result javaType="java.lang.String" column="LCT_NM" property="lct_nm"/>
+		<result javaType="java.lang.String" column="LCT_NM_CLASS" property="lct_nm_class"/>
+		<result javaType="java.lang.String" column="ASGN_NM" property="asgn_nm"/>
+		<result javaType="java.lang.String" column="ASGN_START_DATE" property="asgn_start_date"/>
+		<result javaType="java.lang.String" column="ASGN_DL_DATE" property="asgn_dl_date"/>
+		<result javaType="java.lang.String" column="SUB_CHECK" property="sub_check"/>
+	</resultMap>
+
+	<select id="selectAsgnInfoList" parameterType="java.util.HashMap" resultMap="asgnList">
+		SELECT ASGN_NUM
+		      ,REGEXP_REPLACE(LCT_NM,'.{1}$') AS LCT_NM
+		      ,SUBSTR(LCT_NM,-1) AS LCT_NM_CLASS
+		      ,ASGN_NM
+		      ,TO_CHAR(ASGN_START_DATE, 'YY/MM/DD HH24:MI:SS') AS ASGN_START_DATE
+		      ,TO_CHAR(ASGN_DL_DATE, 'YY/MM/DD HH24:MI:SS') AS ASGN_DL_DATE
+		      ,case when SUB_CHECK = 1 then '제출' else '미제출' end AS SUB_CHECK
+		FROM  ASGN, SUBMISSION, LECTURE
+		WHERE ASGN_NUM = SUB_ASGN
+		AND   ASGN_LCT = LCT_NUM
+		AND   ASGN_LCT = #{lct_num}
+		AND   SUB_STUD = #{stud_num}
+	</select>
+	
+	<resultMap type="java.util.HashMap" id="asgnInfo">
+		<result javaType="java.lang.String" column="ASGN_NM" property="asgn_nm"/>
+		<result javaType="java.lang.String" column="ASGN_CONT" property="asgn_cont"/>
+		<result javaType="java.lang.String" column="ASGN_START_DATE" property="asgn_start_date"/>
+		<result javaType="java.lang.String" column="ASGN_DL_DATE" property="asgn_dl_date"/>
+		<result javaType="java.lang.String" column="ASGN_SUB_FORM" property="asgn_sub_form"/>
+		<result javaType="java.lang.String" column="LCT_NM" property="lct_nm"/>
+		<result javaType="java.lang.String" column="LCT_NM_CLASS" property="lct_nm_class"/>
+		<result javaType="java.lang.String" column="SUB_CHECK" property="sub_check"/>
+		<result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>
+	</resultMap>
+	
+	<select id="selectAsgnInfo" parameterType="java.util.HashMap" resultMap="asgnInfo">
+		SELECT ASGN_NM
+		      ,ASGN_CONT
+		      ,ASGN_START_DATE
+		      ,ASGN_DL_DATE
+		      ,ASGN_SUB_FORM
+		      ,REGEXP_REPLACE(LCT_NM,'.{1}$') AS LCT_NM
+		      ,SUBSTR(LCT_NM, -1) AS LCT_NM_CLASS
+		      ,case when SUB_CHECK = 1 then '제출' else '미제출' end AS SUB_CHECK
+		      ,LCT_NUM
+		FROM   ASGN, LECTURE, SUBMISSION
+		WHERE  ASGN_LCT = LCT_NUM
+		AND    SUB_ASGN = ASGN_NUM
+		AND    ASGN_NUM = #{asgn_num}
+		AND    SUB_STUD = #{stud_num}
+	</select>
+</mapper>

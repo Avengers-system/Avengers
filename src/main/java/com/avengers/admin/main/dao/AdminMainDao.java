@@ -29,4 +29,5 @@ public interface AdminMainDao {
 	public ArrayList<PerschdVO> selectPerschdList(String adminId) throws SQLException; //개인일정을 가져온다.
 	public ArrayList<Map<String,String>> selectScrapplList() throws SQLException; //미처리된 장학신청정보를 가져온다.
 	public ArrayList<Map<String,Object>> selectPrfsOfDeptList() throws SQLException; //학과당 교수의 수를 가져온다.
+	public String selectNextPrfsNum() throws SQLException; //다음번 교수번호를 가져온다.
 }

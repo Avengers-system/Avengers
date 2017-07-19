@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,24 @@ public class StudentMainController {
 	private StudentMainService studentMainService;
 	
 	
-	
+	@RequestMapping("student/classManage/classMain")
+	public String studentClassManage(Principal principal, Model model){
+		String view = "student/classManage/classMain";
+		
+		String stud_num = principal.getName();
+		
+		ArrayList<Map<String, String>> classList = null;
+		
+		try {
+			classList = studentMainService.selectClassList(stud_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("classList", classList);
+		
+		return view;
+	}
 	
 	@RequestMapping("student/studentMain")
 	public String studentMain(Principal principal, Model model){
@@ -65,14 +83,14 @@ public class StudentMainController {
 			studVO = studentMainService.selectStudInfo(stud_num);
 			deptVO = studentMainService.selectDept(studVO.getStud_dept());
 		    bc_dept = "b"+deptVO.getDept_nm();
-			perschdList = studentMainService.selectPerschd(stud_num);
-			studentLectureList = studentMainService.selectLectureList(stud_num,lct_yr,lct_qtr);
-			studentConsult = studentMainService.selectCnsList(stud_num);
-			
-			selectPortalNoticeList = studentMainService.selectPortalNoticeList();
-			selectSchoolNoticeList = studentMainService.selectSchoolNoticeList();
-			selectDepartmentNoticeList = studentMainService.selectDepartmentNoticeList(bc_dept);
-			selectSchoolScheduleList = studentMainService.selectSchoolScheduleList();
+//			perschdList = studentMainService.selectPerschd(stud_num);
+//			studentLectureList = studentMainService.selectLectureList(stud_num,lct_yr,lct_qtr);
+//			studentConsult = studentMainService.selectCnsList(stud_num);
+//			
+//			selectPortalNoticeList = studentMainService.selectPortalNoticeList();
+//			selectSchoolNoticeList = studentMainService.selectSchoolNoticeList();
+//			selectDepartmentNoticeList = studentMainService.selectDepartmentNoticeList(bc_dept);
+//			selectSchoolScheduleList = studentMainService.selectSchoolScheduleList();
 			
 //			allLevelComplete = studentMainService.allGrades(stud_num);
 			
@@ -89,7 +107,6 @@ public class StudentMainController {
         model.addAttribute("departmentNoticeList",selectDepartmentNoticeList);
         model.addAttribute("schoolScheduleList",selectSchoolScheduleList);
 //		model.addAttribute("allGrades",allLevelComplete);
-		
 		
 		return "student/studentMain";
 	}

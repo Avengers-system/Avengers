@@ -15,6 +15,8 @@ import com.avengers.db.dto.EqVO;
 import com.avengers.db.dto.ExamVO;
 import com.avengers.db.dto.LaVO;
 import com.avengers.db.dto.LctVO;
+import com.avengers.db.dto.SubVO;
+import com.avengers.db.dto.TeVO;
 import com.avengers.student.classManage.dao.StudentClassManageDao;
 import com.avengers.student.classManage.service.StudentClassManageService;
 
@@ -189,6 +191,71 @@ public class StudentClassManageServiceImpl implements StudentClassManageService 
 	public int insertAsessMentofLecture(LaVO la) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	
+	//배현상
+	//강의계획서
+	@Override
+	public Map<String, String> selectDetailLct(String lct_num)
+			throws SQLException {
+		Map<String, String> detailLct = stuClassDAO.selectDetailLct(lct_num);
+		return detailLct;
+	}
+	//배현상
+	//시험리스트 불러오기
+	@Override
+	public ArrayList<Map<String, String>> selectExamList(Map<String, String> key)
+			throws SQLException {
+		ArrayList<Map<String, String>> examList = stuClassDAO.selectExamList(key);
+		return examList;
+	}
+
+	//배현상
+	//시험화면에서 응시버튼을 누를 경우 화면에 뿌려질 시험문제 리스트
+	@Override
+	public ArrayList<EqVO> selectEqList(String exam_num) throws SQLException {
+		ArrayList<EqVO> teList = stuClassDAO.selectEqList(exam_num);
+		return teList;
+	}
+	
+	//배현상
+	//학생이 시험제출버튼을 눌렀을 때 학생답안을 저장
+	@Override
+	public int insertSa(ArrayList<Map<String, String>> saList)
+			throws SQLException {
+		int result = stuClassDAO.insertSa(saList);
+		return result;
+	}
+
+	@Override
+	public int updateTeCheck(String te_num)
+			throws SQLException {
+		int result = stuClassDAO.updateTeCheck(te_num);
+		return result;
+	}
+	
+	//배현상
+	//과목화면에 뿌려질 리스트
+	@Override
+	public ArrayList<Map<String, String>> selectAsgnList(Map<String, String> key)
+			throws SQLException {
+		ArrayList<Map<String, String>> asgnList = stuClassDAO.selectAsgnList(key);
+
+		return asgnList;
+	}
+
+	@Override
+	public Map<String, String> selectAsgnInfo(Map<String, String> key)
+			throws SQLException {
+		Map<String, String> asgnInfo = stuClassDAO.selectAsgnInfo(key);
+		return asgnInfo;
+	}
+
+	@Override
+	public int updateSubmissionCheck(SubVO subVO) throws SQLException {
+		int result = stuClassDAO.updateSubmissionCheck(subVO);
+		return result;
 	}
 
 }

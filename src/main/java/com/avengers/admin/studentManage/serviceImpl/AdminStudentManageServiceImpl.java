@@ -19,15 +19,10 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 		this.amdinStudentDAO = amdinStudentDAO;
 	}
 
-	@Override
-	public ArrayList<StudVO> selectStudList(String key,int firstRow, int lastRow)
-			throws SQLException {
-		return null;
-	}
 
 	@Override
 	public StudVO selectStud(String stud_num) throws SQLException {
-		return null;
+		return amdinStudentDAO.selectStud(stud_num);
 	}
 
 	@Override
@@ -43,6 +38,27 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 
 	@Override
 	public int deleteStud(String stud_num) throws SQLException {
-		return 0;
+		int result = amdinStudentDAO.deleteStud(stud_num);
+		return result;
+	}
+
+	@Override
+	public ArrayList<StudVO> selectStudList() throws SQLException {
+		ArrayList<StudVO> studentList = new ArrayList<StudVO>();
+		studentList = amdinStudentDAO.selectStudList();
+		return studentList;
+	}
+
+
+	@Override
+	public String selectStudNum() throws SQLException {
+		String studNum = amdinStudentDAO.selectStudNum();
+		return studNum;
+	}
+
+
+	@Override
+	public void insertSecurity(StudVO studVO) {
+		amdinStudentDAO.insertSecurity(studVO);
 	}
 }

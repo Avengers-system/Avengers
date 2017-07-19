@@ -3,6 +3,7 @@ package com.avengers.professor.classManage.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,9 +52,9 @@ public class ProfessorClassManageServiceImpl implements ProfessorClassManageServ
 	}
 
 	@Override
-	public int updateLct(LctVO lctVO, String lct_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateLct(LctVO lctVO) throws SQLException {
+		int result = proClassDAO.updateLct(lctVO);
+		return result;
 	}
 
 	@Override
@@ -88,11 +89,7 @@ public class ProfessorClassManageServiceImpl implements ProfessorClassManageServ
 		return null;
 	}
 
-	@Override
-	public ArrayList<EqVO> selectEqList(String exam_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public ArrayList<SaVO> selectSaList(String te_num) throws SQLException {
@@ -246,6 +243,62 @@ public class ProfessorClassManageServiceImpl implements ProfessorClassManageServ
 		return null;
 	}
 
+	//배현상------------------------------------------------------------------
+	@Override
+	public ArrayList<Map<String, String>> selectPrfsLecture(String prfs_num)
+			throws SQLException {
+		ArrayList<Map<String, String>> prfsLctList = proClassDAO.selectPrfsLecture(prfs_num);
+		return prfsLctList;
+	}
 
+	@Override
+	public Map<String, String> selectDetailLct(String lct_num)
+			throws SQLException {
+		Map<String,String> lctInfo = proClassDAO.selectDetailLct(lct_num);
+		return lctInfo;
+	}
+
+	@Override
+	public ArrayList<Map<String, String>> selectPrfsExamList(
+			Map<String, String> key) throws SQLException {
+		ArrayList<Map<String, String>> prfsExamList = proClassDAO.selectPrfsExamList(key);
+		return prfsExamList;
+	}
+
+	@Override
+	public LctVO selectLctYearQtr(String lct_num) throws SQLException {
+		LctVO lctVO = proClassDAO.selectLctYearQtr(lct_num);
+		return lctVO;
+	}
+
+	@Override
+	public int insertExam(ExamVO examVO) throws SQLException {
+		int result = proClassDAO.insertExam(examVO);
+		return result;
+	}
+
+	@Override
+	public ArrayList<String> selectExamPk(String exam_lct) throws SQLException {
+		ArrayList<String> examPkList = proClassDAO.selectExamPk(exam_lct);
+		return examPkList;
+	}
+
+	@Override
+	public int insertStudTe(Map<String, String> key) throws SQLException {
+		int result = proClassDAO.insertStudTe(key);
+		return result;
+	}
+
+	@Override
+	public int updateExamCheck(String exam_num) throws SQLException {
+		int result = proClassDAO.updateExamCheck(exam_num);
+		return result;
+	}
+
+	@Override
+	public ArrayList<EqVO> selectEqList(String exam_num) throws SQLException {
+		ArrayList<EqVO> eqList = proClassDAO.selectEqList(exam_num);
+		return eqList;
+	}
 
 }
