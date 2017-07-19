@@ -4,33 +4,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <body>
 관리자메인
-<button onclick="location.href='<%=request.getContextPath()%>/admin/adminMain'">관리자</button>
-<button onclick="location.href='<%=request.getContextPath()%>/professor/professorMain'">교수</button>
-<button onclick="location.href='<%=request.getContextPath()%>/student/studentMain'">학생</button>
-<button onclick="location.href='<%=request.getContextPath()%>/common/logout'">로그아웃</button>
-<button onclick="location.href='<%=request.getContextPath()%>/admin/professorManage'">교수목록</button>
-<button onclick="location.href='<%=request.getContextPath()%>/admin/studentManage'">학생목록</button>
 
 
 <c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
 
 관리자메인
-<button onclick="location.href='<%=request.getContextPath()%>/admin/main/adminMain'">관리자</button>
-<button onclick="location.href='${pageContext.request.contextPath}/professor/main'">교수</button>
-<button onclick="location.href='<%=request.getContextPath()%>/student/studentMain'">학생</button>
-<button onclick="location.href='<%=request.getContextPath()%>/admin/main/helpDeskMain'">helpDesk</button>
-
-<button id="adminMain" onclick="adminMain_go()">관리자</button>
-<button id="logout" onclick="logout_go()">로그아웃</button><br/>
-<button id="myInfo" onclick="myInfo_go()">개인정보</button><br/>
-<button id="mySchedule" onclick="mySchedule_go()">개인일정관리</button><br/>
->>>>>>> branch 'master' of https://github.com/Avengers-system/Avengers.git
-<button id="adminMain" onclick="adminMain_go()">관리자</button><br/>
+<button id="myInfo" onclick="myInfo_go()">개인정보</button>
+<button id="mySchedule" onclick="mySchedule_go()">개인일정관리</button>
 <button id="myPage" onclick="mypage_go()">mypage</button>
 <button id="profPage">교수관리</button>
 <button id="studPage">학생관리</button>
 <button id="classPage">강의관리</button>
-<button id="boardPage">HelpDesk</button>
+<button onclick="location.href='<%=request.getContextPath()%>/admin/main/helpDeskMain'">helpDesk</button>
 <button id="logout" onclick="logout_go()">로그아웃</button><br/>
 <br/>
 <br/>
