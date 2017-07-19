@@ -10,7 +10,6 @@
 </head>
 
 <style>
-<<<<<<< HEAD
 </style>
 
 <body>
@@ -24,9 +23,8 @@
 
 <br/>
 
- <a href="${pageContext.request.contextPath}/admin/deptNoticeList"><h1>학과게시판</h1></a>
+ <a href="${pageContext.request.contextPath}/admin/deptNoticeList">학과게시판</a>
 <div>
-<hr border="2px gray dotted">
 <c:choose>
       <c:when test="${not empty deptNoticeList}">      
       <c:forEach var="deptNoticeList" items="${deptNoticeList }" >
@@ -51,9 +49,8 @@
 </div>
 
 
-<a href="${pageContext.request.contextPath}/admin/portalNoticeList"><h1>포털게시판</h1></a>
+<a href="${pageContext.request.contextPath}/admin/portalNoticeList">포털게시판</a>
 <div>
-<hr border="2px gray dotted">
 <c:choose>
       <c:when test="${not empty portalNoticeList}">      
       <c:forEach var="portalNoticeList" items="${portalNoticeList }" >
@@ -61,8 +58,7 @@
             <td>번호:${portalNoticeList.board_num}</td>
             <td><a href="<%=request.getContextPath()%>/admin/portalNoticeList">제목:${portalNoticeList.board_title}</a></td>
             <td>작성일:${portalNoticeList.board_date}</td>
-            <td>작성자:${portalNoticeList.board_writer}</td><br>
-           
+            <td>작성자:${portalNoticeList.board_writer}</td>           
          </tr>
       </c:forEach>
          </c:when>
@@ -79,9 +75,8 @@
 </c:choose>
 
 </div>
-<a href="${pageContext.request.contextPath}/admin/collegeNoticeList"><h1>학부게시판</h1></a>
+<a href="${pageContext.request.contextPath}/admin/collegeNoticeList">학부게시판</a>
 <div>
-<hr border="2px gray dotted">
 <c:choose>
       <c:when test="${not empty collegeNoticeList}">      
       <c:forEach var="collegeNoticeList" items="${collegeNoticeList }" >
@@ -90,7 +85,7 @@
              <td><a href="<%=request.getContextPath()%>/admin/collegeNoticeList">제목:${collegeNoticeList.board_title}</a></td>
             <td>내용:${collegeNoticeList.board_cont}</td>
             <td>작성일:${collegeNoticeList.board_date}</td>
-            <td>작성자:${collegeNoticeList.board_writer}</td><br>
+            <td>작성자:${collegeNoticeList.board_writer}</td>
          </tr>
       </c:forEach>
          </c:when>
@@ -109,9 +104,8 @@
 </div>
 
 
-<a href="${pageContext.request.contextPath}/admin/univNoticeList"><h1>학교게시판</h1></a>
+<a href="${pageContext.request.contextPath}/admin/univNoticeList">학교게시판</a>
 <div>
-<hr border="2px gray dotted">
 <c:choose>
       <c:when test="${not empty schoolNoticeList}">      
       <c:forEach var="schoolNoticeList" items="${schoolNoticeList }" >
@@ -120,7 +114,7 @@
            <td><a href="<%=request.getContextPath()%>/admin/schoolNoticeList">제목:${schoolNoticeList.board_title}</a></td>
             <td>내용:${schoolNoticeList.board_cont}</td>
             <td>작성일:${schoolNoticeList.board_date}</td>
-            <td>작성자:${schoolNoticeList.board_writer}</td><br>
+            <td>작성자:${schoolNoticeList.board_writer}</td>
          </tr>
       </c:forEach>
          </c:when>
@@ -137,9 +131,8 @@
 </c:choose>
 
 </div>
-<a href="${pageContext.request.contextPath}/admin/faqNoticeList"><h1>FAQ</h1></a>
+<a href="${pageContext.request.contextPath}/admin/faqNoticeList">FAQ</a>
 <div>
-<hr border="2px gray dotted">
 <c:choose>
       <c:when test="${not empty faqNoticeList}">      
       <c:forEach var="faqNoticeList" items="${faqNoticeList }" >
@@ -148,7 +141,7 @@
             <td><a href="<%=request.getContextPath()%>/admin/faqNoticeList">제목:${faqNoticeList.board_title}</a></td>
             <td>내용:${faqNoticeList.board_cont}</td>
             <td>작성일:${faqNoticeList.board_date}</td>
-            <td>작성자:${faqNoticeList.board_writer}</td><br>
+            <td>작성자:${faqNoticeList.board_writer}</td>
          </tr>
       </c:forEach>
          </c:when>
@@ -165,9 +158,8 @@
 </c:choose>
 
 </div>
-<a href="${pageContext.request.contextPath}/admin/qnaNoticeList"><h1>Q&A</h1></a>
+<a href="${pageContext.request.contextPath}/admin/qnaNoticeList">Q&A</a>
 <div>
-<hr border="2px gray dotted">
 <c:choose>
       <c:when test="${not empty qnaNoticeList}">      
       <c:forEach var="qnaNoticeList" items="${qnaNoticeList }" >
@@ -176,7 +168,7 @@
             <td><a href="<%=request.getContextPath()%>/admin/qnaNoticeList">제목:${qnaNoticeList.board_title}</a></td>
             <td>내용:${qnaNoticeList.board_cont}</td>
             <td>작성일:${qnaNoticeList.board_date}</td>
-            <td>작성자:${qnaNoticeList.board_writer}</td><br>
+            <td>작성자:${qnaNoticeList.board_writer}</td>
          </tr>
       </c:forEach>
          </c:when>
@@ -196,7 +188,6 @@
 
 </body>
 </html>
-=======
 
 
 
