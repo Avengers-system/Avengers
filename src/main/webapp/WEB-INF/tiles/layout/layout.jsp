@@ -93,7 +93,6 @@
 		<tiles:insertAttribute name="footer" />
     </div>
 </div>	
-
 <!-- Main Scripts -->
 	<!-- jQuery-->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
