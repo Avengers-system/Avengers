@@ -12,13 +12,8 @@
 <button onclick="location.href='<%=request.getContextPath()%>/admin/studentManage'">학생목록</button>
 
 
-<c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
-
-관리자메인
-<button onclick="location.href='<%=request.getContextPath()%>/admin/main/adminMain'">관리자</button>
-<button onclick="location.href='${pageContext.request.contextPath}/professor/main'">교수</button>
-<button onclick="location.href='<%=request.getContextPath()%>/student/studentMain'">학생</button>
-<button onclick="location.href='<%=request.getContextPath()%>/admin/main/helpDeskMain'">helpDesk</button>
+<!-- Admin Header -->
+<%@include file="../common/topCategory.jsp"%>
 
 <button id="adminMain" onclick="adminMain_go()">관리자</button>
 <button id="logout" onclick="logout_go()">로그아웃</button><br/>
