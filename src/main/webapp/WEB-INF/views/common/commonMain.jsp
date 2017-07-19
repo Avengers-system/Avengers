@@ -17,3 +17,4 @@
 <script>location.href="${pageContext.request.contextPath}/student/studentMain"</script>
 </sec:authorize>
 
+
