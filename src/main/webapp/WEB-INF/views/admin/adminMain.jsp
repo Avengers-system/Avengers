@@ -4,6 +4,8 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 
 
+
+
 <h1>관리자메인</h1>
 
 
