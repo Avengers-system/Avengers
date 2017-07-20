@@ -101,4 +101,16 @@ public class StudentHelpDeskServiceImpl implements StudentHelpDeskService {
 		return stuHelpDeskDAO.getStudentFAQDetail(board_num);
 	}
 
+	@Override
+	public void updateStudentFAQ(BoardVO boardVO) {
+		stuHelpDeskDAO.updateStudentFAQ(boardVO);
+	}
+
+	@Override
+	public void deleteStudentFAQ(BoardVO boardVO) {
+
+		
+		stuHelpDeskDAO.deleteStudentFAQ(boardVO);
+	}
+
 }

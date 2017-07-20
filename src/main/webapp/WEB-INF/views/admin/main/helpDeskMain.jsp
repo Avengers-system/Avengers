@@ -142,7 +142,7 @@
             <td><a href="<%=request.getContextPath()%>/admin/faqNoticeList">제목:${faqNoticeList.board_title}</a></td>
             <td>내용:${faqNoticeList.board_cont}</td>
             <td>작성일:${faqNoticeList.board_date}</td>
-            <td>작성자:${faqNoticeList.board_writer}</td>
+            <td>작성자:${faqNoticeList.board_writer}</td><br>
          </tr>
       </c:forEach>
          </c:when>
@@ -169,7 +169,7 @@
             <td><a href="<%=request.getContextPath()%>/admin/qnaNoticeList">제목:${qnaNoticeList.board_title}</a></td>
             <td>내용:${qnaNoticeList.board_cont}</td>
             <td>작성일:${qnaNoticeList.board_date}</td>
-            <td>작성자:${qnaNoticeList.board_writer}</td>
+            <td>작성자:${qnaNoticeList.board_writer}</td><br>
          </tr>
       </c:forEach>
          </c:when>
@@ -201,23 +201,24 @@
 <button onclick="location.href='<%=request.getContextPath()%>/admin/deptNoticeList'">학사일정</button>
 <button onclick="location.href='<%=request.getContextPath()%>/admin/portalNoticeList'">포털소식</button>
 <button onclick="location.href='<%=request.getContextPath()%>/admin/faqNoticeList'">FAQ</button>
-<button onclick="location.href='<%=request.getContextPath()%>/admin/deptNoticeList'">Q&A</button>
+<button onclick="location.href='<%=request.getContextPath()%>/admin/deptNoticeList'">QnA</button>
 
 <br/>
 <h1>학부 정보 출력</h1>
 <div>
+<table>
 <c:choose>
       <c:when test="${not empty collegeNoticeList}">      
       <c:forEach var="collegeNoticeList" items="${collegeNoticeList }" >
 <hr color="violet">
          <tr>
-            <td>번호:${collegeNoticeList.board_num}</td><br>
-            <td>제목:${collegeNoticeList.board_title}</td><br>
-            <td>내용:${collegeNoticeList.board_cont}</td><br>
-            <td>작성일:${collegeNoticeList.board_date}</td><br>
-            <td>작성자:${collegeNoticeList.board_writer}</td><br>
-            <td>첨부파일:${collegeNoticeList.board_af}</td><br>
-            <td>게시판분류코드:${collegeNoticeList.board_bc}</td><br>
+            <td>번호:${collegeNoticeList.board_num}</td>
+            <td>제목:${collegeNoticeList.board_title}</td>
+            <td>내용:${collegeNoticeList.board_cont}</td>
+            <td>작성일:${collegeNoticeList.board_date}</td>
+            <td>작성자:${collegeNoticeList.board_writer}</td>
+            <td>첨부파일:${collegeNoticeList.board_af}</td>
+            <td>게시판분류코드:${collegeNoticeList.board_bc}</td>
          </tr>
       </c:forEach>
          </c:when>
@@ -232,23 +233,23 @@
         
          
 </c:choose>
-
+</table>
 </div>
 
 <h1>포털 정보 출력</h1>
 <div>
-<hr border="2px gray dotted">
+<table>
 <c:choose>
       <c:when test="${not empty deptNoticeList}">      
       <c:forEach var="deptNoticeList" items="${deptNoticeList }" >
          <tr>
-            <td>번호:${deptNoticeList.board_num}</td><br>
-            <td>제목:${deptNoticeList.board_title}</td><br>
-            <td>내용:${deptNoticeList.board_cont}</td><br>
-            <td>작성일:${deptNoticeList.board_date}</td><br>
-            <td>작성자:${deptNoticeList.board_writer}</td><br>
-            <td>첨부파일:${deptNoticeList.board_af}</td><br>
-            <td>게시판분류코드:${deptNoticeList.board_bc}</td><br>
+            <td>번호:${deptNoticeList.board_num}</td>
+            <td>제목:${deptNoticeList.board_title}</td>
+            <td>내용:${deptNoticeList.board_cont}</td>
+            <td>작성일:${deptNoticeList.board_date}</td>
+            <td>작성자:${deptNoticeList.board_writer}</td>
+            <td>첨부파일:${deptNoticeList.board_af}</td>
+            <td>게시판분류코드:${deptNoticeList.board_bc}</td>
          </tr>
       </c:forEach>
          </c:when>
@@ -263,22 +264,22 @@
         
          
 </c:choose>
-
+</table>
 </div>
 <h1>faq 정보 출력</h1>
 <div>
-<hr border="2px gray dotted">
+<table>
 <c:choose>
       <c:when test="${not empty deptNoticeList}">      
       <c:forEach var="deptNoticeList" items="${deptNoticeList }" >
          <tr>
-            <td>번호:${deptNoticeList.board_num}</td><br>
-            <td>제목:${deptNoticeList.board_title}</td><br>
-            <td>내용:${deptNoticeList.board_cont}</td><br>
-            <td>작성일:${deptNoticeList.board_date}</td><br>
-            <td>작성자:${deptNoticeList.board_writer}</td><br>
-            <td>첨부파일:${deptNoticeList.board_af}</td><br>
-            <td>게시판분류코드:${deptNoticeList.board_bc}</td><br>
+            <td>번호:${deptNoticeList.board_num}</td>
+            <td>제목:${deptNoticeList.board_title}</td>
+            <td>내용:${deptNoticeList.board_cont}</td>
+            <td>작성일:${deptNoticeList.board_date}</td>
+            <td>작성자:${deptNoticeList.board_writer}</td>
+            <td>첨부파일:${deptNoticeList.board_af}</td>
+            <td>게시판분류코드:${deptNoticeList.board_bc}</td>
          </tr>
       </c:forEach>
          </c:when>
@@ -293,22 +294,22 @@
         
          
 </c:choose>
-
+</table>
 </div>
 <h1>qna 정보 출력</h1>
 <div>
-<hr border="2px gray dotted">
+<table>
 <c:choose>
       <c:when test="${not empty deptNoticeList}">      
       <c:forEach var="deptNoticeList" items="${deptNoticeList }" >
          <tr>
-            <td>번호:${deptNoticeList.board_num}</td><br>
-            <td>제목:${deptNoticeList.board_title}</td><br>
-            <td>내용:${deptNoticeList.board_cont}</td><br>
-            <td>작성일:${deptNoticeList.board_date}</td><br>
-            <td>작성자:${deptNoticeList.board_writer}</td><br>
-            <td>첨부파일:${deptNoticeList.board_af}</td><br>
-            <td>게시판분류코드:${deptNoticeList.board_bc}</td><br>
+            <td>번호:${deptNoticeList.board_num}</td>
+            <td>제목:${deptNoticeList.board_title}</td>
+            <td>내용:${deptNoticeList.board_cont}</td>
+            <td>작성일:${deptNoticeList.board_date}</td>
+            <td>작성자:${deptNoticeList.board_writer}</td>
+            <td>첨부파일:${deptNoticeList.board_af}</td>
+            <td>게시판분류코드:${deptNoticeList.board_bc}</td>
          </tr>
       </c:forEach>
          </c:when>
@@ -323,22 +324,22 @@
         
          
 </c:choose>
-
+</table>
 </div>
 <h1>학교 정보 출력</h1>
 <div>
-<hr border="2px gray dotted">
+<table>
 <c:choose>
       <c:when test="${not empty schoolNoticeList}">      
       <c:forEach var="schoolNoticeList" items="${schoolNoticeList }" >
          <tr>
-            <td>번호:${schoolNoticeList.board_num}</td><br>
-            <td>제목:${schoolNoticeList.board_title}</td><br>
-            <td>내용:${schoolNoticeList.board_cont}</td><br>
-            <td>작성일:${schoolNoticeList.board_date}</td><br>
-            <td>작성자:${schoolNoticeList.board_writer}</td><br>
-            <td>첨부파일:${schoolNoticeList.board_af}</td><br>
-            <td>게시판분류코드:${schoolNoticeList.board_bc}</td><br>
+            <td>번호:${schoolNoticeList.board_num}</td>
+            <td>제목:${schoolNoticeList.board_title}</td>
+            <td>내용:${schoolNoticeList.board_cont}</td>
+            <td>작성일:${schoolNoticeList.board_date}</td>
+            <td>작성자:${schoolNoticeList.board_writer}</td>
+            <td>첨부파일:${schoolNoticeList.board_af}</td>
+            <td>게시판분류코드:${schoolNoticeList.board_bc}</td>
          </tr>
       </c:forEach>
          </c:when>
@@ -348,27 +349,24 @@
                   해당 내용이 없습니다.
                </td>
             </tr>
-         </c:otherwise>
-         
-        
-         
+         </c:otherwise>         
 </c:choose>
-
+</table>
 </div>
 <h1>학부 정보 출력</h1>
 <div>
-<hr border="2px gray dotted">
+<table>
 <c:choose>
       <c:when test="${not empty deptNoticeList}">      
       <c:forEach var="deptNoticeList" items="${deptNoticeList }" >
          <tr>
-            <td>번호:${deptNoticeList.board_num}</td><br>
-            <td>제목:${deptNoticeList.board_title}</td><br>
-            <td>내용:${deptNoticeList.board_cont}</td><br>
-            <td>작성일:${deptNoticeList.board_date}</td><br>
-            <td>작성자:${deptNoticeList.board_writer}</td><br>
-            <td>첨부파일:${deptNoticeList.board_af}</td><br>
-            <td>게시판분류코드:${deptNoticeList.board_bc}</td><br>
+            <td>번호:${deptNoticeList.board_num}</td>
+            <td>제목:${deptNoticeList.board_title}</td>
+            <td>내용:${deptNoticeList.board_cont}</td>
+            <td>작성일:${deptNoticeList.board_date}</td>
+            <td>작성자:${deptNoticeList.board_writer}</td>
+            <td>첨부파일:${deptNoticeList.board_af}</td>
+            <td>게시판분류코드:${deptNoticeList.board_bc}</td>
          </tr>
       </c:forEach>
          </c:when>
@@ -378,12 +376,9 @@
                   해당 내용이 없습니다.
                </td>
             </tr>
-         </c:otherwise>
-         
-        
-         
+         </c:otherwise>        
 </c:choose>
-
+</table>
 </div>
 
 </body>

@@ -2,6 +2,19 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
+<style>
+div.input-group{
+width : 400px;
+}
+
+div.input-group>span.input-group-addon{
+width:120px;
+}
+
+</style>
+    
+    
+    
      <form enctype="multipart/form-data" action="updateStudent">  
     <h1>학생 상세정보 보기</h1>
   <form enctype="multipart/form-data">

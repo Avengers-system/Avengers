@@ -52,7 +52,7 @@
 			ADMIN_ID= #{admin_id},
 			ADMIN_PW = #{admin_pw},
 			ADMIN_NM = #{admin_nm},
-			<if test="${admin_pic} != null">
+			<if test="admin_pic != null">
 				ADMIN_PIC=#{admin_pic},
 			</if>
 			ADMIN_BIR=TO_DATE(#{admin_bir},'YYYY-MM-DD HH24:MI:SS'),
@@ -157,8 +157,6 @@
 	
 	
 	<!-- 학생등록 쿼리 -->
-	
-	 
 	<insert id="insertStudent" parameterType="com.avengers.db.dto.StudVO">
 	INSERT 		
 	INTO STUDENT
@@ -191,28 +189,28 @@
 	
 		VALUES(
 			'2017'||lpad(stud_seq.nextval,3,0),
-			#{STUD_NM},	
-			#{STUD_ENG_NM},	
-			#{STUD_BIR},	
-			#{STUD_EMAIL},	
-			#{STUD_PW},	
-			#{STUD_GRD},	
-			#{STUD_REGNO},	
-			#{stud_gen},	
+			#{STUD_NM , jdbcType=VARCHAR},	
+			#{STUD_ENG_NM , jdbcType=VARCHAR},	
+			#{STUD_BIR },	
+			#{STUD_EMAIL , jdbcType=VARCHAR},	
+			#{STUD_PW ,jdbcType=VARCHAR},	
+			#{STUD_GRD ,jdbcType=VARCHAR},	
+			#{STUD_REGNO ,jdbcType=VARCHAR},	
+			#{stud_gen },	
 			#{stud_qtr},	
-			#{stud_schreg_code},	
-			#{stud_pic},	
-			#{stud_act_num},	
-			#{stud_bank},	
-			#{stud_ah},	
-			#{stud_addr},	
-			#{stud_zip},	
-			#{stud_tel},	
-			#{stud_hp},	
-			#{stud_dept},	
-			#{stud_guad_nm},	
+			#{stud_schreg_code , jdbcType=VARCHAR},	
+			#{stud_pic , jdbcType=VARCHAR},	
+			#{stud_act_num , jdbcType=VARCHAR},	
+			#{stud_bank , jdbcType=VARCHAR},	
+			#{stud_ah , jdbcType=VARCHAR},	
+			#{stud_addr , jdbcType=VARCHAR},	
+			#{stud_zip , jdbcType=VARCHAR},	
+			#{stud_tel , jdbcType=VARCHAR},	
+			#{stud_hp , jdbcType=VARCHAR},	
+			#{stud_dept , jdbcType=VARCHAR},	
+			#{stud_guad_nm , jdbcType=VARCHAR},	
 			#{stud_guad_rel},	
-			#{stud_guad_hp},	
+			#{stud_guad_hp , jdbcType=VARCHAR},	
 			'1',
 			'ROLE_STUD',	
 			#{STUD_MAX_CRD}	

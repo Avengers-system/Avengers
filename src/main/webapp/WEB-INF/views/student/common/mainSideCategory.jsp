@@ -7,4 +7,5 @@
 	:${studentInfo.stud_schreg_code}<br> <br>
 </div>
 <!-- 개인일정 -->
-<div class="col-xs-12"></div>
+<div class="col-xs-12">
+</div>

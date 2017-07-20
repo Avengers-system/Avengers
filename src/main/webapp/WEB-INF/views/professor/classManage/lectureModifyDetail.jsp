@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@include file="../common/topCategory.jsp"%>
+
+<!-- Content -->
+<div class="col-md-2" id="commonLeftSide">
+<%@include file="../common/classManageLectureSideCategory.jsp" %>
+</div>
+<div class="col-md-10">
+	<h1>강의계획서</h1>
+	<hr/>
 	<form name="lct" method="post" action="${pageContext.request.contextPath }/professor/classManage/lectureModify">
 		강의번호 : <input type="text" name="lct_num" value="${detailLct.get('lct_num') }"/>
 		담당교수 : <input type="text" readonly value="${detailLct.get('prfs_nm')}"/>
@@ -38,18 +40,11 @@
 		년도<input type="text" name="year" value="${textbook[3] }"/><br/>
 		
 		4.강의내용<br/>
-		<textarea rows="10" cols="100" name="lct_cont">${detailLct.get('lct_cont')}</textarea>
-		<input type="submit" value="수정"/>
-<%-- 		<input type="submit" onclick="location.href='<%=request.getContextPath()%>/professor/classManage/lectureModify?lct_num=${detailLct.get('lct_num') }'" value="수정"/> --%>
-	</form>
+		<textarea rows="10" cols="100" name="lct_cont">${detailLct.get('lct_cont')}</textarea><br/>
+		<input type="submit" value="수정완료"/>
 		<button onclick="location.href='<%=request.getContextPath()%>/professor/classManage/lectureDetail'">취소</button>
-		
-		
-		
-		
-		
+	</form>
 <!-- 		평가방법이 100%가 넘는 경우 체크해야됨 -->
 <!-- 		교재를 입력안하는 경우도 해야되고 -->
 <!-- 		강의내용을 작성 안하는 경우도 생각해야됨 -->
-</body>
-</html>
+</div>

@@ -21,7 +21,7 @@
 	
 	<select id="selectExamList" parameterType="map" resultMap="examForm">
 		SELECT SJT_NM
-			,SUBSTR(LCT_NM,-1) AS LCT_NM
+			,SUBSTR(LCT_NM,-1) AS LCT_NM_CLASS
 			,case when EXAM_TYPE = 1 then '중간고사' else '기말고사' end AS EXAM_TYPE
 			,TO_CHAR(EXAM_DATE,'YY/MM/DD') AS EXAM_DATE
 			,EXAM_START_DATE
