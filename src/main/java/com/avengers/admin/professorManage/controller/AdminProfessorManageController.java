@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -152,13 +155,28 @@ public class AdminProfessorManageController {
 	 */
 	@RequestMapping(value = "/insertProfessor")
 	public String insertProfessor(CommandPrfsVO commandPrfsVO,
-			HttpSession session
-//			, @RequestParam("prfs_pic") MultipartFile multipartFile) {
-			){
+			HttpSession session	){
 
-		PrfsVO prfsVO = new PrfsVO();
-		prfsVO = commandPrfsVO.toPrfsVO();
+		PrfsVO prfsVO = commandPrfsVO.toPrfsVO();		
 
+		//System.out.println("학과 :  "+prfsVO.getPrfs_dept());
+		//System.out.println("생년월일 :  "+prfs_bir);
+
+		//SimpleDateFormat sdf1 = new SimpleDateFormat("yy-mm-dd");
+		//SimpleDateFormat sdf2 = new SimpleDateFormat("yy/mm/dd");
+	    //String input = prfs_bir;
+	    
+	    /*try {
+			Date date = sdf1.parse(input);
+			System.out.println(sdf2.format(date));
+			String date2 = sdf2.format(date);
+			date = sdf2.parse(date2);
+			prfsVO.setPrfs_bir(date);
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}*/
+
+	    
 		// 깃 경로 (동일)
 		String upload = session.getServletContext().getRealPath("resources/admin_professor_images");		
 		

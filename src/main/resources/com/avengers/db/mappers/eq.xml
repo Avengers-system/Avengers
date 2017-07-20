@@ -22,5 +22,62 @@
 		SELECT *
 		FROM   EQ
 		WHERE  EQ_EXAM = #{exam_num}
+		ORDER BY EQ_QTNA ASC
+	</select>
+	
+	<!-- 문제삭제 -->
+	<delete id="deleteEqInfo" parameterType="java.lang.String">
+		DELETE FROM EQ WHERE EQ_NUM = #{eq_num}
+	</delete>
+	
+	<!-- 문제업데이트 -->
+	<update id="updateEqInfo" parameterType="com.avengers.db.dto.EqVO">
+		UPDATE EQ
+		SET	   EQ_QTNA = #{eq_qtna}
+			  ,EQ_QTN = #{eq_qtn}
+			  ,EQ_QTN_TYPE = #{eq_qtn_type}
+			  <if test='eq_qtn_type != null and eq_qtn_type.equals("1")'>
+			  ,EQ_EXMP_ONE = #{eq_exmp_one}
+			  ,EQ_EXMP_TWO = #{eq_exmp_two}
+			  ,EQ_EXMP_THREE = #{eq_exmp_three}
+			  ,EQ_EXMP_FOUR = #{eq_exmp_four}
+			  ,EQ_ANS = #{eq_ans}
+			  </if>
+			  ,EQ_EXAM = #{eq_exam}
+		WHERE EQ_NUM = #{eq_num}
+	</update>
+	
+	<!-- 문제 insert -->
+	<insert id="insertEqInfo" parameterType="com.avengers.db.dto.EqVO">
+		INSERT INTO EQ(EQ_NUM
+					  ,EQ_QTNA
+					  ,EQ_QTN
+					  ,EQ_QTN_TYPE 
+					  <if test='eq_qtn_type != null and eq_qtn_type.equals("1")'>
+					  ,EQ_EXMP_ONE
+					  ,EQ_EXMP_TWO
+					  ,EQ_EXMP_THREE
+					  ,EQ_EXMP_FOUR
+					  ,EQ_ANS
+					  </if>
+					  ,EQ_EXAM)
+		VALUES('EQ'||EQ_SEQ.NEXTVAL
+			  ,#{eq_qtna}
+			  ,#{eq_qtn}
+			  ,#{eq_qtn_type}
+			  <if test='eq_qtn_type != null and eq_qtn_type.equals("1")'>
+			  ,#{eq_exmp_one}
+			  ,#{eq_exmp_two}
+			  ,#{eq_exmp_three}
+			  ,#{eq_exmp_four}
+			  ,#{eq_ans}
+			  </if>
+			  ,#{eq_exam})
+	</insert>
+	
+	<select id="selectEqPkList" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT EQ_NUM
+		FROM   EQ
+		WHERE  EQ_EXAM=#{exam_num}
 	</select>
 </mapper>

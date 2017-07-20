@@ -36,9 +36,30 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 </select>
 
 
+<update id="updateStudentFAQ" parameterType="com.avengers.db.dto.BoardVO">
+	update board set board_title=#{board_title}, board_cont=#{board_cont} where board_num=#{board_num}
+</update>
+
+<delete id="deleteStudentFAQ" parameterType="com.avengers.db.dto.BoardVO">
+	delete from board where board_num=#{board_num}
+</delete>
+
+
+
+
+
+
+
+
+
+
+
+	
 	<!-- 게시판중 포탈공지사항을 검색하는 구문  -->	
-	<select id="selectPortalNoticeList" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
-		SELECT * FROM BOARD WHERE BOARD_BC=#{BOARD_BC}  
+
+
+	<select id="selectPortalNoticeList" resultType="com.avengers.db.dto.BoardVO">
+		SELECT * FROM BOARD WHERE BOARD_BC='PORTAL' 
 	</select>
 	
 	<select id="selectBoardOne" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
