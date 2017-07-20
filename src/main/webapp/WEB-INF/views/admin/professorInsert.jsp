@@ -253,10 +253,9 @@ $(function() {
 				</div>
 	  	</div>
 				 
-				<div class="input-group">
-				
-				
-		 <input type="submit" value="등록하기">
+				<div class="col-md-12 input-group">
+					<div class="col-md-4 col-md-offset-8">
+		 			<input type="submit" value="등록하기">
 				</div>
   		</div> 
   
