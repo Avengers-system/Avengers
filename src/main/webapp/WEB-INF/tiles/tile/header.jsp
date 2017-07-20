@@ -6,23 +6,21 @@
 	uri="http://www.springframework.org/security/tags"%>
 <style>
 #commonLoginInformation {
-	padding-top: 5px;
+/* 	padding-top: 5px; */
 	text-align: right;
 }
 </style>
 <sec:authorize access="isAuthenticated()">
 
-<nav class="navbar navbar-default header " style="width:100%; height:110px;">
-          <div class="col-md-12 nav-wrapper" style="width:100%; height:110px;">
-		<div class="navbar-header" style="width:100%; height:110px;">
-</sec:authorize>		
-			<div class="col-md-7">
+<nav class="navbar navbar-default header bg-white " style="width:100%; height: 60px; margin:0; ">
+          <div class="col-md-12 nav-wrapper" style="width:100%; height: 60px; ">
+		<div class="navbar-header" style="width:100%; height: 60px; ">
+		
+			<div class="col-md-2">
 				<a href="${pageContext.request.contextPath}/main"><img
-					class="logo" style="height: 110px; width: 130px;"
+					class="logo" style="height: 60px; width: 130px;"
 					src="${pageContext.request.contextPath}/resources/images/LOGO.png"></a>
 			</div>
-
-
 			<!-- Header -->
 			<div id="header-wrapper " class="nav navbar-nav navbar-right"  >
 					<div class="text-right"  >
@@ -40,7 +38,6 @@
 						</sec:authorize>
 					</div>
 			</div>
-<sec:authorize access="isAuthenticated()">			
 	</div>
 	</div>
 </nav>

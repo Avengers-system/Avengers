@@ -15,7 +15,7 @@
 	<annotation-driven />
 	<view-controller view-name="common/commonMain" path="/main"/>
 	<view-controller view-name="common/accessDenied" path="/accessDenied"/>
-	<view-controller view-name="common/commonLogin" path="/login"/>
+	<view-controller view-name="common/commonLogin2" path="/login"/>
 	<view-controller view-name="common/logout" path="/logout"/>
 	<view-controller view-name="common/commonDuplicate" path="/login_duplicate"/>
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
