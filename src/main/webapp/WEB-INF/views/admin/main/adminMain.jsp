@@ -7,12 +7,12 @@
 <!-- Admin Header -->
 <%@include file="../common/topCategory.jsp"%>
 
-<<<<<<< HEAD
+<
 <button id="adminMain" onclick="adminMain_go()">관리자</button>
 <button id="logout" onclick="logout_go()">로그아웃</button><br/>
 <button id="myInfo" onclick="myInfo_go()">개인정보</button><br/>
 <button id="mySchedule" onclick="mySchedule_go()">개인일정관리</button><br/>
->>>>>>> branch 'master' of https://github.com/Avengers-system/Avengers.git
+
 
 
 <button id="adminMain" onclick="adminMain_go()">관리자</button><br/>
@@ -319,4 +319,3 @@
 							 </script>
 							
 </div>
->>>>>>> refs/heads/master
