@@ -6,8 +6,6 @@
 
 <!-- Admin Header -->
 <%@include file="../common/topCategory.jsp"%>
-
-<
 <button id="adminMain" onclick="adminMain_go()">관리자</button>
 <button id="logout" onclick="logout_go()">로그아웃</button><br/>
 <button id="myInfo" onclick="myInfo_go()">개인정보</button><br/>

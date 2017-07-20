@@ -37,9 +37,7 @@ div.input-group>span.input-group-addon{
 
 
 		<div class="col-md-4">
-
-
-								<legend>상세정보</legend>
+			<legend>상세정보</legend>
 	
 		<form enctype="multipart/form-data" action="updateProfessor">
 	
