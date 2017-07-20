@@ -300,6 +300,47 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 		ArrayList<EqVO> eqList = (ArrayList<EqVO>) sqlSession.selectList("eq.selectEqAllDataList", exam_num);
 		return eqList;
 	}
+
+	@Override
+	public int deleteEqInfo(String eq_num) throws SQLException {
+		int result = sqlSession.delete("eq.deleteEqInfo", eq_num);
+		return result;
+	}
+
+	@Override
+	public ArrayList<String> selectEqPkList(String exam_num)
+			throws SQLException {
+		ArrayList<String> eqPkList = (ArrayList<String>) sqlSession.selectList("eq.selectEqPkList", exam_num);
+		return eqPkList;
+	}
+
+	@Override
+	public int allFunctionEq(ArrayList<EqVO> eqList) throws SQLException {
+		int result = -1;
+		for(int i=0; i<eqList.size(); i++){
+			if(eqList.get(i).getEq_num().equals("-1")){
+				result = sqlSession.insert("eq.insertEqInfo", eqList.get(i));
+			} else if(eqList.get(i).getEq_num().substring(eqList.get(i).getEq_num().length()-1).equals("u")){
+				System.out.println(eqList.get(i).getEq_num().substring(eqList.get(i).getEq_num().length()-1));
+				eqList.get(i).setEq_num(eqList.get(i).getEq_num().substring(0, eqList.get(i).getEq_num().length()-1));
+				result = sqlSession.update("eq.updateEqInfo", eqList.get(i));
+			} else if(eqList.get(i).getEq_num().substring(eqList.get(i).getEq_num().length()-1).equals("d")){
+				System.out.println(eqList.get(i).getEq_num().substring(eqList.get(i).getEq_num().length()-1));
+				eqList.get(i).setEq_num(eqList.get(i).getEq_num().substring(0, eqList.get(i).getEq_num().length()-1));
+				result = sqlSession.delete("eq.deleteEqInfo", eqList.get(i));
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public int insertEq(ArrayList<EqVO> eqList) throws SQLException {
+		int result = -1;
+		for (int i = 0; i < eqList.size(); i++) {
+			result = sqlSession.insert("eq.insertEqInfo", eqList.get(i));
+		}
+		return result;
+	}
 	
 
 }

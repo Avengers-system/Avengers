@@ -8,12 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,10 +40,13 @@ public class StudentClassManageController {
 	 * @return
 	 */
 	@RequestMapping("student/classManage/lectureMain")
-	public String studentLectureMain(HttpServletRequest request, Principal principal, Model model){
+	public String studentLectureMain(HttpServletRequest request){
 		String view = "student/classManage/lectureMain";
 		
-		model.addAttribute("lct_num",request.getParameter("lct_num"));
+		HttpSession session = request.getSession();
+		if(request.getParameter("lct_num")!=null && !request.getParameter("lct_num").equals("")){
+			session.setAttribute("lct_num", request.getParameter("lct_num"));
+		}
 		
 		return view;
 	}
@@ -58,7 +60,6 @@ public class StudentClassManageController {
 	@RequestMapping("student/classManage/lecture")
 	public String studentLecture(Principal principal, Model model){
 		String view = "student/classManage/lecture";
-		
 		
 		return view;
 	}
@@ -74,9 +75,8 @@ public class StudentClassManageController {
 	public String studentLectureDetail(HttpServletRequest request, Principal principal, Model model){
 		String view = "student/classManage/lectureDetail";
 		
-		String lct_num = request.getParameter("lct_num");
+		String lct_num = (String) request.getSession().getAttribute("lct_num");
 		Map<String, String> detailLct = null;
-		System.out.println(lct_num);
 		try {
 			detailLct = scmService.selectDetailLct(lct_num);
 		} catch (SQLException e) {
@@ -110,7 +110,7 @@ public class StudentClassManageController {
 		Map<String,String> key = new HashMap<String, String>();
 		
 		key.put("te_stud", te_stud);
-		key.put("lct_num", request.getParameter("lct_num"));
+		key.put("lct_num", (String) request.getSession().getAttribute("lct_num"));
 		try {
 			examList = scmService.selectExamList(key);
 		} catch (SQLException e) {
@@ -134,7 +134,7 @@ public class StudentClassManageController {
 		String view = "student/classManage/lectureTakeExam";
 		
 		String exam_num = request.getParameter("exam_num");
-		String lct_num = request.getParameter("lct_num");
+		String lct_num = (String) request.getSession().getAttribute("lct_num");
 		ArrayList<EqVO> eqList = null;
 		
 		try {
@@ -144,7 +144,6 @@ public class StudentClassManageController {
 		}  
 		
 		model.addAttribute("eqList", eqList);
-		model.addAttribute("lct_num", lct_num);
 		model.addAttribute("te_num",request.getParameter("te_num"));
 		
 		return view;
@@ -196,7 +195,7 @@ public class StudentClassManageController {
 	 */
 	@RequestMapping(value="student/classManage/lectureExamSubmit", method = RequestMethod.GET)
 	public String studentLectureExamSubmit(HttpServletRequest request, Principal principal, Model model){
-		String view = "redirect:lectureExam?lct_num="+request.getParameter("lct_num");
+		String view = "redirect:lectureExam?lct_num="+(String) request.getSession().getAttribute("lct_num");
 		return view;
 	}
 	
@@ -212,13 +211,12 @@ public class StudentClassManageController {
 	
 		Map<String, String> key = new HashMap<String,String>();
 		ArrayList<Map<String, String>> asgnList = null;
-		key.put("lct_num", request.getParameter("lct_num"));
+		key.put("lct_num", (String) request.getSession().getAttribute("lct_num"));
 		key.put("stud_num", principal.getName());
 		
 		try {
 			asgnList = scmService.selectAsgnList(key);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

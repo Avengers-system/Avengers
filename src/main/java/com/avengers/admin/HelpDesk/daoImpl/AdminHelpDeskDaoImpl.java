@@ -62,8 +62,9 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 		map.put("BOARD_TITLE", boardVO.getBoard_title());
 		map.put("BOARD_CONT", boardVO.getBoard_cont());
 		map.put("BOARD_WRITER", boardVO.getBoard_writer());
-		map.put("BOARD_AF", boardVO.getBoard_af());		
 		map.put("BOARD_BC", boardVO.getBoard_bc());
+		
+		map.put("BOARD_AF", boardVO.getBoard_af());		
 				
 		int boardInsert = sqlSession.update("board.insertBoard", map);
 		System.out.println("뭔가찍힘");
@@ -102,11 +103,16 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 
 	@Override
 	public ArrayList<BoardVO> selectSearchList(BoardVO boardVO) {
+		int offset=boardVO.getStartRowNo()-1;
+		int limit = boardVO.getEndRowNo()-boardVO.getStartRowNo()+1;
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		
 		HashMap map = new HashMap();
 
 		map.put("BOARD_BC", boardVO.getBoard_bc());
 		map.put("BOARD_TITLE", boardVO.getBoard_title());
-		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("board.selectSearchList", map);
+		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("board.selectSearchList", map,rowBounds);
 		return boardList;
 	}
 
@@ -118,6 +124,18 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 		int result = (int) sqlSession.update("board.updateBoardCount", map);
 		
 		return result;
+	}
+
+	public int selectBoardCount(BoardVO boardVO) throws SQLException{
+		int count = 0;
+		HashMap map = new HashMap();
+		
+		map.put("BOARD_BC", boardVO.getBoard_bc());
+		map.put("searchFiled", boardVO.getSearchFiled());
+		map.put("searchValue", boardVO.getSearchValue());
+		map.put("board_title", boardVO.getBoard_title());
+		count = (Integer) sqlSession.selectOne("selectBoardCount", map);
+		return count;
 	}
 
 	

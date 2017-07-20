@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<style>
-	a{
-	cursor:pointer;
-	text-decoration:none;
-	color:#323232;
-	}
-</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 	$(function(){
@@ -94,32 +82,33 @@
 		})
 	});
 </script>
-</head>
-<body>
+<!-- Student Header -->
+<%@include file="../common/topCategory.jsp" %>
+
+<!-- Content -->
+<div class="col-md-2" id="commonLeftSide">
+<%@include file="../common/classManageLectureSideCategory.jsp" %>
+</div>
+<div class="col-md-10" id="commonRightSide">
+	<h1>시험문제</h1>
+	<hr/>
 <!--1.주관식 2.객관식 -->
-<form>
-	<c:forEach items="${eqList}" var="eq1" varStatus="status">
-		시험문제고유번호 : ${eq1.getEq_num() }<br/>
-		${eq1.getEq_qtna() }.
-		${eq1.getEq_qtn() }<br/>
-		<c:choose>
-			<c:when test="${eq1.getEq_qtn_type() eq 1}">
-				<a href="javascript:ans_check(${eq1.getEq_qtna() },1)">①${eq1.getEq_exmp_one() }</a><br/>
-				<a href="javascript:ans_check(${eq1.getEq_qtna() },2)">②${eq1.getEq_exmp_two() }</a><br/>
-				<a href="javascript:ans_check(${eq1.getEq_qtna() },3)">③${eq1.getEq_exmp_three() }</a><br/>
-				<a href="javascript:ans_check(${eq1.getEq_qtna() },4)">④${eq1.getEq_exmp_four() }</a><br/><br/>
-			</c:when>
-			<c:otherwise>
-				<textarea id="${eq1.getEq_qtna() }" cols="100" rows="10"></textarea><br/><br/>
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
-</form>
-<button onclick="javascript:exam_submit();">제출</button>
-
-제출버튼을 누르면 학생답안 테이블에 학생의 정답정보를 저장해주어야됨
-
-
-
-</body>
-</html>
+	<form>
+		<c:forEach items="${eqList}" var="eq1" varStatus="status">
+			${eq1.getEq_qtna() }.
+			${eq1.getEq_qtn() }<br/>
+			<c:choose>
+				<c:when test="${eq1.getEq_qtn_type() eq 1}">
+					<a href="javascript:ans_check(${eq1.getEq_qtna() },1)">①${eq1.getEq_exmp_one() }</a><br/>
+					<a href="javascript:ans_check(${eq1.getEq_qtna() },2)">②${eq1.getEq_exmp_two() }</a><br/>
+					<a href="javascript:ans_check(${eq1.getEq_qtna() },3)">③${eq1.getEq_exmp_three() }</a><br/>
+					<a href="javascript:ans_check(${eq1.getEq_qtna() },4)">④${eq1.getEq_exmp_four() }</a><br/><br/>
+				</c:when>
+				<c:otherwise>
+					<textarea id="${eq1.getEq_qtna() }" cols="100" rows="10"></textarea><br/><br/>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</form>
+	<button onclick="javascript:exam_submit();">제출</button>
+</div>

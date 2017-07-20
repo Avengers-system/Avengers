@@ -5,8 +5,8 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
-
-<select id="getFAQListCount" parameterType="com.avengers.db.dto.BoardVO" resultType="int">
+	
+	<select id="getFAQListCount" parameterType="com.avengers.db.dto.BoardVO" resultType="int">
     SELECT COUNT(*)  FROM BOARD WHERE BOARD_BC ='FAQ'  
         <if test="searchFiled != null and searchFiled != ''">
             AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
@@ -36,10 +36,13 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 </select>
 
 
+<update id="updateStudentFAQ" parameterType="com.avengers.db.dto.BoardVO">
+	update board set board_title=#{board_title}, board_cont=#{board_cont} where board_num=#{board_num}
+</update>
 
-
-
-
+<delete id="deleteStudentFAQ" parameterType="com.avengers.db.dto.BoardVO">
+	delete from board where board_num=#{board_num}
+</delete>
 
 
 
@@ -53,6 +56,8 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 
 	
 	<!-- 게시판중 포탈공지사항을 검색하는 구문  -->	
+
+
 	<select id="selectPortalNoticeList" resultType="com.avengers.db.dto.BoardVO">
 		SELECT * FROM BOARD WHERE BOARD_BC='PORTAL' 
 	</select>
@@ -69,11 +74,13 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 			  ,board_count 
 		 FROM BOARD WHERE BOARD_num=#{BOARD_num} 
 	</select>
-	
+<!-- 	다른 -->
 	<select id="selectSearchList" parameterType="map" 
 	resultType="com.avengers.db.dto.BoardVO">
-	SELECT * FROM BOARD WHERE  BOARD_TITLE LIKE '%'||#{BOARD_TITLE, jdbcType=VARCHAR}||'%' 
-	AND BOARD_BC=#{BOARD_BC, jdbcType=VARCHAR}  
+	SELECT * FROM BOARD 
+	WHERE  BOARD_TITLE LIKE '%'||#{BOARD_TITLE, jdbcType=VARCHAR}||'%' 
+	AND BOARD_BC=#{BOARD_BC, jdbcType=VARCHAR} 
+	ORDER BY BOARD_NUM DESC 
 
 	</select>
 	
@@ -124,76 +131,39 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 					 
 	</update>
 	
-<!-- 	<update id="updatePortalBoard" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		update member set pwd=#{pwd} where id=#{id} -->
-<!-- 	</update> -->
-<!-- 삭제	<update id="deletePortalBoard" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		SELECT * FROM BOARD WHERE BOARD_BC='PORTAL'   -->
-<!-- 	</update> -->
 	<!-- 게시판중 학교공지사항을 검색하는 구문  -->	
 	<select id="selectSchoolNoticeList" parameterType="java.lang.String" >
 		SELECT * FROM BOARD WHERE BOARD_BC='UNIV'  
 	</select>
 	
-	<!-- 게시판중 학교공지사항을 입력하는 구문  -->	
-<!-- 	<update id="insertSchoolBoard" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		SELECT * FROM BOARD WHERE BOARD_BC='UNIV'   -->
-<!-- 	</update> -->
-<!-- 	<update id="updateSchoolBoard" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		SELECT * FROM BOARD WHERE BOARD_BC='UNIV'   -->
-<!-- 	</update> -->
-<!-- 	<update id="deleteSchoolBoard" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		SELECT * FROM BOARD WHERE BOARD_BC='UNIV'   -->
-<!-- 	</update> -->
-	
-	
-<!-- 	<select id="selectQnaNoticeList" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 	<update id="insertQnaBoard" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		SELECT * FROM BOARD WHERE BOARD_BC='QNA'   -->
-<!-- 	</update> -->
-<!-- 	<update id="updateQnaBoard" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		SELECT * FROM BOARD WHERE BOARD_BC='QNA'   -->
-<!-- 	</update> -->
-<!-- 	<update id="deleteQnaBoard" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		SELECT * FROM BOARD WHERE BOARD_BC='QNA'   -->
-<!-- 	</update> -->
-	
-<!-- 	<select id="selectFaqNoticeList" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		SELECT * FROM BOARD WHERE BOARD_BC=#{board_bc}   -->
-<!-- 	</select> -->
-<!-- 	<update id="insertFaqBoard" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		SELECT * FROM BOARD WHERE BOARD_BC=#{board_bc}   -->
-<!-- 	</update> -->
-<!-- 	<update id="updateFaqBoard" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		SELECT * FROM BOARD WHERE BOARD_BC=#{board_bc}   -->
-<!-- 	</update> -->
-<!-- 	<update id="deleteFaqBoard" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		SELECT * FROM BOARD WHERE BOARD_BC=#{board_bc}   -->
-<!-- 	</update> -->
-	
+	<!-- 다름 -->
 	<select id="selectBoardNoticeList" parameterType="map" resultType="com.avengers.db.dto.BoardVO">
-		select *
+		 select *
 		 from board where BOARD_BC=#{BOARD_BC}
+		 <if test="searchFiled != null and searchFiled != ''">
+		 and ${searchFiled} like '%' || #{searchValue} || '%'
+		 </if>
+		 ORDER BY BOARD_NUM DESC
 	</select>
 	
-
+	<!-- 추가 -->
+	<select id="selectBoardCount" parameterType="com.avengers.db.dto.BoardVO" resultType="Integer">
+		select count(*)
+		from board
+		where BOARD_BC=#{BOARD_BC}
+		<if test="board_title != null and board_title != ''">
+		 and board_title like '%' || #{board_title} || '%'
+		 </if>
+	</select>
+	
 	<update id="updateBoardCount" parameterType="map">
 		update board
 		set BOARD_COUNT = #{BOARD_COUNT} + 1
 		where BOARD_NUM = #{BOARD_NUM}
 	</update>
 	
-<!-- 	<update id="insertDeptBoard" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		select * from board where BOARD_BC=#{board_bc} -->
-<!-- 	</update> -->
-<!-- 	<update id="updateDeptBoard" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		select * from board where BOARD_BC=#{board_bc} -->
-<!-- 	</update> -->
-<!-- 	<update id="deleteDeptBoard" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO"> -->
-<!-- 		select * from board where BOARD_BC=#{board_bc} -->
-<!-- 	</update> -->
 	
-
+	
 
 
 	<!-- 학사일정게시판 조회 -->	

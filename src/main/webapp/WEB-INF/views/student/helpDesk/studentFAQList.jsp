@@ -328,6 +328,11 @@ FAQ 목록
 		</div>
 	</div>
 	22222222222222222222222222
+<form action="${pageContext.request.contextPath}/student/helpDesk/studentFAQWritePage" method="post">
+	<input type="hidden" name="pageNo" value="${pageVO.pageNo}">
+	<input type="submit" value="글쓰기">
+</form>
+
 
 </div>
 

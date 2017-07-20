@@ -87,5 +87,14 @@ public interface ProfessorClassManageDao {
 	public int updateExamCheck(String exam_num) throws SQLException;
 	//시험문제보러가기를 눌렀을 때 화면에 뿌려줄 시험문제
 	public ArrayList<EqVO> selectEqList(String exam_num) throws SQLException;
+	//시험문제삭제
+	public int deleteEqInfo(String eq_num) throws SQLException;
+	//시험기본키를 가지고 시험문제기본키가져오기
+	//왜가져오냐고?? 등록, 수정, 삭제할려고
+	public ArrayList<String> selectEqPkList(String exam_num) throws SQLException;
+	//모든걸 다할꺼야, 인서트, 딜리트, 업데이트, 왜냐고 내맘
+	public int allFunctionEq(ArrayList<EqVO> eqList) throws SQLException;
+	//자 만약에 EqPkList의 값이 널이거나 비어있으면 원래 등록된 시험문제가 존재하지 않는 거니까 인서트만 해주면 된다... 뿌아자
+	public int insertEq(ArrayList<EqVO> eqList) throws SQLException;
 	
 }

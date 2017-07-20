@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-
 <script>
 $(function() {
   $( "#datepicker" ).datepicker({
@@ -28,9 +19,24 @@ $(function() {
   });
 });
 </script>
-</head>
-<body>
-	시험등록화면<br/>
+<!-- Professor Header -->
+<%@include file="../common/topCategory.jsp"%>
+
+<!-- Content -->
+<div class="col-md-2" id="commonLeftSide">
+<%@include file="../common/classManageLectureSideCategory.jsp" %>
+</div>
+<div class="col-md-10">
+	<h1>시험등록화면</h1>
+	<hr/>
+<!-- 	<fieldset style="width:800px;height:200px"> -->
+<!-- 		<legend >주의사항</legend> -->
+<!-- 		1.시험유형은 중간고사, 기말고사 두가지로 나뉩니다.<br/> -->
+<!-- 		2.등록은 해당 강의에 대한 시험등록입니다.<br/> -->
+<!-- 		3.시험일은 시험이 시작되는 날짜를 입력해줍니다.<br/> -->
+<!-- 		4.시험의 시작시간과 종료시간은 숫자로만 이루어집니다.<br/> -->
+<!-- 		5.시간은 00~24시, 분은 00~59분으로 입력이 가능합니다.<br/> -->
+<!-- 	</fieldset> -->
 	<form name="exam" method="post" action="${pageContext.request.contextPath}/professor/classManage/registryExam">
 		시험유형 : <select name="exam_type">
 					<option value="1">중간고사</option>
@@ -45,9 +51,8 @@ $(function() {
 		시험종료시간
 		<br/> 
 		<input type="text" name="endHour" style="width:20px"/>시:
-		<input type="text" name="endMi" style="width:20px"/>분
+		<input type="text" name="endMi" style="width:20px"/>분<br/>
 		<input type="submit" value="등록"/>
-		<button onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureExam'">뒤로가기</button>
+		<input type="button" onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureExam'" value="뒤로가기"/>
 	</form>
-</body>
-</html>
+</div>
