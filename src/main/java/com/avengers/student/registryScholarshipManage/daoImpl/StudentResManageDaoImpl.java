@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.avengers.db.dto.LoaRtsVO;
 import com.avengers.db.dto.RegVO;
 import com.avengers.db.dto.ScrapplVO;
 import com.avengers.db.dto.resSchStudentVO;
@@ -54,12 +55,21 @@ public class StudentResManageDaoImpl implements StudentResManageDao{
 	}
 
 	@Override
-	public ArrayList<resSchStudentVO> selectresSchStudent(String stud_num)
+	public ArrayList<resSchStudentVO> selectresSchStudent(String stud_num,String lct_yr)
 			throws SQLException {
-		ArrayList<resSchStudentVO> resSchStudentList = new ArrayList<resSchStudentVO>();
-		resSchStudentList =  (ArrayList<resSchStudentVO>) sqlSession.selectList("resSchManage.resSchStudent",stud_num);
-		return resSchStudentList;
+		ArrayList<resSchStudentVO> resSchList = new ArrayList<resSchStudentVO>();
+		resSchList =  (ArrayList<resSchStudentVO>) sqlSession.selectList("resSchManage.resSchSelect",stud_num);
+		return resSchList;
 	}
+
+	@Override
+	public ArrayList<LoaRtsVO> selectLoaRts(String loa_stud)
+			throws SQLException {
+		ArrayList<LoaRtsVO> LoaRtsList = new ArrayList<LoaRtsVO>();
+		LoaRtsList = (ArrayList<LoaRtsVO>) sqlSession.selectList("resSchManage.LoaRtsSelect",loa_stud);
+		return LoaRtsList;
+	}
+	
 	
 
 }

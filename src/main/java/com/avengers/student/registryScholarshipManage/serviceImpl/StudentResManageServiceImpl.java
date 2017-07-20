@@ -7,6 +7,7 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.avengers.db.dto.LoaRtsVO;
 import com.avengers.db.dto.RegVO;
 import com.avengers.db.dto.ScrapplVO;
 import com.avengers.db.dto.resSchStudentVO;
@@ -56,13 +57,19 @@ public class StudentResManageServiceImpl implements StudentResManageService {
 	}
 
 	@Override
-	public ArrayList<resSchStudentVO> selectResSchHistory(String stud_num)
+	public ArrayList<resSchStudentVO> selectResSchHistory(String stud_num,String lct_yr)
 			throws SQLException {
 		ArrayList<resSchStudentVO> resSchStudent = null;
-		resSchStudent = stuResDAO.selectresSchStudent(stud_num);
+		resSchStudent = stuResDAO.selectresSchStudent(stud_num,lct_yr);
 		return resSchStudent;
 	}
 
-
+	@Override
+	public ArrayList<LoaRtsVO> selectLoaRts(String loa_stud)
+			throws SQLException {
+		ArrayList<LoaRtsVO> LoaRtsList = null;
+		LoaRtsList = stuResDAO.selectLoaRts(loa_stud);
+		return LoaRtsList;
+	}
 
 }

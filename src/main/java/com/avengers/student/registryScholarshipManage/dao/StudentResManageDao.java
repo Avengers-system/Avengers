@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.avengers.db.dto.LoaRtsVO;
 import com.avengers.db.dto.RegVO;
 import com.avengers.db.dto.ScrapplVO;
 import com.avengers.db.dto.resSchStudentVO;
@@ -20,7 +21,7 @@ public interface StudentResManageDao {
 	 * 학생 장학이력/신청조회 탭에서
 	 * 학생정보 조회
 	 */
-	public ArrayList<resSchStudentVO> selectresSchStudent(String stud_num) throws SQLException;
+	public ArrayList<resSchStudentVO> selectresSchStudent(String stud_num,String lct_yr) throws SQLException;
 	
 	/**
 	 * 장학이력,신청조회
@@ -67,5 +68,11 @@ public interface StudentResManageDao {
 	 */
 	public int updateReg(RegVO regVO)throws SQLException;
 	
-	
+	/**
+	 * 학생의 휴학 및 복학 정보를 보여준다.
+	 * @param loa_stud
+	 * @return LoaRtsVO
+	 * @throws SQLException
+	 */
+	public ArrayList<LoaRtsVO> selectLoaRts(String loa_stud)throws SQLException;
 }
