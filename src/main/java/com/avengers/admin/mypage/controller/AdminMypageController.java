@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.avengers.admin.mypage.service.AdminMypageService;
 import com.avengers.db.dto.AdminVO;
@@ -94,17 +93,17 @@ public class AdminMypageController {
 	public String myInfo(Principal principal,Model model){
 		String adminId = principal.getName();
 		String url="admin/mypage/mypage";
-//		AdminVO admin= null;
-//		
-//		try {
-//			admin = myPageService.selectAdmin(adminId);
-//			if(admin != null){
-//				model.addAttribute("admin",admin);
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		AdminVO admin= null;
+		
+		try {
+			admin = myPageService.selectAdmin(adminId);
+			if(admin != null){
+				model.addAttribute("admin",admin);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return url;
 	}

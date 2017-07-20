@@ -301,4 +301,29 @@ public class ProfessorClassManageServiceImpl implements ProfessorClassManageServ
 		return eqList;
 	}
 
+	@Override
+	public int deleteEqInfo(String eq_num) throws SQLException {
+		int result = proClassDAO.deleteEqInfo(eq_num);
+		return result;
+	}
+
+	@Override
+	public ArrayList<String> selectEqPkList(String exam_num)
+			throws SQLException {
+		ArrayList<String> eqPkList = proClassDAO.selectEqPkList(exam_num);
+		return eqPkList;
+	}
+
+	@Override
+	public int allFunctionEq(ArrayList<EqVO> eqList) throws SQLException {
+		int result = proClassDAO.allFunctionEq(eqList);
+		return result;
+	}
+
+	@Override
+	public int insertEq(ArrayList<EqVO> eqList) throws SQLException {
+		int result = proClassDAO.insertEq(eqList);
+		return result;
+	}
+
 }

@@ -1,19 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- UserHeader -->
-<div class="col-md-12" id="commonUserHeader">
-	<ul class="nav nav-tabs">
-		<li role="presentation" class="active"><a href="#">Main</a></li>
-		<li role="presentation"><a href="#">My Page</a></li>
-		<li role="presentation"><a href="${pageContext.request.contextPath}/student/schoolRegister/certificate">학적</a></li>
-		<li role="presentation"><a href="#">수업</a></li>
-		<li role="presentation"><a href="#">수강신청</a></li>
-		<li role="presentation"><a href="#">등록&장학</a></li>
-		<li role="presentation"><a href="${pageContext.request.contextPath}/student/counsel/counselList">상담</a></li>
-		<li role="presentation"><a href="${pageContext.request.contextPath}/student/helpDesk/studentFAQList">Help Desk</a></li>
-	</ul>
-</div>
+
+
+
+<!-- Student Header -->
+<%@include file="../common/topCategory.jsp" %>
 
 <!-- Content -->
 <!-- Counsel Left Side -->
@@ -25,13 +17,25 @@
 <div class="col-md-10">
 FAQ 디테일
 
+글번호 : ${detail.board_num}<br>
 제목 : ${detail.board_title}<br>
 내용 : ${detail.board_cont}<br>
+작성자 : ${detail.board_writer}<br>
 
+
+<form action="${pageContext.request.contextPath}/student/helpDesk/studentFAQUpdatePage" method="post">
+	<input type="submit" value="수정">
+	<input type="hidden" name="pageNo" value="${pageNo}">
+	<input type="hidden" name="board_num" value="${detail.board_num}">
+</form>
+<form action="${pageContext.request.contextPath}/student/helpDesk/studentFAQDelete" method="post">
+	<input type="submit" value="삭제">
+	<input type="hidden" name="board_num" value="${detail.board_num}">
+</form>
 
 <form action="${pageContext.request.contextPath}/student/helpDesk/studentFAQList" method="post">
-<input type="submit" value="목록">
-<input type="hidden" name="pageNo" value="${pageNo}">
+	<input type="submit" value="목록">
+	<input type="hidden" name="pageNo" value="${pageNo}">
 </form>
 
 <br>

@@ -2,6 +2,8 @@ package com.avengers.db.dto;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  * 게시판의 모든 정보를 관리 
  * @author 배진 
@@ -16,6 +18,16 @@ public class BoardVO extends PageVO{
 	private String board_af;// 첨부일
 	private String board_bc;// 게시판분류 고유번호
 	private String board_count;// 게시판분류 고유번호
+	private MultipartFile board_af2; //
+
+	
+	public MultipartFile getBoard_af2() {
+		return board_af2;
+	}
+
+	public void setBoard_af2(MultipartFile board_af2) {
+		this.board_af2 = board_af2;
+	}
 
 	public String getBoard_count() {
 		return board_count;

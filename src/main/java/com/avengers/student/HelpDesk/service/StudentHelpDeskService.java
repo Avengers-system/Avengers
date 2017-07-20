@@ -21,7 +21,8 @@ public interface StudentHelpDeskService {
     public int getFAQListCount(BoardVO boardVO);
     public List<BoardVO> getFAQList(BoardVO boardVO);
     public BoardVO getStudentFAQDetail(int board_num);
-    
+    public void updateStudentFAQ(BoardVO boardVO);
+    public void deleteStudentFAQ(BoardVO boardVO);
 	
 	public int getTotalCount() throws SQLException;
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception;
