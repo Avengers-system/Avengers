@@ -26,51 +26,59 @@
 	<meta property="og:image" content="${pageContext.request.contextPath}/resources/ico/avengers_thumbnail.png" />
 	
 <!-- Style -->
-	<!-- CSS Reset -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/normalize.css">
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-theme.min.css">
-	<!-- User Custom -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom.css"> 
+	<!-- start: Css -->
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+
+  <!-- plugins -->
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/font-awesome.min.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/animate.min.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/nouislider.min.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/select2.min.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/simple-line-icons.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/ionrangeslider/ion.rangeSlider.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/ionrangeslider/ion.rangeSlider.skinFlat.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/fullcalendar.min.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/bootstrap-material-datetimepicker.css"/>
+  <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
+  <!-- end: Css -->
 </head>
 
 <style>
-#commonHeader{
-	background-color: #F8F8F8;
-	border-radius: 20px; 
-	min-height: 80px;
-}
-#commonContent{
-	background-color: lightgray; 
-	min-height:960px;
-}
-#commonFooter{
- 	background-color: red; 
-	min-height: 60px;
-}
-#commonUserHeader{
- 	background-color: orange; 
-	min-height: 80px;
-}
-#commonLeftSide{
- 	background-color: blue; 
-	min-height: 900px;
-}
-#commonRightSide{
- 	background-color: lightblue; 
-	min-height: 900px;
-}
+/* #commonHeader{ */
+/* 	background-color: #F8F8F8; */
+/* 	border-radius: 20px;  */
+/* 	min-height: 80px; */
+/* } */
+/* #commonContent{ */
+/* 	background-color: lightgray;  */
+/* 	min-height:960px; */
+/* } */
+/* #commonFooter{ */
+/*  	background-color: red;  */
+/* 	min-height: 60px; */
+/* } */
+/* #commonUserHeader{ */
+/*  	background-color: orange;  */
+/* 	min-height: 80px; */
+/* } */
+/* #commonLeftSide{ */
+/*  	background-color: blue;  */
+/* 	min-height: 900px; */
+/* } */
+/* #commonRightSide{ */
+/*  	background-color: lightblue;  */
+/* 	min-height: 900px; */
+/* } */
 
-#commonUserHeader>ul>li{
-	font-size: 28px;
-}
-#commonHeaderSort{
-	padding-top: 10px;
-}
+/* #commonUserHeader>ul>li{ */
+/* 	font-size: 28px; */
+/* } */
+/* #commonHeaderSort{ */
+/* 	padding-top: 10px; */
+/* } */
 </style>
 
-<body>
+<body >
 <!-- Common Header -->
 <div class="container-fluid">
     <div class="row" id="commonHeader">
@@ -93,12 +101,24 @@
 		<tiles:insertAttribute name="footer" />
     </div>
 </div>	
-<!-- Main Scripts -->
-	<!-- jQuery-->
-	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<!-- User Custom -->
-	<script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
+
+  <!-- start: Javascript -->
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.ui.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+
+    
+  <!-- plugins -->
+  
+<script src="${pageContext.request.contextPath}/resources/js/plugins/moment.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/plugins/jquery.knob.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/plugins/ion.rangeSlider.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/plugins/bootstrap-material-datetimepicker.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/plugins/jquery.nicescroll.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/plugins/jquery.mask.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/plugins/select2.full.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/plugins/nouislider.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/plugins/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 </body>
 </html>
