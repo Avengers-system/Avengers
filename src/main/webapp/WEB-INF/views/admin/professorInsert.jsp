@@ -11,47 +11,46 @@
 
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
-   <%@include file="common/mainSideCategory.jsp" %>   
+   <!-- 테스트용 사이드 -->
+<%@include file="common/admin_side.jsp" %>   
 </div>
 <div class="col-md-10" id="commonRightSide">
- 
-
 
 <script>
-$(function() {
-   //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
-   $('#profile-image').on('click', function() {
-      $('#profile-image-input').click();
-      
-      $("#profile-image-input").change(function (){     
-           
-           var file = this.files[0];
-           var reader = new FileReader();
-           // Set preview image into the popover data-content
-           reader.onload = function (e) {
-               $(".image-preview-input-title").text("변경");
-                $("#image-preview-filename").val(file.name);            
-               $("#profile-image").attr('src', e.target.result);
-           }        
-           reader.readAsDataURL(file);
-       });
-   });
-   
-   // 업로드 버튼으로 그림피일 업로드 후 미리보기
-   $(".image-preview-input input:file").change(function (){     
-        
-        var file = this.files[0];
-        var reader = new FileReader();
-        //Set preview image into the popover data-content
-        reader.onload = function (e) {
-            $(".image-preview-input-title").text("변경");
-            $("#image-preview-filename").val(file.name);            
-            $("#profile-image").attr('src', e.target.result);
-        }        
-        reader.readAsDataURL(file);
-    });
- 
-});
+	$(function() {
+	   //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
+	   $('#profile-image').on('click', function() {
+	      $('#profile-image-input').click();
+	      
+	      $("#profile-image-input").change(function (){     
+	           
+	           var file = this.files[0];
+	           var reader = new FileReader();
+	           // Set preview image into the popover data-content
+	           reader.onload = function (e) {
+	               $(".image-preview-input-title").text("변경");
+	                $("#image-preview-filename").val(file.name);            
+	               $("#profile-image").attr('src', e.target.result);
+	           }        
+	           reader.readAsDataURL(file);
+	       });
+	   });
+	   
+	   // 업로드 버튼으로 그림피일 업로드 후 미리보기
+	   $(".image-preview-input input:file").change(function (){     
+	        
+	        var file = this.files[0];
+	        var reader = new FileReader();
+	        //Set preview image into the popover data-content
+	        reader.onload = function (e) {
+	            $(".image-preview-input-title").text("변경");
+	            $("#image-preview-filename").val(file.name);            
+	            $("#profile-image").attr('src', e.target.result);
+	        }        
+	        reader.readAsDataURL(file);
+	    });
+	 
+	});
 </script>
  
  
