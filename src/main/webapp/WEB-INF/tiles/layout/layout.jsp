@@ -3,6 +3,7 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,63 +27,30 @@
 	<meta property="og:image" content="${pageContext.request.contextPath}/resources/ico/avengers_thumbnail.png" />
 	
 <!-- Style -->
-	<!-- start: Css -->
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<!-- start: Css -->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/asset/css/bootstrap.min.css">
 
-  <!-- plugins -->
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/font-awesome.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/animate.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/mediaelementplayer.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/nouislider.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/select2.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/simple-line-icons.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/ionrangeslider/ion.rangeSlider.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/ionrangeslider/ion.rangeSlider.skinFlat.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/fullcalendar.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/bootstrap-material-datetimepicker.css"/>
-  <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
-  <!-- end: Css -->
+    <!-- plugins -->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/asset/css/plugins/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/asset/css/plugins/simple-line-icons.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/asset/css/plugins/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/asset/css/plugins/fullcalendar.min.css"/>
+	<link href="${pageContext.request.contextPath}/resources/asset/css/style.css" rel="stylesheet">
+<!-- end: Css -->
 </head>
 
-<style>
-/* #commonHeader{ */
-/* 	background-color: #F8F8F8; */
-/* 	border-radius: 20px;  */
-/* 	min-height: 80px; */
-/* } */
-/* #commonContent{ */
-/* 	background-color: lightgray;  */
-/* 	min-height:960px; */
-/* } */
-/* #commonFooter{ */
-/*  	background-color: red;  */
-/* 	min-height: 60px; */
-/* } */
-/* #commonUserHeader{ */
-/*  	background-color: orange;  */
-/* 	min-height: 80px; */
-/* } */
-/* #commonLeftSide{ */
-/*  	background-color: blue;  */
-/* 	min-height: 900px; */
-/* } */
-/* #commonRightSide{ */
-/*  	background-color: lightblue;  */
-/* 	min-height: 900px; */
-/* } */
+<!-- 비로그인시 보여주는 화면 -->
+<sec:authorize access="isAnonymous()">
+	<body id="mimin" class="dashboard form-signin-wrapper">
+</sec:authorize>
+<!--  로그인시 보여주는 화면 -->
+<sec:authorize access="isAuthenticated()">
+	<body>
+</sec:authorize>
 
-/* #commonUserHeader>ul>li{ */
-/* 	font-size: 28px; */
-/* } */
-/* #commonHeaderSort{ */
-/* 	padding-top: 10px; */
-/* } */
-</style>
-
-<body >
 <!-- Common Header -->
 <div class="container-fluid">
-    <div class="row" id="commonHeader">
+    <div class="row">
     	<div id="commonHeaderSort">
 			<tiles:insertAttribute name="header"/>
 		</div>
@@ -91,34 +59,34 @@
 
 <!-- Common Content -->
 <div class="container-fluid">
-	<div class="row" id="commonContent">
+	<div class="row">
 		<tiles:insertAttribute name="content" />
     </div>
 </div>
 
 <!-- Common Footer -->
 <div class="container-fluid" class="footer">
-    <div class="row" id="commonFooter">
+    <div class="row">
 		<tiles:insertAttribute name="footer" />
     </div>
 </div>	
-  <!-- start: Javascript -->
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.ui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 
+
+    <!-- start: Javascript -->
+    <script src="${pageContext.request.contextPath}/resources/asset/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/asset/js/jquery.ui.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/asset/js/bootstrap.min.js"></script>
     
-  <!-- plugins -->
-  
-<script src="${pageContext.request.contextPath}/resources/js/plugins/moment.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/jquery.knob.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/ion.rangeSlider.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/bootstrap-material-datetimepicker.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/jquery.nicescroll.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/jquery.mask.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/select2.full.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/nouislider.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/jquery.validate.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+    <!-- plugins -->
+    <script src="${pageContext.request.contextPath}/resources/asset/js/plugins/moment.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/asset/js/plugins/fullcalendar.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/asset/js/plugins/jquery.nicescroll.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/asset/js/plugins/jquery.vmap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/asset/js/plugins/maps/jquery.vmap.world.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/asset/js/plugins/jquery.vmap.sampledata.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/asset/js/plugins/chart.min.js"></script>
+
+    <!-- custom -->
+    <script src="${pageContext.request.contextPath}/resources/asset/js/main.js"></script>
 </body>
 </html>
