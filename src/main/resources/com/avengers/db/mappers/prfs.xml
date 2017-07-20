@@ -15,6 +15,29 @@
 	</select>
 
  	<select id="selectAllPrfs" resultType="com.avengers.db.dto.PrfsVO">
-		SELECT * FROM PROFESSOR	
+		SELECT 
+			PRFS_NUM,
+			PRFS_NM,
+			PRFS_ENG_NM,
+			PRFS_BIR,
+			PRFS_EMAIL,
+			PRFS_PW,
+			PRFS_REGNO,
+			PRFS_GEN,
+			PRFS_PIC,
+			PRFS_ACT_NUM,
+			PRFS_BANK,
+			PRFS_AH,
+			PRFS_ADDR,
+			PRFS_ZIP,
+			PRFS_TEL,
+			PRFS_HP,
+						(
+							SELECT DEPT_NM FROM DEPARTMENT 
+							where DEPT_NUM = PRFS_DEPT
+						)AS prfs_dept,
+			ENABLED,
+			AUTHORITY
+			FROM PROFESSOR P
 	</select>
 </mapper>

@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- 
+ <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <style>
@@ -170,7 +170,7 @@
 										<td>남자</td>
 									</c:otherwise>
 								</c:choose>
-								<td>${student.stud_bir}</td>
+								<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${student.stud_bir}" /></td>
 								<td>${student.stud_hp }</td>
 								<td>${student.stud_regno}</td>
 								<td>${student.stud_zip}</td>

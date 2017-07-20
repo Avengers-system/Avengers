@@ -55,18 +55,14 @@ $(function() {
 </script>
  
  
-<div id="postcodify"></div>
+ 
 
 <script type="text/javascript">
  $("#postcodify").postcodify();
 </script>
   
 <style>
-
-/* 	input.form-control{ */
-/* 	width:35%; */
-/* 	} */
-	
+ 
     .table-bordered>thead>tr>th {
 	text-align: center;
 	}
