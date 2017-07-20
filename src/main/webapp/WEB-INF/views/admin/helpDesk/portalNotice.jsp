@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page trimDirectiveWhitespaces="true"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	
-<!-- jQuery-->
+	<!-- jQuery-->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 	<!-- Bootstrap -->
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
@@ -35,7 +34,7 @@
 
 	
 
-<h1>포털 소식 출력 </h1>
+<h1>포털소식</h1>
   <form action="<%=request.getContextPath()%>/admin/portalSearch?board_title=
       ${portalSearch.board_title}">
       <input type="text" placeholder="글 제목을 입력해주세요" name="board_title">
@@ -95,14 +94,6 @@
         </c:if>
     </c:if>
     </div>
-<!--     <div id="search"> -->
-<!--         <select id="searchS"> -->
-<!--             <option value="BOARD_NUM">BOARD_NUM</option> -->
-<!--             <option value="BOARD_WRITER">BOARD_WRITER</option> -->
-<!--         </select> -->
-<!--         <input type="text" id="searchI"/> -->
-<!--         <input type="button" value="SEARCH" onclick="fn_search();"/> -->
-<!--     </div> -->
       </form>
       
          </c:when>

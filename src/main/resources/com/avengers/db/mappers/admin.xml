@@ -1,246 +1,246 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
 
-	<select id="selectDepList">
-	SELECT * 
-	FROM DEPARTMENT
-	</select>
+   <select id="selectDepList">
+   SELECT * 
+   FROM DEPARTMENT
+   </select>
 
-	<!-- delete -->
+   <!-- delete -->
 
-	<update id="deleteStudent" parameterType="java.lang.String">
-	UPDATE SECURITY
-		SET ENABLED = '0'
-		WHERE ID = #{stud_num jdbcType=VARCHAR}
-	</update>
+   <update id="deleteStudent" parameterType="java.lang.String">
+   UPDATE SECURITY
+      SET ENABLED = '0'
+      WHERE ID = #{stud_num jdbcType=VARCHAR}
+   </update>
 
-	<update id="deleteProfessor" parameterType="java.lang.String">
-	UPDATE SECURITY
-	SET ENABLED = '0'
-	WHERE ID = #{prfs_num jdbcType=VARCHAR}
-	</update>
+   <update id="deleteProfessor" parameterType="java.lang.String">
+   UPDATE SECURITY
+   SET ENABLED = '0'
+   WHERE ID = #{prfs_num jdbcType=VARCHAR}
+   </update>
 
-	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
-	<select id="selectAdmin" parameterType="com.avengers.db.dto.AdminVO" resultType="com.avengers.db.dto.AdminVO">
-		SELECT ADMIN_PIC,
-			   ADMIN_ID,
-			   ADMIN_NM,
-			   ADMIN_ENG_NM,
-			   ADMIN_REGNO,
-			   ADMIN_BIR,
-			   ADMIN_EMAIL,
-			   ADMIN_TEL,
-			   ADMIN_HP,
-			   ADMIN_POST,
-			   ADMIN_BANK,
-			   ADMIN_ACT_NUM,
-			   ADMIN_AH,
-			   ADMIN_ADDR,
-			   ADMIN_ZIP,
-			   ADMIN_PW,
-			   ADMIN_GEN
-		FROM ADMIN
-		WHERE ADMIN_ID = #{admin_id}
-	</select>
-	
-	<update id="updateAdmin" parameterType="com.avengers.db.dto.AdminVO">
-		UPDATE ADMIN
-		SET 
-			ADMIN_ID= #{admin_id},
-			ADMIN_PW = #{admin_pw},
-			ADMIN_NM = #{admin_nm},
-			<if test="admin_pic != null">
-				ADMIN_PIC=#{admin_pic},
-			</if>
-			ADMIN_BIR=TO_DATE(#{admin_bir},'YYYY-MM-DD HH24:MI:SS'),
-			ADMIN_POST = #{admin_post},
-			ADMIN_ENG_NM = #{admin_eng_nm},
-			ADMIN_REGNO = #{admin_regno},
-			ADMIN_EMAIL = #{admin_email},
-			ADMIN_GEN = #{admin_gen},
-			ADMIN_TEL = #{admin_tel},
-			ADMIN_HP = #{admin_hp},
-			ADMIN_ADDR = #{admin_addr},
-			ADMIN_ZIP = #{admin_zip},
-			ADMIN_BANK = #{admin_bank},
-			ADMIN_ACT_NUM = #{admin_act_num},
-			ADMIN_AH = #{admin_ah}
-		WHERE ADMIN_ID=#{admin_id}	
-	</update>
-	
+   <!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
+   <select id="selectAdmin" parameterType="com.avengers.db.dto.AdminVO" resultType="com.avengers.db.dto.AdminVO">
+      SELECT ADMIN_PIC,
+            ADMIN_ID,
+            ADMIN_NM,
+            ADMIN_ENG_NM,
+            ADMIN_REGNO,
+            ADMIN_BIR,
+            ADMIN_EMAIL,
+            ADMIN_TEL,
+            ADMIN_HP,
+            ADMIN_POST,
+            ADMIN_BANK,
+            ADMIN_ACT_NUM,
+            ADMIN_AH,
+            ADMIN_ADDR,
+            ADMIN_ZIP,
+            ADMIN_PW,
+            ADMIN_GEN
+      FROM ADMIN
+      WHERE ADMIN_ID = #{admin_id}
+   </select>
+   
+   <update id="updateAdmin" parameterType="com.avengers.db.dto.AdminVO">
+      UPDATE ADMIN
+      SET 
+         ADMIN_ID= #{admin_id},
+         ADMIN_PW = #{admin_pw},
+         ADMIN_NM = #{admin_nm},
+         <if test="admin_pic != null">
+            ADMIN_PIC=#{admin_pic},
+         </if>
+         ADMIN_BIR=TO_DATE(#{admin_bir},'YYYY-MM-DD HH24:MI:SS'),
+         ADMIN_POST = #{admin_post},
+         ADMIN_ENG_NM = #{admin_eng_nm},
+         ADMIN_REGNO = #{admin_regno},
+         ADMIN_EMAIL = #{admin_email},
+         ADMIN_GEN = #{admin_gen},
+         ADMIN_TEL = #{admin_tel},
+         ADMIN_HP = #{admin_hp},
+         ADMIN_ADDR = #{admin_addr},
+         ADMIN_ZIP = #{admin_zip},
+         ADMIN_BANK = #{admin_bank},
+         ADMIN_ACT_NUM = #{admin_act_num},
+         ADMIN_AH = #{admin_ah}
+      WHERE ADMIN_ID=#{admin_id}   
+   </update>
+   
 
-	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
-	<select id="getAdminInfo" resultType="com.avengers.db.dto.AdminVO" parameterType="java.lang.String">
-		SELECT * FROM ADMIN WHERE ADMIN_ID = #{adminId}
-	</select>
-	
-<!-- 	<select id="getPersonScheduleInfo" resultType="com.avengers.db.dto.PerschdVO" parameterType="string"> -->
-<!-- 		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER = #{adminId} -->
-<!-- 	</select> -->
-	<select id="getPersonScheduleInfo" resultType="com.avengers.db.dto.PerschdVO" parameterType="java.lang.String">
-		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER = #{adminId}
-	</select>
-		
-	<select id="getProfNum" resultType="java.lang.String" >
-		select '2017'||lpad(prfs_seq.currval,3,0 ) 
-		from dual
-	</select>
-	
-	<insert id="insertProfessor"  parameterType="com.avengers.db.dto.PrfsVO">
-		INSERT INTO PROFESSOR(
-				PRFS_NUM,
-				PRFS_NM,
-				PRFS_ENG_NM,
-				PRFS_BIR,
-				PRFS_EMAIL,
-				PRFS_PW,
-				PRFS_REGNO,
-				PRFS_GEN,
-				PRFS_PIC,
-				PRFS_ACT_NUM,
-				PRFS_BANK,
-				PRFS_AH,
-				PRFS_ADDR,
-				PRFS_ZIP,
-				PRFS_TEL,
-				PRFS_HP,
-				PRFS_DEPT,
-				ENABLED,
-				AUTHORITY
-			) VALUES (
-				'2017'|| lpad(prfs_seq.nextval,3,0 ),
-				#{prfs_nm},
-				#{prfs_eng_nm},
-				#{prfs_bir},
-				#{prfs_email},
-				#{prfs_pw},
-				#{prfs_regno},
-				#{prfs_gen},
-				#{prfs_pic},
-				#{prfs_act_num},
-				#{prfs_bank},
-				#{prfs_ah},
-				#{prfs_addr},
-				#{prfs_zip},
-				#{prfs_tel},
-				#{prfs_hp},
-				#{prfs_dept},
-				'1',
-				'ROLE_PROF' 
-			) 	
-	</insert>
-	
-	<select id="prfsNumCurr" resultType="String">
-		SELECT  '2017'|| lpad(prfs_seq.currval,3,0 )
-		FROM DUAL
-	</select>
-		<insert id="insertSecurity" parameterType="com.avengers.db.dto.PrfsVO">
-	INSERT INTO SECURITY
-			(
-				ID,
-				PWD,
-				ENABLED,
-				AUTHORITY
-			)
-		VALUES 
-			(
-				#{prfs_num},
-				#{prfs_pw},
-				'1',
-				'ROLE_PROF' 
-			)
-	</insert>
-	
-	
-	
-	<!-- 학생등록 쿼리 -->
-	<insert id="insertStudent" parameterType="com.avengers.db.dto.StudVO">
-	INSERT 		
-	INTO STUDENT
-				STUD_NUM,
-				STUD_NM,
-				STUD_ENG_NM,
-				STUD_BIR,
-				STUD_EMAIL,
-				STUD_PW,
-				STUD_GRD,
-				STUD_REGNO,
-				STUD_GEN,
-				STUD_QTR,
-				STUD_SCHREG_CODE,
-				STUD_PIC,
-				STUD_ACT_NUM,
-				STUD_BANK,
-				STUD_AH,
-				STUD_ADDR,
-				STUD_ZIP,
-				STUD_TEL,
-				STUD_HP,
-				STUD_DEPT,
-				STUD_GUAD_NM,
-				STUD_GUAD_REL,
-				STUD_GUAD_HP,
-				ENABLED,
-				AUTHORITY,
-				STUD_MAX_CRD
-	
-		VALUES(
-			'2017'||lpad(stud_seq.nextval,3,0),
-			#{STUD_NM , jdbcType=VARCHAR},	
-			#{STUD_ENG_NM , jdbcType=VARCHAR},	
-			#{STUD_BIR },	
-			#{STUD_EMAIL , jdbcType=VARCHAR},	
-			#{STUD_PW ,jdbcType=VARCHAR},	
-			#{STUD_GRD ,jdbcType=VARCHAR},	
-			#{STUD_REGNO ,jdbcType=VARCHAR},	
-			#{stud_gen },	
-			#{stud_qtr},	
-			#{stud_schreg_code , jdbcType=VARCHAR},	
-			#{stud_pic , jdbcType=VARCHAR},	
-			#{stud_act_num , jdbcType=VARCHAR},	
-			#{stud_bank , jdbcType=VARCHAR},	
-			#{stud_ah , jdbcType=VARCHAR},	
-			#{stud_addr , jdbcType=VARCHAR},	
-			#{stud_zip , jdbcType=VARCHAR},	
-			#{stud_tel , jdbcType=VARCHAR},	
-			#{stud_hp , jdbcType=VARCHAR},	
-			#{stud_dept , jdbcType=VARCHAR},	
-			#{stud_guad_nm , jdbcType=VARCHAR},	
-			#{stud_guad_rel},	
-			#{stud_guad_hp , jdbcType=VARCHAR},	
-			'1',
-			'ROLE_STUD',	
-			#{STUD_MAX_CRD}	
-		)
-	
-	</insert>
-	
-	
-	<!-- 등록한학생번호찾기 -->
-	
-	<select id="studNumCurr" resultType="String">
-	SELECT '2017'|| lpad(stud_seq.currval,3,0 )
-		FROM DUAL
-	</select>
-	
-	
-	<insert id="insertStudSecurity" parameterType="com.avengers.db.dto.StudVO">
-	INSERT INTO SECURITY
-			(
-				ID,
-				PWD,
-				ENABLED,
-				AUTHORITY
-			)
-		VALUES 
-			(
-				#{stud_num},
-				#{stud_pw},
-				'1',
-				'ROLE_STUD' 
-			)
-	</insert>
+   <!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
+   <select id="getAdminInfo" resultType="com.avengers.db.dto.AdminVO" parameterType="java.lang.String">
+      SELECT * FROM ADMIN WHERE ADMIN_ID = #{adminId}
+   </select>
+   
+<!--    <select id="getPersonScheduleInfo" resultType="com.avengers.db.dto.PerschdVO" parameterType="string"> -->
+<!--       SELECT * FROM PERSCHD WHERE PERSCHD_WRITER = #{adminId} -->
+<!--    </select> -->
+   <select id="getPersonScheduleInfo" resultType="com.avengers.db.dto.PerschdVO" parameterType="java.lang.String">
+      SELECT * FROM PERSCHD WHERE PERSCHD_WRITER = #{adminId}
+   </select>
+      
+   <select id="getProfNum" resultType="java.lang.String" >
+      select '2017'||lpad(prfs_seq.currval,3,0 ) 
+      from dual
+   </select>
+   
+   <insert id="insertProfessor"  parameterType="com.avengers.db.dto.PrfsVO">
+      INSERT INTO PROFESSOR(
+            PRFS_NUM,
+            PRFS_NM,
+            PRFS_ENG_NM,
+            PRFS_BIR,
+            PRFS_EMAIL,
+            PRFS_PW,
+            PRFS_REGNO,
+            PRFS_GEN,
+            PRFS_PIC,
+            PRFS_ACT_NUM,
+            PRFS_BANK,
+            PRFS_AH,
+            PRFS_ADDR,
+            PRFS_ZIP,
+            PRFS_TEL,
+            PRFS_HP,
+            PRFS_DEPT,
+            ENABLED,
+            AUTHORITY
+         ) VALUES (
+            '2017'|| lpad(prfs_seq.nextval,3,0 ),
+            #{prfs_nm},
+            #{prfs_eng_nm},
+            #{prfs_bir},
+            #{prfs_email},
+            #{prfs_pw},
+            #{prfs_regno},
+            #{prfs_gen},
+            #{prfs_pic},
+            #{prfs_act_num},
+            #{prfs_bank},
+            #{prfs_ah},
+            #{prfs_addr},
+            #{prfs_zip},
+            #{prfs_tel},
+            #{prfs_hp},
+            #{prfs_dept},
+            '1',
+            'ROLE_PROF' 
+         )    
+   </insert>
+   
+   <select id="prfsNumCurr" resultType="String">
+      SELECT  '2017'|| lpad(prfs_seq.currval,3,0 )
+      FROM DUAL
+   </select>
+      <insert id="insertSecurity" parameterType="com.avengers.db.dto.PrfsVO">
+   INSERT INTO SECURITY
+         (
+            ID,
+            PWD,
+            ENABLED,
+            AUTHORITY
+         )
+      VALUES 
+         (
+            #{prfs_num},
+            #{prfs_pw},
+            '1',
+            'ROLE_PROF' 
+         )
+   </insert>
+   
+   
+   
+   <!-- 학생등록 쿼리 -->
+   <insert id="insertStudent" parameterType="com.avengers.db.dto.StudVO">
+   INSERT       
+   INTO STUDENT
+            STUD_NUM,
+            STUD_NM,
+            STUD_ENG_NM,
+            STUD_BIR,
+            STUD_EMAIL,
+            STUD_PW,
+            STUD_GRD,
+            STUD_REGNO,
+            STUD_GEN,
+            STUD_QTR,
+            STUD_SCHREG_CODE,
+            STUD_PIC,
+            STUD_ACT_NUM,
+            STUD_BANK,
+            STUD_AH,
+            STUD_ADDR,
+            STUD_ZIP,
+            STUD_TEL,
+            STUD_HP,
+            STUD_DEPT,
+            STUD_GUAD_NM,
+            STUD_GUAD_REL,
+            STUD_GUAD_HP,
+            ENABLED,
+            AUTHORITY,
+            STUD_MAX_CRD
+   
+      VALUES(
+         '2017'||lpad(stud_seq.nextval,3,0),
+         #{STUD_NM , jdbcType=VARCHAR},   
+         #{STUD_ENG_NM , jdbcType=VARCHAR},   
+         #{STUD_BIR },   
+         #{STUD_EMAIL , jdbcType=VARCHAR},   
+         #{STUD_PW ,jdbcType=VARCHAR},   
+         #{STUD_GRD ,jdbcType=VARCHAR},   
+         #{STUD_REGNO ,jdbcType=VARCHAR},   
+         #{stud_gen },   
+         #{stud_qtr},   
+         #{stud_schreg_code , jdbcType=VARCHAR},   
+         #{stud_pic , jdbcType=VARCHAR},   
+         #{stud_act_num , jdbcType=VARCHAR},   
+         #{stud_bank , jdbcType=VARCHAR},   
+         #{stud_ah , jdbcType=VARCHAR},   
+         #{stud_addr , jdbcType=VARCHAR},   
+         #{stud_zip , jdbcType=VARCHAR},   
+         #{stud_tel , jdbcType=VARCHAR},   
+         #{stud_hp , jdbcType=VARCHAR},   
+         #{stud_dept , jdbcType=VARCHAR},   
+         #{stud_guad_nm , jdbcType=VARCHAR},   
+         #{stud_guad_rel},   
+         #{stud_guad_hp , jdbcType=VARCHAR},   
+         '1',
+         'ROLE_STUD',   
+         #{STUD_MAX_CRD}   
+      )
+   
+   </insert>
+   
+   
+   <!-- 등록한학생번호찾기 -->
+   
+   <select id="studNumCurr" resultType="String">
+   SELECT '2017'|| lpad(stud_seq.currval,3,0 )
+      FROM DUAL
+   </select>
+   
+   
+   <insert id="insertStudSecurity" parameterType="com.avengers.db.dto.StudVO">
+   INSERT INTO SECURITY
+         (
+            ID,
+            PWD,
+            ENABLED,
+            AUTHORITY
+         )
+      VALUES 
+         (
+            #{stud_num},
+            #{stud_pw},
+            '1',
+            'ROLE_STUD' 
+         )
+   </insert>
 </mapper>
