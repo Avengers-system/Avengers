@@ -92,4 +92,6 @@ public interface ProfessorClassManageService {
 		public int allFunctionEq(ArrayList<EqVO> eqList) throws SQLException;
 		//자 만약에 EqPkList의 값이 널이거나 비어있으면 원래 등록된 시험문제가 존재하지 않는 거니까 인서트만 해주면 된다... 뿌아자
 		public int insertEq(ArrayList<EqVO> eqList) throws SQLException;
+		//응시자 가져오기
+		public ArrayList<Map<String, String>> selectStudTeList(String exam_num) throws SQLException;
 }

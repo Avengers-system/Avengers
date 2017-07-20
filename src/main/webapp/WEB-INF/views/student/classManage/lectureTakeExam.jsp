@@ -38,9 +38,8 @@
 				lct = lct.replace("'", "%27");
 				te = encodeURIComponent(te);
 				te = te.replace("'", "%27");
-<%-- 				location.href="<%=request.getContextPath()%>/student/classManage/lectureExamSubmit?lct_num="+lct; --%>
-				$.post({
-					url:'<%=request.getContextPath()%>/student/classManage/lectureExamSubmit'
+				$.ajax({
+					url:'lectureExamSubmit'
 					, type:'post'
 					, data:{
 						qtnaArr:qtnas,
@@ -49,7 +48,7 @@
 						te_num:te
 					},
 					success:function(){
-						location.href="<%=request.getContextPath()%>/student/classManage/lectureExamSubmit?lct_num="+lct;
+						location.href="lectureExam";
 					}
 				});
 			} else {

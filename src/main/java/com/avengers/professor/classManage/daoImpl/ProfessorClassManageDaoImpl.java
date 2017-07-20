@@ -341,6 +341,14 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 		}
 		return result;
 	}
+
+	//시험응시자 가져오기
+	@Override
+	public ArrayList<Map<String, String>> selectStudTeList(String exam_num)
+			throws SQLException {
+		ArrayList<Map<String, String>> studTeList = (ArrayList<Map<String, String>>) sqlSession.selectList("te.selectStudTeList", exam_num);
+		return studTeList;
+	}
 	
 
 }

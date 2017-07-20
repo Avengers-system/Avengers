@@ -326,4 +326,11 @@ public class ProfessorClassManageServiceImpl implements ProfessorClassManageServ
 		return result;
 	}
 
+	@Override
+	public ArrayList<Map<String, String>> selectStudTeList(String exam_num)
+			throws SQLException {
+		ArrayList<Map<String, String>> studTeList = proClassDAO.selectStudTeList(exam_num);
+		return studTeList;
+	}
+
 }

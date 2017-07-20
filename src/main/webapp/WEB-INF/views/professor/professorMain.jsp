@@ -33,7 +33,7 @@
 
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
-	<%@include file="common/mainSideCategory.jsp" %>	
+	<%@include file="common/mainSideCategory.jsp" %>
 </div>
 <div class="col-md-10" id="commonRightSide">
 							<div class="row">
@@ -159,8 +159,7 @@
 							</div>
 							</div>
 						
-						
+	</div>					
 						
 						
 
-</div>
