@@ -23,6 +23,7 @@ public interface StudentHelpDeskService {
     public BoardVO getStudentFAQDetail(int board_num);
     public void updateStudentFAQ(BoardVO boardVO);
     public void deleteStudentFAQ(BoardVO boardVO);
+    public void writeStudentFAQ(BoardVO boardVO);
 	
 	public int getTotalCount() throws SQLException;
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception;
