@@ -321,9 +321,11 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 			if(eqList.get(i).getEq_num().equals("-1")){
 				result = sqlSession.insert("eq.insertEqInfo", eqList.get(i));
 			} else if(eqList.get(i).getEq_num().substring(eqList.get(i).getEq_num().length()-1).equals("u")){
+				System.out.println(eqList.get(i).getEq_num().substring(eqList.get(i).getEq_num().length()-1));
 				eqList.get(i).setEq_num(eqList.get(i).getEq_num().substring(0, eqList.get(i).getEq_num().length()-1));
 				result = sqlSession.update("eq.updateEqInfo", eqList.get(i));
 			} else if(eqList.get(i).getEq_num().substring(eqList.get(i).getEq_num().length()-1).equals("d")){
+				System.out.println(eqList.get(i).getEq_num().substring(eqList.get(i).getEq_num().length()-1));
 				eqList.get(i).setEq_num(eqList.get(i).getEq_num().substring(0, eqList.get(i).getEq_num().length()-1));
 				result = sqlSession.delete("eq.deleteEqInfo", eqList.get(i));
 			}

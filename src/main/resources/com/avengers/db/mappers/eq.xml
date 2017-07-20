@@ -58,10 +58,10 @@
 					  ,EQ_EXMP_TWO
 					  ,EQ_EXMP_THREE
 					  ,EQ_EXMP_FOUR
-					  ,EQ_EXMP_ANS
+					  ,EQ_ANS
 					  </if>
 					  ,EQ_EXAM)
-		VALUES(EQ_SEQ.NEXTVAL
+		VALUES('EQ'||EQ_SEQ.NEXTVAL
 			  ,#{eq_qtna}
 			  ,#{eq_qtn}
 			  ,#{eq_qtn_type}

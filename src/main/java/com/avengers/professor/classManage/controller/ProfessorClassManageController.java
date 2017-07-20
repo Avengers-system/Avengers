@@ -296,13 +296,7 @@ public class ProfessorClassManageController {
 		String length = request.getParameter("length");
 		String exam_num = request.getParameter("exam_num");
 		
-		String view = "redirect:/professor/classManage/registryExamQn?exam_num="+exam_num+"&division=1";
-		
-		System.out.println(request.getParameter("eq_qtn_type1"));
-		System.out.println(request.getParameter("eq_qtn_type2"));
-		System.out.println(request.getParameter("eq_qtn_type3"));
-		System.out.println(request.getParameter("eq_qtn_type4"));
-		System.out.println(request.getParameter("eq_qtn_type5"));
+		String view = "redirect:registryExamQn?exam_num="+exam_num+"&division=1";
 		
 		int result = -1;
 		//form태그 값들 가져오기
@@ -312,6 +306,7 @@ public class ProfessorClassManageController {
 				eqVO.setEq_num(request.getParameter("eq_num"+i));
 			}
 			eqVO.setEq_qtna(Integer.valueOf(request.getParameter("eq_qtna"+i)));
+			System.out.println(Integer.valueOf(request.getParameter("eq_qtna"+i)));
 			eqVO.setEq_qtn(request.getParameter("eq_qtn"+i));
 			eqVO.setEq_qtn_type(request.getParameter("eq_qtn_type"+i));
 			//1.객관식,2.주관식
@@ -330,21 +325,31 @@ public class ProfessorClassManageController {
 		
 		try {
 			eqPkList = pcmService.selectEqPkList(exam_num);
-			
+			System.out.println(eqPkList);
+			System.out.println(eqList);
 			//기본키값들을 비교
 			//1.만약에 eqPkList에 있는 값이 eqList에 존재한다면 업데이트를 해야됨 ==> eq_num 맨 마지막에 u를 붙여??
 			//2.만약에 eqPkList에 있는 값이 eqList에 존재하지 않는다면 삭제해야됨 ==> eqList에 그냥 추가해버려?? eq_num 맨 마지막에 d를 붙이고
 			//3.만약에 eqList의 eq_num이 -1인 경우 ==> 그냥 insert
+			int eqListSize = eqList.size();//form에서 가져온 값들만 비교하기 위해 for문을 돌기 전에 기존의 size를 저장
 			if(eqPkList != null && !eqPkList.isEmpty()){
-				int eqListSize = eqList.size();//form에서 가져온 값들만 비교하기 위해 for문을 돌기 전에 기존의 size를 저장
+				if(eqList != null && eqList.size() == 0){
+					//다삭제
+				}
 				for(int eqPk=0; eqPk<eqPkList.size(); eqPk++){
 					for(int eq=0; eq<eqListSize; eq++){
-						if(eqPkList.get(eqPk).equals(eqList.get(eq).getEq_num())){//1번째 조건
-							eqList.get(eq).setEq_num(eqList.get(eq).getEq_num()+"u");//업데이트 해야된다.
-						} else if(eq == eqListSize - 1){//마지막까지 찾다가 없는 경우는 존재하지 않으니 삭제 (2번째 조건)
+						if(eq == eqListSize - 1){//마지막까지 찾다가 없는 경우는 존재하지 않으니 삭제 (2번째 조건)
+							System.out.println("마지막 안들어감??");
 							EqVO eqVO = new EqVO();
 							eqVO.setEq_num(eqPkList.get(eqPk)+"d");
 							eqList.add(eqVO);
+					 	} else if(eqList.get(eq).getEq_num().equals("-1")){
+							System.out.println("새로운거");
+							continue;
+						} else if(eqPkList.get(eqPk).equals(eqList.get(eq).getEq_num())){//1번째 조건
+							System.out.println("업데이트");
+							eqList.get(eq).setEq_num(eqList.get(eq).getEq_num()+"u");//업데이트 해야된다.
+							break;
 						}
 					}
 				}
@@ -368,7 +373,7 @@ public class ProfessorClassManageController {
 		
 		return view;
 	}
-
+	//기존에 있던게 삭제된다 그거 생각해야됨
 	
 	
 	//시험문제

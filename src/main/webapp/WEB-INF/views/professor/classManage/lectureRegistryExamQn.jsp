@@ -4,7 +4,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 $(function(){
-	$(document).on("click", "#addExamBtn", function(){			
+	$(document).on("click", "#addExamBtn", function(){	
+		
 		var count = $(".examQn").length+1;
 		var qn1 = '';
 // 		<input type="hidden" name="eq_qtn_type${status.count}" value="${eqInfo.getEq_qtn_type() }"/>
@@ -30,8 +31,13 @@ $(function(){
 				"주관식문항은 문제만 입력가능합니다.<input type='button' id='removeExamBtn' value='삭제'/><br/><br/>"+
 				"</div> ";
 		}
-		$(".examQn").last().after(qn1);
-		$(".examQn").last().css("margin-bottom","30px");
+		if(count == 1){
+// 			$("form[name=examRegistry]").after(qn1);
+			$("#examRegistryBtn").before(qn1);
+		} else {
+			$(".examQn").last().after(qn1);
+			$(".examQn").last().css("margin-bottom","30px");
+		}
 	});
 	
 	$(document).on("click","#removeExamBtn",function(){
@@ -57,9 +63,11 @@ $(function(){
 // 				}
 // 				,success:function(){
 		for(var i = 0; i < $(".examQn").length; i++){
+			$(".examQn").eq(i).find($(".eq_qtna")).removeAttr("readonly");			
 			$(".examQn").eq(i).attr("id","eq"+(i+1));
 			$(".examQn").eq(i).find($(".eq_num")).attr("name","eq_num"+(i+1));
-			$(".examQn").eq(i).find($(".eq_qtna")).attr("name","eq_qtna"+(i+1)).val(i+1);
+			$(".examQn").eq(i).find($(".eq_qtna")).attr("name","eq_qtna"+(i+1));
+			$(".examQn").eq(i).find($(".eq_qtna")).val(i+1+"");
 			$(".examQn").eq(i).find($(".eq_qtn")).attr("name","eq_qtn"+(i+1));
 			$(".examQn").eq(i).find($(".eq_qtn_type")).attr("name","eq_qtn_type"+(i+1));
 			if($(".examQn").eq(i).find($(".eq_qtn_type")).val() == '1'){
@@ -69,6 +77,7 @@ $(function(){
 				$(".examQn").eq(i).find($(".eq_exmp_four")).attr("name","eq_exmp_four"+(i+1));
 				$(".examQn").eq(i).find($(".eq_ans")).attr("name","eq_ans"+(i+1));
 			}
+			$(".examQn").eq(i).find($(".eq_qtna")).attr("readonly",true);
 // 					}
 // 				}
 // 			})
@@ -129,7 +138,7 @@ $(function(){
 					<c:forEach items="${eqList }" var="eqInfo" varStatus="status">
 						<div class="examQn">
 							문제고유번호 : <input type="hidden" class="eq_num" name="eq_num${status.count}" value="${eqInfo.getEq_num() }" /><br/>
-							<input type="text" class="eq_qtna" name="eq_qtna${status.count}" readonly value="${eqInfo.getEq_qtna() }"/>.<input type="text" readonly class="eq_qtn" name="eq_qtn${status.count}" value="${eqInfo.getEq_qtn() }"/><br/>
+							<input type="text" class="eq_qtna" readonly name="eq_qtna${status.count}" value="${eqInfo.getEq_qtna() }"/>.<input type="text" readonly class="eq_qtn" name="eq_qtn${status.count}" value="${eqInfo.getEq_qtn() }"/><br/>
 							<input type="hidden" class="eq_qtn_type" name="eq_qtn_type${status.count}" value="${eqInfo.getEq_qtn_type() }"/>
 							<c:choose>
 								<c:when test="${eqInfo.getEq_qtn_type() eq 1 }">
