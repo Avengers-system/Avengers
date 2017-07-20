@@ -11,6 +11,8 @@
 </sec:authorize>
 <!--  로그인시 보여주는 화면 -->
 <sec:authorize access="isAuthenticated()">
+<input type="button" value="로그아웃" onclick="location.href='${pageContext.request.contextPath}/logout'">
+
 
 </sec:authorize>
 <!-- 관리자 로그인시 보여주는 화면 -->
@@ -19,7 +21,16 @@
 </sec:authorize>
 <!-- 교수 로그인시 보여주는 화면 -->
 <sec:authorize access="hasAnyRole('ROLE_PROF')">
-
+<div class="col-md-10" id="commonUserHeader">
+	<ul class="nav nav-tabs nav-tabs-v1 " style="padding-top: 0" >
+		<li role="presentation"><a href="${pageContext.request.contextPath}/professor/main">Main</a></li>
+		<li role="presentation"><a href="#">My Page</a></li>
+		<li role="presentation"><a href="#">수업관리</a></li>
+		<li role="presentation"><a href="${pageContext.request.contextPath}/professor/studentManage/departmentList">학생관리</a></li>
+		<li role="presentation"><a href="${pageContext.request.contextPath}/professor/counsel/counselList">상담</a></li>
+		<li role="presentation"><a href="#">Help Desk</a></li>
+	</ul>
+</div>
 </sec:authorize>
 <!-- 학생 로그인시 보여주는 화면 -->
 <sec:authorize access="hasAnyRole('ROLE_STUD')">

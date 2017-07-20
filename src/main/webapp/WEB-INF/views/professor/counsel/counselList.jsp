@@ -3,45 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<!--counsel Header -->
-<%@include file="../common/topCategory.jsp"%>
-
-
 
 <!-- Content -->
 <div class="col-md-2">
-
-	<div id="left-menu">
-		<div class="sub-left-menu">
-			<ul class="nav nav-list">
-				<li class="active ripple"><a class="tree-toggle nav-header">상담목록
-						<span class="fa-angle-right fa right-arrow text-right"></span>
-				</a></li>
-				<li class="ripple"><a class="tree-toggle nav-header">상담등록 <span
-						class="fa-angle-right fa right-arrow text-right"></span>
-				</a></li>
-			</ul>
-		</div>
-
-	</div>
-
-
-
-
-
-
-
-
-
-	<ul class="nav nav-list">
-		<li><div class="left-bg"></div></li>
-		<li class="active ripple"><a class="tree-toggle nav-header">상담목록</a></li>
-		<li><div class="left-bg"></div></li>
-		<li class="active ripple"><a class="tree-toggle nav-header">상담등록</a></li>
-			
-	</ul>
+	<a href="${pageContext.request.contextPath}/professor/counsel/counselList">상담목록</a>
+	<a href="${pageContext.request.contextPath}/professor/counsel/counselInsertPage">상담등록</a>
 </div>
 <div class="col-md-10">
+	<div class="panel panel-default">
 	<div class="panel-heading"><h1>상담 목록</h1></div>
 	<div class="panel-body">
                       <div class="responsive-table">
@@ -195,6 +164,8 @@
 				</div>
 			</div>
 		</div>
+                  </div>
+                  
                   </div>
 </div>
 

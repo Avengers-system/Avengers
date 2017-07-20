@@ -38,6 +38,8 @@ public class ProfessorStudentManageController {
 		return "professor/studentManage/departmentList";
 	}
 	
+	
+	
 	@RequestMapping("/studentManage/departmentDetail")
 	public String departmentDetail(HttpServletRequest request, Model model){
 		String stud_num = request.getParameter("stud_num");
