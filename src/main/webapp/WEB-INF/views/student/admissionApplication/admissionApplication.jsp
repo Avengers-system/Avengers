@@ -3,7 +3,6 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Student Header -->
-<%@include file="../common/topCategory.jsp" %>
 <style>
 	.container{
 		width:100%;
@@ -53,15 +52,15 @@
        		<!-- 학생개인정보 -->       		
 			<h3> 개인정보 </h3>
 		</div>
-		 <div class="panel-body" id="">	
-			 이름 : ${studentInfo.stud_nm}      
-			 학과 : ${studentInfo.stud_dept }      
-			 학년 : ${studentInfo.stud_grd}      
-			 학적상태 : ${studentInfo.stud_schreg_code}      
-			 최대 신청가능 학점 : ${studentInfo.stud_max_crd}        
-			 현재 신청 학점 : ${cur_score}			 
-			<!-- 시간표보기 -->
-			<button onclick="location.href='${pageContext.request.contextPath}/student/pdfView'">시간표보기</button> 
+		 <div class="panel-body" >
+		 	<dl class="dl-horizontal">	
+			<dt>이름</dt><dd>${studentInfo.stud_nm}</dd>     
+			<dt>학과</dt><dd>${studentInfo.stud_dept }</dd>      
+			<dt>학년</dt><dd>${studentInfo.stud_grd}</dd>      
+			<dt>학적상태</dt><dd>${studentInfo.stud_schreg_code}</dd>      
+			<dt>최대 신청가능 학점</dt><dd>${studentInfo.stud_max_crd}</dd>        
+			<dt>현재 신청 학점</dt><dd>${cur_score}</dd>
+			 </dl>	
 		  </div>       
         </div>
         </div>
@@ -76,7 +75,7 @@
        	<div class="panel-body">
        	<!-- 셀렉트박스와 검색 셀렉트박스는 학년,이수구분 -->
 			<form action = "${pageContext.request.contextPath}/student/admissionApplication" method="post">
-				학년 <select name="sjt_estm_grd">			
+				학년 <select name="sjt_estm_grd">							
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -84,7 +83,7 @@
 				</select> 이수구분 <select name="sjt_cd">
 					<option selected="selected" value="전%">전공</option>
 					<option value="교%">교양</option>
-				</select> 강의명: <input type="text" name="lct_nm" />
+				</select> 강의명 <input type="text" name="lct_nm" />
 				<input type = "submit" value="검색">
 			</form>
        	</div>	       
@@ -261,8 +260,14 @@
         	<div class="panel">
        			<!-- 강의신청내역리스트(본수강신청기간에만) -->
 				
-					<div class="panel-heading">   
+					<div class="panel-heading">
+					<div style="width:50%;">   
 					<h3>강의신청내역</h3>
+					<button onclick="location.href='${pageContext.request.contextPath}/student/pdfView'">시간표보기</button>  
+					</div>
+					<!-- 시간표보기 -->
+					<div style="width:50%;">
+					</div>
 					</div>
 					<div class="panel-body">
 					<div class="responsive-table">

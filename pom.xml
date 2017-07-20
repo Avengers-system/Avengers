@@ -140,17 +140,17 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>${springframework-security-version}</version>
+			<version>3.2.3.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>${springframework-security-version}</version>
+			<version>3.2.3.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			<version>${springframework-security-version}</version>
+			<version>3.2.3.RELEASE</version>
 		</dependency>
 
 		<!-- spring mail -->
