@@ -59,6 +59,8 @@
 	
 	<!-- 중복로그인 리스너 부분 -->
 	<listener>
-    	<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
-    </listener>
+    <listener-class>
+      org.springframework.security.web.session.HttpSessionEventPublisher
+    </listener-class>
+  </listener>
 </web-app>
