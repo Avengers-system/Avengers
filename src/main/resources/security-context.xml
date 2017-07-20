@@ -21,7 +21,7 @@
 
 
 	<http use-expressions="true" access-denied-page="/accessDenied">
-		<intercept-url pattern="/common/commonLogin2" access="permitAll" />
+		<intercept-url pattern="/common/commonLogin" access="permitAll" />
 		<intercept-url pattern="/common/**" access="permitAll" />
 
 		<intercept-url pattern="/admin/**"	access="hasAnyRole('ROLE_ADMIN')" />
