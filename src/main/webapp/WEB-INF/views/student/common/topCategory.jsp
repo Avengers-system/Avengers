@@ -5,7 +5,7 @@
           <div class="col-md-12 nav-wrapper" style="width:100%; ">
 		<div class="navbar-header" style="width:100%; ">
 <div class="col-md-10" id="commonUserHeader">
-	<ul class="nav navbar-nav " >
+	<ul class="nav nav-tabs nav-tabs-v1 " style="padding-top: 0" >
 		<li role="presentation"><a href="#">My Page</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/schoolRegister/certificate">학적</a></li>
 		<li role="presentation"><a href="#">수업</a></li>
