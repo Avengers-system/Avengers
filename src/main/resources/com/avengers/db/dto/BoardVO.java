@@ -36,7 +36,18 @@ public class BoardVO extends PageVO{
 	}
 
 	public void setFile(MultipartFile file) {
+		
 		this.file = file;
+	}
+	private MultipartFile board_af2; //
+
+	
+	public MultipartFile getBoard_af2() {
+		return board_af2;
+	}
+
+	public void setBoard_af2(MultipartFile board_af2) {
+		this.board_af2 = board_af2;
 	}
 
 	public String getBoard_count() {

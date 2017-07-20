@@ -3,7 +3,6 @@ package com.avengers.professor.classManage.controller;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +23,6 @@ import com.avengers.db.dto.ExamVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.RegistryExamVO;
 import com.avengers.professor.classManage.service.ProfessorClassManageService;
-
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -252,7 +250,6 @@ public class ProfessorClassManageController {
 		String view = "professor/classManage/lectureExamQn";
 		
 		String exam_num = request.getParameter("exam_num");
-		String division = request.getParameter("division");
 		
 		ArrayList<EqVO> eqList = null;
 		
@@ -263,17 +260,10 @@ public class ProfessorClassManageController {
 		}
 		
 		model.addAttribute("eqList", eqList);
-		model.addAttribute("exam_num",exam_num);
-		
-		if(division.equals("1")){
-			view = "professor/classManage/lectureExamQn";
-		} else {
-			view = "professor/classManage/lectureRegistryExamQn";
-		}
 		
 		return view;
 	}
-	
+
 //	@RequestMapping("professor/classManage/removeExamEq")
 //	@ResponseBody
 //	public void professorRemoveExamEq(@RequestParam(value="eq_num")String eq_num){
@@ -373,6 +363,7 @@ public class ProfessorClassManageController {
 		
 		return view;
 	}
+}
 	//기존에 있던게 삭제된다 그거 생각해야됨
 	
 	
@@ -395,4 +386,3 @@ public class ProfessorClassManageController {
 //		}
 //		return null;
 //	}
-}

@@ -9,6 +9,7 @@
 <title></title>
 </head>
 
+ 
 <style>
 </style>
 
@@ -141,7 +142,7 @@
             <td><a href="<%=request.getContextPath()%>/admin/faqNoticeList">제목:${faqNoticeList.board_title}</a></td>
             <td>내용:${faqNoticeList.board_cont}</td>
             <td>작성일:${faqNoticeList.board_date}</td>
-            <td>작성자:${faqNoticeList.board_writer}</td>
+            <td>작성자:${faqNoticeList.board_writer}</td><br>
          </tr>
       </c:forEach>
          </c:when>
@@ -168,7 +169,7 @@
             <td><a href="<%=request.getContextPath()%>/admin/qnaNoticeList">제목:${qnaNoticeList.board_title}</a></td>
             <td>내용:${qnaNoticeList.board_cont}</td>
             <td>작성일:${qnaNoticeList.board_date}</td>
-            <td>작성자:${qnaNoticeList.board_writer}</td>
+            <td>작성자:${qnaNoticeList.board_writer}</td><br>
          </tr>
       </c:forEach>
          </c:when>

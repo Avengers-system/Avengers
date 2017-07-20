@@ -9,8 +9,10 @@
 	
 <h1>학과게시판 글쓰기</h1>
 
+<c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
+<form name="insertDeptBoard" action="${myContextPath}/admin/deptWrite" 
+	method="post" enctype="multipart/form-data">
 
-<form name="insertDeptBoard" action="deptWrite">
 
 	게시판번호    :<input type="text" name="board_num" readonly value="${insertBoard.board_num}"><br>
 	제목    :<input type="text" name="board_title"><br>
@@ -18,7 +20,7 @@
 	날짜    :<input type="text" name="board_date" readonly value="${insertBoard.board_date}"><br>
 	<%User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); %>
 	작성자  :<input type="text" name="board_writer" readonly value="<%=user.getUsername()%>"><br>
-	첨부일  :<input type="text" name="board_af"><br>
+	첨부파일  :<input type="file" name="boardaf"><br>
 	분류번호:<input type="text" name="board_bc" readonly value="DEPT"><br>
 	조회수:<input type="text" name="board_count" readonly value="0"><br>
 	
