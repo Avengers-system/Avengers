@@ -38,13 +38,17 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 
 
 <update id="updateStudentFAQ" parameterType="com.avengers.db.dto.BoardVO">
-	update board set board_title=#{board_title}, board_cont=#{board_cont} where board_num=#{board_num}
+	update board set board_title=#{board_title}, board_cont=#{board_cont}, board_af=#{board_af},board_aff=#{board_aff} where board_num=#{board_num}
 </update>
 
 <delete id="deleteStudentFAQ" parameterType="com.avengers.db.dto.BoardVO">
 	delete from board where board_num=#{board_num}
 </delete>
 
+<insert id="writeStudentFAQ" parameterType="com.avengers.db.dto.BoardVO">
+	insert into board (board_num, board_title, board_cont, board_writer, board_date, board_af, board_bc, board_count, board_aff)
+	values ((select max(board_num) from board)+1, #{board_title}, #{board_cont}, 'admin', sysdate, #{board_af},'FAQ','0',#{board_aff}) 
+</insert>
 
 
 

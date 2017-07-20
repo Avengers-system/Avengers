@@ -23,6 +23,7 @@ public interface StudentHelpDeskDao {
     public BoardVO getStudentFAQDetail(int board_num);
     public void updateStudentFAQ(BoardVO boardVO);
     public void deleteStudentFAQ(BoardVO boardVO);
+    public void writeStudentFAQ(BoardVO boardVO);
     
 	public int getTotalCount() throws SQLException;
 	

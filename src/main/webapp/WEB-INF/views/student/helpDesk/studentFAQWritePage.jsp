@@ -15,9 +15,10 @@
 <!--  Counsel Right Side -->
 <div class="col-md-10"> 
 FAQ 글쓰기 페이지
-<form action="${pageContext.request.contextPath}" method="post">
+<form action="${pageContext.request.contextPath}/student/helpDesk/studentFAQWrite" method="post" enctype="multipart/form-data">
 	제목 :<input type="text" name="board_title"><br>
 	내용 :<input type="text" name="board_cont"><br>
+	파일 :<input type="file" name="file"><br>
 	<input type="submit" value="글쓰기">
 </form>
 
