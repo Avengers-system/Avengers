@@ -39,7 +39,7 @@ public class StudentMainController {
 		
 		String stud_num = principal.getName();
 		
-		ArrayList<Map<String, String>> classList = null;
+		ArrayList<Map<String, String>> classList = new ArrayList<Map<String, String>> () ;
 		
 		try {
 			classList = studentMainService.selectClassList(stud_num);
@@ -64,16 +64,16 @@ public class StudentMainController {
            lct_qtr="2";
         }
 		String stud_num = principal.getName();
-		StudVO studVO = null;
-		DeptVO deptVO = null;
-		ArrayList<PerschdVO> perschdList =null;
-		ArrayList<StudentMainVO> studentLectureList=null;
-		ArrayList<CnsVO> studentConsult=null;
+		StudVO studVO = new StudVO();
+		DeptVO deptVO = new DeptVO();
+		ArrayList<PerschdVO> perschdList =new ArrayList<PerschdVO>() ;
+		ArrayList<StudentMainVO> studentLectureList=new ArrayList<StudentMainVO>() ;
+		ArrayList<CnsVO> studentConsult=new ArrayList<CnsVO>() ;
 		
-		ArrayList<BoardVO> selectPortalNoticeList = null;
-		ArrayList<BoardVO> selectSchoolNoticeList = null;
-		ArrayList<BoardVO> selectDepartmentNoticeList = null;
-		ArrayList<PerschdVO> selectSchoolScheduleList = null;
+		ArrayList<BoardVO> selectPortalNoticeList = new ArrayList<BoardVO>();
+		ArrayList<BoardVO> selectSchoolNoticeList = new ArrayList<BoardVO>();
+		ArrayList<BoardVO> selectDepartmentNoticeList = new ArrayList<BoardVO>();
+		ArrayList<PerschdVO> selectSchoolScheduleList = new ArrayList<PerschdVO>();
 		String bc_dept = "";
 		String allLevelComplete = "";
 		try {
@@ -83,11 +83,11 @@ public class StudentMainController {
 			studVO = studentMainService.selectStudInfo(stud_num);
 			deptVO = studentMainService.selectDept(studVO.getStud_dept());
 		    bc_dept = "b"+deptVO.getDept_nm();
-//			perschdList = studentMainService.selectPerschd(stud_num);
-//			studentLectureList = studentMainService.selectLectureList(stud_num,lct_yr,lct_qtr);
-//			studentConsult = studentMainService.selectCnsList(stud_num);
-//			
-//			selectPortalNoticeList = studentMainService.selectPortalNoticeList();
+			perschdList = studentMainService.selectPerschd(stud_num);
+			studentLectureList = studentMainService.selectLectureList(stud_num,lct_yr,lct_qtr);
+			studentConsult = studentMainService.selectCnsList(stud_num);
+			
+			selectPortalNoticeList = studentMainService.selectPortalNoticeList();
 //			selectSchoolNoticeList = studentMainService.selectSchoolNoticeList();
 //			selectDepartmentNoticeList = studentMainService.selectDepartmentNoticeList(bc_dept);
 //			selectSchoolScheduleList = studentMainService.selectSchoolScheduleList();
@@ -103,9 +103,9 @@ public class StudentMainController {
 		model.addAttribute("lectureList",studentLectureList);
 		model.addAttribute("consultList",studentConsult);
 		model.addAttribute("portalNoticeList",selectPortalNoticeList);
-        model.addAttribute("schoolNoticeList",selectSchoolNoticeList);
-        model.addAttribute("departmentNoticeList",selectDepartmentNoticeList);
-        model.addAttribute("schoolScheduleList",selectSchoolScheduleList);
+//        model.addAttribute("schoolNoticeList",selectSchoolNoticeList);
+//        model.addAttribute("departmentNoticeList",selectDepartmentNoticeList);
+//        model.addAttribute("schoolScheduleList",selectSchoolScheduleList);
 //		model.addAttribute("allGrades",allLevelComplete);
 		
 		return "student/studentMain";

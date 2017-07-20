@@ -22,7 +22,7 @@
 				유형 : ${prfsExam.get("exam_type") }<br/>
 				시험일 : ${prfsExam.get("exam_date") }<br/>
 				시험시간 : ${prfsExam.get("exam_start_date") } ~ ${prfsExam.get("exam_end_date") }<br/>
-				<button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureExamQn?exam_num='${prfsExam.get('exam_num')}">시험문제보러가기</button>
+				<button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureExamQn?exam_num=${prfsExam.get('exam_num')}&division=1'">시험문제보러가기</button>
 				<hr color="red"/>
 			</c:forEach>
 		</c:otherwise>
