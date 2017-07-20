@@ -8,7 +8,7 @@
 	<ul class="nav nav-tabs nav-tabs-v1 " style="padding-top: 0" >
 		<li role="presentation"><a href="#">My Page</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/schoolRegister/certificate">학적</a></li>
-		<li role="presentation"><a href="#">수업</a></li>
+		<li role="presentation"><a href="${pageContext.request.contextPath}/student/classManage/classMain">수업</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/admissionApplication">수강신청</a></li>
 		<li role="presentation"><a href="#">등록&장학</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/counsel/counselList">상담</a></li>

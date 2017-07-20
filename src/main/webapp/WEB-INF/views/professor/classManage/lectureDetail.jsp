@@ -1,21 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<!-- Professor Header -->
+<%@include file="../common/topCategory.jsp"%>
+
+<!-- Content -->
+<div class="col-md-2" id="commonLeftSide">
+<%@include file="../common/classManageLectureSideCategory.jsp" %>
+</div>
+<div class="col-md-10">
+	<h1>강의계획서</h1>
+	<hr color="pink"/>
 	<form>
 		강의번호 : <input type="text" readonly value="${detailLct.get('lct_num') }"/>
 		담당교수 : <input type="text" readonly value="${detailLct.get('prfs_nm')}"/>
 		E-mail : <input type="text" readonly value="${detailLct.get('prfs_email')}"/>
-		분반 : <input type="text" readonly value="${detailLct.get('lct_nm_class')}"/>
-		핸드폰 : <input type="text" readonly value="${detailLct.get('prfs_hp')}"/><br/>
+		분    반 : <input type="text" readonly value="${detailLct.get('lct_nm_class')}"/>
+		핸 드 폰 : <input type="text" readonly value="${detailLct.get('prfs_hp')}"/><br/>
 		
 		교과목명 : <input type="text" readonly value="${detailLct.get('sjt_nm')}"/>
-		학점 : <input type="text" readonly value="${detailLct.get('sjt_crd')}"/>
+		학    점 : <input type="text" readonly value="${detailLct.get('sjt_crd')}"/>
 		이수구분 : <input type="text" readonly value="${detailLct.get('sjt_cd')}"/>
 		개설학년 : <input type="text" readonly value="${detailLct.get('sjt_estm_grd')}"/>
 		개설학과 : <input type="text" readonly value="${detailLct.get('dept_nm')}"/><br/>
@@ -39,6 +42,5 @@
 		<textarea rows="10" cols="100" readonly>${detailLct.get('lct_cont')}</textarea>
 	</form>
 	<button onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureModifyDetail'">수정</button>
-	<button onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureMain'">뒤로가기</button> 
-</body>
-</html>
+	<button onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureMain'">뒤로가기</button>
+</div> 

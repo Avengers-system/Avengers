@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.avengers.db.dto.EqVO;
 import com.avengers.db.dto.ExamVO;
@@ -272,26 +273,107 @@ public class ProfessorClassManageController {
 		
 		return view;
 	}
-	//똑같은 거라 구분자를 넣어서 가는게 나을 꺼 같긴한데
-//	@RequestMapping("professor/classManage/lectureRegistryExamQn")
-//	public String professorLectureRegistryExamQn(HttpServletRequest request, Model model){
-//		String view = "professor/classManage/lectureRegistryExamQn";
-//		
-//		String exam_num = request.getParameter("exam_num");
-//		
-//		ArrayList<EqVO> eqList = null;
+	
+//	@RequestMapping("professor/classManage/removeExamEq")
+//	@ResponseBody
+//	public void professorRemoveExamEq(@RequestParam(value="eq_num")String eq_num){
+//		System.out.println("성공");
+//		int result = -1;
 //		
 //		try {
-//			eqList = pcmService.selectEqList(exam_num);
+//			result = pcmService.deleteEqInfo(eq_num);
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
 //		
-//		model.addAttribute("eqList", eqList);
-//		model.addAttribute("exam_num",exam_num);
 //		
-//		return view;
 //	}
+	
+	@RequestMapping("professor/classManage/registryExamEq")
+	public String test(HttpServletRequest request){
+		ArrayList<EqVO> eqList = new ArrayList<EqVO>();
+		
+		String length = request.getParameter("length");
+		String exam_num = request.getParameter("exam_num");
+		
+		String view = "redirect:registryExamQn?exam_num="+exam_num+"&division=1";
+		
+		int result = -1;
+		//form태그 값들 가져오기
+		for(int i=1; i<Integer.valueOf(length)+1;i++){
+			EqVO eqVO = new EqVO();
+			if(request.getParameter("eq_num"+i)!=null && !request.getParameter("eq_num"+i).equals("")){
+				eqVO.setEq_num(request.getParameter("eq_num"+i));
+			}
+			eqVO.setEq_qtna(Integer.valueOf(request.getParameter("eq_qtna"+i)));
+			System.out.println(Integer.valueOf(request.getParameter("eq_qtna"+i)));
+			eqVO.setEq_qtn(request.getParameter("eq_qtn"+i));
+			eqVO.setEq_qtn_type(request.getParameter("eq_qtn_type"+i));
+			//1.객관식,2.주관식
+			if(request.getParameter("eq_qtn_type"+i).equals("1")){
+				eqVO.setEq_exmp_one(request.getParameter("eq_exmp_one"+i));
+				eqVO.setEq_exmp_two(request.getParameter("eq_exmp_two"+i));
+				eqVO.setEq_exmp_three(request.getParameter("eq_exmp_three"+i));
+				eqVO.setEq_exmp_four(request.getParameter("eq_exmp_four"+i));
+				eqVO.setEq_ans(request.getParameter("eq_ans"+i));
+			}
+			eqVO.setEq_exam(exam_num);
+			eqList.add(eqVO);
+		}
+		
+		ArrayList<String> eqPkList = null;
+		
+		try {
+			eqPkList = pcmService.selectEqPkList(exam_num);
+			System.out.println(eqPkList);
+			System.out.println(eqList);
+			//기본키값들을 비교
+			//1.만약에 eqPkList에 있는 값이 eqList에 존재한다면 업데이트를 해야됨 ==> eq_num 맨 마지막에 u를 붙여??
+			//2.만약에 eqPkList에 있는 값이 eqList에 존재하지 않는다면 삭제해야됨 ==> eqList에 그냥 추가해버려?? eq_num 맨 마지막에 d를 붙이고
+			//3.만약에 eqList의 eq_num이 -1인 경우 ==> 그냥 insert
+			int eqListSize = eqList.size();//form에서 가져온 값들만 비교하기 위해 for문을 돌기 전에 기존의 size를 저장
+			if(eqPkList != null && !eqPkList.isEmpty()){
+				if(eqList != null && eqList.size() == 0){
+					//다삭제
+				}
+				for(int eqPk=0; eqPk<eqPkList.size(); eqPk++){
+					for(int eq=0; eq<eqListSize; eq++){
+						if(eq == eqListSize - 1){//마지막까지 찾다가 없는 경우는 존재하지 않으니 삭제 (2번째 조건)
+							System.out.println("마지막 안들어감??");
+							EqVO eqVO = new EqVO();
+							eqVO.setEq_num(eqPkList.get(eqPk)+"d");
+							eqList.add(eqVO);
+					 	} else if(eqList.get(eq).getEq_num().equals("-1")){
+							System.out.println("새로운거");
+							continue;
+						} else if(eqPkList.get(eqPk).equals(eqList.get(eq).getEq_num())){//1번째 조건
+							System.out.println("업데이트");
+							eqList.get(eq).setEq_num(eqList.get(eq).getEq_num()+"u");//업데이트 해야된다.
+							break;
+						}
+					}
+				}
+				result = pcmService.allFunctionEq(eqList);
+			} else {//만약 원래값이 없다면 그냥 인서트만 해주면됨
+				result = pcmService.insertEq(eqList);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		//mybatis의 if문 사용해보자
+		
+		//문제의 타입을 먼저 비교한다
+		//1이면 객관식 2이면 주관식
+		
+		//기존의 문제들을 불러와서 새로 넣는 것과 비교
+		//만약에 기본키가 같은 것이 존재하면 문제들을 업데이트
+		
+		//그리고 문제의 타입을 봐서 1이면 객관식 인서트문
+		
+		return view;
+	}
+	//기존에 있던게 삭제된다 그거 생각해야됨
 	
 	
 	//시험문제
