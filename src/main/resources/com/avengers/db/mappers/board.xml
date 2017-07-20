@@ -58,8 +58,9 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 
 	
 	<!-- 게시판중 포탈공지사항을 검색하는 구문  -->	
-	<select id="selectPortalNoticeList"  resultType="com.avengers.db.dto.BoardVO">
-		SELECT * FROM BOARD WHERE BOARD_BC=' 
+
+	<select id="selectPortalNoticeList" resultType="com.avengers.db.dto.BoardVO">
+		SELECT * FROM BOARD WHERE BOARD_BC='PORTAL' 
 	</select>
 	
 	<select id="selectBoardOne" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
