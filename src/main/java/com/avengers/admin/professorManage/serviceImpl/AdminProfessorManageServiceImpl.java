@@ -36,20 +36,6 @@ public class AdminProfessorManageServiceImpl implements AdminProfessorManageServ
 	
 	@Override
 	public int insertPrfs(PrfsVO prfsVO) throws SQLException {
-		String regno = prfsVO.getPrfs_regno();
-		System.out.println("데이트타입!!!"+regno);
-		
-		Date birth = new Date();
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yy/mm/dd");
-			try {
-				birth = sdf.parse(regno);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-
-		System.out.println("데이트타입변경후 : "+birth+", "+birth.getClass().getName());
-		
 			int result = proDAO.insertPrfs(prfsVO);
 		return result;
 	}

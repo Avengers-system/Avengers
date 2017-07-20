@@ -14,7 +14,6 @@
 </div>
 <div class="col-md-10" id="commonRightSide">
                      
-                     
                      관리자메인
                      <button onclick="location.href='<%=request.getContextPath()%>/admin/adminMain'">관리자</button>
                      <button onclick="location.href='<%=request.getContextPath()%>/professor/professorMain'">교수</button>
@@ -25,7 +24,6 @@
                      
                      
                      <c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
-                     
                      관리자메인
                      
                      <button id="adminMain" onclick="adminMain_go()">관리자</button>

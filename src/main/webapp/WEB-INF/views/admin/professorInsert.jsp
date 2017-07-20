@@ -151,11 +151,7 @@ $(function() {
   	<div class="col-md-12">
   		
  		 <form name="insertProfessor"  method="post" action="${pageContext.request.contextPath }/admin/insertProfessor" enctype="multipart/form-data">
-
-
 	<h2>교수 등록</h2>
-  	
-  	
   	
   		<div class="col-md-12" style="margin-top:30px;">
   		   <!-- 이미지 미리보기 -->
@@ -186,7 +182,6 @@ $(function() {
 
 					  <input type="hidden" name="prfs_num">
 					
-					<fieldset>
 					
 					  <label class='control-label'>이름</label>
 					  <input type="text" class="form-control" name="prfs_nm" >
@@ -211,13 +206,10 @@ $(function() {
 				 
 				
 					<label class='control-label'>주민등록번호</label>
-				  	<input type="text" class="form-control" name="prfs_bir"  >
+				  	<input type="text" class="form-control" name="prfs_regno"  >
 				
 					<label class='control-label'>생년월일</label>
-					<input type="date" class="form-control" >
-					<input type="hidden" name="prfs_regno">
-					 
-
+					<input type="date" class="form-control" name="prfs_bir">
 					
 					<label class='control-label'>전화번호</label>
 				  	<input type="text" class="form-control" name="prfs_tel"  >
@@ -225,13 +217,11 @@ $(function() {
 					<label class='control-label'>계좌번호</label>
 					<input type="text" class="form-control" name="prfs_act_num"  >
 					
-					</fieldset>
 					</div>
 
 
 					
 					<div class="col-md-5 col-md-offset-1">
-					<fieldset>
 					<label class='control-label'>은행명</label>
 					<input type="text" class="form-control" name="prfs_bank"  >
 					
@@ -255,11 +245,10 @@ $(function() {
 					
 					 <label class='control-label'>성별</label>
 					 <div class="radio" >
-					      <label><input type="radio" name="optradio">남자</label>
-					      <label><input type="radio" name="optradio">여자</label>
+					      <label><input type="radio" name="prfs_gen" value="1">남자</label>
+					      <label><input type="radio" name="prfs_gen" value="2">여자</label>
 				    </div>
 				    
-				    </fieldset>
 				    </div>
 				</div>
 	  	</div>
