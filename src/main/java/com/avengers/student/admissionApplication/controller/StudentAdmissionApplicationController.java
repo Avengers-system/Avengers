@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,7 @@ import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.LrVO;
 import com.avengers.db.dto.StudVO;
 import com.avengers.db.dto.TlVO;
+import com.avengers.professor.classManage.service.ProfessorClassManageService;
 import com.avengers.student.admissionApplication.serviceImpl.StudentAdmissionApplicationServiceImpl;
 
 @Controller
@@ -36,6 +38,8 @@ import com.avengers.student.admissionApplication.serviceImpl.StudentAdmissionApp
 public class StudentAdmissionApplicationController {
 	   @Autowired
 	   private StudentAdmissionApplicationServiceImpl studentService;
+	   @Autowired
+		private ProfessorClassManageService pcmService;
 	   
 	   /**stud_num으로 최대신청 가능학점 구하고 넣어줘야함
 	    * stud_num으로 tl목록 검색해서 학점들 총점 더해줄것 그리고 최대신청가능학점에서 이를빼주고 남은학점을구함
@@ -380,5 +384,22 @@ public class StudentAdmissionApplicationController {
 	      return "pagePDFView"; 
 	   }
 	   
+	   @RequestMapping(value="/lectureDetail",method=RequestMethod.POST)
+	   public String lectureDetail(@RequestParam(value = "lct_num") String lct_num,Model model){
+		   try {
+			   Map<String, String> detailLct = null;
+			   detailLct = pcmService.selectDetailLct(lct_num);
+			   if(detailLct.get("lct_tb") != null){
+					String[] textbook = detailLct.get("lct_tb").split("/");
+					model.addAttribute("textbook", textbook);
+				}
+				
+				model.addAttribute("detailLct", detailLct);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		   
+		   return "student/admissionApplication/lectureDetail";
+	   }
 	   
 }

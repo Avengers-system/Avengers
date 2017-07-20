@@ -93,7 +93,7 @@ public class AdminMypageController {
 	@RequestMapping("/myInfo")
 	public String myInfo(Principal principal,Model model){
 		String adminId = principal.getName();
-		String url="/admin/mypage/mypage";
+		String url="admin/mypage/myInfo";
 		AdminVO admin= null;
 		
 		try {

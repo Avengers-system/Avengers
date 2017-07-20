@@ -1,68 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib  prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <style>
-	#commonLoginInformation{
-		padding-top: 5px;
-		text-align: right;
-	}
+#commonLoginInformation {
+/* 	padding-top: 5px; */
+	text-align: right;
+}
 </style>
 
-<div class="col-md-7">
-	<img src="http://placehold.it/180x60" />
-</div>
-<div class="col-md-4">
-	<!--자동로그아웃-->
-	<sec:authorize access="isAuthenticated()">
-		<div id="commonLoginInformation">
-			<input  class="btn btn-lg btn-danger" type="button" onclick="logout();" style="text-align: right;" value="로그아웃"/>
-		</div>
-	</sec:authorize>
-</div>
-<div class="col-md-1"></div>
-<script>
- function logout(){
-	 location.href="${pageContext.request.contextPath}/logout";
- }
-</script>
 
-<title>AVENGERS 학사관리 시스템</title>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<sec:authorize access="isAuthenticated()">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
-<!-- Header -->
-<div id="header-wrapper">
-	<header id="header" class="">
-		<div class="row">
-
-			<div class="logout">
-				남은 시간 : 00 분 00초 
-				<input type="button" value="연장"	class="btn btn-info" id="button1" /> 
-				<input type="button" value="로그아웃" onclick="location.href='#'" class="btn btn-info" id="button1" />
+<nav class="navbar navbar-default header bg-white " style="width:100%; height: 60px; margin:0; ">
+          <div class="col-md-12 nav-wrapper" style="width:100%; height: 60px; ">
+		<div class="navbar-header" style="width:100%; height: 60px; ">
+		
+			<div class="col-md-2">
+				<a href="${pageContext.request.contextPath}/main"><img
+					class="logo" style="height: 60px; width: 130px;"
+					src="${pageContext.request.contextPath}/resources/images/LOGO.png"></a>
 			</div>
-
-			<div class="12u" style="margin: 0 auto; float: left; width: 100%;">
-				<!-- Nav -->
-				<nav id="nav">
-					<a href="#">마이페이지</a> 
-					<a href="#">학적관리</a> 
-					<a href="#">수업관리</a> 
-					<a href="#">수강신청</a> <a href="#">등록/장학</a> 
-					<a href="#">상담</a> 
-					<a href="#">헬프데스크</a>
-				</nav>
-
+			<!-- Header -->
+			<div id="header-wrapper " class="nav navbar-nav navbar-right"  >
+					<div class="text-right"  >
+						<!--자동로그아웃-->
+						<sec:authorize access="isAuthenticated()">
+							<div id="commonLoginInformation">
+								<div class="logout" >
+									남은 시간 : 00 분 00초 <input type="button" value="연장"
+										class="btn btn-info" id="button1" /> <input type="button"
+										value="로그아웃"
+										onclick="location.href='${pageContext.request.contextPath}/logout'"
+										class="btn btn-info" id="button1" />
+								</div>
+							</div>
+						</sec:authorize>
+					</div>
 			</div>
-		</div>
-	</header>
-
-
-</div>
+	</div>
+	</div>
+</nav>
+</sec:authorize>
+		
