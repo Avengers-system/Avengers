@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    
+				 
 <div class="col-xs-12">    
-		<h1>관리자 정보 출력</h1>
+		<h3>관리자 정보 출력</h3>
 		아이디 : ${admin.admin_id}<br/>
 		이름 : ${admin.admin_nm}<br/>
 		<c:choose>

@@ -61,7 +61,7 @@ public class AdminMypageController {
 	public String myPage(Principal principal,Model model,HttpSession session){
 		String adminId = "";
 		AdminVO admin= null;
-		String url="/admin/mypage/mypage";
+		String url="/admin/mypage/myInfo";
 		
 		if( session.getAttribute("adminId") != null){
 			adminId = (String) session.getAttribute("adminId");
@@ -92,7 +92,7 @@ public class AdminMypageController {
 	@RequestMapping("/myInfo")
 	public String myInfo(Principal principal,Model model){
 		String adminId = principal.getName();
-		String url="admin/mypage/mypage";
+		String url="admin/mypage/myInfo";
 		AdminVO admin= null;
 		
 		try {
@@ -162,7 +162,7 @@ public class AdminMypageController {
 			Model model){
 		String scheduleId = principal.getName(); 
 		ArrayList<PerschdVO> perschdList = null;
-		String url="/admin/mypage/mypage";
+		String url="/admin/mypage/mySchedule";
 		String message="";
 		try {
 			perschdList =  myPageService.selectPerschdList(scheduleId);
