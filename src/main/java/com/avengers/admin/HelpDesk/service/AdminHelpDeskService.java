@@ -2,7 +2,6 @@ package com.avengers.admin.HelpDesk.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.avengers.db.dto.BoardVO;
 
@@ -16,4 +15,5 @@ public interface AdminHelpDeskService {
 		public int deleteBoard(int board_num)throws SQLException;//게시판글 삭제
 		public BoardVO selectInsertBaseData() throws SQLException;
 		public int updateBoardCount(String board_num, String board_count) throws SQLException;
+		public int selectBoardCount(BoardVO boardVO) throws SQLException;
 }

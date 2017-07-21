@@ -1,12 +1,55 @@
 <%@page import="com.avengers.admin.mypage.service.AdminMypageService"%>
 <%@page import="com.avengers.db.dto.PerschdVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.List"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 <title>일정관리</title>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<c:set var="myContextPath" value="${pageContext.request.contextPath}" />
+<c:if test="${!empty message }">
+	<script type="text/javascript">alert('${message}');</script>
+	<c:remove var="message" scope="session" />
+</c:if>
+
+<!-- Admin Header -->
+<%@include file="../common/topCategory.jsp"%>
+<!-- Content -->
+<div class="col-md-2" id="commonLeftSide">
+	<%@include file="../common/myPageSideCategory.jsp"%>
+</div>
+<div class="mySchedule">
+	<c:choose>
+		<c:when test="${not empty perschdList}">
+			<c:forEach var="perschd" items="${perschdList}">
+				<form name="scheduleDetail" method="post"
+					action="${myContextPath}/admin/mypage/myScheduleDetail">
+					번호:<input type="text" name="perschd_num"
+						value="${perschd.perschd_num}" readonly="readonly"><br />
+					제목:<input type="text" name="perschd_title"
+						value="${perschd.perschd_title}"><br /> 내용:
+					<textarea rows="5" cols="10" name="perschd_cont">${perschd.perschd_cont}</textarea>
+					<br /> 작성자:<input type="text" name="perschd_writer"
+						value="${perschd.perschd_writer}" readonly="readonly"><br />
+					시작일:<input type="text" name="perschd_start_date"
+						value="${perschd.perschd_start_date}"> 종료일 <input
+						type="text" name="perschd_end_date"
+						value="${perschd.perschd_end_date}" /><br /> <input
+						type="submit" value="상세보기" /> <br /> <br />
+				</form>
+			</c:forEach>
+		</c:when>
+	</c:choose>
+</div>
 
 <meta name='description'content='Open source JavaScript jQuery plugin for a full-sized, drag &amp; drop event calendar'>
 <meta name='keywords'content='calendar, JavaScript, jQuery, events, drag and drop'>

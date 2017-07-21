@@ -32,6 +32,7 @@
   <!-- plugins -->
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/font-awesome.min.css"/>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/animate.min.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/mediaelementplayer.css"/>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/nouislider.min.css"/>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/select2.min.css"/>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/simple-line-icons.css"/>
@@ -48,6 +49,7 @@
   
   
   <!-- end: Css -->
+
 </head>
 
 
@@ -74,7 +76,6 @@
 		<tiles:insertAttribute name="footer" />
     </div>
 </div>	
-
   <!-- start: Javascript -->
     <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.ui.min.js"></script>

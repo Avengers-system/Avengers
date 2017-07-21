@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.avengers.admin.mypage.service.AdminMypageService;
 import com.avengers.db.dto.AdminVO;
@@ -62,7 +61,7 @@ public class AdminMypageController {
 	public String myPage(Principal principal,Model model,HttpSession session){
 		String adminId = "";
 		AdminVO admin= null;
-		String url="/admin/mypage/mypage";
+		String url="/admin/mypage/myInfo";
 		
 		if( session.getAttribute("adminId") != null){
 			adminId = (String) session.getAttribute("adminId");

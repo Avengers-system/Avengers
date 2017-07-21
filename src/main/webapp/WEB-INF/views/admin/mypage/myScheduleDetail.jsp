@@ -4,7 +4,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<h1>개인일정</h1>
 <div class="myScheduleDetail">
 <c:set var="alertPerschd" value="${message}"/>
 <c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
@@ -12,6 +11,14 @@
 	<script type="text/javascript">alert('${message}');</script>
 	<c:remove var="message" scope="session"/>
 </c:if>
+
+<!-- Admin Header -->
+<%@include file="../common/topCategory.jsp"%>
+<!-- Content -->
+<div class="col-md-2" id="commonLeftSide">
+	<%@include file="../common/myPageSideCategory.jsp"%>
+</div>
+
 <c:choose>
 		<c:when test="${not empty perschd}">
 				<form name="scheduleDetail" id="scheduleDetail">

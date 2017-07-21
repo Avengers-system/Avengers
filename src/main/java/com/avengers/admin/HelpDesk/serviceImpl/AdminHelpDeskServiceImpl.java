@@ -3,9 +3,6 @@ package com.avengers.admin.HelpDesk.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +64,11 @@ public class AdminHelpDeskServiceImpl implements AdminHelpDeskService {
 	public int updateBoardCount(String board_num, String board_count)
 			throws SQLException {
 		return helpDeskDAO.updateBoardCount(board_num, board_count);
+	}
+
+	@Override
+	public int selectBoardCount(BoardVO boardVO) throws SQLException {
+		return helpDeskDAO.selectBoardCount(boardVO);
 	}
 
 	

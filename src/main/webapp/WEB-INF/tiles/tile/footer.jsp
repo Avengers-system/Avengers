@@ -3,6 +3,7 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 
 
+
 <div class="col-xs-12">CopyRight_Avengers</div>
 <div id="footer-wrapper">
 	&copy; Untitled. All rights reserved. | Design: <a

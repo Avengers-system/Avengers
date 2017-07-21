@@ -15,5 +15,5 @@ public interface AdminHelpDeskDao {
 	public int deleteBoard(int board_num)throws SQLException;//게시판글 삭제
 	public BoardVO selectInsertBaseData() throws SQLException;// 입력시 데이터 보이게하기
 	public int updateBoardCount(String board_num, String board_count) throws SQLException;
-		
+	public int selectBoardCount(BoardVO boardVO) throws SQLException;
 }
