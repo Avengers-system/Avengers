@@ -21,8 +21,9 @@
 		년도<select>
 			 <option value="${cal.get(Calendar.YEAR)}" >2016</option>
 		   </select>
-		학기<select>
+		학기<select name="qtr">
 			<option value="1" selected="selected">1</option>
+			<option value="2" >2</option>
 		</select>
 		대학<input type="text" name="col_nm" value="${resSchStudent.col_nm}" readonly="readonly">
 		전공<input type="text" name="dept_nm" value="${resSchStudent.dept_nm}" readonly="readonly">
