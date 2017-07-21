@@ -159,6 +159,11 @@ public class StudentSchoolRegisterController {
 		return "/student/schoolRegister/dropOff";
 	}
 	
+	
+	
+	
+	
+	
 	public void createGradeCertificate(HashMap<String,String> gradeInfo,List<HashMap<String,String>> gradeList, int allGrade, int allGradeCount,String path) throws DocumentException, IOException{
 		//pdf 만들기
 
