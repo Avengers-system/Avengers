@@ -14,7 +14,6 @@
 
 <body>
 <!-- Student Header -->
-<%@include file="common/topCategory.jsp" %>
 헬프데스크메인<br><hr color="orange">
 <button onclick="location.href='<%=request.getContextPath()%>/admin/univNoticeList'">학교공지</button>
 <button onclick="location.href='<%=request.getContextPath()%>/admin/deptNoticeList'">학과공지</button>

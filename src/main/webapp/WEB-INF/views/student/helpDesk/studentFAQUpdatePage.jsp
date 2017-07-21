@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
 
     
- 
-<!-- Student Header -->
-<%@include file="../common/topCategory.jsp" %>
 
 <!-- Content -->
 <!-- Counsel Left Side -->
