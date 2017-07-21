@@ -32,7 +32,6 @@ public class StudentResManageController {
 	@Autowired
 	private StudentResManageService stuResService;
 	
-	@Deprecated
 	@RequestMapping("/studRes")
 	public String studRes(Principal princiapl
 			,Model model
