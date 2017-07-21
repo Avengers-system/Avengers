@@ -166,7 +166,6 @@ public class StudentClassManageController {
 											@RequestParam(value="answerArr[]") List<String> answerArr,
 											@RequestParam(value="lct_num") String lct_num,
 											@RequestParam(value="te_num") String te_num){
-		System.out.println("여기를 안오냐??");
 		//학생이 푼 정답 저장하고
 		ArrayList<Map<String, String>> saList = new ArrayList<Map<String, String>>();
 		for(int i=0; i<qtnaArr.size(); i++){

@@ -8,7 +8,6 @@
 		var qtnas = [];
 		var answers = [];
 		var eqSize = '<c:out value="${eqList.size()}"/>';
-		
 		ans_check = function(qtna, ans){
 			if(index == 0){
 				qtnas[index] = qtna;

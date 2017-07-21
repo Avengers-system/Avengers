@@ -45,7 +45,7 @@
 							<td>${prfsExam.get("exam_date") }</td>
 							<td>${prfsExam.get("exam_start_date") } ~ ${prfsExam.get("exam_end_date") }</td>
 							<td><button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureExamQn?exam_num=${prfsExam.get('exam_num')}&division=1'">시험문제조회</button></td>
-							<td><button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureTakeExamStudent?exam_num${prfsExam.get('exam_num')}'">응시자조회</button></td>
+							<td><button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureTakeExamStudent?exam_num=${prfsExam.get('exam_num')}'">응시자조회</button></td>
 						<tr/>
 					</c:forEach>
 				</tbody>

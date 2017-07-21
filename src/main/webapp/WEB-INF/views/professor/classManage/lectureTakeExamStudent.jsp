@@ -41,7 +41,7 @@
 					<td>${studTe.get("stud_nm") }</td>
 					<td>${studTe.get("stud_hp") }</td>
 					<td>${studTe.get("te_check") }</td>
-					<td><button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureStudentAnswer?te_num=${studTe.get('te_num') }'">보러가기</button></td>
+					<td><button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureStudentAnswer?te_num=${studTe.get('te_num') }&stud_num=${studTe.get('stud_num')}&exam_num=${exam_num }'">보러가기</button></td>
 				</tr>
 			</c:forEach>
 		</tbody>

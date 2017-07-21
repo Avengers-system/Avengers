@@ -98,4 +98,15 @@ public interface ProfessorClassManageDao {
 	public int insertEq(ArrayList<EqVO> eqList) throws SQLException;
 	//응시자 가져오기
 	public ArrayList<Map<String, String>> selectStudTeList(String exam_num) throws SQLException;
+	//소속,학과,학생정보 가져오기
+	public Map<String,String> selectStudColDeptInfo(String stud_num) throws SQLException;
+	//학생답안가져오기
+	public ArrayList<Map<String,String>> selectSaInfoList(Map<String, String> key) throws SQLException;
+	//학생답안 채점결과 업데이트
+	public int updateSa(ArrayList<Map<String, String>> saList) throws SQLException;
+	//학생점수 가져오기
+	public int selectScoreSum(String te_num) throws SQLException;
+	//학생점수 TE테이블에 저장
+	public int updateExamPoint(String te_num) throws SQLException;
+	
 }

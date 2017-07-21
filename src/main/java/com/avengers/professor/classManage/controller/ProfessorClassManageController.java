@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -324,21 +325,7 @@ public class ProfessorClassManageController {
 		
 		return view;
 	}
-	
-//	@RequestMapping("professor/classManage/removeExamEq")
-//	@ResponseBody
-//	public void professorRemoveExamEq(@RequestParam(value="eq_num")String eq_num){
-//		System.out.println("성공");
-//		int result = -1;
-//		
-//		try {
-//			result = pcmService.deleteEqInfo(eq_num);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		
-//	}
+
 	
 	/**
 	 * 시험문제를 등록,수정,삭제를 할 수 있게 하기위한 메소드
@@ -489,7 +476,71 @@ public class ProfessorClassManageController {
 			e.printStackTrace();
 		}
 		model.addAttribute("studTeList", studTeList);
+		model.addAttribute("exam_num", exam_num);
 		return view;
 	}
 	
+	@RequestMapping(value="professor/classManage/lectureStudentAnswer")
+	public String professorLectureStudentAnswer(HttpServletRequest request, Model model){
+		String view="professor/classManage/lectureStudentAnswer";
+		
+		String stud_num = request.getParameter("stud_num");
+		String te_num = request.getParameter("te_num");
+		String exam_num = request.getParameter("exam_num");
+		Map<String, String> studInfo = null;
+		ArrayList<Map<String, String>> saInfoList = null;
+		
+		Map<String, String> key = new HashMap<String, String>();
+		
+		key.put("stud_num", stud_num);
+		key.put("te_num", te_num);
+		
+		try {
+			studInfo = pcmService.selectStudColDeptInfo(stud_num);
+			saInfoList = pcmService.selectSaInfoList(key);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("studInfo", studInfo);
+		model.addAttribute("saInfoList", saInfoList);
+		model.addAttribute("te_num", te_num);
+		model.addAttribute("exam_num", exam_num);
+		return view;
+	}
+	
+	@RequestMapping("professor/classManage/lectureStudentAnswerUpdate")
+	@ResponseBody
+	public String professorLectureStudentAnswerUpdate(HttpServletRequest request
+													,@RequestParam(value="saNumArr[]")List<String> saNumArr
+													,@RequestParam(value="saCheckArr[]")List<String> saCheckArr
+													,@RequestParam(value="te_num")String te_num){
+		ArrayList<Map<String, String>> saList = new ArrayList<Map<String, String>>();
+		for(int i=0; i<saNumArr.size(); i++){
+			Map<String, String> temp = new HashMap<String, String>();
+			temp.put("sa_num", saNumArr.get(i));
+			temp.put("sa_check", saCheckArr.get(i));
+			saList.add(temp);
+		}
+		
+		int result = 0;
+		try {
+			result = pcmService.updateSa(saList);
+			if(result <= 0){
+				return "-1";
+			}
+			
+			result = pcmService.updateExamPoint(te_num);
+			if(result <= 0){
+				return "-1";
+			}
+			
+			result = pcmService.selectScoreSum(te_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "-1";
+		}
+		
+		return String.valueOf(result);
+	}
 }
