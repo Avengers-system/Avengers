@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
 
+import com.avengers.db.dto.AdminVO;
 import com.avengers.db.dto.BoardVO;
 
 /**
@@ -28,8 +29,12 @@ public interface CommonDao {
 	//아이디 찾기(생년월일,이메일,이름)
 	//kinds는 학생,교수,관리자 구분 ,ex)1 학생,2 교수,3 관리자
 	//가입된 이메일로 아이디 전송
-	public String selectId(String name,String bir,String email,int kinds) throws SQLException;
+	public String selectId(String subject, String text, String from, String to,String name) throws SQLException;
 	
 	//비밀번호 찾기
-	public String selectPw(String id,String email) throws SQLException;
+	public String selectPw(String subject, String text, String from, String to,String id,String pwd,String role) throws SQLException;
+	
+	public AdminVO findInfo(AdminVO adminVO);
+	
+	public String findRole(AdminVO adminVO);
 }

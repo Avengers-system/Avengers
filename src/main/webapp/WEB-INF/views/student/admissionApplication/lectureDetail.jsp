@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- Student Header -->
-<%@include file="../common/topCategory.jsp" %>
 	<form>
 		강의번호 : <input type="text" readonly value="${detailLct.get('lct_num') }"/>
 		담당교수 : <input type="text" readonly value="${detailLct.get('prfs_nm')}"/>

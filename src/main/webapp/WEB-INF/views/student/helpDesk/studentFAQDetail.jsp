@@ -4,9 +4,6 @@
 
 
 
-<!-- Student Header -->
-<%@include file="../common/topCategory.jsp" %>
-
 <!-- Content -->
 <!-- Counsel Left Side -->
 <div class="col-md-2">

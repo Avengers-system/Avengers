@@ -136,7 +136,25 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 	
 	
 	
+	<select id="findInfo" parameterType="com.avengers.db.dto.AdminVO" resultType="com.avengers.db.dto.StudVO">
+	SELECT 	STUD_NUM 
+	FROM STUDENT 
+	WHERE STUD_EMAIL=#{admin_email}
+	<if test="admin_nm != null">
+	AND STUD_NM=#{admin_nm}
+	</if>
+	<if test="admin_id != null">
+	AND STUD_NUM=#{admin_id}
+	</if>
 	
+	
+	</select> 
+	
+	<update id="updatePwd" parameterType="com.avengers.db.dto.StudVO">
+	UPDATE STUDENT 
+	SET STUD_PW = #{stud_pw}
+	WHERE  STUD_NUM = #{stud_num} AND STUD_EMAIL = #{std_email}
+	</update> 
 	
 	
 	
