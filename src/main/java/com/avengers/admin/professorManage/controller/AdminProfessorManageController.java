@@ -44,7 +44,6 @@ public class AdminProfessorManageController {
 
 		List<PrfsVO> professorList = null;
 
-		// key??
 		String key = principal.getName();
 		try {
 //			professorList = adminProfessorManageService.selectPrfsList(key, 1,	10);
@@ -101,6 +100,8 @@ public class AdminProfessorManageController {
 	return "redirect:professorManage";	
 	}
 	
+	
+	
 	/**
 	 * 교수수정하기 
 	 * @param commandPrfsVO
@@ -109,33 +110,35 @@ public class AdminProfessorManageController {
 	 * @param multipartFile
 	 * @return
 	 */
-	@RequestMapping(value = "/professorManage/update")
+	@RequestMapping(value = "/updateProfessor")
 	public String updateProfessor(
 						CommandPrfsVO commandPrfsVO,
 						@RequestParam("prfs_num") String prfs_num,
 						MultipartHttpServletRequest request,
-						@RequestParam("prfs_pic") MultipartFile multipartFile
+						@RequestParam("prfs_pic") MultipartFile multipartFile,
+						HttpSession session
 						){
 		
-		String upload = "C:/Users/pc15/git/Avengers/src/main/webapp/resources/admin_professor_images/"
-				+ multipartFile.getOriginalFilename();
+		String upload = session.getServletContext().getRealPath("resources/admin_professor_images");		
 		
-		if (!multipartFile.isEmpty()) {
-			File file = new File(upload, multipartFile.getOriginalFilename()+"$$"+ System.currentTimeMillis());
-
-			PrfsVO prfsVO = new PrfsVO();
-			prfsVO = commandPrfsVO.toPrfsVO();
+		PrfsVO prfsVO = new PrfsVO();
+		
+		prfsVO = commandPrfsVO.toPrfsVO();
+		
+		if (!prfsVO.getPrfs_pic().isEmpty()) {
+			File file = new File(upload, prfsVO.getPrfs_pic());
+ 
 			try {
-				multipartFile.transferTo(file); // 깃 위치로 전송
-			} catch (IllegalStateException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} 
-			
-			try {
-				adminProfessorManageService.updatePrfs(prfsVO, prfs_num);
+				commandPrfsVO.getPrfs_pic().transferTo(file); // 깃 위치로 전송
+				
+				adminProfessorManageService.updatePrfs(prfsVO);
+				
+//				prfsVO.setPrfs_num(adminProfessorManageService.selectPrfsNum());
+//				adminProfessorManageService.insertSecurity(prfsVO);
+				
 			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
@@ -143,7 +146,7 @@ public class AdminProfessorManageController {
 			System.out.println("성공");
 		}
 		
-		return "admin/main/professorManage";
+		return "redirect:professorManage";
 	}
 	
 	

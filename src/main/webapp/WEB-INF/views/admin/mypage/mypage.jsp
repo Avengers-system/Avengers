@@ -3,17 +3,39 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
 <c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
 <c:if test="${!empty message }">
 	<script type="text/javascript">alert('${message}');</script>
 	<c:remove var="message" scope="session"/>
 </c:if>
+
+
+<style>
+ol, ul {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    list-style: none;
+}
+
+#calendar {
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+</style>
+
+
+
+
 <h1>mypage</h1>
+
 <button onclick="myInfo_go()">개인정보</button><br/>
 <button onclick="mySchedule_go()">개인일정관리</button><br/>
+
+
 <br/>
-<br/>
-<br/>
+
 <div class="mypage">
 <c:choose>
 	<c:when test="${not empty admin}">

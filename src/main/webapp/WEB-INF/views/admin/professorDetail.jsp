@@ -91,13 +91,13 @@ div.input-group>span.input-group-addon{
 				</div>		
 		<hr />
 		
-	</form>
 			<div class="col-md-5 detailBtn">
 				<input type="submit" value="수정하기" >
 			</div>
 			<div class="col-md-5 detailBtn">
 				<button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/admin/deleteProfessor?prfs_num=${professor.prfs_num}'">삭제하기</button>
 			</div>
+	</form>
 		
 	</div>
 </div>

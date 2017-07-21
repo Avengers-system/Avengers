@@ -150,6 +150,9 @@ public class AdminMypageController {
 		return url;
 	}
 	
+	
+	
+//	★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	/**
 	 * 개인일정 조회
 	 * @param principal
@@ -163,7 +166,7 @@ public class AdminMypageController {
 			Model model){
 		String scheduleId = principal.getName(); 
 		ArrayList<PerschdVO> perschdList = null;
-		String url="/admin/mypage/mypage";
+		String url="/admin/mypage/mySchedule";
 		String message="";
 		try {
 			perschdList =  myPageService.selectPerschdList(scheduleId);

@@ -43,8 +43,8 @@ public class AdminProfessorManageServiceImpl implements AdminProfessorManageServ
 	 
 	
 	@Override
-	public int updatePrfs(PrfsVO prfsVO, String prfs_num) throws SQLException {
-		int result = proDAO.updatePrfs(prfsVO, prfs_num);
+	public int updatePrfs(PrfsVO prfsVO) throws SQLException {
+		int result = proDAO.updatePrfs(prfsVO);
 		return result;
 	}
 
