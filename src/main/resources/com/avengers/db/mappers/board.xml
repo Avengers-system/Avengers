@@ -44,23 +44,8 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 	delete from board where board_num=#{board_num}
 </delete>
 
-
-
-
-
-
-
-
-
-
-
-	
 	<!-- 게시판중 포탈공지사항을 검색하는 구문  -->	
 
-
-	<select id="selectPortalNoticeList" resultType="com.avengers.db.dto.BoardVO">
-		SELECT * FROM BOARD WHERE BOARD_BC='PORTAL' 
-	</select>
 	
 	<select id="selectBoardOne" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
 		SELECT
@@ -131,10 +116,9 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 					 
 	</update>
 	
-	<!-- 게시판중 학교공지사항을 검색하는 구문  -->	
-	<select id="selectSchoolNoticeList" parameterType="java.lang.String" >
-		SELECT * FROM BOARD WHERE BOARD_BC='UNIV'  
-	</select>
+	<select id="selectPortalNoticeList" resultType="com.avengers.db.dto.BoardVO">
+      SELECT * FROM BOARD WHERE BOARD_BC='PORTAL' 
+   </select>
 	
 	<!-- 다름 -->
 	<select id="selectBoardNoticeList" parameterType="map" resultType="com.avengers.db.dto.BoardVO">
