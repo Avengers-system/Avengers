@@ -2,7 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:if test="${not empty error}">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+
+<body id="mimin" class="dashboard form-signin-wrapper bg-white">
+	<c:if test="${not empty error}">
 		<div
 			class="alert alert-warning col-md-12 col-sm-12 alert-icon alert-dismissible fade in"
 			role="alert">
@@ -53,37 +59,43 @@
 		</div>
 	</c:if>
 
-<div class="container">
-	<form class="form-signin" action="<c:url value='/loginForm'/>" method="post">
-		<div class="panel periodic-login">
-			<span class="atomic-number">&copy;Avengers</span>
-			<div class="panel-body text-center">
-				<h1 class="atomic-symbol">A</h1>
-				<p class="atomic-mass">학사관리시스템</p>
-				<p class="element-name">UNIVERSITY</p>
-				<i class="icons icon-arrow-down"></i>
-				<div class="form-group form-animate-text"
-					style="margin-top: 40px !important;">
-					<input type="text" name ="id" class="form-text" required>
-					<span class="bar"></span>
-					<label>Username</label>
-				</div>
-				<div class="form-group form-animate-text"
-					style="margin-top: 40px !important;">
-					<input type="password" name="pwd" class="form-text" required>
-					 <span class="bar"></span> <label>Password</label>
-				</div>
-				<input type="submit" class="btn col-md-12" value="SignIn"/>
-			</div>
-			<div class="text-center" style="padding: 5px;">
-				<a href="${pageContext.request.contextPath}/forgotUsername">Forgot Username</a>
-				<a href="${pageContext.request.contextPath}/forgotPassword">| Password</a>
-			</div>
-		</div>
-	</form>
-</div>
 
-<div class="modal fade" id="findId">
+
+	<div class="container">
+
+		<form class="form-signin" action="<c:url value='/loginForm'/>"
+			method="post">
+			<div class="panel periodic-login">
+				<span class="atomic-number"></span>
+				<div class="panel-body text-center">
+					<p class="atomic-mass">HANVARD</p>
+					<p class="atomic-mass">UNIVERSITY</p>
+					<p class="element-name"></p>
+
+
+					<div class="form-group form-animate-text"
+						style="margin-top: 40px !important;">
+						<input type="text" class="form-text" required name="id"> <span
+							class="bar"></span> <label>아이디</label>
+					</div>
+					<div class="form-group form-animate-text"
+						style="margin-top: 40px !important;">
+						<input type="password" class="form-text" required name="pwd">
+						<span class="bar"></span> <label>비밀번호</label>
+					</div>
+					<input type="submit" class="btn col-md-12" value="로그인" />
+				</div>
+				<div class="text-center" style="padding: 5px;">
+					<a href="#" data-toggle="modal" data-target="#findId">아이디찾기&nbsp;&nbsp;&nbsp;</a>
+					<a href="a" data-toggle="modal" data-target="#findPwd">비밀번호
+						찾기 </a>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+	<div class="modal fade" id="findId">
 		<div class="modal-dialog">
 			<form action="<c:url value='/findId'/>" method="post">
 				<div class="modal-content">
@@ -152,7 +164,18 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
-	
+
+	<!-- end: Content -->
+	<!-- start: Javascript -->
+	<script src="asset/js/jquery.min.js"></script>
+	<script src="asset/js/jquery.ui.min.js"></script>
+	<script src="asset/js/bootstrap.min.js"></script>
+
+	<script src="asset/js/plugins/moment.min.js"></script>
+	<script src="asset/js/plugins/icheck.min.js"></script>
+
+	<!-- custom -->
+	<script src="asset/js/main.js"></script>
 	<script type="text/javascript">
       		
       
@@ -163,4 +186,7 @@
 								});
 							});
 						</script>
-
+	<!-- end: Javascript -->
+</body>
+</html>
+  
