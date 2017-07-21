@@ -42,6 +42,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/bootstrap-material-datetimepicker.css"/>
   <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
   <!-- end: Css -->
+
 </head>
 
 <style>
