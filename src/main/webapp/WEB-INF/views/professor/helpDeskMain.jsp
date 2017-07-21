@@ -8,10 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 </head>
-
-<style>
-<<<<<<< HEAD
-</style>
+ 
 
 <body>
 헬프데스크메인<br><hr color="orange">

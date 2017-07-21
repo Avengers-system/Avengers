@@ -152,5 +152,12 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 	}
 
 
+	@Override
+	public void writeStudentFAQ(BoardVO boardVO) {
+
+		sqlSession.insert("board.writeStudentFAQ",boardVO);
+	}
+
+
 
 }

@@ -1,7 +1,10 @@
 package com.avengers.admin.professorManage.serviceImpl;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,15 +36,15 @@ public class AdminProfessorManageServiceImpl implements AdminProfessorManageServ
 	
 	@Override
 	public int insertPrfs(PrfsVO prfsVO) throws SQLException {
-		int result = proDAO.insertPrfs(prfsVO);
+			int result = proDAO.insertPrfs(prfsVO);
 		return result;
 	}
 
 	 
 	
 	@Override
-	public int updatePrfs(PrfsVO prfsVO, String prfs_num) throws SQLException {
-		int result = proDAO.updatePrfs(prfsVO, prfs_num);
+	public int updatePrfs(PrfsVO prfsVO) throws SQLException {
+		int result = proDAO.updatePrfs(prfsVO);
 		return result;
 	}
 

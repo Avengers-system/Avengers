@@ -65,27 +65,20 @@ public class ProfessorMainController {
 			//아래로직들은 모두 그저 보여주기위해 필요한 정보를 검색해서 model.addAttribute로 넣어주는 단순반복 작업에 지나지않는다.
 			//그냥 아~ 이렇게 쓰면 이렇게 들어가는구나 하고 알아두기만 하길 바란다.
 			ArrayList<PerschdVO> perschdList = professorMainService.selectPerschdList(prfs_num);
-			System.out.println("1");
 			List<HashMap<String,String>> lctList= professorMainService.selectLctList(prfs_num, lct_yr, lct_qtr);
-			System.out.println("2");
 			ArrayList<CnsVO> cnsList  = professorMainService.selectCnsList(prfs_num);
-			System.out.println("3");
-//			ArrayList<BoardVO> portalNoticeList  = professorMainService.selectPortalNoticeList();
-//			System.out.println("4");
+			ArrayList<BoardVO> portalNoticeList  = professorMainService.selectPortalNoticeList();
 //			ArrayList<BoardVO> schoolNoticeList  = professorMainService.selectSchoolNoticeList();
-//			System.out.println("5");
 //			ArrayList<BoardVO> departmentNoticeList  = professorMainService.selectDepartmentNoticeList(bc_dept);
-//			System.out.println("6");
-//			ArrayList<PerschdVO> schoolScheduleList  = professorMainService.selectSchoolScheduleList();
-			System.out.println("7");
+			ArrayList<PerschdVO> schoolScheduleList  = professorMainService.selectSchoolScheduleList();
 			model.addAttribute("prfs",prfs );
 			model.addAttribute("perschdList",perschdList );
 			model.addAttribute("lctList",lctList );
 			model.addAttribute("cnsList",cnsList );
-//			model.addAttribute("portalNoticeList",portalNoticeList );
+			model.addAttribute("portalNoticeList",portalNoticeList );
 //			model.addAttribute("schoolNoticeList",schoolNoticeList );
 //			model.addAttribute("departmentNoticeList",departmentNoticeList );
-//			model.addAttribute("schoolScheduleList",schoolScheduleList );
+			model.addAttribute("schoolScheduleList",schoolScheduleList );
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NullPointerException e){

@@ -27,12 +27,14 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 	public StudVO selectStud(String stud_num) throws SQLException {
 		StudVO studVO = null;
 		studVO = (StudVO)sqlSession.selectOne("student.selectStud",stud_num);
+		System.out.println();
 		return studVO;
 	}
 
 	@Override
 	public int insertStud(StudVO studVO) throws SQLException {
 		int result = sqlSession.insert("admin.insertStudent",studVO);
+		System.out.println("학생등록성공????"+result);
 		return result;
 	}
 
@@ -59,7 +61,7 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 	@Override
 	public String selectStudNum() throws SQLException {
 		String stud_num = (String) sqlSession.selectOne("admin.studNumCurr");
-		System.out.println(stud_num);
+		System.out.println("빨리나와"+stud_num);
 		return stud_num;
 	}
 	@Override

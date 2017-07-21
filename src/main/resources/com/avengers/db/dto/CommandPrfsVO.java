@@ -31,6 +31,9 @@ public class CommandPrfsVO {
 	private String prfs_hp;// 휴대폰번호
 	private String prfs_dept;// 학과번호
 
+	
+
+	
 	public String getPrfs_num() {
 		return prfs_num;
 	}
@@ -55,7 +58,6 @@ public class CommandPrfsVO {
 		this.prfs_eng_nm = prfs_eng_nm;
 	}
 
-	
 	public String getPrfs_bir() {
 		return prfs_bir;
 	}
@@ -175,7 +177,9 @@ public class CommandPrfsVO {
 		prfsVO.setPrfs_ah(prfs_ah);
 		prfsVO.setPrfs_bank(prfs_bank);
 		try {
-			prfsVO.setPrfs_bir(new SimpleDateFormat("yyyy-mm-dd").parse(prfs_bir));
+			
+			Date prfs_bir_date=new SimpleDateFormat("yyyy-MM-dd").parse(prfs_bir);
+			prfsVO.setPrfs_bir(prfs_bir_date);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -190,8 +194,17 @@ public class CommandPrfsVO {
 		prfsVO.setPrfs_regno(prfs_regno);
 		prfsVO.setPrfs_tel(prfs_tel);
 		prfsVO.setPrfs_zip(prfs_zip);
-		prfsVO.setPrfs_pic(prfs_pic.getOriginalFilename());  
+		prfsVO.setPrfs_pic(prfs_pic.getOriginalFilename());
+		
+		
 		return prfsVO;
+	}
+	
+	@Override
+	public String toString(){
+		return  prfs_num+"   "+prfs_nm+"   "+prfs_eng_nm+"   "+
+				"   "+prfs_bir+"   "+prfs_email+"   "+prfs_pw+"   "+prfs_regno+"   "+prfs_gen+"   "+prfs_pic+"   "+prfs_act_num+
+				"   "+prfs_bank+"   "+prfs_ah+"   "+prfs_addr+"   "+prfs_zip+"   "+prfs_tel+"   "+prfs_hp+"   "+prfs_dept;
 	}
 
 }

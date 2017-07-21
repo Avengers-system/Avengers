@@ -32,51 +32,27 @@
   <!-- plugins -->
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/font-awesome.min.css"/>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/animate.min.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/mediaelementplayer.css"/>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/nouislider.min.css"/>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/select2.min.css"/>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/simple-line-icons.css"/>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/ionrangeslider/ion.rangeSlider.css"/>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/ionrangeslider/ion.rangeSlider.skinFlat.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/fullcalendar.min.css"/>
+  <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/fullcalendar.min.css"/>  --%>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/bootstrap-material-datetimepicker.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/datatables.bootstrap.min.css"/>
   <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
+  
+  
+<!-- 풀캘린더 -->
+<link href='${pageContext.request.contextPath}/resources/css/full_calender/base.css' rel='stylesheet' />
+<link rel='stylesheet' href='${pageContext.request.contextPath}/resources/css/full_calender/fullcalendar.min.css' />
+  
+  
   <!-- end: Css -->
+
 </head>
 
-<style>
-/* #commonHeader{ */
-/* 	background-color: #F8F8F8; */
-/* 	border-radius: 20px;  */
-/* 	min-height: 80px; */
-/* } */
-/* #commonContent{ */
-/* 	background-color: lightgray;  */
-/* 	min-height:960px; */
-/* } */
-/* #commonFooter{ */
-/*  	background-color: red;  */
-/* 	min-height: 60px; */
-/* } */
-/* #commonUserHeader{ */
-/*  	background-color: orange;  */
-/* 	min-height: 80px; */
-/* } */
-/* #commonLeftSide{ */
-/*  	background-color: blue;  */
-/* 	min-height: 900px; */
-/* } */
-/* #commonRightSide{ */
-/*  	background-color: lightblue;  */
-/* 	min-height: 900px; */
-/* } */
-
-/* #commonUserHeader>ul>li{ */
-/* 	font-size: 28px; */
-/* } */
-/* #commonHeaderSort{ */
-/* 	padding-top: 10px; */
-/* } */
-</style>
 
 <body >
 <!-- Common Header -->
@@ -101,7 +77,6 @@
 		<tiles:insertAttribute name="footer" />
     </div>
 </div>	
-
   <!-- start: Javascript -->
     <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.ui.min.js"></script>
@@ -110,7 +85,7 @@
     
   <!-- plugins -->
   
-<script src="${pageContext.request.contextPath}/resources/js/plugins/moment.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/plugins/moment.min.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/plugins/jquery.knob.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/plugins/ion.rangeSlider.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/plugins/bootstrap-material-datetimepicker.js"></script>
@@ -120,5 +95,13 @@
 <script src="${pageContext.request.contextPath}/resources/js/plugins/nouislider.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/plugins/jquery.validate.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+
+
+
+<script src='${pageContext.request.contextPath}/resources/js/full_calender/moment.min.js'></script>
+<script src='${pageContext.request.contextPath}/resources/js/full_calender/jquery-ui.min.js'></script>
+<script src='${pageContext.request.contextPath}/resources/js/full_calender/fullcalendar.min.js'></script>
+<script src='${pageContext.request.contextPath}/resources/js/full_calender/ko.js'></script>
+
 </body>
 </html>

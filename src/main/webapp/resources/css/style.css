@@ -217,7 +217,7 @@ p.quote{
   background-color: transparent;
   background-image: none;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-  cursor: not-allowed;
+/*   cursor: not-allowed; */
 }
 .megamenu.dropdown-header {
   color: #428bca;

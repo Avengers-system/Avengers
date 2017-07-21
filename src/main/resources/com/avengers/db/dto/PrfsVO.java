@@ -8,7 +8,7 @@ import java.util.Date;
  * @author 조영훈 2017.07.10 최초작성
  *
  */
-public class PrfsVO {
+public class PrfsVO extends PageVO{
 	private String prfs_num; // 교수번호
 	private String prfs_nm;// 이름
 	private String prfs_eng_nm;// 영문이름

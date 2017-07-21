@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +44,6 @@ public class AdminProfessorManageController {
 
 		List<PrfsVO> professorList = null;
 
-		// key??
 		String key = principal.getName();
 		try {
 //			professorList = adminProfessorManageService.selectPrfsList(key, 1,	10);
@@ -95,8 +97,10 @@ public class AdminProfessorManageController {
 			String msg = "삭제 완료되었습니다.";
 			model.addAttribute("msg",msg);
 		}
-	return "admin/main/professorManage";	
+	return "redirect:professorManage";	
 	}
+	
+	
 	
 	/**
 	 * 교수수정하기 
@@ -106,33 +110,35 @@ public class AdminProfessorManageController {
 	 * @param multipartFile
 	 * @return
 	 */
-	@RequestMapping(value = "/professorManage/update")
+	@RequestMapping(value = "/updateProfessor")
 	public String updateProfessor(
 						CommandPrfsVO commandPrfsVO,
 						@RequestParam("prfs_num") String prfs_num,
 						MultipartHttpServletRequest request,
-						@RequestParam("prfs_pic") MultipartFile multipartFile
+						@RequestParam("prfs_pic") MultipartFile multipartFile,
+						HttpSession session
 						){
 		
-		String upload = "C:/Users/pc15/git/Avengers/src/main/webapp/resources/admin_professor_images/"
-				+ multipartFile.getOriginalFilename();
+		String upload = session.getServletContext().getRealPath("resources/admin_professor_images");		
 		
-		if (!multipartFile.isEmpty()) {
-			File file = new File(upload, multipartFile.getOriginalFilename()+"$$"+ System.currentTimeMillis());
-
-			PrfsVO prfsVO = new PrfsVO();
-			prfsVO = commandPrfsVO.toPrfsVO();
+		PrfsVO prfsVO = new PrfsVO();
+		
+		prfsVO = commandPrfsVO.toPrfsVO();
+		
+		if (!prfsVO.getPrfs_pic().isEmpty()) {
+			File file = new File(upload, prfsVO.getPrfs_pic());
+ 
 			try {
-				multipartFile.transferTo(file); // 깃 위치로 전송
-			} catch (IllegalStateException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} 
-			
-			try {
-				adminProfessorManageService.updatePrfs(prfsVO, prfs_num);
+				commandPrfsVO.getPrfs_pic().transferTo(file); // 깃 위치로 전송
+				
+				adminProfessorManageService.updatePrfs(prfsVO);
+				
+//				prfsVO.setPrfs_num(adminProfessorManageService.selectPrfsNum());
+//				adminProfessorManageService.insertSecurity(prfsVO);
+				
 			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
@@ -140,7 +146,7 @@ public class AdminProfessorManageController {
 			System.out.println("성공");
 		}
 		
-		return "admin/main/professorManage";
+		return "redirect:professorManage";
 	}
 	
 	
@@ -152,13 +158,28 @@ public class AdminProfessorManageController {
 	 */
 	@RequestMapping(value = "/insertProfessor")
 	public String insertProfessor(CommandPrfsVO commandPrfsVO,
-			HttpSession session
-//			, @RequestParam("prfs_pic") MultipartFile multipartFile) {
-			){
+			HttpSession session	){
 
-		PrfsVO prfsVO = new PrfsVO();
-		prfsVO = commandPrfsVO.toPrfsVO();
+		PrfsVO prfsVO = commandPrfsVO.toPrfsVO();		
 
+		//System.out.println("학과 :  "+prfsVO.getPrfs_dept());
+		//System.out.println("생년월일 :  "+prfs_bir);
+
+		//SimpleDateFormat sdf1 = new SimpleDateFormat("yy-mm-dd");
+		//SimpleDateFormat sdf2 = new SimpleDateFormat("yy/mm/dd");
+	    //String input = prfs_bir;
+	    
+	    /*try {
+			Date date = sdf1.parse(input);
+			System.out.println(sdf2.format(date));
+			String date2 = sdf2.format(date);
+			date = sdf2.parse(date2);
+			prfsVO.setPrfs_bir(date);
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}*/
+
+	    
 		// 깃 경로 (동일)
 		String upload = session.getServletContext().getRealPath("resources/admin_professor_images");		
 		

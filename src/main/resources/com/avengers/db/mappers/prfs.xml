@@ -7,14 +7,80 @@
 
 	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
 	<select id="selectPrfs" parameterType="java.lang.String" resultType="com.avengers.db.dto.PrfsVO">
-		SELECT * FROM PROFESSOR WHERE PRFS_NUM=#{prfs_num}  
+		SELECT * FROM professor WHERE PRFS_NUM=#{prfs_num}  
 	</select>
 
  	<select id="selectCount" resultType="java.lang.String">
-		SELECT COUNT(*) FROM PROFESSOR	
+		SELECT COUNT(*) FROM professor	
 	</select>
 
+	<update id="updatePrfs" parameterType="java.lang.String" >
+		UPDATE professor
+		SET 
+		PRFS_NM = #{prfs_nm},
+		PRFS_ENG_NM = #{prfs_eng_nm},
+		PRFS_BIR =#{prfs_bir},
+		PRFS_EMAIL =#{prfs_email},
+		PRFS_PW =#{prfs_pw},
+		PRFS_REGNO =#{prfs_regno},
+		PRFS_GEN =#{prfs_gen},
+		PRFS_PIC =#{prfs_pic},
+		PRFS_ACT_NUM =#{prfs_act_num},
+		PRFS_BANK =#{prfs_bank},
+		PRFS_AH =#{prfs_ah},
+		PRFS_ADDR=#{prfs_addr},
+		PRFS_ZIP=#{prfs_zip},
+		PRFS_TEL=#{prfs_tel},
+		PRFS_HP=#{prfs_hp},
+		PRFS_DEPT=#{prfs_dept} 
+		where PRFS_NUM = #{prfs_num};
+	
+	</update>
+
+
  	<select id="selectAllPrfs" resultType="com.avengers.db.dto.PrfsVO">
-		SELECT * FROM PROFESSOR	
+		SELECT 
+			PRFS_NUM,
+			PRFS_NM,
+			PRFS_ENG_NM,
+			PRFS_BIR,
+			PRFS_EMAIL,
+			PRFS_PW,
+			PRFS_REGNO,
+			PRFS_GEN,
+			PRFS_PIC,
+			PRFS_ACT_NUM,
+			PRFS_BANK,
+			PRFS_AH,
+			PRFS_ADDR,
+			PRFS_ZIP,
+			PRFS_TEL,
+			PRFS_HP,
+						(
+							SELECT DEPT_NM FROM DEPARTMENT 
+							where DEPT_NUM = PRFS_DEPT
+						)AS prfs_dept,
+			ENABLED,
+			AUTHORITY
+			FROM PROFESSOR P
 	</select>
+	
+	<select id="findInfo" parameterType="com.avengers.db.dto.AdminVO" resultType="com.avengers.db.dto.PrfsVO">
+	SELECT 	PRFS_NUM 
+	FROM PROFESSOR 
+	WHERE PRFS_EMAIL=#{admin_email}
+	<if test="admin_nm != null">
+	AND PRFS_NM=#{admin_nm}
+	</if>
+	<if test="admin_id != null">
+	AND PRFS_NUM=#{admin_id}
+	</if>
+	</select> 
+	
+	<update id="updatePwd" parameterType="com.avengers.db.dto.PrfsVO">
+	UPDATE PROFESSOR 
+	SET PRFS_PW = #{prfs_pw}
+	WHERE  PRFS_NUM = #{prfs_num} AND PRFS_EMAIL = #{prfs_email}
+	</update> 
+	
 </mapper>
