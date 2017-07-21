@@ -41,7 +41,7 @@
 	          ,L.LOA_STUD "학번"
 	    FROM LOA L,RTS R
 	    WHERE L.LOA_STUD = #{loa_stud}
-	    AND L.LOA_STUD = R.RTS_STUD;
+	    AND L.LOA_STUD = R.RTS_STUD
 	</select>
 
 

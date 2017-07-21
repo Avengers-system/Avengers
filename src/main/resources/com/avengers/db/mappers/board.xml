@@ -116,6 +116,9 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 					 
 	</update>
 	
+	<select id="selectPortalNoticeList" resultType="com.avengers.db.dto.BoardVO">
+      SELECT * FROM BOARD WHERE BOARD_BC='PORTAL' 
+   </select>
 	
 	<!-- 다름 -->
 	<select id="selectBoardNoticeList" parameterType="map" resultType="com.avengers.db.dto.BoardVO">
