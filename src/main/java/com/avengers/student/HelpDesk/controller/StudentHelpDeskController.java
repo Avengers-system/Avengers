@@ -86,15 +86,6 @@ public class StudentHelpDeskController {
 		}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		service.updateStudentFAQ(boardVO);
 		
 		BoardVO detail = service.getStudentFAQDetail(boardVO.getBoard_num());

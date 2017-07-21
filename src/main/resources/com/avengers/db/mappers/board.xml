@@ -11,7 +11,7 @@
         <if test="searchFiled != null and searchFiled != ''">
             AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
         </if>
-</select>
+	</select>
  
 <select id="getFAQList" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO">
     SELECT 

@@ -3,11 +3,13 @@ package com.avengers.professor.studentManage.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.CnsVO;
+import com.avengers.db.dto.PrfsVO;
 import com.avengers.db.dto.StudVO;
 import com.avengers.professor.studentManage.dao.ProfessorStudentManageDao;
 import com.avengers.professor.studentManage.service.ProfessorStudentManageService;
@@ -69,6 +71,19 @@ public class ProfessorStudentManageServiceImpl implements ProfessorStudentManage
 
 		CnsVO vo = proStuDAO.cnsDetail(cns_num);
 		return vo;
+	}
+
+	@Override
+	public List<StudVO> getDepartmentStudentList(PrfsVO prfsVO) throws SQLException {
+
+		
+		return proStuDAO.getDepartmentStudentList(prfsVO);
+	}
+
+	@Override
+	public int getDepartmentStudentListCount(PrfsVO prfsVO) throws SQLException {
+		
+		return proStuDAO.getDepartmentStudentListCount(prfsVO);
 	}
 
 
