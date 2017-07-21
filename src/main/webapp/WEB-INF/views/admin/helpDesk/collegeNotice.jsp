@@ -63,8 +63,7 @@
 				<div class="responsive-table">
 					<div class="row">
 
-						<form
-							action="<%=request.getContextPath()%>/admin/collegeSearch?board_title=${collegeSearch.board_title}">
+						<form action="<%=request.getContextPath()%>/admin/collegeSearch?board_title=${collegeSearch.board_title}">
 							<div style="text-align: right; margin-right: 28px; margin-top:13px; margin-bottom: -20px; ">
 							
 							<a href="<%=request.getContextPath()%>/admin/collegeWriteForm">글쓰기</a></div>

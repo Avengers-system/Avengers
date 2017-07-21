@@ -7,17 +7,6 @@
 <c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
 <!-- Admin Header -->
 <%@include file="../common/topCategory.jsp"%>
-<button id="adminMain" onclick="adminMain_go()">관리자</button><br/>
-<button id="myPage" onclick="mypage_go()">mypage</button>
-<button id="profPage" onclick="location.href='${pageContext.request.contextPath}/admin/professorManage'" >교수관리</button>
-<button id="studPage" onclick="location.href='${pageContext.request.contextPath}/admin/studentManage'">학생관리</button>
-<button id="classPage">강의관리</button>
-<button id="boardPage">HelpDesk</button>
-<button id="logout" onclick="logout_go()">로그아웃</button><br/>
-<br/>
-<br/>
-<br/>
-<br/>
 <h1>관리자 정보 출력</h1>
 아이디 : ${admin.admin_id}<br/>
 이름 : ${admin.admin_nm}<br/>
