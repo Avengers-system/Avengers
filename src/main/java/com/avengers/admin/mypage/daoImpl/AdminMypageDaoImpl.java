@@ -49,7 +49,8 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 
 	@Override
 	public int insertPerschd(PerschdVO perschdVO)throws SQLException {
-		return 0;
+		int result = sqlSession.insert("perschd.insertSchd",perschdVO);
+		return result;
 	}
 
 	@Override
