@@ -18,6 +18,22 @@
 		WHERE PERSCHD_WRITER = #{perschd_writer}
 	</select>
 	
+	<select id="selectSchdTitle" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
+		SELECT
+			PERSCHD_NUM,
+			PERSCHD_TITLE,
+			PERSCHD_CONT,
+			TO_CHAR(PERSCHD_DATE,'YYYY-MM-DD HH24:MI:SS'),
+			PERSCHD_START_DATE,
+			PERSCHD_END_DATE,
+			PERSCHD_WRITER
+		FROM PERSCHD
+		WHERE PERSCHD_TITLE = #{perschd_title}
+	
+	
+	</select>
+
+
 
 	<select id="selectSchoolScheduleList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
 		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER='UNIV' 
@@ -27,12 +43,40 @@
 		SELECT * FROM PERSCHD WHERE PERSCHD_NUM=#{perschd_num} 
 	</select>
 	
+	
+	<insert id="insertSchd" parameterType="com.avengers.db.dto.PerschdVO">
+	
+		INSERT 
+			INTO PERSCHD
+			(
+			 	PERSCHD_NUM,
+				PERSCHD_TITLE,
+				PERSCHD_CONT,
+				PERSCHD_DATE,
+				PERSCHD_START_DATE,
+				PERSCHD_END_DATE,
+				PERSCHD_WRITER
+			) VALUES (
+				PERSCHD_SEQ.nextval,
+				#{perschd_title},
+				#{perschd_cont},
+				SYSDATE,
+				TO_DATE(#{perschd_start_date},'YYYY-MM-DD'),
+				TO_DATE(#{perschd_end_date},'YYYY-MM-DD'),
+				#{perschd_writer}
+			)
+			
+	</insert>
+	
+	
+	
 	<update id="updateSchd" parameterType="com.avengers.db.dto.PerschdVO">
 		UPDATE PERSCHD
-		SET PERSCHD_TITLE = #{perschd_title},
+		SET 
+			PERSCHD_TITLE = #{perschd_title},
 			PERSCHD_CONT= #{perschd_cont},
-			PERSCHD_START_DATE = TO_DATE(#{perschd_start_date},'YYYY-MM-DD HH24:MI:SS'),
-			PERSCHD_END_DATE = TO_DATE(#{perschd_end_date},'YYYY-MM-DD HH24:MI:SS')
+			PERSCHD_START_DATE = TO_DATE(#{perschd_start_date},'YYYY-MM-DD'),
+			PERSCHD_END_DATE = TO_DATE(#{perschd_end_date},'YYYY-MM-DD')
 		WHERE PERSCHD_NUM=#{perschd_num} 
 	</update>
 	

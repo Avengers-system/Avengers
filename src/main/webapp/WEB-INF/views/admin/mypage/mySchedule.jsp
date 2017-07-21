@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.List"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
@@ -57,10 +58,36 @@ ol, ul {
 }
 </style>
 
+
+
+	<!-- Admin Header -->
+	<%@include file="../common/topCategory.jsp"%>
+	
+		<!-- Content -->
+		<div class="col-md-2" id="commonLeftSide">
+			<%@include file="../common/mainSideCategory.jsp" %>
+		</div>
+
+		<div class="col-md-10" id="commonRightSide">
+
+		<div id='body' class='section' >
+		<div>
+			<div class='two-col'>
+			
+			<div class="col-md-3 col-md-offset-9" style="padding-left:0px;">
+				<a href="#" class="button" data-toggle="modal" data-target="#addSchedule">일정등록 </a>
+			
+				</div>
+			
+			
+					<div id='calendar'></div>
+				</div>
+			</div>
+		</div>
+
 <script>
  
 	$(function() {
-	
 		var id; 
 		
 		var todayDate = moment().startOf('day');
@@ -80,59 +107,69 @@ ol, ul {
 			editable: false, //마우스로 일정을 움직일 수 있음. 사용자는 캘린더를 보기만 하기 때문에 false
 			eventLimit: false,//하루에 이벤트가 3개이상이면 more표시로 줄여주는 기능 다 보여줘야하기 때문에 false
 			events: [
+			     
+							<%
+							
+							List<PerschdVO> perschdList = (List<PerschdVO>)request.getAttribute("perschdList");
+							%>
+							<%for(int i=0; i<perschdList.size();i++){
+								if(i>0) out.print(",");
+								PerschdVO perschdVO = perschdList.get(i);
+							%>
 			     { 
-			    	 title:'3',
-			         start:'admin',
-			         end:''
+			    	 title: '<%=perschdVO.getPerschd_title() %>',
+			         start:'<%=perschdVO.getPerschd_start_date() %>',
+			         end:'<%=perschdVO.getPerschd_end_date() %>',
+			         content:'<%=perschdVO.getPerschd_cont() %>',
+			    	 time:'<%=perschdVO.getPerschd_date() %>'
 			     }
 			     
+			    		<%
+			    		System.out.println(perschdVO.getPerschd_end_date()+"!!!");
+							}
+			    		%> 
 			],
-			    
-			 
+			eventClick:function(event) {
+				
+				$.ajax({
+					url  : 'myScheduleDetail',
+					type : 'post',
+					data : "perschd_title="+event.title,
+					success : function(perschd){						
+					$('#perschd_num').val(perschd.perschd_num);
+					$('#perschd_writer').val(perschd.perschd_writer);
+					$('#perschd_title').val(perschd.perschd_title);
+					$('#perschd_start_date').val(perschd.perschd_start_date);
+					$('#perschd_end_date').val(perschd.perschd_end_date);
+					$('#perschd_cont').val(perschd.perschd_cont);
+// 					$('#perschd_date').val(perschd.perschd_date);
+					
+					},
+					error: function(){
+						alert("error");
+					}
+				})
+
+				//모달불러오기 
+				$(this).attr("data-toggle","modal");
+				$(this).attr("data-target","#editSchedule");
+            }
 	});
 		
-		
-		
-			//수정하는 모달창 열기		
-		$('.fc-event-container').click(function(){
-// 			$('#editSchdule').modal();
-
-// 			$(this).attr("href","updateEventForm?id=${event.id }");
-			$(this).attr("data-toggle","modal");
-			$(this).attr("data-target","#editSchedule");
+			
 		})
+ 
 		
+	function deleteSchd(){
+		myForm.method="post";
+		myForm.action="myScheduleDelete";
+		myForm.submit();
+	}
 		
-	});
-
-	
-	
 	</script>
 
 
-	<!-- Admin Header -->
-	<%@include file="../common/topCategory.jsp"%>
-	
-		<!-- Content -->
-		<div class="col-md-2" id="commonLeftSide">
-			<%@include file="../common/mainSideCategory.jsp" %>
-		</div>
-
-		<div class="col-md-10" id="commonRightSide">
-
-		<div id='body' class='section' >
-		<div>
-			<div class='two-col'>
-					<div id='calendar'></div>
-				</div>
-			</div>
-		</div>
-	
-	<a href="#" class="button" data-toggle="modal" data-target="#addSchedule">일정등록 </a>
-<!-- 	<a href="modalTest"><button>일정등록</button></a> -->
-
-
-<!-- 수정용모달창 -->
+<!-- 상세보기&수정 모달 -->
 
 <div class="modal fade" id="editSchedule">
       <div class="modal-dialog">
@@ -141,53 +178,52 @@ ol, ul {
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                </button>
-               <h4 class="modal-title">Edit schedule</h4>
+               <h4 class="modal-title">일정 상세보기</h4>
             </div>
             <div class="modal-body">
             	<div class="row"> 
 				            <div class="col-md-12">
 				            <div class="col-md-8 col-md-offset-2">
-			            	<form action="updateEvent?id=${event.perschd_num}" method="POST">
+			            	<form action="myScheduleUpdate" method="POST" name="myForm" >
+			            	
 			            	<ul>
-									<input type="hidden" class="form-control" name="perschd_num" value="${event.perschd_num}" >
+									<input id="perschd_num" type="hidden" class="form-control" name="perschd_num" value="" >
+									<input id="perschd_writer" type="hidden"  name="perschd_writer" value="" class="form-control" >
 			            		<li>
 				            		<label class='control-label'>title</label>
-									<input type="text" class="form-control" name="perschd_title" value="${event.perschd_title}" >
+									<input id="perschd_title" type="text" class="form-control" name="perschd_title" value="" >
 			            		</li>
 			            		<li>
 				            		<label class='control-label'>start date</label>
-									<input type="date"  name="perschd_start_date" value="${event.perschd_start_date}" class="form-control" >
-			            		</li>
-			            		<li>
-				            		<label class='control-label'>start date</label>
-									<input type="date"  name="perschd_writer" value="${event.perschd_writer}" class="form-control" >
+									<input id="perschd_start_date" type="text"  name="perschd_start_date" value="" class="form-control" >
 			            		</li>
 			            		<li>
 				            		<label class='control-label'>end date</label>
-									<input type="date"  name="perschd_end_date" value="${event.perschd_end_date}" class="form-control">
+									<input  id="perschd_end_date" type="text"  name="perschd_end_date" value="" class="form-control">
 			            		</li>
 			            		<li>
 				            		<label class='control-label'>content</label>
-									<input type="text" name="perschd_cont" value="${event.perschd_cont}" class="form-control" >
+									<input id="perschd_cont" type="text" name="perschd_cont" value="" class="form-control" >
 			            		</li>
-			            		<li>
-				            		<label class='control-label'>date</label>
-									<input type="text" name="perschd_date" value="${event.perschd_date}" class="form-control" >
-			            		</li>
-			            		 
+<!-- 			            		<li> -->
+<!-- 				            		<label class='control-label'>date</label> -->
+<!-- 									<input id="perschd_date" type="text" name="perschd_date" value="" class="form-control" > -->
+<!-- 			            		</li> -->
 							</ul>
 							
 			            </div>
-			          
-			          <!-- footer -->  
-			     <div class="col-md-12">  
-			            <div class="modal-footer">
-			            <div class="col-md-8 col-md-offset-1">
-			               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			               <input type="submit" class="btn btn-primary">
-			            </div>
-			            </div>
-	            </div>
+			             
+			             	<!-- button -->
+							     <div class="col-md-12">  
+							            <div class="modal-footer">
+							            <div class="col-md-8 col-md-offset-1">
+							               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<%-- 							               <button type="button" onclick="location.href='myScheduleDelete?perschd_num=${perschd.perschd_num}" class="btn btn-default" >삭제</button> --%>
+							               <input type="submit" class="btn btn-primary">
+							               <input type="button" value="삭제" onclick="deleteSchd()"/>
+							            </div>
+							            </div>
+					            </div>
 			            </form>
          </div>
          
@@ -199,17 +235,13 @@ ol, ul {
    </div>
    <!-- /.modal -->
    </div>
-   
-   
  </div>
  
+  
+  
  
- 
- 
- 
-   
- 
-
+  
+  
 <!-- 추가모달창 -->
 
 <div class="modal fade" id="addSchedule">
@@ -219,32 +251,33 @@ ol, ul {
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                </button>
-               <h4 class="modal-title">Add schedule</h4>
+               <h4 class="modal-title">일정등록</h4>
             </div>
             <div class="modal-body">
             	<div class="row"> 
 				            <div class="col-md-12">
 				            <div class="col-md-8 col-md-offset-2">
-			            	<form action="createEvent" method="POST">
+			            	<form action="myScheduleInsert" method="POST">
 			            	<ul>
-									<input type="hidden" class="form-control" name="ID" >
+									<input type="hidden" class="form-control" name="PERSCHD_NUM" >
 			            		<li>
 				            		<label class='control-label'>title</label>
-									<input type="text" class="form-control" name="TITLE" >
+									<input type="text" class="form-control" name="PERSCHD_TITLE" >
 			            		</li>
 			            		<li>
+									<input type="hidden" class="form-control" name="PERSCHD_WRITER" >
+			            		<li>
 				            		<label class='control-label'>start date</label>
-									<input type="date"  name="START_DATE"  class="form-control" >
+									<input type="date"   class="form-control" name="PERSCHD_START_DATE" >
 			            		</li>
 			            		<li>
 				            		<label class='control-label'>end date</label>
-									<input type="date"  name="END_DATE" class="form-control">
+									<input type="date"  class="form-control" name="PERSCHD_END_DATE" >
 			            		</li>
 			            		<li>
 				            		<label class='control-label'>content</label>
-									<input type="text" name="CONTENT"  class="form-control" >
+									<input type="text" class="form-control" name="PERSCHD_CONT"   >
 			            		</li>
-			            		 
 							</ul>
 							
 			            </div>
@@ -270,22 +303,3 @@ ol, ul {
    <!-- /.modal -->
    </div>
    
-<%-- <c:choose> --%>
-<%-- 		<c:when test="${not empty perschdList}"> --%>
-<%-- 			<c:forEach var="perschd" items="${perschdList}"> --%>
-<!-- 				<tr> -->
-<%-- 					<td>번호:${perschd.perschd_num}</td> --%>
-<%-- 					<td>제목:${perschd.perschd_title}</td> --%>
-<%-- 					<td>내용:${perschd.perschd_cont}</td> --%>
-<%-- 					<td>작성자:${perschd.perschd_writer}</td> --%>
-<%-- 					<td>작성일:${perschd.perschd_date}</td> --%>
-<%-- 					<td>시작일:${perschd.perschd_start_date}</td> --%>
-<%-- 					<td>종료일:${perschd.perschd_end_date}</td> --%>
-<!-- 				</tr> -->
-<!-- 				<br/> -->
-<%-- 			</c:forEach> --%>
-<%-- 		</c:when> --%>
-<%-- 		<c:otherwise> --%>
-<!-- 			등록된 일정이 없습니다. -->
-<%-- 		</c:otherwise> --%>
-<%-- 	</c:choose> --%>

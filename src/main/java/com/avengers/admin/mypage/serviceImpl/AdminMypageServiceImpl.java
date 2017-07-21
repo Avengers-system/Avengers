@@ -48,7 +48,8 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 
 	@Override
 	public int insertPerschd(PerschdVO perschdVO)throws SQLException {
-		return 0;
+		int result = myPageDAO.insertPerschd(perschdVO);
+		return result;
 	}
 
 	@Override
@@ -63,6 +64,11 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 		int success= -1;
 		success = myPageDAO.deletePerschd(perschd_num);
 		return success;
+	}
+
+	@Override
+	public PerschdVO selectPerschd_title(String perschd_title) {
+		return myPageDAO.selectPerschd_title(perschd_title);
 	}
 
 }
