@@ -4,8 +4,8 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resSchManage">
 	
-	<select id="resSchSelect" parameterType="java.lang.String" resultType="com.avengers.db.dto.resSchStudentVO">
-		SELECT S.STUD_NUM, 
+	<select id="resSchSelect" parameterType="com.avengers.db.dto.resSchStudentVO" resultType="com.avengers.db.dto.resSchStudentVO">
+		SELECT  S.STUD_NUM, 
 				S.STUD_GRD ,
 				S.STUD_NM ,
 				S.STUD_QTR ,
@@ -33,15 +33,15 @@
 		AND L.LCT_YR = #{lct_yr}
 	</select>
 
-	<select id="LoaRtsSelect" parameterType="java.util.Date" resultType="com.avengers.db.dto.LoaRtsVO">
-		SELECT L.LOA_START_DATE "휴학시작일"
-	          ,L.LOA_END_DATE "휴학종료일"
-	          ,R.RTS_APPL_DATE "복학신청일"
-	          ,R.RTS_DATE "복학일"
-	          ,L.LOA_STUD "학번"
-	    FROM LOA L,RTS R
-	    WHERE L.LOA_STUD = #{loa_stud}
-	    AND L.LOA_STUD = R.RTS_STUD
+	<select id="LoaRtsSelect" parameterType="java.lang.String" resultType="com.avengers.db.dto.LoaRtsVO">
+		SELECT LOA_START_DATE 
+	          ,LOA_END_DATE 
+	          ,RTS_APPL_DATE 
+	          ,RTS_DATE 
+	          ,LOA_STUD 
+	    FROM LOA ,RTS 
+	    WHERE LOA_STUD = #{loa_stud}
+	    AND LOA_STUD = RTS_STUD
 	</select>
 
 

@@ -37,8 +37,8 @@ public class StudentResManageController {
 			,Model model
 			,@RequestParam(value="lct_yr",defaultValue="2016")String lct_yr){
 		String url="student/registryScholarshipManage/registryScholarshipManageMain";
-		String stud_num= princiapl.getName();
-		String entrance_year = stud_num.substring(0,3);//입학년도
+		String loa_stud= princiapl.getName();
+		String entrance_year = loa_stud.substring(0,3);//입학년도
 		
 		String message="";
 		int grades = 0 ;// 학점
@@ -48,8 +48,8 @@ public class StudentResManageController {
 		ArrayList<resSchStudentVO> stuRes = null;
 		ArrayList<LoaRtsVO> LoaRts = null; 
 		try {
-			stuRes =stuResService.selectResSchHistory(stud_num,lct_yr);
-			LoaRts = stuResService.selectLoaRts(stud_num);//휴학 및 복학 
+			stuRes =stuResService.selectResSchHistory(loa_stud,lct_yr);
+			LoaRts = stuResService.selectLoaRts(loa_stud);//휴학 및 복학 
 			
 			if(stuRes == null){
 				message="조회된 결과가 없습니다.";
@@ -61,18 +61,20 @@ public class StudentResManageController {
 						String year = transFormat.format(LoaRts.get(i).getLOA_START_DATE());//강의 개설년도
 						
 						//강의개설년도와 휴학년도가 같이 않다면,그 해 년도 학점을 계산한다.
-						if(!year.equals(stuRes.get(j).getLCT_YR())){
+						if(!year.equals(stuRes.get(j).getLct_yr())){
 							if(stuRes.get(j).getTl_asmt_check().equals("2")){//강의평가를 완료했다면
 								
 								//각 과목의 평점 * 학점을 더한다
 								average_rating  += stuRes.get(j).getTl_mark() * Integer.parseInt(stuRes.get(j).getLct_crd());
+								System.out.println("평점*학점 = "+average_rating);
 								grades += Integer.parseInt(stuRes.get(j).getLct_crd());
+								System.out.println("grades = "+grades);
 							}
 						}
 					}
-					//최종 평균평점 = (각 과목의 평점*학점을 더한값)/과목의 모든 학점을 더한 값
-					average_rating = average_rating/grades;
 				}
+				//최종 평균평점 = (각 과목의 평점*학점을 더한값)/과목의 모든 학점을 더한 값
+				average_rating = average_rating/grades;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
