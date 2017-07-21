@@ -1,20 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-
-
 
 <!-- Student Header -->
 <%@include file="common/topCategory.jsp" %>
 
 <!-- Content -->
+<div class="col-md-2">
+<%@include file="common/mainSideCategory.jsp" %>
+</div>
+
+
 <div class="col-md-2" id="commonLeftSide">
 	<%@include file="common/mainSideCategory.jsp"%>
-
-
 </div>
 			<div class="col-md-10" id="commonRightSide">
 						<h4>수강현황</h4>
@@ -191,7 +190,6 @@
 					</tr>
 				</c:otherwise>
 			</c:choose>
-
 
 
 

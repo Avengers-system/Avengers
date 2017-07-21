@@ -70,22 +70,22 @@ public class ProfessorMainController {
 			System.out.println("2");
 			ArrayList<CnsVO> cnsList  = professorMainService.selectCnsList(prfs_num);
 			System.out.println("3");
-			ArrayList<BoardVO> portalNoticeList  = professorMainService.selectPortalNoticeList();
-			System.out.println("4");
-			ArrayList<BoardVO> schoolNoticeList  = professorMainService.selectSchoolNoticeList();
-			System.out.println("5");
-			ArrayList<BoardVO> departmentNoticeList  = professorMainService.selectDepartmentNoticeList(bc_dept);
-			System.out.println("6");
-			ArrayList<PerschdVO> schoolScheduleList  = professorMainService.selectSchoolScheduleList();
-			System.out.println("7");
-			model.addAttribute("prfs",prfs );
-			model.addAttribute("perschdList",perschdList );
-			model.addAttribute("lctList",lctList );
-			model.addAttribute("cnsList",cnsList );
-			model.addAttribute("portalNoticeList",portalNoticeList );
-			model.addAttribute("schoolNoticeList",schoolNoticeList );
-			model.addAttribute("departmentNoticeList",departmentNoticeList );
-			model.addAttribute("schoolScheduleList",schoolScheduleList );
+//			ArrayList<BoardVO> portalNoticeList  = professorMainService.selectPortalNoticeList();
+//			System.out.println("4");
+//			ArrayList<BoardVO> schoolNoticeList  = professorMainService.selectUnivNoticeList();
+//			System.out.println("5");
+//			ArrayList<BoardVO> departmentNoticeList  = professorMainService.selectDepartmentNoticeList(bc_dept);
+//			System.out.println("6");
+//			ArrayList<PerschdVO> schoolScheduleList  = professorMainService.selectSchoolScheduleList();
+//			System.out.println("7");
+//			model.addAttribute("prfs",prfs );
+//			model.addAttribute("perschdList",perschdList );
+//			model.addAttribute("lctList",lctList );
+//			model.addAttribute("cnsList",cnsList );
+//			model.addAttribute("portalNoticeList",portalNoticeList );
+//			model.addAttribute("schoolNoticeList",schoolNoticeList );
+//			model.addAttribute("departmentNoticeList",departmentNoticeList );
+//			model.addAttribute("schoolScheduleList",schoolScheduleList );
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NullPointerException e){

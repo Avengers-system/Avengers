@@ -56,7 +56,40 @@
 	
 	
 	<select id="selectAllStud" resultType="com.avengers.db.dto.StudVO">
-		SELECT * FROM STUDENT
+		SELECT 
+			STUD_NUM,
+			STUD_NM,
+			STUD_ENG_NM,
+			STUD_BIR,
+			STUD_EMAIL,
+			STUD_PW,
+			STUD_GRD,
+			STUD_REGNO,
+			STUD_GEN,
+			STUD_QTR,
+			STUD_SCHREG_CODE,
+			STUD_PIC,
+			STUD_ACT_NUM,
+			STUD_BANK,
+			STUD_AH,
+			STUD_ADDR,
+			STUD_ZIP,
+			STUD_TEL,
+			STUD_HP,
+						(
+							SELECT DEPT_NM FROM DEPARTMENT 
+							where DEPT_NUM = STUD_DEPT
+						)   AS stud_dept,
+			STUD_GUAD_NM,
+			STUD_GUAD_REL,
+			STUD_GUAD_HP,
+			ENABLED,
+			AUTHORITY,
+			STUD_MAX_CRD
+						
+			FROM STUDENT S
+		
+		
 	</select>
 
 	<select id="selectStud" parameterType="String" resultType="com.avengers.db.dto.StudVO">
