@@ -159,11 +159,6 @@
 														</a></td>
 														<td>${deptNoticeList.board_date}</td>
 														<td>${deptNoticeList.board_writer}</td>
-														<select>
-															<option>멀공과</option>
-															<option>컴공과</option>
-															<option>문예과</option>
-														</select>
 														<td>${deptNoticeList.board_af}</td>
 														<td>${deptNoticeList.board_bc}</td>
 														<td>${deptNoticeList.board_count}</td>
