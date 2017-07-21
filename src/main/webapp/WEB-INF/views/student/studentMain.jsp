@@ -5,9 +5,6 @@
 
 
 <!-- Content -->
-<div class="col-md-2">
-<%@include file="common/mainSideCategory.jsp" %>
-</div>
 
 
 <div class="col-md-2" id="commonLeftSide">

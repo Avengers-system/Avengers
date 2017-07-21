@@ -50,7 +50,7 @@ initTimer = function() {
 	} 
 	else if(iSecond == 0){
         alert('세션이 만료되었습니다');
-        location.href="location.href='${pageContext.request.contextPath}/logout'";
+        location.href="logout";
      } 
 	
 	else {
@@ -110,7 +110,7 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
                                   </button>
                                 </div>	
 								<div class="col-md-2" style="height: 60px;width:10%; padding:0;">
-                                   <button class="btn ripple btn-gradient btn-info" onclick="${pageContext.request.contextPath}/logout">
+                                   <button class="btn ripple btn-gradient btn-info" onclick="location.href='${pageContext.request.contextPath}/logout'">
                                     <div>
                                       <span>로그아웃</span>
                                     </div>
@@ -131,7 +131,7 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/schoolRegister/certificate">학적</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/classManage/classMain">수업</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/admissionApplication">수강신청</a></li>
-		<li role="presentation"><a href="#">등록&장학</a></li>
+		<li role="presentation"><a href="${pageContext.request.contextPath}/student/resSchManage/studRes">등록&장학</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/counsel/counselList">상담</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/helpDesk/studentFAQList">Help Desk</a></li>
 	</ul>

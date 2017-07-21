@@ -10,8 +10,6 @@
 %>
 
 <c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
-<!-- student Header -->
-<%@include file="../common/topCategory.jsp" %>
 
 <!--side Category-->
 <div class="col-md-2" id="commonLeftSide">
