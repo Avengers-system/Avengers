@@ -243,4 +243,25 @@
 				'ROLE_STUD' 
 			)
 	</insert>
+	
+	<select id="findInfo" parameterType="com.avengers.db.dto.AdminVO" resultType="com.avengers.db.dto.AdminVO">
+	
+	SELECT 	ADMIN_ID 
+	FROM ADMIN 
+	WHERE ADMIN_EMAIL=#{admin_email}
+	<if test="admin_nm != null">
+	AND ADMIN_NM=#{admin_nm}
+	</if>
+	<if test="admin_id != null">
+	AND ADMIN_ID=#{admin_id}
+	</if>
+	
+	</select> 
+	
+	<update id="updatePwd" parameterType="com.avengers.db.dto.AdminVO">
+	UPDATE ADMIN 
+	SET ADMIN_PW = #{admin_pw}
+	WHERE  ADMIN_ID = #{admin_id} AND ADMIN_EMAIL = #{admin_email}
+	</update> 
+	
 </mapper>
