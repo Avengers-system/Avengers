@@ -57,6 +57,33 @@ ol, ul {
 }
 </style>
 
+
+
+	<!-- Admin Header -->
+	<%@include file="../common/topCategory.jsp"%>
+	
+		<!-- Content -->
+		<div class="col-md-2" id="commonLeftSide">
+			<%@include file="../common/mainSideCategory.jsp" %>
+		</div>
+
+		<div class="col-md-10" id="commonRightSide">
+
+		<div id='body' class='section' >
+		<div>
+			<div class='two-col'>
+			
+			<div class="col-md-3 col-md-offset-9" style="padding-left:0px;">
+				<a href="#" class="button" data-toggle="modal" data-target="#addSchedule">일정등록 </a>
+			
+				</div>
+			
+			
+					<div id='calendar'></div>
+				</div>
+			</div>
+		</div>
+
 <script>
  
 	$(function() {
@@ -80,15 +107,27 @@ ol, ul {
 			editable: false, //마우스로 일정을 움직일 수 있음. 사용자는 캘린더를 보기만 하기 때문에 false
 			eventLimit: false,//하루에 이벤트가 3개이상이면 more표시로 줄여주는 기능 다 보여줘야하기 때문에 false
 			events: [
+			     
+							<%
+							
+							List<PerschdVO> perschdList = (List<PerschdVO>)request.getAttribute("perschdList");
+							%>
+							<%for(int i=0; i<perschdList.size();i++){
+								if(i>0) out.print(",");
+								PerschdVO perschdVO = perschdList.get(i);
+							%>
 			     { 
-			    	 title:'3',
-			         start:'admin',
-			         end:''
+			    	 title: '<%=perschdVO.getPerschd_title() %>',
+			         start:'<%=perschdVO.getPerschd_start_date() %>',
+			         end:'<%=perschdVO.getPerschd_end_date() %>',
+			         content:'<%=perschdVO.getPerschd_cont() %>',
+			    	 date:'<%=perschdVO.getPerschd_date() %>'
 			     }
 			     
+			    		<%
+							}
+			    		%> 
 			],
-			    
-			 
 	});
 		
 		
@@ -102,33 +141,14 @@ ol, ul {
 			$(this).attr("data-target","#editSchedule");
 		})
 		
-		
 	});
 
-	
-	
 	</script>
 
 
-	<!-- Admin Header -->
-	<%@include file="../common/topCategory.jsp"%>
-	
-		<!-- Content -->
-		<div class="col-md-2" id="commonLeftSide">
-			<%@include file="../common/mainSideCategory.jsp" %>
-		</div>
 
-		<div class="col-md-10" id="commonRightSide">
-
-		<div id='body' class='section' >
-		<div>
-			<div class='two-col'>
-					<div id='calendar'></div>
-				</div>
-			</div>
-		</div>
 	
-	<a href="#" class="button" data-toggle="modal" data-target="#addSchedule">일정등록 </a>
+
 <!-- 	<a href="modalTest"><button>일정등록</button></a> -->
 
 
@@ -219,30 +239,32 @@ ol, ul {
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                </button>
-               <h4 class="modal-title">Add schedule</h4>
+               <h4 class="modal-title">일정등록</h4>
             </div>
             <div class="modal-body">
             	<div class="row"> 
 				            <div class="col-md-12">
 				            <div class="col-md-8 col-md-offset-2">
-			            	<form action="createEvent" method="POST">
+			            	<form action="myScheduleInsert" method="POST">
 			            	<ul>
-									<input type="hidden" class="form-control" name="ID" >
+									<input type="hidden" class="form-control" name="PERSCHD_NUM" >
 			            		<li>
 				            		<label class='control-label'>title</label>
-									<input type="text" class="form-control" name="TITLE" >
+									<input type="text" class="form-control" name="PERSCHD_TITLE" >
 			            		</li>
 			            		<li>
+									<input type="hidden" class="form-control" name="PERSCHD_WRITER" >
+			            		<li>
 				            		<label class='control-label'>start date</label>
-									<input type="date"  name="START_DATE"  class="form-control" >
+									<input type="date"   class="form-control" name="PERSCHD_START_DATE" >
 			            		</li>
 			            		<li>
 				            		<label class='control-label'>end date</label>
-									<input type="date"  name="END_DATE" class="form-control">
+									<input type="date"  class="form-control" name="PERSCHD_END_DATE" >
 			            		</li>
 			            		<li>
 				            		<label class='control-label'>content</label>
-									<input type="text" name="CONTENT"  class="form-control" >
+									<input type="text" class="form-control" name="PERSCHD_CONT"   >
 			            		</li>
 			            		 
 							</ul>

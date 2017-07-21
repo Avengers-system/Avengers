@@ -21,6 +21,7 @@
                시퀀스번호 : ${schedule.perschd_num }<br/>
                제목 : ${schedule.perschd_title }<br/>
                내용 : ${schedule.perschd_cont }<br/>
+               입력날짜 : ${schedule.perschd_date}<br/>
                일정 시작일 : ${schedule.perschd_start_date }<br/>
                일정 종료일 : ${schedule.perschd_end_date }<br/>
         </c:forEach>
