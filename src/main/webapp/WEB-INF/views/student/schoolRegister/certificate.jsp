@@ -20,6 +20,12 @@
 			<form action="${pageContext.request.contextPath}/student/schoolRegister/gradeCertificate">
 				성적증명서<input type="submit" value="발급">
 			</form>
+			<form action="${pageContext.request.contextPath}/student/schoolRegister/enrollmentCertificate">
+				재학증명서<input type="submit" value="발급">
+			</form>
+			<form action="${pageContext.request.contextPath}/student/schoolRegister/graduatedCertificate">
+				졸업증명서<input type="submit" value="발급">
+			</form>
 		</div>
 	</div>
 </div>

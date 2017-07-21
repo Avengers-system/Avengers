@@ -77,6 +77,51 @@ public class StudentSchoolRegisterController {
 		return "/student/schoolRegister/gradeCertificate";
 	}
 	
+	@RequestMapping("/schoolRegister/enrollmentCertificate")
+	public String enrollmentCertificate(Principal principal, Model model , HttpServletRequest request){
+		String stud_num = principal.getName();
+		HashMap<String,String> gradeInfo = null; //성명,학번,학과,학적상태
+		try {
+			gradeInfo = service.selectGradeInfo(stud_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		String path =request.getSession().getServletContext().getRealPath("/");
+		try {
+			createEnrollmentCertificate(gradeInfo, path);
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "/student/schoolRegister/enrollmentCertificate";
+	}
+	
+	@RequestMapping("/schoolRegister/graduatedCertificate")
+	public String graduatedCertificate(Principal principal, Model model,HttpServletRequest request){
+		
+		String stud_num = principal.getName();
+		HashMap<String,String> gradeInfo = null; //성명,학번,학과,학적상태
+		try {
+			gradeInfo = service.selectGradeInfo(stud_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		String path =request.getSession().getServletContext().getRealPath("/");
+		try {
+			createGraduatedCertificate(gradeInfo, path);
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
+		
+		
+		return "/student/schoolRegister/graduatedCertificate";
+	}
+	
+	
 	@RequestMapping("/schoolRegister/leaveBackList")
 	public String leaveBack(Principal principal, Model model){
 		String stud_num = principal.getName();
@@ -160,8 +205,163 @@ public class StudentSchoolRegisterController {
 	}
 	
 	
+	public void createGraduatedCertificate(HashMap<String,String> gradeInfo, String path)throws DocumentException, IOException{
+		//pdf 만들기
+
+				String filename = path+"resources/upload/graduated.pdf";
+				
+				
+				
+				Document document = new Document();
+				PdfWriter.getInstance(document, new FileOutputStream(filename));
+
+				document.open();
+
+				Rectangle rect = new Rectangle(550, 800, 50, 70);
+				rect.setBorder(Rectangle.BOX);
+				rect.setBorderWidth(2);
+				rect.setBorderColor(BaseColor.BLACK);
+				document.add(rect);
+
+				BaseFont basefont = BaseFont.createFont(path+"resources/upload/malgun.TTF",
+						BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+				Font font = new Font(basefont, 20);
+
+				document.add(new Paragraph("증명서"));
+
+				Paragraph paragraph2 = new Paragraph();
+				Paragraph paragraph3 = new Paragraph();
+
+				paragraph2.setSpacingAfter(25);
+				paragraph2.setSpacingBefore(25);
+				paragraph2.setAlignment(Element.ALIGN_CENTER);
+				paragraph2.setIndentationLeft(50);
+				paragraph2.setIndentationRight(50);
+
+				paragraph3.setSpacingAfter(25);
+				paragraph3.setSpacingBefore(25);
+				paragraph3.setAlignment(Element.ALIGN_CENTER);
+				paragraph3.setIndentationLeft(50);
+				paragraph3.setIndentationRight(50);
+
+				document.addTitle("졸업 증명서");
+				// 제목
+				Chunk chunk = new Chunk("졸 업 증 명 서", font);
+				paragraph2.add(chunk);
+				document.add(paragraph2);
+
+				// 내용
+				document.add(new Paragraph("  성             명 : " + gradeInfo.get("stud_nm"), font));
+				document.add(new Paragraph("  학             번 : "+ gradeInfo.get("stud_num"), font));
+				document.add(new Paragraph("  학             과 : "+ gradeInfo.get("dept_nm"), font));
+				
+				document.add(new Paragraph("  위의 사실을 증명합니다.", font));
+
+				// 증명서 날짜 출력
+				Date today = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+				document.add(new Paragraph("  " + sdf.format(today), font));
+
+				// ㅇㅇ 대학교
+				Chunk chunk2 = new Chunk("[A]  U N I V E R C I T Y", font);
+				paragraph3.add(chunk2);
+				document.add(paragraph3);
+
+					
+				// 도장 추가
+				Image image2 = Image.getInstance(path+"resources/upload/sign.png");
+				image2.setAbsolutePosition(450f, 95f);
+				image2.scaleAbsolute(50, 50);
+				document.add(image2);
+
+				// step 5
+				document.close();
+				
+				
+				
+		
+	}
 	
 	
+	
+	
+	
+	public void createEnrollmentCertificate(HashMap<String,String> gradeInfo, String path)throws DocumentException, IOException{
+		//pdf 만들기
+
+				String filename = path+"resources/upload/enrollment.pdf";
+				
+				
+				
+				Document document = new Document();
+				PdfWriter.getInstance(document, new FileOutputStream(filename));
+
+				document.open();
+
+				Rectangle rect = new Rectangle(550, 800, 50, 70);
+				rect.setBorder(Rectangle.BOX);
+				rect.setBorderWidth(2);
+				rect.setBorderColor(BaseColor.BLACK);
+				document.add(rect);
+
+				BaseFont basefont = BaseFont.createFont(path+"resources/upload/malgun.TTF",
+						BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+				Font font = new Font(basefont, 20);
+
+				document.add(new Paragraph("증명서"));
+
+				Paragraph paragraph2 = new Paragraph();
+				Paragraph paragraph3 = new Paragraph();
+
+				paragraph2.setSpacingAfter(25);
+				paragraph2.setSpacingBefore(25);
+				paragraph2.setAlignment(Element.ALIGN_CENTER);
+				paragraph2.setIndentationLeft(50);
+				paragraph2.setIndentationRight(50);
+
+				paragraph3.setSpacingAfter(25);
+				paragraph3.setSpacingBefore(25);
+				paragraph3.setAlignment(Element.ALIGN_CENTER);
+				paragraph3.setIndentationLeft(50);
+				paragraph3.setIndentationRight(50);
+
+				document.addTitle("재학 증명서");
+				// 제목
+				Chunk chunk = new Chunk("재 학 증 명 서", font);
+				paragraph2.add(chunk);
+				document.add(paragraph2);
+
+				// 내용
+				document.add(new Paragraph("  성             명 : " + gradeInfo.get("stud_nm"), font));
+				document.add(new Paragraph("  학             번 : "+ gradeInfo.get("stud_num"), font));
+				document.add(new Paragraph("  학             과 : "+ gradeInfo.get("dept_nm"), font));
+				
+				document.add(new Paragraph("  위의 사실을 증명합니다.", font));
+
+				// 증명서 날짜 출력
+				Date today = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+				document.add(new Paragraph("  " + sdf.format(today), font));
+
+				// ㅇㅇ 대학교
+				Chunk chunk2 = new Chunk("[A]  U N I V E R C I T Y", font);
+				paragraph3.add(chunk2);
+				document.add(paragraph3);
+
+					
+				// 도장 추가
+				Image image2 = Image.getInstance(path+"resources/upload/sign.png");
+				image2.setAbsolutePosition(450f, 95f);
+				image2.scaleAbsolute(50, 50);
+				document.add(image2);
+
+				// step 5
+				document.close();
+				
+				
+				
+		
+	}
 	
 	
 	public void createGradeCertificate(HashMap<String,String> gradeInfo,List<HashMap<String,String>> gradeList, int allGrade, int allGradeCount,String path) throws DocumentException, IOException{
