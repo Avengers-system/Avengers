@@ -30,11 +30,12 @@ private static final Logger logger = LoggerFactory.getLogger(CommonController.cl
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(
-
+		HttpSession session,		
 		@RequestParam(value = "error", required = false) String error,
 		@RequestParam(value = "logout", required = false) String logout) {
 		ModelAndView model = new ModelAndView();
-
+		
+		
 		if (error != null && logout==null) {
 			model.addObject("error", "Invalid username and password!");
 		}
@@ -42,7 +43,7 @@ private static final Logger logger = LoggerFactory.getLogger(CommonController.cl
 		if (logout != null) {
 			model.addObject("msg", "You've been logged out successfully.");
 		}
-
+		
 		model.setViewName("common/commonLogin");
 
 		return model;
