@@ -56,7 +56,7 @@ div.sub-left-menu scroll>ul li>a.tree-toggle nav-header{margin-left:30px;}
                           포털게시판<span class="fa-angle-right fa right-arrow text-right"></span> </a>
                       <ul class="nav nav-list tree" style="display: none;">
                         <li><a href="formelement.html">Form Element</a></li>
-                        <li><a href="${pageContext.request.contextPath}/admin/portalNoticeList'">포털게시판</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/portalNoticeList">포털게시판</a></li>
                       </ul>
                     </li>
                     <li class="ripple"><a class="tree-toggle nav-header">

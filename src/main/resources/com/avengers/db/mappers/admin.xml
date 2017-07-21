@@ -55,7 +55,7 @@
          <if test="admin_pic != null">
             ADMIN_PIC=#{admin_pic},
          </if>
-         ADMIN_BIR=TO_DATE(#{admin_bir},'YYYY-MM-DD'),
+         ADMIN_BIR=TO_DATE(#{admin_bir},'YYYY-MM-DD HH24:MI:SS'),
          ADMIN_POST = #{admin_post},
          ADMIN_ENG_NM = #{admin_eng_nm},
          ADMIN_REGNO = #{admin_regno},
