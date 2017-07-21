@@ -1,31 +1,130 @@
 <%@page import="org.springframework.security.core.userdetails.User"%>
-<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page
+	import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ page trimDirectiveWhitespaces="true"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<div class="col-md-10">
+	<div class="col-md-12 panel">
+		<div class="col-md-12 panel-heading">
+			<h1>학과글쓰기</h1>
+		</div>
 
 
-	
-<h1>학과게시판 글쓰기</h1>
+		<div class="col-md-12 panel-body" style="padding-bottom: 30px; margin-left: 70px;">
+			<c:set var="myContextPath" value="${pageContext.request.contextPath}" />
 
-<c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
-<form name="insertDeptBoard" action="${myContextPath}/admin/deptWrite" 
-	method="post" enctype="multipart/form-data">
+			<form name="insertdeptBoard" class="cmxform" id="signupForm"
+				action="${myContextPath}/admin/deptWrite" method="post"
+				enctype="multipart/form-data">
+				
+				<div class="col-md-6">
+				
+					<div class="form-group form-animate-text"
+						style="margin-top: 40px !important; width:300px; text-align: center;">
+						<label style="text-align: center;">게시판번호</label><br>
+						<br> <input type="text" name="board_num" readonly
+							class="form-text" id="validate_firstname"
+							name="validate_firstname" required
+							value="${insertBoard.board_num}" style="width: 150px;"> <span
+							class="bar"></span>
+					</div>
+
+					<div class="form-group form-animate-text"
+						style="margin-top: 40px !important; width:300px; ">
+						<label>제목</label><br> <input type="text" name="board_title"
+							class="form-text" id="validate_lastname" name="validate_lastname"
+							required style="width: 250px; margin-top: 10px;"> <span class="bar"></span>
+					</div>
 
 
-	게시판번호    :<input type="text" name="board_num" readonly value="${insertBoard.board_num}"><br>
-	제목    :<input type="text" name="board_title"><br>
-	내용    :<input type="text" name="board_cont"><br>
-	날짜    :<input type="text" name="board_date" readonly value="${insertBoard.board_date}"><br>
-	<%User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); %>
-	작성자  :<input type="text" name="board_writer" readonly value="<%=user.getUsername()%>"><br>
-	첨부파일  :<input type="file" name="boardaf"><br>
-	분류번호:<input type="text" name="board_bc" readonly value="DEPT"><br>
-	조회수:<input type="text" name="board_count" readonly value="0"><br>
-	
-	<input type="submit" value="등록"> 
-	
-	
-</form>
+					<div class="form-group form-animate-text"
+						style="margin-top: 40px !important;">
+						<label>내용</label><br> <input type="text" name="board_cont"
+							class="form-text" id="validate_lastname" name="validate_lastname"
+							required style="width: 250px; margin-top: 10px;"> <span class="bar"></span>
+					</div>
+
+					<div class="form-group form-animate-text"
+						style="margin-top: 40px !important;">
+						<label>날짜 </label><br> <br> <input type="text"
+							name="board_date" class="form-text" id="validate_lastname"
+							name="validate_lastname" required style="width: 250px; margin-top: 10px;"
+							value="${insertBoard.board_date}" readonly> <span
+							class="bar"></span>
+					</div>
+					<%
+						User user = (User) SecurityContextHolder.getContext()
+								.getAuthentication().getPrincipal();
+					%>
+
+
+					<div class="form-group form-animate-text"
+						style="margin-top: 40px !important;">
+						<label>작성자</label><br> <input type="text" name="board_writer"
+							class="form-text" id="validate_lastname" name="validate_lastname"
+							required style="width: 250px; margin-top: 10px;" value="<%=user.getUsername()%>"> <span class="bar"></span>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group form-animate-text"
+						style="margin-top: 40px !important;">
+
+						<label>첨부파일</label><br>
+						<br> <input type="file" name="boardaf" id="validate_password"
+							name="validate_password" required
+							style="width: 250px; margin-top: 5px; margin-left: 5px;">
+						<span class="bar"></span>
+					</div>
+
+					
+					
+						<div class="form-group form-animate-text"
+						style="margin-top: 40px !important; width:300px; text-align: center;">
+						<label>분류코드</label><br>
+						<br> <input type="text" name="board_bc" readonly
+							class="form-text" id="validate_firstname"
+							name="validate_firstname" required
+							value="DEPT" style="width: 150px;">
+						<span class="bar"></span>
+					</div>
+
+					<div class="form-group form-animate-text"
+						style="margin-top: 40px !important; width:300px; text-align: center;">
+						<label>조회수</label><br><br>
+					<input type="text" name="board_count" readonly value="0"
+					class="form-text" id="validate_firstname"
+							name="validate_firstname" required
+							 style="width: 150px;">
+					<span class="bar"></span>
+					</div>
+					
+					
+					
+					
+				
+					
+					
+					
+					
+					
+					
+					
+					
+					<div>
+					<input class="submit btn btn-danger" type="submit" value="등록" style="margin-left: 5px;">
+				</div>
+					
+					
+					</div>
+					
+			</form>
+		</div>
+	</div>
+</div>
+
+
 

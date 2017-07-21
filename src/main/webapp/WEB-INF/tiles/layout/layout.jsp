@@ -40,6 +40,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/ionrangeslider/ion.rangeSlider.skinFlat.css"/>
   <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/fullcalendar.min.css"/>  --%>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/bootstrap-material-datetimepicker.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/datatables.bootstrap.min.css"/>
   <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
   
   

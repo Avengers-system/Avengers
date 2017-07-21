@@ -2271,7 +2271,9 @@ pre code {
 		width: 58.33333333%
 	}
 	.col-md-6 {
-		width: 50%
+		width: 35%;
+		margin-left: 0%;
+		
 	}
 	.col-md-5 {
 		width: 41.66666667%
@@ -5983,7 +5985,8 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:focus,
 }
 
 .panel-body {
-	padding: 15px
+	padding: 60px;
+	margin-left: 10px;
 }
 
 .panel-heading {

@@ -14,4 +14,5 @@
 		select * from department where dept_num=#{dept_num}
 	</select>
 	
+	
 </mapper>

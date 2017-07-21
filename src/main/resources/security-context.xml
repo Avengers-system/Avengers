@@ -33,10 +33,11 @@
 		<form-login login-page="/login" 
 			login-processing-url="/loginForm"
 			username-parameter="id" 
+			authentication-failure-url="/login?error" 
 			password-parameter="pwd" 
 			default-target-url="/main"/>
-		<logout logout-success-url="/logout" />
-
+		<logout  invalidate-session="true" logout-url="/logout" logout-success-url="/login?logout"
+		 delete-cookies="JSESSIONID"/>
 
 
 

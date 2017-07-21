@@ -140,17 +140,17 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>${springframework-security-version}</version>
+			<version>3.2.3.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>${springframework-security-version}</version>
+			<version>3.2.3.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			<version>${springframework-security-version}</version>
+			<version>3.2.3.RELEASE</version>
 		</dependency>
 
 		<!-- spring mail -->
@@ -300,6 +300,12 @@
 			<groupId>com.lowagie</groupId>
 			<artifactId>itext</artifactId>
 			<version>2.1.7</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
+		<dependency>
+    	<groupId>com.itextpdf</groupId>
+		    <artifactId>itextpdf</artifactId>
+		    <version>5.0.6</version>
 		</dependency>
 
 		<!-- json 변환 -->
