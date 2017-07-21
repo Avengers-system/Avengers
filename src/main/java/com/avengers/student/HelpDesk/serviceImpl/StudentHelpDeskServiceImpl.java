@@ -18,9 +18,7 @@ public class StudentHelpDeskServiceImpl implements StudentHelpDeskService {
 	@Autowired
 	private  StudentHelpDeskDao stuHelpDeskDAO;
 	
-	public void setStuHelpDeskDAO(StudentHelpDeskDao stuHelpDeskDAO) {
-		this.stuHelpDeskDAO = stuHelpDeskDAO;
-	}
+
 
 	@Override
 	public ArrayList<BoardVO> selectBoardList(String bc_num, String key,
@@ -111,6 +109,11 @@ public class StudentHelpDeskServiceImpl implements StudentHelpDeskService {
 
 		
 		stuHelpDeskDAO.deleteStudentFAQ(boardVO);
+	}
+
+	@Override
+	public void writeStudentFAQ(BoardVO boardVO) {
+		stuHelpDeskDAO.writeStudentFAQ(boardVO);
 	}
 
 }

@@ -4,11 +4,6 @@
 #left-menu{
 	margin-top: 0;
 }
-
-	<input type="button" value="장학이력/신청조회" onclick="location.href='${pageContext.request.contextPath}/student/resSchManage/studRes'"/> 
-	<input type="button" value="장학금신청" onclick="location.href='${pageContext.request.contextPath}/student/admissionApplication'"/> 	
-	<input type="button" value="등록금이력조회" onclick="location.href='${pageContext.request.contextPath}/student/admissionApplication'"/> 
-	<input type="button" value="등록금관리" onclick="location.href='${pageContext.request.contextPath}/student/admissionApplication'"/> 
 </style>
 <div id="col-xs-12 left-menu">
               <div class="sub-left-menu scroll" tabindex="5000" style="overflow: hidden; outline: none;">
@@ -48,18 +43,3 @@
                 </div>
             </div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript">
-function adminMain_go(){
-  location.href="<%=request.getContextPath()%>/admin/main/adminMain";
-  ${pageContext.request.contextPath}
-  }
-function logout_go(){
-   location.href="<%=request.getContextPath()%>/common/logout";
-   }
-function myInfo_go(){
-    location.href="<%=request.getContextPath()%>/admin/mypage/myInfo";
-    }
-function mySchedule_go(){
-    location.href="<%=request.getContextPath()%>/admin/mypage/mySchedule";
-	}
-</script>

@@ -11,7 +11,7 @@
         <if test="searchFiled != null and searchFiled != ''">
             AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
         </if>
-</select>
+	</select>
  
 <select id="getFAQList" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO">
     SELECT 
@@ -37,15 +37,35 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 
 
 <update id="updateStudentFAQ" parameterType="com.avengers.db.dto.BoardVO">
-	update board set board_title=#{board_title}, board_cont=#{board_cont} where board_num=#{board_num}
+	update board set board_title=#{board_title}, board_cont=#{board_cont}, board_af=#{board_af},board_aff=#{board_aff} where board_num=#{board_num}
 </update>
 
 <delete id="deleteStudentFAQ" parameterType="com.avengers.db.dto.BoardVO">
 	delete from board where board_num=#{board_num}
 </delete>
 
+<insert id="writeStudentFAQ" parameterType="com.avengers.db.dto.BoardVO">
+	insert into board (board_num, board_title, board_cont, board_writer, board_date, board_af, board_bc, board_count, board_aff)
+	values ((select max(board_num) from board)+1, #{board_title}, #{board_cont}, 'admin', sysdate, #{board_af},'FAQ','0',#{board_aff}) 
+</insert>
+
+
+
+
+
+
+
+
+
+
+
+	
 	<!-- 게시판중 포탈공지사항을 검색하는 구문  -->	
 
+
+	<select id="selectPortalNoticeList" resultType="com.avengers.db.dto.BoardVO">
+		SELECT * FROM BOARD WHERE BOARD_BC='PORTAL' 
+	</select>
 	
 	<select id="selectBoardOne" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
 		SELECT
@@ -116,10 +136,13 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 					 
 	</update>
 	
-	<select id="selectPortalNoticeList" resultType="com.avengers.db.dto.BoardVO">
-      SELECT * FROM BOARD WHERE BOARD_BC='PORTAL' 
-   </select>
+	<!-- 게시판중 학교공지사항을 검색하는 구문  -->	
+	<select id="selectSchoolNoticeList" parameterType="java.lang.String" >
+		SELECT * FROM BOARD WHERE BOARD_BC='UNIV'  
+	</select>
 	
+
+   
 	<!-- 다름 -->
 	<select id="selectBoardNoticeList" parameterType="map" resultType="com.avengers.db.dto.BoardVO">
 		 select *

@@ -18,6 +18,10 @@ FAQ 디테일
 제목 : ${detail.board_title}<br>
 내용 : ${detail.board_cont}<br>
 작성자 : ${detail.board_writer}<br>
+<form action="${pageContext.request.contextPath}/download" method="post">
+첨부파일 : ${detail.board_aff} <input type="submit" value="다운">
+<input type="hidden" name="board_af" value="${detail.board_af}" >
+</form>
 
 
 <form action="${pageContext.request.contextPath}/student/helpDesk/studentFAQUpdatePage" method="post">
