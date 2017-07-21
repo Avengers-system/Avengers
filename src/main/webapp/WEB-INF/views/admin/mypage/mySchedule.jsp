@@ -105,11 +105,17 @@ ol, ul {
 	</script>
 
 
-</head>
- 
-<body id='index-page'>
+	<!-- Admin Header -->
+	<%@include file="../common/topCategory.jsp"%>
+	
+		<!-- Content -->
+		<div class="col-md-2" id="commonLeftSide">
+			<%@include file="../common/mainSideCategory.jsp" %>
+		</div>
 
-	<div id='body' class='section' >
+		<div class="col-md-10" id="commonRightSide">
+
+		<div id='body' class='section' >
 		<div>
 			<div class='two-col'>
 					<div id='calendar'></div>
@@ -190,6 +196,12 @@ ol, ul {
    </div>
    
    
+ </div>
+ 
+ 
+ 
+ 
+ 
    
  
 
@@ -252,10 +264,7 @@ ol, ul {
    </div>
    <!-- /.modal -->
    </div>
-
-</body>
-</html>
-
+ 
 
 
 
