@@ -26,7 +26,7 @@ import com.avengers.student.registryScholarshipManage.service.StudentResManageSe
  *
  */
 @Controller
-@RequestMapping("/student/resSchManage")
+@RequestMapping("/student")
 public class StudentResManageController {
 
 	@Autowired
@@ -66,9 +66,7 @@ public class StudentResManageController {
 								
 								//각 과목의 평점 * 학점을 더한다
 								average_rating  += stuRes.get(j).getTl_mark() * Integer.parseInt(stuRes.get(j).getLct_crd());
-								System.out.println("평점*학점 = "+average_rating);
 								grades += Integer.parseInt(stuRes.get(j).getLct_crd());
-								System.out.println("grades = "+grades);
 							}
 						}
 					}

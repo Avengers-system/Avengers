@@ -39,9 +39,7 @@ initTimer = function() {
 
 	rMinute = parseInt(iSecond%3600/60);
 
-	rSecond = parseInt(iSecond%3600%60);
-
- 	
+	rSecond = parseInt(iSecond%3600%60); 	
  	
 	if (iSecond > 0) {
 		timer.innerHTML = "남은시간 :"+rMinute+"분"+rSecond+"초";
@@ -57,7 +55,9 @@ initTimer = function() {
 		logoutUser();
 	}
 }
-
+function removeTimer(){
+	clearInterval(timerchecker);
+}
 function refreshTimer() {
 	var xhr = initAjax();
 	xhr.open("POST", "/jsp_std/kor/util/window_reload2.jsp", false);
@@ -89,7 +89,7 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 
 <nav class="navbar navbar-default header bg-white " style=" height: 60px; margin:0; ">
           <div class="col-md-12 nav-wrapper" style="height: 60px; padding:0; ">
-				<div class="col-md-2" style="width:60%;">
+				<div class="col-md-2" style="width:50%;">
 					<a href="${pageContext.request.contextPath}/main"><img
 						class="logo" style="height: 60px; width: 130px;"
 						src="${pageContext.request.contextPath}/resources/images/LOGO.png"></a>
@@ -106,6 +106,13 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
                                    <button class="btn ripple btn-gradient btn-info" onclick="fncClearTime()">
                                     <div>
                                       <span>시간연장</span>
+                                    </div>
+                                  </button>
+                                </div>	
+								<div class="col-md-2" style="height: 60px;width:10% ; padding:0;">
+                                   <button class="btn ripple btn-gradient btn-info" onclick="removeTimer()">
+                                    <div>
+                                      <span>타이머중단</span>
                                     </div>
                                   </button>
                                 </div>	
