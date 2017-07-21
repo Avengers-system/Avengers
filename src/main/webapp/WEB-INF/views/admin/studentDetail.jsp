@@ -15,9 +15,8 @@ width:120px;
     
     
     
-     <form enctype="multipart/form-data" action="updateStudent">  
+   <form enctype="multipart/form-data" action="updateStudent">  
     <h1>학생 상세정보 보기</h1>
-  <form enctype="multipart/form-data">
 	학번 : <input type='text' name='stud_num' value='${student.stud_num}' disabled="disabled"><br/>
 	이름 : <input type='text' name='stud_nm' value='${student.stud_nm}'><br/>
 	영문이름 : <input type='text' name='stud_eng_nm' value='${student.stud_eng_nm}'><br/>

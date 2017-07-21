@@ -192,7 +192,6 @@
 
 
 
-</style>
 
 <body>
 헬프데스크메인<br><hr color="orange">
@@ -381,5 +380,3 @@
 </table>
 </div>
 
-</body>
-</html>
