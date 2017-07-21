@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="event">
+	<select id="selectEvents" resultType="com.avengers.db.dto.Event">
+		select * from calender
+	</select>
+	
+	<select id="selectEvent" parameterType="String" resultType="com.avengers.db.dto.Event">
+		select * from calender where id = #{id}
+	</select>
+
+
+	<insert id="insertEvent" parameterType="com.avengers.db.dto.Event">
+		insert into calender 
+		values (calseq.nextval,#{start_date},#{end_date},#{title},#{color},#{content})
+	</insert>
+	
+	<update id="updateEvent" parameterType="com.avengers.db.dto.Event">
+		update calender set	
+		title = #{title},
+		start_date = #{start_date},
+		end_date = #{end_date},
+		content = #{content}
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteEvent" parameterType="String">
+			delete from calender 
+		where id = #{id}
+	</delete>
+	
+</mapper>
+ 

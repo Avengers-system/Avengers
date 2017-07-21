@@ -16,7 +16,6 @@
           숫자:<input type="text" name="board_num" value="${univNoticeList.board_num}" readonly><br>
           제목:<input type="text" name="board_title" value="${univNoticeList.board_title}"><br>
           내용:<input type="text" name="board_cont" value="${univNoticeList.board_cont}"><br>
-<%--           날짜:<input type="text" name="board_date" value="${univNoticeList.board_date}" readonly> --%>
           작성자:<input type="text" name="board_writer" value="${univNoticeList.board_writer}" readonly><br>
           첨부된파일:<input type="text" name="board_af" value="${univNoticeList.board_af}"><br>
           첨부할파일:<input type="file" name="boardtoa" value="${univNoticeList.board_af}"><br>

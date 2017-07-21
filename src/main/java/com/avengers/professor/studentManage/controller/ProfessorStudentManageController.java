@@ -3,6 +3,7 @@ package com.avengers.professor.studentManage.controller;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,8 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.CnsVO;
 import com.avengers.db.dto.CounselInsertVO;
+import com.avengers.db.dto.PrfsVO;
 import com.avengers.db.dto.StudVO;
 import com.avengers.professor.studentManage.service.ProfessorStudentManageService;
 
@@ -26,27 +29,47 @@ public class ProfessorStudentManageController {
 	private ProfessorStudentManageService service;
 	
 	@RequestMapping("/studentManage/departmentList")
-	public String departmentList(Principal principal, Model model){
+	public String departmentList(Principal principal, Model model, @ModelAttribute PrfsVO prfVO){
 		String prfs_num = principal.getName();
-		ArrayList<StudVO> departmentStudentList = null;
+		prfVO.setPrfs_num(prfs_num);
+		
+		 List<StudVO> departmentStudentList =null;
+		
+	    //--페이징 처리
+	    int totalCount=0;
 		try {
-			departmentStudentList = service.selectStudList(prfs_num);
-		} catch (SQLException e) {
-			e.printStackTrace();
+			totalCount = service.getDepartmentStudentListCount(prfVO);
+			prfVO.setTotalCount(totalCount); //페이징 처리를 위한 setter 호출
+	    //--페이징 처리
+	    departmentStudentList = service.getDepartmentStudentList(prfVO);
+	  
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
-		model.addAttribute("departmentStudentList",departmentStudentList);
+		
+		model.addAttribute("pageVO", prfVO);
+	    model.addAttribute("resultList", departmentStudentList);
+		
+
 		return "professor/studentManage/departmentList";
 	}
 	
+	
+	
 	@RequestMapping("/studentManage/departmentDetail")
-	public String departmentDetail(HttpServletRequest request, Model model){
-		String stud_num = request.getParameter("stud_num");
+	public String departmentDetail(@ModelAttribute StudVO studVO, Model model){
+		
+		String stud_num = studVO.getStud_num();
+		int pageNo = studVO.getPageNo();
 		StudVO studDetail = null;
 		try {
 			studDetail = service.selectStud(stud_num);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		
+		model.addAttribute("pageNo",pageNo);
 		model.addAttribute("studDetail",studDetail);
 		return "professor/studentManage/departmentDetail";
 	}

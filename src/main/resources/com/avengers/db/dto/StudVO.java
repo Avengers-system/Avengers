@@ -9,7 +9,7 @@ import java.util.Date;
  * 2017.07.10 보호자정보 추가 
  *
  */
-public class StudVO {
+public class StudVO extends PageVO{
 	private String stud_num;//학생 고유번호
 	private String stud_nm;//이름
 	private String stud_eng_nm; //영문이름
