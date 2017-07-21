@@ -12,7 +12,21 @@
 <div class="col-md-2" id="commonLeftSide">
    <%@include file="../common/mainSideCategory.jsp" %>   
 </div>
+<script>
+Morris.Donut({
+element: ‘donut_example’,     //그래프가 들어갈 위치의 ID를 적어주세요
+data: [                                     //그래프에 들어갈 data를 적어주세요
+{label: ‘v1′, value: 25 },
+{label: ‘v2′, value: 40 },
+{label: ‘v3′, value: 25 },
+{label: ‘v4′, value: 10 }
+],
+colors: [“#30a1ec”, “#76bdee”, “#387bb4″, “#c4dafe”], //그래프 color를 지정해줍니다.
+formatter: function (y) { return y + “%” }  //y값 뒤에 %를 추가해줍니다.
+});
+</script>
 <div class="col-md-10" id="commonRightSide">
+<div id="donut_example" style="height: 250px;"></div>
 	<h1>학생 수 정보 출력</h1>
                      재학생 수 : ${studStatus.get(0) } <br/>
                      휴학생 수 : ${studStatus.get(1) } <br/>
