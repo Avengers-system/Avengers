@@ -26,7 +26,7 @@ window.onload = function() {
 }
 
 function fncClearTime() {	
-	iSecond = 60*10
+	iSecond = 5
 }
 
 Lpad = function(str, len) {
@@ -51,7 +51,6 @@ initTimer = function() {
 		timerchecker = setTimeout("initTimer()", 1000); // 1초 간격으로 체크
 	} 
 	else if(iSecond == 0){
-        alert('세션이 만료되었습니다');
         location.href="logout";
      } 
 	
