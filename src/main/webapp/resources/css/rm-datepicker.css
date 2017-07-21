@@ -322,7 +322,7 @@ input[rm-datepicker] + .rm-datepicker {
   background-color: #F2F2F2 !important;
   opacity: 0.05;
   border-color: #555;
-  cursor: not-allowed;
+/*   cursor: not-allowed; */
 }
 
 .rm-datepicker .decade.date > *:nth-child(-n+4) a,
