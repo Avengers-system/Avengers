@@ -1,40 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="col-xs-12">
-	<ul>
-
-		<li>
-			<button id="adminMain" onclick="adminMain_go()">관리자</button>
-		</li>
-		<li>
-			<button id="logout" onclick="logout_go()">로그아웃</button>
-		</li>
-		<li>
-			<button id="myInfo" onclick="myInfo_go()">개인정보</button>
-		</li>
-		<li>
-			<button id="mySchedule" onclick="mySchedule_go()">개인일정관리</button>
-		</li>
-		<li>
-			<button id="adminMain" onclick="adminMain_go()">관리자</button>
-		</li>
-		<li>
-			<button id="myPage" onclick="mypage_go()">mypage</button>
-		</li>
-		<li>
-			<button id="profPage">교수관리</button>
-		</li>
-		<li>
-			<button id="studPage">학생관리</button>
-		</li>
-		<li>
-			<button id="classPage">강의관리</button>
-		</li>
-		<li>
-			<button id="boardPage">HelpDesk</button>
-		</li>
-	</ul>
-</div>
+<style>
+#left-menu{
+	margin-top: 0;
+}
+</style>
+<div id="left-menu">
+              <div class="sub-left-menu scroll" tabindex="5000" style="overflow: hidden; outline: none;">
+                <ul class="nav nav-list">
+                
+                    <li class="time">
+                      <h1 class="animated fadeInLeft">20:36</h1>
+                      <p class="animated fadeInRight">Thursday, July 20th 2017</p>
+                    </li>
+                    
+                    
+                    <li class="active ripple"onclick="myInfo_go()">
+                      <a class="tree-toggle nav-header">
+                      <span class="fa-home fa" ></span> 개인정보 
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                      </a>
+                    </li>
+                    
+                    <li class="ripple" onclick="mySchedule_go()">
+                      <a class="tree-toggle nav-header">
+                        <span class="fa-diamond fa"></span> 개인일정관리
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+            </div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function adminMain_go(){

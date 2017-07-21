@@ -13,8 +13,7 @@
    <%@include file="../common/mainSideCategory.jsp" %>   
 </div>
 <div class="col-md-10" id="commonRightSide">
-                     
-                     <h1>학생 수 정보 출력</h1>
+	<h1>학생 수 정보 출력</h1>
                      재학생 수 : ${studStatus.get(0) } <br/>
                      휴학생 수 : ${studStatus.get(1) } <br/>
                      자퇴생 수 : ${studStatus.get(2) } <br/>
@@ -44,16 +43,7 @@
                         학번 : ${rts.rts_stud }<br/><br/>   
                      </c:forEach>
                      
-                     <h1>관리자 개인일정</h1>
-                     <c:forEach var="schedule" items="${perschdList }" varStatus="status">
-                        번호 : ${status.count}<br/>
-                        시퀀스번호 : ${schedule.perschd_num }<br/>
-                        제목 : ${schedule.perschd_title }<br/>
-                        내용 : ${schedule.perschd_cont }<br/>
-                        일정 시작일 : ${schedule.perschd_start_date }<br/>
-                        일정 종료일 : ${schedule.perschd_end_date }<br/>
-                        작성자 : ${schedule.perschd_writer }<br/><br/>   
-                     </c:forEach>
+                    
                      
                      <h1>Map으로 장학신청테이블, 학생테이블 조인함</h1>
                      <c:forEach var="sibal" items="${scrapplList }" varStatus="status">
