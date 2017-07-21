@@ -39,9 +39,9 @@ public class AdminProfessorManageDaoImpl implements AdminProfessorManageDao {
 	}
 
 	@Override
-	public int updatePrfs(PrfsVO prfsVO, String prfs_num) throws SQLException {
-		
-		return 0;
+	public int updatePrfs(PrfsVO prfsVO) throws SQLException {
+		int result = sqlSession.update("prfs.updatePrfs", prfsVO);
+		return result;
 	}
 
 	@Override
