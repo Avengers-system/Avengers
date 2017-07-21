@@ -1,14 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  
-     
-<style>
+  <!-- jQuery와 Postcodify를 로딩한다 -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 
-/* 	input.form-control{ */
-/* 	width:35%; */
-/* 	} */
-	
+
+<!-- Admin Header -->
+<%@include file="common/topCategory.jsp"%>
+
+<!-- Content -->
+<div class="col-md-2" id="commonLeftSide">
+   <!-- 테스트용 사이드 -->
+<%@include file="common/admin_side.jsp" %>   
+</div>
+<div class="col-md-10" id="commonRightSide">
+
+<script>
+	$(function() {
+	   //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
+	   $('#profile-image').on('click', function() {
+	      $('#profile-image-input').click();
+	      
+	      $("#profile-image-input").change(function (){     
+	           
+	           var file = this.files[0];
+	           var reader = new FileReader();
+	           // Set preview image into the popover data-content
+	           reader.onload = function (e) {
+	               $(".image-preview-input-title").text("변경");
+	                $("#image-preview-filename").val(file.name);            
+	               $("#profile-image").attr('src', e.target.result);
+	           }        
+	           reader.readAsDataURL(file);
+	       });
+	   });
+	   
+	   // 업로드 버튼으로 그림피일 업로드 후 미리보기
+	   $(".image-preview-input input:file").change(function (){     
+	        
+	        var file = this.files[0];
+	        var reader = new FileReader();
+	        //Set preview image into the popover data-content
+	        reader.onload = function (e) {
+	            $(".image-preview-input-title").text("변경");
+	            $("#image-preview-filename").val(file.name);            
+	            $("#profile-image").attr('src', e.target.result);
+	        }        
+	        reader.readAsDataURL(file);
+	    });
+	 
+	});
+</script>
+ 
+ 
+ 
+
+<script type="text/javascript">
+ $("#postcodify").postcodify();
+</script>
+  
+<style>
+ 
+    .table-bordered>thead>tr>th {
+	text-align: center;
+	}
 	
 	div>.filess{
 	margin-left:60px;width:130px; height:150px;
@@ -85,69 +141,13 @@
 
 	div#prof_inform{
 		margin-top:50px;
-
-
-
 	}
-
-
 
 </style>
 
- 
-<!-- Admin Header -->
-<%@include file="common/topCategory.jsp"%>
-
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide">
-   <%@include file="common/mainSideCategory.jsp" %>   
-</div>
-<div class="col-md-10" id="commonRightSide">
-     
-<script>
-$(function() {
-   //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
-   $('#profile-image').on('click', function() {
-      $('#profile-image-input').click();
-      
-      $("#profile-image-input").change(function (){     
-           
-           var file = this.files[0];
-           var reader = new FileReader();
-           // Set preview image into the popover data-content
-           reader.onload = function (e) {
-               $(".image-preview-input-title").text("변경");
-                $("#image-preview-filename").val(file.name);            
-               $("#profile-image").attr('src', e.target.result);
-           }        
-           reader.readAsDataURL(file);
-       });
-   });
-   
-   // 업로드 버튼으로 그림피일 업로드 후 미리보기
-   $(".image-preview-input input:file").change(function (){     
-        
-        var file = this.files[0];
-        var reader = new FileReader();
-        //Set preview image into the popover data-content
-        reader.onload = function (e) {
-            $(".image-preview-input-title").text("변경");
-            $("#image-preview-filename").val(file.name);            
-            $("#profile-image").attr('src', e.target.result);
-        }        
-        reader.readAsDataURL(file);
-    });
-   
- 
- 
-});
-</script>
-
- 
-
+  
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-  
   	<div class="col-md-12">
   		
  		 <form name="insertProfessor"  method="post" action="${pageContext.request.contextPath }/admin/insertProfessor" enctype="multipart/form-data">
@@ -176,7 +176,6 @@ $(function() {
 
 
 	<div class="col-md-12" id="prof_inform">
-	
 				<div class="col-md-5">
 	
 

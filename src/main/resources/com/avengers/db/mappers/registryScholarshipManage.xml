@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resSchManage">
+	
+	<select id="resSchSelect" parameterType="java.lang.String" resultType="com.avengers.db.dto.resSchStudentVO">
+		SELECT S.STUD_NUM, 
+				S.STUD_GRD ,
+				S.STUD_NM ,
+				S.STUD_QTR ,
+				S.STUD_BANK ,
+				S.STUD_ACT_NUM ,
+				S.STUD_DEPT ,
+				S.STUD_SCHREG_CODE ,
+				S.STUD_ADDR ,
+				D.DEPT_NM ,
+				C.COL_NM ,
+				T.TL_LCT ,
+				T.TL_POINT ,
+				T.TL_LEV ,
+				T.TL_MARK ,
+				L.LCT_CRD ,
+				L.LCT_YR ,
+				L.LCT_QTR,
+				T.TL_ASMT_CHECK 
+		FROM STUDENT S,DEPARTMENT D,TL T,LECTURE L,COLLEAGE C
+		WHERE S.STUD_NUM =#{stud_num}
+		AND S.STUD_DEPT = D.DEPT_NUM
+		AND S.STUD_NUM = T.TL_STUD
+		AND T.TL_LCT = L.LCT_NUM
+		AND D.DEPT_COL = C.COL_CODE
+		AND L.LCT_YR = #{lct_yr}
+	</select>
+
+	<select id="LoaRtsSelect" parameterType="java.util.Date" resultType="com.avengers.db.dto.LoaRtsVO">
+		SELECT L.LOA_START_DATE "휴학시작일"
+	          ,L.LOA_END_DATE "휴학종료일"
+	          ,R.RTS_APPL_DATE "복학신청일"
+	          ,R.RTS_DATE "복학일"
+	          ,L.LOA_STUD "학번"
+	    FROM LOA L,RTS R
+	    WHERE L.LOA_STUD = #{loa_stud}
+	    AND L.LOA_STUD = R.RTS_STUD
+	</select>
+
+
+
+
+
+
+
+
+
+</mapper>

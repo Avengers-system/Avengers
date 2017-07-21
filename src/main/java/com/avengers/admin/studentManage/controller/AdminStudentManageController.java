@@ -92,7 +92,7 @@ public class AdminStudentManageController {
 			String msg = "삭제 완료되었습니다.";
 			model.addAttribute("msg",msg);
 		}
-	return "admin/main/studentManage";	
+	return "redirect:studentManage";	
 	}
 	
 	

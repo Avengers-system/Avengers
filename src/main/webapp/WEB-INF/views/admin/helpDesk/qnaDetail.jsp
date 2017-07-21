@@ -17,7 +17,7 @@
           내용:<input type="text" name="board_cont" value="${qnaNoticeList.board_cont}"><br>
 <%--           날짜:<input type="text" name="board_date" value="${qnaNoticeList.board_date}" readonly> --%>
           작성자:<input type="text" name="board_writer" value="${qnaNoticeList.board_writer}" readonly><br>
-          첨부파일?:<input type="text" name="board_af" value="${qnaNoticeList.board_af}"><br>
+<%--           첨부파일?:<input type="text" name="board_af" value="${qnaNoticeList.board_af}"><br> --%>
           게시판분류고유번호:<input type="text" name="board_bc" value="${qnaNoticeList.board_bc}" readonly><br>
          
         <input type="submit" value="수정"> 

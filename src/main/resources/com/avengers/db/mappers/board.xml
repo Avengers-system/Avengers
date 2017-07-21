@@ -141,6 +141,8 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 		SELECT * FROM BOARD WHERE BOARD_BC='UNIV'  
 	</select>
 	
+
+   
 	<!-- 다름 -->
 	<select id="selectBoardNoticeList" parameterType="map" resultType="com.avengers.db.dto.BoardVO">
 		 select *

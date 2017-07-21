@@ -16,5 +16,3 @@
 <sec:authorize access="hasRole('ROLE_STUD')">
 <script>location.href="${pageContext.request.contextPath}/student/studentMain"</script>
 </sec:authorize>
-
-
