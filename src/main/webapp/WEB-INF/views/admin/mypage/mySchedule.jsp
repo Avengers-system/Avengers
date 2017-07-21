@@ -50,6 +50,11 @@ ol, ul {
 	margin: 0 auto;
 }
 
+#commonRightSide{
+
+	margin-top:50px;
+
+}
 </style>
 
 <script>
