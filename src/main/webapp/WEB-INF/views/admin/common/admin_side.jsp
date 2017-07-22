@@ -25,7 +25,7 @@ div.sub-left-menu scroll>ul li>a.tree-toggle nav-header{margin-left:30px;}
                       </ul>
                     </li>
                     <li class="ripple">
-                      <a class="tree-toggle nav-header">
+                      <a href="${pageContext.request.contextPath}/admin/qnaNoticeList" class="tree-toggle nav-header">
                          Q&A
                         <span class="fa-angle-right fa right-arrow text-right"></span>
                       </a>
@@ -56,7 +56,7 @@ div.sub-left-menu scroll>ul li>a.tree-toggle nav-header{margin-left:30px;}
                           포털게시판<span class="fa-angle-right fa right-arrow text-right"></span> </a>
                       <ul class="nav nav-list tree" style="display: none;">
                         <li><a href="formelement.html">Form Element</a></li>
-                        <li><a href="${pageContext.request.contextPath}/admin/portalNoticeList'">포털게시판</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/portalNoticeList">포털게시판</a></li>
                       </ul>
                     </li>
                     <li class="ripple"><a class="tree-toggle nav-header">
@@ -66,9 +66,9 @@ div.sub-left-menu scroll>ul li>a.tree-toggle nav-header{margin-left:30px;}
                       </ul>
                     </li>
                      <li class="ripple"><a class="tree-toggle nav-header">
-                     학부게시판  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
+                     학사일정게시판  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
                       <ul class="nav nav-list tree" style="display: none;">
-                        <li><a href="${pageContext.request.contextPath}/admin/collegeNoticeList">학부게시판</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/univSchdNoticeList">학사일정게시판</a></li>
                       </ul>
                     </li>
                   </ul>

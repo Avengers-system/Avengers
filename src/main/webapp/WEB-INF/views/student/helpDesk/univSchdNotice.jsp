@@ -48,22 +48,25 @@
 </script>
 
 
+<!-- <div class="col-md-2" id="commonLeftSide"> -->
+
+
+<!-- </div> -->
 
 <div class="col-md-10" id="commonRightSide" style="margin-left: 0px; margin-right: 0px; float: left;" >
 	<div class="col-md-12">
 		<div class="panel">
 			<div class="panel-heading">
-				<h3>학과소식</h3>
+				<h3>학사일정(풀캘)</h3>
 			</div>
 			<div class="panel-body">
 				<div class="responsive-table">
 					<div class="row">
 
-						<form
-							action="<%=request.getContextPath()%>/admin/deptSearch?board_title=${deptSearch.board_title}">
+						<form action="<%=request.getContextPath()%>/admin/univSchdSearch?board_title=${univSchdSearch.board_title}">
 							<div style="text-align: right; margin-right: 28px; margin-top:13px; margin-bottom: -20px; ">
 							
-							<a href="<%=request.getContextPath()%>/admin/deptWriteForm">글쓰기</a></div>
+							<a href="<%=request.getContextPath()%>/admin/univSchdWriteForm">글쓰기</a></div>
 							<div class="col-sm-6" style="float: left; width:225px;  ">
 								<div id="datatables-example_filter" class="dataTables_filter" style="width: 20%;">
 
@@ -81,6 +84,7 @@
 							<div class="col-sm-6"
 								style="width: 50px; height: 0px; flaot: right;">
 								<div class="dataTables_length" id="datatables-example_length" style="margin-bottom: 0px;">
+
 									</select>
 								</div>
 							</div>
@@ -140,21 +144,21 @@
 									<!-- 테이블헤더 -->
 
 									<c:choose>
-										<c:when test="${not empty deptNoticeList}">
-											<c:forEach var="deptNoticeList"
-												items="${deptNoticeList }">
+										<c:when test="${not empty univSchdNoticeList}">
+											<c:forEach var="univSchdNoticeList"
+												items="${univSchdNoticeList }">
 												<tbody>
 													<tr role="row" class="odd">
-														<td>${deptNoticeList.board_num}</td>
+														<td>${univSchdNoticeList.board_num}</td>
 														<td><a
-															href="${pageContext.request.contextPath}/admin/deptDetail?board_num=${deptNoticeList.board_num}&board_count=${deptNoticeList.board_count}&pageNo=${pageVO.pageNo}">
-															${deptNoticeList.board_title}
+															href="${pageContext.request.contextPath}/admin/univSchdDetail?board_num=${univSchdNoticeList.board_num}&board_count=${univSchdNoticeList.board_count}&pageNo=${pageVO.pageNo}">
+															${univSchdNoticeList.board_title}
 														</a></td>
-														<td>${deptNoticeList.board_date}</td>
-														<td>${deptNoticeList.board_writer}</td>
-														<td>${deptNoticeList.board_af}</td>
-														<td>${deptNoticeList.board_bc}</td>
-														<td>${deptNoticeList.board_count}</td>
+														<td>${univSchdNoticeList.board_date}</td>
+														<td>${univSchdNoticeList.board_writer}</td>
+														<td>${univSchdNoticeList.board_af}</td>
+														<td>${univSchdNoticeList.board_bc}</td>
+														<td>${univSchdNoticeList.board_count}</td>
 													</tr>
 												</tbody>
 											</c:forEach>
