@@ -4,39 +4,7 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.List"%>
 
-<head>
-<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-<title>일정관리</title>
 
-<meta name='description'content='Open source JavaScript jQuery plugin for a full-sized, drag &amp; drop event calendar'>
-<meta name='keywords'content='calendar, JavaScript, jQuery, events, drag and drop'>
-<meta name='author' content='Adam Shaw'>
-<meta name="msapplication-TileColor" content="#2b5797">
-<meta name="msapplication-TileImage" content="https://fullcalendar.io/mstile-144x144.png">
-
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script src='${pageContext.request.contextPath}/resources/js/full_calender/jquery.min.js'></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
- 
-<link rel="apple-touch-icon" sizes="57x57"	href="https://fullcalendar.io/apple-touch-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="114x114"	href="https://fullcalendar.io/apple-touch-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="72x72"	href="https://fullcalendar.io/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="144x144"	href="https://fullcalendar.io/apple-touch-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="60x60"	href="https://fullcalendar.io/apple-touch-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="120x120"	href="https://fullcalendar.io/apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="76x76"	href="https://fullcalendar.io/apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="152x152"href="https://fullcalendar.io/apple-touch-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180"href="https://fullcalendar.io/apple-touch-icon-180x180.png">
-<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-192x192.png" sizes="192x192">
-<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-160x160.png" sizes="160x160">
-<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-96x96.png" sizes="96x96">
-<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-16x16.png" sizes="16x16">
-<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-32x32.png" sizes="32x32">
 
 <style>
 ol, ul {
@@ -292,22 +260,3 @@ ol, ul {
    <!-- /.modal -->
    </div>
    
-<%-- <c:choose> --%>
-<%-- 		<c:when test="${not empty perschdList}"> --%>
-<%-- 			<c:forEach var="perschd" items="${perschdList}"> --%>
-<!-- 				<tr> -->
-<%-- 					<td>번호:${perschd.perschd_num}</td> --%>
-<%-- 					<td>제목:${perschd.perschd_title}</td> --%>
-<%-- 					<td>내용:${perschd.perschd_cont}</td> --%>
-<%-- 					<td>작성자:${perschd.perschd_writer}</td> --%>
-<%-- 					<td>작성일:${perschd.perschd_date}</td> --%>
-<%-- 					<td>시작일:${perschd.perschd_start_date}</td> --%>
-<%-- 					<td>종료일:${perschd.perschd_end_date}</td> --%>
-<!-- 				</tr> -->
-<!-- 				<br/> -->
-<%-- 			</c:forEach> --%>
-<%-- 		</c:when> --%>
-<%-- 		<c:otherwise> --%>
-<!-- 			등록된 일정이 없습니다. -->
-<%-- 		</c:otherwise> --%>
-<%-- 	</c:choose> --%>
