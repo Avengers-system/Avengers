@@ -3,6 +3,7 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,82 +27,59 @@
 	<meta property="og:image" content="${pageContext.request.contextPath}/resources/ico/avengers_thumbnail.png" />
 	
 <!-- Style -->
-	<!-- start: Css -->
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 
-  <!-- plugins -->
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/font-awesome.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/animate.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/mediaelementplayer.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/nouislider.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/select2.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/simple-line-icons.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/ionrangeslider/ion.rangeSlider.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/ionrangeslider/ion.rangeSlider.skinFlat.css"/>
-  <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/fullcalendar.min.css"/>  --%>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/bootstrap-material-datetimepicker.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/plugins/datatables.bootstrap.min.css"/>
-  <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
-  
-  
+<!-- start: Css -->
+	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/asset/css/bootstrap.min.css">
+
+<!-- plugins -->
+	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/asset/css/plugins/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/asset/css/plugins/simple-line-icons.css" />
+	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/asset/css/plugins/animate.min.css" />
+	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/asset/css/plugins/icheck/skins/flat/aero.css" />
+	<link href="${pageContext.request.contextPath}/resources/asset/css/style.css" rel="stylesheet">
+	
 <!-- 풀캘린더 -->
-<link href='${pageContext.request.contextPath}/resources/css/full_calender/base.css' rel='stylesheet' />
-<link rel='stylesheet' href='${pageContext.request.contextPath}/resources/css/full_calender/fullcalendar.min.css' />
-  
-  
-  <!-- end: Css -->
+	<link href='${pageContext.request.contextPath}/resources/css/full_calender/base.css' rel='stylesheet' />
+	<link rel='stylesheet' href='${pageContext.request.contextPath}/resources/css/full_calender/fullcalendar.min.css' />
+<!-- end: Css -->
 
 </head>
 
-
+<sec:authorize access="isAuthenticated()">
 <body >
+</sec:authorize>
+<sec:authorize access="isAnonymous()">
+<body class="dashboard form-signin-wrapper">
+</sec:authorize>
+
 <!-- Common Header -->
 <div class="container-fluid">
-    <div class="row" id="commonHeader">
-    	<div id="commonHeaderSort">
-			<tiles:insertAttribute name="header"/>
-		</div>
-    </div>
+	<tiles:insertAttribute name="header"/>
 </div>
 
 <!-- Common Content -->
 <div class="container-fluid">
-	<div class="row" id="commonContent">
-		<tiles:insertAttribute name="content" />
-    </div>
+	<tiles:insertAttribute name="content" />
 </div>
 
 <!-- Common Footer -->
-<div class="container-fluid" class="footer">
-    <div class="row" id="commonFooter">
-		<tiles:insertAttribute name="footer" />
-    </div>
+<div class="container-fluid">
+	<tiles:insertAttribute name="footer" />
 </div>	
-  <!-- start: Javascript -->
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.ui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-
-    
-  <!-- plugins -->
-  
-<script src="${pageContext.request.contextPath}/resources/js/plugins/moment.min.js"></script> 
-<script src="${pageContext.request.contextPath}/resources/js/plugins/jquery.knob.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/ion.rangeSlider.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/bootstrap-material-datetimepicker.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/jquery.nicescroll.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/jquery.mask.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/select2.full.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/nouislider.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/jquery.validate.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 
 
 
-<script src='${pageContext.request.contextPath}/resources/js/full_calender/moment.min.js'></script>
-<script src='${pageContext.request.contextPath}/resources/js/full_calender/jquery-ui.min.js'></script>
-<script src='${pageContext.request.contextPath}/resources/js/full_calender/fullcalendar.min.js'></script>
-<script src='${pageContext.request.contextPath}/resources/js/full_calender/ko.js'></script>
-
+<!-- start: Javascript -->
+	<script	src="${pageContext.request.contextPath}/resources/asset/js/jquery.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/asset/js/jquery.ui.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/asset/js/bootstrap.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/asset/js/plugins/moment.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/asset/js/plugins/icheck.min.js"></script>
+	
+<!-- Full calender -->
+	<script	src='${pageContext.request.contextPath}/resources/js/full_calender/moment.min.js'></script>
+	<script	src='${pageContext.request.contextPath}/resources/js/full_calender/jquery-ui.min.js'></script>
+	<script	src='${pageContext.request.contextPath}/resources/js/full_calender/fullcalendar.min.js'></script>
+	<script	src='${pageContext.request.contextPath}/resources/js/full_calender/ko.js'></script>
 </body>
 </html>

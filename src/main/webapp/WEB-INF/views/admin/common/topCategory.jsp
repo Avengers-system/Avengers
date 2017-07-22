@@ -1,18 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<style>
 
-.nav-tabs>li>a {
-	text-align: center;
-    width: 200px;
-    line-height: 1.42857143;
-    border: 1px solid transparent;
-    border-radius: 4px 4px 0 0;
-}
-
-
-</style>
 
 <!-- StudentHeader -->
 <div class="panel">

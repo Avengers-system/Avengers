@@ -3,10 +3,7 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-<c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
 <!-- Admin Header -->
-<%@include file="../common/topCategory.jsp"%>
 <h1>관리자 정보 출력</h1>
 아이디 : ${admin.admin_id}<br/>
 이름 : ${admin.admin_nm}<br/>
@@ -79,39 +76,24 @@
 
 <script type="text/javascript">
    function adminMain_go(){
-      location.href="${myContextPath}/admin/main/adminMain";
+      location.href="${pageContext.request.contextPath}/admin/main/adminMain";
    }
    function logout_go(){
-      location.href="${myContextPath}/common/logout";
+      location.href="${pageContext.request.contextPath}/common/logout";
    }
    function myInfo_go(){
-      location.href="${myContextPath}/admin/mypage/myInfo";
+      location.href="${pageContext.request.contextPath}/admin/mypage/myInfo";
    }
    function mySchedule_go(){
-      location.href="${myContextPath}/admin/mypage/mySchedule";
+      location.href="${pageContext.request.contextPath}/admin/mypage/mySchedule";
    }
 
 </script>
-</body>
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide">
-   <%@include file="../common/mainSideCategory.jsp" %>   
-</div>
-<script>
-Morris.Donut({
-element: ‘donut_example’,     //그래프가 들어갈 위치의 ID를 적어주세요
-data: [                                     //그래프에 들어갈 data를 적어주세요
-{label: ‘v1′, value: 25 },
-{label: ‘v2′, value: 40 },
-{label: ‘v3′, value: 25 },
-{label: ‘v4′, value: 10 }
-],
-colors: [“#30a1ec”, “#76bdee”, “#387bb4″, “#c4dafe”], //그래프 color를 지정해줍니다.
-formatter: function (y) { return y + “%” }  //y값 뒤에 %를 추가해줍니다.
-});
-</script>
-<div class="col-md-10" id="commonRightSide">
-<div id="donut_example" style="height: 250px;"></div>
+
+
+
+
+
 	<h1>학생 수 정보 출력</h1>
                      재학생 수 : ${studStatus.get(0) } <br/>
                      휴학생 수 : ${studStatus.get(1) } <br/>
@@ -157,5 +139,4 @@ formatter: function (y) { return y + “%” }  //y값 뒤에 %를 추가해줍�
                         번호 : ${status.count }<br/>
                         ${dept.dept_nm }의 교수의 수 : ${dept.count }<br/><br/>
                      </c:forEach>
-                     
-</div>
+
