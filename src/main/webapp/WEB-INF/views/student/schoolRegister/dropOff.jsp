@@ -1,20 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- Counsel Content -->
+    <!-- 자퇴신청 -->
+ <!-- Counsel Content -->
 <!-- Counsel Left Side -->
-<div class="col-md-2">
-<a href="${pageContext.request.contextPath}/student/schoolRegister/certificate">증명서발급</a>
-<a href="${pageContext.request.contextPath}/student/schoolRegister/leaveBackList">휴/복학 내역</a>
-<a href="${pageContext.request.contextPath}/student/schoolRegister/leaveBackApplyPage">휴/복학 신청</a>
-<a href="${pageContext.request.contextPath}/student/schoolRegister/dropOff">자퇴 신청</a>
-</div>
-
+<%@include file="../common/certificateSide.jsp" %>
 <!--  Counsel Right Side -->
 <div class="col-md-10">
-자퇴신청현황
-
-<c:forEach var="dropList" items="${dropOffList}">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">자퇴 신청</h4>
+		</div>
+		<div class="panel-body" style="height: 580px; text-align: center;" >
+			<c:forEach var="dropList" items="${dropOffList}">
 	자퇴번호 ${dropList.ls_num}<br>	
 
 </c:forEach>
@@ -28,5 +26,12 @@
 		<input type="text" name="ls_admin" placeholder="관리자아이디">
 		<input type="submit" value="자퇴신청">
 	</form>
+			
 
+
+		</div>
+	</div>
 </div>
+
+
+
