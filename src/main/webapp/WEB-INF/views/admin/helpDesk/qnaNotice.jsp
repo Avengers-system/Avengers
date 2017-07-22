@@ -48,10 +48,6 @@
 </script>
 
 
-<!-- <div class="col-md-2" id="commonLeftSide"> -->
-
-
-<!-- </div> -->
 
 <div class="col-md-10" id="commonRightSide" style="margin-left: 0px; margin-right: 0px; float: left;" >
 	<div class="col-md-12">
@@ -86,8 +82,6 @@
 								style="width: 50px; height: 0px; flaot: right;">
 								<div class="dataTables_length" id="datatables-example_length" style="margin-bottom: 0px;">
 
-<!-- 									<div style="width: 700px; float: right; text-align: right; margin-bottom: 0px; margin-top: 0px;"> -->
-<!-- 									</div> -->
 									</select>
 								</div>
 							</div>
@@ -252,7 +246,6 @@
 </div>
 
 
-<!-- css -->
 
 
 

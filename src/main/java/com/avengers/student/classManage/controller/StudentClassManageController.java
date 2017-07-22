@@ -251,10 +251,10 @@ public class StudentClassManageController {
 	@RequestMapping(value="student/classManage/lectureAsgnSubmit")
 	public String studentLectureAsgnSubmit(HttpServletRequest request, Principal principal ){
 		SubVO subVO = new SubVO();
-		subVO.setSub_title((String)request.getAttribute("sub_title"));
-		subVO.setSub_cont((String)request.getAttribute("sub_cont"));
+		subVO.setSub_title((String)request.getParameter("sub_title"));
+		subVO.setSub_cont((String)request.getParameter("sub_cont"));
 		subVO.setSub_stud(principal.getName());
-		subVO.setSub_asgn((String)request.getAttribute("asgn_num"));
+		subVO.setSub_asgn((String)request.getParameter("asgn_num"));
 		
 		int result = -1;
 		try {
@@ -268,6 +268,6 @@ public class StudentClassManageController {
 		} else {
 			message = "비정상적으로 종료되었습니다.";
 		}
-		return "redirect:lectureAsgn?lct_num"+(String)request.getParameter("lct_num");
+		return "redirect:lectureAsgn";
 	}
 }

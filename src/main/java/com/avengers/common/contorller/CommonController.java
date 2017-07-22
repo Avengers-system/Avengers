@@ -79,7 +79,7 @@ public class CommonController implements ApplicationContextAware{
 			model.addObject("logout", "You've been logged out successfully.");
 		}
 		if(sessionEnd!=null){
-			model.addObject("sessionEnd");
+			model.addObject("sessionEnd","중복로그인");
 		}
 		
 		model.setViewName("common/commonLogin");
