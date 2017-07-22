@@ -341,6 +341,51 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 		}
 		return result;
 	}
+
+	//시험응시자 가져오기
+	@Override
+	public ArrayList<Map<String, String>> selectStudTeList(String exam_num)
+			throws SQLException {
+		ArrayList<Map<String, String>> studTeList = (ArrayList<Map<String, String>>) sqlSession.selectList("te.selectStudTeList", exam_num);
+		return studTeList;
+	}
+
+	@Override
+	public Map<String, String> selectStudColDeptInfo(String stud_num)
+			throws SQLException {
+		Map<String, String> studInfo = (Map<String, String>) sqlSession.selectOne("student.selectStudColDeptInfo", stud_num);
+		return studInfo;
+	}
+
+	@Override
+	public ArrayList<Map<String, String>> selectSaInfoList(
+			Map<String, String> key) throws SQLException {
+		ArrayList<Map<String, String>> saInfoList = (ArrayList<Map<String, String>>) sqlSession.selectList("sa.selectSaInfoList", key);
+		return saInfoList;
+	}
+
+	@Override
+	public int updateSa(ArrayList<Map<String, String>> saList)
+			throws SQLException {
+		int result = 0;
+		for(int i=0; i<saList.size(); i++){
+			result += sqlSession.update("sa.updateSa", saList.get(i));
+		}
+		return result;
+	}
+
+	@Override
+	public int selectScoreSum(String te_num)
+			throws SQLException {
+		int score = (Integer) sqlSession.selectOne("sa.selectScoreSum", te_num);
+		return score;
+	}
+
+	@Override
+	public int updateExamPoint(String te_num) throws SQLException {
+		int result = sqlSession.update("te.updateExamPoint", te_num);
+		return result;
+	}
 	
 
 }

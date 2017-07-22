@@ -10,7 +10,7 @@
 	<h1>과제제출</h1>
 	<hr/>
 	<div style="background:light-gray">
-		<form>
+		<form >
 			<input type="text" name="lct_num" value="${asgn.get('lct_num') }"/>
 			강의명 : <input type="text" name="lct_nm" value="${asgn.get('lct_nm') }"/>
 			분반 : <input type="text" name="lct_nm_class" value="${asgn.get('lct_nm_class') }"/>
@@ -23,12 +23,13 @@
 		</form>
 	</div>
 	-----------------------------------------------------------------------------------------------
-	<form name="submission" id="submission">
+	<form name="submission" method="post" action="lectureAsgnSubmit">
 		<input type="text" name="asgn_num" value="${asgn_num}"/>
 		제목 : <input type="text" name="sub_title"/><br/>
 		내용 : <br/><textarea cols="100" rows="10" name="sub_cont"></textarea><br/>
 		첨부파일 : <input type="file" name="sub_af">
-		<input type="button" onclick="<%=request.getContextPath()%>/student/classManage/lectureAsgnSubmit?lct_num=${asgn.get('lct_num')}" value="제출"/>
+		<input type="submit" value="제출"/>
+<%-- 	<input type="button" onclick="${pageContext.request.contextPath}/student/classManage/lectureAsgnSubmit" value="제출"/> --%>
 		<input type="button" onclick="location.href='${pageContext.request.contextPath}/student/classManage/lectureAsgn'" value="뒤로가기"/>
 	</form>
 </div>

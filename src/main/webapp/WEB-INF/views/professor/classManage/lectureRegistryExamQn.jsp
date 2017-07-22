@@ -102,7 +102,7 @@ $(function(){
 </script>
 <style>
  	.eq_ans, .eq_qtna{
- 		width:25px;
+ 		width:35px;
  		text-align:center;
  	}
  	.eq_qtn{

@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
@@ -18,6 +21,12 @@ import java.util.ArrayList;
 
 
 
+
+
+
+
+
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -34,6 +43,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.avengers.admin.mypage.service.AdminMypageService;
 import com.avengers.db.dto.AdminVO;
 import com.avengers.db.dto.PerschdVO;
+import com.lowagie.text.List;
 
 
 /**
@@ -163,14 +173,43 @@ public class AdminMypageController {
 			Principal principal,
 			HttpSession session,
 			Model model){
+		
 		String scheduleId = principal.getName(); 
 		ArrayList<PerschdVO> perschdList = null;
+		ArrayList<PerschdVO> perschdList2 = new ArrayList<PerschdVO>();
+		
 		String url="/admin/mypage/mySchedule";
 		String message="";
+	
 		try {
 			perschdList =  myPageService.selectPerschdList(scheduleId);
+		        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");    
+		        Date date1 = new Date();
+		        Date date2 = new Date();
+			    String start_date="";
+			    String end_date="";
+			
+			    PerschdVO perschdVO = new PerschdVO();
+			    for (int i = 0; i < perschdList.size(); i++) {
+					perschdVO = perschdList.get(i);
+					
+					try {
+						date1 = sdf.parse(perschdList.get(i).getPerschd_start_date());
+						date2 = sdf.parse(perschdList.get(i).getPerschd_end_date());
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					
+					start_date = sdf.format(date1);
+					end_date = sdf.format(date2);
+		    
+					perschdVO.setPerschd_start_date(start_date);
+					perschdVO.setPerschd_start_date(end_date);
+					perschdList2.add(perschdVO);
+		    }
 			if(perschdList != null){
-				model.addAttribute("perschdList",perschdList);
+				
+				model.addAttribute("perschdList",perschdList2);
 				message="개인정보가 조회되었습니다.";
 			}else{
 				message = "입력된 개인정보가 없습니다.";
@@ -214,18 +253,32 @@ public class AdminMypageController {
 	}
 	
 	/**
-	 * 일정 등록
+	 * ★일정 등록★
 	 * @param perschd
 	 * @param model
 	 * @return string
 	 */
 	@RequestMapping("/myScheduleInsert")
 	public String myScheduleInsert(
-			@RequestParam(value="perschdVO")PerschdVO perschd,
-			HttpSession session
+			PerschdVO perschd,
+			Principal who,
+			HttpSession session,
+			@RequestParam("PERSCHD_START_DATE")String perschd_start_date,
+			@RequestParam("PERSCHD_END_DATE")String perschd_end_date,
+			@RequestParam("PERSCHD_TITLE")String perschd_title,
+			@RequestParam("PERSCHD_CONT")String perschd_cont
 			){
-		String url="redirect:/admin/mypage/mySchedule";
+		
 		String message="일정등록을 실패하였습니다.";
+		
+		perschd.setPerschd_writer(who.getName());
+		perschd.setPerschd_cont(perschd_cont);
+		perschd.setPerschd_start_date(perschd_start_date);
+		perschd.setPerschd_end_date(perschd_end_date);
+		perschd.setPerschd_title(perschd_title);
+		
+		
+		System.out.println("!!!!!!!!!!"+perschd.toString());
 		
 		try {
 			int  success= myPageService.insertPerschd(perschd);
@@ -233,11 +286,10 @@ public class AdminMypageController {
 				message="일정등록에 성공하였습니다.";
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		session.setAttribute("message",message);
-		return url;
+		return "redirect:/admin/mypage/mySchedule";
 	}
 	/**
 	 * 일정 삭제

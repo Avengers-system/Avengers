@@ -16,6 +16,7 @@
 		FROM   EQ, EXAM
 		WHERE  EXAM_NUM = EQ_EXAM
 		AND    EXAM_NUM = #{exam_num}
+		ORDER BY EQ_QTNA ASC
 	</select>
 	
 	<select id="selectEqAllDataList" parameterType="java.lang.String" resultType="com.avengers.db.dto.EqVO">
