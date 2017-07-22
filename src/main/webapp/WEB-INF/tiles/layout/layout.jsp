@@ -57,10 +57,25 @@
 	<tiles:insertAttribute name="header"/>
 </div>
 
+
+
 <!-- Common Content -->
+<sec:authorize access="isAnonymous()">
 <div class="container-fluid">
 	<tiles:insertAttribute name="content" />
 </div>
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="panel" style="height: 690px; overflow: scroll;">
+					<tiles:insertAttribute name="content" />
+				</div>
+			</div>
+		</div>
+	</div>
+</sec:authorize>
 
 <!-- Common Footer -->
 <div class="container-fluid">
