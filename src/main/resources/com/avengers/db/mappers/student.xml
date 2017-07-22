@@ -133,7 +133,29 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 	
 	
 	
+	<!-- 학생답안에서 사용할 학생정보 -->
+	<resultMap id="studColDeptInfo" type="java.util.HashMap">
+	<result javaType="String" column="STUD_NUM" property="stud_num"/>
+	<result javaType="String" column="STUD_NM" property="stud_nm"/>
+	<result javaType="String" column="STUD_HP" property="stud_hp"/>
+	<result javaType="String" column="STUD_EMAIL" property="stud_email"/>
+	<result javaType="String" column="COL_NM" property="col_nm"/>
+	<result javaType="String" column="DEPT_NM" property="dept_nm"/>
+	</resultMap>
 	
+	<!-- 학생답안에서 사용할 학생정보 -->
+	<select id="selectStudColDeptInfo" parameterType="String" resultMap="studColDeptInfo">
+		SELECT STUD_NUM
+		      ,STUD_NM
+		      ,STUD_HP
+		      ,STUD_EMAIL
+		      ,COL_NM
+		      ,DEPT_NM
+		FROM   STUDENT, COLLEAGE, DEPARTMENT
+		WHERE  STUD_DEPT = DEPT_NUM
+		AND    DEPT_COL = COL_CODE
+		AND    STUD_NUM = #{stud_num}
+	</select>
 	
 	
 	<select id="findInfo" parameterType="com.avengers.db.dto.AdminVO" resultType="com.avengers.db.dto.StudVO">
@@ -155,16 +177,6 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 	SET STUD_PW = #{stud_pw}
 	WHERE  STUD_NUM = #{stud_num} AND STUD_EMAIL = #{std_email}
 	</update> 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 </mapper>

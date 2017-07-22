@@ -61,4 +61,16 @@ public class PerschdVO {
 		this.perschd_end_date = perschd_end_date;
 	}
 	
+	//쓰고지울게용
+	@Override
+	public String toString() {
+		return "PerschdVO [perschd_num=" + perschd_num + ", perschd_title="
+				+ perschd_title + ", perschd_cont=" + perschd_cont
+				+ ", perschd_date=" + perschd_date + ", perschd_start_date="
+				+ perschd_start_date + ", perschd_end_date=" + perschd_end_date
+				+ ", perschd_writer=" + perschd_writer + "]";
+	}
+	
+	
+	
 }

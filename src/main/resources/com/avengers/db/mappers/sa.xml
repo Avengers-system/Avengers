@@ -8,4 +8,57 @@
 	VALUES(SA_SEQ.NEXTVAL, #{qtna}, #{ans}, #{te})
 	</insert>
 	
+	<resultMap type="java.util.HashMap" id="saInfoList">
+		<result javaType="java.lang.String" column="SA_NUM" property="sa_num"/>
+		<result javaType="java.lang.String" column="SA_ANS" property="sa_ans"/>
+		<result javaType="java.lang.String" column="SA_CHECK" property="sa_check"/>
+		<result javaType="java.lang.String" column="EQ_QTNA" property="eq_qtna"/>
+		<result javaType="java.lang.String" column="EQ_QTN" property="eq_qtn"/>
+		<result javaType="java.lang.String" column="EQ_QTN_TYPE" property="eq_qtn_type"/>
+		<result javaType="java.lang.String" column="EQ_ANS" property="eq_ans"/>
+		<result javaType="java.lang.String" column="EQ_EXMP_ONE" property="eq_exmp_one"/>
+		<result javaType="java.lang.String" column="EQ_EXMP_TWO" property="eq_exmp_two"/>
+		<result javaType="java.lang.String" column="EQ_EXMP_THREE" property="eq_exmp_three"/>
+		<result javaType="java.lang.String" column="EQ_EXMP_FOUR" property="eq_exmp_four"/>
+	</resultMap>
+	
+	<select id="selectSaInfoList" parameterType="java.util.HashMap" resultMap="saInfoList">
+		SELECT SA_NUM
+		      ,SA_ANS
+		      ,SA_CHECK
+		      ,EQ_QTNA
+		      ,EQ_QTN
+		      ,EQ_QTN_TYPE
+		      ,EQ_ANS
+		      ,EQ_EXMP_ONE
+		      ,EQ_EXMP_TWO
+		      ,EQ_EXMP_THREE
+		      ,EQ_EXMP_FOUR
+		FROM   SA, TE, EXAM, EQ
+		WHERE  SA_TE = TE_NUM
+		AND    TE_EXAM = EXAM_NUM
+		AND    EQ_EXAM = EXAM_NUM
+		AND    SA_QTNA = EQ_QTNA
+		AND    TE_STUD = #{stud_num}
+		AND    SA_TE = #{te_num}
+		ORDER BY EQ_QTNA
+	</select>
+	
+	<update id="updateSa" parameterType="java.util.HashMap">
+		UPDATE SA
+		SET    SA_CHECK = #{sa_check}
+		WHERE  SA_NUM = #{sa_num}
+	</update>
+	
+	<select id="selectScoreSum" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT SUM(EQ_SCORE)
+		FROM   SA, TE, EXAM, EQ
+		WHERE  SA_TE = TE_NUM
+		AND    EXAM_NUM = TE_EXAM
+		AND    EQ_EXAM = EXAM_NUM
+		AND    SA_QTNA = EQ_QTNA
+		AND    SA_TE = #{te_num}
+		AND    SA_CHECK = '1'
+		GROUP BY EXAM_NUM
+	</select>
 </mapper>
