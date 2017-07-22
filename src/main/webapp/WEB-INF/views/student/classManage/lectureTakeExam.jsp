@@ -9,6 +9,9 @@
 		var answers = [];
 		var eqSize = '<c:out value="${eqList.size()}"/>';
 		ans_check = function(qtna, ans){
+			var imgTag = "<img src='../../resources/images/check.png' width='20px' style='position:absolute; left:20px'/>";
+			alert(qtna + " " + ans);
+			$(".studEq").eq(qtna-1).find($("a")).eq(ans-1).prepend(imgTag);
 			if(index == 0){
 				qtnas[index] = qtna;
 				answers[index] = ans;
@@ -80,9 +83,6 @@
 		})
 	});
 </script>
-<!-- Student Header -->
-<%@include file="../common/topCategory.jsp" %>
-
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
 <%@include file="../common/classManageLectureSideCategory.jsp" %>
@@ -93,6 +93,7 @@
 <!--1.주관식 2.객관식 -->
 	<form>
 		<c:forEach items="${eqList}" var="eq1" varStatus="status">
+			<div class="studEq" style="font-size:20px">
 			${eq1.getEq_qtna() }.
 			${eq1.getEq_qtn() }<br/>
 			<c:choose>
@@ -106,6 +107,7 @@
 					<textarea id="${eq1.getEq_qtna() }" cols="100" rows="10"></textarea><br/><br/>
 				</c:otherwise>
 			</c:choose>
+			</div>
 		</c:forEach>
 	</form>
 	<button onclick="javascript:exam_submit();">제출</button>

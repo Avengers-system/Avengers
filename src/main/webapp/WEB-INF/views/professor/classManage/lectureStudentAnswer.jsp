@@ -35,6 +35,8 @@
 					}
 				}
 				if($(".examSa").eq(i).find($(".sa_check")).text()>0){
+					saNumArr[i] = $(".examSa").eq(i).find($(".sa_num")).text(); 
+					saCheckArr[i] = $(".examSa").eq(i).find($(".sa_check")).text();
 					if($(".examSa").eq(i).find($(".sa_check")).text() == '1'){
 						$(".examSa").eq(i).find($(".eq_qtna")).prepend("<img src='../../resources/images/answer2.png' width='100px' style='position:absolute;left:5px'/>");
 					}else{
@@ -126,19 +128,26 @@
 					},
 					success:function(result){
 						if(result == '-1'){
+							//실패 시 해당페이지에 머물러있음
 							alert("잠시후에 다시 시도해주세요");
 						} else{
-							alert("채점완료");
-							alert(result);
+							//성공시 화면이동
+							alert("채점이 완료되었습니다. 채점란에서 점수를 확인하세요!");
+							var exam_num = '<c:out value="${exam_num}"/>';
+							exam_num = encodeURIComponent(exam_num);
+							exam_num = exam_num.replace("'", "%27");
+							location.href="${pageContext.request.contextPath}/professor/classManage/lectureTakeExamStudent?exam_num="+exam_num;
 						}
 						//점수계산하고 시험점수 시험테이블에 저장
 						//채점한 점수를 업데이트
 					},
 					error:function(){
+						//문제가 아무것도 없을 때 이동하는 거 같은데, 테스트용 데이터를 넣어서 정확하진 않음.
 						alert("다시 시도해주세요");
 					}
 				})
 			} else {
+				//examSa와 saNumArr의 길이가 같이 않으면 채점이 되지 않은 문항이 존재함으로 back
 				alert("채점이 안된 문항이 존재합니다.");
 			}
 		}
@@ -152,9 +161,10 @@
 		소속 : <input type="text" value="${studInfo.get('col_nm')}"/> &nbsp; 
 		학과 : <input type="text" value="${studInfo.get('dept_nm')}"/> &nbsp; 
 		학번 : <input type="text" value="${studInfo.get('stud_num') }"/> &nbsp; 
-		이름 : <input type="text" value="${studInfo.get('stud_nm') }"/> &nbsp; 
+		이름 : <input type="text" value="${studInfo.get('stud_nm') }"/> &nbsp;
 		HP : <input type="text" value="${studInfo.get('stud_hp') }"/> &nbsp; 
-		E-mail : <input type="text" value="${studInfo.get('stud_email') }"/> &nbsp; 
+		E-mail : <input type="text" value="${studInfo.get('stud_email') }"/> &nbsp;
+		<!-- 완료되면 채점을 보여줘야 되는뎁 -->
 		</form>
 	</div>
 		<button id="autoAnswer" style="font-size:15px; margin:15px">객관식 자동채점(1회)</button>

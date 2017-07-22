@@ -67,6 +67,11 @@ public interface StudentClassManageService {
 		//배현상
 		//학생이 과목제출버튼을 누른 경우 업데이트 구문
 		public int updateSubmissionCheck(SubVO subVO) throws SQLException;
+		
+		//배현상
+		//시험시간 정보 계산
+		public Map<String, String> selectExamTimeInfo(String exam_num) throws SQLException;
+		
 		//////강의 상세 페이지
 		
 		//강의계획서
