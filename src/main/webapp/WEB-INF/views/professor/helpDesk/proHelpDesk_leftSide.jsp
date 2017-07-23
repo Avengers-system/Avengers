@@ -22,39 +22,39 @@ div.sub-left-menu scroll>ul li>a.tree-toggle nav-header {
 
 			<div style="margin-top: 20px; border: 20px F0F3F4 dotted;">
 				<a
-					href="${pageContext.request.contextPath}/student/helpDesk/univStudSchdNoticeList">
+					href="${pageContext.request.contextPath}/professor/helpDesk/univProfSchdNoticeList">
 					학사일정(풀캘린더)</a>
 			</div>
 
 			<div style="margin-top: 20px; border: 20px F0F3F4 dotted;">
 				<a
-					href="${pageContext.request.contextPath}/student/helpDesk/univStudNoticeList">
+					href="${pageContext.request.contextPath}/professor/helpDesk/univProfNoticeList">
 					학교게시판</a><br>
 			</div>
 
 			<div style="margin-top: 20px; border: 20px F0F3F4 dotted;">
 				<a
-					href="${pageContext.request.contextPath}/student/helpDesk/deptStudNoticeList">
+					href="${pageContext.request.contextPath}/professor/helpDesk/deptProfNoticeList">
 					우리학과소식</a>
 			</div>
 
 			<div style="margin-top: 20px; border: 20px F0F3F4 dotted;">
 				<a
-					href="${pageContext.request.contextPath}/student/helpDesk/portalStudNoticeList">
+					href="${pageContext.request.contextPath}/professor/helpDesk/portalProfNoticeList">
 					포털소식</a>
 			</div>
 
 
 			<div style="margin-top: 20px; border: 20px F0F3F4 dotted;">
 				<a
-					href="${pageContext.request.contextPath}/student/helpDesk/qnaStudNoticeList">
+					href="${pageContext.request.contextPath}/professor/helpDesk/qnaProfNoticeList">
 					Q&A</a>
 			</div>
 
 
 			<div style="margin-top: 20px; border: 20px F0F3F4 dotted;">
 				<a
-					href="${pageContext.request.contextPath}/student/helpDesk/studentFAQList">
+					href="${pageContext.request.contextPath}/professor/helpDesk/faqProfNoticeList">
 					FAQ</a>
 			</div>
 

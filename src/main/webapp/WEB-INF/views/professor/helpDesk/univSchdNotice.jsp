@@ -3,12 +3,12 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide" style="width: 14%; text-align: center;">
    <!-- 테스트용 사이드 -->
-<%@include file="../helpDesk/helpDesk_leftSide.jsp"%>
+<%@include file="../helpDesk/proHelpDesk_leftSide.jsp"%>
 </div>
 <div class="col-md-10" id="commonRightSide">
 
@@ -61,10 +61,11 @@
 				<div class="responsive-table">
 					<div class="row">
 
-						<form action="<%=request.getContextPath()%>/student/helpDesk/univSchdSearch?board_title=${univStudSchdSearch.board_title}">
+						<form action="<%=request.getContextPath()%>/professor/helpDesk/univSchdSearch?board_title=${univProfSchdSearch.board_title}">
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
 							<div style="text-align: right; margin-right: 28px; margin-top:13px; margin-bottom: -20px; ">
-							
-							<a href="<%=request.getContextPath()%>/student/helpDesk/univStudSchdWriteForm">글쓰기</a></div>
+							<a href="<%=request.getContextPath()%>/professor/helpDesk/univProfSchdWriteForm">글쓰기</a></div>
+						</sec:authorize>	
 							<div class="col-sm-6" style="float: left; width:225px;  ">
 								<div id="datatables-example_filter" class="dataTables_filter" style="width: 20%;">
 
@@ -149,7 +150,7 @@
 													<tr role="row" class="odd">
 														<td>${univSchdNoticeList.board_num}</td>
 														<td><a
-															href="${pageContext.request.contextPath}/student/helpDesk//univStudSchdDetail?board_num=${univSchdNoticeList.board_num}&board_count=${univSchdNoticeList.board_count}&pageNo=${pageVO.pageNo}">
+															href="${pageContext.request.contextPath}/professor/helpDesk//univProfSchdDetail?board_num=${univSchdNoticeList.board_num}&board_count=${univSchdNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 															${univSchdNoticeList.board_title}
 														</a></td>
 														<td>${univSchdNoticeList.board_date}</td>

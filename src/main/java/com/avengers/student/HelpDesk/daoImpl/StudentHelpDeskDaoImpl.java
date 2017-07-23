@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 
 import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.EmpVO;
+import com.avengers.db.dto.StudVO;
 import com.avengers.student.HelpDesk.dao.StudentHelpDeskDao;
 
 /**
@@ -29,12 +30,12 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 	protected SqlSession sqlSession;
 	
 	public void setSqlSession(SqlSession sqlSession) {
-		sqlSession = sqlSession;
+		this.sqlSession = sqlSession;
 	}
 	
 
 	@Override
-	public ArrayList<BoardVO> selectBoardList(String bc_num, String key,
+	public ArrayList<BoardVO> selectStuBoardList(String bc_num, String key,
 			int firstRow, int lastRow) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
@@ -147,7 +148,7 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 
 	
 	@Override
-	public BoardVO selectBoard(String bc_num)throws SQLException {
+	public BoardVO selectStuBoard(String bc_num)throws SQLException {
 		
 		BoardVO result = (BoardVO)sqlSession.selectOne("board.selectBoardOne",bc_num);
 		
@@ -158,7 +159,7 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 	}
 
 	@Override
-	public int insertBoard(BoardVO boardVO)throws SQLException {
+	public int insertStuBoard(BoardVO boardVO)throws SQLException {
 		
 		HashMap map = new HashMap();
 		
@@ -178,7 +179,7 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 	}
 
 	@Override
-	public int updateBoard(BoardVO boardVO)throws SQLException {
+	public int updateStuBoard(BoardVO boardVO)throws SQLException {
 		HashMap map = new HashMap();
 
 		map.put("BOARD_NUM", boardVO.getBoard_num());
@@ -191,22 +192,21 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 	}
 
 	@Override
-	public int deleteBoard(int board_num)throws SQLException {
+	public int deleteStuBoard(int board_num)throws SQLException {
 		int result = sqlSession.delete("board.deleteBoard",board_num);
 		return result;
 	}
 
 	@Override
-	public BoardVO selectInsertBaseData() throws SQLException {
+	public BoardVO selectStuInsertBaseData() throws SQLException {
 		BoardVO boardVo;
 		System.out.println("insertForm Dao");
 		boardVo = (BoardVO) sqlSession.selectOne("board.insertBaseData");
-		
 		return boardVo;
 	}
 
 	@Override
-	public ArrayList<BoardVO> selectSearchList(BoardVO boardVO) {
+	public ArrayList<BoardVO> selectStuSearchList(BoardVO boardVO) {
 		int offset=boardVO.getStartRowNo()-1;
 		int limit = boardVO.getEndRowNo()-boardVO.getStartRowNo()+1;
 		RowBounds rowBounds = new RowBounds(offset,limit);
@@ -216,11 +216,14 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 
 		map.put("BOARD_BC", boardVO.getBoard_bc());
 		map.put("BOARD_TITLE", boardVO.getBoard_title());
+		
+		System.out.println(map.get("BOARD_TITLE")+"dao 이전");
 		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("board.selectSearchList", map,rowBounds);
+		System.out.println(boardList.get(0).getBoard_title()+boardList.size());
 		return boardList;
 	}
 
-	public int updateBoardCount(String board_num, String board_count) throws SQLException{
+	public int updateStuBoardCount(String board_num, String board_count) throws SQLException{
 		HashMap map = new HashMap();
 		
 		map.put("BOARD_NUM", board_num);
@@ -230,7 +233,7 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 		return result;
 	}
 
-	public int selectBoardCount(BoardVO boardVO) throws SQLException{
+	public int selectStuBoardCount(BoardVO boardVO) throws SQLException{
 		int count = 0;
 		HashMap map = new HashMap();
 		
@@ -244,7 +247,7 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 
 
 	@Override
-	public ArrayList<BoardVO> selectBoardList(BoardVO boardVO, int firstRow,
+	public ArrayList<BoardVO> selectStuBoardList(BoardVO boardVO, int firstRow,
 			int lastRow) {
 		int offset=firstRow-1;
 		int limit = lastRow-firstRow+1;
@@ -256,6 +259,13 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("board.selectBoardNoticeList",map,rowBounds);
 		
 		return boardList;
+	}
+
+
+	@Override
+	public String selectStuDept(String key) throws SQLException {
+		StudVO vo = (StudVO) sqlSession.selectOne("student.getStudentInfo",key);
+		return vo.getStud_dept();
 	}
 
 

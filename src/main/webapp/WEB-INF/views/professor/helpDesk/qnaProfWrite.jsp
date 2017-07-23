@@ -7,10 +7,10 @@
 
 
 	
-<h1>학사일정등록(풀캘린더)</h1>
+<h1>교수님용 Q&A 답변하기</h1>
 
 
-<form name="insertUnivSchdBoard" action="univStudSchdWrite">
+<form name="insertQnaProfBoard" action="qnaProfWrite">
 
 	게시판번호    :<input type="text" name="board_num" readonly value="${insertBoard.board_num}"><br>
 	제목    :<input type="text" name="board_title"><br>
@@ -18,9 +18,9 @@
 	날짜    :<input type="text" name="board_date" readonly value="${insertBoard.board_date}"><br>
 	<%User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); %>
 	작성자  :<input type="text" name="board_writer" readonly value="<%=user.getUsername()%>"><br>
-	첨부파일  :<input type="file" name="board_af"><br>
-	분류번호:<input type="text" name="board_bc" readonly value="UNIVSCHD"><br>
+	분류번호:<input type="text" name="board_bc" readonly value="QNA_PROF"><br>
 	조회수:<input type="text" name="board_count" readonly value="0"><br>
+	
 	<input type="submit" value="등록"> 
 	
 	

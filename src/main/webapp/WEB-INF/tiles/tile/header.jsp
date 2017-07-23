@@ -147,12 +147,12 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 			<li role="presentation"><a href="#">수업관리</a></li>
 			<li role="presentation"><a href="${pageContext.request.contextPath}/professor/studentManage/departmentList">학생관리</a></li>
 			<li role="presentation"><a href="${pageContext.request.contextPath}/professor/counsel/counselList">상담</a></li>
-			<li role="presentation"><a href="#">Help Desk</a></li>
+			<li role="presentation"><a href="${pageContext.request.contextPath}/professor/helpDesk/main/helpDeskProfMain">Help Desk</a></li>
 		</ul>
 </div>
 </sec:authorize>
 <!-- 학생 로그인시 보여주는 화면 -->
-<sec:authorize access="hasAnyRole('ROLE_STUD')">
+<sec:authorize access="hasAnyRole('ROLE_STUD,ROLE_WSS')">
 <nav class="navbar navbar-default header bg-dark-blue-grey " style="width:100%; ">
           <div class="col-md-12 nav-wrapper" style="width:100%; ">
 		<div class="navbar-header" style="width:100%; ">
@@ -164,7 +164,7 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/admissionApplication">수강신청</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/studRes">등록&장학</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath}/student/counsel/counselList">상담</a></li>
-		<li role="presentation"><a href="${pageContext.request.contextPath}/student/helpDesk/studentFAQList">Help Desk</a></li>
+		<li role="presentation"><a href="${pageContext.request.contextPath}/student/helpDesk/main/helpDeskStudMain">Help Desk</a></li>
 	</ul>
 </div>
 

@@ -1,9 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 
 <!-- Content -->
-<!-- Counsel Left Side -->
+<div class="col-md-2" id="commonLeftSide" style="width: 14%; text-align: center;">
+   <!-- 테스트용 사이드 -->
+<%@include file="../helpDesk/helpDesk_leftSide.jsp"%>
+</div>
+<div class="col-md-10" id="commonRightSide">
+
+
+
 <div class="col-md-2">
 
 </div>
@@ -90,11 +99,11 @@ FAQ 목록
 </div>
 </form>
 
- 
+<sec:authorize access="hasRole('ROLE_WSS')"> 
 <form action="${pageContext.request.contextPath}/student/helpDesk/studentFAQWritePage" method="post">
 	<input type="hidden" name="pageNo" value="${pageVO.pageNo}">
 	<input type="submit" value="글쓰기">
-</form>
+</form></sec:authorize>
  
 
 </div>

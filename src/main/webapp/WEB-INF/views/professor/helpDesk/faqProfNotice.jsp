@@ -3,12 +3,12 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide" style="width: 14%; text-align: center;">
    <!-- 테스트용 사이드 -->
-<%@include file="../helpDesk/helpDesk_leftSide.jsp"%>
+<%@include file="../helpDesk/proHelpDesk_leftSide.jsp"%> 
 </div>
 <div class="col-md-10" id="commonRightSide">
 
@@ -55,16 +55,18 @@
 	<div class="col-md-12">
 		<div class="panel">
 			<div class="panel-heading">
-				<h3>학사일정(풀캘)</h3>
+				<h3>교수님 FAQ</h3>
 			</div>
 			<div class="panel-body">
 				<div class="responsive-table">
 					<div class="row">
 
-						<form action="<%=request.getContextPath()%>/student/helpDesk/univSchdSearch?board_title=${univStudSchdSearch.board_title}">
+						<form
+							action="<%=request.getContextPath()%>/professor/helpDesk/faqProfSearch?board_title=${faqProfSearch.board_title}">
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
 							<div style="text-align: right; margin-right: 28px; margin-top:13px; margin-bottom: -20px; ">
-							
-							<a href="<%=request.getContextPath()%>/student/helpDesk/univStudSchdWriteForm">글쓰기</a></div>
+							<a href="<%=request.getContextPath()%>/professor/helpDesk/faqProfWriteForm">글쓰기</a></div>
+						</sec:authorize>
 							<div class="col-sm-6" style="float: left; width:225px;  ">
 								<div id="datatables-example_filter" class="dataTables_filter" style="width: 20%;">
 
@@ -86,9 +88,9 @@
 									</select>
 								</div>
 							</div>
+					</form>
 					</div>
 
-					</form>
 
 					<form name="frm">
 						<input type="hidden" name="pageNo" />
@@ -127,10 +129,6 @@
 												style="width: 116px; text-align: center;">작성자</th>
 											<th class="sorting" tabindex="0"
 												aria-controls="datatables-example" rowspan="1" colspan="1"
-												aria-label="Start date: activate to sort column ascending"
-												style="width: 220px; text-align: center;">첨부파일</th>
-											<th class="sorting" tabindex="0"
-												aria-controls="datatables-example" rowspan="1" colspan="1"
 												aria-label="Salary: activate to sort column ascending"
 												style="width: 176px; text-align: center;">게시판분류</th>
 											<th class="sorting" tabindex="0"
@@ -142,21 +140,20 @@
 									<!-- 테이블헤더 -->
 
 									<c:choose>
-										<c:when test="${not empty univSchdNoticeList}">
-											<c:forEach var="univSchdNoticeList"
-												items="${univSchdNoticeList }">
+										<c:when test="${not empty faqProfNoticeList}">
+											<c:forEach var="faqProfNoticeList"
+												items="${faqProfNoticeList }">
 												<tbody>
 													<tr role="row" class="odd">
-														<td>${univSchdNoticeList.board_num}</td>
+														<td>${faqProfNoticeList.board_num}</td>
 														<td><a
-															href="${pageContext.request.contextPath}/student/helpDesk//univStudSchdDetail?board_num=${univSchdNoticeList.board_num}&board_count=${univSchdNoticeList.board_count}&pageNo=${pageVO.pageNo}">
-															${univSchdNoticeList.board_title}
+															href="${pageContext.request.contextPath}/professor/helpDesk/faqProfDetail?board_num=${faqProfNoticeList.board_num}&board_count=${faqProfNoticeList.board_count}&pageNo=${pageVO.pageNo}">
+															${faqProfNoticeList.board_title}
 														</a></td>
-														<td>${univSchdNoticeList.board_date}</td>
-														<td>${univSchdNoticeList.board_writer}</td>
-														<td>${univSchdNoticeList.board_af}</td>
-														<td>${univSchdNoticeList.board_bc}</td>
-														<td>${univSchdNoticeList.board_count}</td>
+														<td>${faqProfNoticeList.board_date}</td>
+														<td>${faqProfNoticeList.board_writer}</td>
+														<td>${faqProfNoticeList.board_bc}</td>
+														<td>${faqProfNoticeList.board_count}</td>
 													</tr>
 												</tbody>
 											</c:forEach>
@@ -250,11 +247,4 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
-
 

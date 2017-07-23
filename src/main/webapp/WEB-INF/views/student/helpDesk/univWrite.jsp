@@ -10,7 +10,7 @@
 <h1>학교게시판 글쓰기</h1>
 
 <c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
-<form name="insertUnivBoard" action="${myContextPath}/admin/univWrite"
+<form name="insertUnivBoard" action="${myContextPath}/student/helpDesk/univStudWrite"
 method="post" enctype="multipart/form-data">
 
 	게시판번호    :<input type="text" name="board_num" readonly value="${insertBoard.board_num}"><br>

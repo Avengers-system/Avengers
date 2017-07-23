@@ -9,7 +9,7 @@
 <div class="col-md-2" id="commonLeftSide"
 	style="width: 14%; text-align: center;">
 	<!-- 테스트용 사이드 -->
-	<%@include file="../helpDesk/helpDesk_leftSide.jsp"%>
+	<%@include file="../helpDesk/proHelpDesk_leftSide.jsp"%>
 </div>
 <div class="col-md-10" id="commonRightSide">
 
@@ -64,12 +64,12 @@
 						<div class="row">
 
 							<form
-								action="<%=request.getContextPath()%>/student/helpDesk/portalStudSearch?board_title=${portalSearch.board_title}">
-								<sec:authorize access="hasRole('ROLE_WSS')">
+								action="<%=request.getContextPath()%>/professor/helpDesk/portalProfSearch?board_title=${portalSearch.board_title}">
+								<sec:authorize access="hasRole('ROLE_ADMIN')">
 								
 								<div
 									style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
-									<a href="<%=request.getContextPath()%>/student/helpDesk/portalStudWriteForm">글쓰기</a>
+									<a href="<%=request.getContextPath()%>/professor/helpDesk/portalProfWriteForm">글쓰기</a>
 								</div>
 								</sec:authorize>
 								<div class="col-sm-6" style="float: left; width: 225px;">
@@ -163,7 +163,7 @@
 														<tr role="row" class="odd">
 															<td>${portalNoticeList.board_num}</td>
 															<td><a
-																href="${pageContext.request.contextPath}/student/helpDesk/portalStudDetail?board_num=${portalNoticeList.board_num}&board_count=${portalNoticeList.board_count}&pageNo=${pageVO.pageNo}">
+																href="${pageContext.request.contextPath}/professor/helpDesk/portalProfDetail?board_num=${portalNoticeList.board_num}&board_count=${portalNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 																	${portalNoticeList.board_title} </a></td>
 															<td>${portalNoticeList.board_date}</td>
 															<td>${portalNoticeList.board_writer}</td>

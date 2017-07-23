@@ -4,8 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!-- Admin Header -->
-<%@include file="../common/topCategory.jsp"%>
 
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide" style="width: 14%; text-align: center;">

@@ -26,7 +26,7 @@
 
 		<intercept-url pattern="/admin/**"	access="hasAnyRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/professor/**"	access="hasAnyRole('ROLE_PROF')" />
-		<intercept-url pattern="/student/**"	access="hasAnyRole('ROLE_STUD')" />
+		<intercept-url pattern="/student/**"	access="hasAnyRole('ROLE_STUD,ROLE_WSS')" />
 
 		<intercept-url pattern="/main" access="isAuthenticated()" />
 		<intercept-url pattern="/**" access="permitAll" />

@@ -3,13 +3,16 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
+
 
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide"
 	style="width: 14%; text-align: center;">
 	<!-- 테스트용 사이드 -->
-	<%@include file="../helpDesk/helpDesk_leftSide.jsp"%>
+	<%@include file="../helpDesk/proHelpDesk_leftSide.jsp"%>
 </div>
 <div class="col-md-10" id="commonRightSide">
 
@@ -47,30 +50,25 @@
 	</script>
 
 
-	<!-- <div class="col-md-2" id="commonLeftSide"> -->
-
-
-	<!-- </div> -->
-
 	<div class="col-md-10" id="commonRightSide"
 		style="margin-left: 0px; margin-right: 0px; float: left;">
 		<div class="col-md-12">
 			<div class="panel">
 				<div class="panel-heading">
-					<h3>포털소식</h3>
+					<h3>학교소식</h3>
 				</div>
 				<div class="panel-body">
 					<div class="responsive-table">
 						<div class="row">
 
 							<form
-								action="<%=request.getContextPath()%>/student/helpDesk/portalStudSearch?board_title=${portalSearch.board_title}">
-								<sec:authorize access="hasRole('ROLE_WSS')">
-								
-								<div
-									style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
-									<a href="<%=request.getContextPath()%>/student/helpDesk/portalStudWriteForm">글쓰기</a>
-								</div>
+								action="<%=request.getContextPath()%>/professor/helpDesk/univProfSearch?board_title=${univSearch.board_title}">
+								<sec:authorize access="hasRole('ROLE_ADMIN')">
+									<div
+										style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
+										<a
+											href="<%=request.getContextPath()%>/professor/helpDesk/univProfWriteForm">글쓰기</a>
+									</div>
 								</sec:authorize>
 								<div class="col-sm-6" style="float: left; width: 225px;">
 									<div id="datatables-example_filter" class="dataTables_filter"
@@ -94,13 +92,12 @@
 									<div class="dataTables_length" id="datatables-example_length"
 										style="margin-bottom: 0px;">
 
-										<!-- 									<div style="width: 700px; float: right; text-align: right; margin-bottom: 0px; margin-top: 0px;"> -->
-										<!-- 									</div> -->
+										</select>
 									</div>
 								</div>
-							</form>
 						</div>
 
+						</form>
 
 						<form name="frm">
 							<input type="hidden" name="pageNo" />
@@ -139,6 +136,7 @@
 													aria-controls="datatables-example" rowspan="1" colspan="1"
 													aria-label="Age: activate to sort column ascending"
 													style="width: 116px; text-align: center;">작성자</th>
+
 												<th class="sorting" tabindex="0"
 													aria-controls="datatables-example" rowspan="1" colspan="1"
 													aria-label="Start date: activate to sort column ascending"
@@ -156,20 +154,19 @@
 										<!-- 테이블헤더 -->
 
 										<c:choose>
-											<c:when test="${not empty portalNoticeList}">
-												<c:forEach var="portalNoticeList"
-													items="${portalNoticeList }">
+											<c:when test="${not empty univNoticeList}">
+												<c:forEach var="univNoticeList" items="${univNoticeList }">
 													<tbody>
 														<tr role="row" class="odd">
-															<td>${portalNoticeList.board_num}</td>
+															<td>${univNoticeList.board_num}</td>
 															<td><a
-																href="${pageContext.request.contextPath}/student/helpDesk/portalStudDetail?board_num=${portalNoticeList.board_num}&board_count=${portalNoticeList.board_count}&pageNo=${pageVO.pageNo}">
-																	${portalNoticeList.board_title} </a></td>
-															<td>${portalNoticeList.board_date}</td>
-															<td>${portalNoticeList.board_writer}</td>
-															<td>${portalNoticeList.board_af}</td>
-															<td>${portalNoticeList.board_bc}</td>
-															<td>${portalNoticeList.board_count}</td>
+																href="${pageContext.request.contextPath}/professor/helpDesk/univProfDetail?board_num=${univNoticeList.board_num}&board_count=${univNoticeList.board_count}&pageNo=${pageVO.pageNo}">
+																	${univNoticeList.board_title} </a></td>
+															<td>${univNoticeList.board_date}</td>
+															<td>${univNoticeList.board_writer}</td>
+																<td>${univNoticeList.board_af}</td>
+															<td>${univNoticeList.board_bc}</td>
+															<td>${univNoticeList.board_count}</td>
 														</tr>
 													</tbody>
 												</c:forEach>
@@ -238,15 +235,16 @@
 												test="${pageVO.endPageNo < pageVO.finalPageNo }">
 												<a href="javascript:fn_movePage(${pageVO.finalPageNo})"
 													aria-controls="datatables-example" data-dt-idx="2"
-													tabindex="0">마지막페이지</a></li>
+													tabindex="0">마지막페이지</a>
+											</c:if>
 									</c:if>
-									</c:if>
+									</li>
 
 								</ul>
 							</div>
-						</form>
 					</div>
 
+					</form>
 
 					</c:when>
 					<c:otherwise>
@@ -262,6 +260,3 @@
 			</div>
 		</div>
 	</div>
-
-
-	<!-- css -->

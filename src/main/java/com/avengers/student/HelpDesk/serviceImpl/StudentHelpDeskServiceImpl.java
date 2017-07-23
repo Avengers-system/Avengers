@@ -19,11 +19,6 @@ public class StudentHelpDeskServiceImpl implements StudentHelpDeskService {
 	private  StudentHelpDeskDao stuHelpDeskDAO;
 	
 
-
-
-	
-
-
 	@Override
 	public ArrayList<BoardVO> selectFAQList(BoardVO boardVO) throws SQLException {
 		ArrayList<BoardVO> list = stuHelpDeskDAO.selectFAQList(boardVO);
@@ -82,58 +77,64 @@ public class StudentHelpDeskServiceImpl implements StudentHelpDeskService {
 	}
 	
 	
-	
+	//-------------------------------
 	@Override
-	public ArrayList<BoardVO> selectBoardList(BoardVO boardVO, int firstRow,
+	public ArrayList<BoardVO> selectStuBoardList(BoardVO boardVO, int firstRow,
 			int lastRow)throws SQLException {
-		ArrayList<BoardVO> boardList = stuHelpDeskDAO.selectBoardList(boardVO, firstRow, lastRow);
+		ArrayList<BoardVO> boardList = stuHelpDeskDAO.selectStuBoardList(boardVO, firstRow, lastRow);
 		return boardList;
 	}
 
 	@Override
-	public BoardVO selectBoard(String bc_num)throws SQLException {
+	public BoardVO selectStuBoard(String bc_num)throws SQLException {
 		
-		return stuHelpDeskDAO.selectBoard(bc_num);
+		return stuHelpDeskDAO.selectStuBoard(bc_num);
 	}
 	
 	
 	@Override
-	public int updateBoard(BoardVO boardVO)throws SQLException {
-		int result = stuHelpDeskDAO.updateBoard(boardVO);
+	public int updateStuBoard(BoardVO boardVO)throws SQLException {
+		int result = stuHelpDeskDAO.updateStuBoard(boardVO);
 				return result;
 	}
 
 	@Override
-	public int deleteBoard(int board_num)throws SQLException {
-		int result = stuHelpDeskDAO.deleteBoard(board_num);
+	public int deleteStuBoard(int board_num)throws SQLException {
+		int result = stuHelpDeskDAO.deleteStuBoard(board_num);
 		return result;
 	}
 
 	@Override
-	public int insertBoard(BoardVO boardVO) throws SQLException {
-		int result = stuHelpDeskDAO.insertBoard(boardVO);
+	public int insertStuBoard(BoardVO boardVO) throws SQLException {
+		int result = stuHelpDeskDAO.insertStuBoard(boardVO);
 		return result;
 	}
 
 	@Override
-	public BoardVO selectInsertBaseData() throws SQLException {
-		return stuHelpDeskDAO.selectInsertBaseData();
+	public BoardVO selectStuInsertBaseData() throws SQLException {
+		return stuHelpDeskDAO.selectStuInsertBaseData();
 	}
 
 	@Override
-	public ArrayList<BoardVO> searchBoardList(BoardVO boardVO) throws SQLException {
-		return stuHelpDeskDAO.selectSearchList(boardVO);
+	public ArrayList<BoardVO> searchStuBoardList(BoardVO boardVO) throws SQLException {
+		return stuHelpDeskDAO.selectStuSearchList(boardVO);
 	}
 
 	@Override
-	public int updateBoardCount(String board_num, String board_count)
+	public int updateStuBoardCount(String board_num, String board_count)
 			throws SQLException {
-		return stuHelpDeskDAO.updateBoardCount(board_num, board_count);
+		return stuHelpDeskDAO.updateStuBoardCount(board_num, board_count);
 	}
 
 	@Override
-	public int selectBoardCount(BoardVO boardVO) throws SQLException {
-		return stuHelpDeskDAO.selectBoardCount(boardVO);
+	public int selectStuBoardCount(BoardVO boardVO) throws SQLException {
+		return stuHelpDeskDAO.selectStuBoardCount(boardVO);
+	}
+
+
+	@Override
+	public String selectStuDept(String key) throws SQLException {
+		return stuHelpDeskDAO.selectStuDept(key);
 	}
 
 	

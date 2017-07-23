@@ -2,14 +2,14 @@
     pageEncoding="UTF-8"%>
     <%@ page trimDirectiveWhitespaces="true"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 	
 
 <h1>학사일정 상세보기 출력</h1>
 <c:choose>
       <c:when test="${not empty univSchdNoticeList}">
-      <form name="updateUnivSchdBoard" action="univStudSchdUpdate">
+      <form name="updateUnivSchdBoard" action="univProfSchdUpdate">
          
           숫자:<input type="text" name="board_num" value="${univSchdNoticeList.board_num}" readonly><br>
           제목:<input type="text" name="board_title" value="${univSchdNoticeList.board_title}"><br>
@@ -17,8 +17,10 @@
           작성자:<input type="text" name="board_writer" value="${univSchdNoticeList.board_writer}" readonly><br>
           게시판분류고유번호:<input type="text" name="board_bc" value="${univSchdNoticeList.board_bc}" readonly><br>
          
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
         <input type="submit" value="수정"> 
-		<a href="univStudSchdDelete?board_num=${univSchdNoticeList.board_num}"><input type="button" value="삭제"></a>
+		<a href="univProfSchdDelete?board_num=${univSchdNoticeList.board_num}"><input type="button" value="삭제"></a>
+	</sec:authorize>
       </form>      
          
          

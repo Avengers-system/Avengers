@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     <%@ page trimDirectiveWhitespaces="true"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 	
 
@@ -10,7 +9,7 @@
 <c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
 <c:choose>
       <c:when test="${not empty deptNoticeList}">
-      <form name="updateDeptBoard" action="deptStudUpdate"
+      <form name="updateDeptBoard" action="deptProfUpdate"
        method="post" enctype="multipart/form-data">
          
           숫자:<input type="text" name="board_num" value="${deptNoticeList.board_num}" readonly><br>
@@ -24,10 +23,8 @@
     </sec:authorize>
           게시판분류고유번호:<input type="text" name="board_bc" value="${deptNoticeList.board_bc}" readonly><br>
          
- 		<sec:authorize access="hasRole('ROLE_WSS')">
         <input type="submit" value="수정"> 
-		<a href="${pageContext.request.contextPath}/student/helpDesk/deptStudDelete?board_num=${deptNoticeList.board_num}"><input type="button" value="삭제"></a>
-		</sec:authorize>
+		<a href="${pageContext.request.contextPath}/professor/helpDesk/deptProfDelete?board_num=${deptNoticeList.board_num}"><input type="button" value="삭제"></a>
 		<input type="button" value="목록으로" onclick="history.go(-1)">
       </form>      
          
