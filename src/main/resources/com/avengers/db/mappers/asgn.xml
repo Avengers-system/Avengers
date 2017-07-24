@@ -77,4 +77,31 @@
 		WHERE  ASGN_LCT = LCT_NUM
 		AND    ASGN_LCT = #{lct_num}
 	</select>
+	
+	<insert id="insertAsgn" parameterType="com.avengers.db.dto.AsgnVO">
+		INSERT INTO ASGN(ASGN_NUM, ASGN_NM, ASGN_START_DATE, ASGN_DL_DATE, ASGN_CONT,
+		<if test="asgn_sub_form != null">
+			ASGN_SUB_FORM, 
+		</if> 
+		ASGN_LCT)
+		VALUES(#{asgn_num}||'ASGN'||lpad(ASGN_SEQ.nextval,5,0), #{asgn_nm}, to_date(#{asgn_start_date},'yyyy/mm/dd hh24:mi:ss'), to_date(#{asgn_dl_date},'yyyy/mm/dd hh24:mi:ss'),#{asgn_cont}, 
+		<if test="asgn_sub_form != null">
+			#{asgn_sub_form},
+		</if> #{asgn_lct})		
+	</insert>
+	
+	<!-- 방금 등록한 과제 기본키 가져오기 -->
+	<select id="selectAsgnPk" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT ASGN_NUM
+		FROM ASGN
+		WHERE ASGN_LCT = #{lct_num}
+		AND   ASGN_CHECK = '2'
+	</select>
+	
+	<!-- 학생등록을 완료한 과제은 asgn_check를 1로 업데이트해줌(제출테이블에 학생들을 등록했다) -->
+	<update id="updateAsgnCheck" parameterType="java.lang.String">
+		UPDATE ASGN
+		SET    ASGN_CHECK = '1'
+		WHERE  ASGN_NUM = #{asgn_num}
+	</update>
 </mapper>

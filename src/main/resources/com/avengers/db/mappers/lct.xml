@@ -172,7 +172,7 @@
 		WHERE  LCT_NUM = #{lct_num}
 	</update>
 	
-	<!-- 시험기본키에 쓸 년도와 학기 들고오는 쿼리문 -->
+	<!-- 기본키에 쓸 년도와 학기 들고오는 쿼리문 -->
 	<select id="selectLctYearQtr" parameterType="java.lang.String" resultType="com.avengers.db.dto.LctVO">
 		SELECT LCT_YR
 			  ,LCT_QTR
