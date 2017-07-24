@@ -19,9 +19,6 @@ $(function() {
   });
 });
 </script>
-<!-- Professor Header -->
-<%@include file="../common/topCategory.jsp"%>
-
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
 <%@include file="../common/classManageLectureSideCategory.jsp" %>

@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Professor Header -->
-<%@include file="../common/topCategory.jsp"%>
-
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
 <%@include file="../common/classManageLectureSideCategory.jsp" %>

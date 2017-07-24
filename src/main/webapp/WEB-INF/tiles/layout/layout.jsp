@@ -42,6 +42,7 @@
 	<link href='${pageContext.request.contextPath}/resources/css/full_calender/base.css' rel='stylesheet' />
 	<link rel='stylesheet' href='${pageContext.request.contextPath}/resources/css/full_calender/fullcalendar.min.css' />
 	<script src='${pageContext.request.contextPath}/resources/js/full_calender/jquery.min.js'></script>
+	
 <!-- end: Css -->
 
 </head>
@@ -82,14 +83,15 @@
 <div class="container-fluid">
 	<tiles:insertAttribute name="footer" />
 </div>	
-
-
-
 <!-- start: Javascript -->
 	<script	src="${pageContext.request.contextPath}/resources/asset/js/jquery.min.js"></script>
 	<script	src="${pageContext.request.contextPath}/resources/asset/js/jquery.ui.min.js"></script>
 	<script	src="${pageContext.request.contextPath}/resources/asset/js/bootstrap.min.js"></script>
+<!-- plugins -->
 	<script	src="${pageContext.request.contextPath}/resources/asset/js/plugins/moment.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/asset/js/plugins/morris.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/asset/js/plugins/raphael.min.js"></script>
+	<script	src="${pageContext.request.contextPath}/resources/asset/js/plugins/jquery.nicescroll.js"></script>
 	<script	src="${pageContext.request.contextPath}/resources/asset/js/plugins/icheck.min.js"></script>
 	
 <!-- Full calender -->
@@ -97,5 +99,10 @@
 	<script	src='${pageContext.request.contextPath}/resources/js/full_calender/jquery-ui.min.js'></script>
 	<script	src='${pageContext.request.contextPath}/resources/js/full_calender/fullcalendar.min.js'></script>
 	<script	src='${pageContext.request.contextPath}/resources/js/full_calender/ko.js'></script>
+<!-- morris -->
+	<script	src='${pageContext.request.contextPath}/resources/asset/js/main.js'></script>
+
+
+
 </body>
 </html>

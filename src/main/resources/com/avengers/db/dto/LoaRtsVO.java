@@ -12,7 +12,7 @@ public class LoaRtsVO {
     private Date LOA_END_DATE;//"휴학종료일"
     private Date RTS_APPL_DATE;//"복학신청일"
     private Date RTS_DATE;//"복학일"
-    private Date LOA_STUD;//"학번"
+    private String LOA_STUD;//"학번 <-이거 데이트로되있으면 오류뜸 제발 수정좀"
    public Date getLOA_START_DATE() {
       return LOA_START_DATE;
    }
@@ -37,10 +37,11 @@ public class LoaRtsVO {
    public void setRTS_DATE(Date rTS_DATE) {
       RTS_DATE = rTS_DATE;
    }
-   public Date getLOA_STUD() {
-      return LOA_STUD;
-   }
-   public void setLOA_STUD(Date lOA_STUD) {
-      LOA_STUD = lOA_STUD;
-   }
+public String getLOA_STUD() {
+	return LOA_STUD;
+}
+public void setLOA_STUD(String lOA_STUD) {
+	LOA_STUD = lOA_STUD;
+}
+  
 }
