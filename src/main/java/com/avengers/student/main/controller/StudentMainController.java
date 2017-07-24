@@ -17,6 +17,7 @@ import com.avengers.db.dto.DeptVO;
 import com.avengers.db.dto.PerschdVO;
 import com.avengers.db.dto.StudVO;
 import com.avengers.db.dto.StudentMainVO;
+import com.avengers.student.HelpDesk.service.StudentHelpDeskService;
 import com.avengers.student.main.service.StudentMainService;
 
 /**
@@ -31,6 +32,9 @@ public class StudentMainController {
 	
 	@Autowired
 	private StudentMainService studentMainService;
+	
+	@Autowired
+	private StudentHelpDeskService service;
 	
 	
 	@RequestMapping("student/classManage/classMain")
@@ -76,6 +80,9 @@ public class StudentMainController {
 		ArrayList<PerschdVO> selectSchoolScheduleList = new ArrayList<PerschdVO>();
 		String bc_dept = "";
 		String allLevelComplete = "";
+		
+		ArrayList<BoardVO> deptBL = null;
+		ArrayList<BoardVO> univBL = null;
 		try {
 	    	
 	        
@@ -88,6 +95,19 @@ public class StudentMainController {
 			studentConsult = studentMainService.selectCnsList(stud_num);
 			
 			selectPortalNoticeList = studentMainService.selectPortalNoticeList();
+			BoardVO univBVO = new BoardVO();
+			univBVO.setBoard_bc("UNIV");
+			univBL = service.selectStuBoardList(univBVO, 1, 5);
+			
+			String deptKey = principal.getName();
+			String deptBc_num = "B";
+
+			BoardVO deptBVO = new BoardVO();
+			deptBc_num += service.selectStuDept(deptKey);
+			deptBVO.setBoard_bc(deptBc_num);
+			deptBL = service.selectStuBoardList(deptBVO,1,5);
+			
+			
 //			selectSchoolNoticeList = studentMainService.selectSchoolNoticeList();
 //			selectDepartmentNoticeList = studentMainService.selectDepartmentNoticeList(bc_dept);
 //			selectSchoolScheduleList = studentMainService.selectSchoolScheduleList();
@@ -102,7 +122,10 @@ public class StudentMainController {
 		model.addAttribute("perschdList", perschdList);
 		model.addAttribute("lectureList",studentLectureList);
 		model.addAttribute("consultList",studentConsult);
+		
 		model.addAttribute("portalNoticeList",selectPortalNoticeList);
+		model.addAttribute("deptNoticeList",deptBL);
+		model.addAttribute("univNoticeList",univBL);
 //        model.addAttribute("schoolNoticeList",selectSchoolNoticeList);
 //        model.addAttribute("departmentNoticeList",selectDepartmentNoticeList);
 //        model.addAttribute("schoolScheduleList",selectSchoolScheduleList);

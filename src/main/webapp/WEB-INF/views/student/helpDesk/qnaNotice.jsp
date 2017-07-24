@@ -3,12 +3,11 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide" style="width: 14%; text-align: center;">
    <!-- 테스트용 사이드 -->
-<%@include file="../helpDesk/helpDesk_leftSide.jsp"%>
+<%@include file="../helpDesk/helpDesk_leftSide.jsp"%> 
 </div>
 <div class="col-md-10" id="commonRightSide">
 
@@ -51,23 +50,20 @@
 	<div class="col-md-12">
 		<div class="panel">
 			<div class="panel-heading">
-				<h3>학과소식</h3>
+				<h3>QNA</h3>
 			</div>
 			<div class="panel-body">
 				<div class="responsive-table">
 					<div class="row">
 
 						<form
-							action="<%=request.getContextPath()%>/student/helpDesk/deptStudSearch?board_title=${deptSearch.board_title}">
-							
-						<sec:authorize access="hasRole('ROLE_WSS')">
+							action="<%=request.getContextPath()%>/admin/qnaSearch?board_title=${qnaSearch.board_title}">
 							<div style="text-align: right; margin-right: 28px; margin-top:13px; margin-bottom: -20px; ">
-							<a href="<%=request.getContextPath()%>/student/helpDesk/deptStudWriteForm">글쓰기</a></div>
-						</sec:authorize>
 							
+							<a href="<%=request.getContextPath()%>/admin/qnaWriteForm">글쓰기</a></div>
 							<div class="col-sm-6" style="float: left; width:225px;  ">
 								<div id="datatables-example_filter" class="dataTables_filter" style="width: 20%;">
-								
+
 									<label><input type="search"
 										class="form-control input-sm" placeholder="글 제목을 입력해주세요"
 										aria-controls="datatables-example" name="board_title" style="width:200px; text-align: center;">
@@ -82,12 +78,13 @@
 							<div class="col-sm-6"
 								style="width: 50px; height: 0px; flaot: right;">
 								<div class="dataTables_length" id="datatables-example_length" style="margin-bottom: 0px;">
+
 									</select>
 								</div>
 							</div>
-					</form>
 					</div>
 
+					</form>
 
 					<form name="frm">
 						<input type="hidden" name="pageNo" />
@@ -98,7 +95,7 @@
 						<input type="hidden" name="searchValue"
 							value="${pageVO.searchValue }" />
 						<!-- //검색어 -->
-					</form>
+
 						<!-- 테이블시작 -->
 						<div class="row">
 							<div class="col-sm-12">
@@ -126,10 +123,6 @@
 												style="width: 116px; text-align: center;">작성자</th>
 											<th class="sorting" tabindex="0"
 												aria-controls="datatables-example" rowspan="1" colspan="1"
-												aria-label="Start date: activate to sort column ascending"
-												style="width: 220px; text-align: center;">첨부파일</th>
-											<th class="sorting" tabindex="0"
-												aria-controls="datatables-example" rowspan="1" colspan="1"
 												aria-label="Salary: activate to sort column ascending"
 												style="width: 176px; text-align: center;">게시판분류</th>
 											<th class="sorting" tabindex="0"
@@ -141,21 +134,20 @@
 									<!-- 테이블헤더 -->
 
 									<c:choose>
-										<c:when test="${not empty deptNoticeList}">
-											<c:forEach var="deptNoticeList"
-												items="${deptNoticeList }">
+										<c:when test="${not empty qnaNoticeList}">
+											<c:forEach var="qnaNoticeList"
+												items="${qnaNoticeList }">
 												<tbody>
 													<tr role="row" class="odd">
-														<td>${deptNoticeList.board_num}</td>
+														<td>${qnaNoticeList.board_num}</td>
 														<td><a
-															href="${pageContext.request.contextPath}/student/helpDesk/deptStudDetail?board_num=${deptNoticeList.board_num}&board_count=${deptNoticeList.board_count}&pageNo=${pageVO.pageNo}">
-															${deptNoticeList.board_title}
+															href="${pageContext.request.contextPath}/admin/qnaDetail?board_num=${qnaNoticeList.board_num}&board_count=${qnaNoticeList.board_count}&pageNo=${pageVO.pageNo}">
+															${qnaNoticeList.board_title}
 														</a></td>
-														<td>${deptNoticeList.board_date}</td>
-														<td>${deptNoticeList.board_writer}</td>
-														<td>${deptNoticeList.board_af}</td>
-														<td>${deptNoticeList.board_bc}</td>
-														<td>${deptNoticeList.board_count}</td>
+														<td>${qnaNoticeList.board_date}</td>
+														<td>${qnaNoticeList.board_writer}</td>
+														<td>${qnaNoticeList.board_bc}</td>
+														<td>${qnaNoticeList.board_count}</td>
 													</tr>
 												</tbody>
 											</c:forEach>
@@ -249,6 +241,11 @@
 		</div>
 	</div>
 </div>
+
+
+
+
+
 
 
 

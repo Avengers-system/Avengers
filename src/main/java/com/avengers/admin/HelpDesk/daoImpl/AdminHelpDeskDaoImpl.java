@@ -110,6 +110,7 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 
 		map.put("BOARD_BC", boardVO.getBoard_bc());
 		map.put("BOARD_TITLE", boardVO.getBoard_title());
+		map.put("BOARD_WRITER", boardVO.getBoard_writer());
 		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("board.selectSearchList", map,rowBounds);
 		return boardList;
 	}

@@ -66,9 +66,13 @@
 							<a href="<%=request.getContextPath()%>/admin/deptWriteForm">글쓰기</a></div>
 							<div class="col-sm-6" style="float: left; width:225px;  ">
 								<div id="datatables-example_filter" class="dataTables_filter" style="width: 20%;">
-
+								<select  name="select"  id="select">
+									<option name="dept" id="dept">학과</option >
+									<option name="writer"  id="writer">글쓴이</option>
+									<option name="title"  id="title">제목</option>
+								</select>
 									<label><input type="search"
-										class="form-control input-sm" placeholder="글 제목을 입력해주세요"
+										class="form-control input-sm" placeholder="검색할 내용을 입력해주세요"
 										aria-controls="datatables-example" name="board_title" style="width:200px; text-align: center;">
 										</label>
 									<!-- 검색 -->

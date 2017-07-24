@@ -1268,14 +1268,23 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 
 	@RequestMapping("deptSearch")// 학과게시판 글 검색
 	public String deptSearch(@RequestParam("board_title")String board_title,
-			Model model, Principal principal, String pageNo){
-
+			Model model, Principal principal, String pageNo, String select){
+System.out.println(select+"뎁트썹치");
+System.out.println(board_title);
 		ArrayList<BoardVO> boardList = null;
 
 		BoardVO boardVO = new BoardVO();
 		String bc_num = "DEPT";
+		boardVO.setBoard_writer("");
+		if(select.equals("글쓴이")){
+			boardVO.setBoard_writer(board_title);
+		}else if(board_title!=null && !board_title.equals("") && select.equals("학과")){
+			bc_num = board_title;
+		}else if(select.equals("제목")){
+			boardVO.setBoard_title(board_title);
+		}
 		boardVO.setBoard_bc(bc_num);
-		boardVO.setBoard_title(board_title);
+		
 
 		if(pageNo!=null && !pageNo.equals("")){
 			boardVO.setPageNo(Integer.parseInt(pageNo));
