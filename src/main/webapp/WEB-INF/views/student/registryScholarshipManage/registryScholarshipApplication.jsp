@@ -10,7 +10,27 @@
 	<%@include file="../common/resSchSideCategory.jsp" %>
 </div>
 
-<form>
+<c:if test="${not empty insertScrappl}">
+		<div
+			class="alert alert-success col-md-12 col-sm-12 alert-icon alert-dismissible fade in"
+			role="alert">
+			<div class="col-md-2 col-sm-2 icon-wrapper text-center">
+				<span class="fa fa-check fa-2x"></span>
+			</div>
+			<div class="col-md-10 col-sm-10">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<p>
+					<strong>장학신청이 성공적으로 처리되었습니다.</strong>
+				</p>
+			</div>
+		</div>
+	</c:if>
+	
+<form action = "${pageContext.request.contextPath}/student/insertSchAppl" method="post">
+
 
 
 <div class="col-md-10 padding-0">
@@ -23,17 +43,17 @@
 		<div class="col-md-5 padding-0">		             
 		
 		<label class='control-label'>이름</label>
-					  <input required type="text" class="form-control" name="stud_nm" >
+					  <input required type="text" class="form-control" name="stud_nm" onfocus="true" >
 		
 		<label class='control-label'>영문이름</label>
 					  <input type="text" class="form-control"  name="stud_eng_nm">
 		
 		<label class='control-label'>장학금명</label><br/>
-					  <select required name="scr_nm" name="scr_nm">
+					  <select required name="scr_nm" >
 						<c:choose>
-					<c:when test="${not empty scr_nm}">
-						<c:forEach var="scr" items="${scr_nm}" varStatus="status">
-							<option value="${scr}">${scr}</option>
+					<c:when test="${not empty scrList}">
+						<c:forEach var="scr" items="${scrList}" varStatus="status">
+							<option value="${scr.scr_num}">${scr.scr_nm}</option>
 						</c:forEach>
 						</c:when>
 						</c:choose>
@@ -103,8 +123,7 @@
        	<div class="panel-body" style="font-size:16px;">       			
 		<div class="box-v5 panel">
 		<div class="panel-heading padding-0 bg-white border-none">	             
-		<textarea required placeholder="신청사유를 적어주세요." name="scrappl_cause">
-					 
+		<textarea required placeholder="신청사유를 적어주세요." name="scrappl_cause">					 
 		</textarea>
 		</div>
 		</div>		

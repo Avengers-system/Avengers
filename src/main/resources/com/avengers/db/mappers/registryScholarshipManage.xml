@@ -104,6 +104,20 @@
       AND D.DEPT_COL = C.COL_CODE      
 	</select>
 	
+	<select id="scrList" resultType="com.avengers.db.dto.ScrVO">
+	select SCR_NM,SCR_NUM
+	from SCR
+	</select> 
 	
+	<insert id="insertScrAppl" parameterType="com.avengers.db.dto.ScrapplVO">
+	INSERT INTO SCRAPPL(SCRAPPL_NUM,SCRAPPL_CAUSE,SCRAPPL_DATE,SCRAPPL_STUD,SCRAPPL_SCR) 
+	VALUES ('SCRAPPL'||SCRAPPL_SEQ.NEXTVAL,#{scrappl_cause}, SYSDATE,#{scrappl_stud} ,#{scrappl_scr} )   
+	
+	</insert>
+	
+<!-- 	<select id="selectRegList" parameterType="" resultMap=""> -->
+	
+<!-- 	</select> -->
+		
 	
 </mapper>

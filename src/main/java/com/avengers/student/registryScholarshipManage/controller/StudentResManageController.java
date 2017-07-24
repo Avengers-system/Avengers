@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.avengers.db.dto.LoaRtsVO;
+import com.avengers.db.dto.ScrVO;
 import com.avengers.db.dto.ScrapplVO;
 import com.avengers.db.dto.resSchStudentVO;
-import com.avengers.student.registryScholarshipManage.service.StudentResManageService;
 import com.avengers.student.registryScholarshipManage.serviceImpl.StudentResManageServiceImpl;
 
 /**
@@ -129,32 +129,64 @@ public class StudentResManageController {
 	 * @return
 	 */
 	@RequestMapping("/schAppl")
-	public String schAppl(){
-		
+	public String schAppl(Model model){	
 		String url="student/registryScholarshipManage/registryScholarshipApplication";
+		try {
+			ArrayList<ScrVO> scrList = stuResService.selectScrVO();
+			model.addAttribute("scrList",scrList);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return url;		
 	}
 	/**
-	 * 
+	 * 신청등록했을시에 insert해주고 그결과를 
+	 * schAppl에 다시 보여준다.
 	 * @return
 	 */
 	@RequestMapping(value="/insertSchAppl",method=RequestMethod.POST)
-	public String insertSchAppl(){
+	public String insertSchAppl(Principal principal,@RequestParam(value="scr_nm")String scr_nm,Model model,@RequestParam(value="scrappl_cause")String scrappl_cause){
+		ScrapplVO scrapplVO = new ScrapplVO();
+		try {
+					
+			String stud_num = principal.getName();
+			scrapplVO.setScrappl_stud(stud_num);			
+			scrapplVO.setScrappl_scr(scr_nm);
+			scrapplVO.setScrappl_cause(scrappl_cause);
+			stuResService.insertScrappl(scrapplVO);	
+			model.addAttribute("insertScrappl","success");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		return "redirect:schAppl";	
 	}
-	
+	/**
+	 * 등록현황 조회
+	 * @param princiapl
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/tuition")
-	public String tuition(){
-		
+	public String tuition(Principal princiapl,Model model){		
 		String url="student/registryScholarshipManage/registryScholarshipTuition";
+		
+		
 		return url;		
 	}
-	
+	/**
+	 * 등록금 관리
+	 * @param princiapl
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/tuitionManage")
-	public String tuitionManage(){
-		
+	public String tuitionManage(Principal princiapl,Model model){		
 		String url="student/registryScholarshipManage/registryScholarshipTuitionManage";
+		
+		
 		return url;		
 	}
 
