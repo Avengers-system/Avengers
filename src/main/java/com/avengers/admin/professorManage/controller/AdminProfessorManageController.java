@@ -74,7 +74,7 @@ public class AdminProfessorManageController {
 			e.printStackTrace();
 		}
 		model.addAttribute("professor",prfsVO);
-		return "admin/professorDetail";
+		return "admin/mypage/professorDetail";
 	}
 	
 	/**

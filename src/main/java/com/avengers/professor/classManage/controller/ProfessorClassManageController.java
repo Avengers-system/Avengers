@@ -461,7 +461,12 @@ public class ProfessorClassManageController {
 		return String.valueOf(result);
 	}
 	
-	//응시자 확인하기
+	/**
+	 * 시험 응시자를 확인하기 위한 메소드
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="professor/classManage/lectureTakeExamStudent")
 	public String professorLectureTakeExamStudent(HttpServletRequest request
 												  ,Model model){
@@ -480,6 +485,12 @@ public class ProfessorClassManageController {
 		return view;
 	}
 	
+	/**
+	 * 학생의 답안정보를 가져오기 위한 메소드
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="professor/classManage/lectureStudentAnswer")
 	public String professorLectureStudentAnswer(HttpServletRequest request, Model model){
 		String view="professor/classManage/lectureStudentAnswer";
@@ -509,6 +520,14 @@ public class ProfessorClassManageController {
 		return view;
 	}
 	
+	/**
+	 * 학생의 답안을 토대로 채점을 실행하고 점수를 반환
+	 * @param request
+	 * @param saNumArr
+	 * @param saCheckArr
+	 * @param te_num
+	 * @return
+	 */
 	@RequestMapping("professor/classManage/lectureStudentAnswerUpdate")
 	@ResponseBody
 	public String professorLectureStudentAnswerUpdate(HttpServletRequest request
@@ -542,5 +561,33 @@ public class ProfessorClassManageController {
 		}
 		
 		return String.valueOf(result);
+	}
+	
+	//과제의 목록가져오기
+	@RequestMapping("professor/classManage/lectureAsgnMain")
+	public String professorLectureAsgnMain(HttpServletRequest request, Model model){
+		String view = "professor/classManage/lectureAsgnMain";
+		
+		String lct_num = (String) request.getSession().getAttribute("lct_num");
+		
+		ArrayList<Map<String, String>> lctAsgnInfo = null;
+		
+		try {
+			lctAsgnInfo = pcmService.selectLctAsgnInfo(lct_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("lctAsgnInfo", lctAsgnInfo);
+		
+		return view;
+	}
+	
+	//과제 등록화면
+	@RequestMapping("professor/classManage/lectureRegistryAsgn")
+	public String professorLectureRegistryAsgn(HttpServletRequest request, Model model){
+		String view = "professor/classManage/lectureRegistryAsgn";
+		
+		return view;
 	}
 }

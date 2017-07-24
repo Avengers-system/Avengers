@@ -108,5 +108,6 @@ public interface ProfessorClassManageDao {
 	public int selectScoreSum(String te_num) throws SQLException;
 	//학생점수 TE테이블에 저장
 	public int updateExamPoint(String te_num) throws SQLException;
-	
+	//교수의 한 과목에 해당하는 과제목록 가져오기
+	public ArrayList<Map<String, String>> selectLctAsgnInfo(String lct_num) throws SQLException;
 }

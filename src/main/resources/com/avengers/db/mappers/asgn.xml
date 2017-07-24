@@ -56,4 +56,25 @@
 		AND    ASGN_NUM = #{asgn_num}
 		AND    SUB_STUD = #{stud_num}
 	</select>
+	
+	<resultMap type="java.util.HashMap" id="lctAsgnInfo">
+		<result javaType="java.lang.String" column="ASGN_NUM" property="asgn_num"/>
+		<result javaType="java.lang.String" column="ASGN_NM" property="asgn_nm"/>
+		<result javaType="java.lang.String" column="ASGN_START_DATE" property="asgn_start_date"/>
+		<result javaType="java.lang.String" column="ASGN_DL_DATE" property="asgn_dl_date"/>
+		<result javaType="java.lang.String" column="LCT_YR" property="lct_yr"/>
+		<result javaType="java.lang.String" column="LCT_QTR" property="lct_qtr"/>
+	</resultMap>
+	
+	<select id="selectLctAsgnInfo" parameterType="java.lang.String" resultMap="lctAsgnInfo">
+		SELECT ASGN_NUM
+		      ,ASGN_NM
+		      ,TO_CHAR(ASGN_START_DATE,'YYYY/MM/DD HH24:MI:SS') AS ASGN_START_DATE
+		      ,TO_CHAR(ASGN_DL_DATE,'YYYY/MM/DD HH24:MI:SS') AS ASGN_DL_DATE
+		      ,LCT_YR
+		      ,LCT_QTR
+		FROM   ASGN, LECTURE
+		WHERE  ASGN_LCT = LCT_NUM
+		AND    ASGN_LCT = #{lct_num}
+	</select>
 </mapper>

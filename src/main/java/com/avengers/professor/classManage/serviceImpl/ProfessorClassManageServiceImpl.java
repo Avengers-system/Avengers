@@ -367,5 +367,11 @@ public class ProfessorClassManageServiceImpl implements ProfessorClassManageServ
 		return result;
 	}
 
+	@Override
+	public ArrayList<Map<String, String>> selectLctAsgnInfo(String lct_num) throws SQLException{
+		ArrayList<Map<String, String>> lctAsgnInfo = proClassDAO.selectLctAsgnInfo(lct_num);
+		return lctAsgnInfo;
+	}
+
 	
 }

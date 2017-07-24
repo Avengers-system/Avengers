@@ -39,7 +39,7 @@ public class CommonController implements ApplicationContextAware{
 		this.context=(WebApplicationContext)applicationContext;		
 	}
 	
-	@RequestMapping("/download")
+	@RequestMapping("download")
 	public ModelAndView doenload(@ModelAttribute BoardVO boardVO, HttpServletResponse response) throws IOException{
 			System.out.println("@@@@@@@@@@@"+boardVO.getBoard_af());
 			File downloadFile = getFile(boardVO.getBoard_af());

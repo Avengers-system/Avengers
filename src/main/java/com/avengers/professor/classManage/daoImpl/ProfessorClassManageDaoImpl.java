@@ -386,6 +386,12 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 		int result = sqlSession.update("te.updateExamPoint", te_num);
 		return result;
 	}
+
+	@Override
+	public ArrayList<Map<String, String>> selectLctAsgnInfo(String lct_num) throws SQLException{
+		ArrayList<Map<String, String>> lctAsgnInfo = (ArrayList<Map<String, String>>) sqlSession.selectList("asgn.selectLctAsgnInfo", lct_num);
+		return lctAsgnInfo;
+	}
 	
 
 }
