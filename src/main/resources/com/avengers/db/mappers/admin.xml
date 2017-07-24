@@ -4,6 +4,15 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
 
+
+	<update id="updateStudent">
+	 
+	
+	
+	</update>
+
+
+
    <select id="selectDepList">
    SELECT * 
    FROM DEPARTMENT
@@ -227,6 +236,7 @@
    </select>
    
    
+   <!-- 학생 시큐리티 등록 -->
    <insert id="insertStudSecurity" parameterType="com.avengers.db.dto.StudVO">
    INSERT INTO SECURITY
          (
@@ -243,6 +253,8 @@
             'ROLE_STUD' 
          )
    </insert>
+   
+   
    <select id="findInfo" parameterType="com.avengers.db.dto.AdminVO" resultType="com.avengers.db.dto.AdminVO">
 	
 	SELECT 	ADMIN_ID 

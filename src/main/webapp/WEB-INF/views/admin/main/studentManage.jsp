@@ -161,7 +161,7 @@
 						                       <button id ="searchProf" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='#'">검색</button>
 						                       <!-- 추가버튼  -->
 						                       
-						                       <button style="margin-bottom:7px;" id ="addStud" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/admin/studentInsert'">학생추가하기</button>
+						                       <button style="margin-bottom:7px;" id ="addStud" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/studentInsert'">학생추가하기</button>
 				                       </div>
 		                       </div>
                        

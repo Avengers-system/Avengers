@@ -177,7 +177,6 @@ public class CommandPrfsVO {
 		prfsVO.setPrfs_ah(prfs_ah);
 		prfsVO.setPrfs_bank(prfs_bank);
 		try {
-			
 			Date prfs_bir_date=new SimpleDateFormat("yyyy-MM-dd").parse(prfs_bir);
 			prfsVO.setPrfs_bir(prfs_bir_date);
 		} catch (ParseException e) {

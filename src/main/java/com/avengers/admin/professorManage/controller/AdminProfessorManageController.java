@@ -63,10 +63,11 @@ public class AdminProfessorManageController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/professorManage/detail")
+	@RequestMapping("/professorDetail")
 	public String professorDetail(
 			@RequestParam("prfs_num") String prfs_num,
 			Model model){
+		System.out.println("왜또안되니");
 		PrfsVO prfsVO = new PrfsVO();
 		try {
 			prfsVO = adminProfessorManageService.selectPrfs(prfs_num);
@@ -113,28 +114,28 @@ public class AdminProfessorManageController {
 	@RequestMapping(value = "/updateProfessor")
 	public String updateProfessor(
 						CommandPrfsVO commandPrfsVO,
-						@RequestParam("prfs_num") String prfs_num,
-						MultipartHttpServletRequest request,
-						@RequestParam("prfs_pic") MultipartFile multipartFile,
+						HttpServletRequest request,
 						HttpSession session
 						){
+		PrfsVO prfsVO = commandPrfsVO.toPrfsVO();
 		
-		String upload = session.getServletContext().getRealPath("resources/admin_professor_images");		
+		String path = request.getSession().getServletContext().getRealPath("resources/admin_professor_images");		
+		String filename= prfsVO.getPrfs_pic();
 		
-		PrfsVO prfsVO = new PrfsVO();
+		System.out.println("path : "+path);
+		System.out.println("filename : "+filename);
+		System.out.println("prfsVO으 ㅣ number : "+ prfsVO.getPrfs_num());
+		System.out.println(commandPrfsVO.toString());
+		System.out.println();
 		
-		prfsVO = commandPrfsVO.toPrfsVO();
 		
 		if (!prfsVO.getPrfs_pic().isEmpty()) {
-			File file = new File(upload, prfsVO.getPrfs_pic());
+			File file = new File(path, prfsVO.getPrfs_pic());
  
 			try {
 				commandPrfsVO.getPrfs_pic().transferTo(file); // 깃 위치로 전송
-				
 				adminProfessorManageService.updatePrfs(prfsVO);
-				
-//				prfsVO.setPrfs_num(adminProfessorManageService.selectPrfsNum());
-//				adminProfessorManageService.insertSecurity(prfsVO);
+				System.out.println("성공");
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -143,7 +144,6 @@ public class AdminProfessorManageController {
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			}
-			System.out.println("성공");
 		}
 		
 		return "redirect:professorManage";
@@ -163,31 +163,15 @@ public class AdminProfessorManageController {
 
 		PrfsVO prfsVO = commandPrfsVO.toPrfsVO();		
 
-		//System.out.println("학과 :  "+prfsVO.getPrfs_dept());
-		//System.out.println("생년월일 :  "+prfs_bir);
-
-		//SimpleDateFormat sdf1 = new SimpleDateFormat("yy-mm-dd");
-		//SimpleDateFormat sdf2 = new SimpleDateFormat("yy/mm/dd");
-	    //String input = prfs_bir;
-	    
-	    /*try {
-			Date date = sdf1.parse(input);
-			System.out.println(sdf2.format(date));
-			String date2 = sdf2.format(date);
-			date = sdf2.parse(date2);
-			prfsVO.setPrfs_bir(date);
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}*/
-
 	    
 		// 깃 경로 (동일)
 		String path = request.getSession().getServletContext().getRealPath("/resources/admin_professor_images");
 		String filename = prfsVO.getPrfs_pic();
 		
 		System.out.println("path"+path);
-		System.out.println("filename"+filename);
+		System.out.println("filename:"+filename);
 		
+	
 		if (!prfsVO.getPrfs_pic().isEmpty()) {
 			File file = new File(path, prfsVO.getPrfs_pic());
  
@@ -209,7 +193,7 @@ public class AdminProfessorManageController {
 			}
 		}
 
-		return "admin/main/professorManage"; // redirect??
+		return "redirect:professorManage";
 	}
 	
 }

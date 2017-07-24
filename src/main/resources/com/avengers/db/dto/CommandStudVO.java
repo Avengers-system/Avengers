@@ -213,13 +213,13 @@ public class CommandStudVO {
 
 
 
-	public String getSutd_addr() {
+	public String getStud_addr() {
 		return stud_addr;
 	}
 
 
 
-	public void setSutd_addr(String stud_addr) {
+	public void setStud_addr(String stud_addr) {
 		this.stud_addr = stud_addr;
 	}
 

@@ -27,7 +27,8 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 
 	@Override
 	public int insertStud(StudVO studVO) throws SQLException {
-		return 0;
+		int result = amdinStudentDAO.insertStud(studVO);
+		return result;
 	}
 
 	@Override
