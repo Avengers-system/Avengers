@@ -47,10 +47,6 @@
 	</script>
 
 
-	<!-- <div class="col-md-2" id="commonLeftSide"> -->
-
-
-	<!-- </div> -->
 
 	<div class="col-md-10" id="commonRightSide"
 		style="margin-left: 0px; margin-right: 0px; float: left;">
@@ -121,6 +117,7 @@
 										aria-describedby="datatables-example_info"
 										style="width: 100%; text-align: center;">
 										<thead>
+										
 											<tr role="row">
 												<th class="sorting_asc" tabindex="0"
 													aria-controls="datatables-example" rowspan="1" colspan="1"

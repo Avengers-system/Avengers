@@ -27,14 +27,10 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 
 	@Override
 	public int insertStud(StudVO studVO) throws SQLException {
-		return 0;
+		int result = amdinStudentDAO.insertStud(studVO);
+		return result;
 	}
 
-	@Override
-	public int updateStud(StudVO studVO, String stud_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int deleteStud(String stud_num) throws SQLException {
@@ -60,5 +56,12 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 	@Override
 	public void insertSecurity(StudVO studVO) {
 		amdinStudentDAO.insertSecurity(studVO);
+	}
+
+
+	@Override
+	public int updateStud(StudVO studVO) throws SQLException {
+		int result = amdinStudentDAO.updateStud(studVO);
+		return result;
 	}
 }

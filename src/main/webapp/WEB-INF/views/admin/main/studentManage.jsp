@@ -3,8 +3,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-
 <style>
 			button#addStud{
 			} 
@@ -111,7 +109,8 @@
 			 
 			 </style>
 
-
+<!-- Admin Header -->
+<%-- <%@include file="../common/topCategory.jsp"%> --%>
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
 	<!-- 테스트용 사이드 -->
@@ -159,7 +158,7 @@
 						                       <button id ="searchProf" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='#'">검색</button>
 						                       <!-- 추가버튼  -->
 						                       
-						                       <button style="margin-bottom:7px;" id ="addStud" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/admin/studentInsert'">학생추가하기</button>
+						                       <button style="margin-bottom:7px;" id ="addStud" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/studentInsert'">학생추가하기</button>
 				                       </div>
 		                       </div>
                        
@@ -213,7 +212,7 @@
                         
                       <tr role="row" class="odd">
                           <td class="sorting_1">${student.stud_num }</td>
-                          <td ><a href="studentManage/detail?stud_num=${student.stud_num}">${student.stud_nm}</a></td>
+                          <td ><a href="${pageContext.request.contextPath}/admin/studentDetail?stud_num=${student.stud_num}">${student.stud_num}</a></td>
                           <td >${student.stud_schreg_code }</td>
                           <td >${student.stud_dept }</td>
                           <td >${student.stud_grd }</td>

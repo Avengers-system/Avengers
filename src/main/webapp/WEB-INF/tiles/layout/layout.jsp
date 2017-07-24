@@ -73,7 +73,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="panel" style="height: 690px; overflow: scroll;">
-					<tiles:insertAttribute name="content" />
+					<tiles:insertAttribute name="content" /> 
 				</div>
 			</div>
 		</div>

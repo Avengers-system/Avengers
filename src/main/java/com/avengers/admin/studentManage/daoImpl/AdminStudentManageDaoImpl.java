@@ -39,9 +39,9 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 	}
 
 	@Override
-	public int updateStud(StudVO studVO, String stud_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateStud(StudVO studVO) throws SQLException {
+		int result = sqlSession.update("admin.updateStudent", studVO); 
+		return result;
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 	@Override
 	public int insertSecurity(StudVO studVO) {
 		int result = sqlSession.insert("admin.insertStudSecurity",studVO);
-		System.out.println("dao!!!"+studVO.getStud_num()+","+studVO.getStud_pw());
+		System.out.println("dao studVO insertSecurity!!!"+studVO.getStud_num()+","+studVO.getStud_pw());
 		return result;
 	}
  

@@ -17,23 +17,24 @@
 	<update id="updatePrfs" parameterType="java.lang.String" >
 		UPDATE professor
 		SET 
-		PRFS_NM = #{prfs_nm},
-		PRFS_ENG_NM = #{prfs_eng_nm},
-		PRFS_BIR =#{prfs_bir},
-		PRFS_EMAIL =#{prfs_email},
-		PRFS_PW =#{prfs_pw},
-		PRFS_REGNO =#{prfs_regno},
-		PRFS_GEN =#{prfs_gen},
 		PRFS_PIC =#{prfs_pic},
+		PRFS_NM =#{prfs_nm},
+		PRFS_ENG_NM =#{prfs_eng_nm},
+		PRFS_DEPT=#{prfs_dept}, 
+		PRFS_BIR =#{prfs_bir},
+		PRFS_REGNO=#{prfs_regno},
+		PRFS_GEN =#{prfs_gen},
+		PRFS_HP=#{prfs_hp},
+		PRFS_TEL=#{prfs_tel},
 		PRFS_ACT_NUM =#{prfs_act_num},
 		PRFS_BANK =#{prfs_bank},
 		PRFS_AH =#{prfs_ah},
-		PRFS_ADDR=#{prfs_addr},
 		PRFS_ZIP=#{prfs_zip},
-		PRFS_TEL=#{prfs_tel},
-		PRFS_HP=#{prfs_hp},
-		PRFS_DEPT=#{prfs_dept} 
-		where PRFS_NUM = #{prfs_num};
+		PRFS_ADDR=#{prfs_addr},
+		PRFS_EMAIL =#{prfs_email},
+		PRFS_PW =#{prfs_pw}
+		
+		where PRFS_NUM =#{prfs_num}
 	
 	</update>
 

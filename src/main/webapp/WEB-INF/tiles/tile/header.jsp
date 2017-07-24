@@ -132,7 +132,7 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/professorManage">교수관리</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/studentManage">학생관리</a></li>
 					<li role="presentation"><a href="#">강의관리</a></li>
-					<li role="presentation"><a href="#">Help Desk</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/main/helpDeskMain">Help Desk</a></li>
 				</ul>
 			</div>
 		</div>
@@ -152,7 +152,7 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/classManage/classMain">수업관리</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/studentManage/departmentList">학생관리</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/counsel/counselList">상담</a></li>
-					<li role="presentation"><a href="#">Help Desk</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/helpDesk/main/helpDeskProfMain">Help Desk</a></li>
 				</ul>
 			</div>
 		</div>

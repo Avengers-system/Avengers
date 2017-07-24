@@ -1,0 +1,16 @@
+*admin
+http://localhost/avengers/admin/main/adminMain
+admin/admin
+
+*professor
+http://localhost/avengers/professor/main
+2001003/1234
+헬프데스크: http://localhost/avengers/professor/helpDesk/main/helpDeskProfMain
+
+*wss
+http://localhost/avengers/student/studentMain
+20111031/ndu52v
+헬프데스크
+http://localhost/avengers/student/helpDesk/univStudNoticeList
+1. 글 조회 : 수정 할때만 카운트가 됨
+2. 학생메인 헬프데스크 페이징처리안됨

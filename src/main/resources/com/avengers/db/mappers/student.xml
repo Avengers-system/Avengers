@@ -97,9 +97,11 @@
 		WHERE stud_num = #{stud_num}
 	</select>
 	
+	<update id="updateStud" parameterType="com.avengers.db.dto.StudVO">
 	
 	
 	
+	</update>
 	
 	
 	<select id="getDepartmentStudentListCount" parameterType="com.avengers.db.dto.PrfsVO" resultType="int">
@@ -129,8 +131,6 @@
     )a 
 WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 </select>
-	
-	
 	
 	
 	<!-- 학생답안에서 사용할 학생정보 -->

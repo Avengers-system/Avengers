@@ -96,6 +96,31 @@ ol, ul {
 							}
 			    		%> 
 			],
+			eventClick:function(event) {
+				
+				$.ajax({
+					url  : 'myScheduleDetail',
+					type : 'post',
+					data : "perschd_title="+event.title,
+					success : function(perschd){						
+					$('#perschd_num').val(perschd.perschd_num);
+					$('#perschd_writer').val(perschd.perschd_writer);
+					$('#perschd_title').val(perschd.perschd_title);
+					$('#perschd_start_date').val(perschd.perschd_start_date);
+					$('#perschd_end_date').val(perschd.perschd_end_date);
+					$('#perschd_cont').val(perschd.perschd_cont);
+// 					$('#perschd_date').val(perschd.perschd_date);
+					
+					},
+					error: function(){
+						alert("error");
+					}
+				})
+
+				//모달불러오기 
+				$(this).attr("data-toggle","modal");
+				$(this).attr("data-target","#editSchedule");
+            }
 	});
 		
 			
@@ -242,3 +267,8 @@ ol, ul {
    </div>
    <!-- /.modal -->
    </div>
+<<<<<<< HEAD
+   
+=======
+   
+>>>>>>> refs/heads/piopio
