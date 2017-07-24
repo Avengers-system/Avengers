@@ -85,9 +85,9 @@
 									</select>
 								</div>
 							</div>
+					</form>
 					</div>
 
-					</form>
 
 					<form name="frm">
 						<input type="hidden" name="pageNo" />
@@ -98,7 +98,7 @@
 						<input type="hidden" name="searchValue"
 							value="${pageVO.searchValue }" />
 						<!-- //검색어 -->
-
+					</form>
 						<!-- 테이블시작 -->
 						<div class="row">
 							<div class="col-sm-12">

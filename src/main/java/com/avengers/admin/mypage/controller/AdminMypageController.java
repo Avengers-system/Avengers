@@ -201,7 +201,6 @@ public class AdminMypageController {
 				message = "입력된 개인정보가 없습니다.";
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		session.setAttribute("message", message);
