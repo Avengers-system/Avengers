@@ -430,8 +430,8 @@ public class ProfessorClassManageController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
 		//DB에 시험시작날짜하고 종료날짜를 넣어서 비교하는게 좋을꺼같다.
-		String start = "2017-07-17";//포함
-		String end = "2017-07-20";//미포함
+		String start = "2017-07-20";//포함
+		String end = "2017-07-23";//미포함
 		
 		Date sDate = new Date();//시험등록 시작일을 담기 위한 DATE변수
 		Date eDate = new Date();//시험등록 종료일을 담기 위한 DATE변수

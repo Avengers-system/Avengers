@@ -2,26 +2,30 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h1>학과생 목록</h1>
-	</div>
-	<div class="panel-body">
-		<form name="frm">
-			<input type="hidden" name="pageNo" />
-			<!-- //페이지 번호 -->
-			<input type="hidden" name="searchFiled"	value="${pageVO.searchFiled }" />
-			<!-- //검색조건 -->
-			<input type="hidden" name="searchValue"	value="${pageVO.searchValue }" />
-			<!-- //검색어 -->
+<div class="col-xs-12">
+	<div class="panel panel-default">
+<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
+			학과생 목록
+			</h4>
+		</div>
+		<div class="panel-body" style="height: 580px;" >
+			<form name="frm">
+				<input type="hidden" name="pageNo" />
+				<!-- //페이지 번호 -->
+				<input type="hidden" name="searchFiled"
+					value="${pageVO.searchFiled }" />
+				<!-- //검색조건 -->
+				<input type="hidden" name="searchValue"
+					value="${pageVO.searchValue }" />
+				<!-- //검색어 -->
 				<div id="table" style="height: 470px;">
 					<div id="search">
 						<select id="searchS">
 							<option value="STUD_NM">이름</option>
 							<option value="STUD_NUM">학번</option>
-						</select> <input type="text" id="searchI">
-						<input type="button" value="SEARCH" onclick="fn_search();">
+						</select> <input type="text" id="searchI"> <input type="button"
+							value="SEARCH" onclick="fn_search();">
 					</div>
 					<table
 						class="table table-striped table-bordered dataTable no-footer">
@@ -38,7 +42,8 @@
 						<tbody>
 							<c:forEach items="${resultList}" var="resutList">
 								<tr>
-									<td><a href="${pageContext.request.contextPath}/professor/studentManage/departmentDetail?pageNo=${pageVO.pageNo}&stud_num=${resutList.stud_num}">${resutList.stud_num}</a></td>
+									<td><a
+										href="${pageContext.request.contextPath}/professor/studentManage/departmentDetail?pageNo=${pageVO.pageNo}&stud_num=${resutList.stud_num}">${resutList.stud_num}</a></td>
 									<td>${resutList.stud_grd}</td>
 									<td>${resutList.stud_nm}</td>
 									<td>${resutList.stud_gen}</td>
@@ -51,9 +56,7 @@
 				</div>
 				<div id="page">
 					<div class="row">
-						<div class="col-sm-5">
-
-						</div>
+						<div class="col-sm-5"></div>
 						<div class="col-sm-7">
 							<div class="dataTables_paginate paging_simple_numbers"
 								id="datatables-example_paginate">
@@ -101,9 +104,9 @@
 						</div>
 					</div>
 				</div>
-		</form>
+			</form>
 
-
+		</div>
 	</div>
 
 </div>

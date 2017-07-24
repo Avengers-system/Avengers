@@ -88,5 +88,16 @@
 		WHERE  EXAM_NUM = #{exam_num}
 	</update>
 	
+	<resultMap type="java.util.HashMap" id="getExamTime">
+		<result javaType="java.lang.String" column="START_TIME" property="start_time"/>
+		<result javaType="java.lang.String" column="END_TIME" property="end_time"/>
+	</resultMap>
+	
+	<select id="selectExamTimeInfo" parameterType="java.lang.String" resultMap="getExamTime">
+		SELECT TO_CHAR(EXAM_DATE,'YYYY/MM/DD')||' '||EXAM_START_DATE AS START_TIME
+		      ,TO_CHAR(EXAM_DATE,'YYYY/MM/DD')||' '||EXAM_END_DATE AS END_TIME
+		FROM   EXAM
+		WHERE  EXAM_NUM = #{exam_num}
+	</select>
 </mapper>
 

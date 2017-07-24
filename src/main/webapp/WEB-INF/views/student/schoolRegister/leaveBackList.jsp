@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- Counsel Content -->
+    <!-- 휴복학내역 -->
+ <!-- Counsel Content -->
 <!-- Counsel Left Side -->
-<div class="col-md-2">
-<a href="${pageContext.request.contextPath}/student/schoolRegister/certificate">증명서발급</a>
-<a href="${pageContext.request.contextPath}/student/schoolRegister/leaveBackList">휴/복학 내역</a>
-<a href="${pageContext.request.contextPath}/student/schoolRegister/leaveBackApplyPage">휴/복학 신청</a>
-<a href="${pageContext.request.contextPath}/student/schoolRegister/dropOff">자퇴 신청</a>
-</div>
-
+<%@include file="../common/certificateSide.jsp" %>
 <!--  Counsel Right Side -->
 <div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">휴/복학 내역</h4>
+		</div>
+		<div class="panel-body" style="height: 580px; text-align: center;" >
+			
 휴복학리스트
 휴학 내역
 <c:forEach var="leaveList" items="${leaveList}">
@@ -23,6 +24,11 @@
 	복학사유? : ${backList.rts_cause}
 </c:forEach>
 
-
-
+		</div>
+	</div>
 </div>
+
+
+
+
+

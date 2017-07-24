@@ -41,6 +41,7 @@
 <!-- 풀캘린더 -->
 	<link href='${pageContext.request.contextPath}/resources/css/full_calender/base.css' rel='stylesheet' />
 	<link rel='stylesheet' href='${pageContext.request.contextPath}/resources/css/full_calender/fullcalendar.min.css' />
+	<script src='${pageContext.request.contextPath}/resources/js/full_calender/jquery.min.js'></script>
 <!-- end: Css -->
 
 </head>
@@ -57,10 +58,25 @@
 	<tiles:insertAttribute name="header"/>
 </div>
 
+
+
 <!-- Common Content -->
+<sec:authorize access="isAnonymous()">
 <div class="container-fluid">
 	<tiles:insertAttribute name="content" />
 </div>
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="panel" style="height: 690px; overflow: scroll;">
+					<tiles:insertAttribute name="content" />
+				</div>
+			</div>
+		</div>
+	</div>
+</sec:authorize>
 
 <!-- Common Footer -->
 <div class="container-fluid">
