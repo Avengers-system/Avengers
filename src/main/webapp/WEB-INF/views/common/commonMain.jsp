@@ -13,6 +13,6 @@
 <sec:authorize access="hasRole('ROLE_PROF')">
 <script>location.href="${pageContext.request.contextPath}/professor/main"</script>
 </sec:authorize>
-<sec:authorize access="hasRole('ROLE_STUD')">
+<sec:authorize access="hasAnyRole('ROLE_STUD,ROLE_WSS')">
 <script>location.href="${pageContext.request.contextPath}/student/studentMain"</script>
 </sec:authorize>
