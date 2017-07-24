@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.*,java.text.*" %>
 
-<c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
+
+
 
 <!--side Category-->
 <div class="col-md-2" id="commonLeftSide">
@@ -34,7 +34,8 @@
        	 	<!-- 장학내역 -->
        	 	<div class="panel-heading">       	 	
 			<h3>장학내역</h3>
-					년도<select name="scr_year">
+			<form action = "${pageContext.request.contextPath}/student/studRes" method="post">
+					년도<select name="scr_year" id="scr_year">
 						<option selected="selected">전체</option>
 						<c:choose>
 					<c:when test="${not empty yearList}">
@@ -43,11 +44,13 @@
 						</c:forEach>
 						</c:when>
 						</c:choose>
-					</select> 학기<select name="scr_qtr">
+					</select> 학기<select name="scr_qtr" id="scr_qtr">
 						<option selected="selected">전체</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
 					</select>
+					<input type = "submit" value="검색">
+					</form>
 				</div>
 			<div class="panel-body">
 			<div class="responsive-table">
@@ -66,7 +69,7 @@
 				<tbody>
 				<c:choose>
 					<c:when test="${not empty scrList}">
-						<c:forEach var="scr" items="${scrList }" varStatus="status">
+						<c:forEach var="scr" items="${scrList}" varStatus="status">
 							<tr>											
 								<td>${scr.get("scrappl_yr")}</td>
 								<td>${scr.get("scrappl_qtr")}</td>
@@ -98,8 +101,9 @@
        	 	<!-- 신청내역 -->
        	 	<div class="panel-heading">       	 	
 			<h3>신청내역</h3>
-			년도<select name="scrappl_year">
-						<option selected="selected">전체</option>
+			<form action = "${pageContext.request.contextPath}/student/studRes" method="post">
+			년도<select name="scrappl_year" id="scrappl_year">
+						<option selected="selected" >전체</option>
 						<c:choose>
 					<c:when test="${not empty yearList}">
 						<c:forEach var="year" items="${yearList}" varStatus="status">
@@ -107,11 +111,13 @@
 						</c:forEach>
 						</c:when>
 						</c:choose>
-					</select> 학기<select name="scrappl_qtr">
+					</select> 학기<select name="scrappl_qtr" id="scrappl_qtr">
 						<option selected="selected">전체</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
 					</select>
+					<input type = "submit" value="검색">
+			</form>		
 			</div>
 			<div class="panel-body">
 			<div class="responsive-table">
@@ -121,7 +127,7 @@
 					<td>년도</td>
 					<td>학기</td>
 					<td>장학금명</td>
-					<td>사유</td>
+					<td>신청내용</td>
 					<td>은행</td>
 					<td>예금주</td>
 					<td>계좌번호</td>
@@ -131,7 +137,7 @@
 				<tbody>
 				<c:choose>
 					<c:when test="${not empty scrApplList}">
-						<c:forEach var="scr" items="${scrApplList }" varStatus="status">
+						<c:forEach var="scr" items="${scrApplList}" varStatus="status">
 							<tr>											
 								<td>${scr.get("scrappl_yr")}</td>
 								<td>${scr.get("scrappl_qtr")}</td>
@@ -159,5 +165,21 @@
 
 </div>
 
-
+<script>
+// $("select").change(function(){
+// 	$.ajax({
+// 		type:"POST",
+// 		url:'studRes',
+// 		data:{
+// 			scr_year:$('#scr_year').val() ,
+// 			scr_qtr:$('#scr_qtr').val() ,
+// 			scrappl_year:$('#scrappl_year').val() ,
+// 			scrappl_qtr:$('#scrappl_qtr').val()			
+// 		},
+// 		success:function(){
+// 			location.href="${pageContext.request.contextPath}/student/studRes";
+// 		}
+// 	});
+// })
+</script>
 

@@ -21,19 +21,19 @@
                         <span class="fa-angle-right fa right-arrow text-right"></span>
                       </a>
                     </li>                    
-                    <li class="ripple" onclick="location.href='${pageContext.request.contextPath}/student/'">
+                    <li class="ripple" onclick="location.href='${pageContext.request.contextPath}/student/schAppl'">
                       <a class="tree-toggle nav-header">
                         <span class="fa-diamond fa"></span> 장학금신청
                         <span class="fa-angle-right fa right-arrow text-right"></span>
                       </a>
                     </li>
-                    <li class="ripple" onclick="location.href='${pageContext.request.contextPath}/student/'">
+                    <li class="ripple" onclick="location.href='${pageContext.request.contextPath}/student/tuition'">
                       <a class="tree-toggle nav-header">
                         <span class="fa-diamond fa"></span> 등록금이력조회
                         <span class="fa-angle-right fa right-arrow text-right"></span>
                       </a>
                     </li>
-                    <li class="ripple" onclick="location.href='${pageContext.request.contextPath}/student/'">
+                    <li class="ripple" onclick="location.href='${pageContext.request.contextPath}/student/tuitionManage'">
                       <a class="tree-toggle nav-header">
                         <span class="fa-diamond fa"></span> 등록금관리
                         <span class="fa-angle-right fa right-arrow text-right"></span>

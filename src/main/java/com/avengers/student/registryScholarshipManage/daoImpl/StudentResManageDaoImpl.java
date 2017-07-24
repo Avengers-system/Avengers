@@ -3,6 +3,7 @@ package com.avengers.student.registryScholarshipManage.daoImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,7 @@ public class StudentResManageDaoImpl implements StudentResManageDao{
 		resVO.setStud_num(stud_num);
 		resVO.setLct_yr(lct_yr);
 		resSchList =  (ArrayList<resSchStudentVO>) sqlSession.selectList("resSchManage.resSchSelect",resVO);
+			
 		return resSchList;
 	}
 
@@ -68,6 +70,29 @@ public class StudentResManageDaoImpl implements StudentResManageDao{
 		ArrayList<LoaRtsVO> LoaRtsList = new ArrayList<LoaRtsVO>();
 		LoaRtsList = (ArrayList<LoaRtsVO>) sqlSession.selectList("resSchManage.LoaRtsSelect",loa_stud);
 		return LoaRtsList;
+	}
+
+	@Override
+	public List<HashMap<String, String>> selectScrList(ScrapplVO scrApplVO)
+			throws SQLException {
+		List<HashMap<String,String>> selectScrList = (List<HashMap<String,String>>) sqlSession.selectList("resSchManage.scrSelect",scrApplVO); 
+		return selectScrList;
+	}
+
+	@Override
+	public List<HashMap<String, String>> selectScrApplList(
+			ScrapplVO scrApplVO) throws SQLException {
+		List<HashMap<String,String>> selectScrApplList = (List<HashMap<String,String>>) sqlSession.selectList("resSchManage.scrApplSelect",scrApplVO); 
+		return selectScrApplList;
+	}
+
+	@Override
+	public resSchStudentVO selectStudInfo(String stud_num) throws SQLException {
+		resSchStudentVO resVO = new resSchStudentVO();
+		resVO.setStud_num(stud_num);
+		resSchStudentVO studInfo = new resSchStudentVO();
+		studInfo = (resSchStudentVO) sqlSession.selectOne("resSchManage.studInfoSelect",resVO);
+		return studInfo;
 	}
 	
 	
