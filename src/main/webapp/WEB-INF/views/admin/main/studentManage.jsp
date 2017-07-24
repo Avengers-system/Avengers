@@ -220,6 +220,7 @@
                           <td >${student.stud_dept }</td>
                           <td >${student.stud_grd }</td>
                           <td >${student.stud_qtr }</td>
+                          
                           <c:choose>
 								<c:when test="${student.stud_gen == '2'}">
 										<td>여자</td>
@@ -228,6 +229,7 @@
 										<td>남자</td>
 								</c:otherwise>
 						 </c:choose>
+						 
                           	<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${student.stud_bir}" /></td>
 								<td>${student.stud_hp }</td>
 								<td>${student.stud_regno}</td>

@@ -18,7 +18,6 @@
 <div class="col-md-2" id="commonLeftSide">
 	<%@include file="../common/myPageSideCategory.jsp"%>
 </div>
-asdfasdfadsfasdfasdf
 <c:choose>
 		<c:when test="${not empty perschd}">
 				<form name="scheduleDetail" id="scheduleDetail">

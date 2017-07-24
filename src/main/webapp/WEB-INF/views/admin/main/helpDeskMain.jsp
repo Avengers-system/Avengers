@@ -13,14 +13,7 @@
 <%@include file="../common/admin_side.jsp" %>   
 </div>
 <div class="col-md-10" id="commonRightSide">
-
  
-<<<<<<< HEAD
-=======
-<style>
-</style>
-
-<body>
 헬프데스크메인<br><hr color="orange">
 <button onclick="location.href='<%=request.getContextPath()%>/admin/univNoticeList'">학교공지</button>
 <button onclick="location.href='<%=request.getContextPath()%>/admin/deptNoticeList'">학과공지</button>
@@ -55,10 +48,6 @@
 </c:choose>
 
 </div>
->>>>>>> branch 'master' of https://github.com/Avengers-system/Avengers.git
-
-
-<<<<<<< HEAD
 		<div class="col-md-12">
 		
 					<h2>헬프데스크메인</h2>
@@ -249,7 +238,6 @@
                       </div>
           			
 				</div>
-=======
 <a href="${pageContext.request.contextPath}/admin/portalNoticeList">포털게시판</a>
 <div>
 <c:choose>
@@ -270,12 +258,7 @@
                </td>
             </tr>
          </c:otherwise>
-         
->>>>>>> branch 'master' of https://github.com/Avengers-system/Avengers.git
         
-<<<<<<< HEAD
-=======
-         
 </c:choose>
 
 </div>
@@ -300,11 +283,6 @@
                </td>
             </tr>
          </c:otherwise>
-         
->>>>>>> branch 'master' of https://github.com/Avengers-system/Avengers.git
-        
-<<<<<<< HEAD
-=======
          
 </c:choose>
 
@@ -333,11 +311,6 @@
             </tr>
          </c:otherwise>
          
->>>>>>> branch 'master' of https://github.com/Avengers-system/Avengers.git
-        
-        
-        
-<<<<<<< HEAD
         	<!-- 3. 학부게시판 탭 -->
         
         			
@@ -655,13 +628,9 @@
 			<button onclick="location.href='${pageContext.request.contextPath}/admin/qnaNoticeList'">Q&A</button>
 
 </div>
-=======
          
 </c:choose>
 
 </div>
 
-</body>
-</html>
 
->>>>>>> branch 'master' of https://github.com/Avengers-system/Avengers.git
