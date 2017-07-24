@@ -20,6 +20,7 @@
 
 <!-- Admin Header -->
 <%-- <%@include file="../common/topCategory.jsp"%> --%>
+
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
 <!-- 테스트용 사이드 -->

@@ -1,5 +1,7 @@
 package com.avengers.professor.classManage.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -22,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.avengers.db.dto.AsgnVO;
 import com.avengers.db.dto.EqVO;
 import com.avengers.db.dto.ExamVO;
 import com.avengers.db.dto.LctVO;
@@ -461,7 +465,12 @@ public class ProfessorClassManageController {
 		return String.valueOf(result);
 	}
 	
-	//응시자 확인하기
+	/**
+	 * 시험 응시자를 확인하기 위한 메소드
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="professor/classManage/lectureTakeExamStudent")
 	public String professorLectureTakeExamStudent(HttpServletRequest request
 												  ,Model model){
@@ -480,6 +489,12 @@ public class ProfessorClassManageController {
 		return view;
 	}
 	
+	/**
+	 * 학생의 답안정보를 가져오기 위한 메소드
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="professor/classManage/lectureStudentAnswer")
 	public String professorLectureStudentAnswer(HttpServletRequest request, Model model){
 		String view="professor/classManage/lectureStudentAnswer";
@@ -509,6 +524,14 @@ public class ProfessorClassManageController {
 		return view;
 	}
 	
+	/**
+	 * 학생의 답안을 토대로 채점을 실행하고 점수를 반환
+	 * @param request
+	 * @param saNumArr
+	 * @param saCheckArr
+	 * @param te_num
+	 * @return
+	 */
 	@RequestMapping("professor/classManage/lectureStudentAnswerUpdate")
 	@ResponseBody
 	public String professorLectureStudentAnswerUpdate(HttpServletRequest request
@@ -542,5 +565,104 @@ public class ProfessorClassManageController {
 		}
 		
 		return String.valueOf(result);
+	}
+	
+	//과제의 목록가져오기
+	@RequestMapping("professor/classManage/lectureAsgnMain")
+	public String professorLectureAsgnMain(HttpServletRequest request, Model model){
+		String view = "professor/classManage/lectureAsgnMain";
+		
+		String lct_num = (String) request.getSession().getAttribute("lct_num");
+		
+		ArrayList<Map<String, String>> lctAsgnInfo = null;
+		
+		try {
+			lctAsgnInfo = pcmService.selectLctAsgnInfo(lct_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("lctAsgnInfo", lctAsgnInfo);
+		
+		return view;
+	}
+	
+	//과제 등록화면
+	@RequestMapping("professor/classManage/lectureRegistryAsgn")
+	public String professorLectureRegistryAsgn(HttpServletRequest request, Model model){
+		String view = "professor/classManage/lectureRegistryAsgn";
+		LctVO lctVO = null;
+		try {
+			lctVO = pcmService.selectLctYearQtr((String)request.getSession().getAttribute("lct_num"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if(lctVO != null){
+			model.addAttribute("lctVO", lctVO);
+		}
+		
+		return view;
+	}
+	
+	@RequestMapping(value = "professor/classManage/registryAsgn", method=RequestMethod.POST)
+	public String professorRegistryAsgn(@RequestParam(value="lct_yr")String lct_yr
+										,@RequestParam(value="lct_qtr")String lct_qtr
+										,@RequestParam(value="asgn_sub_form")MultipartFile asgn_sub_form
+										,HttpServletRequest request){
+		String view = "redirect:lectureAsgnMain";
+		AsgnVO asgnVO = new AsgnVO();
+		asgnVO.setAsgn_nm(request.getParameter("asgn_nm"));
+		asgnVO.setAsgn_cont(request.getParameter("asgn_cont"));
+		asgnVO.setAsgn_start_date(request.getParameter("asgn_start_date"));
+		asgnVO.setAsgn_dl_date(request.getParameter("asgn_dl_date"));
+		asgnVO.setAsgn_num(lct_yr+""+lct_qtr);
+		asgnVO.setAsgn_lct((String)request.getSession().getAttribute("lct_num"));
+		
+		String upload="D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/asgn/";
+		
+		if(!asgn_sub_form.isEmpty()){
+			File file = new File(upload, asgn_sub_form.getOriginalFilename());
+			try {
+				asgn_sub_form.transferTo(file);
+				asgnVO.setAsgn_sub_form(file.getName());
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		//파일업로드 중간에 나감 있다가 갔다와서 해야됨
+		try {
+			//과제 등록완료
+			int result = pcmService.insertAsgn(asgnVO);
+			if(result < 0){
+				return "에러";
+			}
+			
+			//과제를 등록햇으므로 방금등록한 과제의 기본키를 가져온다.
+			String asgnPk = pcmService.selectAsgnPk((String)request.getSession().getAttribute("lct_num"));
+			
+			//이제 자동으로 submission테이블에 학생들을 등록시켜보자.
+			Map<String, String> key = new HashMap<String, String>();
+			key.put("sub_asgn", asgnPk);
+			key.put("lct_num", (String)request.getSession().getAttribute("lct_num"));
+			
+			result = pcmService.insertStudSub(key);
+			if(result < 0){
+				return "에러";
+			}
+			
+			//submission테이블에 학생이 등록된 과제는 asgn_check를 1로 업데이트한다.
+			result = pcmService.updateAsgnCheck(asgnPk);
+			if(result < 0){
+				return "에러";
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return view;
 	}
 }

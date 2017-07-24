@@ -3,6 +3,7 @@ package com.avengers.student.registryScholarshipManage.serviceImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,6 @@ public class StudentResManageServiceImpl implements StudentResManageService {
 	@Autowired
 	private StudentResManageDao stuResDAO;
 	
-	public void setStuResDAO(StudentResManageDao stuResDAO) {
-		this.stuResDAO = stuResDAO;
-	}
 
 	@Override
 	public ArrayList<ScrapplVO> selectScrapplList(String scrappl_stud,
@@ -70,6 +68,23 @@ public class StudentResManageServiceImpl implements StudentResManageService {
 		ArrayList<LoaRtsVO> LoaRtsList = null;
 		LoaRtsList = stuResDAO.selectLoaRts(loa_stud);
 		return LoaRtsList;
+	}
+
+	@Override
+	public List<HashMap<String, String>> selectScrList(ScrapplVO scrApplVO)
+			throws SQLException {		
+		return stuResDAO.selectScrList(scrApplVO);
+	}
+
+	@Override
+	public List<HashMap<String, String>> selectScrApplList(
+			ScrapplVO scrApplVO) throws SQLException {		
+		return stuResDAO.selectScrApplList(scrApplVO);
+	}
+
+	@Override
+	public resSchStudentVO selectStudInfo(String stud_num) throws SQLException {
+		return stuResDAO.selectStudInfo(stud_num);
 	}
 
 }

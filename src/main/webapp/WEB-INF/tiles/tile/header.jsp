@@ -41,8 +41,7 @@ initTimer = function() {
 		timerchecker = setTimeout("initTimer()", 1000); // 1초 간격으로 체크
 	} 
 	else if(iSecond == 0){
-        alert('세션이 만료되었습니다');
-        location.href="logout";
+        location.href="${pageContext.request.contextPath}/logout";
      } 
 	
 	else {
@@ -133,7 +132,7 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/professorManage">교수관리</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/studentManage">학생관리</a></li>
 					<li role="presentation"><a href="#">강의관리</a></li>
-					<li role="presentation"><a href="#">Help Desk</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/main/helpDeskMain">Help Desk</a></li>
 				</ul>
 			</div>
 		</div>
@@ -150,10 +149,10 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 				<ul class="nav nav-tabs nav-tabs-v1">
 					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/main">Main</a></li>
 					<li role="presentation"><a href="#">My Page</a></li>
-					<li role="presentation"><a href="#">수업관리</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/classManage/classMain">수업관리</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/studentManage/departmentList">학생관리</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/counsel/counselList">상담</a></li>
-					<li role="presentation"><a href="#">Help Desk</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/helpDesk/main/helpDeskProfMain">Help Desk</a></li>
 				</ul>
 			</div>
 		</div>

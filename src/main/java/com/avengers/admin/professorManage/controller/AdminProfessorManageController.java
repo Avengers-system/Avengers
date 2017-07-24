@@ -81,7 +81,7 @@ public class AdminProfessorManageController {
 		System.out.println("얍!!!"+path);
 		model.addAttribute("path",path);
 		model.addAttribute("professor",prfsVO);
-		return "admin/professorDetail";
+		return "admin/mypage/professorDetail";
 	}
 	
 	/**

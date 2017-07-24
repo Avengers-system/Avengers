@@ -3,8 +3,43 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-
+<c:if test="${not empty sessionEnd}">
+		<div
+			class="alert alert-warning col-md-12 col-sm-12 alert-icon alert-dismissible fade in"
+			role="alert">
+			<div class="col-md-2 col-sm-2 icon-wrapper text-center">
+				<span class="fa fa-exclamation-triangle fa-2x"></span>
+			</div>
+			<div class="col-md-10 col-sm-10">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<p>
+					<strong>세션이 만료되었습니다.</strong>
+				</p>
+				<p>다른 사용자가 해당아이디로 접속했습니다.</p>
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${not empty logout}">
+		<div
+			class="alert alert-success col-md-12 col-sm-12 alert-icon alert-dismissible fade in"
+			role="alert">
+			<div class="col-md-2 col-sm-2 icon-wrapper text-center">
+				<span class="fa fa-check fa-2x"></span>
+			</div>
+			<div class="col-md-10 col-sm-10">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<p>
+					<strong>로그아웃이 성공하였습니다.</strong>
+				</p>
+			</div>
+		</div>
+	</c:if>
 
 
 <c:if test="${not empty error}">
