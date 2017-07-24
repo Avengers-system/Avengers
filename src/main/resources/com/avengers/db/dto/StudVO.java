@@ -14,7 +14,7 @@ public class StudVO extends PageVO{
 	private String stud_nm;//이름
 	private String stud_eng_nm; //영문이름
 	private Date stud_bir;//생년월일
-	private String std_email;//이메일
+	private String stud_email;//이메일
 	private String stud_pw;//비밀번호
 	private String stud_grd;//현재학년
 	private String stud_regno;//주민등록번호
@@ -58,11 +58,12 @@ public class StudVO extends PageVO{
 	public void setStud_bir(Date stud_bir) {
 		this.stud_bir = stud_bir;
 	}
-	public String getStd_email() {
-		return std_email;
+	
+	public String getStud_email() {
+		return stud_email;
 	}
-	public void setStd_email(String std_email) {
-		this.std_email = std_email;
+	public void setStud_email(String stud_email) {
+		this.stud_email = stud_email;
 	}
 	public String getStud_pw() {
 		return stud_pw;

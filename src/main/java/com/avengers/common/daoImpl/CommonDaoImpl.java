@@ -82,7 +82,7 @@ public class CommonDaoImpl implements CommonDao{
 				sqlSession.update("admin.updatePwd", adminVO);
 			} else if (role.equals("student")) {
 				StudVO studVO = new StudVO();
-				studVO.setStd_email(to);
+				studVO.setStud_email(to);
 				studVO.setStud_num(id);
 				studVO.setStud_pw(pwd);
 				sqlSession.update("student.updatePwd", studVO);

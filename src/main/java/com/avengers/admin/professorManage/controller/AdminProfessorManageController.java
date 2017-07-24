@@ -67,13 +67,19 @@ public class AdminProfessorManageController {
 	public String professorDetail(
 			@RequestParam("prfs_num") String prfs_num,
 			Model model){
-		System.out.println("왜또안되니");
+		
+	 
 		PrfsVO prfsVO = new PrfsVO();
 		try {
 			prfsVO = adminProfessorManageService.selectPrfs(prfs_num);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		String path="D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/admin_professor_images/";
+		path += prfsVO.getPrfs_pic();
+		System.out.println("얍!!!"+path);
+		model.addAttribute("path",path);
 		model.addAttribute("professor",prfsVO);
 		return "admin/professorDetail";
 	}
@@ -124,7 +130,7 @@ public class AdminProfessorManageController {
 		
 		System.out.println("path : "+path);
 		System.out.println("filename : "+filename);
-		System.out.println("prfsVO으 ㅣ number : "+ prfsVO.getPrfs_num());
+		System.out.println("prfsVO number : "+ prfsVO.getPrfs_num());
 		System.out.println(commandPrfsVO.toString());
 		System.out.println();
 		

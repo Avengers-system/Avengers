@@ -28,6 +28,44 @@ public class AdminStudentManageController {
 	@Autowired
 	private AdminStudentManageService adminStudentManageService;
 	
+	@RequestMapping(value = "/updateStudent")
+	public String updateStudent(
+				CommandStudVO commandStudVO,
+				HttpServletRequest request,
+				HttpSession session
+				){
+		
+		StudVO studVO = commandStudVO.toStudVO();
+		String path = request.getSession().getServletContext().getRealPath("resources/admin_student_images");
+		String filename= studVO.getStud_pic();
+		
+		System.out.println("path : "+path);
+		System.out.println("filename : "+filename);
+		System.out.println("studVO number : "+ studVO.getStud_num());
+		System.out.println(commandStudVO.toString());
+		System.out.println();
+		
+		if (!studVO.getStud_pic().isEmpty()) {
+			File file = new File(path, studVO.getStud_pic());
+ 
+			try {
+				commandStudVO.getStud_pic().transferTo(file); // 깃 위치로 전송
+				adminStudentManageService.updateStud(studVO);
+				System.out.println("성공");
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return "redirect:professorManage";
+	}
+	
+	
 	
 	/**
 	 * 학생등록하기
@@ -129,17 +167,22 @@ public class AdminStudentManageController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/studentManage/detail")
+	@RequestMapping("/studentDetail")
 	public String studentDetail(
 			@RequestParam("stud_num") String stud_num,
 			Model model){
-		
 		StudVO studVO = new StudVO();
 		try {
 			studVO = adminStudentManageService.selectStud(stud_num);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		String path="D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/admin_student_images/";
+		path += studVO.getStud_pic();
+		
+		System.out.println("학생 path : "+ path);
+		model.addAttribute("path",path);
 		model.addAttribute("student",studVO);
 		return "admin/studentDetail";
 	}

@@ -39,8 +39,8 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 	}
 
 	@Override
-	public int updateStud(StudVO studVO, String stud_num) throws SQLException {
-		int result = sqlSession.update("admin.updateStudent",stud_num); 
+	public int updateStud(StudVO studVO) throws SQLException {
+		int result = sqlSession.update("admin.updateStudent", studVO); 
 		return result;
 	}
 

@@ -16,16 +16,10 @@
 </style>
 
 
-<c:if test="${msg !=null}">
-		<script>
-		 alert('zz');
-		</script>
 
-</c:if> 
- 
+
 <!-- Admin Header -->
-<%@include file="../common/topCategory.jsp"%>
-
+<%-- <%@include file="../common/topCategory.jsp"%> --%>
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
 <!-- 테스트용 사이드 -->

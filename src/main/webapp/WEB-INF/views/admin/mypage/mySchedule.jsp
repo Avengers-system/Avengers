@@ -267,8 +267,3 @@ ol, ul {
    </div>
    <!-- /.modal -->
    </div>
-<<<<<<< HEAD
-   
-=======
-   
->>>>>>> refs/heads/piopio

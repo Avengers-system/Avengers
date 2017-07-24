@@ -6,6 +6,7 @@
 
 <script>
 $(function() {
+	
    //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
    $('#profile-image').on('click', function() {
       $('#profile-image-input').click();
@@ -65,7 +66,6 @@ div.input-group>span.input-group-addon{
 
 <!-- Admin Header -->
 <%-- <%@include file="common/topCategory.jsp"%> --%>
-
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
 <%-- <%@include file="common/mainSideCategory.jsp" %>     --%>
@@ -78,24 +78,23 @@ div.input-group>span.input-group-addon{
 	
 		<form name="updateProfessor" enctype="multipart/form-data" action="${pageContext.request.contextPath }/admin/updateProfessor" method="post">
 	
-					<div class="col-md-12" style="margin-top:30px;">
+					<div class="col-md-12" >
 			         <!-- 이미지 미리보기 -->
 			               <div class="filess" >
-			                  <img  style="height:150px;width:130px;" alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+			                  <img  style="height:150px;width:130px;" alt="professor Pic" 
+			                  src="<%=request.getContextPath()%>/resources/admin_professor_images/${professor.prfs_pic}"
 			                     id="profile-image" class="img-circle img-responsive">
 			                  <input style="width:100px;" id="profile-image-input"  accept="image/png, image/jpeg, image/gif" class="hidden" type="file">
 			               </div>
 			               
 			               <label class='control-label'>이미지</label>
 			                      <span class="input-group-btn">
-			                       
-			                       <input type="text" class="form-control" style="width:230px;" id="image-preview-filename" disabled="disabled">
+			                       <input type="text" class="form-control" value="${professor.prfs_pic}" style="width:230px;" id="image-preview-filename" disabled="disabled">
 			                            <div class="btn btn-default image-preview-input">
 			                              <input type="file" accept="image/png, image/jpeg, image/gif" name="prfs_pic"/>
-			                              <span class="image-preview-input-title">업로드</span>
+					                      <span class="image-preview-input-title">업로드</span>
 			                           </div>
 			                      </span>
-			              
 			        </div>
 	
 				<div class="col-md-6">
@@ -122,7 +121,6 @@ div.input-group>span.input-group-addon{
 					<br>
 					<div class="input-group">
 					 <span class="input-group-addon" >생년월일</span>
-					 
 					  <input type="date" class="form-control" name="prfs_bir" value='<fmt:formatDate pattern = "yyyy-MM-dd" value = "${professor.prfs_bir}" />'>
 					</div>	
 					<br>	
