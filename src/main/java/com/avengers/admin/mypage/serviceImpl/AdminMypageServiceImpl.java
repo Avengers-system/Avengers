@@ -66,4 +66,9 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 		return success;
 	}
 
+	@Override
+	public PerschdVO selectPerschd_title(String perschd_title) {
+		return myPageDAO.selectPerschd_title(perschd_title);
+	}
+
 }

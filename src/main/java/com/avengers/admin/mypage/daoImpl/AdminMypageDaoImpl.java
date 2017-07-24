@@ -67,6 +67,12 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 		return success;
 	}
 
+	@Override
+	public PerschdVO selectPerschd_title(String perschd_title) {
+		PerschdVO perschdVO = (PerschdVO) sqlSession.selectOne("perschd.selectSchdTitle",perschd_title);
+		return perschdVO;
+	}
+
 	
 
 }
