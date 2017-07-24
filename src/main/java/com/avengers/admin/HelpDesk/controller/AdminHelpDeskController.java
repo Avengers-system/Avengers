@@ -486,7 +486,10 @@ public class AdminHelpDeskController {
 	         , HttpSession sesssion){
 	      BoardVO boardVO = new BoardVO();
 	         String url = "redirect:portalNoticeList";
-	         String upload = "D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/board_dept";
+	         
+	         String upload = sesssion.getServletContext().
+						getRealPath("resources/board_dept");
+//	         String upload = "D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/board_dept";
 	         System.out.println("파일경로"+upload);
 	         boardVO.setBoard_bc(req.getParameter("board_bc"));
 	         boardVO.setBoard_cont(req.getParameter("board_cont"));
