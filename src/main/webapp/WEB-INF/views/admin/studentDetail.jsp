@@ -72,7 +72,7 @@ div.input-group>span.input-group-addon{
 			<br/>
   	  		<div class="input-group">
 				 <span class="input-group-addon" >영문이름</span>
-				  <input type="text" class="form-control" name='stud_eng_nm' value='${student.stud_eng_nm}'   >
+				  <input type="text" class="form-control" name='stud_eng_nm' value='${student.stud_eng_nm}'  >
 			</div>
 			<br/>
 			
@@ -84,13 +84,13 @@ div.input-group>span.input-group-addon{
 			
 			<div class="input-group">
 				 <span class="input-group-addon" >이메일</span>
-				  <input type="text" class="form-control" name='stud_email'  value = "${student.stud_email}" />' >
+				  <input type="text" class="form-control" name='stud_email'  value = "${student.stud_email}" /> 
 			</div>
 			<br/>
 			
 			<div class="input-group">
 				 <span class="input-group-addon" >비밀번호</span>
-				  <input type="text" class="form-control" name='stud_pw'  value = "${student.stud_pw}" />' >
+				  <input type="text" class="form-control" name='stud_pw'  value = "${student.stud_pw}" /> 
 			</div>
 			<br/>
 			
@@ -108,23 +108,28 @@ div.input-group>span.input-group-addon{
 			
 			 
   	  		<div class="input-group">
-				 <span class="input-group-addon" >성별</span>
-				 <c:choose>
-					<c:when test="${student.stud_gen eq '1'}">
-					  	<label>남자</label>
-					  	<input type="radio"  checked="checked" class="form-control" name="stud_gen" value="1">
-					  	<label>여자</label>
-					  	<input type="radio"   class="form-control" name="stud_gen" value="2">
-					</c:when>
-					<c:otherwise>
-				  		<label>남자</label>
-					  	<input type="radio"  class="form-control" name="stud_gen" value="1">
-					  	<label>여자</label>
-					  	<input type="radio"  checked="checked"  class="form-control" name="stud_gen" value="2">
-				  	</c:otherwise>
-				  	</c:choose>
-				 
-			</div>
+					 <span class="input-group-addon" >성별</span>
+					
+					 <div class="radio" >
+					 
+					 <c:choose>
+							<c:when test="${student.stud_gen eq '1'}">
+			                     <label>
+			                     <input type="radio"   name="stud_gen" checked="checked" value="1">남자</label>
+			                     <label>
+			                     <input type="radio"     value="2">여자</label>
+	                  		</c:when>
+							<c:otherwise>
+			                     <label>
+			                     <input type="radio"    value="1">남자</label>
+								<label>
+			                     <input type="radio"  name="stud_gen"  checked="checked" value="2">여자</label>
+		             		</c:otherwise>
+					</c:choose>
+					
+	                </div>
+					
+					</div>
 			<br/>
 			
 			<div class="input-group">

@@ -212,7 +212,7 @@
                         
                       <tr role="row" class="odd">
                           <td class="sorting_1">${student.stud_num }</td>
-                          <td ><a href="${pageContext.request.contextPath}/admin/studentDetail?stud_num=${student.stud_num}">${student.stud_num}</a></td>
+                          <td ><a href="${pageContext.request.contextPath}/admin/studentDetail?stud_num=${student.stud_num}">${student.stud_nm}</a></td>
                           <td >${student.stud_schreg_code }</td>
                           <td >${student.stud_dept }</td>
                           <td >${student.stud_grd }</td>

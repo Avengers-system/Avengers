@@ -96,7 +96,6 @@ public class AdminStudentManageController {
 						commandStudVO.getStud_pic().transferTo(file); // 깃 위치로 전송
 						
 						adminStudentManageService.insertStud(studVO);
-						
 						studVO.setStud_num(adminStudentManageService.selectStudNum());
 						adminStudentManageService.insertSecurity(studVO);
 						
@@ -111,7 +110,7 @@ public class AdminStudentManageController {
 					}
 				}
 
-				return "redirect:main/studentManage";
+				return "redirect:studentManage";
 	}
 	
 	

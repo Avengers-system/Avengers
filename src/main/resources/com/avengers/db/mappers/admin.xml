@@ -223,13 +223,13 @@
    
       VALUES(
          '2017'||lpad(stud_seq.nextval,3,0),
-         #{STUD_NM , jdbcType=VARCHAR},   
-         #{STUD_ENG_NM , jdbcType=VARCHAR},   
-         #{STUD_BIR },   
-         #{STUD_EMAIL , jdbcType=VARCHAR},   
-         #{STUD_PW ,jdbcType=VARCHAR},   
-         #{STUD_GRD ,jdbcType=VARCHAR},   
-         #{STUD_REGNO ,jdbcType=VARCHAR},   
+         #{stud_nm , jdbcType=VARCHAR},   
+         #{stud_eng_nm, jdbcType=VARCHAR},   
+         #{stud_bir},   
+         #{stud_email, jdbcType=VARCHAR},   
+         #{stud_pw,jdbcType=VARCHAR},   
+         #{stud_grd,jdbcType=VARCHAR},   
+         #{stud_regno,jdbcType=VARCHAR},   
          #{stud_gen },   
          #{stud_qtr},   
          #{stud_schreg_code , jdbcType=VARCHAR},   
@@ -247,7 +247,7 @@
          #{stud_guad_hp , jdbcType=VARCHAR},   
          '1',
          'ROLE_STUD',   
-         #{STUD_MAX_CRD}   
+         #{stud_max_crd}   
       )
    
    </insert>
