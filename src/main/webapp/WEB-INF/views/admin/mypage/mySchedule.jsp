@@ -121,11 +121,10 @@ ol, ul {
 			         start:'<%=perschdVO.getPerschd_start_date() %>',
 			         end:'<%=perschdVO.getPerschd_end_date() %>',
 			         content:'<%=perschdVO.getPerschd_cont() %>',
-			    	 time:'<%=perschdVO.getPerschd_date() %>'
+			    	 date:'<%=perschdVO.getPerschd_date() %>'
 			     }
 			     
 			    		<%
-			    		System.out.println(perschdVO.getPerschd_end_date()+"!!!");
 							}
 			    		%> 
 			],
@@ -159,7 +158,6 @@ ol, ul {
 			
 		})
  
-		
 	function deleteSchd(){
 		myForm.method="post";
 		myForm.action="myScheduleDelete";
@@ -170,7 +168,6 @@ ol, ul {
 
 
 <!-- 상세보기&수정 모달 -->
-
 <div class="modal fade" id="editSchedule">
       <div class="modal-dialog">
          <div class="modal-content">

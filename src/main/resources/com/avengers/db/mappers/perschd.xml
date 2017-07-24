@@ -69,7 +69,6 @@
 	</insert>
 	
 	
-	
 	<update id="updateSchd" parameterType="com.avengers.db.dto.PerschdVO">
 		UPDATE PERSCHD
 		SET 
