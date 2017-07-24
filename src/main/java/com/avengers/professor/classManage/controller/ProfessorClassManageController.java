@@ -2,8 +2,13 @@ package com.avengers.professor.classManage.controller;
 
 import java.security.Principal;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,13 +28,18 @@ import com.avengers.db.dto.ExamVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.RegistryExamVO;
 import com.avengers.professor.classManage.service.ProfessorClassManageService;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProfessorClassManageController {
 	@Autowired
 	private ProfessorClassManageService pcmService;
 	
+	/**
+	 * 교수가 강의한 리스트를 화면에 뿌리기 위한 메소드
+	 * @param principal
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("professor/classManage/classMain")
 	public String professorClassMain(Principal principal
 									,Model model){
@@ -48,6 +58,12 @@ public class ProfessorClassManageController {
 		return view;
 	}
 	
+	/**
+	 * 강의메인화면
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("professor/classManage/lectureMain")
 	public String professorLectureMain(HttpServletRequest request, Model model){
 		String view = "professor/classManage/lectureMain";
@@ -61,6 +77,13 @@ public class ProfessorClassManageController {
 		}
 		return view;
 	}
+	
+	/**
+	 * 강의계획서 상세보기
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("professor/classManage/lectureDetail")
 	public String professorLectureDetail(HttpServletRequest request, Model model){
 		String view = "professor/classManage/lectureDetail";
@@ -81,6 +104,12 @@ public class ProfessorClassManageController {
 		return view;
 	}
 	
+	/**
+	 * 강의계획서 수정화면
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("professor/classManage/lectureModifyDetail")
 	public String professorLectureModifyDetail(HttpServletRequest request, Model model){
 		String view = "professor/classManage/lectureModifyDetail";
@@ -103,6 +132,16 @@ public class ProfessorClassManageController {
 		return view;
 	}
 	
+	/**
+	 * 강의계획서 수정버튼을 눌렀을 때 update하기 위한 메소드
+	 * @param request
+	 * @param lctVO
+	 * @param writer
+	 * @param title
+	 * @param publisher
+	 * @param year
+	 * @return
+	 */
 	@RequestMapping(value="professor/classManage/lectureModify", method=RequestMethod.POST)
 	public String professorLectureModify(HttpServletRequest request, 
 										@ModelAttribute(value="lct")LctVO lctVO,
@@ -134,6 +173,13 @@ public class ProfessorClassManageController {
 	 * RequestParam vo에 들어가지 않는 값들을 각각 가져올 수 있음
 	 */
 	
+	/**
+	 * 교수가 등록한 시험리스트 출력
+	 * @param request
+	 * @param principal
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="professor/classManage/lectureExam")
 	public String professorLectureExam(HttpServletRequest request
 									   ,Principal principal
@@ -168,10 +214,12 @@ public class ProfessorClassManageController {
 		return view;
 	}
 	
-//										,@RequestParam(value="startHour")String startHour
-//										,@RequestParam(value="startMi")String startMi
-//										,@RequestParam(value="endHour")String endHour
-//										,@RequestParam(value="endMi")String endMi
+	/**
+	 * 시험등록, 시험을 등록할 때 학생들을 응시테이블에 자동으로 추가
+	 * @param registryExamVO
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="professor/classManage/registryExam", method=RequestMethod.POST)
 	public String professorRegistryExam(@ModelAttribute(value="exam") RegistryExamVO registryExamVO
 										,HttpServletRequest request){
@@ -245,11 +293,18 @@ public class ProfessorClassManageController {
 		return view;
 	}
 	
+	/**
+	 * 시험문제조회 메소드
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("professor/classManage/lectureExamQn")
 	public String professorLectureExamQn(HttpServletRequest request, Model model){
 		String view = "professor/classManage/lectureExamQn";
 		
 		String exam_num = request.getParameter("exam_num");
+		String division = request.getParameter("division");
 		
 		ArrayList<EqVO> eqList = null;
 		
@@ -260,33 +315,31 @@ public class ProfessorClassManageController {
 		}
 		
 		model.addAttribute("eqList", eqList);
+		model.addAttribute("exam_num",exam_num);
+		
+		if(division.equals("1")){
+			view = "professor/classManage/lectureExamQn";
+		} else {
+			view = "professor/classManage/lectureRegistryExamQn";
+		}
 		
 		return view;
 	}
 
-//	@RequestMapping("professor/classManage/removeExamEq")
-//	@ResponseBody
-//	public void professorRemoveExamEq(@RequestParam(value="eq_num")String eq_num){
-//		System.out.println("성공");
-//		int result = -1;
-//		
-//		try {
-//			result = pcmService.deleteEqInfo(eq_num);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		
-//	}
 	
+	/**
+	 * 시험문제를 등록,수정,삭제를 할 수 있게 하기위한 메소드
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("professor/classManage/registryExamEq")
-	public String test(HttpServletRequest request){
+	public String professorRegistryExamEq(HttpServletRequest request){
 		ArrayList<EqVO> eqList = new ArrayList<EqVO>();
 		
 		String length = request.getParameter("length");
 		String exam_num = request.getParameter("exam_num");
 		
-		String view = "redirect:registryExamQn?exam_num="+exam_num+"&division=1";
+		String view = "redirect:lectureExamQn?exam_num="+exam_num+"&division=1";
 		
 		int result = -1;
 		//form태그 값들 가져오기
@@ -321,26 +374,29 @@ public class ProfessorClassManageController {
 			//1.만약에 eqPkList에 있는 값이 eqList에 존재한다면 업데이트를 해야됨 ==> eq_num 맨 마지막에 u를 붙여??
 			//2.만약에 eqPkList에 있는 값이 eqList에 존재하지 않는다면 삭제해야됨 ==> eqList에 그냥 추가해버려?? eq_num 맨 마지막에 d를 붙이고
 			//3.만약에 eqList의 eq_num이 -1인 경우 ==> 그냥 insert
-			int eqListSize = eqList.size();//form에서 가져온 값들만 비교하기 위해 for문을 돌기 전에 기존의 size를 저장
 			if(eqPkList != null && !eqPkList.isEmpty()){
 				if(eqList != null && eqList.size() == 0){
 					//다삭제
 				}
+				int eqListSize = eqList.size();//form에서 가져온 값들만 비교하기 위해 for문을 돌기 전에 기존의 size를 저장
+				int updateCount = 0;
 				for(int eqPk=0; eqPk<eqPkList.size(); eqPk++){
+					updateCount = 0;
 					for(int eq=0; eq<eqListSize; eq++){
-						if(eq == eqListSize - 1){//마지막까지 찾다가 없는 경우는 존재하지 않으니 삭제 (2번째 조건)
-							System.out.println("마지막 안들어감??");
-							EqVO eqVO = new EqVO();
-							eqVO.setEq_num(eqPkList.get(eqPk)+"d");
-							eqList.add(eqVO);
-					 	} else if(eqList.get(eq).getEq_num().equals("-1")){
+						if(eqList.get(eq).getEq_num().equals("-1")){
 							System.out.println("새로운거");
 							continue;
 						} else if(eqPkList.get(eqPk).equals(eqList.get(eq).getEq_num())){//1번째 조건
+							updateCount = 1;
 							System.out.println("업데이트");
 							eqList.get(eq).setEq_num(eqList.get(eq).getEq_num()+"u");//업데이트 해야된다.
 							break;
 						}
+					}
+					if(updateCount == 0){
+						EqVO eqVO = new EqVO();
+						eqVO.setEq_num(eqPkList.get(eqPk)+"d");
+						eqList.add(eqVO);
 					}
 				}
 				result = pcmService.allFunctionEq(eqList);
@@ -363,26 +419,128 @@ public class ProfessorClassManageController {
 		
 		return view;
 	}
+	
+	/**
+	 * 시험등록일에만 시험을 등록 및 수정을 할 수 있게 함
+	 * @return
+	 */
+	@RequestMapping(value="professor/classManage/checkRegistryExamDate", method=RequestMethod.POST)
+	@ResponseBody
+	public String checkRegistryExamDate(){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		//DB에 시험시작날짜하고 종료날짜를 넣어서 비교하는게 좋을꺼같다.
+		String start = "2017-07-20";//포함
+		String end = "2017-07-23";//미포함
+		
+		Date sDate = new Date();//시험등록 시작일을 담기 위한 DATE변수
+		Date eDate = new Date();//시험등록 종료일을 담기 위한 DATE변수
+		Date cDate = new Date();//현재시간을 담기 위한 DATE변수
+		
+		try {
+			sDate = dateFormat.parse(start);
+			eDate = dateFormat.parse(end);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		Calendar sCalendar = Calendar.getInstance();
+		Calendar eCalendar = Calendar.getInstance();
+		Calendar cCalendar = Calendar.getInstance();
+		sCalendar.setTime(sDate);
+		eCalendar.setTime(eDate);
+		cCalendar.setTime(cDate);
+		
+		int result = 0;
+		if(cCalendar.compareTo(sCalendar) == 1 
+				&& cCalendar.compareTo(eCalendar) == -1){
+			result = 1;//등록화면으로 이동이 가능
+		} else {
+			result = -1;//등록화면으로 이동이 불가능
+		}
+		return String.valueOf(result);
+	}
+	
+	//응시자 확인하기
+	@RequestMapping(value="professor/classManage/lectureTakeExamStudent")
+	public String professorLectureTakeExamStudent(HttpServletRequest request
+												  ,Model model){
+		String view = "professor/classManage/lectureTakeExamStudent";
+		
+		String exam_num = request.getParameter("exam_num");
+		
+		ArrayList<Map<String, String>> studTeList = null;
+		try {
+			studTeList = pcmService.selectStudTeList(exam_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("studTeList", studTeList);
+		model.addAttribute("exam_num", exam_num);
+		return view;
+	}
+	
+	@RequestMapping(value="professor/classManage/lectureStudentAnswer")
+	public String professorLectureStudentAnswer(HttpServletRequest request, Model model){
+		String view="professor/classManage/lectureStudentAnswer";
+		
+		String stud_num = request.getParameter("stud_num");
+		String te_num = request.getParameter("te_num");
+		String exam_num = request.getParameter("exam_num");
+		Map<String, String> studInfo = null;
+		ArrayList<Map<String, String>> saInfoList = null;
+		
+		Map<String, String> key = new HashMap<String, String>();
+		
+		key.put("stud_num", stud_num);
+		key.put("te_num", te_num);
+		
+		try {
+			studInfo = pcmService.selectStudColDeptInfo(stud_num);
+			saInfoList = pcmService.selectSaInfoList(key);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("studInfo", studInfo);
+		model.addAttribute("saInfoList", saInfoList);
+		model.addAttribute("te_num", te_num);
+		model.addAttribute("exam_num", exam_num);
+		return view;
+	}
+	
+	@RequestMapping("professor/classManage/lectureStudentAnswerUpdate")
+	@ResponseBody
+	public String professorLectureStudentAnswerUpdate(HttpServletRequest request
+													,@RequestParam(value="saNumArr[]")List<String> saNumArr
+													,@RequestParam(value="saCheckArr[]")List<String> saCheckArr
+													,@RequestParam(value="te_num")String te_num){
+		ArrayList<Map<String, String>> saList = new ArrayList<Map<String, String>>();
+		for(int i=0; i<saNumArr.size(); i++){
+			Map<String, String> temp = new HashMap<String, String>();
+			temp.put("sa_num", saNumArr.get(i));
+			temp.put("sa_check", saCheckArr.get(i));
+			saList.add(temp);
+		}
+		
+		int result = 0;
+		try {
+			result = pcmService.updateSa(saList);
+			if(result <= 0){
+				return "-1";
+			}
+			
+			result = pcmService.updateExamPoint(te_num);
+			if(result <= 0){
+				return "-1";
+			}
+			
+			result = pcmService.selectScoreSum(te_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "-1";
+		}
+		
+		return String.valueOf(result);
+	}
 }
-	//기존에 있던게 삭제된다 그거 생각해야됨
-	
-	
-	//시험문제
-//	@RequestMapping("adsfasd")
-//	public String sadfawselfj(HttpServletRequest request){
-//		Enumeration<String> asdfasd =  request.getParameterNames();
-//		ArrayList<String> eq_qtnparamsNames = new ArrayList<String>();
-//		ArrayList<String> eq_qtnaramsNames = new ArrayList<String>();
-//		while (asdfasd.hasMoreElements()) {
-//			String paramName = (String) asdfasd.nextElement();
-//			if (paramName.contains("eq_qtn")) {
-//				eq_qtnparamsNames.add(paramName);
-//			}
-//		}
-//		
-//		for (int i = 0; i < paramsNames.size(); i++) {
-//			ajtVO vo = new asdfasdVO();
-//			vo.setSsdf(request.getParameter(paramsNames.get(i)));
-//		}
-//		return null;
-//	}

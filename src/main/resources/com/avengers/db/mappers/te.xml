@@ -23,5 +23,49 @@
 		AND    TL_LCT = #{lct_num}
 	</insert>
 	
+	<!-- 한 시험에 응시자를 가져오기 위한 Map -->
+	<resultMap id="studTeList" type="java.util.HashMap">
+		<result javaType="java.lang.String" column="LCT_NM" property="lct_nm"/>
+		<result javaType="java.lang.String" column="LCT_NM_CLASS" property="lct_nm_class"/>
+		<result javaType="java.lang.String" column="TE_EXAM" property="te_exam"/>
+		<result javaType="java.lang.String" column="EXAM_TYPE" property="exam_type"/>
+		<result javaType="java.lang.String" column="TE_NUM" property="te_num"/>
+		<result javaType="java.lang.String" column="STUD_NUM" property="stud_num"/>
+		<result javaType="java.lang.String" column="STUD_NM" property="stud_nm"/>
+		<result javaType="java.lang.String" column="STUD_HP" property="stud_hp"/>
+		<result javaType="java.lang.String" column="TE_CHECK" property="te_check"/>
+		<result javaType="java.lang.String" column="TE_EXAM_POINT" property="te_exam_point"/>
+	</resultMap>
+	<!-- 한 시험에 응시자를 가져오기 위한 SELECT 쿼리문 -->
+	<select id="selectStudTeList" parameterType="java.lang.String" resultMap="studTeList">
+		SELECT REGEXP_REPLACE(LCT_NM,'.{1}$') AS LCT_NM
+		      ,SUBSTR(LCT_NM, -1) AS LCT_NM_CLASS
+		      ,TE_EXAM
+		      ,case when EXAM_TYPE = 1 then '중간고사' else '기말고사' end AS EXAM_TYPE
+		      ,TE_NUM
+		      ,STUD_NUM
+		      ,STUD_NM
+		      ,STUD_HP
+		      ,case when TE_CHECK = 1 then '응시' else '미응시' end AS TE_CHECK
+		      ,TE_EXAM_POINT
+		FROM   TE, EXAM, STUDENT, LECTURE
+		WHERE  TE_EXAM = EXAM_NUM
+		AND    TE_STUD = STUD_NUM
+		AND    EXAM_LCT = LCT_NUM
+		AND    TE_EXAM = #{exam_num}
+	</select>
 	
+	<!-- 학생의 시험점수 업데이트 -->
+	<update id="updateExamPoint" parameterType="java.lang.String">
+		UPDATE TE
+		SET    TE_EXAM_POINT = (SELECT SUM(EQ_SCORE)
+		                        FROM   SA, TE, EXAM, EQ
+		                        WHERE  SA_TE = TE_NUM
+		                        AND    EXAM_NUM = TE_EXAM
+		                        AND    EQ_EXAM = EXAM_NUM
+		                        AND    SA_QTNA = EQ_QTNA
+		                        AND    SA_TE = #{te_num}
+		                        AND    SA_CHECK = '1')
+		WHERE  TE_NUM = #{te_num}
+	</update>
 </mapper>

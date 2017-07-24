@@ -49,7 +49,8 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 
 	@Override
 	public int insertPerschd(PerschdVO perschdVO)throws SQLException {
-		return 0;
+		int result = sqlSession.insert("perschd.insertSchd",perschdVO);
+		return result;
 	}
 
 	@Override
@@ -64,6 +65,12 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 		int success = -1;
 		success = sqlSession.delete("perschd.deleteSchd", perschd_num);
 		return success;
+	}
+
+	@Override
+	public PerschdVO selectPerschd_title(String perschd_title) {
+		PerschdVO perschdVO = (PerschdVO) sqlSession.selectOne("perschd.selectSchdTitle",perschd_title);
+		return perschdVO;
 	}
 
 	

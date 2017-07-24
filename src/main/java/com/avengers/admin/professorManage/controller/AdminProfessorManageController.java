@@ -158,7 +158,8 @@ public class AdminProfessorManageController {
 	 */
 	@RequestMapping(value = "/insertProfessor")
 	public String insertProfessor(CommandPrfsVO commandPrfsVO,
-			HttpSession session	){
+			HttpSession session,
+			HttpServletRequest request){
 
 		PrfsVO prfsVO = commandPrfsVO.toPrfsVO();		
 
@@ -181,10 +182,14 @@ public class AdminProfessorManageController {
 
 	    
 		// 깃 경로 (동일)
-		String upload = session.getServletContext().getRealPath("resources/admin_professor_images");		
+		String path = request.getSession().getServletContext().getRealPath("/resources/admin_professor_images");
+		String filename = prfsVO.getPrfs_pic();
+		
+		System.out.println("path"+path);
+		System.out.println("filename"+filename);
 		
 		if (!prfsVO.getPrfs_pic().isEmpty()) {
-			File file = new File(upload, prfsVO.getPrfs_pic());
+			File file = new File(path, prfsVO.getPrfs_pic());
  
 			try {
 				commandPrfsVO.getPrfs_pic().transferTo(file); // 깃 위치로 전송
@@ -194,6 +199,7 @@ public class AdminProfessorManageController {
 				prfsVO.setPrfs_num(adminProfessorManageService.selectPrfsNum());
 				adminProfessorManageService.insertSecurity(prfsVO);
 				
+				System.out.println("성공");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -201,7 +207,6 @@ public class AdminProfessorManageController {
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			}
-			System.out.println("성공");
 		}
 
 		return "admin/main/professorManage"; // redirect??

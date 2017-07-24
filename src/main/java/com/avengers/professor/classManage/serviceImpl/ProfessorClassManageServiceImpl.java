@@ -326,4 +326,46 @@ public class ProfessorClassManageServiceImpl implements ProfessorClassManageServ
 		return result;
 	}
 
+	@Override
+	public ArrayList<Map<String, String>> selectStudTeList(String exam_num)
+			throws SQLException {
+		ArrayList<Map<String, String>> studTeList = proClassDAO.selectStudTeList(exam_num);
+		return studTeList;
+	}
+
+	@Override
+	public Map<String, String> selectStudColDeptInfo(String stud_num)
+			throws SQLException {
+		Map<String, String> studInfo = proClassDAO.selectStudColDeptInfo(stud_num);
+		return studInfo;
+	}
+
+	@Override
+	public ArrayList<Map<String, String>> selectSaInfoList(
+			Map<String, String> key) throws SQLException {
+		ArrayList<Map<String, String>> saInfoList = proClassDAO.selectSaInfoList(key);
+		return saInfoList;
+	}
+
+	@Override
+	public int updateSa(ArrayList<Map<String, String>> saList)
+			throws SQLException {
+		int result = proClassDAO.updateSa(saList);
+		return result;
+	}
+
+	@Override
+	public int selectScoreSum(String te_num)
+			throws SQLException {
+		int score = proClassDAO.selectScoreSum(te_num);
+		return score;
+	}
+
+	@Override
+	public int updateExamPoint(String te_num) throws SQLException {
+		int result = proClassDAO.updateExamPoint(te_num);
+		return result;
+	}
+
+	
 }

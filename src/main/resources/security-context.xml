@@ -23,7 +23,7 @@
 	<http use-expressions="true" access-denied-page="/accessDenied">
 		<intercept-url pattern="/common/commonLogin" access="permitAll" />
 		<intercept-url pattern="/common/**" access="permitAll" />
-
+		<intercept-url pattern="/template/**" access="permitAll"/>
 		<intercept-url pattern="/admin/**"	access="hasAnyRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/professor/**"	access="hasAnyRole('ROLE_PROF')" />
 		<intercept-url pattern="/student/**"	access="hasAnyRole('ROLE_STUD,ROLE_WSS')" />

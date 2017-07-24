@@ -8,8 +8,10 @@
 		var qtnas = [];
 		var answers = [];
 		var eqSize = '<c:out value="${eqList.size()}"/>';
-		
 		ans_check = function(qtna, ans){
+			var imgTag = "<img src='../../resources/images/check.png' width='20px' style='position:absolute; left:20px'/>";
+			alert(qtna + " " + ans);
+			$(".studEq").eq(qtna-1).find($("a")).eq(ans-1).prepend(imgTag);
 			if(index == 0){
 				qtnas[index] = qtna;
 				answers[index] = ans;
@@ -38,9 +40,8 @@
 				lct = lct.replace("'", "%27");
 				te = encodeURIComponent(te);
 				te = te.replace("'", "%27");
-<%-- 				location.href="<%=request.getContextPath()%>/student/classManage/lectureExamSubmit?lct_num="+lct; --%>
-				$.post({
-					url:'<%=request.getContextPath()%>/student/classManage/lectureExamSubmit'
+				$.ajax({
+					url:'lectureExamSubmit'
 					, type:'post'
 					, data:{
 						qtnaArr:qtnas,
@@ -49,7 +50,7 @@
 						te_num:te
 					},
 					success:function(){
-						location.href="<%=request.getContextPath()%>/student/classManage/lectureExamSubmit?lct_num="+lct;
+						location.href="lectureExam";
 					}
 				});
 			} else {
@@ -82,9 +83,6 @@
 		})
 	});
 </script>
-<!-- Student Header -->
-<%@include file="../common/topCategory.jsp" %>
-
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
 <%@include file="../common/classManageLectureSideCategory.jsp" %>
@@ -95,6 +93,7 @@
 <!--1.주관식 2.객관식 -->
 	<form>
 		<c:forEach items="${eqList}" var="eq1" varStatus="status">
+			<div class="studEq" style="font-size:20px">
 			${eq1.getEq_qtna() }.
 			${eq1.getEq_qtn() }<br/>
 			<c:choose>
@@ -108,6 +107,7 @@
 					<textarea id="${eq1.getEq_qtna() }" cols="100" rows="10"></textarea><br/><br/>
 				</c:otherwise>
 			</c:choose>
+			</div>
 		</c:forEach>
 	</form>
 	<button onclick="javascript:exam_submit();">제출</button>

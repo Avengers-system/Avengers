@@ -210,68 +210,85 @@ $(function() {
 						<option value="DEPT10">수학교육과</option> 
 					 </select>
 			 <br>
-									
-					<label class='control-label'>주민등록번호</label>
-				  	<input type="text" class="form-control" name="stud_regno"  >
-				
-					<label class='control-label'>생년월일</label>
-					<input type="date" class="form-control" name="stud_bir">
-					
-					<label class='control-label'>전화번호</label>
-				  	<input type="text" class="form-control" name="stud_tel"  >							
-						
-						
-					<label class='control-label'>휴대폰번호</label>
-					<input type="text" class="form-control" name="stud_hp"  >
-					
-					 <label class='control-label'>현재학년</label>
-					 <input type="text" class="form-control" name="stud_grd"  >
-					 
-					 <label class='control-label'>현재학기</label>
-					 <input type="text" class="form-control" name="stud_qtr"  >
-
-					 <label class='control-label'>학적상태</label>
-					 <input type="text" class="form-control" name="stud_schreg_code"  >
-					
-					
-					</div>
-				 
-				 
-				 <div class="col-md-5 col-md-offset-1">
-					<label class='control-label'>이메일</label>
-					<input type="text" class="form-control" name="std_email"  >
-					
-					<label class='control-label'>비밀번호</label>
-					<input type="text" class="form-control" name="stud_pw"  >
+                           
+               <label class='control-label'>주민등록번호</label>
+                 <input type="text" class="form-control" name="stud_regno"  >
+            
+               <label class='control-label'>생년월일</label>
+               <input type="date" class="form-control" name="stud_bir">
+               
+               <label class='control-label'>전화번호</label>
+                 <input type="text" class="form-control" name="stud_tel"  >                     
+                  
+                  
+               <label class='control-label'>휴대폰번호</label>
+               <input type="text" class="form-control" name="stud_hp"  >
+               
+                <label class='control-label'>현재학년</label>
+               <div class="radio" >
+                     <label><input type="radio" name="stud_grd" value="1">1</label>
+                     <label><input type="radio" name="stud_grd" value="2">2</label>
+                     <label><input type="radio" name="stud_grd" value="3">3</label>
+                     <label><input type="radio" name="stud_grd" value="4">4</label>
+                </div>
+               
+                
+                <label class='control-label'>현재학기</label>
+                <div class="radio" >
+                     <label><input type="radio" name="stud_qtr" value="1">1</label>
+                     <label><input type="radio" name="stud_qtr" value="2">2</label>
+                </div>
+                
+                <label class='control-label'>학적상태</label>
+                <div class="radio" >
+                     <label><input type="radio" name="stud_schreg_code" value="재학">재학</label>
+                     <label><input type="radio" name="stud_schreg_code" value="휴학">휴학</label>
+                     <label><input type="radio" name="stud_schreg_code" value="자퇴">자퇴</label>
+                </div>
+               
+               </div>
+             
+             
+             <div class="col-md-5 col-md-offset-1">
+               <label class='control-label'>이메일</label>
+               <input type="text" class="form-control" name="std_email"  >
+               
+               <label class='control-label'>비밀번호</label>
+               <input type="text" class="form-control" name="stud_pw"  >
  
-					 <label class='control-label'>성별</label>
-					 <div class="radio" >
-					      <label><input type="radio" name="stud_gen" value="1">남자</label>
-					      <label><input type="radio" name="stud_gen" value="2">여자</label>
-				     </div>
+                <label class='control-label'>성별</label>
+                <div class="radio" >
+                     <label><input type="radio" name="stud_gen" value="1">남자</label>
+                     <label><input type="radio" name="stud_gen" value="2">여자</label>
+                 </div>
 
-					 <label class='control-label'>계좌번호</label>
-					 <input type="text" class="form-control" name="stud_act_num"  >
-					 <label class='control-label'>은행명</label>
-					 <input type="text" class="form-control" name="stud_bank"  >
-					 <label class='control-label'>예금주</label>
-					 <input type="text" class="form-control" name="stud_ah"  >
-					 <label class='control-label'>주소</label>
-					 <input type="text" class="form-control" name="stud_addr"  >
-					 <label class='control-label'>우편번호</label>
-					 <input type="text" class="form-control" name="stud_zip"  >
-					 <label class='control-label'>보호자 이름</label>
-					 <input type="text" class="form-control" name="stud_guad_nm"  >
-					 <label class='control-label'>보호자 관계</label>
-					 <input type="text" class="form-control" name="stud_guad_rel"  >
-					 <label class='control-label'>보호자 핸드폰</label>
-					 <input type="text" class="form-control" name="stud_guad_hp"  >
+                <label class='control-label'>계좌번호</label>
+                <input type="text" class="form-control" name="stud_act_num"  >
+                <label class='control-label'>은행명</label>
+                <input type="text" class="form-control" name="stud_bank"  >
+                <label class='control-label'>예금주</label>
+                <input type="text" class="form-control" name="stud_ah"  >
+                <label class='control-label'>주소</label>
+                <input type="text" class="form-control" name="stud_addr"  >
+                <label class='control-label'>우편번호</label>
+                <input type="text" class="form-control" name="stud_zip"  >
+                <label class='control-label'>보호자 이름</label>
+                <input type="text" class="form-control" name="stud_guad_nm"  >
+                <label class='control-label'>보호자 관계</label>
+                <input type="text" class="form-control" name="stud_guad_rel"  >
+                <label class='control-label'>보호자 핸드폰</label>
+                <input type="text" class="form-control" name="stud_guad_hp"  >
+                </div>
+      
+            
+      <div class="col-md-12 input-group">
+					<div class="col-md-4 col-md-offset-8">
+				    <input type="submit" value="등록하기">
 				    </div>
-				 
-				 
-		
-		  	 
-		<input type="submit" value="등록하기">
+	</div>
+
+</div>
+
 
 </form>
  
