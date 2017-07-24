@@ -33,6 +33,7 @@
 		PRFS_TEL=#{prfs_tel},
 		PRFS_HP=#{prfs_hp},
 		PRFS_DEPT=#{prfs_dept} 
+		
 		where PRFS_NUM = #{prfs_num};
 	
 	</update>

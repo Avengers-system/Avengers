@@ -96,4 +96,11 @@
 		SELECT * FROM STUDENT
 		WHERE stud_num = #{stud_num}
 	</select>
+	
+	<update id="updateStud" parameterType="com.avengers.db.dto.StudVO">
+	
+	
+	
+	</update>
+	
 </mapper>
