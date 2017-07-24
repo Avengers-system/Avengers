@@ -15,4 +15,5 @@ public interface AdminMypageService {
 	public int insertPerschd(PerschdVO perschdVO)throws SQLException;//일정 등록
 	public int updatePerschd(PerschdVO perschdVO)throws SQLException;//일정 수정
 	public int deletePerschd(int perschd_num)throws SQLException;//일정 삭제
+	public PerschdVO selectPerschd_title(String title);
 }

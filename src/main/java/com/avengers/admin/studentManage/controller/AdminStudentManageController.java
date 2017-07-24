@@ -39,16 +39,23 @@ public class AdminStudentManageController {
 	 * @return
 	 */
 	@RequestMapping(value = "/insertStudent")
-	public String insertStudent(CommandStudVO commandStudVO, HttpSession session){
+	public String insertStudent(CommandStudVO commandStudVO, 
+			HttpSession session){
 		
-		StudVO studVO = new StudVO();
-		studVO = commandStudVO.toStudVO();
+		
+		
+		
+		StudVO studVO =  commandStudVO.toStudVO();
+		
+		System.out.println(studVO.toString());
+		
 		
 		// 깃 경로 (동일)
-				String upload = session.getServletContext().getRealPath("resources/admin_student_images");		
-				if (!studVO.getStud_pic().isEmpty()) {
-					File file = new File(upload, studVO.getStud_pic());
-		 
+		String upload = session.getServletContext().getRealPath("resources/admin_student_images");		
+
+		if (!studVO.getStud_pic().isEmpty()) {
+			File file = new File(upload, studVO.getStud_pic());
+		
 					try {
 						commandStudVO.getStud_pic().transferTo(file); // 깃 위치로 전송
 						
