@@ -42,6 +42,9 @@
 	<link href='${pageContext.request.contextPath}/resources/css/full_calender/base.css' rel='stylesheet' />
 	<link rel='stylesheet' href='${pageContext.request.contextPath}/resources/css/full_calender/fullcalendar.min.css' />
 	<script src='${pageContext.request.contextPath}/resources/js/full_calender/jquery.min.js'></script>
+	<script src="${pageContext.request.contextPath}/resources/js/full_calender/jquery.ui.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/full_calender/jquery.ui.min.js"></script>
+	
 <!-- end: Css -->
 
 </head>
