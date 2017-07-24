@@ -52,7 +52,7 @@
        		<!-- 학생개인정보 -->       		
 			<h3> 개인정보 </h3>
 		</div>
-		 <div class="panel-body" >
+		 <div class="panel-body" style="font-size:16px;" >
 		 	<dl class="dl-horizontal">	
 			<dt>이름</dt><dd>${studentInfo.stud_nm}</dd>     
 			<dt>학과</dt><dd>${studentInfo.stud_dept }</dd>      
@@ -161,7 +161,7 @@
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td colspan="5" style="text-align: center;">해당 내용이 없습니다.</td>
+							<td colspan="12" style="text-align: center;">해당 내용이 없습니다.</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>
@@ -242,7 +242,7 @@
 						</c:when>
 						<c:otherwise>
 							<tr>
-								<td colspan="5" style="text-align: center;">해당 내용이 없습니다.</td>
+								<td colspan="10" style="text-align: center;">해당 내용이 없습니다.</td>
 							</tr>
 						</c:otherwise>
 					</c:choose>
@@ -314,7 +314,7 @@
 								</c:when>
 								<c:otherwise>
 									<tr>
-										<td colspan="5" style="text-align: center;">해당 내용이 없습니다.</td>
+										<td colspan="9" style="text-align: center;">해당 내용이 없습니다.</td>
 									</tr>
 								</c:otherwise>
 							</c:choose>
