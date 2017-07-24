@@ -13,4 +13,15 @@
 		WHERE  SUB_STUD = #{sub_stud}
 		AND    SUB_ASGN = #{sub_asgn}
 	</update>
+	
+	 <!-- 과제을 등록하면 자동으로 학생들을 과제테이블에 insert -->
+	<insert id="insertStudSub" parameterType="java.util.HashMap">    
+    INSERT INTO SUBMISSION(SUB_NUM, SUB_STUD, SUB_ASGN)
+    SELECT 'SUB'||SUB_SEQ.NEXTVAL
+          ,STUD_NUM
+          ,#{sub_asgn}
+    FROM  STUDENT, TL
+    WHERE STUD_NUM = TL_STUD
+    AND   TL_LCT = #{lct_num}
+	</insert>
 </mapper>

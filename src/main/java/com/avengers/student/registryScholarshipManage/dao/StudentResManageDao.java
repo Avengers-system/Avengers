@@ -3,6 +3,7 @@ package com.avengers.student.registryScholarshipManage.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.avengers.db.dto.LoaRtsVO;
 import com.avengers.db.dto.RegVO;
@@ -13,7 +14,9 @@ import com.avengers.db.dto.resSchStudentVO;
 
 /**
  * 학생의 장학/등록금관리 메뉴
- * @author 2017.07.11.진진돌이
+ * @author 
+ * 2017.07.11.배진
+ * 2017.07.24.배진 (scr,scrAppl 두가지검색하는 메서드추가)
  *
  */
 public interface StudentResManageDao {
@@ -75,4 +78,26 @@ public interface StudentResManageDao {
 	 * @throws SQLException
 	 */
 	public ArrayList<LoaRtsVO> selectLoaRts(String loa_stud)throws SQLException;
+	/**
+	 * 학생의 장학내역을 조회한다.
+	 * @param scrApplVO
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<HashMap<String,String>> selectScrList (ScrapplVO scrApplVO)throws SQLException;
+	/**
+	 * 학생의 장학신청내역을 조회한다.
+	 * @param scrApplVO
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<HashMap<String,String>> selectScrApplList (ScrapplVO scrApplVO)throws SQLException;
+	/**
+	 * 학생의 수강내역이 없을경우 ex)신입생인경우 
+	 * 학생의 정보들을 보여주기위한 메서드
+	 * @param stud_num
+	 * @return
+	 * @throws SQLException
+	 */
+	public resSchStudentVO selectStudInfo(String stud_num)throws SQLException;
 }

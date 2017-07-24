@@ -2,9 +2,11 @@ package com.avengers.student.HelpDesk.daoImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,6 +14,7 @@ import org.springframework.util.StringUtils;
 
 import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.EmpVO;
+import com.avengers.db.dto.StudVO;
 import com.avengers.student.HelpDesk.dao.StudentHelpDeskDao;
 
 /**
@@ -27,41 +30,19 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 	protected SqlSession sqlSession;
 	
 	public void setSqlSession(SqlSession sqlSession) {
-		sqlSession = sqlSession;
+		this.sqlSession = sqlSession;
 	}
 	
 
 	@Override
-	public ArrayList<BoardVO> selectBoardList(String bc_num, String key,
+	public ArrayList<BoardVO> selectStuBoardList(String bc_num, String key,
 			int firstRow, int lastRow) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public BoardVO selectBoard(String bc_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public int insertBoard(BoardVO boardVO, String bc_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateBoard(BoardVO boardVO, int board_num, String bc_num)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteBoard(int board_num, String bc_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 	@Override
 	public ArrayList<BoardVO> selectFAQList(BoardVO boardVO) throws SQLException {
@@ -156,6 +137,135 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 	public void writeStudentFAQ(BoardVO boardVO) {
 
 		sqlSession.insert("board.writeStudentFAQ",boardVO);
+	}
+
+
+	/**
+	 * 검색
+	 * @param bc_num 
+	 * */
+	
+
+	
+	@Override
+	public BoardVO selectStuBoard(String bc_num)throws SQLException {
+		
+		BoardVO result = (BoardVO)sqlSession.selectOne("board.selectBoardOne",bc_num);
+		
+		
+		System.out.println("dao"+result.getBoard_date());
+		
+		return result;
+	}
+
+	@Override
+	public int insertStuBoard(BoardVO boardVO)throws SQLException {
+		
+		HashMap map = new HashMap();
+		
+		map.put("BOARD_NUM", boardVO.getBoard_num());
+		map.put("BOARD_TITLE", boardVO.getBoard_title());
+		map.put("BOARD_CONT", boardVO.getBoard_cont());
+		map.put("BOARD_WRITER", boardVO.getBoard_writer());
+		map.put("BOARD_BC", boardVO.getBoard_bc());
+		
+		map.put("BOARD_AF", boardVO.getBoard_af());		
+				
+		int boardInsert = sqlSession.update("board.insertBoard", map);
+		System.out.println("뭔가찍힘");
+		System.out.println(boardVO.getBoard_title());
+		System.out.println(boardVO.getBoard_writer());
+		return boardInsert;
+	}
+
+	@Override
+	public int updateStuBoard(BoardVO boardVO)throws SQLException {
+		HashMap map = new HashMap();
+
+		map.put("BOARD_NUM", boardVO.getBoard_num());
+		map.put("BOARD_TITLE", boardVO.getBoard_title());
+		map.put("BOARD_CONT", boardVO.getBoard_cont());
+		map.put("BOARD_AF", boardVO.getBoard_af());	
+		int boardUpdate = sqlSession.update("board.updateBoard", map);
+		
+		return boardUpdate;
+	}
+
+	@Override
+	public int deleteStuBoard(int board_num)throws SQLException {
+		int result = sqlSession.delete("board.deleteBoard",board_num);
+		return result;
+	}
+
+	@Override
+	public BoardVO selectStuInsertBaseData() throws SQLException {
+		BoardVO boardVo;
+		System.out.println("insertForm Dao");
+		boardVo = (BoardVO) sqlSession.selectOne("board.insertBaseData");
+		return boardVo;
+	}
+
+	@Override
+	public ArrayList<BoardVO> selectStuSearchList(BoardVO boardVO) {
+		int offset=boardVO.getStartRowNo()-1;
+		int limit = boardVO.getEndRowNo()-boardVO.getStartRowNo()+1;
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		
+		HashMap map = new HashMap();
+
+		map.put("BOARD_BC", boardVO.getBoard_bc());
+		map.put("BOARD_TITLE", boardVO.getBoard_title());
+		
+		System.out.println(map.get("BOARD_TITLE")+"dao 이전");
+		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("board.selectSearchList", map,rowBounds);
+		System.out.println(boardList.get(0).getBoard_title()+boardList.size());
+		return boardList;
+	}
+
+	public int updateStuBoardCount(String board_num, String board_count) throws SQLException{
+		HashMap map = new HashMap();
+		
+		map.put("BOARD_NUM", board_num);
+		map.put("BOARD_COUNT", board_count);
+		int result = (int) sqlSession.update("board.updateBoardCount", map);
+		
+		return result;
+	}
+
+	public int selectStuBoardCount(BoardVO boardVO) throws SQLException{
+		int count = 0;
+		HashMap map = new HashMap();
+		
+		map.put("BOARD_BC", boardVO.getBoard_bc());
+		map.put("searchFiled", boardVO.getSearchFiled());
+		map.put("searchValue", boardVO.getSearchValue());
+		map.put("board_title", boardVO.getBoard_title());
+		count = (Integer) sqlSession.selectOne("selectBoardCount", map);
+		return count;
+	}
+
+
+	@Override
+	public ArrayList<BoardVO> selectStuBoardList(BoardVO boardVO, int firstRow,
+			int lastRow) {
+		int offset=firstRow-1;
+		int limit = lastRow-firstRow+1;
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		HashMap map = new HashMap();
+		map.put("BOARD_BC", boardVO.getBoard_bc());
+		System.out.println(map.get("BOARD_BC"));
+		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("board.selectBoardNoticeList",map,rowBounds);
+		
+		return boardList;
+	}
+
+
+	@Override
+	public String selectStuDept(String key) throws SQLException {
+		StudVO vo = (StudVO) sqlSession.selectOne("student.getStudentInfo",key);
+		return vo.getStud_dept();
 	}
 
 

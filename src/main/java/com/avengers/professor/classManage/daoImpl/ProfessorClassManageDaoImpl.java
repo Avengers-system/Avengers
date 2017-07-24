@@ -122,12 +122,6 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 	}
 
 	@Override
-	public int insertAsgn(AsgnVO asgnVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int updateAsgn(AsgnVO asgnVO, String asgn_num) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
@@ -384,6 +378,36 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 	@Override
 	public int updateExamPoint(String te_num) throws SQLException {
 		int result = sqlSession.update("te.updateExamPoint", te_num);
+		return result;
+	}
+
+	@Override
+	public ArrayList<Map<String, String>> selectLctAsgnInfo(String lct_num) throws SQLException{
+		ArrayList<Map<String, String>> lctAsgnInfo = (ArrayList<Map<String, String>>) sqlSession.selectList("asgn.selectLctAsgnInfo", lct_num);
+		return lctAsgnInfo;
+	}
+
+	@Override
+	public int insertAsgn(AsgnVO asgnVO) throws SQLException {
+		int result = sqlSession.insert("asgn.insertAsgn", asgnVO);
+		return result;
+	}
+
+	@Override
+	public String selectAsgnPk(String lct_num) throws SQLException {
+		String asgnPk = (String) sqlSession.selectOne("asgn.selectAsgnPk", lct_num);
+		return asgnPk;
+	}
+
+	@Override
+	public int insertStudSub(Map<String, String> key) throws SQLException {
+		int result = sqlSession.insert("submission.insertStudSub", key);
+		return result;
+	}
+
+	@Override
+	public int updateAsgnCheck(String asgn_num) throws SQLException {
+		int result = sqlSession.update("asgn.updateAsgnCheck",asgn_num);
 		return result;
 	}
 	

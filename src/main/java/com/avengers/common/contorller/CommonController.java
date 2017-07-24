@@ -39,7 +39,7 @@ public class CommonController implements ApplicationContextAware{
 		this.context=(WebApplicationContext)applicationContext;		
 	}
 	
-	@RequestMapping("/download")
+	@RequestMapping("download")
 	public ModelAndView doenload(@ModelAttribute BoardVO boardVO, HttpServletResponse response) throws IOException{
 			System.out.println("@@@@@@@@@@@"+boardVO.getBoard_af());
 			File downloadFile = getFile(boardVO.getBoard_af());
@@ -66,7 +66,8 @@ public class CommonController implements ApplicationContextAware{
 	public ModelAndView login(
 		HttpSession session,		
 		@RequestParam(value = "error", required = false) String error,
-		@RequestParam(value = "logout", required = false) String logout) {
+		@RequestParam(value = "logout", required = false) String logout,
+		@RequestParam(value = "sessionEnd", required = false) String sessionEnd) {
 		ModelAndView model = new ModelAndView();
 		
 		
@@ -75,7 +76,10 @@ public class CommonController implements ApplicationContextAware{
 		}
  
 		if (logout != null) {
-			model.addObject("msg", "You've been logged out successfully.");
+			model.addObject("logout", "You've been logged out successfully.");
+		}
+		if(sessionEnd!=null){
+			model.addObject("sessionEnd","중복로그인");
 		}
 		
 		model.setViewName("common/commonLogin");

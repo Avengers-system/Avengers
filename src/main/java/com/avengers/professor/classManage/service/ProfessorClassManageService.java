@@ -36,7 +36,7 @@ public interface ProfessorClassManageService {
 		//과제관리-과제조회	
 		public ArrayList<AsgnVO> selectAsgnList(String key,int firstRow,int endRow) throws SQLException; //해당과목의 과제전체 리스트를 불러온다.
 		public AsgnVO selectAsgn(String asgn_num) throws SQLException; //선택한 특정 과제의 상세정보를 가져온다.
-		public int insertAsgn(AsgnVO asgnVO) throws SQLException; //과제를 신규등록한다.
+		
 		public int updateAsgn(AsgnVO asgnVO,String asgn_num) throws SQLException; //과제를 수정할수있다.
 		public int deleteAsgn(String asgn_num) throws SQLException; //해당 과제를 삭제한다.
 		//과제관리-제출확인
@@ -104,4 +104,14 @@ public interface ProfessorClassManageService {
 		public int selectScoreSum(String te_num) throws SQLException;
 		//학생점수 TE테이블에 저장
 		public int updateExamPoint(String te_num) throws SQLException;
+		//교수의 한 과목에 해당하는 과제목록 가져오기
+		public ArrayList<Map<String, String>> selectLctAsgnInfo(String lct_num) throws SQLException;
+		//과제를 신규등록한다.
+		public int insertAsgn(AsgnVO asgnVO) throws SQLException;
+		//방금등록한 과제의 기본키를 가져오자
+		public String selectAsgnPk(String lct_num) throws SQLException;
+		//이제 submission테이블에 학생들을 자동으로 입력시키자
+		public int insertStudSub(Map<String, String> key) throws SQLException;
+		//submission테이블에 학생등록이 완료된 과제는 asgn_check를 1로 업데이트
+		public int updateAsgnCheck(String asgn_num) throws SQLException;
 }

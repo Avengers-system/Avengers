@@ -122,11 +122,7 @@ public class ProfessorClassManageServiceImpl implements ProfessorClassManageServ
 		return null;
 	}
 
-	@Override
-	public int insertAsgn(AsgnVO asgnVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 	@Override
 	public int updateAsgn(AsgnVO asgnVO, String asgn_num) throws SQLException {
@@ -367,5 +363,33 @@ public class ProfessorClassManageServiceImpl implements ProfessorClassManageServ
 		return result;
 	}
 
+	@Override
+	public ArrayList<Map<String, String>> selectLctAsgnInfo(String lct_num) throws SQLException{
+		ArrayList<Map<String, String>> lctAsgnInfo = proClassDAO.selectLctAsgnInfo(lct_num);
+		return lctAsgnInfo;
+	}
+
+	@Override
+	public int insertAsgn(AsgnVO asgnVO) throws SQLException {
+		int result = proClassDAO.insertAsgn(asgnVO);
+		return result;
+	}
+
+	@Override
+	public String selectAsgnPk(String lct_num) throws SQLException {
+		String asgnPk = proClassDAO.selectAsgnPk(lct_num);
+		return asgnPk;
+	}
 	
+	@Override
+	public int insertStudSub(Map<String, String> key) throws SQLException{
+		int result = proClassDAO.insertStudSub(key);
+		return result;
+	}
+
+	@Override
+	public int updateAsgnCheck(String asgn_num) throws SQLException {
+		int result = proClassDAO.updateAsgnCheck(asgn_num);
+		return result;
+	}
 }
