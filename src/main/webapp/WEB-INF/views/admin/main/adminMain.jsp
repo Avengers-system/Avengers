@@ -60,6 +60,7 @@
 			</div>
 			<!-- 내용 -->
 			<div class="panel-body" style="height: 260px;">
+				<div id="deptLeave-chart" style="width: 80%%; height: 80%;"></div>
 			</div>
 		</div>
 	</div>
@@ -107,7 +108,7 @@
 		</div>
 	</div>
 	<!-- 교수현황 -->
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<div class="panel panel-default">
 			<div class="panel-heading" style="background-color: #2196F3;">
 				<h4 class="panel-title" style="color: #ffffff;">교수 현황</h4>
@@ -218,5 +219,7 @@ $(document).ready(function() {
       }).on('click', function(i, row){
         console.log(i, row);
       });
+      
+    
 });
 </script>

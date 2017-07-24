@@ -16,4 +16,12 @@
 		WHERE  PRFS_DEPT = DEPT_NUM
 		GROUP BY DEPT_NUM, DEPT_NM
 	</select>
+	
+	<select id="getLeaveDeptList" resultMap="pfrsOfDept">
+		  SELECT Count(STUD_NUM),DEPT_NM
+		FROM STUDENT,DEPARTMENT
+		WHERE STUD_SCHREG_CODE='휴학'
+		AND STUD_DEPT = DEPT_NUM
+    group by stud_dept, dept_nm
+	</select>
 </mapper>

@@ -2,6 +2,8 @@ package com.avengers.admin.main.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +107,14 @@ public class AdminMainServiceImpl implements AdminMainService {
 	public String selectNextPrfsNum() throws SQLException {
 		String nextPrfsNum = mainDAO.selectNextPrfsNum();
 		return nextPrfsNum;
+	}
+
+	@Override
+	public List<HashMap<String, String>> selectLeaveDeptList()
+			throws SQLException {
+		List<HashMap<String, String>> selectLeaveDeptList  = null;
+		selectLeaveDeptList = mainDAO.selectLeaveDeptList();
+		return selectLeaveDeptList;
 	}
 
 }

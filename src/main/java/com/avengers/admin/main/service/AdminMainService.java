@@ -2,6 +2,8 @@ package com.avengers.admin.main.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.avengers.db.dto.AdminVO;
@@ -27,4 +29,5 @@ public interface AdminMainService {
 	public ArrayList<Map<String,String>> getScrapplList() throws SQLException; //미처리된 장학신청정보를 가져온다.
 	public ArrayList<Map<String,Object>> getPrfsOfDeptList() throws SQLException; //학과당 교수의 수를 가져온다.
 	public String selectNextPrfsNum()throws SQLException; //다음교수번호가져오기
+	public List<HashMap<String, String>> selectLeaveDeptList() throws SQLException;//휴학한 학생의 수와 학과. 학과별 휴학생의수
 }

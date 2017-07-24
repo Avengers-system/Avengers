@@ -2,6 +2,8 @@ package com.avengers.admin.main.daoImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -104,6 +106,13 @@ public class AdminMainDaoImpl implements AdminMainDao {
 	public String selectNextPrfsNum() throws SQLException {
 		String nextPrfsNum = (String)sqlSession.selectOne("admin.getProfNum");
 		return nextPrfsNum;
+	}
+	@Override
+	public List<HashMap<String, String>> selectLeaveDeptList()
+			throws SQLException {
+		List<HashMap<String, String>> selectLeaveDeptList = new ArrayList<HashMap<String,String>>();
+		selectLeaveDeptList = (List<HashMap<String, String>>)sqlSession.selectList("department.getLeaveDeptList");
+		return selectLeaveDeptList;
 	}
 
 }
