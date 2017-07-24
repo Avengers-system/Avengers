@@ -17,25 +17,25 @@
                     
                     <li class="active ripple"onclick="location.href='${pageContext.request.contextPath}/student/studRes'">
                       <a class="tree-toggle nav-header">
-                      <span class="fa-home fa" ></span> 장학이력/신청조회 
+                      <span  ></span> 장학이력/신청조회 
                         <span class="fa-angle-right fa right-arrow text-right"></span>
                       </a>
                     </li>                    
                     <li class="ripple" onclick="location.href='${pageContext.request.contextPath}/student/schAppl'">
                       <a class="tree-toggle nav-header">
-                        <span class="fa-diamond fa"></span> 장학금신청
+                        <span ></span> 장학금신청
                         <span class="fa-angle-right fa right-arrow text-right"></span>
                       </a>
                     </li>
                     <li class="ripple" onclick="location.href='${pageContext.request.contextPath}/student/tuition'">
                       <a class="tree-toggle nav-header">
-                        <span class="fa-diamond fa"></span> 등록금이력조회
+                        <span ></span> 등록금이력조회
                         <span class="fa-angle-right fa right-arrow text-right"></span>
                       </a>
                     </li>
                     <li class="ripple" onclick="location.href='${pageContext.request.contextPath}/student/tuitionManage'">
                       <a class="tree-toggle nav-header">
-                        <span class="fa-diamond fa"></span> 등록금관리
+                        <span ></span> 등록금관리
                         <span class="fa-angle-right fa right-arrow text-right"></span>
                       </a>
                     </li>
