@@ -105,7 +105,9 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 		,BOARD_CONT
 		,BOARD_WRITER
 		,BOARD_DATE
+		<if test="BOARD_AF != null">
 		,BOARD_AF
+		</if>
 		,BOARD_BC
 		,BOARD_COUNT
 		)
@@ -115,7 +117,9 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 		,#{BOARD_CONT, jdbcType=VARCHAR}
 		,#{BOARD_WRITER, jdbcType=VARCHAR}
 		,SYSDATE
+		<if test="BOARD_AF != null">
 		,#{BOARD_AF, jdbcType=VARCHAR}
+		</if>
 		,#{BOARD_BC, jdbcType=VARCHAR}
 		,0
 		)

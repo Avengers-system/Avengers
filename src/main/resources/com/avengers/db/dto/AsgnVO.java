@@ -1,7 +1,5 @@
 package com.avengers.db.dto;
 
-import java.util.Date;
-
 /**
  * 학생이 수강하는 과목에 대한 과제 관리
  * @author 배진
@@ -12,8 +10,8 @@ public class AsgnVO {
 	private String asgn_nm; // 과제명
 	private String asgn_cont; // 과제의 내용
 	private String asgn_sub_form; // 과제 제출양식
-	private Date asgn_start_date; // 과제 제출시작일
-	private Date asgn_dl_date; // 과제 제출마감일
+	private String asgn_start_date; // 과제 제출시작일
+	private String asgn_dl_date; // 과제 제출마감일
 	private String asgn_lct; // 강의 고유번호
 
 	public String getAsgn_num() {
@@ -48,19 +46,19 @@ public class AsgnVO {
 		this.asgn_sub_form = asgn_sub_form;
 	}
 
-	public Date getAsgn_start_date() {
+	public String getAsgn_start_date() {
 		return asgn_start_date;
 	}
 
-	public void setAsgn_start_date(Date asgn_start_date) {
+	public void setAsgn_start_date(String asgn_start_date) {
 		this.asgn_start_date = asgn_start_date;
 	}
 
-	public Date getAsgn_dl_date() {
+	public String getAsgn_dl_String() {
 		return asgn_dl_date;
 	}
 
-	public void setAsgn_dl_date(Date asgn_dl_date) {
+	public void setAsgn_dl_date(String asgn_dl_date) {
 		this.asgn_dl_date = asgn_dl_date;
 	}
 

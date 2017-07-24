@@ -67,9 +67,6 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 		map.put("BOARD_AF", boardVO.getBoard_af());		
 				
 		int boardInsert = sqlSession.update("board.insertBoard", map);
-		System.out.println("뭔가찍힘");
-		System.out.println(boardVO.getBoard_title());
-		System.out.println(boardVO.getBoard_writer());
 		return boardInsert;
 	}
 

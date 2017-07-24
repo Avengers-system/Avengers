@@ -440,15 +440,17 @@ public class AdminHelpDeskController {
             try {
                af.transferTo(file);
                boardVO.setBoard_af(file.getName());
-               adminHelpDeskService.insertBoard(boardVO);
             } catch (IllegalStateException e) {
                e.printStackTrace();
             } catch (IOException e) {
                e.printStackTrace();
-            } catch (SQLException e) {
-				e.printStackTrace();
-			}
+            } 
          }
+        try {
+			adminHelpDeskService.insertBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
          return url;
 	}
 	
