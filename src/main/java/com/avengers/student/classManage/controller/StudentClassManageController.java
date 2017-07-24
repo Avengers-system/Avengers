@@ -2,9 +2,14 @@ package com.avengers.student.classManage.controller;
 
 import java.security.Principal;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -251,10 +256,10 @@ public class StudentClassManageController {
 	@RequestMapping(value="student/classManage/lectureAsgnSubmit")
 	public String studentLectureAsgnSubmit(HttpServletRequest request, Principal principal ){
 		SubVO subVO = new SubVO();
-		subVO.setSub_title((String)request.getAttribute("sub_title"));
-		subVO.setSub_cont((String)request.getAttribute("sub_cont"));
+		subVO.setSub_title((String)request.getParameter("sub_title"));
+		subVO.setSub_cont((String)request.getParameter("sub_cont"));
 		subVO.setSub_stud(principal.getName());
-		subVO.setSub_asgn((String)request.getAttribute("asgn_num"));
+		subVO.setSub_asgn((String)request.getParameter("asgn_num"));
 		
 		int result = -1;
 		try {
@@ -268,6 +273,77 @@ public class StudentClassManageController {
 		} else {
 			message = "비정상적으로 종료되었습니다.";
 		}
-		return "redirect:lectureAsgn?lct_num"+(String)request.getParameter("lct_num");
+		return "redirect:lectureAsgn";
 	}
+	
+	@RequestMapping(value="student/classManage/StudExamTimeCheck")
+	@ResponseBody
+	public String studentExamTimeCheck(@RequestParam(value="exam_num")String exam_num){
+		Map<String, String> examTimeInfo = null;
+		int result = 0;
+		try {
+			examTimeInfo = scmService.selectExamTimeInfo(exam_num);
+			if(examTimeInfo == null || examTimeInfo.isEmpty()){
+				return "-1";
+			}
+			
+			//시험시작일을 비교하기 위해 dateFormat사용
+			//년/월/일 시:분 ==> 대소문자 정확하게 써줘야 정확한 date가 나옴
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.KOREA);
+			
+			//시험시작시간과 종료시간을 변수에 저장
+			String startTime = examTimeInfo.get("start_time");
+			String endTime = examTimeInfo.get("end_time");
+			
+			System.out.println(startTime);
+			System.out.println(endTime);
+			//String -> Date
+			Date startDateTime = new Date();
+			Date endDateTime = new Date();
+			Date currentDateTime = new Date();
+			
+			startDateTime = dateFormat.parse(startTime);
+			endDateTime = dateFormat.parse(endTime);
+			
+			Calendar startTimeCal = Calendar.getInstance();
+			Calendar endTimeCal = Calendar.getInstance();
+			Calendar currentTimeCal = Calendar.getInstance();
+			
+			startTimeCal.setTime(startDateTime);
+			endTimeCal.setTime(endDateTime);
+			currentTimeCal.setTime(currentDateTime);
+			
+			//시작시간과 현재시간을 비교 ==> 현재날짜가 시험시작시간보다 커야됨
+			int compareStartToCurrent = currentTimeCal.compareTo(startTimeCal);
+			//종료시간과 현재시간을 비교 ==> 현재날짜가 시험종료시간보다 작아야됨
+			int compareCurrentToEnd = currentTimeCal.compareTo(endTimeCal);
+			
+			System.out.println(compareStartToCurrent);
+			System.out.println(compareCurrentToEnd);
+			System.out.println(startTimeCal.getTime());
+			System.out.println(endTimeCal.getTime());
+			System.out.println(currentTimeCal.getTime());
+			//현재날짜가 시험시작시간보다 크고 시험종료시간보다 작은 경우
+			if(compareStartToCurrent == 1 && compareCurrentToEnd == -1){
+				result = 1;
+			} else{
+				result = -1;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return String.valueOf(result);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

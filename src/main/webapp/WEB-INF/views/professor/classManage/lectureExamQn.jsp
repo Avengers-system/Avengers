@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Professor Header -->
 <%@include file="../common/topCategory.jsp"%>
 
@@ -38,6 +39,46 @@
 			</c:otherwise>
 		</c:choose>
 	</form>
-	<button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureExamQn?exam_num=${exam_num}&division=2'">시험등록/수정</button>
-	1 일경우 수정x 2일경우 등록 및 수정
+	<button id="ExamEqRegistryBtn">시험등록/수정</button>
+	<button onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureExam'">뒤로가기</button>
 </div>
+
+<script>
+	//이제부터 시험기간 등록 및 정정기간에만 등록버튼이 눌리는 걸 만들꺼야
+	$(function(){
+		$("#ExamEqRegistryBtn").click(function(){
+			$.ajax({
+				url:'checkRegistryExamDate'
+				,type:'post'
+				,cache : false
+				,success:function(data){
+					if(data == '1'){//성공
+						var exam = '<c:out value="${exam_num}"/>';
+						exam = encodeURIComponent(exam);
+						exam = exam.replace("'", "%27");	
+						location.href="${pageContext.request.contextPath}/professor/classManage/lectureExamQn?exam_num="+exam+"&division=2";
+					} else {//실패
+						alert("시험등록시간이 아닙니다.");
+					}
+				},error:function(){
+					alert("다시 시도해주세요.");
+				}
+				
+// 					$.ajax({
+//		 				type:'post'
+//		 				,url:'removeExamEq'
+//		 				,data:{
+//		 					eq_num:eq
+//		 				}
+//		 				,success:function(){
+			})
+		})
+	})
+</script>
+
+
+
+
+
+
+

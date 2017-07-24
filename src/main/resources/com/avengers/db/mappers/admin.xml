@@ -55,7 +55,7 @@
          <if test="admin_pic != null">
             ADMIN_PIC=#{admin_pic},
          </if>
-         ADMIN_BIR=TO_DATE(#{admin_bir},'YYYY-MM-DD'),
+         ADMIN_BIR=TO_DATE(#{admin_bir},'YYYY-MM-DD HH24:MI:SS'),
          ADMIN_POST = #{admin_post},
          ADMIN_ENG_NM = #{admin_eng_nm},
          ADMIN_REGNO = #{admin_regno},
@@ -243,4 +243,23 @@
             'ROLE_STUD' 
          )
    </insert>
+   <select id="findInfo" parameterType="com.avengers.db.dto.AdminVO" resultType="com.avengers.db.dto.AdminVO">
+	
+	SELECT 	ADMIN_ID 
+	FROM ADMIN 
+	WHERE ADMIN_EMAIL=#{admin_email}
+	<if test="admin_nm != null">
+	AND ADMIN_NM=#{admin_nm}
+	</if>
+	<if test="admin_id != null">
+	AND ADMIN_ID=#{admin_id}
+	</if>
+	
+	</select> 
+	
+	<update id="updatePwd" parameterType="com.avengers.db.dto.AdminVO">
+	UPDATE ADMIN 
+	SET ADMIN_PW = #{admin_pw}
+	WHERE  ADMIN_ID = #{admin_id} AND ADMIN_EMAIL = #{admin_email}
+	</update> 
 </mapper>

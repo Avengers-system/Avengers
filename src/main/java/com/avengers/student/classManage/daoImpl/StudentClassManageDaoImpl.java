@@ -266,4 +266,11 @@ public class StudentClassManageDaoImpl implements StudentClassManageDao{
 		return result;
 	}
 
+	@Override
+	public Map<String, String> selectExamTimeInfo(String exam_num)
+			throws SQLException {
+		Map<String, String> examTimeInfo = (Map<String, String>) sqlSession.selectOne("exam.selectExamTimeInfo", exam_num);
+		return examTimeInfo;
+	}
+
 }

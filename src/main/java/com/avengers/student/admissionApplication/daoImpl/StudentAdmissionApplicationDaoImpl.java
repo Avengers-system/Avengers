@@ -13,6 +13,7 @@ import com.avengers.db.dto.AdmissionApplicationVO;
 import com.avengers.db.dto.AtdcVO;
 import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.CartVO;
+import com.avengers.db.dto.DeptVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.LrVO;
 import com.avengers.db.dto.StudVO;
@@ -86,6 +87,8 @@ public class StudentAdmissionApplicationDaoImpl implements
 	@Override
 	public StudVO selectStudMaxCrd(String stud_num) throws SQLException {
 		StudVO selectStudMaxCrd = (StudVO)sqlSession.selectOne("student.getStudentInfo",stud_num);
+		DeptVO deptVO = (DeptVO)sqlSession.selectOne("dept.getDept",selectStudMaxCrd.getStud_dept());
+		selectStudMaxCrd.setStud_dept(deptVO.getDept_nm());
 		return selectStudMaxCrd;
 	}
 

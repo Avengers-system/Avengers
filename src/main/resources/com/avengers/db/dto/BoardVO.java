@@ -16,8 +16,29 @@ public class BoardVO extends PageVO{
 	private String board_writer;// 게시판 작성자
 	private Date board_date;// 게시판 작성일
 	private String board_af;// 첨부일
+	private String board_aff;
 	private String board_bc;// 게시판분류 고유번호
 	private String board_count;// 게시판분류 고유번호
+	private MultipartFile file; // 파일 업로드
+	
+
+	
+	public String getBoard_aff() {
+		return board_aff;
+	}
+
+	public void setBoard_aff(String board_aff) {
+		this.board_aff = board_aff;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		
+		this.file = file;
+	}
 	private MultipartFile board_af2; //
 
 	

@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<style>
-div.sub-left-menu scroll>ul li>a.tree-toggle nav-header{margin-left:30px;}
-</style>
+
 
 
 <div class="col-xs-12">    
@@ -25,50 +23,50 @@ div.sub-left-menu scroll>ul li>a.tree-toggle nav-header{margin-left:30px;}
                       </ul>
                     </li>
                     <li class="ripple">
-                      <a class="tree-toggle nav-header">
-                         Layout
+                      <a href="${pageContext.request.contextPath}/admin/qnaNoticeList" class="tree-toggle nav-header">
+                         Q&A
                         <span class="fa-angle-right fa right-arrow text-right"></span>
                       </a>
                       <ul class="nav nav-list tree" style="display: none;">
-                        <li><a href="topnav.html">Top Navigation</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/qnaNoticeList">Q&A</a></li>
                       </ul>
                     </li>
                     <li class="ripple">
                       <a class="tree-toggle nav-header">
-                        Charts
+                        FAQ
                   </a>
                       <ul class="nav nav-list tree" style="display: none;">
-                        <li><a href="chartjs.html">ChartJs</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/faqNoticeList">FAQ</a></li>
                       </ul>
                     </li>
                     <li class="ripple">
                        <a class="tree-toggle nav-header">
-                          교수목록<span class="fa-angle-right fa right-arrow text-right"></span> 
+                          학과게시판<span class="fa-angle-right fa right-arrow text-right"></span> 
                        </a>
                       
                        <ul class="nav nav-list tree" style="display: none;">
                            <li><a href="color.html">Color</a></li>
-                           <li><a href="notifications.html">Notifications &amp; Tooltip</a></li>
+                           <li><a href="${pageContext.request.contextPath}/admin/deptNoticeList">학과게시판 &amp; Tooltip</a></li>
                        </ul>
                     </li>
                     <li class="ripple"><a class="tree-toggle nav-header">
                     
-                          안뇽<span class="fa-angle-right fa right-arrow text-right"></span> </a>
+                          포털게시판<span class="fa-angle-right fa right-arrow text-right"></span> </a>
                       <ul class="nav nav-list tree" style="display: none;">
                         <li><a href="formelement.html">Form Element</a></li>
-                        <li><a href="#">Wizard</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/portalNoticeList">포털게시판</a></li>
                       </ul>
                     </li>
                     <li class="ripple"><a class="tree-toggle nav-header">
-                    Tables  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
+                    학과게시판  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
                       <ul class="nav nav-list tree" style="display: none;">
-                        <li><a href="tablestatic.html">Static</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/deptNoticeList">학과게시판</a></li>
                       </ul>
                     </li>
                      <li class="ripple"><a class="tree-toggle nav-header">
-                     MultiLevel  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
+                     학사일정게시판  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
                       <ul class="nav nav-list tree" style="display: none;">
-                        <li><a href="view-mail.html">Level 1</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/univSchdNoticeList">학사일정게시판</a></li>
                       </ul>
                     </li>
                   </ul>

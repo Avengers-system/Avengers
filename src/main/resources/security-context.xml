@@ -23,20 +23,21 @@
 	<http use-expressions="true" access-denied-page="/accessDenied">
 		<intercept-url pattern="/common/commonLogin" access="permitAll" />
 		<intercept-url pattern="/common/**" access="permitAll" />
-
+		<intercept-url pattern="/template/**" access="permitAll"/>
 		<intercept-url pattern="/admin/**"	access="hasAnyRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/professor/**"	access="hasAnyRole('ROLE_PROF')" />
-		<intercept-url pattern="/student/**"	access="hasAnyRole('ROLE_STUD')" />
+		<intercept-url pattern="/student/**"	access="hasAnyRole('ROLE_STUD,ROLE_WSS')" />
 
 		<intercept-url pattern="/main" access="isAuthenticated()" />
 		<intercept-url pattern="/**" access="permitAll" />
 		<form-login login-page="/login" 
 			login-processing-url="/loginForm"
 			username-parameter="id" 
+			authentication-failure-url="/login?error" 
 			password-parameter="pwd" 
 			default-target-url="/main"/>
-		<logout logout-success-url="/logout" />
-
+		<logout  invalidate-session="true" logout-url="/logout" logout-success-url="/login?logout"
+		 delete-cookies="JSESSIONID"/>
 
 
 

@@ -19,9 +19,6 @@ public class StudentResManageDaoImpl implements StudentResManageDao{
 	@Autowired
 	protected SqlSession sqlSession;
 	
-	public void setSqlSession(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
 
 	@Override
 	public ArrayList<ScrapplVO> selectScrapplList(String scrappl_stud,
@@ -58,7 +55,10 @@ public class StudentResManageDaoImpl implements StudentResManageDao{
 	public ArrayList<resSchStudentVO> selectresSchStudent(String stud_num,String lct_yr)
 			throws SQLException {
 		ArrayList<resSchStudentVO> resSchList = new ArrayList<resSchStudentVO>();
-		resSchList =  (ArrayList<resSchStudentVO>) sqlSession.selectList("resSchManage.resSchSelect",stud_num);
+		resSchStudentVO resVO = new resSchStudentVO();
+		resVO.setStud_num(stud_num);
+		resVO.setLct_yr(lct_yr);
+		resSchList =  (ArrayList<resSchStudentVO>) sqlSession.selectList("resSchManage.resSchSelect",resVO);
 		return resSchList;
 	}
 

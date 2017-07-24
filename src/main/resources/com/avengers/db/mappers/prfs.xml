@@ -65,4 +65,23 @@
 			AUTHORITY
 			FROM PROFESSOR P
 	</select>
+	
+	<select id="findInfo" parameterType="com.avengers.db.dto.AdminVO" resultType="com.avengers.db.dto.PrfsVO">
+	SELECT 	PRFS_NUM 
+	FROM PROFESSOR 
+	WHERE PRFS_EMAIL=#{admin_email}
+	<if test="admin_nm != null">
+	AND PRFS_NM=#{admin_nm}
+	</if>
+	<if test="admin_id != null">
+	AND PRFS_NUM=#{admin_id}
+	</if>
+	</select> 
+	
+	<update id="updatePwd" parameterType="com.avengers.db.dto.PrfsVO">
+	UPDATE PROFESSOR 
+	SET PRFS_PW = #{prfs_pw}
+	WHERE  PRFS_NUM = #{prfs_num} AND PRFS_EMAIL = #{prfs_email}
+	</update> 
+	
 </mapper>

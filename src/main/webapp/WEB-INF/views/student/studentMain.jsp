@@ -1,197 +1,88 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- Student Header -->
-<%@include file="common/topCategory.jsp" %>
 
 <!-- Content -->
-<div class="col-md-2">
-<%@include file="common/mainSideCategory.jsp" %>
+
+<div class="panel-body">
+	<!-- 개인정보 -->
+	<div class="col-md-2">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="background-color: #2196F3;">
+				<h4 class="panel-title" style="color: #ffffff;">개인정보</h4>
+			</div>
+			<!-- 내용 -->
+			<div class="panel-body" style="height: 260px;">
+				<img src="http://placehold.it/150x75">
+			</div>
+		</div>
+	</div>
+	<!-- 수강현황 -->
+	<div class="col-md-5">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="background-color: #2196F3;">
+				<h4 class="panel-title" style="color: #ffffff;">수강 현황</h4>
+			</div>
+			<!-- 내용 -->
+			<div class="panel-body" style="height: 260px;"></div>
+		</div>
+	</div>
+	<!-- 상담현황 -->
+	<div class="col-md-5">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="background-color: #2196F3;">
+				<h4 class="panel-title" style="color: #ffffff;">상담 현황</h4>
+			</div>
+			<!-- 내용 -->
+			<div class="panel-body" style="height: 260px;"></div>
+		</div>
+	</div>
+	<!-- 개인일정 -->
+	<div class="col-md-2">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="background-color: #2196F3;">
+				<h4 class="panel-title" style="color: #ffffff;">개인 일정</h4>
+			</div>
+			<!-- 내용 -->
+			<div class="panel-body" style="height: 285px;"></div>
+		</div>
+	</div>
+	<!-- 게시판 -->
+	<div class="col-md-10">
+
+		<ul id="tabs-demo4" class="nav nav-tabs nav-tabs-v3" role="tablist"
+			style="padding-top: 0; font-size: 15px;">
+			<li role="presentation" class="active"><a
+				href="#tabs-demo4-area1" id="tabs-demo4-1" role="tab"
+				data-toggle="tab" aria-expanded="true">학교공지</a></li>
+			<li role="presentation" class=""><a href="#tabs-demo4-area2"
+				role="tab" id="tabs-demo4-2" data-toggle="tab" aria-expanded="true">학과공지</a>
+			</li>
+			<li role="presentation"><a href="#tabs-demo4-area3"
+				id="tabs-demo4-3" role="tab" data-toggle="tab" aria-expanded="true">포털소식</a>
+			</li>
+		</ul>
+		<div id="tabsDemo4Content" class="tab-content tab-content-v3">
+			<!-- 학교공지 -->
+			<div role="tabpanel" class="tab-pane fade active in"
+				id="tabs-demo4-area1" aria-labelledby="tabs-demo4-area1"
+				style="height: 290px;">
+				<p>학교공지</p>
+			</div>
+			<!-- 학과공지 -->
+			<div role="tabpanel" class="tab-pane fade" id="tabs-demo4-area2"
+				aria-labelledby="tabs-demo4-area2" style="height: 290px;">
+				<p>학과공지</p>
+			</div>
+			<!-- 포털소식 -->
+			<div role="tabpanel" class="tab-pane fade" id="tabs-demo4-area3"
+				aria-labelledby="tabs-demo4-area3" style="height: 290px;">
+				<p>포털소식</p>
+			</div>
+		</div>
+
+
+	</div>
 </div>
-
-
-<div class="col-md-2" id="commonLeftSide">
-	<%@include file="common/mainSideCategory.jsp"%>
-</div>
-			<div class="col-md-10" id="commonRightSide">
-						<h4>수강현황</h4>
-					</div>
-						<!-- 수강현황 -->
-						<c:forEach var="lectureList" items="${lectureList}">
-					강의명 : ${lectureList.lct_nm}<br>
-					강의요일 :${lectureList.lr_date}<br>
-					강의시간 :${lectureList.lr_hour}<br>
-					강의실명:${lectureList.lrc_nm}<br>
-						</c:forEach>
-						<h4>상담현황</h4>
-						<!-- 상담현황 -->
-						<c:forEach var="consult" items="${consultList}">
-					상담제목: ${consult.cns_title}<br>
-					상담여부 : ${consult.cns_check}<br>
-						</c:forEach>
-
-
-					<!--개인일정  -->
-						<h4>개인일정</h4>
-						<c:forEach var="perschd" items="${perschdList}">
-						제목 : ${perschd.perschd_title}<br>
-						시작일 : ${perschd.perschd_start_date}<br>
-						</c:forEach>
-			<!-- 학사관련 (이수학기,총이수학점,수강신청 등) -->
-
-
-
-			<!-- 포털소식,학교공지,학과공지,학사일정 -->
-			<h6>포탈공지</h6>
-			<c:choose>
-				<c:when test="${not empty portalNoticeList}">
-					<c:forEach var="portal" items="${portalNoticeList }">
-						<tr>
-							<td>번호:${portal.board_num}</td>
-							<td>제목:${portal.board_title}</td>
-							<td>내용:${portal.board_cont}</td>
-							<td>날짜:${portal.board_date}</td>
-						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="5" style="text-align: center;">해당 내용이 없습니다.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-			<h6>학교공지</h6>
-			<c:choose>
-				<c:when test="${not empty schoolNoticeList}">
-					<c:forEach var="school" items="${schoolNoticeList }">
-						<tr>
-							<td>번호:${school.board_num}</td>
-							<td>제목:${school.board_title}</td>
-							<td>내용:${school.board_cont}</td>
-							<td>날짜:${school.board_date}</td>
-						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="5" style="text-align: center;">해당 내용이 없습니다.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-			<h6>학과공지</h6>
-			<c:choose>
-				<c:when test="${not empty departmentNoticeList}">
-					<c:forEach var="department" items="${departmentNoticeList }">
-						<tr>
-							<td>번호:${department.board_num}</td>
-							<td>제목:${department.board_title}</td>
-							<td>내용:${department.board_cont}</td>
-							<td>날짜:${department.board_date}</td>
-						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="5" style="text-align: center;">해당 내용이 없습니다.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-			<h6>학사일정</h6>
-			<c:choose>
-				<c:when test="${not empty schoolScheduleList}">
-					<c:forEach var="schoolSchedule" items="${schoolScheduleList }">
-						<tr>
-							<td>번호:${schoolSchedule.board_num}</td>
-							<td>제목:${schoolSchedule.board_title}</td>
-							<td>내용:${schoolSchedule.board_cont}</td>
-							<td>날짜:${schoolSchedule.board_date}</td>
-						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="5" style="text-align: center;">해당 내용이 없습니다.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-
-			<!-- 포털소식,학교공지,학과공지,학사일정 -->
-			<h6>포탈공지</h6>
-			<c:choose>
-				<c:when test="${not empty portalNoticeList}">
-					<c:forEach var="portal" items="${portalNoticeList }">
-						<tr>
-							<td>번호:${portal.board_num}</td>
-							<td>제목:${portal.board_title}</td>
-							<td>내용:${portal.board_cont}</td>
-							<td>날짜:${portal.board_date}</td>
-						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="5" style="text-align: center;">해당 내용이 없습니다.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-			<h6>학교공지</h6>
-			<c:choose>
-				<c:when test="${not empty schoolNoticeList}">
-					<c:forEach var="school" items="${schoolNoticeList }">
-						<tr>
-							<td>번호:${school.board_num}</td>
-							<td>제목:${school.board_title}</td>
-							<td>내용:${school.board_cont}</td>
-							<td>날짜:${school.board_date}</td>
-						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="5" style="text-align: center;">해당 내용이 없습니다.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-			<h6>학과공지</h6>
-			<c:choose>
-				<c:when test="${not empty departmentNoticeList}">
-					<c:forEach var="department" items="${departmentNoticeList }">
-						<tr>
-							<td>번호:${department.board_num}</td>
-							<td>제목:${department.board_title}</td>
-							<td>내용:${department.board_cont}</td>
-							<td>날짜:${department.board_date}</td>
-						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="5" style="text-align: center;">해당 내용이 없습니다.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-			<h6>학사일정</h6>
-			<c:choose>
-				<c:when test="${not empty schoolScheduleList}">
-					<c:forEach var="schoolSchedule" items="${schoolScheduleList }">
-						<tr>
-							<td>번호:${schoolSchedule.board_num}</td>
-							<td>제목:${schoolSchedule.board_title}</td>
-							<td>내용:${schoolSchedule.board_cont}</td>
-							<td>날짜:${schoolSchedule.board_date}</td>
-						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="5" style="text-align: center;">해당 내용이 없습니다.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-
-
-
-
-

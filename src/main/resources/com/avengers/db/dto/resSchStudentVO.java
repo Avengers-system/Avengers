@@ -17,22 +17,23 @@ public class resSchStudentVO {
 	private String tl_lev;//등급
 	private float tl_mark;//평점
 	private String lct_crd;//학점
-	private String LCT_YR;// "개설년도"
-    private String LCT_QTR;//L.LCT_QTR "개설학기",
+	private String lct_yr;// "개설년도"
+    private String lct_qtr;//L.LCT_QTR "개설학기",
 	private String tl_asmt_check; // 강의평가여부
 	
 	
-	public String getLCT_YR() {
-		return LCT_YR;
+	
+	public String getLct_yr() {
+		return lct_yr;
 	}
-	public void setLCT_YR(String lCT_YR) {
-		LCT_YR = lCT_YR;
+	public void setLct_yr(String lct_yr) {
+		this.lct_yr = lct_yr;
 	}
-	public String getLCT_QTR() {
-		return LCT_QTR;
+	public String getLct_qtr() {
+		return lct_qtr;
 	}
-	public void setLCT_QTR(String lCT_QTR) {
-		LCT_QTR = lCT_QTR;
+	public void setLct_qtr(String lct_qtr) {
+		this.lct_qtr = lct_qtr;
 	}
 	public String getStud_grd() {
 		return stud_grd;

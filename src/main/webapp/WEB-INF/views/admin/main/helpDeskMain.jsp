@@ -10,9 +10,10 @@
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
    <!-- 테스트용 사이드 -->
-<%@include file="../common/admin_side.jsp" %>   
+<%@include file="../helpDesk/helpDesk_leftSide.jsp" %>   
 </div>
 <div class="col-md-10" id="commonRightSide">
+ 
  
 헬프데스크메인<br><hr color="orange">
 <button onclick="location.href='<%=request.getContextPath()%>/admin/univNoticeList'">학교공지</button>
@@ -286,8 +287,11 @@
          
 </c:choose>
 
+>>>>>>> refs/heads/piopio
 </div>
 
+<<<<<<< HEAD
+=======
 
 <a href="${pageContext.request.contextPath}/admin/univNoticeList">학교게시판</a>
 <div>
@@ -634,3 +638,4 @@
 </div>
 
 
+>>>>>>> refs/heads/piopio
