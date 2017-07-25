@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,10 +40,10 @@ public class AdminStudentManageController {
 		String path = request.getSession().getServletContext().getRealPath("resources/admin_student_images");
 		String filename= studVO.getStud_pic();
 		
-		System.out.println("path : "+path);
 		System.out.println("filename : "+filename);
 		System.out.println("studVO number : "+ studVO.getStud_num());
-		System.out.println(commandStudVO.toString());
+		System.out.println("나와");
+		System.out.println(studVO.toString());
 		System.out.println();
 		
 		if (!studVO.getStud_pic().isEmpty()) {
@@ -50,20 +51,42 @@ public class AdminStudentManageController {
  
 			try {
 				commandStudVO.getStud_pic().transferTo(file); // 깃 위치로 전송
-				adminStudentManageService.updateStud(studVO);
-				System.out.println("성공");
 				
-			} catch (SQLException e) {
-				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			}
+			
+			
 		}
 		
-		return "redirect:professorManage";
+		try {
+			adminStudentManageService.updateStud(studVO);
+			System.out.println("성공");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:studentManage";
 	}
+	
+	
+	
+	
+	@RequestMapping(value = "/searchStudent")
+	public String searchStudent(
+					Model model,
+					@RequestParam("keyword")String keyword
+			){
+		ArrayList<StudVO> studList = new ArrayList<StudVO>();
+		System.out.println("keyword : "+ keyword);
+		studList = adminStudentManageService.selectStudbyKeyword(keyword);
+		model.addAttribute("studentdList",studList);
+		
+		return "admin/main/studentManage";
+	}
+	
 	
 	
 	
@@ -78,7 +101,7 @@ public class AdminStudentManageController {
 			HttpSession session,
 			HttpServletRequest request){
 		
-		System.out.println("?????????????????????????");
+		System.out.println("학생등록중?????????");
 		StudVO studVO =  commandStudVO.toStudVO();
 		
 		

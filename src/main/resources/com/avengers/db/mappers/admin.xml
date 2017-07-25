@@ -4,35 +4,69 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
 
+	<!-- 총 학생 수  -->
+	<select id="selectCountStudent" resultType="java.lang.Integer">
+	select count(*)
+	from student
+	</select>
+
+	<!-- 학생페이징 -->
+	<select id="studPaging" >
+	
+	
+	</select>
+	
+
+	<!-- 학생검색 -->
+	<select id="searchStudent" parameterType="java.lang.String" resultType="com.avengers.db.dto.StudVO">
+		select * from student
+		   <choose>
+		    <when test="keyword != null and keyword.equals('이름')">
+		      WHERE STUD_NM LIKE '%'||#{value}||'%' 
+		    </when>
+		
+		    <when test="keyword != null and keyword.equals('학과')">
+		      WHERE STUD_DEPT LIKE '%'||#{value}||'%' 
+		    </when>
+		     
+		    <otherwise>
+		      WHERE  1=1
+		    </otherwise>
+		  </choose>
+		order by STUD_DEPT
+	</select>
+
+
+
 	<!-- 학생수정 -->
 	<update id="updateStudent" parameterType="com.avengers.db.dto.StudVO">
 	update student
 	set 
-	STUD_NM = #{stud_nm},
-	STUD_ENG_NM= #{stud_eng_nm},
-	STUD_BIR= #{stud_bir},
-	STUD_EMAIL= #{stud_email},
-	STUD_PW= #{stud_pw},
-	STUD_GRD= #{stud_grd},
-	STUD_REGNO= #{stud_regno},
-	STUD_GEN= #{stud_gen},
-	STUD_QTR= #{stud_qtr},
-	STUD_SCHREG_CODE= #{stud_schreg_code},
-	STUD_PIC= #{stud_pic},
-	STUD_ACT_NUM= #{stud_act_num},
-	STUD_BANK= #{stud_bank},
-	STUD_AH= #{stud_ah},
-	STUD_ADDR= #{stud_addr},
-	STUD_ZIP= #{stud_zip},
-	STUD_TEL= #{stud_tel},
-	STUD_HP= #{stud_hp},
-	STUD_DEPT= #{stud_dept},
-	STUD_GUAD_NM= #{stud_guad_nm},
-	STUD_GUAD_REL= #{stud_guad_rel},
-	STUD_GUAD_HP= #{stud_guad_hp},
-	STUD_MAX_CRD = #{stud_max_crd}
+	STUD_NM = #{stud_nm jdbcType=VARCHAR},
+	STUD_ENG_NM= #{stud_eng_nm jdbcType=VARCHAR}, 
+	STUD_BIR= #{stud_bir jdbcType=DATE},
+	STUD_EMAIL= #{stud_email jdbcType=VARCHAR},
+	STUD_PW= #{stud_pw jdbcType=VARCHAR},
+	STUD_GRD= #{stud_grd jdbcType=CHAR},
+	STUD_REGNO= #{stud_regno jdbcType=VARCHAR},
+	STUD_GEN= #{stud_gen jdbcType=CHAR},
+	STUD_QTR= #{stud_qtr jdbcType=CHAR},
+	STUD_SCHREG_CODE= #{stud_schreg_code jdbcType=VARCHAR},
+	STUD_PIC= #{stud_pic jdbcType=VARCHAR},
+	STUD_ACT_NUM= #{stud_act_num jdbcType=VARCHAR},
+	STUD_BANK= #{stud_bank jdbcType=VARCHAR},
+	STUD_AH= #{stud_ah jdbcType=VARCHAR},
+	STUD_ADDR= #{stud_addr jdbcType=VARCHAR},
+	STUD_ZIP= #{stud_zip jdbcType=VARCHAR},
+	STUD_TEL= #{stud_tel jdbcType=VARCHAR},
+	STUD_HP= #{stud_hp jdbcType=VARCHAR},
+	STUD_DEPT= #{stud_dept jdbcType=VARCHAR},
+	STUD_GUAD_NM= #{stud_guad_nm jdbcType=VARCHAR},
+	STUD_GUAD_REL= #{stud_guad_rel jdbcType=VARCHAR},
+	STUD_GUAD_HP= #{stud_guad_hp jdbcType=VARCHAR} 
+	 
 	
-	where STUD_NUM = #{stud_num}
+	where STUD_NUM = #{stud_num jdbcType=VARCHAR}
 	
 	</update>
 
@@ -223,34 +257,35 @@
    
       VALUES(
          '2017'||lpad(stud_seq.nextval,3,0),
-         #{stud_nm , jdbcType=VARCHAR},   
-         #{stud_eng_nm, jdbcType=VARCHAR},   
+         #{stud_nm},   
+         #{stud_eng_nm},   
          #{stud_bir},   
-         #{stud_email, jdbcType=VARCHAR},   
-         #{stud_pw,jdbcType=VARCHAR},   
-         #{stud_grd,jdbcType=VARCHAR},   
-         #{stud_regno,jdbcType=VARCHAR},   
-         #{stud_gen },   
+         #{stud_email},   
+         #{stud_pw},   
+         #{stud_grd},   
+         #{stud_regno},   
+         #{stud_gen},   
          #{stud_qtr},   
-         #{stud_schreg_code , jdbcType=VARCHAR},   
-         #{stud_pic , jdbcType=VARCHAR},   
-         #{stud_act_num , jdbcType=VARCHAR},   
-         #{stud_bank , jdbcType=VARCHAR},   
-         #{stud_ah , jdbcType=VARCHAR},   
-         #{stud_addr , jdbcType=VARCHAR},   
-         #{stud_zip , jdbcType=VARCHAR},   
-         #{stud_tel , jdbcType=VARCHAR},   
-         #{stud_hp , jdbcType=VARCHAR},   
-         #{stud_dept , jdbcType=VARCHAR},   
-         #{stud_guad_nm , jdbcType=VARCHAR},   
+         #{stud_schreg_code jdbcType=VARCHAR},   
+         #{stud_pic jdbcType=VARCHAR},   
+         #{stud_act_num jdbcType=VARCHAR},   
+         #{stud_bank jdbcType=VARCHAR},   
+         #{stud_ah jdbcType=VARCHAR},   
+         #{stud_addr jdbcType=VARCHAR},   
+         #{stud_zip jdbcType=VARCHAR},   
+         #{stud_tel jdbcType=VARCHAR},   
+         #{stud_hp jdbcType=VARCHAR},   
+         #{stud_dept jdbcType=VARCHAR},   
+         #{stud_guad_nm jdbcType=VARCHAR},   
          #{stud_guad_rel},   
-         #{stud_guad_hp , jdbcType=VARCHAR},   
+         #{stud_guad_hp jdbcType=VARCHAR},   
          '1',
          'ROLE_STUD',   
          #{stud_max_crd}   
       )
    
    </insert>
+   
    
    
    <!-- 등록한학생번호찾기 -->
