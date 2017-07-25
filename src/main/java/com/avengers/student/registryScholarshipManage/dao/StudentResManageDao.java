@@ -61,7 +61,7 @@ public interface StudentResManageDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public RegVO selectReg(String reg_stud)throws SQLException;
+	public List<HashMap<String,String>> selectReg(RegVO regVO)throws SQLException;
 	
 	/**
 	 * 등록금 분할납부신청

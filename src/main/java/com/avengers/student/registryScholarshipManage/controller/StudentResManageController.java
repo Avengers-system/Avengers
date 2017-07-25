@@ -1,12 +1,19 @@
 package com.avengers.student.registryScholarshipManage.controller;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.document.AbstractPdfView;
 
 import com.avengers.db.dto.LoaRtsVO;
 import com.avengers.db.dto.RegVO;
@@ -21,7 +29,21 @@ import com.avengers.db.dto.ScrVO;
 import com.avengers.db.dto.ScrapplVO;
 import com.avengers.db.dto.resSchStudentVO;
 import com.avengers.student.registryScholarshipManage.serviceImpl.StudentResManageServiceImpl;
-
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.lowagie.text.BadElementException;
+import com.lowagie.text.Cell;
+import com.lowagie.text.Table;
+import com.lowagie.text.pdf.PdfTable;
 /**
  * 학생 등록/장학관리
  * @author 조영훈
@@ -258,12 +280,128 @@ public class StudentResManageController {
 	 * @return
 	 */
 	@RequestMapping("/tuitionManage")
-	public String tuitionManage(Principal princiapl,Model model){		
+	public String tuitionManage(Principal princiapl,Model model,HttpServletRequest request){		
 		String url="student/registryScholarshipManage/registryScholarshipTuitionManage";
+		String path =request.getSession().getServletContext().getRealPath("/");
+		GregorianCalendar today = new GregorianCalendar ( );
+		String reg_yr = Integer.toString(today.get(today.YEAR));
+		String reg_qtr = "1";
+		int month= today.get(today.MONTH)+1;
+		if(  month>=1&&month<=6){
+			reg_qtr="1";
+		   }else if(month>=7&&month<=12){
+			   reg_qtr="2";
+		   }
+		
+		RegVO regVO = new RegVO();
+		regVO.setReg_stud(princiapl.getName());
+		regVO.setReg_yr(reg_yr);
+		regVO.setReg_qtr(reg_qtr);
+		try {
+			List<HashMap<String,String>> tuitionList = stuResService.selectReg(regVO);
+			createGradeCertificate(tuitionList,path);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (BadElementException e) {
+			e.printStackTrace();
+		}
+		
 		
 		
 		return url;		
 	}
+	
+	
+	
+	
+	public void createGradeCertificate(List<HashMap<String,String>> tuitionList,String path) throws DocumentException, IOException, BadElementException{
+		//pdf 만들기
+
+		String filename = path+"resources/upload/tuition.pdf";
+		
+		
+		
+		Document document = new Document();
+		PdfWriter.getInstance(document, new FileOutputStream(filename));
+
+		document.open();
+
+		Rectangle rect = new Rectangle(550, 800, 50, 70);
+		rect.setBorder(Rectangle.BOX);
+		rect.setBorderWidth(2);
+		rect.setBorderColor(BaseColor.BLACK);
+		document.add(rect);
+
+		BaseFont basefont = BaseFont.createFont(path+"resources/upload/malgun.TTF",
+				BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+		Font font = new Font(basefont, 20);
+
+		document.add(new Paragraph("고지서"));
+		
+		Paragraph paragraph2 = new Paragraph();
+		Paragraph paragraph3 = new Paragraph();
+
+		paragraph2.setSpacingAfter(25);
+		paragraph2.setSpacingBefore(25);
+		paragraph2.setAlignment(Element.ALIGN_CENTER);
+		paragraph2.setIndentationLeft(50);
+		paragraph2.setIndentationRight(50);
+
+		paragraph3.setSpacingAfter(25);
+		paragraph3.setSpacingBefore(25);
+		paragraph3.setAlignment(Element.ALIGN_CENTER);
+		paragraph3.setIndentationLeft(50);
+		paragraph3.setIndentationRight(50);
+
+		document.addTitle("등록금 고지서");
+		// 제목
+		Chunk chunk = new Chunk("등록금 고지서\n"
+		+tuitionList.get(0).get("reg_yr")+"년도\n"
+		+tuitionList.get(0).get("reg_qtr")+"학기\n"
+		+tuitionList.get(0).get("dept_nm")+"학과\n", font);
+		paragraph2.add(chunk);
+		document.add(paragraph2);
+
+		// 내용
+		document.add(new Paragraph("  성             명 : " + tuitionList.get(0).get("stud_nm"), font));
+		document.add(new Paragraph("  학             번 : "+ tuitionList.get(0).get("stud_num"), font));
+		document.add(new Paragraph("  학             과 : "+ tuitionList.get(0).get("dept_nm"), font));
+		
+		
+		
+		document.add(new Paragraph("  등록금 : "+ tuitionList.get(0).get("dept_ttn"), font));
+		document.add(new Paragraph("  납부은행 : "+ tuitionList.get(0).get("reg_pymt_bank") , font));
+		document.add(new Paragraph("  납부계좌 : "+tuitionList.get(0).get("reg_pymt_act"), font));
+
+		Date today = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+		document.add(new Paragraph("  " + sdf.format(today), font));
+		
+		// ㅇㅇ 대학교
+		Chunk chunk2 = new Chunk("[A]  U N I V E R C I T Y", font);
+		paragraph3.add(chunk2);
+		document.add(paragraph3);
+
+			
+		// 도장 추가
+		Image image2 = Image.getInstance(path+"resources/upload/sign.png");
+		image2.setAbsolutePosition(450f, 95f);
+		image2.scaleAbsolute(50, 50);
+		document.add(image2);
+
+		// step 5
+		document.close();
+		
+		
+		
+	}
 
 	
 }
+
+
+

@@ -42,9 +42,9 @@ public class StudentResManageDaoImpl implements StudentResManageDao{
 	}
 
 	@Override
-	public RegVO selectReg(String reg_stud) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<HashMap<String,String>> selectReg(RegVO regVO)throws SQLException {
+		List<HashMap<String,String>> selectReg = (List<HashMap<String,String>>)sqlSession.selectList("resSchManage.selectReg",regVO);
+		return selectReg;
 	}
 
 	@Override
