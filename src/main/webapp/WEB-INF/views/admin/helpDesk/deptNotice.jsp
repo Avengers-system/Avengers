@@ -33,10 +33,10 @@
 	}
 	//검색 버튼
 	function fn_search() {
-		if (jQuery("#searchS").val() == "") {
+		if (jQuery("#select").val() == "") {
 			return;
 		} else {
-			jQuery("input[name=searchFiled]").val(jQuery("#searchS").val());
+			jQuery("input[name=searchFiled]").val(jQuery("#select").val());
 		}
 		var searchValue = jQuery("#searchI").val();
 		jQuery("input[name=searchValue]").val(searchValue);

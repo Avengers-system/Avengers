@@ -231,5 +231,9 @@
 	function mySchedule_go() {
 		location.href = "${myContextPath}/admin/mypage/mySchedule";
 	}
+	
+	
+	
+	
 </script>
 

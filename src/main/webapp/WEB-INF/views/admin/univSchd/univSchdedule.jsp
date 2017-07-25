@@ -5,9 +5,8 @@
 <%@page import="java.util.List"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<head>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-<title>일정관리</title>
+<title>학사일정관리</title>
 
 <meta name='description'
 	content='Open source JavaScript jQuery plugin for a full-sized, drag &amp; drop event calendar'>
@@ -18,8 +17,6 @@
 <meta name="msapplication-TileImage"
 	content="https://fullcalendar.io/mstile-144x144.png">
 
-
-
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- jQuery library -->
@@ -28,7 +25,6 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 
 <link rel="apple-touch-icon" sizes="57x57"
 	href="https://fullcalendar.io/apple-touch-icon-57x57.png">
@@ -58,6 +54,7 @@
 	href="https://fullcalendar.io/favicon-16x16.png" sizes="16x16">
 <link rel="icon" type="image/png"
 	href="https://fullcalendar.io/favicon-32x32.png" sizes="32x32">
+
 
 <style>
 ol, ul {
@@ -92,6 +89,8 @@ ol, ul {
 	</div>
 </div>
 
+
+
 <script>
  
    $(function() {
@@ -114,32 +113,32 @@ ol, ul {
          editable: false, //마우스로 일정을 움직일 수 있음. 사용자는 캘린더를 보기만 하기 때문에 false
          eventLimit: false,//하루에 이벤트가 3개이상이면 more표시로 줄여주는 기능 다 보여줘야하기 때문에 false
          events: [
-              
-                     <%
-                     
-                     List<PerschdVO> perschdList = (List<PerschdVO>)request.getAttribute("perschdList");
-                     %>
-                     <%for(int i=0; i<perschdList.size();i++){
-                        if(i>0) out.print(",");
-                        PerschdVO perschdVO = perschdList.get(i);
-                     %>
-              { 
-                 title: '<%=perschdVO.getPerschd_title() %>',
-                  start:'<%=perschdVO.getPerschd_start_date() %>',
-                  end:'<%=perschdVO.getPerschd_end_date() %>',
-                  content:'<%=perschdVO.getPerschd_cont() %>',
-                 time:'<%=perschdVO.getPerschd_date() %>'
-              }
-              
-                   <%
-                   System.out.println(perschdVO.getPerschd_end_date()+"!!!");
-                     }
-                   %> 
-         ],
+                  
+                  <%
+                  
+                  List<PerschdVO> perschdList = (List<PerschdVO>)request.getAttribute("univschdList");
+                  %>
+                  <%for(int i=0; i<perschdList.size();i++){
+                     if(i>0) out.print(",");
+                     PerschdVO perschdVO = perschdList.get(i);
+                  %>
+           { 
+              title: '<%=perschdVO.getPerschd_title() %>',
+               start:'<%=perschdVO.getPerschd_start_date() %>',
+               end:'<%=perschdVO.getPerschd_end_date() %>',
+               content:'<%=perschdVO.getPerschd_cont() %>',
+              time:'<%=perschdVO.getPerschd_date() %>'
+           }
+           
+                <%
+                System.out.println(perschdVO.getPerschd_end_date()+"!!!");
+                  }
+                %> 
+      ],
          eventClick:function(event) {
             
             $.ajax({
-               url  : 'myScheduleDetail',
+               url  : 'univScheduleDetail',
                type : 'post',
                data : "perschd_title="+event.title,
                success : function(perschd){                  
@@ -149,8 +148,6 @@ ol, ul {
                $('#perschd_start_date').val(perschd.perschd_start_date);
                $('#perschd_end_date').val(perschd.perschd_end_date);
                $('#perschd_cont').val(perschd.perschd_cont);
-//                $('#perschd_date').val(perschd.perschd_date);
-               
                },
                error: function(){
                   alert("error");
@@ -169,12 +166,11 @@ ol, ul {
       
    function deleteSchd(){
       myForm.method="post";
-      myForm.action="myScheduleDelete";
+      myForm.action="univScheduleDelete";
       myForm.submit();
    }
       
    </script>
-
 
 <!-- 상세보기&수정 모달 -->
 
@@ -192,7 +188,7 @@ ol, ul {
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-8 col-md-offset-2">
-							<form action="myScheduleUpdate" method="POST" name="myForm">
+							<form action="univSchdeduleUpdate" method="POST" name="univForm">
 
 								<ul>
 									<input id="perschd_num" type="hidden" class="form-control"
@@ -212,44 +208,43 @@ ol, ul {
 										id="perschd_cont" type="text" name="perschd_cont" value=""
 										class="form-control"></li>
 								</ul>
+								
+								<!-- button -->
+									<div class="col-md-12">
+										<div class="modal-footer">
+											<div class="col-md-8 col-md-offset-1">
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal">Close</button>
+												<input type="submit" class="btn btn-primary"> <input
+													type="button" value="삭제" onclick="deleteSchd()" />
+											</div>
+										</div>
+									 
+									</div>
+								
+								
+							</form>
 						</div>
+						
 
-						<!-- button -->
-						<div class="col-md-12">
-							<div class="modal-footer">
-								<div class="col-md-8 col-md-offset-1">
-									<button type="button" class="btn btn-default"
-										data-dismiss="modal">Close</button>
-									<%--                                     <button type="button" onclick="location.href='myScheduleDelete?perschd_num=${perschd.perschd_num}" class="btn btn-default" >삭제</button> --%>
-									<input type="submit" class="btn btn-primary"> <input
-										type="button" value="삭제" onclick="deleteSchd()" />
-								</div>
-							</div>
-						</div>
-						</form>
+
 					</div>
-
 				</div>
-				<!-- /.modal-content -->
 			</div>
+
+
+
+
 		</div>
-		<!-- /.modal-dialog -->
 	</div>
-	<!-- /.modal -->
 </div>
-</div>
-
-
-
-
-
 
 <!-- 추가모달창 -->
-
 <div class="modal fade" id="addSchedule">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
+
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -260,24 +255,27 @@ ol, ul {
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-8 col-md-offset-2">
-							<form action="myScheduleInsert" method="POST">
-								<ul>
-									<input type="hidden" class="form-control" name="PERSCHD_NUM">
-									<li><label class='control-label'>title</label> <input
-										type="text" class="form-control" name="PERSCHD_TITLE">
-									</li>
-									<li><input type="hidden" class="form-control"
-										name="PERSCHD_WRITER">
-									<li><label class='control-label'>start date</label> <input
-										type="date" class="form-control" name="PERSCHD_START_DATE">
-									</li>
-									<li><label class='control-label'>end date</label> <input
-										type="date" class="form-control" name="PERSCHD_END_DATE">
-									</li>
-									<li><label class='control-label'>content</label> <input
-										type="text" class="form-control" name="PERSCHD_CONT">
-									</li>
-								</ul>
+						<form action="myScheduleInsert" method="POST">
+							<ul>
+								<input type="hidden" class="form-control" name="PERSCHD_NUM">
+
+								<li><label class='control-label'>제목</label> <input
+									type="text" class="form-control" name="PERSCHD_TITLE">
+								</li>
+
+								<li><input type="hidden" class="form-control"
+									name="PERSCHD_WRITER">
+								<li><label class='control-label'>시작일</label> <input
+									type="date" class="form-control" name="PERSCHD_START_DATE">
+								</li>
+
+								<li><label class='control-label'>종료일</label> <input
+									type="date" class="form-control" name="PERSCHD_END_DATE">
+								</li>
+
+								<li><label class='control-label'>내용</label> <input
+									type="text" class="form-control" name="PERSCHD_CONT"></li>
+							</ul>
 						</div>
 
 						<!-- footer -->
@@ -290,14 +288,15 @@ ol, ul {
 								</div>
 							</div>
 						</div>
-						</form>
+					</form>
+		
 					</div>
-
+					
 				</div>
-				<!-- /.modal-content -->
+				
 			</div>
+
 		</div>
-		<!-- /.modal-dialog -->
 	</div>
-	<!-- /.modal -->
 </div>
+

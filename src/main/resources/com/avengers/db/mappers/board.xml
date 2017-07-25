@@ -77,7 +77,7 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 			  ,board_af
 			  ,board_bc
 			  ,board_count 
-		 FROM BOARD WHERE BOARD_num=#{BOARD_num} 
+		 FROM board WHERE board_num=#{board_num} 
 	</select>
 <!-- 	다른 -->
 	<select id="selectSearchList" parameterType="map" 

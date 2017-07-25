@@ -24,6 +24,14 @@
                         <span class="fa-angle-right fa right-arrow text-right"></span>
                       </a>
                     </li>
+
+
+                    <li class="ripple" onclick="univSchedule_go()">
+                      <a class="tree-toggle nav-header">
+                        <span class="fa-diamond fa"></span> 학사일정관리
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                      </a>
+                    </li>
                   </ul>
                 </div>
             </div>

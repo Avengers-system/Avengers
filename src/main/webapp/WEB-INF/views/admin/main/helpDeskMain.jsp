@@ -18,7 +18,7 @@
 헬프데스크메인<br><hr color="orange">
 <button onclick="location.href='<%=request.getContextPath()%>/admin/univNoticeList'">학교공지</button>
 <button onclick="location.href='<%=request.getContextPath()%>/admin/deptNoticeList'">학과공지</button>
-<button onclick="location.href='<%=request.getContextPath()%>/admin/collegeNoticeList'">학사일정</button>
+<button onclick="location.href='<%=request.getContextPath()%>/admin/univSchedule'">학사일정</button>
 <button onclick="location.href='<%=request.getContextPath()%>/admin/portalNoticeList'">포털소식</button>
 <button onclick="location.href='<%=request.getContextPath()%>/admin/faqNoticeList'">FAQ</button>
 <button onclick="location.href='<%=request.getContextPath()%>/admin/qnaNoticeList'">Q&A</button>
