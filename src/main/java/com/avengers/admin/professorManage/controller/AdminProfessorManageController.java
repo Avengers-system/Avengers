@@ -139,16 +139,18 @@ public class AdminProfessorManageController {
  
 			try {
 				commandPrfsVO.getPrfs_pic().transferTo(file); // 깃 위치로 전송
-				adminProfessorManageService.updatePrfs(prfsVO);
-				System.out.println("성공");
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
+			}  catch (IOException e) {
 				e.printStackTrace();
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		try {
+			adminProfessorManageService.updatePrfs(prfsVO);
+			System.out.println("성공");
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 		return "redirect:professorManage";

@@ -25,22 +25,20 @@
                       <div id="datatables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                       <div class="row"><div class="col-sm-6">
                       		<div class="dataTables_length" id="datatables-example_length">
-			                      <label>Show 
-				                      <select name="datatables-example_length" aria-controls="datatables-example" class="form-control input-sm">
-					                      <option value="10">10</option>
-					                      <option value="25">25</option>
-					                      <option value="50">50</option>
-					                      <option value="100">100</option>
-				                      </select>
-			                       		entries
-			                      </label>
 		                    </div>
 		                       </div>
 		                       
 		                       <div class="col-sm-6">
 		                       
 				                       <div id="datatables-example_filter" class="dataTables_filter">
-				                       
+				                       		
+				                       		<input type="hidden" name="searchFiled"	value="${pageVO.searchFiled }" />
+											
+											<!-- //검색조건 -->
+											<input type="hidden" name="searchValue"	value="${pageVO.searchValue }" />
+											<!-- //검색어 -->
+						                     
+						                     
 						                       <!-- 셀렉트 -->
 						                       <select name="key">
 						                       		<option value="choice">이름</option>

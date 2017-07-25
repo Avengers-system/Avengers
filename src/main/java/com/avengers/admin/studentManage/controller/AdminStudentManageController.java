@@ -51,16 +51,21 @@ public class AdminStudentManageController {
  
 			try {
 				commandStudVO.getStud_pic().transferTo(file); // 깃 위치로 전송
-				adminStudentManageService.updateStud(studVO);
-				System.out.println("성공");
 				
-			} catch (SQLException e) {
-				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			}
+			
+			
+		}
+		
+		try {
+			adminStudentManageService.updateStud(studVO);
+			System.out.println("성공");
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 		return "redirect:studentManage";

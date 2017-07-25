@@ -2,7 +2,11 @@ package com.avengers.admin.studentManage.daoImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -80,6 +84,24 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 		System.out.println("dao studVO 키워드검색" + keyword);
 		return studentList;
 	}
- 
+	 
+	@Override
+	public List<StudVO> getStudList(StudVO studVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	// 총 글수
+	@Override
+	public int getTotalCount() throws SQLException {
+		int result = (Integer) sqlSession.selectOne("admin.selectCountStudent");
+		return result;
+	}
+	@Override
+	public Object selectPagingList(String queryId, Object params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

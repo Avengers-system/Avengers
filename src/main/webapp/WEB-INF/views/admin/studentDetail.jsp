@@ -53,8 +53,8 @@ div.input-group>span.input-group-addon{
 			                      <span class="input-group-btn">
 			                       <input type="text" class="form-control" value="${student.stud_pic}" style="width:230px;" id="image-preview-filename" disabled="disabled">
 			                            <div class="btn btn-default image-preview-input">
-			                              <input type="file" accept="image/png, image/jpeg, image/gif" name="stud_pic"/>
-					                      <span class="image-preview-input-title">업로드</span>
+			                              <input type="file" accept="image/png, image/jpeg, image/gif" name="stud_pic" value="${student.stud_pic}"/>
+					                      <span class="image-preview-input-title" >업로드</span>
 			                           </div>
 			                      </span>
 			        </div>
