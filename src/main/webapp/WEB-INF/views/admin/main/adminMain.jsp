@@ -28,6 +28,7 @@
 </style>
 
 <div class="panel-body">
+<<<<<<< HEAD
    <!-- 개인정보 -->
    <div class="col-md-2">
       <div class="panel panel-default">
@@ -118,6 +119,7 @@
          </div>
       </div>
    </div>
+
 </div>
 
 <script>
@@ -218,5 +220,7 @@ $(document).ready(function() {
       }).on('click', function(i, row){
         console.log(i, row);
       });
+      
+    
 });
 </script>
