@@ -5,7 +5,39 @@
     <%@page import="java.util.List"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+<title>일정관리</title>
 
+<meta name='description'content='Open source JavaScript jQuery plugin for a full-sized, drag &amp; drop event calendar'>
+<meta name='keywords'content='calendar, JavaScript, jQuery, events, drag and drop'>
+<meta name='author' content='Adam Shaw'>
+<meta name="msapplication-TileColor" content="#2b5797">
+<meta name="msapplication-TileImage" content="https://fullcalendar.io/mstile-144x144.png">
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src='${pageContext.request.contextPath}/resources/js/full_calender/jquery.min.js'></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+ 
+<link rel="apple-touch-icon" sizes="57x57"	href="https://fullcalendar.io/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="114x114"	href="https://fullcalendar.io/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="72x72"	href="https://fullcalendar.io/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="144x144"	href="https://fullcalendar.io/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="60x60"	href="https://fullcalendar.io/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="120x120"	href="https://fullcalendar.io/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="76x76"	href="https://fullcalendar.io/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="152x152"href="https://fullcalendar.io/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180"href="https://fullcalendar.io/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-160x160.png" sizes="160x160">
+<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-32x32.png" sizes="32x32">
 
 <style>
 ol, ul {
@@ -25,18 +57,6 @@ ol, ul {
 
 }
 </style>
-
-
-
-	<!-- Admin Header -->
-<%-- 	<%@include file="../common/topCategory.jsp"%> --%>
-	
-		<!-- Content -->
-		<div class="col-md-2" id="commonLeftSide">
-<%-- 			<%@include file="../common/mainSideCategory.jsp" %> --%>
-		</div>
-
-		<div class="col-md-10" id="commonRightSide">
 
 		<div id='body' class='section' >
 		<div>
@@ -89,18 +109,45 @@ ol, ul {
 			         start:'<%=perschdVO.getPerschd_start_date() %>',
 			         end:'<%=perschdVO.getPerschd_end_date() %>',
 			         content:'<%=perschdVO.getPerschd_cont() %>',
-			    	 date:'<%=perschdVO.getPerschd_date() %>'
+			    	 time:'<%=perschdVO.getPerschd_date() %>'
 			     }
 			     
 			    		<%
+			    		System.out.println(perschdVO.getPerschd_end_date()+"!!!");
 							}
 			    		%> 
 			],
+			eventClick:function(event) {
+				
+				$.ajax({
+					url  : 'myScheduleDetail',
+					type : 'post',
+					data : "perschd_title="+event.title,
+					success : function(perschd){						
+					$('#perschd_num').val(perschd.perschd_num);
+					$('#perschd_writer').val(perschd.perschd_writer);
+					$('#perschd_title').val(perschd.perschd_title);
+					$('#perschd_start_date').val(perschd.perschd_start_date);
+					$('#perschd_end_date').val(perschd.perschd_end_date);
+					$('#perschd_cont').val(perschd.perschd_cont);
+// 					$('#perschd_date').val(perschd.perschd_date);
+					
+					},
+					error: function(){
+						alert("error");
+					}
+				})
+
+				//모달불러오기 
+				$(this).attr("data-toggle","modal");
+				$(this).attr("data-target","#editSchedule");
+            }
 	});
 		
 			
 		})
  
+		
 	function deleteSchd(){
 		myForm.method="post";
 		myForm.action="myScheduleDelete";
@@ -111,6 +158,7 @@ ol, ul {
 
 
 <!-- 상세보기&수정 모달 -->
+
 <div class="modal fade" id="editSchedule">
       <div class="modal-dialog">
          <div class="modal-content">

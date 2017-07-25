@@ -2,12 +2,15 @@ package com.avengers.admin.studentManage.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avengers.admin.studentManage.dao.AdminStudentManageDao;
 import com.avengers.admin.studentManage.service.AdminStudentManageService;
+import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.StudVO;
 @Service
 public class AdminStudentManageServiceImpl implements AdminStudentManageService {
@@ -64,4 +67,47 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 		int result = amdinStudentDAO.updateStud(studVO);
 		return result;
 	}
+
+
+	@Override
+	public ArrayList<StudVO> selectStudbyKeyword(String keyword) {
+		
+		return amdinStudentDAO.selectStudbyKeyword(keyword);
+	}
+
+	@Override
+	public List<StudVO> getStudList(StudVO studVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public int getTotalCount() throws SQLException {
+		return amdinStudentDAO.getTotalCount();
+	}
+
+
+	@Override
+	public Object selectPagingList(String queryId, Object params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<Map<String, Object>> selectStudList(Map<String, Object> map)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ArrayList<BoardVO> selectStuBoardList(String key, int firstRow,
+			int lastRow) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+ 
 }
