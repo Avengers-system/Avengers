@@ -110,11 +110,27 @@ public class AdminMainServiceImpl implements AdminMainService {
 	}
 
 	@Override
-	public List<HashMap<String, String>> selectLeaveDeptList()
+	public List<HashMap<String, String>> getLeaveDeptList()
 			throws SQLException {
-		List<HashMap<String, String>> selectLeaveDeptList  = null;
-		selectLeaveDeptList = mainDAO.selectLeaveDeptList();
-		return selectLeaveDeptList;
+		List<HashMap<String, String>> getLeaveDeptList  = null;
+		getLeaveDeptList = mainDAO.getLeaveDeptList();
+		return getLeaveDeptList;
+	}
+
+	@Override
+	public List<HashMap<String, String>> getDropOffDeptList()
+			throws SQLException {
+		List<HashMap<String, String>> getDropOffDeptList= null;
+		getDropOffDeptList = mainDAO.getDropOffDeptList();
+		return getDropOffDeptList;
+	}
+
+	@Override
+	public List<HashMap<String, String>> getReinstatementDeptList()
+			throws SQLException {
+		List<HashMap<String, String>>  getReinstatementDeptList = null;
+		getReinstatementDeptList = mainDAO.getReinstatementDeptList();
+		return getReinstatementDeptList;
 	}
 
 }
