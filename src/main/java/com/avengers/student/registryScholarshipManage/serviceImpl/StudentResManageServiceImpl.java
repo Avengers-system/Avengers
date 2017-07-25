@@ -38,9 +38,8 @@ public class StudentResManageServiceImpl implements StudentResManageService {
 	}
 
 	@Override
-	public ArrayList<RegVO> selectRegList(String reg_stud) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<HashMap<String,String>> selectRegList(RegVO regVO)throws SQLException {
+		return stuResDAO.selectRegList(regVO);
 	}
 
 	@Override

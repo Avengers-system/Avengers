@@ -46,7 +46,7 @@ public interface StudentResManageService  {
 	 * @return
 	 * @throws SQLException
 	 */
-	public ArrayList<RegVO> selectRegList(String reg_stud)throws SQLException;
+	public List<HashMap<String,String>> selectRegList(RegVO regVO)throws SQLException;
 	
 	/**
 	 * 납부할 등록금조회

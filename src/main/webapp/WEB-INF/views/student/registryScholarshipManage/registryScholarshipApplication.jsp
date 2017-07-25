@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 
 
 <!--side Category-->
-<div class="col-md-2" id="commonLeftSide">
 	<%@include file="../common/resSchSideCategory.jsp" %>
-</div>
 
 <c:if test="${not empty insertScrappl}">
 		<div
@@ -33,11 +32,10 @@
 
 
 
-<div class="col-md-10 padding-0">
-
-		<div class="panel">
-    	 <div class="panel-heading">
-       		<h3>기본정보 입력</h3>
+<div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">기본정보입력</h4>
        		 </div> 
        	<div class="panel-body" style="font-size:16px;">		
 		<div class="col-md-5 padding-0">		             
@@ -112,13 +110,15 @@
 </div>
 </div>
 </div>
-<div class="col-md-2 padding-0">
+<div class="col-md-2 ">
 </div>
-<div class="col-md-10 padding-0">
 
-		<div class="panel">
-    	 <div class="panel-heading">
-       		<h3>신청사유</h3>
+
+<div class="col-md-10">
+
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">신청사유</h4>
        		 </div> 
        	<div class="panel-body" style="font-size:16px;">       			
 		<div class="box-v5 panel">
@@ -129,7 +129,7 @@
 		</div>		
 		</div>
 </div>
-		<input class="btn btn-round pull-right" type="submit" value="신청하기">	  	 
+		<input class="btn btn-outline btn-primary pull-right" type="submit" value="신청하기">	  	 
 </div>
 
 </form>

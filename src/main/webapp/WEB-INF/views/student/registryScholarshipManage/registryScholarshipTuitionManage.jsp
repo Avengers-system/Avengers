@@ -6,6 +6,4 @@
 
 
 <!--side Category-->
-<div class="col-md-2" id="commonLeftSide">
 	<%@include file="../common/resSchSideCategory.jsp" %>
-</div>
