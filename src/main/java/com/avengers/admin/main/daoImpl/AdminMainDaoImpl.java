@@ -2,6 +2,8 @@ package com.avengers.admin.main.daoImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -104,6 +106,27 @@ public class AdminMainDaoImpl implements AdminMainDao {
 	public String selectNextPrfsNum() throws SQLException {
 		String nextPrfsNum = (String)sqlSession.selectOne("admin.getProfNum");
 		return nextPrfsNum;
+	}
+	@Override
+	public List<HashMap<String, String>> getLeaveDeptList()
+			throws SQLException {
+		List<HashMap<String, String>> getLeaveDeptList = new ArrayList<HashMap<String,String>>();
+		getLeaveDeptList = (List<HashMap<String, String>>)sqlSession.selectList("department.getLeaveDeptList");
+		return getLeaveDeptList;
+	}
+	@Override
+	public List<HashMap<String, String>> getDropOffDeptList()
+			throws SQLException {
+		List<HashMap<String, String>> getDropOffDeptList = new ArrayList<HashMap<String,String>>();
+		getDropOffDeptList =(List<HashMap<String, String>>)sqlSession.selectList("department.getDropOffDeptList");
+		return getDropOffDeptList;
+	}
+	@Override
+	public List<HashMap<String, String>> getReinstatementDeptList()
+			throws SQLException {
+		List<HashMap<String, String>> getReinstatementDeptList = new ArrayList<HashMap<String,String>>();
+		getReinstatementDeptList = (List<HashMap<String, String>>)sqlSession.selectList("department.getReinstatementDeptList");
+		return getReinstatementDeptList;
 	}
 
 }

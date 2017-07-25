@@ -54,12 +54,6 @@
 </script>
  
  
- 
-
-<script type="text/javascript">
- $("#postcodify").postcodify();
-</script>
-  
 <style>
  
     .table-bordered>thead>tr>th {
@@ -175,7 +169,7 @@
   		</div> 
 
 
-	<div class="col-md-12" id="prof_inform">
+		<div class="col-md-12" id="prof_inform">
 				<div class="col-md-5">
 	
 
@@ -189,18 +183,18 @@
 					  <input type="text" class="form-control"  name="prfs_eng_nm">
 		  		
 				      <label class='control-label'>학과</label><br/>
-					  <select name="prfs_dept" class="selectpicker show-tick">
-						<option value="DEPT1">멀티미디어공학과</option> 
-						<option value="DEPT2">컴퓨터공학과</option> 
-						<option value="DEPT3">영어영문학과</option> 
-						<option value="DEPT4">문예창작학과</option> 
-						<option value="DEPT5">경영학과</option> 
-						<option value="DEPT6">회계학과</option> 
-						<option value="DEPT7">간호학과</option> 
-						<option value="DEPT8">생활체육학과</option> 
-						<option value="DEPT9">국어교육과</option> 
-						<option value="DEPT10">수학교육과</option> 
-					 </select>
+					 	 <select name="prfs_dept" class="selectpicker show-tick">
+								<option value="DEPT1">멀티미디어공학과</option> 
+								<option value="DEPT2">컴퓨터공학과</option> 
+								<option value="DEPT3">영어영문학과</option> 
+								<option value="DEPT4">문예창작학과</option> 
+								<option value="DEPT5">경영학과</option> 
+								<option value="DEPT6">회계학과</option> 
+								<option value="DEPT7">간호학과</option> 
+								<option value="DEPT8">생활체육학과</option> 
+								<option value="DEPT9">국어교육과</option> 
+								<option value="DEPT10">수학교육과</option> 
+						  </select>
 				<br>
 				 
 				
@@ -221,42 +215,42 @@
 
 					
 					<div class="col-md-5 col-md-offset-1">
-					<label class='control-label'>은행명</label>
-					<input type="text" class="form-control" name="prfs_bank"  >
-					
-					<label class='control-label'>예금주</label>
-					<input type="text" class="form-control" name="prfs_ah"  >
-
-					<label class='control-label'>우편번호</label>
-					<input type="text" class="form-control" name="prfs_zip"  >
-					
-					 <label class='control-label'>주소</label>
-     				 <input type="text" class="form-control" name="prfs_addr"  >
-					
-					 <label class='control-label'>휴대폰번호</label>
-					 <input type="text" class="form-control" name="prfs_hp"  >
-
-					 <label class='control-label'>이메일</label>
-					 <input type="text" class="form-control" name="prfs_email"  >
-
-					 <label class='control-label'>비밀번호</label>
-					 <input type="text" class="form-control" name="prfs_pw"  >
-					
-					 <label class='control-label'>성별</label>
-					 <div class="radio" >
-					      <label><input type="radio" name="prfs_gen" value="1">남자</label>
-					      <label><input type="radio" name="prfs_gen" value="2">여자</label>
-				    </div>
-				    
-				    </div>
+							<label class='control-label'>은행명</label>
+							<input type="text" class="form-control" name="prfs_bank"  >
+							
+							<label class='control-label'>예금주</label>
+							<input type="text" class="form-control" name="prfs_ah"  >
+		
+							<label class='control-label'>우편번호</label>
+							<input type="text" class="form-control" name="prfs_zip"  >
+							
+							 <label class='control-label'>주소</label>
+		     				 <input type="text" class="form-control" name="prfs_addr"  >
+							
+							 <label class='control-label'>휴대폰번호</label>
+							 <input type="text" class="form-control" name="prfs_hp"  >
+		
+							 <label class='control-label'>이메일</label>
+							 <input type="text" class="form-control" name="prfs_email"  >
+		
+							 <label class='control-label'>비밀번호</label>
+							 <input type="text" class="form-control" name="prfs_pw"  >
+							
+							 <label class='control-label'>성별</label>
+							 <div class="radio" >
+							      <label><input type="radio" name="prfs_gen" value="1">남자</label>
+							      <label><input type="radio" name="prfs_gen" value="2">여자</label>
+						   	  </div>
+						    
+				  	  </div>
 				</div>
 	  	</div>
 				 
 				<div class="col-md-12 input-group">
 					<div class="col-md-4 col-md-offset-8">
-		 			<input type="submit" value="등록하기">
-				</div>
-  		</div> 
+		 				<input type="submit" value="등록하기">
+					</div>
+  				</div> 
   
   	</div>
   </div>

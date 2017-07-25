@@ -17,7 +17,7 @@
 			<c:set var="myContextPath" value="${pageContext.request.contextPath}" />
 
 			<form name="insertdeptBoard" class="cmxform" id="signupForm"
-				action="${myContextPath}/admin/deptWrite" method="post"
+				action="${myContextPath}/student/helpDesk/deptStudWrite" method="post"
 				enctype="multipart/form-data">
 				
 				<div class="col-md-6">
@@ -88,7 +88,7 @@
 						<br> <input type="text" name="board_bc" readonly
 							class="form-text" id="validate_firstname"
 							name="validate_firstname" required
-							value="DEPT" style="width: 150px;">
+							value="${insertBoard.board_bc}" style="width: 150px;">
 						<span class="bar"></span>
 					</div>
 

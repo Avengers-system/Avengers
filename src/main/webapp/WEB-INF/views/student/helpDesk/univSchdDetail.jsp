@@ -9,7 +9,7 @@
 <h1>학사일정 상세보기 출력</h1>
 <c:choose>
       <c:when test="${not empty univSchdNoticeList}">
-      <form name="updateUnivSchdBoard" action="univSchdUpdate">
+      <form name="updateUnivSchdBoard" action="univStudSchdUpdate">
          
           숫자:<input type="text" name="board_num" value="${univSchdNoticeList.board_num}" readonly><br>
           제목:<input type="text" name="board_title" value="${univSchdNoticeList.board_title}"><br>
@@ -18,7 +18,7 @@
           게시판분류고유번호:<input type="text" name="board_bc" value="${univSchdNoticeList.board_bc}" readonly><br>
          
         <input type="submit" value="수정"> 
-		<a href="univSchdDelete?board_num=${univSchdNoticeList.board_num}"><input type="button" value="삭제"></a>
+		<a href="univStudSchdDelete?board_num=${univSchdNoticeList.board_num}"><input type="button" value="삭제"></a>
       </form>      
          
          

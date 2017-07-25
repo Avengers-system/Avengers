@@ -3,9 +3,7 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<!-- Admin Header -->
-<%@include file="../common/topCategory.jsp"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide"
@@ -49,10 +47,6 @@
 	</script>
 
 
-	<!-- <div class="col-md-2" id="commonLeftSide"> -->
-
-
-	<!-- </div> -->
 
 	<div class="col-md-10" id="commonRightSide"
 		style="margin-left: 0px; margin-right: 0px; float: left;">
@@ -66,12 +60,14 @@
 						<div class="row">
 
 							<form
-								action="<%=request.getContextPath()%>/admin/portalSearch?board_title=${portalSearch.board_title}">
+								action="<%=request.getContextPath()%>/student/helpDesk/portalStudSearch?board_title=${portalSearch.board_title}">
+								<sec:authorize access="hasRole('ROLE_WSS')">
+								
 								<div
 									style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
-
-									<a href="<%=request.getContextPath()%>/admin/portalWriteForm">글쓰기</a>
+									<a href="<%=request.getContextPath()%>/student/helpDesk/portalStudWriteForm">글쓰기</a>
 								</div>
+								</sec:authorize>
 								<div class="col-sm-6" style="float: left; width: 225px;">
 									<div id="datatables-example_filter" class="dataTables_filter"
 										style="width: 20%;">
@@ -121,6 +117,7 @@
 										aria-describedby="datatables-example_info"
 										style="width: 100%; text-align: center;">
 										<thead>
+										
 											<tr role="row">
 												<th class="sorting_asc" tabindex="0"
 													aria-controls="datatables-example" rowspan="1" colspan="1"
@@ -163,7 +160,7 @@
 														<tr role="row" class="odd">
 															<td>${portalNoticeList.board_num}</td>
 															<td><a
-																href="${pageContext.request.contextPath}/admin/portalDetail?board_num=${portalNoticeList.board_num}&board_count=${portalNoticeList.board_count}&pageNo=${pageVO.pageNo}">
+																href="${pageContext.request.contextPath}/student/helpDesk/portalStudDetail?board_num=${portalNoticeList.board_num}&board_count=${portalNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 																	${portalNoticeList.board_title} </a></td>
 															<td>${portalNoticeList.board_date}</td>
 															<td>${portalNoticeList.board_writer}</td>

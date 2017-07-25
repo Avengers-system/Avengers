@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,17 +13,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.avengers.admin.studentManage.service.AdminStudentManageService;
-import com.avengers.db.dto.CommandPrfsVO;
 import com.avengers.db.dto.CommandStudVO;
-import com.avengers.db.dto.PrfsVO;
 import com.avengers.db.dto.StudVO;
 
 @Controller
@@ -32,6 +29,67 @@ public class AdminStudentManageController {
 	@Autowired
 	private AdminStudentManageService adminStudentManageService;
 	
+	@RequestMapping(value = "/updateStudent")
+	public String updateStudent(
+				CommandStudVO commandStudVO,
+				HttpServletRequest request,
+				HttpSession session
+				){
+		
+		StudVO studVO = commandStudVO.toStudVO();
+		String path = request.getSession().getServletContext().getRealPath("resources/admin_student_images");
+		String filename= studVO.getStud_pic();
+		
+		System.out.println("filename : "+filename);
+		System.out.println("studVO number : "+ studVO.getStud_num());
+		System.out.println("나와");
+		System.out.println(studVO.toString());
+		System.out.println();
+		
+		if (!studVO.getStud_pic().isEmpty()) {
+			File file = new File(path, studVO.getStud_pic());
+ 
+			try {
+				commandStudVO.getStud_pic().transferTo(file); // 깃 위치로 전송
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			}
+			
+			
+		}
+		
+		try {
+			adminStudentManageService.updateStud(studVO);
+			System.out.println("성공");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:studentManage";
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/searchStudent")
+	public String searchStudent(
+					Model model,
+					@RequestParam("keyword")String keyword
+			){
+		ArrayList<StudVO> studList = new ArrayList<StudVO>();
+		System.out.println("keyword : "+ keyword);
+		studList = adminStudentManageService.selectStudbyKeyword(keyword);
+		model.addAttribute("studentdList",studList);
+		
+		return "admin/main/studentManage";
+	}
+	
+	
+	
+	
 	/**
 	 * 학생등록하기
 	 * @param commandStudVO
@@ -39,24 +97,33 @@ public class AdminStudentManageController {
 	 * @return
 	 */
 	@RequestMapping(value = "/insertStudent")
-	public String insertStudent(CommandStudVO commandStudVO, HttpSession session){
+	public String insertStudent(CommandStudVO commandStudVO, 
+			HttpSession session,
+			HttpServletRequest request){
 		
-		StudVO studVO = new StudVO();
-		studVO = commandStudVO.toStudVO();
+		System.out.println("학생등록중?????????");
+		StudVO studVO =  commandStudVO.toStudVO();
+		
 		
 		// 깃 경로 (동일)
-				String upload = session.getServletContext().getRealPath("resources/admin_student_images");		
+				String path = request.getSession().getServletContext().getRealPath("/resources/admin_student_images");
+				String filename = studVO.getStud_pic();
+				
+				System.out.println("path: "+path);
+				System.out.println("filename: "+filename);
+				
 				if (!studVO.getStud_pic().isEmpty()) {
-					File file = new File(upload, studVO.getStud_pic());
+					File file = new File(path, studVO.getStud_pic());
 		 
 					try {
 						commandStudVO.getStud_pic().transferTo(file); // 깃 위치로 전송
 						
 						adminStudentManageService.insertStud(studVO);
-						
 						studVO.setStud_num(adminStudentManageService.selectStudNum());
 						adminStudentManageService.insertSecurity(studVO);
 						
+						System.out.println("성공");
+					
 					} catch (SQLException e) {
 						e.printStackTrace();
 					} catch (IOException e) {
@@ -64,10 +131,9 @@ public class AdminStudentManageController {
 					} catch (IllegalStateException e) {
 						e.printStackTrace();
 					}
-					System.out.println("성공");
 				}
-				
-			return "admin/main/studentManage"; 
+
+				return "redirect:studentManage";
 	}
 	
 	
@@ -123,17 +189,22 @@ public class AdminStudentManageController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/studentManage/detail")
+	@RequestMapping("/studentDetail")
 	public String studentDetail(
 			@RequestParam("stud_num") String stud_num,
 			Model model){
-		
 		StudVO studVO = new StudVO();
 		try {
 			studVO = adminStudentManageService.selectStud(stud_num);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		String path="D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/admin_student_images/";
+		path += studVO.getStud_pic();
+		
+		System.out.println("학생 path : "+ path);
+		model.addAttribute("path",path);
 		model.addAttribute("student",studVO);
 		return "admin/studentDetail";
 	}

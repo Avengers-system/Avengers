@@ -4,28 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.text.DateFormat;
+ 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -34,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -118,6 +101,10 @@ public class AdminMypageController {
 		return url;
 	}
 	
+	
+	
+	
+	
 	@RequestMapping(value="/myInfoUpdate")
 	public String myInfoUpdate(
 			@RequestParam("file")MultipartFile myImage
@@ -161,7 +148,6 @@ public class AdminMypageController {
 	
 	
 	
-//	★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	/**
 	 * 개인일정 조회
 	 * @param principal
@@ -215,7 +201,6 @@ public class AdminMypageController {
 				message = "입력된 개인정보가 없습니다.";
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		session.setAttribute("message", message);
@@ -229,27 +214,27 @@ public class AdminMypageController {
 	 * @return string
 	 */
 	@RequestMapping("/myScheduleDetail")
-	public String myScheduleDetails(
-			@ModelAttribute(value="scheduleDetail")PerschdVO perschd,
-			HttpSession session,
-			Model model
+	@ResponseBody   //없으면 viewresolver로 빠짐 json필요할때 사용할것 
+	public PerschdVO myScheduleDetails(
+			
+			String perschd_title,
+			HttpSession session
+			,Model model
 			){
-		String url="/admin/mypage/myScheduleDetail";
+		System.out.println("?!?!?!?!?!?!:::::::"+perschd_title);
 		String message="";
-			//등록된 일정이 있다면, 등록된 일정을 보여준다.
-			//등록된 일정이 없다면, 새로운 세부화면을 보여준다.
-			if(perschd != null){
-				try {
-					perschd = myPageService.selectPerschd(perschd.getPerschd_num());
+		
+		PerschdVO perschd = new PerschdVO();
+			System.out.println(perschd.getPerschd_date());
+		if(perschd != null){
+					perschd = myPageService.selectPerschd_title(perschd_title);
 					message="해당날짜에 등록된 일정이 없습니다.";
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				session.setAttribute("message", message);
-				model.addAttribute("perschd",perschd);
+					session.setAttribute("message", message);
+				
 			}
-		return url;
+		
+		
+		return perschd;
 	}
 	
 	/**
@@ -291,24 +276,24 @@ public class AdminMypageController {
 		session.setAttribute("message",message);
 		return "redirect:/admin/mypage/mySchedule";
 	}
+	
 	/**
-	 * 일정 삭제
+	 * 일정 삭제★★★★★★★★★★★★★
 	 * @param perschd_num
 	 * @param session
 	 * @param model
 	 * @return String
 	 */
-	@RequestMapping(value="/myScheduleDelete",method = RequestMethod.POST)
-	public void myScheduleDelete(
-			@ModelAttribute(value="scheduleDetail")PerschdVO perschd,
-			HttpSession session
+	@RequestMapping(value="/myScheduleDelete")
+	public String myScheduleDelete(
+			HttpSession session,
+			@RequestParam()String perschd_num
 			){
-		System.out.println("perschd_num:!!!!!!!!!!:"+perschd.getPerschd_num());
 		String url="redirect:/admin/mypage/mySchedule";
 		String message="일정 삭제를 실패하였습니다.";
 		
 		try {
-			int success = myPageService.deletePerschd(perschd.getPerschd_num());
+			int success = myPageService.deletePerschd(Integer.parseInt(perschd_num));
 			if(success != -1){
 				message="일정 삭제를 성공하였습니다.";
 			}
@@ -317,34 +302,59 @@ public class AdminMypageController {
 			e.printStackTrace();
 		}
 		session.setAttribute("message", message);
+	
+	return "redirect:/admin/mypage/mySchedule";
 	}
+	
+	
+	 
 	/**
-	 * 일정수정
+	 * 일정수정 
 	 * @param perschd
 	 * @param session
 	 * @return String
 	 */
-	@RequestMapping(value="/myScheduleUpdate",method = RequestMethod.POST)
-	@ResponseBody
-	public void myScheduleUpdate(
-			@ModelAttribute(value="scheduleDetail")PerschdVO perschd,
-			HttpSession session
+	@RequestMapping("/myScheduleUpdate")
+	public String myScheduleUpdate(
+				@RequestParam("perschd_num")Integer perschd_num,
+				@RequestParam("perschd_cont")String perschd_cont,
+				@RequestParam("perschd_title")String perschd_title,
+				@RequestParam("perschd_start_date")String perschd_start_date,
+				@RequestParam("perschd_end_date")String perschd_end_date,
+//				PerschdVO perschd,
+				HttpSession session
 			){
+		
 		String message="";
-		try {
-			int success = myPageService.updatePerschd(perschd);
-			if(success != -1){
-				message="일정 수정을 성공하였습니다.";
-				System.out.println(message);
-			} else if(success == -1){
-				message="일정 수정을 실패하였습니다.";
-				System.out.println(message);
+		PerschdVO perschd = new PerschdVO();
+		perschd.setPerschd_num(perschd_num);
+		perschd.setPerschd_cont(perschd_cont);
+		perschd.setPerschd_title(perschd_title);
+		perschd.setPerschd_start_date(perschd_start_date);
+		perschd.setPerschd_end_date(perschd_end_date);
+		
+		System.out.println(perschd.toString());
+		
+			try {
+				int success = myPageService.updatePerschd(perschd);
+					
+					if(success != -1){
+							message="일정 수정을 성공하였습니다.";
+							System.out.println(message);
+					} else if(success == -1){
+							message="일정 수정을 실패하였습니다.";
+							System.out.println(message);
+					}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		session.setAttribute("message", message);
+		return "redirect:/admin/mypage/mySchedule";
+		
 	}
+	
+	
+
 }

@@ -17,7 +17,7 @@
 			<c:set var="myContextPath" value="${pageContext.request.contextPath}" />
 
 			<form name="insertPortalBoard" class="cmxform" id="signupForm"
-				action="${myContextPath}/admin/portalWrite" method="post"
+				action="${myContextPath}/student/helpDesk/portalStudWrite" method="post"
 				enctype="multipart/form-data">
 				
 				<div class="col-md-6">

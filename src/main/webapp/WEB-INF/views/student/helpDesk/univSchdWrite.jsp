@@ -10,7 +10,7 @@
 <h1>학사일정등록(풀캘린더)</h1>
 
 
-<form name="insertUnivSchdBoard" action="univSchdWrite">
+<form name="insertUnivSchdBoard" action="univStudSchdWrite">
 
 	게시판번호    :<input type="text" name="board_num" readonly value="${insertBoard.board_num}"><br>
 	제목    :<input type="text" name="board_title"><br>

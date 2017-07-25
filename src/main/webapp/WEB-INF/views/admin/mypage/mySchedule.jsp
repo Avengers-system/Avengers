@@ -3,8 +3,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.List"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+<title>일정관리</title>
+
+<meta name='description'content='Open source JavaScript jQuery plugin for a full-sized, drag &amp; drop event calendar'>
+<meta name='keywords'content='calendar, JavaScript, jQuery, events, drag and drop'>
+<meta name='author' content='Adam Shaw'>
+<meta name="msapplication-TileColor" content="#2b5797">
+<meta name="msapplication-TileImage" content="https://fullcalendar.io/mstile-144x144.png">
 
 
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src='${pageContext.request.contextPath}/resources/js/full_calender/jquery.min.js'></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+ 
+<link rel="apple-touch-icon" sizes="57x57"	href="https://fullcalendar.io/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="114x114"	href="https://fullcalendar.io/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="72x72"	href="https://fullcalendar.io/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="144x144"	href="https://fullcalendar.io/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="60x60"	href="https://fullcalendar.io/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="120x120"	href="https://fullcalendar.io/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="76x76"	href="https://fullcalendar.io/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="152x152"href="https://fullcalendar.io/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180"href="https://fullcalendar.io/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-160x160.png" sizes="160x160">
+<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-32x32.png" sizes="32x32">
 
 <style>
 ol, ul {
@@ -25,18 +58,6 @@ ol, ul {
 }
 </style>
 
-
-
-	<!-- Admin Header -->
-	<%@include file="../common/topCategory.jsp"%>
-	
-		<!-- Content -->
-		<div class="col-md-2" id="commonLeftSide">
-			<%@include file="../common/mainSideCategory.jsp" %>
-		</div>
-
-		<div class="col-md-10" id="commonRightSide">
-
 		<div id='body' class='section' >
 		<div>
 			<div class='two-col'>
@@ -55,7 +76,6 @@ ol, ul {
 <script>
  
 	$(function() {
-	
 		var id; 
 		
 		var todayDate = moment().startOf('day');
@@ -89,38 +109,55 @@ ol, ul {
 			         start:'<%=perschdVO.getPerschd_start_date() %>',
 			         end:'<%=perschdVO.getPerschd_end_date() %>',
 			         content:'<%=perschdVO.getPerschd_cont() %>',
-			    	 date:'<%=perschdVO.getPerschd_date() %>'
+			    	 time:'<%=perschdVO.getPerschd_date() %>'
 			     }
 			     
 			    		<%
+			    		System.out.println(perschdVO.getPerschd_end_date()+"!!!");
 							}
 			    		%> 
 			],
+			eventClick:function(event) {
+				
+				$.ajax({
+					url  : 'myScheduleDetail',
+					type : 'post',
+					data : "perschd_title="+event.title,
+					success : function(perschd){						
+					$('#perschd_num').val(perschd.perschd_num);
+					$('#perschd_writer').val(perschd.perschd_writer);
+					$('#perschd_title').val(perschd.perschd_title);
+					$('#perschd_start_date').val(perschd.perschd_start_date);
+					$('#perschd_end_date').val(perschd.perschd_end_date);
+					$('#perschd_cont').val(perschd.perschd_cont);
+// 					$('#perschd_date').val(perschd.perschd_date);
+					
+					},
+					error: function(){
+						alert("error");
+					}
+				})
+
+				//모달불러오기 
+				$(this).attr("data-toggle","modal");
+				$(this).attr("data-target","#editSchedule");
+            }
 	});
 		
-		
-		
-			//수정하는 모달창 열기		
-		$('.fc-event-container').click(function(){
-// 			$('#editSchdule').modal();
-
-// 			$(this).attr("href","updateEventForm?id=${event.id }");
-			$(this).attr("data-toggle","modal");
-			$(this).attr("data-target","#editSchedule");
+			
 		})
+ 
 		
-	});
-
+	function deleteSchd(){
+		myForm.method="post";
+		myForm.action="myScheduleDelete";
+		myForm.submit();
+	}
+		
 	</script>
 
 
-
-	
-
-<!-- 	<a href="modalTest"><button>일정등록</button></a> -->
-
-
-<!-- 수정용모달창 -->
+<!-- 상세보기&수정 모달 -->
 
 <div class="modal fade" id="editSchedule">
       <div class="modal-dialog">
@@ -129,53 +166,52 @@ ol, ul {
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                </button>
-               <h4 class="modal-title">Edit schedule</h4>
+               <h4 class="modal-title">일정 상세보기</h4>
             </div>
             <div class="modal-body">
             	<div class="row"> 
 				            <div class="col-md-12">
 				            <div class="col-md-8 col-md-offset-2">
-			            	<form action="updateEvent?id=${event.perschd_num}" method="POST">
+			            	<form action="myScheduleUpdate" method="POST" name="myForm" >
+			            	
 			            	<ul>
-									<input type="hidden" class="form-control" name="perschd_num" value="${event.perschd_num}" >
+									<input id="perschd_num" type="hidden" class="form-control" name="perschd_num" value="" >
+									<input id="perschd_writer" type="hidden"  name="perschd_writer" value="" class="form-control" >
 			            		<li>
 				            		<label class='control-label'>title</label>
-									<input type="text" class="form-control" name="perschd_title" value="${event.perschd_title}" >
+									<input id="perschd_title" type="text" class="form-control" name="perschd_title" value="" >
 			            		</li>
 			            		<li>
 				            		<label class='control-label'>start date</label>
-									<input type="date"  name="perschd_start_date" value="${event.perschd_start_date}" class="form-control" >
-			            		</li>
-			            		<li>
-				            		<label class='control-label'>start date</label>
-									<input type="date"  name="perschd_writer" value="${event.perschd_writer}" class="form-control" >
+									<input id="perschd_start_date" type="text"  name="perschd_start_date" value="" class="form-control" >
 			            		</li>
 			            		<li>
 				            		<label class='control-label'>end date</label>
-									<input type="date"  name="perschd_end_date" value="${event.perschd_end_date}" class="form-control">
+									<input  id="perschd_end_date" type="text"  name="perschd_end_date" value="" class="form-control">
 			            		</li>
 			            		<li>
 				            		<label class='control-label'>content</label>
-									<input type="text" name="perschd_cont" value="${event.perschd_cont}" class="form-control" >
+									<input id="perschd_cont" type="text" name="perschd_cont" value="" class="form-control" >
 			            		</li>
-			            		<li>
-				            		<label class='control-label'>date</label>
-									<input type="text" name="perschd_date" value="${event.perschd_date}" class="form-control" >
-			            		</li>
-			            		 
+<!-- 			            		<li> -->
+<!-- 				            		<label class='control-label'>date</label> -->
+<!-- 									<input id="perschd_date" type="text" name="perschd_date" value="" class="form-control" > -->
+<!-- 			            		</li> -->
 							</ul>
 							
 			            </div>
-			          
-			          <!-- footer -->  
-			     <div class="col-md-12">  
-			            <div class="modal-footer">
-			            <div class="col-md-8 col-md-offset-1">
-			               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			               <input type="submit" class="btn btn-primary">
-			            </div>
-			            </div>
-	            </div>
+			             
+			             	<!-- button -->
+							     <div class="col-md-12">  
+							            <div class="modal-footer">
+							            <div class="col-md-8 col-md-offset-1">
+							               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<%-- 							               <button type="button" onclick="location.href='myScheduleDelete?perschd_num=${perschd.perschd_num}" class="btn btn-default" >삭제</button> --%>
+							               <input type="submit" class="btn btn-primary">
+							               <input type="button" value="삭제" onclick="deleteSchd()"/>
+							            </div>
+							            </div>
+					            </div>
 			            </form>
          </div>
          
@@ -187,17 +223,13 @@ ol, ul {
    </div>
    <!-- /.modal -->
    </div>
-   
-   
  </div>
  
+  
+  
  
- 
- 
- 
-   
- 
-
+  
+  
 <!-- 추가모달창 -->
 
 <div class="modal fade" id="addSchedule">
@@ -234,7 +266,6 @@ ol, ul {
 				            		<label class='control-label'>content</label>
 									<input type="text" class="form-control" name="PERSCHD_CONT"   >
 			            		</li>
-			            		 
 							</ul>
 							
 			            </div>
@@ -259,4 +290,3 @@ ol, ul {
    </div>
    <!-- /.modal -->
    </div>
-   

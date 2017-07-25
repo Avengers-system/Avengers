@@ -1,5 +1,7 @@
 package com.avengers.db.dto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import oracle.net.aso.s;
@@ -11,7 +13,7 @@ public class CommandStudVO {
 	private String stud_num;//학생 고유번호
 	private String stud_nm;//이름
 	private String stud_eng_nm; //영문이름
-	private Date stud_bir;//생년월일
+	private String stud_bir;//생년월일
 	private String stud_email;//이메일
 	private String stud_pw;//비밀번호
 	private String stud_grd;//현재학년
@@ -68,14 +70,13 @@ public class CommandStudVO {
 	}
 
 
-
-	public Date getStud_bir() {
+	public String getStud_bir() {
 		return stud_bir;
 	}
 
 
 
-	public void setStud_bir(Date stud_bir) {
+	public void setStud_bir(String stud_bir) {
 		this.stud_bir = stud_bir;
 	}
 
@@ -213,13 +214,13 @@ public class CommandStudVO {
 
 
 
-	public String getSutd_addr() {
+	public String getStud_addr() {
 		return stud_addr;
 	}
 
 
 
-	public void setSutd_addr(String stud_addr) {
+	public void setStud_addr(String stud_addr) {
 		this.stud_addr = stud_addr;
 	}
 
@@ -309,11 +310,17 @@ public class CommandStudVO {
 
 	public StudVO toStudVO(){
 		StudVO studVO = new StudVO();
-		studVO.setStd_email(stud_email);
+		studVO.setStud_email(stud_email);
 		studVO.setStud_act_num(stud_act_num);
 		studVO.setStud_ah(stud_ah);
 		studVO.setStud_bank(stud_bank);
-		studVO.setStud_bir(stud_bir);
+		try {
+			Date stud_bir_date=new SimpleDateFormat("yyyy-MM-dd").parse(stud_bir);
+			studVO.setStud_bir(stud_bir_date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+//		studVO.setStud_bir(stud_bir);
 		studVO.setStud_dept(stud_dept);
 		studVO.setStud_eng_nm(stud_eng_nm);
 		studVO.setStud_gen(stud_gen);

@@ -48,22 +48,26 @@
 </script>
 
 
+<!-- <div class="col-md-2" id="commonLeftSide"> -->
+
+
+<!-- </div> -->
 
 <div class="col-md-10" id="commonRightSide" style="margin-left: 0px; margin-right: 0px; float: left;" >
 	<div class="col-md-12">
 		<div class="panel">
 			<div class="panel-heading">
-				<h3>QNA</h3>
+				<h3>교수님 FAQ</h3>
 			</div>
 			<div class="panel-body">
 				<div class="responsive-table">
 					<div class="row">
 
 						<form
-							action="<%=request.getContextPath()%>/admin/qnaSearch?board_title=${qnaSearch.board_title}">
+							action="<%=request.getContextPath()%>/admin/faqProfSearch?board_title=${faqProfSearch.board_title}">
 							<div style="text-align: right; margin-right: 28px; margin-top:13px; margin-bottom: -20px; ">
 							
-							<a href="<%=request.getContextPath()%>/admin/qnaWriteForm">글쓰기</a></div>
+							<a href="<%=request.getContextPath()%>/admin/faqProfWriteForm">글쓰기</a></div>
 							<div class="col-sm-6" style="float: left; width:225px;  ">
 								<div id="datatables-example_filter" class="dataTables_filter" style="width: 20%;">
 
@@ -137,20 +141,20 @@
 									<!-- 테이블헤더 -->
 
 									<c:choose>
-										<c:when test="${not empty qnaNoticeList}">
-											<c:forEach var="qnaNoticeList"
-												items="${qnaNoticeList }">
+										<c:when test="${not empty faqProfNoticeList}">
+											<c:forEach var="faqProfNoticeList"
+												items="${faqProfNoticeList }">
 												<tbody>
 													<tr role="row" class="odd">
-														<td>${qnaNoticeList.board_num}</td>
+														<td>${faqProfNoticeList.board_num}</td>
 														<td><a
-															href="${pageContext.request.contextPath}/admin/qnaDetail?board_num=${qnaNoticeList.board_num}&board_count=${qnaNoticeList.board_count}&pageNo=${pageVO.pageNo}">
-															${qnaNoticeList.board_title}
+															href="${pageContext.request.contextPath}/admin/faqProfDetail?board_num=${faqProfNoticeList.board_num}&board_count=${faqProfNoticeList.board_count}&pageNo=${pageVO.pageNo}">
+															${faqProfNoticeList.board_title}
 														</a></td>
-														<td>${qnaNoticeList.board_date}</td>
-														<td>${qnaNoticeList.board_writer}</td>
-														<td>${qnaNoticeList.board_bc}</td>
-														<td>${qnaNoticeList.board_count}</td>
+														<td>${faqProfNoticeList.board_date}</td>
+														<td>${faqProfNoticeList.board_writer}</td>
+														<td>${faqProfNoticeList.board_bc}</td>
+														<td>${faqProfNoticeList.board_count}</td>
 													</tr>
 												</tbody>
 											</c:forEach>

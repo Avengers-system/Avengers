@@ -3,9 +3,7 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<!-- Admin Header -->
-<%@include file="../common/topCategory.jsp"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide" style="width: 14%; text-align: center;">
@@ -60,10 +58,13 @@
 					<div class="row">
 
 						<form
-							action="<%=request.getContextPath()%>/admin/deptSearch?board_title=${deptSearch.board_title}">
-							<div style="text-align: right; margin-right: 28px; margin-top:13px; margin-bottom: -20px; ">
+							action="<%=request.getContextPath()%>/student/helpDesk/deptStudSearch?board_title=${deptSearch.board_title}">
 							
-							<a href="<%=request.getContextPath()%>/admin/deptWriteForm">글쓰기</a></div>
+						<sec:authorize access="hasRole('ROLE_WSS')">
+							<div style="text-align: right; margin-right: 28px; margin-top:13px; margin-bottom: -20px; ">
+							<a href="<%=request.getContextPath()%>/student/helpDesk/deptStudWriteForm">글쓰기</a></div>
+						</sec:authorize>
+							
 							<div class="col-sm-6" style="float: left; width:225px;  ">
 								<div id="datatables-example_filter" class="dataTables_filter" style="width: 20%;">
 
@@ -84,9 +85,9 @@
 									</select>
 								</div>
 							</div>
+					</form>
 					</div>
 
-					</form>
 
 					<form name="frm">
 						<input type="hidden" name="pageNo" />
@@ -97,7 +98,7 @@
 						<input type="hidden" name="searchValue"
 							value="${pageVO.searchValue }" />
 						<!-- //검색어 -->
-
+					</form>
 						<!-- 테이블시작 -->
 						<div class="row">
 							<div class="col-sm-12">
@@ -147,7 +148,7 @@
 													<tr role="row" class="odd">
 														<td>${deptNoticeList.board_num}</td>
 														<td><a
-															href="${pageContext.request.contextPath}/admin/deptDetail?board_num=${deptNoticeList.board_num}&board_count=${deptNoticeList.board_count}&pageNo=${pageVO.pageNo}">
+															href="${pageContext.request.contextPath}/student/helpDesk/deptStudDetail?board_num=${deptNoticeList.board_num}&board_count=${deptNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 															${deptNoticeList.board_title}
 														</a></td>
 														<td>${deptNoticeList.board_date}</td>
@@ -248,11 +249,6 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-
 
 
 
