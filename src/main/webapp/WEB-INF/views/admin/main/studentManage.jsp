@@ -109,56 +109,63 @@
 			 
 			 </style>
 
-<!-- Admin Header -->
-<%-- <%@include file="../common/topCategory.jsp"%> --%>
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide">
-	<!-- 테스트용 사이드 -->
-<%@include file="../common/admin_side.jsp" %>   
-</div>
-<div class="col-md-10" id="commonRightSide">
+
+<script>
+//검색하기
+		function fn_search() {
+			if (jQuery("#searchS").val() == "") {
+				return;
+			} else {
+				jQuery("input[name=searchFiled]").val(jQuery("#searchS").val());
+			}
+			var searchValue = jQuery("#searchI").val();
+			jQuery("input[name=searchValue]").val(searchValue);
+		
+			jQuery("input[name=pageNo]").val("1");
+			jQuery("form[name=frm]").attr("method", "post");
+			jQuery("form[name=frm]").attr("action", "").submit();
+		}
+
+</script>
+
+
+
 
 
 
 <div class="col-md-10 col-md-offset-1">
                   <div class="panel">
                     <div class="panel-heading"><h3>학생목록</h3></div>
+                    
+                    <form name="frm">
+                    <input type="hidden" name="pageNo" /><!-- //페이지 번호 -->
+                    <input type="hidden" name="searchFiled" value="${pageVO.searchFiled }" /><!-- //검색조건 -->
+                    <input type="hidden" name="searchValue" value="${pageVO.searchValue }" /><!-- //검색어 -->
+                    
                     <div class="panel-body">
                       <div class="responsive-table">
                       <div id="datatables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                       <div class="row"><div class="col-sm-6">
                       		<div class="dataTables_length" id="datatables-example_length">
-			                      <label>Show 
-				                      <select name="datatables-example_length" aria-controls="datatables-example" class="form-control input-sm">
-					                      <option value="10">10</option>
-					                      <option value="25">25</option>
-					                      <option value="50">50</option>
-					                      <option value="100">100</option>
-				                      </select>
-			                       		entries
-			                      </label>
 		                    </div>
 		                       </div>
 		                       
 		                       <div class="col-sm-6">
 		                       
-				                       <div id="datatables-example_filter" class="dataTables_filter">
-				                       
-						                       <!-- 셀렉트 -->
-						                       <select name="key">
-						                       		<option value="stud_nm">이름</option>
-						                       		<option value="stud_dept">학과</option>
-						                       		<option value="stud_schreg_code">학적상태</option>
-						                       </select>
-						                       
-						                       
-						                       <input type="search" style="margin-bottom:7px;" class="form-control input-sm" placeholder="" aria-controls="datatables-example"> 
-						                       
+				                       <div id="search">
+									        <select id="searchS">
+									            <option value="stud_nm">이름</option>
+									            <option value="stud_dept">학과</option>
+									        </select>
+						
+						                       <input name="value" id="searchI" type="search" style="margin-bottom:7px;" class="form-control input-sm" aria-controls="datatables-example"> 
+						                       <button value="SEARCH" id ="searchProf" style="margin-bottom:7px;" class="btn btn-primary" onclick="fn_search();">검색</button>
 						                       <!-- 검색버튼  -->
-						                       <button id ="searchProf" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='#'">검색</button>
+<%-- 						                       <button id ="searchProf" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/searchStudent'">검색</button> --%>
 						                       <!-- 추가버튼  -->
 						                       
 						                       <button style="margin-bottom:7px;" id ="addStud" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/studentInsert'">학생추가하기</button>
+				                       			    </div>
 				                       </div>
 		                       </div>
                        
@@ -212,7 +219,7 @@
                         
                       <tr role="row" class="odd">
                           <td class="sorting_1">${student.stud_num }</td>
-                          <td ><a href="${pageContext.request.contextPath}/admin/studentDetail?stud_num=${student.stud_num}">${student.stud_num}</a></td>
+                          <td ><a href="${pageContext.request.contextPath}/admin/studentDetail?stud_num=${student.stud_num}">${student.stud_nm}</a></td>
                           <td >${student.stud_schreg_code }</td>
                           <td >${student.stud_dept }</td>
                           <td >${student.stud_grd }</td>
@@ -243,19 +250,67 @@
 							<div class="col-md-6 col-md-offset-3">
 									<div class="dataTables_paginate paging_simple_numbers" id="datatables-example_paginate">
 											<ul class="pagination">
-												<li class="paginate_button previous disabled" id="datatables-example_previous"><a href="#" aria-controls="datatables-example" data-dt-idx="0" tabindex="0">Previous</a></li>
-												<li class="paginate_button active"><a href="#" aria-controls="datatables-example" data-dt-idx="1" tabindex="0">1</a></li>
-												<li class="paginate_button next disabled" id="datatables-example_next"><a href="#" aria-controls="datatables-example" data-dt-idx="2" tabindex="0">Next</a></li>
-											</ul>
+												<c:if test="${pageVO.pageNo != 0}">
+												        <c:if test="${pageVO.pageNo > pageVO.pageBlock}">
+												            <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.firstPageNo})" style="text-decoration: none;">[첫 페이지]</a></li>
+												       </c:if>
+														<c:if test="${pageVO.pageNo != 1}">
+														    <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.prevPageNo})" style="text-decoration: none;">[이전]</a></li>
+														</c:if>
+															<c:forEach var="i" begin="${pageVO.startPageNo}" end="${pageVO.endPageNo}" step="1">
+																      <c:choose>
+																             <c:when test="${i eq pageVO.pageNo}">
+																             <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${i})" style="text-decoration: none;">
+																               <font style="font-weight: bold;">${i}</font>
+																               </a>
+																              </li>
+																              </c:when>
+																              <c:otherwise>
+																                	<li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${i})" style="text-decoration: none;">${i}</a></li>
+																			   </c:otherwise>
+															          </c:choose>
+																            </c:forEach>
+																		<c:if test="${pageVO.pageNo != pageVO.finalPageNo }">
+																			             <li class="paginate_button previous disabled"><li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.nextPageNo})" style="text-decoration: none;">[다음]</a></li>
+																			        </c:if>
+																			        <c:if test="${pageVO.endPageNo < pageVO.finalPageNo }">
+																			             <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.finalPageNo})" style="text-decoration: none;">[마지막 페이지]</a></li>
+																			        </c:if>
+																			    </c:if>											</ul>
+											</div>
 									</div>
-							</div>
-						
-						</div>
-						</div>
-                      </div>
-                  </div>
+								</div>
+								</div>
+		                      </div>
+		                  </div>
+						</form>
                 </div>
               </div>
-
  </div>
  
+
+ 
+ 
+ 
+ <script type="text/javascript">
+	//페이지 이동
+	function fn_movePage(val) {
+		jQuery("input[name=pageNo]").val(val);
+		jQuery("form[name=frm]").attr("method", "post");
+		jQuery("form[name=frm]").attr("action", "").submit();
+	}
+	//검색 버튼
+	function fn_search() {
+		if (jQuery("#searchS").val() == "") {
+			return;
+		} else {
+			jQuery("input[name=searchFiled]").val(jQuery("#searchS").val());
+		}
+		var searchValue = jQuery("#searchI").val();
+		jQuery("input[name=searchValue]").val(searchValue);
+
+		jQuery("input[name=pageNo]").val("1");
+		jQuery("form[name=frm]").attr("method", "post");
+		jQuery("form[name=frm]").attr("action", "").submit();
+	}
+</script> 

@@ -62,17 +62,7 @@ div.input-group>span.input-group-addon{
 }
 
 </style>
-
-
-<!-- Admin Header -->
-<%-- <%@include file="common/topCategory.jsp"%> --%>
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide">
-<%-- <%@include file="common/mainSideCategory.jsp" %>     --%>
-</div>
-<div class="col-md-10" id="commonRightSide">
-
-
+ 
 		<div class="col-md-12">
 			<legend>상세정보</legend>
 	
@@ -214,4 +204,3 @@ div.input-group>span.input-group-addon{
 	</form>
 		
 	</div>
-</div>

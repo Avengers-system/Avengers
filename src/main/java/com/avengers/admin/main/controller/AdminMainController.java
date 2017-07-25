@@ -3,12 +3,16 @@ package com.avengers.admin.main.controller;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+
 
 
 import com.avengers.admin.main.service.AdminMainService;
@@ -39,6 +43,10 @@ public class AdminMainController {
 	   ArrayList<PerschdVO> perschdList = null;//개인일정 가져오기
 	   ArrayList<Map<String, String>> scrapplList = null; //미처리된 장학신청정보 가져오기
 	   ArrayList<Map<String, Object>> prfsOfDeptList = null; //학과당 교수의 가져오기
+	   List<HashMap<String, String>> selectLeaveDeptList = null;//학과당 휴학생의 수 가져오기
+	   List<HashMap<String, String>> getDropOffDeptList = null;//학과당 자퇴학생의 수 가져오기
+	   List<HashMap<String, String>> getReinstatementDeptList = null;//복학한 학생의 수와 학과명
+
 	   try {
 			adminVO = adminMainService.selectAdminInfo(adminId);
 			studStatus = adminMainService.getStudStatus();
@@ -47,6 +55,10 @@ public class AdminMainController {
 			perschdList = adminMainService.getPerschdList(adminId);
 			scrapplList = adminMainService.getScrapplList();
 			prfsOfDeptList = adminMainService.getPrfsOfDeptList();
+			selectLeaveDeptList = adminMainService.getLeaveDeptList();
+			getDropOffDeptList = adminMainService.getDropOffDeptList();
+			getReinstatementDeptList = adminMainService.getReinstatementDeptList();
+			System.out.println(getReinstatementDeptList.size()+"!!!!!!!!!!!!!!!!!!!!!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -57,6 +69,9 @@ public class AdminMainController {
 	   model.addAttribute("perschdList", perschdList);
 	   model.addAttribute("scrapplList", scrapplList);
 	   model.addAttribute("prfsOfDeptList", prfsOfDeptList);
+	   model.addAttribute("selectLeaveDeptList",selectLeaveDeptList);
+	   model.addAttribute("getDropOffDeptList",getDropOffDeptList);
+	   model.addAttribute("getReinstatementDeptList",getReinstatementDeptList);
 	   return view;
    }
    @RequestMapping("/admin/myPage")
