@@ -22,9 +22,13 @@ div.sub-left-menu scroll>ul li>a.tree-toggle nav-header {
 
 			<div style="margin-top: 20px; border: 20px F0F3F4 dotted;">
 				<a
-					href="${pageContext.request.contextPath}/admin/univSchdNoticeList">
+					href="${pageContext.request.contextPath}/admin/univSchd/univSchdedule">
 					학사일정(풀캘린더)</a>
 			</div>
+			
+			
+			
+			
 			
 			<div style="margin-top: 20px; border: 20px F0F3F4 dotted;">
 				<a href="${pageContext.request.contextPath}/admin/univNoticeList">
