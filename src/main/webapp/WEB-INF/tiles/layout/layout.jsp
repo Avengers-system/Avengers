@@ -30,6 +30,7 @@
 
 <!-- start: Css -->
 	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/asset/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/css/morris.css">
 
 <!-- plugins -->
 	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/asset/css/plugins/font-awesome.min.css" />

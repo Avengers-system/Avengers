@@ -2,7 +2,11 @@ package com.avengers.admin.studentManage.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+import com.avengers.db.dto.BoardVO;
+import com.avengers.db.dto.EmpVO;
 import com.avengers.db.dto.StudVO;
 
 public interface AdminStudentManageDao {
@@ -14,4 +18,18 @@ public interface AdminStudentManageDao {
 	public ArrayList<StudVO> selectStudList() throws SQLException;//학생 전체목록
 	public String selectStudNum()throws SQLException; //학생번호(최근)
 	public int insertSecurity(StudVO studVO); //시큐리티등록
+	public ArrayList<StudVO> selectStudbyKeyword(String keyword);
+
+
+
+
+	//페이징처리
+	
+    public List<StudVO> getStudList(StudVO studVO);
+    public int getTotalCount() throws SQLException;
+	public Object selectPagingList(String queryId, Object params);
+	// 학생 게시판글 전체목록 읽어오기
+	// 검색조건을 추가하여 검색가능
+	
+
 }
