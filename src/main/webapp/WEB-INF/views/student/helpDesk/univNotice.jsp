@@ -5,101 +5,116 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<script type="text/javascript">
+	//페이지 이동
+	function fn_movePage(val) {
+		jQuery("input[name=pageNo]").val(val);
+		jQuery("form[name=frm]").attr("method", "post");
+		jQuery("form[name=frm]").attr("action", "").submit();
+	}
+	//검색 버튼
+	function fn_search() {
+		if (jQuery("#searchS").val() == "") {
+			return;
+		} else {
+			jQuery("input[name=searchFiled]").val(jQuery("#searchS").val());
+		}
+		var searchValue = jQuery("#searchI").val();
+		jQuery("input[name=searchValue]").val(searchValue);
+
+		jQuery("input[name=pageNo]").val("1");
+		jQuery("form[name=frm]").attr("method", "post");
+		jQuery("form[name=frm]").attr("action", "").submit();
+	}
+</script>
 
 
 
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide"
-	style="width: 14%; text-align: center;">
-	<!-- 테스트용 사이드 -->
-	<%@include file="../helpDesk/helpDesk_leftSide.jsp"%>
+
+
+
+
+<!-- 템플릿 페이지 -->
+
+<!-- Counsel Content -->
+<!-- Counsel Left Side -->
+<%@include file="../common/studHelpDeskSide.jsp"%>
+<!--  Counsel Right Side -->
+<div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading"
+			style="background-color: #2196F3; margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
+
+				학교공지사항</h4>
+		</div>
+		<div class="panel-body" style="height: 580px; text-align: center;">
+
+	
+			
+			
+			</div>
+	</div>
 </div>
-<div class="col-md-10" id="commonRightSide">
 
 
-	<!-- jQuery-->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
-	<!-- Bootstrap -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<!-- User Custom -->
-	<script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
-
-	<script type="text/javascript">
-		//페이지 이동
-		function fn_movePage(val) {
-			jQuery("input[name=pageNo]").val(val);
-			jQuery("form[name=frm]").attr("method", "post");
-			jQuery("form[name=frm]").attr("action", "").submit();
-		}
-		//검색 버튼
-		function fn_search() {
-			if (jQuery("#searchS").val() == "") {
-				return;
-			} else {
-				jQuery("input[name=searchFiled]").val(jQuery("#searchS").val());
-			}
-			var searchValue = jQuery("#searchI").val();
-			jQuery("input[name=searchValue]").val(searchValue);
-
-			jQuery("input[name=pageNo]").val("1");
-			jQuery("form[name=frm]").attr("method", "post");
-			jQuery("form[name=frm]").attr("action", "").submit();
-		}
-	</script>
 
 
-	<div class="col-md-10" id="commonRightSide"
-		style="margin-left: 0px; margin-right: 0px; float: left;">
-		<div class="col-md-12">
-			<div class="panel">
-				<div class="panel-heading">
-					<h3>학교소식</h3>
-				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
 				<div class="panel-body">
 					<div class="responsive-table">
-						<div class="row">
+					<div class="row">
 
-							<form
-								action="<%=request.getContextPath()%>/student/helpDesk/univStudSearch?board_title=${univSearch.board_title}">
-								<sec:authorize access="hasRole('ROLE_WSS')">
-									<div
-										style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
-										<a
-											href="<%=request.getContextPath()%>/student/helpDesk/univStudWriteForm">글쓰기</a>
-									</div>
-								</sec:authorize>
-								<div class="col-sm-6" style="float: left; width: 225px;">
-									<div id="datatables-example_filter" class="dataTables_filter"
-										style="width: 20%;">
-
-										<label><input type="search"
-											class="form-control input-sm" placeholder="글 제목을 입력해주세요"
-											aria-controls="datatables-example" name="board_title"
-											style="width: 200px; text-align: center;"> </label>
-										<!-- 검색 -->
-									</div>
-
+						<form action="<%=request.getContextPath()%>/student/helpDesk/univStudSearch?board_title=${univSearch.board_title}">
+							<sec:authorize access="hasRole('ROLE_WSS')">
+								<div
+									style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
+									<a
+										href="<%=request.getContextPath()%>/student/helpDesk/univStudWriteForm">글쓰기</a>
 								</div>
-								<div style="margin-bottom: -6px; margin-top: 5px;"
-									class="dataTables_paginate paging_simple_numbers"
-									id="datatables-example_paginate" style="text-align: center;">
-									<input type="submit" value="검색" style="margin-bottom: -6px;">
-								</div>
-								<div class="col-sm-6"
-									style="width: 50px; height: 0px; flaot: right;">
-									<div class="dataTables_length" id="datatables-example_length"
-										style="margin-bottom: 0px;">
+							</sec:authorize>
+							<div class="col-sm-6" style="float: left; width: 225px;">
+								<div id="datatables-example_filter" class="dataTables_filter"
+									style="width: 20%;">
 
-										</select>
-									</div>
+									<label><input type="search"
+										class="form-control input-sm" placeholder="글 제목을 입력해주세요"
+										aria-controls="datatables-example" name="board_title"
+										style="width: 200px; text-align: center;"> </label>
+									<!-- 검색 -->
 								</div>
-						</div>
 
+							</div>
+							<div style="margin-bottom: -6px; margin-top: 5px;"
+								class="dataTables_paginate paging_simple_numbers"
+								id="datatables-example_paginate" style="text-align: center;">
+								<input type="submit" value="검색" style="margin-bottom: -6px;">
+							</div>
+							<div class="col-sm-6"
+								style="width: 50px; height: 0px; flaot: right;">
+								<div class="dataTables_length" id="datatables-example_length"
+									style="margin-bottom: 0px;"></div>
+							</div>
 						</form>
+					</div>
 
-						<form name="frm">
+
+					<form name="frm">
 							<input type="hidden" name="pageNo" />
 							<!-- //페이지 번호 -->
 							<input type="hidden" name="searchFiled"
@@ -108,7 +123,6 @@
 							<input type="hidden" name="searchValue"
 								value="${pageVO.searchValue }" />
 							<!-- //검색어 -->
-
 							<!-- 테이블시작 -->
 							<div class="row">
 								<div class="col-sm-12">
@@ -247,16 +261,9 @@
 					</form>
 
 					</c:when>
-					<c:otherwise>
-						<tr>
-							<td colspan="5" style="text-align: center;">해당 내용이 없습니다.</td>
-						</tr>
-					</c:otherwise>
+
 
 
 					</c:choose>
 
 				</div>
-			</div>
-		</div>
-	</div>

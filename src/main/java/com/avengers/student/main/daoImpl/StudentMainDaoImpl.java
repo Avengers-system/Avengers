@@ -2,12 +2,15 @@ package com.avengers.student.main.daoImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.avengers.db.dto.AdmissionApplicationVO;
 import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.CnsVO;
 import com.avengers.db.dto.DeptVO;
@@ -127,6 +130,72 @@ public class StudentMainDaoImpl implements StudentMainDao{
 			throws SQLException {
 		ArrayList<Map<String, String>> classList = (ArrayList<Map<String, String>>) sqlSession.selectList("lct.selectTlList", stud_num);
 		return classList;
+	}
+
+	@Override
+	public List<HashMap<String, String>> selectCartList(
+			AdmissionApplicationVO admissionVO) throws SQLException {
+		List<HashMap<String, String>> selectCartList = (List<HashMap<String, String>>)sqlSession.selectList("admission.selectCartList",admissionVO);
+		return selectCartList;
+	}
+
+	@Override
+	public List<HashMap<String, String>> selectLctList(
+			AdmissionApplicationVO admissionVO) throws SQLException {
+		List<HashMap<String, String>> selectLctList = (List<HashMap<String, String>>)sqlSession.selectList("admission.selectLctList",admissionVO);
+		return selectLctList;
+	}
+
+	@Override
+	public List<HashMap<String, String>> selectTlList(
+			AdmissionApplicationVO admissionVO) throws SQLException {
+		List<HashMap<String, String>> selectTlList = (List<HashMap<String, String>>)sqlSession.selectList("admission.selectTlList",admissionVO);
+		return selectTlList;
+	}
+
+	@Override
+	public StudVO selectStudMaxCrd(String stud_num) throws SQLException {
+		StudVO selectStudMaxCrd = (StudVO)sqlSession.selectOne("student.getStudentInfo",stud_num);
+		DeptVO deptVO = (DeptVO)sqlSession.selectOne("dept.getDept",selectStudMaxCrd.getStud_dept());
+		selectStudMaxCrd.setStud_dept(deptVO.getDept_nm());
+		return selectStudMaxCrd;
+	}
+
+	@Override
+	public ArrayList<TlVO> selectTl_LCTList(TlVO tlVO) throws SQLException {
+		return (ArrayList<TlVO>)sqlSession.selectList("tl.slectTl_lctList", tlVO);
+	}
+
+	@Override
+	public LctVO selectLct(String tl_lct) throws SQLException {
+		return (LctVO)sqlSession.selectOne("lct.selectLct",tl_lct);
+	}
+
+	@Override
+	public String selectSchedule(String stud_num) throws SQLException {
+		return (String)sqlSession.selectOne("perschd.studentSchedule",stud_num);
+	}
+
+	@Override
+	public ArrayList<BoardVO> getStudMainSchoolNotice() throws SQLException {
+		return (ArrayList<BoardVO>)sqlSession.selectList("board.getStudentMainSchoolNotice");
+	}
+
+	@Override
+	public ArrayList<BoardVO> getStudMainDepartNotice(String stud_dept)
+			throws SQLException {
+		return (ArrayList<BoardVO>)sqlSession.selectList("board.getStudentMainDepartment",stud_dept);
+		
+	}
+
+	@Override
+	public ArrayList<BoardVO> getStudMainPotalNotice() throws SQLException {
+		return (ArrayList<BoardVO>)sqlSession.selectList("board.getStudentMainPotalNotice");
+	}
+
+	@Override
+	public String getDeptNum(String stud_num) throws SQLException {
+		return (String)sqlSession.selectOne("student.selectStudentDeptNum",stud_num);
 	}
 
 

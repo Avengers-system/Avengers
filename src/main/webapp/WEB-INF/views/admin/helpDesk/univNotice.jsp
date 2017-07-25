@@ -4,25 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!-- Admin Header -->
-<%@include file="../common/topCategory.jsp"%>
-
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide" style="width: 14%; text-align: center;">
-   <!-- 테스트용 사이드 -->
-<%@include file="../helpDesk/helpDesk_leftSide.jsp"%>
-</div>
-<div class="col-md-10" id="commonRightSide">
 
 
-<!-- jQuery-->
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
-<!-- Bootstrap -->
-<script
-	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<!-- User Custom -->
-<script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
 
 <script type="text/javascript">
 	//페이지 이동
@@ -58,8 +41,7 @@
 				<div class="responsive-table">
 					<div class="row">
 
-						<form
-							action="<%=request.getContextPath()%>/admin/univSearch?board_title=${univSearch.board_title}">
+						<form action="<%=request.getContextPath()%>/admin/univSearch?board_title=${univSearch.board_title}">
 							<div style="text-align: right; margin-right: 28px; margin-top:13px; margin-bottom: -20px; ">
 							
 							<a href="<%=request.getContextPath()%>/admin/univWriteForm">글쓰기</a></div>
@@ -81,12 +63,11 @@
 								style="width: 50px; height: 0px; flaot: right;">
 								<div class="dataTables_length" id="datatables-example_length" style="margin-bottom: 0px;">
 
-									</select>
 								</div>
 							</div>
-					</div>
 
-					</form>
+							</form>
+					</div>
 
 					<form name="frm">
 						<input type="hidden" name="pageNo" />

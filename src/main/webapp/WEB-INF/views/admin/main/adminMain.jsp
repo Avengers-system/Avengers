@@ -163,8 +163,6 @@ $(function() {
 		    		%> 
 		],
 	});
-	
-	
 });	
 $(document).ready(function() {
 	var totalStudent= ${studStatus.get(0) }+${studStatus.get(1) }+${studStatus.get(2) }+${studStatus.get(3) };
