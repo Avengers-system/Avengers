@@ -146,7 +146,7 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 
 
 		try {
-			univschdList = myPageService.selectPerschdList("univSchd");
+			univschdList = myPageService.selectPerschdList("UNIVSCHD");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
 			Date date1 = new Date();
 			Date date2 = new Date();
@@ -189,14 +189,14 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 	}
 
 
-	
+
 	/**
 	 * 학사일정 세부조회
 	 * @param perschd_num
 	 * @param model
 	 * @return string
 	 */
-	@RequestMapping("/univScheduleDetail")
+	@RequestMapping("/univSchd/univScheduleDetail")
 	@ResponseBody
 	public PerschdVO univSchedule(String perschd_title,
 			HttpSession session
@@ -212,35 +212,111 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		}
 		return univschd;
 	}
-	
-	
+
+
 	/**
 	 * ★일정 등록★
 	 * @param perschd
 	 * @param model
 	 * @return string
 	 */
-	@RequestMapping()
+	@RequestMapping("/univScheduleInsert")
 	public String myScheduleInsert(
 			PerschdVO univschd,
 			Principal who,
 			HttpSession session,
 			@RequestParam("PERSCHD_START_DATE")String perschd_start_date,
-			@RequestParam("PERSCHD_END_DATE")String perschd_end_Date,
+			@RequestParam("PERSCHD_END_DATE")String perschd_end_date,
 			@RequestParam("PERSCHD_TITLE")String perschd_title,
 			@RequestParam("PERSCHD_CONT")String perschd_cont
 			){
-		
-			String message="일정등록을 실패였습니다.";
-			
-			
-			
-			
-		return null;
+
+		String message="일정등록을 실패였습니다.";
+
+		univschd.setPerschd_writer("UNIVSCHD");
+		univschd.setPerschd_cont(perschd_cont);
+		univschd.setPerschd_start_date(perschd_start_date);
+		univschd.setPerschd_end_date(perschd_end_date);
+		univschd.setPerschd_title(perschd_title);
+
+		try {
+			int success = myPageService.insertPerschd(univschd);
+			if (success == 1) {
+				message="학사일정등록에 성공하였습니다.";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		session.setAttribute("message", message);
+
+		return "redirect:/admin/univSchd/univSchdedule";
 	}
-	
+	/**
+	 * 일정 삭제★★★★★★★★★★★★★
+	 * @param perschd_num
+	 * @param session
+	 * @param model
+	 * @return String
+	 */
+	@RequestMapping(value="/univSchd/univScheduleDelete")
+	public String univScheduleDelete(
+			HttpSession session,
+			@RequestParam()String perschd_num){
+		String url = "redirect:/admin/univSchd/univSchdedule";
+		String message = "일정삭제를 실패하였습니다.";
 
+		try {
+			int success = myPageService.deletePerschd(Integer.parseInt(perschd_num));
+			if (success!=-1) {
+				message="일정 삭제를 성공하였습니다.";
+			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		session.setAttribute("message", message);
 
+		return url;
+	}
+
+	/**
+	 * 일정수정 
+	 * @param perschd
+	 * @param session
+	 * @return String
+	 */
+	@RequestMapping("/univSchd/univScheduleUpdate")
+	public String univScheduleUpdate(
+			@RequestParam("perschd_num")Integer perschd_num,
+			@RequestParam("perschd_cont")String perschd_cont,
+			@RequestParam("perschd_title")String perschd_title,
+			@RequestParam("perschd_start_date")String perschd_start_date,
+			@RequestParam("perschd_end_date")String perschd_end_date,
+			//			PerschdVO perschd,
+			HttpSession session
+			){
+		String message="";
+		PerschdVO perschd = new PerschdVO();
+		perschd.setPerschd_num(perschd_num);
+		perschd.setPerschd_cont(perschd_cont);
+		perschd.setPerschd_title(perschd_title);
+		perschd.setPerschd_start_date(perschd_start_date);
+		perschd.setPerschd_end_date(perschd_end_date);
+
+		try {
+			int success = myPageService.updatePerschd(perschd);
+			if (success !=-1) {
+				message="일저정수정을 성공하였습니다";
+			}else if(success ==-1){
+				message="일정수정을 실패하였습니다.";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		session.setAttribute("message", message);
+		return "redirect:/admin/univSchd/univSchdedule";
+	}
 
 
 
@@ -1241,7 +1317,11 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		BoardVO boardVO = new BoardVO();
 		String bc_num = "PORTAL";
 		boardVO.setBoard_bc(bc_num);
-		boardVO.setBoard_title(board_title);
+		if(board_title==null){
+			boardVO.setBoard_title("");
+		}else{
+			boardVO.setBoard_title(board_title);
+		}
 
 		if(pageNo!=null && !pageNo.equals("")){
 			boardVO.setPageNo(Integer.parseInt(pageNo));

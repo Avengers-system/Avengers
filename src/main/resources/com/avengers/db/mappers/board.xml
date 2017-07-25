@@ -98,7 +98,9 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 	SELECT * FROM BOARD 
 	WHERE  1=1
 	AND BOARD_BC LIKE '%'||#{BOARD_BC}||'%'
+	<if test="BOARD_WRITER != null and BOARD_WRITER != ''">
 	AND BOARD_WRITER LIKE '%'||#{BOARD_WRITER}||'%'
+	</if>
 	<if test="BOARD_TITLE != null and BOARD_TITLE != ''">
 		 and BOARD_TITLE like '%' || #{BOARD_TITLE} || '%'
  	</if>
@@ -176,15 +178,15 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 	</select>
 	
 	<!-- 추가 -->
-	<select id="selectBoardCount" parameterType="com.avengers.db.dto.BoardVO" resultType="Integer">
+	<select id="selectBoardCount" parameterType="map" resultType="java.lang.Integer">
 		select count(*)
 		from board
 		where 1=1
 		AND BOARD_BC LIKE '%'||#{BOARD_BC}||'%'
-		<if test="board_title != null and board_title != ''">
-		 and board_title like '%' || #{board_title} || '%'
-		 </if>
 	</select>
+<!-- 		<if test="board_title != null and board_title != ''"> -->
+<!-- 		 and board_title like '%' || #{board_title} || '%' -->
+<!-- 		 </if> -->
 	
 	<update id="updateBoardCount" parameterType="map">
 		update board

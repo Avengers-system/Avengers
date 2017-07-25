@@ -165,9 +165,9 @@ ol, ul {
  
       
    function deleteSchd(){
-      myForm.method="post";
-      myForm.action="univScheduleDelete";
-      myForm.submit();
+	  univForm.method="post";
+      univForm.action="univScheduleDelete";
+      univForm.submit();
    }
       
    </script>
@@ -188,7 +188,7 @@ ol, ul {
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-8 col-md-offset-2">
-							<form action="univSchdeduleUpdate" method="POST" name="univForm">
+							<form action="univScheduleUpdate" method="POST" name="univForm">
 
 								<ul>
 									<input id="perschd_num" type="hidden" class="form-control"
@@ -255,7 +255,7 @@ ol, ul {
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-8 col-md-offset-2">
-						<form action="myScheduleInsert" method="POST">
+						<form action="${pageContext.request.contextPath }/admin/univScheduleInsert" method="POST">
 							<ul>
 								<input type="hidden" class="form-control" name="PERSCHD_NUM">
 
