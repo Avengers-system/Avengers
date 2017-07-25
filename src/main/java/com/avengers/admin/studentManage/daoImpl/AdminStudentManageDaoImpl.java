@@ -41,6 +41,7 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 	@Override
 	public int updateStud(StudVO studVO) throws SQLException {
 		int result = sqlSession.update("admin.updateStudent", studVO); 
+		System.out.println("?");
 		return result;
 	}
 
@@ -64,11 +65,20 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 		System.out.println("빨리나와"+stud_num);
 		return stud_num;
 	}
+	
 	@Override
 	public int insertSecurity(StudVO studVO) {
 		int result = sqlSession.insert("admin.insertStudSecurity",studVO);
 		System.out.println("dao studVO insertSecurity!!!"+studVO.getStud_num()+","+studVO.getStud_pw());
 		return result;
+	}
+	
+	@Override
+	public ArrayList<StudVO> selectStudbyKeyword(String keyword) {
+		ArrayList<StudVO> studentList = new ArrayList<StudVO>();
+		studentList = (ArrayList<StudVO>) sqlSession.selectList("admin.searchStudent",keyword);
+		System.out.println("dao studVO 키워드검색" + keyword);
+		return studentList;
 	}
  
 

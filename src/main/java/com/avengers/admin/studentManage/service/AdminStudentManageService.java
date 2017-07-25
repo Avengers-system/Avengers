@@ -13,4 +13,5 @@ public interface AdminStudentManageService {
 	public int deleteStud(String stud_num)throws SQLException;//학생 삭제
 	public String selectStudNum()throws SQLException; //학생번호가져오기
 	public void insertSecurity(StudVO studVO); // 시큐리티등록하기
+	public ArrayList<StudVO> selectStudbyKeyword(String keyword);
 }

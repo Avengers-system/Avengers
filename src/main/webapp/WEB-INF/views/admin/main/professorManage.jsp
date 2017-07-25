@@ -15,19 +15,6 @@
  }
 </style>
 
-
-
-
-<!-- Admin Header -->
-<%-- <%@include file="../common/topCategory.jsp"%> --%>
-
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide">
-<!-- 테스트용 사이드 -->
-<%@include file="../common/admin_side.jsp" %>   
-</div>
-
-
 <div class="col-md-10" id="commonRightSide">
  
 	<div class="col-md-10 col-md-offset-1">

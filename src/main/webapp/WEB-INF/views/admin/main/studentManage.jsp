@@ -109,14 +109,27 @@
 			 
 			 </style>
 
-<!-- Admin Header -->
-<%-- <%@include file="../common/topCategory.jsp"%> --%>
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide">
-	<!-- 테스트용 사이드 -->
-<%@include file="../common/admin_side.jsp" %>   
-</div>
-<div class="col-md-10" id="commonRightSide">
+
+<script>
+//검색하기
+		function fn_search() {
+			if (jQuery("#searchS").val() == "") {
+				return;
+			} else {
+				jQuery("input[name=searchFiled]").val(jQuery("#searchS").val());
+			}
+			var searchValue = jQuery("#searchI").val();
+			jQuery("input[name=searchValue]").val(searchValue);
+		
+			jQuery("input[name=pageNo]").val("1");
+			jQuery("form[name=frm]").attr("method", "post");
+			jQuery("form[name=frm]").attr("action", "").submit();
+		}
+
+</script>
+
+
+
 
 
 
@@ -145,17 +158,16 @@
 				                       <div id="datatables-example_filter" class="dataTables_filter">
 				                       
 						                       <!-- 셀렉트 -->
-						                       <select name="key">
-						                       		<option value="stud_nm">이름</option>
-						                       		<option value="stud_dept">학과</option>
-						                       		<option value="stud_schreg_code">학적상태</option>
+						                       <select  >
+						                       		<option value="keyword">이름</option>
+						                       		<option value="keyword">학과</option>
 						                       </select>
 						                       
 						                       
-						                       <input type="search" style="margin-bottom:7px;" class="form-control input-sm" placeholder="" aria-controls="datatables-example"> 
+						                       <input name="value" type="search" style="margin-bottom:7px;" class="form-control input-sm" aria-controls="datatables-example"> 
 						                       
 						                       <!-- 검색버튼  -->
-						                       <button id ="searchProf" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='#'">검색</button>
+						                       <button id ="searchProf" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/searchStudent'">검색</button>
 						                       <!-- 추가버튼  -->
 						                       
 						                       <button style="margin-bottom:7px;" id ="addStud" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/studentInsert'">학생추가하기</button>
@@ -212,7 +224,7 @@
                         
                       <tr role="row" class="odd">
                           <td class="sorting_1">${student.stud_num }</td>
-                          <td ><a href="${pageContext.request.contextPath}/admin/studentDetail?stud_num=${student.stud_num}">${student.stud_num}</a></td>
+                          <td ><a href="${pageContext.request.contextPath}/admin/studentDetail?stud_num=${student.stud_num}">${student.stud_nm}</a></td>
                           <td >${student.stud_schreg_code }</td>
                           <td >${student.stud_dept }</td>
                           <td >${student.stud_grd }</td>

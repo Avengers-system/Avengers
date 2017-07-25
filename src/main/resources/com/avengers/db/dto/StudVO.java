@@ -25,6 +25,22 @@ public class StudVO extends PageVO{
 	private String stud_act_num;//계좌번호
 	private String stud_bank;//은행명
 	private String stud_ah;//예금주
+	@Override
+	public String toString() {
+		return "StudVO [stud_num=" + stud_num + ", stud_nm=" + stud_nm
+				+ ", stud_eng_nm=" + stud_eng_nm + ", stud_bir=" + stud_bir
+				+ ", stud_email=" + stud_email + ", stud_pw=" + stud_pw
+				+ ", stud_grd=" + stud_grd + ", stud_regno=" + stud_regno
+				+ ", stud_gen=" + stud_gen + ", stud_qtr=" + stud_qtr
+				+ ", stud_schreg_code=" + stud_schreg_code + ", stud_pic="
+				+ stud_pic + ", stud_act_num=" + stud_act_num + ", stud_bank="
+				+ stud_bank + ", stud_ah=" + stud_ah + ", stud_addr="
+				+ stud_addr + ", stud_zip=" + stud_zip + ", stud_tel="
+				+ stud_tel + ", stud_hp=" + stud_hp + ", stud_dept="
+				+ stud_dept + ", stud_guad_nm=" + stud_guad_nm
+				+ ", stud_guad_rel=" + stud_guad_rel + ", stud_guad_hp="
+				+ stud_guad_hp + ", stud_max_crd=" + stud_max_crd + "]";
+	}
 	private String stud_addr;//주소
 	private String stud_zip;//우편번호
 	private String stud_tel;//전화번호

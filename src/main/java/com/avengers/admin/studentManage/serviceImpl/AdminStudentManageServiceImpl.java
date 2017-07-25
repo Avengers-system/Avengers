@@ -64,4 +64,11 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 		int result = amdinStudentDAO.updateStud(studVO);
 		return result;
 	}
+
+
+	@Override
+	public ArrayList<StudVO> selectStudbyKeyword(String keyword) {
+		
+		return amdinStudentDAO.selectStudbyKeyword(keyword);
+	}
 }

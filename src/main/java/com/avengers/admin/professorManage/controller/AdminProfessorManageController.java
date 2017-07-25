@@ -81,7 +81,7 @@ public class AdminProfessorManageController {
 		System.out.println("얍!!!"+path);
 		model.addAttribute("path",path);
 		model.addAttribute("professor",prfsVO);
-		return "admin/mypage/professorDetail";
+		return "admin/professorDetail";
 	}
 	
 	/**
@@ -108,7 +108,6 @@ public class AdminProfessorManageController {
 	}
 	
 	
-	
 	/**
 	 * 교수수정하기 
 	 * @param commandPrfsVO
@@ -124,13 +123,13 @@ public class AdminProfessorManageController {
 						HttpSession session
 						){
 		PrfsVO prfsVO = commandPrfsVO.toPrfsVO();
-		
 		String path = request.getSession().getServletContext().getRealPath("resources/admin_professor_images");		
 		String filename= prfsVO.getPrfs_pic();
 		
 		System.out.println("path : "+path);
 		System.out.println("filename : "+filename);
 		System.out.println("prfsVO number : "+ prfsVO.getPrfs_num());
+		System.out.println();
 		System.out.println(commandPrfsVO.toString());
 		System.out.println();
 		
@@ -185,7 +184,6 @@ public class AdminProfessorManageController {
 				commandPrfsVO.getPrfs_pic().transferTo(file); // 깃 위치로 전송
 				
 				adminProfessorManageService.insertPrfs(prfsVO);
-				
 				prfsVO.setPrfs_num(adminProfessorManageService.selectPrfsNum());
 				adminProfessorManageService.insertSecurity(prfsVO);
 				
