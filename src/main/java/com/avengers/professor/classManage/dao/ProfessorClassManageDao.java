@@ -79,4 +79,6 @@ public interface ProfessorClassManageDao {
 	public Map<String, String> selectSubDetail(String sub_num) throws SQLException;
 	//과제점수 업데이트
 	public int updateSubSjtPoint(Map<String, String> key) throws SQLException;
+	//과제 업데이트
+	public int updateAsgn(AsgnVO asgnVO) throws SQLException;
 }

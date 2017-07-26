@@ -32,6 +32,7 @@ import com.avengers.db.dto.EqVO;
 import com.avengers.db.dto.ExamVO;
 import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.RegistryExamVO;
+import com.avengers.db.dto.SubVO;
 import com.avengers.professor.classManage.service.ProfessorClassManageService;
 
 @Controller
@@ -682,23 +683,35 @@ public class ProfessorClassManageController {
 	@RequestMapping("professor/classManage/lectureAsgnDetail")
 	public String professorLectureAsgnDetail(HttpServletRequest request
 											,Model model){
-		String view = "professor/classManage/lectureAsgnDetail";
+		String view = "";
 		
+		if(request.getParameter("division").equals("1")){
+			view = "professor/classManage/lectureAsgnDetail";
+		} else if(request.getParameter("division").equals("2")){
+			view = "professor/classManage/lectureAsgnModify";
+		}
 		String asgn_num = request.getParameter("asgn_num");
 		
 		Map<String, String> asgnInfo = new HashMap<String, String>();
 		
 		try {
 			asgnInfo = pcmService.selectAsgnInfo(asgn_num);
+			if(request.getParameter("division").equals("2")){
+				String[] setStartDate = asgnInfo.get("asgn_start_date").split("/");
+				asgnInfo.put("asgn_start_date", setStartDate[0]+"-"+setStartDate[1]+"-"+setStartDate[2]);
+				String[] setDlDate = asgnInfo.get("asgn_dl_date").split("/");
+				asgnInfo.put("asgn_dl_date", setDlDate[0]+"-"+setDlDate[1]+"-"+setDlDate[2]);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		model.addAttribute("asgnInfo", asgnInfo);
-		
+		model.addAttribute("asgn_num", asgn_num);
 		return view;
 	}
 	
+	//과제의 학생리스트
 	@RequestMapping("professor/classManage/lectureTakeAsgnStudent")
 	public String professorLectureTakeAsgnStudent(HttpServletRequest request
 												 ,Model model){
@@ -717,6 +730,7 @@ public class ProfessorClassManageController {
 		return view;
 	}
 	
+	//학생이 제출한 과제의 상세정보
 	@RequestMapping("professor/classManage/lectureAsgnStudentDetail")
 	public String professorLectureAsgnStudentDetail(HttpServletRequest request, Model model){
 		String view = "professor/classManage/lectureAsgnStudentDetail";
@@ -736,6 +750,7 @@ public class ProfessorClassManageController {
 		return view;
 	}
 	
+	//학생이 제출한 과제의 점수를 업데이트
 	@RequestMapping("professor/classManage/updateSubSjtPoint")
 	public String professorUpdateSubSjtPoint(HttpServletRequest request){
 		String view = "redirect:lectureTakeAsgnStudent?asgn_num="+request.getParameter("asgn_num");
@@ -759,5 +774,47 @@ public class ProfessorClassManageController {
 			e.printStackTrace();
 		}
 		return view;
+	}
+	
+	//과제 업데이트
+	@RequestMapping("professor/classManage/updateAsgn")
+	public String professorUpdateAsgn(@RequestParam(value="asgn_sub_form")MultipartFile asgn_sub_form
+													,HttpServletRequest request 
+													,Model model){
+		AsgnVO asgnVO = new AsgnVO();
+		
+		asgnVO.setAsgn_nm(request.getParameter("asgn_nm"));
+		asgnVO.setAsgn_cont(request.getParameter("asgn_cont"));
+		asgnVO.setAsgn_start_date(request.getParameter("asgn_start_date"));
+		asgnVO.setAsgn_dl_date(request.getParameter("asgn_dl_date"));
+		asgnVO.setAsgn_num(request.getParameter("asgn_num"));
+		
+		String upload= request.getSession().getServletContext().getRealPath("resources/asgn/");
+		
+		if(!asgn_sub_form.isEmpty()){
+			File file = new File(upload,asgn_sub_form.getOriginalFilename());
+			try {
+				asgn_sub_form.transferTo(file);
+				asgnVO.setAsgn_sub_form(file.getName());
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		//이제 업데이트하면됨
+		int result = -1;
+		
+		try {
+			result = pcmService.updateAsgn(asgnVO);
+			if(result == -1){
+				//실패
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:lectureAsgnDetail?asgn_num="+request.getParameter("asgn_num")+"&division=1";
 	}
 }

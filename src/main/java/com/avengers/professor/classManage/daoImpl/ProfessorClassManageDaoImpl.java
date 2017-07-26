@@ -32,7 +32,6 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 	}
 
 	//배현상--------------------------------------------------
-
 	@Override
 	public int updateLct(LctVO lctVO) throws SQLException {
 		int result = sqlSession.update("lct.updateLctInfo", lctVO);
@@ -219,7 +218,7 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 		Map<String, String> asgnInfo = (Map<String, String>) sqlSession.selectOne("asgn.selectAsgnDetailInfo", asgn_num);
 		return asgnInfo;
 	}
-
+	
 	@Override
 	public ArrayList<Map<String, String>> selectAsgnOfStudList(String asgn_num)
 			throws SQLException {
@@ -237,6 +236,12 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 	@Override
 	public int updateSubSjtPoint(Map<String, String> key) throws SQLException {
 		int result = sqlSession.update("submission.updateSubSjtPoint", key);
+		return result;
+	}
+
+	@Override
+	public int updateAsgn(AsgnVO asgnVO) throws SQLException {
+		int result = sqlSession.update("asgn.updateAsgn",asgnVO);
 		return result;
 	}
 	
