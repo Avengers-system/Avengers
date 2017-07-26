@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,6 +71,18 @@ public class AdminProfessorManageServiceImpl implements AdminProfessorManageServ
 	public String selectPrfsNum() throws SQLException {
 		String prfsNum = proDAO.selectPrfsNum();
 		return prfsNum;
+	}
+
+	@Override
+	public int getEmpListCount(PrfsVO prfsVO) throws SQLException {
+		int result = proDAO.getEmpListCount(prfsVO);
+		return result;
+	}
+
+	@Override
+	public List<PrfsVO> getEmpList(PrfsVO prfsVO) throws SQLException {
+		ArrayList<PrfsVO> prfsList = proDAO.getEmpList(prfsVO);
+		return prfsList;
 	}
 
 }

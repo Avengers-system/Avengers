@@ -144,6 +144,4 @@ public class ProfessorMainController {
 		   return view;
 	   }
 	   
-	   
-	   
 }

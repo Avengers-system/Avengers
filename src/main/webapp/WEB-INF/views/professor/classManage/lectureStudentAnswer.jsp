@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide">
-<%@include file="../common/classManageLectureSideCategory.jsp" %>
-</div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <script>
 	$(function(){
 		//만약 채점되있는걸 들어오면 saNumArr이랑 saCheckArr을 맞춰줘야됨, index도
@@ -35,9 +29,9 @@
 					saNumArr[i] = $(".examSa").eq(i).find($(".sa_num")).text(); 
 					saCheckArr[i] = $(".examSa").eq(i).find($(".sa_check")).text();
 					if($(".examSa").eq(i).find($(".sa_check")).text() == '1'){
-						$(".examSa").eq(i).find($(".eq_qtna")).prepend("<img src='../../resources/images/answer2.png' width='100px' style='position:absolute;left:5px'/>");
+						$(".examSa").eq(i).find($(".eq_qtna")).prepend("<img src='../../resources/images/answer2.png' class='answerImg' width='100px' style='position:absolute;left:5px'/>");
 					}else{
-						$(".examSa").eq(i).find($(".eq_qtna")).prepend("<img src='../../resources/images/x2.png' width='45px' style='position:absolute;left:20px'/>");
+						$(".examSa").eq(i).find($(".eq_qtna")).prepend("<img src='../../resources/images/x2.png' class='answerImg' width='45px' style='position:absolute;left:20px'/>");
 					}
 				}
 			}
@@ -47,20 +41,23 @@
 			var count = $(".examSa").length;
 			$('#autoAnswer').removeAttr("id");
 			for(var i=0; i<count; i++){
-// 				객관식인지 주관식인지를 알아야됨
+				//객관식인지 주관식인지를 알아야됨
 				//객관식인 경우
 				if($(".examSa").eq(i).find($(".eq_qtn_type")).text() == '1'){
 					//학생풀이 기본키를 저장
 					saNumArr[index] = $(".examSa").eq(i).find($(".sa_num")).text();
+					//기존에 있는 img를 삭제
+					if($(".examSa").eq(i).find(".answerImg").length>0){
+						$(".examSa").eq(i).find(".answerImg").remove();
+					}
 					//학생이 푼 답안과 교수가 등록한 답안이 같은지를 비교
 					if($(".examSa").eq(i).find($(".sa_ans")).text() == $(".examSa").eq(i).find($(".eq_ans")).text()){
 						//답인경우 1
-						alert($(".examSa").eq(i).find($("img")).length);
-						$(".examSa").eq(i).find($(".eq_qtna")).prepend("<img src='../../resources/images/answer2.png' width='100px' style='position:absolute;left:5px'/>");
+						$(".examSa").eq(i).find($(".eq_qtna")).prepend("<img src='../../resources/images/answer2.png' class='answerImg' width='100px' style='position:absolute;left:5px'/>");
 						saCheckArr[index] = '1';
 						index++;
 					} else{
-						$(".examSa").eq(i).find($(".eq_qtna")).prepend("<img src='../../resources/images/x2.png' width='45px' style='position:absolute;left:20px'/>");
+						$(".examSa").eq(i).find($(".eq_qtna")).prepend("<img src='../../resources/images/x2.png' class='answerImg' width='45px' style='position:absolute;left:20px'/>");
 						saCheckArr[index] = '2';
 						index++;
 						//오답인경우 2
@@ -94,17 +91,21 @@
 			if($(this).siblings(".eq_qtna").children("img").length > 0){
 				//변경
 				if($(this).val()==1){
+					alert("change img success");
 // 					$(this).siblings(".eq_qtna").css({'position':'relative','right':'100px'});
 					$(this).siblings(".eq_qtna").children("img").attr({'src':'../../resources/images/answer2.png','width':'100px'}).css({'position':'absolute','left':'5px'});
 				}else{
+					alert("change img fail");
 // 					$(this).siblings(".eq_qtna").css({'position':'relative','right':'45px'});
 					$(this).siblings(".eq_qtna").children("img").attr({'src':'../../resources/images/x2.png','width':'45px'}).css({'position':'absolute','left':'20px'});
 				}
 			} else {
 				//새로운 img태그 입력
 				if($(this).val() == 1){
+					alert("new img success");
 					$(this).siblings(".eq_qtna").prepend("<img src='../../resources/images/answer2.png' width='100px' style='position:absolute;left:5px'/>");
 				} else{
+					alert("new img fail");
 					$(this).siblings(".eq_qtna").prepend("<img src='../../resources/images/x2.png' width='45px' style='position:absolute;left:20px'/>");
 				}
 			}
@@ -115,6 +116,7 @@
 				var te = '<c:out value="${te_num}"/>';
 				te = encodeURIComponent(te);
 				te = te.replace("'", "%27");
+				alert(te);
 				$.ajax({
 					url:'${pageContext.request.contextPath}/professor/classManage/lectureStudentAnswerUpdate'
 					,type:'post'
@@ -150,48 +152,57 @@
 		}
 	})
 </script>
+<div class="col-md-2" id="commonLeftSide">
+	<%@include file="../common/classManageLectureSideCategory.jsp"%>
+</div>
+
 <div class="col-md-10">
-	<h1>학생답안</h1>
-	<hr/>
-	<div>
-		<form>
-		소속 : <input type="text" value="${studInfo.get('col_nm')}"/> &nbsp; 
-		학과 : <input type="text" value="${studInfo.get('dept_nm')}"/> &nbsp; 
-		학번 : <input type="text" value="${studInfo.get('stud_num') }"/> &nbsp; 
-		이름 : <input type="text" value="${studInfo.get('stud_nm') }"/> &nbsp;
-		HP : <input type="text" value="${studInfo.get('stud_hp') }"/> &nbsp; 
-		E-mail : <input type="text" value="${studInfo.get('stud_email') }"/> &nbsp;
-		<!-- 완료되면 채점을 보여줘야 되는뎁 -->
-		</form>
-	</div>
-		<button id="autoAnswer" style="font-size:15px; margin:15px">객관식 자동채점(1회)</button>
-		<c:forEach items="${saInfoList }" var="saInfo">
-			<div class="examSa" style="font-size:20px; margin-left:20px">
-		<!-- 채점시 margin-bottom:-10px position:relative right:45px          채점이미지 width:50px  position:relative left:30px -->
-			<span class="eq_qtna">${saInfo.get("eq_qtna")}.${saInfo.get("eq_qtn")}</span>
-			<p class="sa_num" hidden="true">${saInfo.get('sa_num')}</p>
-			<p class="eq_qtn_type" hidden="true" style="">${saInfo.get('eq_qtn_type')}</p>
-			<c:if test="${not empty saInfo.get('sa_check')}">
-			<p class="sa_check" hidden="true">${saInfo.get('sa_check')}</p>
-			</c:if>
-				<c:choose>
-						<c:when test="${saInfo.get('eq_qtn_type') eq '1' }">
-							<p class="sa_ans" hidden="true">${saInfo.get('sa_ans')}</p>
-							<p class="eq_ans" hidden="true">${saInfo.get('eq_ans')}</p>
-							<p class="one" style="margin-top:-5px">①${saInfo.get('eq_exmp_one')}</p>
-							<p class="two">②${saInfo.get('eq_exmp_two')}</p>
-							<p class="three">③${saInfo.get('eq_exmp_three')}</p>
-							<p class="four">④${saInfo.get('eq_exmp_four')}</p><br/>
-						</c:when>
-						<c:otherwise>
-							<p class="sa_ans">${saInfo.get('sa_ans')}</p>
-							<button class="answerBtn" value="1">정답</button>
-							<button class="wrongBtn" value="2">오답</button>
-							<br/><br/>
-						</c:otherwise>
-				</c:choose>
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #666666; margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">과제상세페이지</h4>
+		</div>
+		<div class="panel-body">
+			<div>
+				<form>
+				소속 : <input type="text" value="${studInfo.get('col_nm')}"/> &nbsp; 
+				학과 : <input type="text" value="${studInfo.get('dept_nm')}"/> &nbsp; 
+				학번 : <input type="text" value="${studInfo.get('stud_num') }"/> &nbsp; 
+				이름 : <input type="text" value="${studInfo.get('stud_nm') }"/> &nbsp;
+				HP : <input type="text" value="${studInfo.get('stud_hp') }"/> &nbsp; 
+				E-mail : <input type="text" value="${studInfo.get('stud_email') }"/> &nbsp;
+				<!-- 완료되면 채점을 보여줘야 되는뎁 -->
+				</form>
 			</div>
-		</c:forEach>
-		<button onclick="javascript:gradingSuccess();">채점완료</button>
-		<button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureTakeExamStudent?exam_num=${exam_num }'">뒤로가기</button>
+			<button id="autoAnswer" style="font-size:15px; margin:15px">객관식 자동채점(1회)</button>
+			<c:forEach items="${saInfoList }" var="saInfo">
+				<div class="examSa" style="font-size:20px; margin-left:20px">
+			<!-- 채점시 margin-bottom:-10px position:relative right:45px          채점이미지 width:50px  position:relative left:30px -->
+				<span class="eq_qtna">${saInfo.get("eq_qtna")}.${saInfo.get("eq_qtn")}(배점${saInfo.get("eq_score")})</span>
+				<p class="sa_num" hidden="true">${saInfo.get('sa_num')}</p>
+				<p class="eq_qtn_type" hidden="true" style="">${saInfo.get('eq_qtn_type')}</p>
+				<c:if test="${not empty saInfo.get('sa_check')}">
+				<p class="sa_check" hidden="true">${saInfo.get('sa_check')}</p>
+				</c:if>
+					<c:choose>
+							<c:when test="${saInfo.get('eq_qtn_type') eq '1' }">
+								<p class="sa_ans" hidden="true">${saInfo.get('sa_ans')}</p>
+								<p class="eq_ans" hidden="true">${saInfo.get('eq_ans')}</p>
+								<p class="one" style="margin-top:-5px">①${saInfo.get('eq_exmp_one')}</p>
+								<p class="two">②${saInfo.get('eq_exmp_two')}</p>
+								<p class="three">③${saInfo.get('eq_exmp_three')}</p>
+								<p class="four">④${saInfo.get('eq_exmp_four')}</p><br/>
+							</c:when>
+							<c:otherwise>
+								<p class="sa_ans">${saInfo.get('sa_ans')}</p>
+								<button class="answerBtn" value="1">정답</button>
+								<button class="wrongBtn" value="2">오답</button>
+								<br/><br/>
+							</c:otherwise>
+					</c:choose>
+				</div>
+			</c:forEach>
+			<button onclick="javascript:gradingSuccess();">채점완료</button>
+			<button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureTakeExamStudent?exam_num=${exam_num }'">뒤로가기</button>
+		</div>
+	</div>
 </div>

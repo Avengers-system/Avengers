@@ -20,6 +20,7 @@
 		<result javaType="java.lang.String" column="EQ_EXMP_TWO" property="eq_exmp_two"/>
 		<result javaType="java.lang.String" column="EQ_EXMP_THREE" property="eq_exmp_three"/>
 		<result javaType="java.lang.String" column="EQ_EXMP_FOUR" property="eq_exmp_four"/>
+		<result javaType="java.lang.String" column="EQ_SCORE" property="eq_score"/>
 	</resultMap>
 	
 	<select id="selectSaInfoList" parameterType="java.util.HashMap" resultMap="saInfoList">
@@ -34,6 +35,7 @@
 		      ,EQ_EXMP_TWO
 		      ,EQ_EXMP_THREE
 		      ,EQ_EXMP_FOUR
+		      ,EQ_SCORE
 		FROM   SA, TE, EXAM, EQ
 		WHERE  SA_TE = TE_NUM
 		AND    TE_EXAM = EXAM_NUM
@@ -51,7 +53,7 @@
 	</update>
 	
 	<select id="selectScoreSum" parameterType="java.lang.String" resultType="java.lang.Integer">
-		SELECT SUM(EQ_SCORE)
+		SELECT case when SUM(EQ_SCORE) IS NULL then 0 else SUM(EQ_SCORE) end
 		FROM   SA, TE, EXAM, EQ
 		WHERE  SA_TE = TE_NUM
 		AND    EXAM_NUM = TE_EXAM
@@ -59,6 +61,5 @@
 		AND    SA_QTNA = EQ_QTNA
 		AND    SA_TE = #{te_num}
 		AND    SA_CHECK = '1'
-		GROUP BY EXAM_NUM
 	</select>
 </mapper>

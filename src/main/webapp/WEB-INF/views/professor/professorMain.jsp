@@ -2,8 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- Content -->
 
+
+
+<!-- Content -->
 <div class="panel-body">
 	<!-- 개인정보 -->
 	<div class="col-md-2">

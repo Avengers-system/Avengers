@@ -5,14 +5,9 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
  
-<!-- Admin Header -->
-<%@include file="common/topCategory.jsp"%>
 
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide">
-   <!-- 테스트용 사이드 -->
-<%@include file="common/admin_side.jsp" %>   
-</div>
+<!--side Category 2017.07.26수정-->
+	<%@include file="common/studentDetailSideCategory.jsp" %> 
 <div class="col-md-10" id="commonRightSide">
   
   

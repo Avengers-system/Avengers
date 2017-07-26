@@ -3,10 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%@include file="common/adminManageCategory.jsp" %>
+<!--side Category 2017.07.26수정-->
+	<%@include file="common/studentDetailSideCategory.jsp" %>
 <div class="col-md-10">
 	<div class="panel panel-default">
-		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+		<div class="panel-heading" style="background-color: #CC0000;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 			상세정보
 			</h4>

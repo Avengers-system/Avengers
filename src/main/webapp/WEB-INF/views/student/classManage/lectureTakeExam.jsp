@@ -9,8 +9,13 @@
 		var answers = [];
 		var eqSize = '<c:out value="${eqList.size()}"/>';
 		ans_check = function(qtna, ans){
-			var imgTag = "<img src='../../resources/images/check.png' width='20px' style='position:absolute; left:20px'/>";
-			alert(qtna + " " + ans);
+			alert(qtna + " " +ans);
+			//이미지태그가 있는 경우를 생각, 즉 답을 처음에 체크했을 때를 생각
+			for(var i=0; i<4; i++){
+				//만약에 기존에 이미지태그가 존재하면 지워버린다.
+				$(".studEq").eq(qtna-1).find($("a")).eq(i).find("img").remove();				
+			}
+			var imgTag = "<img src='../../resources/images/check.png' class='checkImg' width='20px' style='position:absolute; left:20px'/>";
 			$(".studEq").eq(qtna-1).find($("a")).eq(ans-1).prepend(imgTag);
 			if(index == 0){
 				qtnas[index] = qtna;
@@ -32,29 +37,30 @@
 		};
 		
 		exam_submit = function (){
-			alert(qtnas.length + " " +eqSize)
-			if(qtnas.length == eqSize){
-				var lct = '<c:out value="${lct_num}"/>';
-				var te = '<c:out value="${te_num}"/>';
-				lct = encodeURIComponent(lct);
-				lct = lct.replace("'", "%27");
-				te = encodeURIComponent(te);
-				te = te.replace("'", "%27");
-				$.ajax({
-					url:'lectureExamSubmit'
-					, type:'post'
-					, data:{
-						qtnaArr:qtnas,
-						answerArr:answers,
-						lct_num:lct,
-						te_num:te
-					},
-					success:function(){
-						location.href="lectureExam";
-					}
-				});
-			} else {
-				alert("풀지 않은 문제가 있습니다.");
+			if(confirm("시험을 응시하시겠습니까??")){
+				if(qtnas.length == eqSize){
+					var lct = '<c:out value="${lct_num}"/>';
+					var te = '<c:out value="${te_num}"/>';
+					lct = encodeURIComponent(lct);
+					lct = lct.replace("'", "%27");
+					te = encodeURIComponent(te);
+					te = te.replace("'", "%27");
+					$.ajax({
+						url:'lectureExamSubmit'
+						, type:'post'
+						, data:{
+							qtnaArr:qtnas,
+							answerArr:answers,
+							lct_num:lct,
+							te_num:te
+						},
+						success:function(){
+							location.href="lectureExam";
+						}
+					});
+				} else {
+					alert("풀지 않은 문제가 있습니다.");
+				}
 			}
 		};
 		
@@ -81,34 +87,55 @@
 				}
 			}
 		})
+		
+		$("a").hover(
+		function(){
+			$(this).addClass("a-hover");
+		},
+		function(){
+			$(this).removeClass();
+		})
 	});
 </script>
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide">
+
+<style>
+	.studEq a{
+		text-decoration:none;
+	}
+	
+	.a-hover{
+		color:red;
+	}
+</style>
+<!--side Category-->
 <%@include file="../common/classManageLectureSideCategory.jsp" %>
-</div>
-<div class="col-md-10" id="commonRightSide">
-	<h1>시험문제</h1>
-	<hr/>
-<!--1.주관식 2.객관식 -->
-	<form>
-		<c:forEach items="${eqList}" var="eq1" varStatus="status">
-			<div class="studEq" style="font-size:20px">
-			${eq1.getEq_qtna() }.
-			${eq1.getEq_qtn() }<br/>
-			<c:choose>
-				<c:when test="${eq1.getEq_qtn_type() eq 1}">
-					<a href="javascript:ans_check(${eq1.getEq_qtna() },1)">①${eq1.getEq_exmp_one() }</a><br/>
-					<a href="javascript:ans_check(${eq1.getEq_qtna() },2)">②${eq1.getEq_exmp_two() }</a><br/>
-					<a href="javascript:ans_check(${eq1.getEq_qtna() },3)">③${eq1.getEq_exmp_three() }</a><br/>
-					<a href="javascript:ans_check(${eq1.getEq_qtna() },4)">④${eq1.getEq_exmp_four() }</a><br/><br/>
-				</c:when>
-				<c:otherwise>
-					<textarea id="${eq1.getEq_qtna() }" cols="100" rows="10"></textarea><br/><br/>
-				</c:otherwise>
-			</c:choose>
-			</div>
-		</c:forEach>
-	</form>
-	<button onclick="javascript:exam_submit();">제출</button>
+<div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">시험응시</h4>
+		</div>
+		<div class="panel-body" style="height: 580px; text-align: center;" >
+			<!--1.주관식 2.객관식 -->
+			<form>
+				<c:forEach items="${eqList}" var="eq1" varStatus="status">
+					<div class="studEq" style="font-size:20px">
+					${eq1.getEq_qtna() }.
+					${eq1.getEq_qtn() }(배점:${eq1.getEq_score()}점)<br/>
+					<c:choose>
+						<c:when test="${eq1.getEq_qtn_type() eq 1}">
+							<a href="javascript:ans_check(${eq1.getEq_qtna() },1)">①${eq1.getEq_exmp_one() }</a><br/>
+							<a href="javascript:ans_check(${eq1.getEq_qtna() },2)">②${eq1.getEq_exmp_two() }</a><br/>
+							<a href="javascript:ans_check(${eq1.getEq_qtna() },3)">③${eq1.getEq_exmp_three() }</a><br/>
+							<a href="javascript:ans_check(${eq1.getEq_qtna() },4)">④${eq1.getEq_exmp_four() }</a><br/><br/>
+						</c:when>
+						<c:otherwise>
+							<textarea id="${eq1.getEq_qtna() }" cols="100" rows="10"></textarea><br/><br/>
+						</c:otherwise>
+					</c:choose>
+					</div>
+				</c:forEach>
+			</form>
+			<button onclick="javascript:exam_submit();">제출</button>
+		</div>
+	</div>
 </div>

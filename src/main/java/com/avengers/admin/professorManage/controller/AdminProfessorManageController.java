@@ -33,28 +33,68 @@ public class AdminProfessorManageController {
 	@Autowired
 	private AdminProfessorManageService adminProfessorManageService;
 
+	
+	@RequestMapping("/professorManage")
+	public String paging(Model model, @ModelAttribute("PrfsVO") PrfsVO prfsVO,
+			HttpServletRequest request) {
+		System.out.println(">>>> professorManage start!!");
+	    //검색조건, 검색어
+	    System.out.println("SearchFiled 검색조건 : " + prfsVO.getSearchFiled());
+	    System.out.println("SearchValue 검색어 : " + prfsVO.getSearchValue());
+	  
+	    List<PrfsVO> prfsList = null;
+	    
+	    //--페이징 처리
+	    int totalCount;
+		try {
+			totalCount = adminProfessorManageService.getEmpListCount(prfsVO);
+			prfsVO.setTotalCount(totalCount); //페이징 처리를 위한 setter 호출
+			model.addAttribute("pageVO", prfsVO);
+			System.out.println("PageSize // 한 페이지에 보여줄 게시글 수 : " + prfsVO.getPageSize());
+			System.out.println("PageNo // 페이지 번호 : " + prfsVO.getPageNo());
+			System.out.println("StartRowNo //조회 시작 row 번호 : " + prfsVO.getStartRowNo());
+			System.out.println("EndRowNo //조회 마지막 now 번호 : " + prfsVO.getEndRowNo());
+			System.out.println("FirstPageNo // 첫 번째 페이지 번호 : " + prfsVO.getFirstPageNo());
+			System.out.println("FinalPageNo // 마지막 페이지 번호 : " + prfsVO.getFinalPageNo());
+			System.out.println("PrevPageNo // 이전 페이지 번호 : " + prfsVO.getPrevPageNo());
+			System.out.println("NextPageNo // 다음 페이지 번호 : " + prfsVO.getNextPageNo());
+			System.out.println("StartPageNo // 시작 페이지 (페이징 네비 기준) : " + prfsVO.getStartPageNo());
+			System.out.println("EndPageNo // 끝 페이지 (페이징 네비 기준) : " + prfsVO.getEndPageNo());
+			System.out.println("totalCount // 게시 글 전체 수 : " + totalCount);
+			 prfsList  = adminProfessorManageService.getEmpList(prfsVO);
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} //게시물 총갯수를 구한다
+	    //--페이징 처리
+	  
+		model.addAttribute("professorList", prfsList);
+		request.setAttribute("pageVO",prfsVO);
+	    return "admin/main/professorManage";
+	}
+	
 	/**
 	 * 교수리스트 조회
 	 * @param principal
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/professorManage")
-	public String professorList(Principal principal, Model model) {
-
-		List<PrfsVO> professorList = null;
-
-		String key = principal.getName();
-		try {
-//			professorList = adminProfessorManageService.selectPrfsList(key, 1,	10);
-			professorList = adminProfessorManageService.selectPrfsList();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("professorList", professorList);
-
-		return "admin/main/professorManage";
-	}
+//	@RequestMapping("/professorManage")
+//	public String professorList(Principal principal, Model model) {
+//
+//		List<PrfsVO> professorList = null;
+//
+//		String key = principal.getName();
+//		try {
+////			professorList = adminProfessorManageService.selectPrfsList(key, 1,	10);
+//			professorList = adminProfessorManageService.selectPrfsList();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		model.addAttribute("professorList", professorList);
+//
+//		return "admin/main/professorManage";
+//	}
 
 	
 	/**
