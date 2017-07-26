@@ -87,7 +87,7 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 			   board_num
 			  ,board_title
 			  ,board_cont
-			  ,board_date
+			  ,to_char(board_date,'YYYY-MM-DD HH24:MI:SS') as board_date
 			  ,board_writer
 			  ,board_af
 			  ,board_bc
@@ -99,7 +99,7 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 	resultType="com.avengers.db.dto.BoardVO">
 	SELECT * FROM BOARD 
 	WHERE  1=1
-	AND BOARD_BC LIKE '%'||#{BOARD_BC}||'%'
+	AND BOARD_BC =#{BOARD_BC}
 	<if test="BOARD_WRITER != null and BOARD_WRITER != ''">
 	AND BOARD_WRITER LIKE '%'||#{BOARD_WRITER}||'%'
 	</if>

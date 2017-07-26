@@ -578,7 +578,9 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("insertBoard",boardVo);
+//		model.addAttribute("insertBoard",boardVo);
+		model.addAttribute("insertBoard",new BoardVO());
+		model.addAttribute("resultUrl","portalWrite");
 
 		return "admin/helpDesk/portalWrite";
 	}

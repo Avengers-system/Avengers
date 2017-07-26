@@ -528,7 +528,7 @@ public class StudentHelpDeskController {
 
 
 
-	@RequestMapping("qnaStudNoticeList")//Q&A 게시판조회
+	@RequestMapping("/qnaStudNoticeList")//Q&A 게시판조회
 	public String studQnaList(Model model, Principal principal, String pageNo){
 
 		BoardVO boardVO = new BoardVO();
