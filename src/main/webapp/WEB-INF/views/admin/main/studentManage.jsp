@@ -153,7 +153,7 @@
 		                       <div class="col-sm-6">
 		                       
 				                       <div id="search">
-									        <select id="searchS">
+									        <select id="searchS" name="select">
 									            <option value="stud_nm">이름</option>
 									            <option value="stud_dept">학과</option>
 									        </select>
