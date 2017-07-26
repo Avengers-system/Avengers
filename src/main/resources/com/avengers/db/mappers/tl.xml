@@ -11,8 +11,8 @@
 	
 	
 	<insert id="insertTl" parameterType="com.avengers.db.dto.TlVO" >
-		INSERT INTO TL(TL_NUM, TL_APPL_DATE, TL_STUD, TL_LCT)
-		VALUES('TL'||TL_SEQ.NEXTVAL, SYSDATE, #{tl_stud}, #{tl_lct})
+		INSERT INTO TL(TL_NUM, TL_APPL_DATE, TL_STUD, TL_LCT,TL_MARK)
+		VALUES('TL'||TL_SEQ.NEXTVAL, SYSDATE, #{tl_stud}, #{tl_lct},0)
 	</insert>
 	
 	<delete id="deleteTl" parameterType="String" >
