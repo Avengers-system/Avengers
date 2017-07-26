@@ -18,21 +18,13 @@ public interface AdminStudentManageService {
 	public void insertSecurity(StudVO studVO); // 시큐리티등록하기
 	public ArrayList<StudVO> selectStudbyKeyword(String keyword);
 
-
-//페이징처리
 	
-    public List<StudVO> getStudList(StudVO studVO);
 	
-    public int getTotalCount() throws SQLException;
-    
-	public Object selectPagingList(String queryId, Object params);
-	
-	public List<Map<String, Object>> selectStudList(Map<String, Object> map) throws Exception;
-	// 학생 게시판글 전체목록 읽어오기
-	// 검색조건을 추가하여 검색가능
-	
-	public ArrayList<BoardVO> selectStuBoardList(String key, int firstRow, int lastRow) throws SQLException;
-
+	//페이징처리
+		public ArrayList<StudVO> selectStudList(StudVO studVO,int firstRow,int lastRow)throws SQLException;//게시판글 전체목록 읽어오기
+		public ArrayList<StudVO> selectSearchList(StudVO studVO);//게시판 검색 읽어오기
+		public int selectStudCount(StudVO studVO) throws SQLException;
+		
 
 
 

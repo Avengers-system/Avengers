@@ -11,30 +11,67 @@
 	</select>
 
 	<!-- 학생페이징 -->
-	<select id="studPaging" >
-	
-	
-	</select>
+		<select id="selectStudentList" resultType="com.avengers.db.dto.StudVO" parameterType="com.avengers.db.dto.StudVO">
+		      SELECT ROWNUM , B.*
+		      FROM(
+		         SELECT ROWNUM RNUM, A.*
+		         FROM(
+		            SELECT * FROM STUDENT
+		            ORDER BY STUD_NUM DESC
+		            ) A
+		         ) B
+		      <![CDATA[
+		      WHERE RNUM >= #{startRow} AND RNUM <= #{endRow}
+		      ]]>
+		      
+		   </select>
+		 
 	
 
 	<!-- 학생검색 -->
-	<select id="searchStudent" parameterType="java.lang.String" resultType="com.avengers.db.dto.StudVO">
-		select * from student
-		   <choose>
-		    <when test="keyword != null and keyword.equals('이름')">
-		      WHERE STUD_NM LIKE '%'||#{value}||'%' 
-		    </when>
-		
-		    <when test="keyword != null and keyword.equals('학과')">
-		      WHERE STUD_DEPT LIKE '%'||#{value}||'%' 
-		    </when>
-		     
-		    <otherwise>
-		      WHERE  1=1
-		    </otherwise>
-		  </choose>
-		order by STUD_DEPT
+
+	<select id="selectSearchList" parameterType="map" resultType="com.avengers.db.dto.StudVO">
+		select * 
+		from student
+		where 1=1
+		<if test="searchFiled != null">
+			AND ${searchFiled} like '%'||#{searchValue}||'%'
+		</if>
+		order by stud_num desc
 	</select>
+
+	<select id="selectStudentList1" parameterType="map" resultType="com.avengers.db.dto.StudVO">
+		select * from student
+		where 1=1
+		and STUD_DEPT like '%'||#{stud_dept}||'%'	
+		and STUD_NM like '%'||#{stud_nm}||'%'
+		order by STUD_NUM DESC	
+	</select>
+
+
+	<select id="selectStudCount" parameterType="map" resultType="java.lang.Integer">
+	
+	SELECT COUNT(*)
+	FROM STUDENT
+	WHERE 1=1
+	</select>
+<!-- 	<if test="#{stud_dept}!=null"> -->
+<!-- 	AND STUD_DEPT LIKE '%'||#{stud_dept}||'%' -->
+<!-- 	</if> -->
+<!-- 	<if test="#{value}!=null">  -->
+<!-- 	AND STUD_NM LIKE '%'||#{value}||'%' -->
+<!-- 	</if>      -->
+
+<!-- admin. //일반페이징 -->
+
+<!-- admin.selectSearchList //검색페이징 -->
+
+<!--  //개수 -->
+
+
+	
+
+
 
 
 
