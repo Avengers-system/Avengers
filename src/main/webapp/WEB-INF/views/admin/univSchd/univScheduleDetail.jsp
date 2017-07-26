@@ -20,7 +20,7 @@
 </div>
 <c:choose>
 		<c:when test="${not empty perschd}">
-				<form name="scheduleDetail" id="scheduleDetail">
+				<form name="univScheduleDetail" id="scheduleDetail">
 					번호:<input type="text" name="perschd_num" value="${perschd.perschd_num}" readonly="readonly"/><br/>
 					제목:<input type="text" name="perschd_title" value="${perschd.perschd_title}"/><br/>
 					내용:<textarea rows="5" cols="10" name="perschd_cont" >${perschd.perschd_cont}</textarea><br/>
@@ -42,7 +42,7 @@
 			
 			$.ajax({
 				type : "post",
-				url :"${myContextPath}/admin/mypage/myScheduleUpdate",
+				url :"${myContextPath}/admin/univSchd/univScheduleUpdate",
 				cache : false,
 				data :  formData,
 				success: onModSuccess()
@@ -50,14 +50,14 @@
 		});
 	});
 	function onModSuccess(){
-		location.href="${myContextPath}/admin/mypage/mySchedule";
+		location.href="${myContextPath}/admin/univSchd/univSchdedule";
 	}
 	$(document).ready(function(){
 		$("#scheduleDel").click(function(){
 			var formData = $("#scheduleDetail").serialize();
 				$.ajax({
 					type : "post",
-					url :"${myContextPath}/admin/mypage/myScheduleDelete",
+					url :"${myContextPath}/admin/univSchd/univScheduleDelete",
 					cache : false,
 					data :  formData,
 					success: onDelSuccess()
@@ -65,7 +65,7 @@
 		});
 	});
 	function onDelSuccess(){
-		location.href="${myContextPath}/admin/mypage/mySchedule";
+		location.href="${myContextPath}/admin/univSchd/univSchdedule";
 	}
 </script>
 

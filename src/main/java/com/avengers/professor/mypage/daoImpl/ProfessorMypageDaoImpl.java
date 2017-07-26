@@ -22,8 +22,9 @@ public class ProfessorMypageDaoImpl implements ProfessorMypageDao {
 
 	@Override
 	public PrfsVO selectPrfs(String prfs_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		PrfsVO profVO = new PrfsVO();
+		profVO = (PrfsVO) sqlSession.selectOne("professor.getProfessor", prfs_num);
+		return profVO;
 	}
 
 	@Override

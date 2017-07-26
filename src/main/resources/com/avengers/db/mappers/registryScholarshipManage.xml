@@ -11,9 +11,12 @@
         <result javaType="java.lang.String" column="SCR_MONEY" property="scr_money"/>
         <result javaType="java.lang.String" column="STUD_BANK" property="stud_bank"/>
         <result javaType="java.lang.String" column="STUD_AH" property="stud_ah"/>
+        <result javaType="java.lang.String" column="STUD_NM" property="stud_nm"/>
+        <result javaType="java.lang.String" column="STUD_NUM" property="stud_num"/>
         <result javaType="java.lang.String" column="STUD_ACT_NUM" property="stud_act_num"/>
         <result javaType="java.lang.String" column="SCRAPPL_CAUSE" property="scrappl_cause"/>
         <result javaType="java.lang.String" column="SCRAPPL_DATE" property="scrappl_date"/>
+        <result javaType="java.lang.String" column="MIN_YR" property="min_yr"/>
   </resultMap> 
    <!-- 2017.07.22일자 수정 -->   
    <select id="resSchSelect" parameterType="com.avengers.db.dto.resSchStudentVO" resultType="com.avengers.db.dto.resSchStudentVO">
@@ -56,35 +59,46 @@
        AND L.LOA_STUD = R.RTS_STUD
    </select>  
    
-	<!-- 2017.07.25일자 수정 -->
+	<!-- 2017.07.26일자 수정 -->
    <select id="scrSelect" parameterType="com.avengers.db.dto.ScrapplVO" resultMap="scr">
-      SELECT SCRAPPL_YR,SCRAPPL_QTR,SCR_NM,SCR_MONEY,STUD_BANK,STUD_AH,STUD_ACT_NUM,SCRAPPL_CAUSE,SCRAPPL_DATE 
+      SELECT MIN(SCRAPPL_YR) as MIN_YR,SCRAPPL_YR,SCRAPPL_QTR,SCR_NM,SCR_MONEY,STUD_BANK
+      ,STUD_AH,STUD_ACT_NUM,SCRAPPL_CAUSE,SCRAPPL_DATE,STUD_NM,STUD_NUM 
        FROM SCR,SCRAPPL,STUDENT
-       WHERE STUD_NUM=#{scrappl_stud}
-       AND STUD_NUM=SCRAPPL_STUD
+       WHERE STUD_NUM=SCRAPPL_STUD
        AND SCRAPPL_SCR=SCR_NUM
+       AND SCRAPPL_APPR_CHECK='1'
+       <if test="scrappl_stud !=null">
+       AND STUD_NUM=#{scrappl_stud}       
+       </if>
        <if test="scrappl_yr !=null and scrappl_yr !='전체'">
        AND SCRAPPL_YR=#{scrappl_yr}
        </if>
        <if test="scrappl_qtr !=null and scrappl_qtr !='전체'">
        AND SCRAPPL_QTR=#{scrappl_qtr}
        </if>
+       GROUP BY SCRAPPL_YR,SCRAPPL_QTR,SCR_NM,SCR_MONEY,STUD_BANK,STUD_AH,STUD_ACT_NUM,SCRAPPL_CAUSE,SCRAPPL_DATE,STUD_NM,STUD_NUM 
    </select>
    
-   	<!-- 2017.07.25일자 수정 -->
+   	<!-- 2017.07.26일자 수정 -->
     <select id="scrApplSelect" parameterType="com.avengers.db.dto.ScrapplVO"  resultMap="scr">
-      SELECT  SCRAPPL_YR,SCRAPPL_QTR,SCR_NM,SCR_MONEY,SCRAPPL_CAUSE,STUD_BANK,STUD_AH,STUD_ACT_NUM,SCRAPPL_DATE 
+      SELECT  MIN(SCRAPPL_YR) as MIN_YR,SCRAPPL_YR,SCRAPPL_QTR,SCR_NM,SCR_MONEY,SCRAPPL_CAUSE
+      ,STUD_BANK,STUD_AH,STUD_ACT_NUM,SCRAPPL_DATE,STUD_NM,STUD_NUM 
        FROM SCR,SCRAPPL,STUDENT
-        WHERE STUD_NUM=#{scrappl_stud}
-       AND STUD_NUM=SCRAPPL_STUD
+       WHERE STUD_NUM=SCRAPPL_STUD
        AND SCRAPPL_SCR=SCR_NUM
-       AND SCRAPPL_APPR_CHECK='1'
+       <if test="scrappl_appr_check != null">
+       AND SCRAPPL_APPR_CHECK=#{scrappl_appr_check}
+       </if>  
+       <if test="scrappl_stud !=null">
+       AND STUD_NUM=#{scrappl_stud}
+       </if>
        <if test="scrappl_yr !=null and scrappl_yr != '전체'">
        AND SCRAPPL_YR=#{scrappl_yr}
        </if>
        <if test="scrappl_qtr !=null and scrappl_qtr != '전체'">
        AND SCRAPPL_QTR=#{scrappl_qtr}
        </if>
+       GROUP BY SCRAPPL_YR,SCRAPPL_QTR,SCR_NM,SCR_MONEY,SCRAPPL_CAUSE,STUD_BANK,STUD_AH,STUD_ACT_NUM,SCRAPPL_DATE,STUD_NM,STUD_NUM 
    </select>
    <!-- 2017.07.24일자 수정 -->
    <select id="studInfoSelect" parameterType="com.avengers.db.dto.resSchStudentVO" resultType="com.avengers.db.dto.resSchStudentVO">

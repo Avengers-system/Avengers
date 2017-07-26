@@ -37,6 +37,7 @@ public class AdminMypageDaoImpl implements AdminMypageDao {
 	public ArrayList<PerschdVO> selectPerschdList(String perschd_writer)throws SQLException {
 		ArrayList<PerschdVO> perschdList = new ArrayList<PerschdVO>();
 		perschdList =  (ArrayList<PerschdVO>) sqlSession.selectList("perschd.selectPerschdList", perschd_writer);
+		System.out.println("size : "+ perschdList.size());
 		return perschdList;
 	}
 

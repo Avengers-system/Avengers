@@ -16,9 +16,18 @@ public class EqVO {
 	private String eq_exmp_three; // 시험 보기문항3
 	private String eq_exmp_four; // 시험 보기문항4
 	private String eq_exam; // 시험 고유번호
+	private int eq_score;
 
 	public String getEq_num() {
 		return eq_num;
+	}
+
+	public int getEq_score() {
+		return eq_score;
+	}
+
+	public void setEq_score(int eq_score) {
+		this.eq_score = eq_score;
 	}
 
 	public void setEq_num(String eq_num) {

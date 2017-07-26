@@ -4,13 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!-- Admin Header -->
-<%@include file="../common/topCategory.jsp"%>
-
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide" style="width: 14%; text-align: center;">
    <!-- 테스트용 사이드 -->
-<%@include file="../helpDesk/helpDesk_leftSide.jsp"%>
+<%@include file="../helpDesk/helpDesk_leftSide.jsp"%> 
 </div>
 <div class="col-md-10" id="commonRightSide">
 
@@ -48,25 +45,22 @@
 </script>
 
 
-<!-- <div class="col-md-2" id="commonLeftSide"> -->
-
-
-<!-- </div> -->
 
 <div class="col-md-10" id="commonRightSide" style="margin-left: 0px; margin-right: 0px; float: left;" >
 	<div class="col-md-12">
 		<div class="panel">
 			<div class="panel-heading">
-				<h3>학사일정(풀캘)</h3>
+				<h3>QNA</h3>
 			</div>
 			<div class="panel-body">
 				<div class="responsive-table">
 					<div class="row">
 
-						<form action="<%=request.getContextPath()%>/admin/univSchdSearch?board_title=${univSchdSearch.board_title}">
+						<form
+							action="<%=request.getContextPath()%>/admin/qnaSearch?board_title=${qnaSearch.board_title}">
 							<div style="text-align: right; margin-right: 28px; margin-top:13px; margin-bottom: -20px; ">
 							
-							<a href="<%=request.getContextPath()%>/admin/univSchdWriteForm">글쓰기</a></div>
+							<a href="<%=request.getContextPath()%>/admin/qnaWriteForm">글쓰기</a></div>
 							<div class="col-sm-6" style="float: left; width:225px;  ">
 								<div id="datatables-example_filter" class="dataTables_filter" style="width: 20%;">
 
@@ -129,10 +123,6 @@
 												style="width: 116px; text-align: center;">작성자</th>
 											<th class="sorting" tabindex="0"
 												aria-controls="datatables-example" rowspan="1" colspan="1"
-												aria-label="Start date: activate to sort column ascending"
-												style="width: 220px; text-align: center;">첨부파일</th>
-											<th class="sorting" tabindex="0"
-												aria-controls="datatables-example" rowspan="1" colspan="1"
 												aria-label="Salary: activate to sort column ascending"
 												style="width: 176px; text-align: center;">게시판분류</th>
 											<th class="sorting" tabindex="0"
@@ -144,21 +134,20 @@
 									<!-- 테이블헤더 -->
 
 									<c:choose>
-										<c:when test="${not empty univSchdNoticeList}">
-											<c:forEach var="univSchdNoticeList"
-												items="${univSchdNoticeList }">
+										<c:when test="${not empty qnaNoticeList}">
+											<c:forEach var="qnaNoticeList"
+												items="${qnaNoticeList }">
 												<tbody>
 													<tr role="row" class="odd">
-														<td>${univSchdNoticeList.board_num}</td>
+														<td>${qnaNoticeList.board_num}</td>
 														<td><a
-															href="${pageContext.request.contextPath}/admin/univSchdDetail?board_num=${univSchdNoticeList.board_num}&board_count=${univSchdNoticeList.board_count}&pageNo=${pageVO.pageNo}">
-															${univSchdNoticeList.board_title}
+															href="${pageContext.request.contextPath}/admin/qnaDetail?board_num=${qnaNoticeList.board_num}&board_count=${qnaNoticeList.board_count}&pageNo=${pageVO.pageNo}">
+															${qnaNoticeList.board_title}
 														</a></td>
-														<td>${univSchdNoticeList.board_date}</td>
-														<td>${univSchdNoticeList.board_writer}</td>
-														<td>${univSchdNoticeList.board_af}</td>
-														<td>${univSchdNoticeList.board_bc}</td>
-														<td>${univSchdNoticeList.board_count}</td>
+														<td>${qnaNoticeList.board_date}</td>
+														<td>${qnaNoticeList.board_writer}</td>
+														<td>${qnaNoticeList.board_bc}</td>
+														<td>${qnaNoticeList.board_count}</td>
 													</tr>
 												</tbody>
 											</c:forEach>

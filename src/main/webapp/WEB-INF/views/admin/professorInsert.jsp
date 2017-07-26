@@ -231,7 +231,6 @@
 
 		</div>
 	</div>
-</div>
 
 <script>
 	$(function() {

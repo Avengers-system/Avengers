@@ -7,7 +7,7 @@
 
 <div class="col-md-10">
 	<div class="panel panel-default">
-		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+		<div class="panel-heading" style="background-color: #666666;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 				과제관리
 			</h4>
@@ -40,8 +40,8 @@
 									<td>${asgn.get('asgn_nm') }</td>
 									<td>${asgn.get('asgn_start_date') }</td>
 									<td>${asgn.get('asgn_dl_date') }</td>
-									<td><button>상세페이지</button></td>
-									<td><button>학생조회</button></td>
+									<td><button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureAsgnDetail?asgn_num=${asgn.get('asgn_num')}&division=1'">상세페이지</button></td>
+									<td><button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureTakeAsgnStudent?asgn_num=${asgn.get('asgn_num')}'">학생조회</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>			

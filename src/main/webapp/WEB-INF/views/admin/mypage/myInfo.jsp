@@ -24,7 +24,7 @@
 
 				개인정보</h4>
 		</div>
-		<div class="panel-body" style="height: 580px; text-align: center;">
+		<div class="panel-body" style="text-align: center;">
 			<c:choose>
 				<c:when test="${not empty admin}">
 					<form name="insertProfessor" id="signupForm" method="post"
@@ -50,7 +50,7 @@
 								id="image-preview-filename" disabled="disabled">
 								<div class="btn btn-default image-preview-input">
 									<input type="file" accept="image/png, image/jpeg, image/gif"
-										name="file"> <span class="image-preview-input-title">업로드</span>
+										name="file"> <span class="image-preview-input-title"></span>
 								</div>
 							</span>
 

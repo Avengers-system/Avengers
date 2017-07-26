@@ -1,5 +1,7 @@
 package com.avengers.student.classManage.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.avengers.db.dto.EqVO;
 import com.avengers.db.dto.SubVO;
@@ -254,13 +257,26 @@ public class StudentClassManageController {
 	}
 	
 	@RequestMapping(value="student/classManage/lectureAsgnSubmit")
-	public String studentLectureAsgnSubmit(HttpServletRequest request, Principal principal ){
+	public String studentLectureAsgnSubmit(@RequestParam(value="sub_af")MultipartFile sub_af, HttpServletRequest request, Principal principal ){
 		SubVO subVO = new SubVO();
 		subVO.setSub_title((String)request.getParameter("sub_title"));
 		subVO.setSub_cont((String)request.getParameter("sub_cont"));
 		subVO.setSub_stud(principal.getName());
 		subVO.setSub_asgn((String)request.getParameter("asgn_num"));
 		
+		String upload= request.getSession().getServletContext().getRealPath("resources/asgn/");
+		
+		if(!sub_af.isEmpty()){
+			File file = new File(upload,sub_af.getOriginalFilename());
+			try {
+				sub_af.transferTo(file);
+				subVO.setSub_af(file.getName());
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		int result = -1;
 		try {
 			result = scmService.updateSubmissionCheck(subVO);

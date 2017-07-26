@@ -23,8 +23,9 @@ public class ProfessorMypageServiceImpl implements ProfessorMypageService {
 
 	@Override
 	public PrfsVO selectPrfs(String prfs_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		PrfsVO profVO = null;
+		profVO= proMyPageDAO.selectPrfs(prfs_num);
+		return profVO;
 	}
 
 	@Override

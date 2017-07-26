@@ -12,14 +12,15 @@
 		<result javaType="java.lang.String" column="ASGN_DL_DATE" property="asgn_dl_date"/>
 		<result javaType="java.lang.String" column="SUB_CHECK" property="sub_check"/>
 	</resultMap>
-
+	
+	<!-- 학생화면에서의 과제리스트 -->
 	<select id="selectAsgnInfoList" parameterType="java.util.HashMap" resultMap="asgnList">
 		SELECT ASGN_NUM
 		      ,REGEXP_REPLACE(LCT_NM,'.{1}$') AS LCT_NM
 		      ,SUBSTR(LCT_NM,-1) AS LCT_NM_CLASS
 		      ,ASGN_NM
-		      ,TO_CHAR(ASGN_START_DATE, 'YY/MM/DD HH24:MI:SS') AS ASGN_START_DATE
-		      ,TO_CHAR(ASGN_DL_DATE, 'YY/MM/DD HH24:MI:SS') AS ASGN_DL_DATE
+		      ,TO_CHAR(ASGN_START_DATE, 'YY/MM/DD') AS ASGN_START_DATE
+		      ,TO_CHAR(ASGN_DL_DATE, 'YY/MM/DD') AS ASGN_DL_DATE
 		      ,case when SUB_CHECK = 1 then '제출' else '미제출' end AS SUB_CHECK
 		FROM  ASGN, SUBMISSION, LECTURE
 		WHERE ASGN_NUM = SUB_ASGN
@@ -40,6 +41,7 @@
 		<result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>
 	</resultMap>
 	
+	<!-- 학생화면에서의 과제관리 상세보기 -->
 	<select id="selectAsgnInfo" parameterType="java.util.HashMap" resultMap="asgnInfo">
 		SELECT ASGN_NM
 		      ,ASGN_CONT
@@ -69,8 +71,8 @@
 	<select id="selectLctAsgnInfo" parameterType="java.lang.String" resultMap="lctAsgnInfo">
 		SELECT ASGN_NUM
 		      ,ASGN_NM
-		      ,TO_CHAR(ASGN_START_DATE,'YYYY/MM/DD HH24:MI:SS') AS ASGN_START_DATE
-		      ,TO_CHAR(ASGN_DL_DATE,'YYYY/MM/DD HH24:MI:SS') AS ASGN_DL_DATE
+		      ,TO_CHAR(ASGN_START_DATE,'YYYY/MM/DD') AS ASGN_START_DATE
+		      ,TO_CHAR(ASGN_DL_DATE,'YYYY/MM/DD') AS ASGN_DL_DATE
 		      ,LCT_YR
 		      ,LCT_QTR
 		FROM   ASGN, LECTURE
@@ -104,4 +106,91 @@
 		SET    ASGN_CHECK = '1'
 		WHERE  ASGN_NUM = #{asgn_num}
 	</update>
+	
+	
+	<!-- 과제 상세페이지 -->
+	<resultMap type="java.util.HashMap" id="AsgnInfo">
+		<result javaType="java.lang.String" column="ASGN_NUM" property="asgn_num"/>
+		<result javaType="java.lang.String" column="ASGN_NM" property="asgn_nm"/>
+		<result javaType="java.lang.String" column="ASGN_START_DATE" property="asgn_start_date"/>
+		<result javaType="java.lang.String" column="ASGN_DL_DATE" property="asgn_dl_date"/>
+		<result javaType="java.lang.String" column="LCT_YR" property="lct_yr"/>
+		<result javaType="java.lang.String" column="LCT_QTR" property="lct_qtr"/>
+		<result javaType="java.lang.String" column="ASGN_CONT" property="asgn_cont"/>
+		<result javaType="java.lang.String" column="ASGN_SUB_FORM" property="asgn_sub_form"/>
+		<result javaType="java.lang.String" column="LCT_NM" property="lct_nm"/>
+		<result javaType="java.lang.String" column="LCT_NM_CLASS" property="lct_nm_class"/>
+	</resultMap>
+	
+	<!-- 교수화면에서 과제 상세페이지 -->	
+	<select id="selectAsgnDetailInfo" parameterType="java.lang.String" resultMap="AsgnInfo">
+		SELECT ASGN_NUM
+		      ,ASGN_NM
+		      ,TO_CHAR(ASGN_START_DATE,'YYYY/MM/DD') AS ASGN_START_DATE
+		      ,TO_CHAR(ASGN_DL_DATE,'YYYY/MM/DD') AS ASGN_DL_DATE
+		      ,REGEXP_REPLACE(LCT_NM,'.{1}$') AS LCT_NM
+			  ,SUBSTR(LCT_NM,-1) AS LCT_NM_CLASS
+		      ,LCT_YR
+		      ,LCT_QTR
+		      ,ASGN_CONT
+		      ,ASGN_SUB_FORM
+		FROM   ASGN, LECTURE
+		WHERE  ASGN_LCT = LCT_NUM
+		AND    ASGN_NUM = #{asgn_num}
+	</select>
+	
+	<!-- 과제에 대한 학생조회의 정보를 담기 위한 Map -->
+	<resultMap type="java.util.HashMap" id="asgnOfStudInfo">
+		<result javaType="java.lang.String" column="ASGN_NUM" property="asgn_num"/>
+		<result javaType="java.lang.String" column="ASGN_NM" property="asgn_nm"/>
+		<result javaType="java.lang.String" column="SUB_CHECK" property="sub_check"/>
+		<result javaType="java.lang.String" column="STUD_NUM" property="stud_num"/>
+		<result javaType="java.lang.String" column="STUD_NM" property="stud_nm"/>
+		<result javaType="java.lang.String" column="STUD_HP" property="stud_hp"/>
+		<result javaType="java.lang.String" column="DEPT_NM" property="dept_nm"/>
+		<result javaType="java.lang.String" column="COL_NM" property="col_nm"/>
+		<result javaType="java.lang.String" column="SUB_NUM" property="sub_num"/>
+		<result javaType="java.lang.String" column="SUB_SJT_POINT" property="sub_sjt_point"/>
+	</resultMap>
+	<!-- 과제에 대한 학생조회 -->
+	<select id="selectAsgnOfStudList" parameterType="java.lang.String" resultMap="asgnOfStudInfo">
+	SELECT ASGN_NUM
+		  ,ASGN_NM
+	      ,case when SUB_CHECK = '2' then '미제출' else '제출' end AS SUB_CHECK
+	      ,STUD_NUM
+	      ,STUD_NM
+	      ,STUD_HP
+	      ,DEPT_NM
+	      ,COL_NM
+	      ,SUB_NUM
+	      ,case when SUB_SJT_POINT IS NULL then -1 else SUB_SJT_POINT end AS SUB_SJT_POINT
+	FROM   SUBMISSION, ASGN, LECTURE, TL, STUDENT, DEPARTMENT, COLLEAGE
+	WHERE  SUB_ASGN = ASGN_NUM
+	AND    ASGN_LCT = LCT_NUM
+	AND    LCT_NUM = TL_LCT
+	AND    STUD_NUM = TL_STUD
+	AND    SUB_STUD = STUD_NUM
+	AND    STUD_DEPT = DEPT_NUM
+	AND    DEPT_COL = COL_CODE
+	AND    ASGN_NUM = #{asgn_num}
+	</select>
+	
+	<update id="updateAsgn" parameterType="com.avengers.db.dto.AsgnVO">
+		UPDATE ASGN
+		SET    ASGN_NM = #{asgn_nm}
+		      ,ASGN_CONT = #{asgn_cont}
+		      ,ASGN_START_DATE = TO_DATE(#{asgn_start_date},'YYYY/MM/DD HH24:MI:SS')
+		      ,ASGN_DL_DATE = TO_DATE(#{asgn_dl_date},'YYYY/MM/DD HH24:MI:SS')
+		      <if test="asgn_sub_form != null">
+		      ,ASGN_SUB_FORM = #{asgn_sub_form}
+		      </if>
+		WHERE  ASGN_NUM = #{asgn_num}
+	</update>
+	
+	
+	
+	
+	
+	
+	
 </mapper>
