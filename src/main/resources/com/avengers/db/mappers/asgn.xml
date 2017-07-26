@@ -19,8 +19,8 @@
 		      ,REGEXP_REPLACE(LCT_NM,'.{1}$') AS LCT_NM
 		      ,SUBSTR(LCT_NM,-1) AS LCT_NM_CLASS
 		      ,ASGN_NM
-		      ,TO_CHAR(ASGN_START_DATE, 'YY/MM/DD HH24:MI:SS') AS ASGN_START_DATE
-		      ,TO_CHAR(ASGN_DL_DATE, 'YY/MM/DD HH24:MI:SS') AS ASGN_DL_DATE
+		      ,TO_CHAR(ASGN_START_DATE, 'YY/MM/DD') AS ASGN_START_DATE
+		      ,TO_CHAR(ASGN_DL_DATE, 'YY/MM/DD') AS ASGN_DL_DATE
 		      ,case when SUB_CHECK = 1 then '제출' else '미제출' end AS SUB_CHECK
 		FROM  ASGN, SUBMISSION, LECTURE
 		WHERE ASGN_NUM = SUB_ASGN
@@ -71,8 +71,8 @@
 	<select id="selectLctAsgnInfo" parameterType="java.lang.String" resultMap="lctAsgnInfo">
 		SELECT ASGN_NUM
 		      ,ASGN_NM
-		      ,TO_CHAR(ASGN_START_DATE,'YYYY/MM/DD HH24:MI:SS') AS ASGN_START_DATE
-		      ,TO_CHAR(ASGN_DL_DATE,'YYYY/MM/DD HH24:MI:SS') AS ASGN_DL_DATE
+		      ,TO_CHAR(ASGN_START_DATE,'YYYY/MM/DD') AS ASGN_START_DATE
+		      ,TO_CHAR(ASGN_DL_DATE,'YYYY/MM/DD') AS ASGN_DL_DATE
 		      ,LCT_YR
 		      ,LCT_QTR
 		FROM   ASGN, LECTURE
@@ -126,8 +126,8 @@
 	<select id="selectAsgnDetailInfo" parameterType="java.lang.String" resultMap="AsgnInfo">
 		SELECT ASGN_NUM
 		      ,ASGN_NM
-		      ,TO_CHAR(ASGN_START_DATE,'YYYY/MM/DD HH24:MI:SS') AS ASGN_START_DATE
-		      ,TO_CHAR(ASGN_DL_DATE,'YYYY/MM/DD HH24:MI:SS') AS ASGN_DL_DATE
+		      ,TO_CHAR(ASGN_START_DATE,'YYYY/MM/DD') AS ASGN_START_DATE
+		      ,TO_CHAR(ASGN_DL_DATE,'YYYY/MM/DD') AS ASGN_DL_DATE
 		      ,REGEXP_REPLACE(LCT_NM,'.{1}$') AS LCT_NM
 			  ,SUBSTR(LCT_NM,-1) AS LCT_NM_CLASS
 		      ,LCT_YR
@@ -175,7 +175,17 @@
 	AND    ASGN_NUM = #{asgn_num}
 	</select>
 	
-	
+	<update id="updateAsgn" parameterType="com.avengers.db.dto.AsgnVO">
+		UPDATE ASGN
+		SET    ASGN_NM = #{asgn_nm}
+		      ,ASGN_CONT = #{asgn_cont}
+		      ,ASGN_START_DATE = TO_DATE(#{asgn_start_date},'YYYY/MM/DD HH24:MI:SS')
+		      ,ASGN_DL_DATE = TO_DATE(#{asgn_dl_date},'YYYY/MM/DD HH24:MI:SS')
+		      <if test="asgn_sub_form != null">
+		      ,ASGN_SUB_FORM = #{asgn_sub_form}
+		      </if>
+		WHERE  ASGN_NUM = #{asgn_num}
+	</update>
 	
 	
 	

@@ -218,4 +218,10 @@ public class ProfessorClassManageServiceImpl implements ProfessorClassManageServ
 		int result = proClassDAO.updateSubSjtPoint(key);
 		return result;
 	}
+
+	@Override
+	public int updateAsgn(AsgnVO asgnVO) throws SQLException {
+		int result = proClassDAO.updateAsgn(asgnVO);
+		return result;
+	}
 }

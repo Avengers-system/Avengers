@@ -6,10 +6,8 @@
 </div>
 <div class="col-md-10">
 	<div class="panel panel-default">
-		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
-			<h4 style="color:#fff; font-weight:bold; font-size:20px;">
-				과제등록
-			</h4>
+		<div class="panel-heading" style="background-color: #666666;  margin-top: 10px;">
+			<h4 style="color:#fff; font-weight:bold; font-size:20px;">과제등록</h4>
 		</div>
 	</div>
 	<form name="registryAsgn" method="post" action="${pageContext.request.contextPath}/professor/classManage/registryAsgn" enctype="multipart/form-data">

@@ -116,48 +116,52 @@ $(function(){
  		width:500px;
  	}
 </style>
-<!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
-<%@include file="../common/classManageLectureSideCategory.jsp" %>
+	<%@include file="../common/classManageLectureSideCategory.jsp"%>
 </div>
+
 <div class="col-md-10">
-	<div style="overflow:auto;height:900px">
-		<h1>시험등록 및 수정</h1>
-		<hr/>
-		<select id="select" style="height:20px">
-			<option value="1">객관식</option>
-			<option value="2">주관식</option>
-		</select>
-		<button id="addExamBtn">추가</button>
-		<form name="examRegistry">
-			<c:choose>
-				<c:when test="${eqList eq null }">
-				</c:when>
-				<c:otherwise>
-					<c:forEach items="${eqList }" var="eqInfo" varStatus="status">
-						<div class="examQn">
-							문제고유번호 : <input type="hidden" class="eq_num" name="eq_num${status.count}" value="${eqInfo.getEq_num() }" /><br/>
-							<input type="text" class="eq_qtna" readonly name="eq_qtna${status.count}" value="${eqInfo.getEq_qtna() }"/>.<input type="text" readonly class="eq_qtn" name="eq_qtn${status.count}" value="${eqInfo.getEq_qtn() }"/>배점<input type="text" name="eq_score${status.count }" class="eq_score" value="${eqInfo.getEq_score()}" style="width:100px"/><br/>
-							<input type="hidden" class="eq_qtn_type" name="eq_qtn_type${status.count}" value="${eqInfo.getEq_qtn_type() }"/>
-							<c:choose>
-								<c:when test="${eqInfo.getEq_qtn_type() eq 1 }">
-									①<input type="text" class="eq_exmp_one" name="eq_exmp_one${status.count}" value="${eqInfo.getEq_exmp_one() }"/><br/>
-									②<input type="text" class="eq_exmp_two" name="eq_exmp_two${status.count}" value="${eqInfo.getEq_exmp_two() }"/><br/>
-									③<input type="text" class="eq_exmp_three" name="eq_exmp_three${status.count}" value="${eqInfo.getEq_exmp_three() }"/><br/>
-									④<input type="text" class="eq_exmp_four" name="eq_exmp_four${status.count}" value="${eqInfo.getEq_exmp_four() }"/><br/>
-									답:<input type="text" class="eq_ans" name="eq_ans${status.count}" value="${eqInfo.getEq_ans() }"/><input type="button" id="removeExamBtn" value="삭제"/><br/><br/>
-								</c:when>
-								<c:otherwise>
-									주관식문항은 문제만 입력이 가능합니다.<input type="button" id="removeExamBtn" value="삭제"/><br/><br/>
-								</c:otherwise>
-							</c:choose>
-						</div>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-			<input type="button" id="examRegistryBtn" value="등록"/>
-			<input type="button" value="뒤로가기" onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureExamQn?exam_num=${exam_num}&division=1'"/>
-<!-- 		status의 마지막값을 파라미터로 넘겨서 확인?? -->
-		</form>
+	<div class="panel panel-default">
+		<div class="panel-heading"
+			style="background-color: #666666; margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">시험등록 및 수정</h4>
+		</div>
+		<div class="panel-body">
+			<select id="select" style="height:20px">
+				<option value="1">객관식</option>
+				<option value="2">주관식</option>
+			</select>
+			<button id="addExamBtn">추가</button>
+			<form name="examRegistry">
+				<c:choose>
+					<c:when test="${eqList eq null }">
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${eqList }" var="eqInfo" varStatus="status">
+							<div class="examQn">
+								문제고유번호 : <input type="hidden" class="eq_num" name="eq_num${status.count}" value="${eqInfo.getEq_num() }" /><br/>
+								<input type="text" class="eq_qtna" readonly name="eq_qtna${status.count}" value="${eqInfo.getEq_qtna() }"/>.<input type="text" readonly class="eq_qtn" name="eq_qtn${status.count}" value="${eqInfo.getEq_qtn() }"/>배점<input type="text" name="eq_score${status.count }" class="eq_score" value="${eqInfo.getEq_score()}" style="width:100px"/><br/>
+								<input type="hidden" class="eq_qtn_type" name="eq_qtn_type${status.count}" value="${eqInfo.getEq_qtn_type() }"/>
+								<c:choose>
+									<c:when test="${eqInfo.getEq_qtn_type() eq 1 }">
+										①<input type="text" class="eq_exmp_one" name="eq_exmp_one${status.count}" value="${eqInfo.getEq_exmp_one() }"/><br/>
+										②<input type="text" class="eq_exmp_two" name="eq_exmp_two${status.count}" value="${eqInfo.getEq_exmp_two() }"/><br/>
+										③<input type="text" class="eq_exmp_three" name="eq_exmp_three${status.count}" value="${eqInfo.getEq_exmp_three() }"/><br/>
+										④<input type="text" class="eq_exmp_four" name="eq_exmp_four${status.count}" value="${eqInfo.getEq_exmp_four() }"/><br/>
+										답:<input type="text" class="eq_ans" name="eq_ans${status.count}" value="${eqInfo.getEq_ans() }"/><input type="button" id="removeExamBtn" value="삭제"/><br/><br/>
+									</c:when>
+									<c:otherwise>
+										주관식문항은 문제만 입력이 가능합니다.<input type="button" id="removeExamBtn" value="삭제"/><br/><br/>
+									</c:otherwise>
+								</c:choose>
+							</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+				<input type="button" id="examRegistryBtn" value="등록"/>
+				<input type="button" value="뒤로가기" onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureExamQn?exam_num=${exam_num}&division=1'"/>
+	<!-- 		status의 마지막값을 파라미터로 넘겨서 확인?? -->
+			</form>
+		</div>
 	</div>
 </div>
