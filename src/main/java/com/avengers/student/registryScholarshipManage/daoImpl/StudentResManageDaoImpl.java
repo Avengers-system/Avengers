@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.avengers.db.dto.LoaRtsVO;
 import com.avengers.db.dto.RegVO;
+import com.avengers.db.dto.ScrVO;
 import com.avengers.db.dto.ScrapplVO;
 import com.avengers.db.dto.resSchStudentVO;
 import com.avengers.student.registryScholarshipManage.dao.StudentResManageDao;
@@ -30,20 +31,20 @@ public class StudentResManageDaoImpl implements StudentResManageDao{
 
 	@Override
 	public int insertScrappl(ScrapplVO scrapplVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		int insertScrappl =(int) sqlSession.insert("resSchManage.insertScrAppl",scrapplVO);
+		return insertScrappl;
 	}
 
 	@Override
-	public ArrayList<RegVO> selectRegList(String reg_stud) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<HashMap<String,String>> selectRegList(RegVO regVO)throws SQLException {
+		List<HashMap<String,String>> selectRegList=(List<HashMap<String,String>>)sqlSession.selectList("resSchManage.selectRegList",regVO); 
+		return selectRegList;
 	}
 
 	@Override
-	public RegVO selectReg(String reg_stud) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<HashMap<String,String>> selectReg(RegVO regVO)throws SQLException {
+		List<HashMap<String,String>> selectReg = (List<HashMap<String,String>>)sqlSession.selectList("resSchManage.selectReg",regVO);
+		return selectReg;
 	}
 
 	@Override
@@ -93,6 +94,12 @@ public class StudentResManageDaoImpl implements StudentResManageDao{
 		resSchStudentVO studInfo = new resSchStudentVO();
 		studInfo = (resSchStudentVO) sqlSession.selectOne("resSchManage.studInfoSelect",resVO);
 		return studInfo;
+	}
+
+	@Override
+	public ArrayList<ScrVO> selectScrVO() throws SQLException {
+		ArrayList<ScrVO> scrVO = (ArrayList<ScrVO>) sqlSession.selectList("resSchManage.scrList");
+		return scrVO;
 	}
 	
 	

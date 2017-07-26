@@ -21,6 +21,22 @@ public interface ProfessorMainService {
 	 * @return
 	 * @throws SQLException
 	 */
+	
+	
+ 	public ArrayList<BoardVO> getProfessorMainSchoolNotice() throws SQLException;
+ 	public ArrayList<BoardVO> getProfessorMainDepartNotice(String prfs_dept) throws SQLException;
+ 	public ArrayList<BoardVO> getProfessorMainPotalNotice() throws SQLException;
+	
+ 	public String selectSchedule(String prfs_num) throws SQLException;
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public PrfsVO selectPrfs(String prfs_num) throws SQLException;
 	
 	/**

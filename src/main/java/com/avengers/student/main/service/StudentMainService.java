@@ -30,7 +30,6 @@ public interface StudentMainService {
 	 	public String selectSchedule(String stud_num) throws SQLException;
 	 	
 	 	
-	 	
 	 	public ArrayList<BoardVO> getStudMainSchoolNotice() throws SQLException;
 	 	public ArrayList<BoardVO> getStudMainDepartNotice(String stud_dept) throws SQLException;
 	 	public ArrayList<BoardVO> getStudMainPotalNotice() throws SQLException;

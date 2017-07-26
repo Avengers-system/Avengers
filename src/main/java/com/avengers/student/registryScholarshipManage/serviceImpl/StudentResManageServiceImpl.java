@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.avengers.db.dto.LoaRtsVO;
 import com.avengers.db.dto.RegVO;
+import com.avengers.db.dto.ScrVO;
 import com.avengers.db.dto.ScrapplVO;
 import com.avengers.db.dto.resSchStudentVO;
 import com.avengers.student.registryScholarshipManage.dao.StudentResManageDao;
@@ -32,20 +33,17 @@ public class StudentResManageServiceImpl implements StudentResManageService {
 
 	@Override
 	public int insertScrappl(ScrapplVO scrapplVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return stuResDAO.insertScrappl(scrapplVO);
 	}
 
 	@Override
-	public ArrayList<RegVO> selectRegList(String reg_stud) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<HashMap<String,String>> selectRegList(RegVO regVO)throws SQLException {
+		return stuResDAO.selectRegList(regVO);
 	}
 
 	@Override
-	public RegVO selectReg(String reg_stud) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<HashMap<String,String>> selectReg(RegVO regVO)throws SQLException {
+		return stuResDAO.selectReg(regVO);
 	}
 
 	@Override
@@ -85,6 +83,11 @@ public class StudentResManageServiceImpl implements StudentResManageService {
 	@Override
 	public resSchStudentVO selectStudInfo(String stud_num) throws SQLException {
 		return stuResDAO.selectStudInfo(stud_num);
+	}
+
+	@Override
+	public ArrayList<ScrVO> selectScrVO() throws SQLException {
+		return stuResDAO.selectScrVO();
 	}
 
 }

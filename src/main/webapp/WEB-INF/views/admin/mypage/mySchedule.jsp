@@ -5,37 +5,6 @@
     <%@page import="java.util.List"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<head>
-<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-<title>일정관리</title>
-
-<meta name='description'content='Open source JavaScript jQuery plugin for a full-sized, drag &amp; drop event calendar'>
-<meta name='keywords'content='calendar, JavaScript, jQuery, events, drag and drop'>
-<meta name='author' content='Adam Shaw'>
-<meta name="msapplication-TileColor" content="#2b5797">
-<meta name="msapplication-TileImage" content="https://fullcalendar.io/mstile-144x144.png">
-
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script src='${pageContext.request.contextPath}/resources/js/full_calender/jquery.min.js'></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="apple-touch-icon" sizes="57x57"	href="https://fullcalendar.io/apple-touch-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="114x114"	href="https://fullcalendar.io/apple-touch-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="72x72"	href="https://fullcalendar.io/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="144x144"	href="https://fullcalendar.io/apple-touch-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="60x60"	href="https://fullcalendar.io/apple-touch-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="120x120"	href="https://fullcalendar.io/apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="76x76"	href="https://fullcalendar.io/apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="152x152"href="https://fullcalendar.io/apple-touch-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180"href="https://fullcalendar.io/apple-touch-icon-180x180.png">
-<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-192x192.png" sizes="192x192">
-<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-160x160.png" sizes="160x160">
-<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-96x96.png" sizes="96x96">
-<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-16x16.png" sizes="16x16">
-<link rel="icon" type="image/png"href="https://fullcalendar.io/favicon-32x32.png" sizes="32x32">
 
 <style>
 ol, ul {
@@ -55,43 +24,25 @@ ol, ul {
 
 }
 </style>
-
- 
-<!-- 사이드없는 페이지 -->    
-    
-<div class="col-xs-12">
+<!-- Content -->
+<!-- side menu -->
+<%@include file="../common/myPageSideCategory.jsp"%>
+<!--  Counsel Right Side -->
+<div class="col-md-10">
 	<div class="panel panel-default">
-		<div class="panel-heading"
-			style="background-color: #2196F3; margin-top: 10px;">
+		<div class="panel-heading" style="background-color: #CC0000;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
-			일정관리</h4>
+				개인일정
+			</h4>
 		</div>
-		<div class="panel-body" style="height: 580px;">
-		
-			<div id='body' class='section' >
-		<div>
-			<div class='two-col'>
-			
+		<div class="panel-body" style="height: 580px; text-align: center;" >
 			<div class="col-md-3 col-md-offset-9" style="padding-left:0px;">
 				<a href="#" class="button" data-toggle="modal" data-target="#addSchedule">일정등록 </a>
-			
-				</div>
-			
-			
-					<div id='calendar'></div>
-				</div>
 			</div>
-		</div>
-		
+			<div id='calendar'></div>
 		</div>
 	</div>
 </div>
-
-
-
-
-		
-
 <script>
  
 	$(function() {

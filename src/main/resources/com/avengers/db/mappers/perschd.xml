@@ -7,9 +7,18 @@
 	<select id="studentSchedule" parameterType="java.lang.String" resultType="java.lang.String">
 		select PERSCHD_CONT from perschd where perschd_writer = #{stud_num} and perschd_date like sysdate
 	</select>
+	
+	<select id="adminSchedule" parameterType="java.lang.String" resultType="java.lang.String">
+		select PERSCHD_CONT from perschd where perschd_writer = #{admin_id} and perschd_date like sysdate
+	</select>
+	
+	<select id="professorSchedule" parameterType="java.lang.String" resultType="java.lang.String">
+		select PERSCHD_CONT from perschd where perschd_writer = #{prfs_num} and perschd_date like sysdate
+	</select>
 
 
 	<select id="selectPerschdList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
+	
 		SELECT
 			PERSCHD_NUM,
 			PERSCHD_TITLE,
@@ -21,6 +30,7 @@
 		FROM PERSCHD
 		WHERE PERSCHD_WRITER = #{perschd_writer}
 	</select>
+	
 	
 	<select id="selectSchdTitle" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
 		SELECT
