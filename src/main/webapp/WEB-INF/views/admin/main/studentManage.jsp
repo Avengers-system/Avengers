@@ -3,6 +3,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+<!-- Counsel Content -->
+<!-- Counsel Left Side -->
+ <%@include file="../common/adminManageCategory.jsp" %>
+ 
 <style>
 			button#addStud{
 			} 
@@ -107,33 +113,18 @@
 			vertical-align: middle;
 			}
 			 
+			 
+			.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover {
+    		color: #777;
+		    background-color: #fff;
+		    border-color: #ddd;
+}
 			 </style>
 
 
-<script>
-//검색하기
-		function fn_search() {
-			if (jQuery("#searchS").val() == "") {
-				return;
-			} else {
-				jQuery("input[name=searchFiled]").val(jQuery("#searchS").val());
-			}
-			var searchValue = jQuery("#searchI").val();
-			jQuery("input[name=searchValue]").val(searchValue);
-		
-			jQuery("input[name=pageNo]").val("1");
-			jQuery("form[name=frm]").attr("method", "post");
-			jQuery("form[name=frm]").attr("action", "").submit();
-		}
-
-</script>
-
-
-
-
-
-
-<div class="col-md-10 col-md-offset-1">
+<!--  Counsel Right Side -->
+<div class="col-md-10">
+ 
                   <div class="panel">
                     <div class="panel-heading"><h3>학생목록</h3></div>
                     
@@ -284,13 +275,33 @@
 		                      </div>
 		                  </div>
 						</form>
-                </div>
               </div>
  </div>
  
+ 
+ 
+</div>
 
- 
- 
+
+
+<script>
+//검색하기
+		function fn_search() {
+			if (jQuery("#searchS").val() == "") {
+				return;
+			} else {
+				jQuery("input[name=searchFiled]").val(jQuery("#searchS").val());
+			}
+			var searchValue = jQuery("#searchI").val();
+			jQuery("input[name=searchValue]").val(searchValue);
+		
+			jQuery("input[name=pageNo]").val("1");
+			jQuery("form[name=frm]").attr("method", "post");
+			jQuery("form[name=frm]").attr("action", "").submit();
+		}
+
+</script>
+
  
  <script type="text/javascript">
 	//페이지 이동

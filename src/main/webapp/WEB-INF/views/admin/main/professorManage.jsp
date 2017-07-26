@@ -2,7 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<!-- Counsel Content -->
+<!-- Counsel Left Side -->
+ <%@include file="../common/adminManageCategory.jsp" %>
+ 
 <style>
 	#professorTable,  #professorTable td{
 		border : 2px solid black;
@@ -15,9 +20,9 @@
  }
 </style>
 
-<div class="col-md-10" id="commonRightSide">
- 
-	<div class="col-md-10 col-md-offset-1">
+<!--  Counsel Right Side -->
+<div class="col-md-10">
+
                   <div class="panel">
                     <div class="panel-heading"><h3>교수목록</h3></div>
                     <div class="panel-body">
