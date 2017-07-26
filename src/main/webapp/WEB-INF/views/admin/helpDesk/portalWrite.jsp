@@ -5,13 +5,21 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="../common/helpDesk_leftSide.jsp"%>
+
 
 <div class="col-md-10">
-	<div class="col-md-12 panel">
-		<div class="col-md-12 panel-heading">
-			<h1>포털 글쓰기</h1>
-		</div>
+	<div class="panel panel-default">
+<!--  메뉴제목 -->
+		<div class="panel-heading"
+			style="background-color: #2196F3; margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 
+				포털소식글쓰기</h4>
+		</div>
+		
+		<!-- 내용시작 -->	
+<div class="panel-body" style="height: 750px; text-align: center;">
 
 		<div class="col-md-12 panel-body" style="padding-bottom: 30px; margin-left: 70px;">
 			<c:set var="myContextPath" value="${pageContext.request.contextPath}" />
@@ -101,6 +109,8 @@
 							 style="width: 150px;">
 					<span class="bar"></span>
 					</div>
+</div>
+
 					
 					
 					
@@ -126,75 +136,3 @@
 	</div>
 </div>
 
-
-
-<!-- css -->
-<div class="col-md-10">
-	<div class="col-md-12 panel">
-		<div class="col-md-12 panel-heading">
-			<h4>Form Validation</h4>
-		</div>
-		<div class="col-md-12 panel-body" style="padding-bottom: 30px; margin-left: 85px;">
-			<div class="col-md-12">
-				<form class="cmxform" id="signupForm" method="get" action="">
-					<div class="col-md-6" style="width:300px;">
-						<div class="form-group form-animate-text"
-							style="margin-top: 40px !important;">
-
-							<input type="text" class="form-text" id="validate_firstname"
-								name="validate_firstname" required> <span class="bar"></span>
-							<label>Firstname</label>
-						</div>
-
-						<div class="form-group form-animate-text"
-							style="margin-top: 40px !important;">
-							<input type="text" class="form-text" id="validate_lastname"
-								name="validate_lastname" required> <span class="bar"></span>
-							<label>Lastname</label>
-						</div>
-
-						<div class="form-group form-animate-text"
-							style="margin-top: 40px !important;">
-							<input type="text" class="form-text" id="validate_username"
-								name="validate_username" required> <span class="bar"></span>
-							<label>Username</label>
-						</div>
-					</div>
-
-					<div class="col-md-6">
-						<div class="form-group form-animate-text"
-							style="margin-top: 40px !important;">
-							<input type="password" class="form-text" id="validate_password"
-								name="validate_password" required> <span class="bar"></span>
-							<label>Password</label>
-						</div>
-
-						<div class="form-group form-animate-text"
-							style="margin-top: 40px !important;">
-							<input type="password" class="form-text"
-								id="validate_confirm_password" name="validate_confirm_password"
-								required> <span class="bar"></span> <label>Confirm
-								Password</label>
-						</div>
-
-						<div class="form-group form-animate-text"
-							style="margin-top: 40px !important;">
-							<input type="text" class="form-text" id="validate_email"
-								name="validate_email" required> <span class="bar"></span>
-							<label>Email</label>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="form-group form-animate-checkbox">
-							<input type="checkbox" class="checkbox" id="validate_agree"
-								name="validate_agree"> <label>Please agree to
-								our policy</label>
-						</div>
-						<input class="submit btn btn-danger" type="submit" value="Submit">
-					</div>
-				</form>
-
-			</div>
-		</div>
-	</div>
-</div>

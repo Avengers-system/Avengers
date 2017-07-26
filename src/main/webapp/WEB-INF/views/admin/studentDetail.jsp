@@ -3,217 +3,399 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-
-<style>
-
-#commonRightSide{
-margin-top:50px;
-
-}
-
-div.detailBtn>*{
-	margin:0 auto;
-}
-
-div.input-group{
-	width : 400px;
-}
-
-div.input-group>span.input-group-addon{
-	width:120px;
-}
-
-</style>
-    
-<!-- Admin Header -->
-<%-- <%@include file="common/topCategory.jsp"%> --%>
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide">
-<%-- 	<%@include file="common/mainSideCategory.jsp" %> --%>
-</div>
-<div class="col-md-10" id="commonRightSide">
-
-
-		<div class="col-md-4">
-			<legend>상세정보</legend>
-		    
+<%@include file="common/adminManageCategory.jsp" %>
+<div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
+			상세정보
+			</h4>
+		</div>
+		<div class="panel-body" style="height: 650px; text-align: center;" >
+		 <div class="row">
+		  	<div class="col-md-12">
      <form enctype="multipart/form-data" action="${pageContext.request.contextPath }/admin/updateStudent" method="post">  
-  	  
-  	  	
-  	  	<div class="col-md-12" >
-			         <!-- 이미지 미리보기 -->
-			               <div class="filess" >
-			                  <img  style="height:150px;width:130px;" alt="student Pic" 
-			                  src="<%=request.getContextPath()%>/resources/admin_student_images/${student.stud_pic}"
+  	  	<div class="col-md-12" style="margin-top:30px;">
+  		   <!-- 이미지 미리보기 -->
+  		   				<div class="col-md-12">
+			               <div class="filess" style="margin-bottom:20px;">
+			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="<%=request.getContextPath()%>/resources/admin_professor_images/${student.stud_pic}"
 			                     id="profile-image" class="img-circle img-responsive">
 			                  <input style="width:100px;" id="profile-image-input"  accept="image/png, image/jpeg, image/gif" class="hidden" type="file">
 			               </div>
-			               
-			               <label class='control-label'>이미지</label>
-			                      <span class="input-group-btn">
-			                       <input type="text" class="form-control" value="${student.stud_pic}" style="width:230px;" id="image-preview-filename" disabled="disabled">
-			                            <div class="btn btn-default image-preview-input">
-			                              <input type="file" accept="image/png, image/jpeg, image/gif" name="stud_pic" value="${student.stud_pic}"/>
-					                      <span class="image-preview-input-title" >업로드</span>
-			                           </div>
-			                      </span>
-			        </div>
-			        
-  	  	
-  	  		<div class="input-group">
-  	  		<input type="hidden" value="${student.stud_num}" name='stud_num'>
-				 <span class="input-group-addon" >학번</span>
+              			</div>
+              
+               
+	                   <span class="input-group-btn">
+	                   		<div class="col-md-8">
+	                   		<div class="col-md-4">
+	                   			<input type="text" value="${student.stud_pic}" class="form-control" style="width:310px;" id="image-preview-filename" disabled="disabled">
+	                   		</div>
+	                   		<div class="col-md-1">
+		                   		<div class="btn btn-default image-preview-input">
+		                           <input type="file" accept="image/png, image/jpeg, image/gif" name="stud_pic"/>
+		                           <span class="image-preview-input-title">업로드</span>
+		                        </div>
+		                   	</div>
+	                   		
+	                        </div>
+	                   </span>
+              
+  		</div> 
+  	  	<div class="col-md-12" id="prof_inform">
+				<div class="col-md-4">
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">학적상태</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_schreg_code" value="${student.stud_schreg_code}">
+							</div>
+						</div>
+				</div> 
+				
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">학번</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_num" value="${student.stud_num }" >
+							</div>
+						</div>
+				</div>
+				
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">비밀번호</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_pw" value="${student.stud_pw}">
+							</div>
+						</div>
+				</div>
+				
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">학과</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_dept" value="${student.stud_dept}">
+							</div>
+						</div>
+				</div>     
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">이름</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_nm" value="${student.stud_nm }">
+							</div>
+						</div>
+				</div>
+				   
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">영문이름</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_eng_nm" value="${student.stud_eng_nm }">
+							</div>
+						</div>
+				</div>
+				   
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">생년월일</label>
+							<div class="col-sm-8">
+								<input type="date" class="form-control" name="stud_bir" value='<fmt:formatDate pattern = "yyyy-MM-dd" value = "${student.stud_bir}" />'>
+							</div>
+						</div>
+				</div>
+				    
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">이메일</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_email" value="${student.stud_email}">
+							</div>
+						</div>
+				</div>
 				 
-				  <input type="text" class="form-control"  value='${student.stud_num}'   disabled="disabled">
+						
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">주민등록번호</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_regno" value="${student.stud_regno}">
+							</div>
+						</div>
+				</div>  
+				
+			   <div class="col-md-12">
+							<div class="form-group">
+								<label class="col-sm-3 control-label text-right">성별</label>
+								<div class="col-sm-8">
+									<div class="radio" >
+									<c:choose>
+										<c:when test="${student.stud_gen eq '1'}">
+											<div class="col-md-6"><label><input type="radio" name="stud_gen" checked="checked" value="1">남자</label></div>
+									      	<div class="col-md-6"><label><input type="radio" name="stud_gen" value="2">여자</label></div>
+								      	</c:when>
+								      	<c:otherwise>
+											<div class="col-md-6"><label><input type="radio" name="stud_gen" value="1">남자</label></div>
+									      	<div class="col-md-6"><label><input type="radio" name="stud_gen" checked="checked" value="2">여자</label></div>
+								      	</c:otherwise>
+							      	</c:choose>
+						   	  </div>
+								</div>
+							</div>
+					</div>	  
+				 
+				 </div>
+				 <div class="col-md-4">
+				 
+				 <div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">학년</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_grd" value="${student.stud_grd}">
+							</div>
+						</div>
+				</div>    
+				 
+				 <div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">학기</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_qtr" value="${student.stud_qtr}">
+							</div>
+						</div>
+				</div>  
+				 
+				 
+			   <div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">계좌번호</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_act_num" value="${student.stud_act_num}">
+							</div>
+						</div>
+				</div>  
+				 
+				 <div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">은행</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_bank" value="${student.stud_bank}">
+							</div>
+						</div>
+				</div>
+				
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">예금주</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_ah" value="${student.stud_ah}">
+							</div>
+						</div>
+				</div>   
+				
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">주소</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_addr" value="${student.stud_addr}">
+							</div>
+						</div>
+				</div>   
+				 
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">우편번호</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_zip" value="${student.stud_zip}">
+							</div>
+						</div>
+				</div>   
+				 
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">전화번호</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_tel" value="${student.stud_tel}">
+							</div>
+						</div>
+				</div>   
+				 
+			 	<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">휴대폰번호</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_hp" value="${student.stud_hp}">
+							</div>
+						</div>
+				</div>   
+				 
+				   
 			</div>
-			<br/>
-  	  		<div class="input-group">
-				 <span class="input-group-addon" >이름</span>
-				  <input type="text" class="form-control" name='stud_nm' value='${student.stud_nm}'   >
-			</div>
-			<br/>
-  	  		<div class="input-group">
-				 <span class="input-group-addon" >영문이름</span>
-				  <input type="text" class="form-control" name='stud_eng_nm' value='${student.stud_eng_nm}'  >
-			</div>
-			<br/>
 			
-			<div class="input-group">
-				 <span class="input-group-addon" >생년월일</span>
-				  <input type="date" class="form-control" name='stud_bir' value='<fmt:formatDate pattern = "yyyy-MM-dd" value = "${student.stud_bir}" />' >
-			</div>
-			<br/>
 			
-			<div class="input-group">
-				 <span class="input-group-addon" >이메일</span>
-				  <input type="text" class="form-control" name='stud_email'  value = "${student.stud_email}" /> 
-			</div>
-			<br/>
-			
-			<div class="input-group">
-				 <span class="input-group-addon" >비밀번호</span>
-				  <input type="text" class="form-control" name='stud_pw'  value = "${student.stud_pw}" /> 
-			</div>
-			<br/>
-			
-			<div class="input-group">
-				 <span class="input-group-addon" >학년</span>
-				  <input type="text" class="form-control" name='stud_grd' value='${student.stud_grd}'   >
-			</div>
-			<br/>
-			
-			<div class="input-group">
-				 <span class="input-group-addon" >주민등록번호</span>
-				  <input type="text" class="form-control" name='stud_regno' value='${student.stud_regno}'   >
-			</div>
-			<br/>
-			
+					<div class="col-md-4 detailBtn">
+					
+						<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">보호자이름</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_guad_nm" value="${student.stud_guad_nm}">
+							</div>
+						</div>
+				</div>    
+				
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">보호자관계</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_guad_rel" value="${student.stud_guad_rel}">
+							</div>
+						</div>
+				</div>    
+				
+			   <div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">보호자휴대폰번호</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_guad_hp" value="${student.stud_guad_hp}">
+							</div>
+						</div>
+				</div>   
+					
+				<div class="col-md-8 col-md-offset-4" style="margin-top:120px;">
+				<div class="col-md-4">
+						<input class="submit btn btn-danger" type="submit" value="수정하기">
+				</div>		 
+				<div class="col-md-4">
+						<input class="submit btn btn-danger" type="button" value="삭제하기" onclick="location.href='${pageContext.request.contextPath}/admin/deleteStudent?stud_num=${student.stud_num}'">
+				</div>
+				</div>		 
+					</div>
 			 
-  	  		<div class="input-group">
-					 <span class="input-group-addon" >성별</span>
-					
-					 <div class="radio" >
-					 
-					 <c:choose>
-							<c:when test="${student.stud_gen eq '1'}">
-			                     <label>
-			                     <input type="radio"   name="stud_gen" checked="checked" value="1">남자</label>
-			                     <label>
-			                     <input type="radio"     value="2">여자</label>
-	                  		</c:when>
-							<c:otherwise>
-			                     <label>
-			                     <input type="radio"    value="1">남자</label>
-								<label>
-			                     <input type="radio"  name="stud_gen"  checked="checked" value="2">여자</label>
-		             		</c:otherwise>
-					</c:choose>
-					
-	                </div>
-					
-					</div>
-			<br/>
-			
-			<div class="input-group">
-				 <span class="input-group-addon" >학기</span>
-				  <input type="text" class="form-control" name='stud_qtr' value='${student.stud_qtr}'  >
-			</div>
-			<br/>
-			
-			<div class="input-group">
-				 <span class="input-group-addon" >학적상태</span>
-				  <input type="text" class="form-control" name='stud_schreg_code' value='${student.stud_schreg_code}'   >
-			</div>
-			<br/>
-			
-			<div class="input-group">
-				 <span class="input-group-addon" >계좌번호</span>
-				  <input type="text" class="form-control" name='stud_act_num' value='${student.stud_act_num}'   >
-			</div>
-			<br/>
-			<div class="input-group">
-				 <span class="input-group-addon" >은행</span>
-				  <input type="text" class="form-control" name='stud_bank' value='${student.stud_bank}'   >
-			</div>
-			<br/>
-			<div class="input-group">
-				 <span class="input-group-addon" >예금주</span>
-				  <input type="text" class="form-control" name='stud_ah' value='${student.stud_ah}'   >
-			</div>
-			<br/>
-			<div class="input-group">
-				 <span class="input-group-addon" >주소</span>
-				  <input type="text" class="form-control" name='stud_addr' value='${student.stud_addr}'   >
-			</div>
-			<br/>
-			<div class="input-group">
-				 <span class="input-group-addon" >우편번호</span>
-				  <input type="text" class="form-control" name='stud_zip' value='${student.stud_zip}'   >
-			</div>
-			<br/>
-			<div class="input-group">
-				 <span class="input-group-addon" >전화번호</span>
-				  <input type="text" class="form-control" name='stud_tel' value='${student.stud_tel}'   >
-			</div>
-			<br/>
-				<div class="input-group">
-				 <span class="input-group-addon" >휴대폰번호</span>
-				  <input type="text" class="form-control"  name='stud_hp' value='${student.stud_hp}'   >
-			</div>
-			<br/>
-			 <div class="input-group">
-				 <span class="input-group-addon" >학과</span>
-				 
-				  <input type="text" class="form-control" name='stud_dept' value='${student.stud_dept}'   >
-			</div>
-			<br/>
-			<div class="input-group">
-				 <span class="input-group-addon" >보호자이름</span>
-				  <input type="text" class="form-control" name='stud_guad_nm' value='${student.stud_guad_nm}'   >
-			</div>
-			<br/>
-			<div class="input-group">
-				 <span class="input-group-addon" >보호자관계</span>
-				  <input type="text" class="form-control" name='stud_guad_rel' value='${student.stud_guad_rel}'   >
-			</div>
-			<br/>
-			<div class="input-group">
-				 <span class="input-group-addon" >보호자휴대폰번호</span>
-				  <input type="text" class="form-control" name='stud_guad_hp' value='${student.stud_guad_hp}'   >
-			</div>
-			<br/>
-
-					<div class="col-md-5 detailBtn">
-						 <input type="submit" value="수정하기" >
-					</div>
-					<div class="col-md-5 detailBtn">
-					<button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/admin/deleteStudent?stud_num=${student.stud_num}'">
-					삭제하기</button>
-					</div>
-
 			</form>
-
-		</div>
-	
-
 </div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(function() {
+	   //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
+	   $('#profile-image').on('click', function() {
+	      $('#profile-image-input').click();
+	      
+	      $("#profile-image-input").change(function (){     
+	           
+	           var file = this.files[0];
+	           var reader = new FileReader();
+	           // Set preview image into the popover data-content
+	           reader.onload = function (e) {
+	               $(".image-preview-input-title").text("변경");
+	                $("#image-preview-filename").val(file.name);            
+	               $("#profile-image").attr('src', e.target.result);
+	           }        
+	           reader.readAsDataURL(file);
+	       });
+	   });
+	   
+	   // 업로드 버튼으로 그림피일 업로드 후 미리보기
+	   $(".image-preview-input input:file").change(function (){     
+	        
+	        var file = this.files[0];
+	        var reader = new FileReader();
+	        //Set preview image into the popover data-content
+	        reader.onload = function (e) {
+	            $(".image-preview-input-title").text("변경");
+	            $("#image-preview-filename").val(file.name);            
+	            $("#profile-image").attr('src', e.target.result);
+	        }        
+	        reader.readAsDataURL(file);
+	    });
+	 
+	});
+</script>
+ 
+
+<style>
+ 
+    .table-bordered>thead>tr>th {
+	text-align: center;
+	}
+	
+	div>.filess{
+	margin-left:60px;width:130px; height:150px;
+	}
+	
+	div>#profile-image{
+    border: 1px solid gray;
+    margin: 0 auto;
+    height: 150px;
+    width: 130px;
+	}
+
+ 
+	
+	fieldset {
+    min-width: 0;
+    padding: 0;
+    border: 2px solid #b5bdd0;
+/*     width: 400px; */
+    margin: 0 auto;
+}
+	
+	
+.checkbox label, .radio label {
+    min-height: 20px;
+    padding-left: 40px;
+    padding-right: 10px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+ .image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+   }
+   .image-preview-input input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      filter: alpha(opacity=0);
+   }
+   .image-preview-input-title {
+       margin-left:2px;
+   }
+ 
+   img {
+      cursor:pointer;
+   }
+   .files-crw {
+      width : 165px;
+      height: 220px;
+   }
+
+ 	 
+
+
+.input-group .form-control:last-child, .input-group-addon:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+	div#prof_inform{
+		margin-top:50px;
+	}
+
+</style>
+
+

@@ -3,7 +3,25 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
+ 
+ 
+<!--  	<select id="getEmpListCount" parameterType="com.avengers.db.dto.PrfsVO" resultType="int"> -->
+<!--     	SELECT COUNT(*)  FROM PROFESSOR WHERE 1=1   -->
+<!--         <if test="searchFiled != null and searchFiled != ''"> -->
+             
+<!--             AND ${searchFiled} LIKE '%' || #{searchValue} || '%' -->
+<!--         </if> -->
+<!-- 	</select> -->
 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 	<!-- 총 학생 수  -->
 	<select id="selectCountStudent" resultType="java.lang.Integer">
 	select count(*)
@@ -62,24 +80,13 @@
 <!-- 	AND STUD_NM LIKE '%'||#{value}||'%' -->
 <!-- 	</if>      -->
 
-<!-- admin. //일반페이징 -->
-
-<!-- admin.selectSearchList //검색페이징 -->
-
-<!--  //개수 -->
-
-
-	
-
-
-
-
+ 
 
 	<!-- 학생수정 -->
 	<update id="updateStudent" parameterType="com.avengers.db.dto.StudVO">
 	update student
 	set 
-	STUD_NM = #{stud_nm jdbcType=VARCHAR},
+	STUD_NM = #{stud_nm },
 	STUD_ENG_NM= #{stud_eng_nm jdbcType=VARCHAR}, 
 	STUD_BIR= #{stud_bir jdbcType=DATE},
 	STUD_EMAIL= #{stud_email jdbcType=VARCHAR},
@@ -101,9 +108,7 @@
 	STUD_GUAD_NM= #{stud_guad_nm jdbcType=VARCHAR},
 	STUD_GUAD_REL= #{stud_guad_rel jdbcType=VARCHAR},
 	STUD_GUAD_HP= #{stud_guad_hp jdbcType=VARCHAR} 
-	 
-	
-	where STUD_NUM = #{stud_num jdbcType=VARCHAR}
+	where STUD_NUM = #{stud_num}
 	
 	</update>
 

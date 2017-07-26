@@ -1,30 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@include file="../common/helpDesk_leftSide.jsp"%>
 
-<!-- Admin Header -->
-<%@include file="../common/topCategory.jsp"%>
+<div class="col-md-10">
+	<div class="panel panel-default">
+		<!--  메뉴제목 -->
+		<div class="panel-heading"
+			style="background-color: #2196F3; margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide" style="width: 14%; text-align: center;">
-   <!-- 테스트용 사이드 -->
-<%@include file="../helpDesk/helpDesk_leftSide.jsp"%> 
-</div>
-<div class="col-md-10" id="commonRightSide">
-
-
-<!-- jQuery-->
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
-<!-- Bootstrap -->
-<script
-	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<!-- User Custom -->
-<script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
-
-<script type="text/javascript">
+				교수FAQ</h4>
+		</div>
+		
+		<!-- 내용시작 -->	
+<div class="panel-body" style="height: 580px; text-align: left;">
+	
+	<script type="text/javascript">
 	//페이지 이동
 	function fn_movePage(val) {
 		jQuery("input[name=pageNo]").val(val);
@@ -48,43 +42,36 @@
 </script>
 
 
-<!-- <div class="col-md-2" id="commonLeftSide"> -->
-
-
-<!-- </div> -->
-
-<div class="col-md-10" id="commonRightSide" style="margin-left: 0px; margin-right: 0px; float: left;" >
-	<div class="col-md-12">
-		<div class="panel">
-			<div class="panel-heading">
-				<h3>교수님 FAQ</h3>
-			</div>
-			<div class="panel-body">
-				<div class="responsive-table">
 					<div class="row">
 
 						<form
 							action="<%=request.getContextPath()%>/admin/faqProfSearch?board_title=${faqProfSearch.board_title}">
-							<div style="text-align: right; margin-right: 28px; margin-top:13px; margin-bottom: -20px; ">
-							
-							<a href="<%=request.getContextPath()%>/admin/faqProfWriteForm">글쓰기</a></div>
-							<div class="col-sm-6" style="float: left; width:225px;  ">
-								<div id="datatables-example_filter" class="dataTables_filter" style="width: 20%;">
+							<div
+								style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
 
+								<a href="<%=request.getContextPath()%>/admin/faqProfWriteForm">글쓰기</a>
+							</div>
+							<div class="col-sm-6" style="float: left; width: 300px">
+								<div id="datatables-example_filter" class="dataTables_filter"
+									style="width: 20%;">
+
+									<!-- 검색 -->
 									<label><input type="search"
 										class="form-control input-sm" placeholder="글 제목을 입력해주세요"
-										aria-controls="datatables-example" name="board_title" style="width:200px; text-align: center;">
-										</label>
-									<!-- 검색 -->
+										aria-controls="datatables-example" name="board_title"
+										style="width: 270px; text-align: center;"> </label>
 								</div>
-									
+
 							</div>
-										<div style="margin-bottom: -6px; margin-top: 5px;" class="dataTables_paginate paging_simple_numbers"
-							id="datatables-example_paginate" style="text-align: center;">
-									<input type="submit" value="검색" style="margin-bottom: -6px;"></div>
+							<div style="margin-bottom: -6px; margin-top: 5px;"
+								class="dataTables_paginate paging_simple_numbers"
+								id="datatables-example_paginate" style="text-align: center;">
+								<input type="submit" value="검색" style="margin-bottom: -6px;">
+							</div>
 							<div class="col-sm-6"
 								style="width: 50px; height: 0px; flaot: right;">
-								<div class="dataTables_length" id="datatables-example_length" style="margin-bottom: 0px;">
+								<div class="dataTables_length" id="datatables-example_length"
+									style="margin-bottom: 0px;">
 
 									</select>
 								</div>
@@ -109,17 +96,19 @@
 								<table id="datatables-example"
 									class="table table-striped table-bordered dataTable no-footer"
 									width="100%" cellspacing="0" role="grid"
-									aria-describedby="datatables-example_info" style="width: 100%; text-align: center;">
+									aria-describedby="datatables-example_info"
+									style="width: 100%; text-align: center;">
 									<thead>
-										<tr role="row" >
+										<tr role="row">
 											<th class="sorting_asc" tabindex="0"
 												aria-controls="datatables-example" rowspan="1" colspan="1"
 												aria-label="Name: activate to sort column descending"
-												aria-sort="ascending" style="width: 110px; text-align: center;">번호</th>
+												aria-sort="ascending"
+												style="width: 110px; text-align: center;">번호</th>
 											<th class="sorting" tabindex="0"
 												aria-controls="datatables-example" rowspan="1" colspan="1"
 												aria-label="Position: activate to sort column ascending"
-												style="width: 370px; text-align: center;" >제목</th>
+												style="width: 370px; text-align: center;">제목</th>
 											<th class="sorting" tabindex="0"
 												aria-controls="datatables-example" rowspan="1" colspan="1"
 												aria-label="Office: activate to sort column ascending"
@@ -149,8 +138,7 @@
 														<td>${faqProfNoticeList.board_num}</td>
 														<td><a
 															href="${pageContext.request.contextPath}/admin/faqProfDetail?board_num=${faqProfNoticeList.board_num}&board_count=${faqProfNoticeList.board_count}&pageNo=${pageVO.pageNo}">
-															${faqProfNoticeList.board_title}
-														</a></td>
+																${faqProfNoticeList.board_title} </a></td>
 														<td>${faqProfNoticeList.board_date}</td>
 														<td>${faqProfNoticeList.board_writer}</td>
 														<td>${faqProfNoticeList.board_bc}</td>
@@ -248,6 +236,19 @@
 		</div>
 	</div>
 </div>
+	
+
+
+</div>
+		
+		
+		
+	</div>
+</div>
+
+
+
+
 
 
 

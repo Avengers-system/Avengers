@@ -40,8 +40,8 @@
 									<td>${asgn.get('asgn_nm') }</td>
 									<td>${asgn.get('asgn_start_date') }</td>
 									<td>${asgn.get('asgn_dl_date') }</td>
-									<td><button>상세페이지</button></td>
-									<td><button>학생조회</button></td>
+									<td><button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureAsgnDetail?asgn_num=${asgn.get('asgn_num')}'">상세페이지</button></td>
+									<td><button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureTakeAsgnStudent?asgn_num=${asgn.get('asgn_num')}'">학생조회</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>			

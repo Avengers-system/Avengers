@@ -18,7 +18,7 @@
 				<c:forEach items="${eqList }" var="eqInfo" varStatus="status">
 					<div class="examQn">
 						<input type="hidden" name="eq_num" disabled="disabled" value="${eqInfo.getEq_num() }"/><br/>
-						${eqInfo.getEq_qtna() }.${eqInfo.getEq_qtn() }<br/>
+						${eqInfo.getEq_qtna() }.${eqInfo.getEq_qtn() }(배점:${eqInfo.getEq_score()}점)<br/>
 						<c:choose>
 							<c:when test="${eqInfo.getEq_qtn_type() eq 1 }">
 								① ${eqInfo.getEq_exmp_one()}<br/>

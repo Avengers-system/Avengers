@@ -263,7 +263,7 @@ public class StudentSchoolRegisterController {
 				document.add(new Paragraph("  " + sdf.format(today), font));
 
 				// ㅇㅇ 대학교
-				Chunk chunk2 = new Chunk("[A]  U N I V E R C I T Y", font);
+				Chunk chunk2 = new Chunk("[A]  U N I V E R S I T Y", font);
 				paragraph3.add(chunk2);
 				document.add(paragraph3);
 
@@ -344,7 +344,7 @@ public class StudentSchoolRegisterController {
 				document.add(new Paragraph("  " + sdf.format(today), font));
 
 				// ㅇㅇ 대학교
-				Chunk chunk2 = new Chunk("[A]  U N I V E R C I T Y", font);
+				Chunk chunk2 = new Chunk("[A]  U N I V E R S I T Y", font);
 				paragraph3.add(chunk2);
 				document.add(paragraph3);
 
@@ -435,7 +435,7 @@ public class StudentSchoolRegisterController {
 		document.add(new Paragraph("  " + sdf.format(today), font));
 
 		// ㅇㅇ 대학교
-		Chunk chunk2 = new Chunk("[A]  U N I V E R C I T Y", font);
+		Chunk chunk2 = new Chunk("[A]  U N I V E R S I T Y", font);
 		paragraph3.add(chunk2);
 		document.add(paragraph3);
 

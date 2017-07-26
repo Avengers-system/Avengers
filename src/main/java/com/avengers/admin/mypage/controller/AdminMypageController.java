@@ -336,7 +336,6 @@ public class AdminMypageController {
 		perschd.setPerschd_start_date(perschd_start_date);
 		perschd.setPerschd_end_date(perschd_end_date);
 		
-		System.out.println(perschd.toString());
 		
 			try {
 				int success = myPageService.updatePerschd(perschd);

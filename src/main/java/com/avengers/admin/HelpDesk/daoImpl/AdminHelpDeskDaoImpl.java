@@ -110,6 +110,8 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 
 		map.put("BOARD_BC", boardVO.getBoard_bc());
 		map.put("BOARD_TITLE", boardVO.getBoard_title());
+		map.put("BOARD_WRITER", boardVO.getBoard_writer());
+		System.out.println("여긴 서치리스트다오이플"+boardVO.getBoard_bc()+","+boardVO.getBoard_title()+","+boardVO.getBoard_writer());
 		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("board.selectSearchList", map,rowBounds);
 		return boardList;
 	}
@@ -132,7 +134,8 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 		map.put("searchFiled", boardVO.getSearchFiled());
 		map.put("searchValue", boardVO.getSearchValue());
 		map.put("board_title", boardVO.getBoard_title());
-		count = (Integer) sqlSession.selectOne("selectBoardCount", map);
+		System.out.println(boardVO.getBoard_title()+"여긴 카운트다오임플"+boardVO.getBoard_bc());
+		count = (Integer) sqlSession.selectOne("board.selectBoardCount", map);
 		return count;
 	}
 
