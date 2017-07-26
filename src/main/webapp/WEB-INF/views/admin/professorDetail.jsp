@@ -27,7 +27,7 @@
 			               <div class="filess" style="margin-bottom:20px;">
 			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="<%=request.getContextPath()%>/resources/admin_professor_images/${professor.prfs_pic}"
 			                     id="profile-image" class="img-circle img-responsive">
-			                  <input style="width:100px;" id="profile-image-input"  accept="image/png, image/jpeg, image/gif" class="hidden" type="file">
+			                  <input style="width:100px;" id="profile-image-input"  accept="image/png, image/jpeg, image/gif" class="hidden" type="file" name="prfs_pic" value="${professor.prfs_pic}">
 			               </div>
               			</div>
               
@@ -35,11 +35,11 @@
 	                   <span class="input-group-btn">
 	                   		<div class="col-md-8">
 	                   		<div class="col-md-4">
-	                   			<input type="text" value="${professor.prfs_pic}" class="form-control" style="width:310px;" id="image-preview-filename" disabled="disabled">
+	                   			<input type="text" value="${professor.prfs_pic}" class="form-control" style="width:310px;" id="image-preview-filename" >
 	                   		</div>
 	                   		<div class="col-md-1">
 		                   		<div class="btn btn-default image-preview-input">
-		                           <input type="file" accept="image/png, image/jpeg, image/gif" name="prfs_pic"/>
+		                           <input type="file" accept="image/png, image/jpeg, image/gif" name="prfs_pic" />
 		                           <span class="image-preview-input-title">업로드</span>
 		                        </div>
 		                   	</div>
@@ -75,7 +75,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<select style="width:382px;" name="prfs_dept" class="selectpicker show-tick">
+								<select style="width:387px;" name="prfs_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
 									<option value="DEPT2">컴퓨터공학과</option> 
 									<option value="DEPT3">영어영문학과</option> 

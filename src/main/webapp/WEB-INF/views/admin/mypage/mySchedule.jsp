@@ -22,8 +22,6 @@
 <script src='${pageContext.request.contextPath}/resources/js/full_calender/jquery.min.js'></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
- 
 <link rel="apple-touch-icon" sizes="57x57"	href="https://fullcalendar.io/apple-touch-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="114x114"	href="https://fullcalendar.io/apple-touch-icon-114x114.png">
 <link rel="apple-touch-icon" sizes="72x72"	href="https://fullcalendar.io/apple-touch-icon-72x72.png">
@@ -58,7 +56,19 @@ ol, ul {
 }
 </style>
 
-		<div id='body' class='section' >
+ 
+<!-- 사이드없는 페이지 -->    
+    
+<div class="col-xs-12">
+	<div class="panel panel-default">
+		<div class="panel-heading"
+			style="background-color: #2196F3; margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
+			일정관리</h4>
+		</div>
+		<div class="panel-body" style="height: 580px;">
+		
+			<div id='body' class='section' >
 		<div>
 			<div class='two-col'>
 			
@@ -72,6 +82,15 @@ ol, ul {
 				</div>
 			</div>
 		</div>
+		
+		</div>
+	</div>
+</div>
+
+
+
+
+		
 
 <script>
  

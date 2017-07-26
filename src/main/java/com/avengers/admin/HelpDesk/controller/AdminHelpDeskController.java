@@ -171,18 +171,19 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 				univschdVO.setPerschd_start_date(start_date);
 				univschdVO.setPerschd_start_date(end_date);
 				univchdList2.add(univschdVO);
+			
 			}
-			if (univchdList != null) {
-				
-				model.addAttribute("univschdList", univchdList2);
-				message = "개인정보가 조회되었습니다";
-			}else{
-				message = "입력된 개인정보가 없습니다.";
-			}
+			 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		session.setAttribute("message", message);
+		
+		
+		if(univchdList2.iterator().hasNext()){
+			System.out.println(univchdList2.toString());
+		}
+		
 		return url;
 
 	}
