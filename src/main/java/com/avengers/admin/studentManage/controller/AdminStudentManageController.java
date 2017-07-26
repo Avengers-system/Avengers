@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.avengers.admin.studentManage.service.AdminStudentManageService;
 import com.avengers.db.dto.CommandStudVO;
+import com.avengers.db.dto.PageVO;
 import com.avengers.db.dto.StudVO;
 
 @Controller
@@ -42,9 +43,7 @@ public class AdminStudentManageController {
 		
 		System.out.println("filename : "+filename);
 		System.out.println("studVO number : "+ studVO.getStud_num());
-		System.out.println("나와");
 		System.out.println(studVO.toString());
-		System.out.println();
 		
 		if (!studVO.getStud_pic().isEmpty()) {
 			File file = new File(path, studVO.getStud_pic());
@@ -63,7 +62,7 @@ public class AdminStudentManageController {
 		
 		try {
 			adminStudentManageService.updateStud(studVO);
-			System.out.println("성공");
+			System.out.println("학생수정성공");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -72,22 +71,49 @@ public class AdminStudentManageController {
 	}
 	
 	
-	
-	
-	@RequestMapping(value = "/searchStudent")
-	public String searchStudent(
-					Model model,
-					@RequestParam("keyword")String keyword
+	@RequestMapping("/studentManage")
+	public String searchKeywordStudentList(
+			@RequestParam(value="value", defaultValue="1")String value,
+			Model model, @RequestParam(value="pageNo", defaultValue="1")String pageNo
+			, @RequestParam(value="select", defaultValue="all")String select
 			){
-		ArrayList<StudVO> studList = new ArrayList<StudVO>();
-		System.out.println("keyword : "+ keyword);
-		studList = adminStudentManageService.selectStudbyKeyword(keyword);
-		model.addAttribute("studentdList",studList);
 		
+		System.out.println("value : "+value);
+		System.out.println("pageno: "+pageNo);
+		
+		ArrayList<StudVO> studentList = new ArrayList<StudVO>();
+		StudVO studVO = new StudVO();
+		
+		if (select.equals("학과")){
+			studVO.setStud_dept(value);
+		}else if(select.equals("이름")){
+			studVO.setStud_nm(value);
+		}
+		if(!select.equals("all")){
+			studVO.setSearchFiled(select);
+			studVO.setSearchValue(value);
+		}
+		
+		if (pageNo!=null && pageNo.equals("")) {
+			studVO.setPageNo(Integer.parseInt(pageNo));
+		}
+		int totalCount = 0;
+		
+		
+		try {
+			totalCount = adminStudentManageService.selectStudCount(studVO);
+			studVO.setTotalCount(totalCount);
+			studentList = adminStudentManageService.selectSearchList(studVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("studentList",studentList);
+		model.addAttribute("pageVO",studVO);
 		return "admin/main/studentManage";
 	}
 	
-	
+ 
 	
 	
 	/**
@@ -168,20 +194,20 @@ public class AdminStudentManageController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/studentManage")
-	public String studentList(Principal principal, Model model){
-		List<StudVO> studList = null;
-
-		// key??
-		String key = principal.getName();
-		try {
-			studList = adminStudentManageService.selectStudList();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("studentList", studList);
-		return "admin/main/studentManage"; 
-	}
+//	@RequestMapping("/studentManage")
+//	public String studentList(Principal principal, Model model){
+//		List<StudVO> studList = null;
+//
+//		// key??
+//		String key = principal.getName();
+//		try {
+//			studList = adminStudentManageService.selectStudList();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		model.addAttribute("studentList", studList);
+//		return "admin/main/studentManage"; 
+//	}
 	
 	/**
 	 * 학생 상세보기

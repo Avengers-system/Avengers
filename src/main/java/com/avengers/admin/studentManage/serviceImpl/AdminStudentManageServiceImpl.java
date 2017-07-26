@@ -75,39 +75,26 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 		return amdinStudentDAO.selectStudbyKeyword(keyword);
 	}
 
+
+	
+	
+	//페이징처리
+	
 	@Override
-	public List<StudVO> getStudList(StudVO studVO) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<StudVO> selectStudList(StudVO studVO, int firstRow, int lastRow) throws SQLException {
+		return amdinStudentDAO.selectStudList(studVO, firstRow, lastRow);
 	}
 
 
 	@Override
-	public int getTotalCount() throws SQLException {
-		return amdinStudentDAO.getTotalCount();
+	public ArrayList<StudVO> selectSearchList(StudVO studVO) {
+		return amdinStudentDAO.selectSearchList(studVO);
 	}
 
 
 	@Override
-	public Object selectPagingList(String queryId, Object params) {
-		// TODO Auto-generated method stub
-		return null;
+	public int selectStudCount(StudVO studVO) throws SQLException {
+		return amdinStudentDAO.selectStudCount(studVO);
 	}
 
-
-	@Override
-	public List<Map<String, Object>> selectStudList(Map<String, Object> map)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public ArrayList<BoardVO> selectStuBoardList(String key, int firstRow,
-			int lastRow) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
- 
 }
