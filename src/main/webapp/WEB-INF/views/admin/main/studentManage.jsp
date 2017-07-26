@@ -7,8 +7,8 @@
  
 <!-- 템플릿 페이지 -->
 <!-- Counsel Content -->
-<!-- Counsel Left Side -->
-<%@include file="../common/adminManageCategory.jsp" %>
+<!--side Category 2017.07.26수정-->
+	<%@include file="../common/studentDetailSideCategory.jsp" %>
 <!--  Counsel Right Side -->
 <div class="col-md-10">
 	<div class="panel panel-default">

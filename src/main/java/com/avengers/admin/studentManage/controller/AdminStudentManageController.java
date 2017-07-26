@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +23,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.avengers.admin.studentManage.service.AdminStudentManageService;
 import com.avengers.db.dto.CommandStudVO;
 import com.avengers.db.dto.PageVO;
+import com.avengers.db.dto.ScrapplVO;
 import com.avengers.db.dto.StudVO;
+import com.avengers.student.registryScholarshipManage.serviceImpl.StudentResManageServiceImpl;
 
 @Controller
 @RequestMapping("/admin")
@@ -236,6 +240,205 @@ public class AdminStudentManageController {
 		model.addAttribute("path",path);
 		model.addAttribute("student",studVO);
 		return "admin/studentDetail";
+	}
+	
+	
+	
+	//여기부터 2017.07.28 추가 - 배진
+	@Autowired
+	private StudentResManageServiceImpl stuResService;
+	/**
+	 * 학생들의 장학신청미처리,장학신청처리 내역들을 보여주는곳
+	 * @param stud_num
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/studentScrList")
+	public String studentScrList(			
+			Model model
+			,@RequestParam(value="scr_year",required=false)String scr_year
+			,@RequestParam(value="scr_qtr",required=false)String scr_qtr
+			,@RequestParam(value="scrappl_year",required=false)String scrappl_year
+			,@RequestParam(value="scrappl_qtr",required=false)String scrappl_qtr
+			,@RequestParam(value="scrCancel_year",required=false)String scrCancel_year
+			,@RequestParam(value="scrCancel_qtr",required=false)String scrCancel_qtr){
+		ScrapplVO scrApplVO = new ScrapplVO();
+		
+		try {
+			scrApplVO.setScrappl_yr(scr_year);
+			scrApplVO.setScrappl_qtr(scr_qtr);
+			scrApplVO.setScrappl_appr_check("1");
+			List<HashMap<String,String>> selectScrList =stuResService.selectScrApplList(scrApplVO);
+			scrApplVO.setScrappl_yr(scrCancel_year);
+			scrApplVO.setScrappl_qtr(scrCancel_qtr);
+			scrApplVO.setScrappl_appr_check("2");
+			List<HashMap<String,String>> selectCancelList =stuResService.selectScrApplList(scrApplVO);
+			scrApplVO.setScrappl_yr(scrappl_year);
+			scrApplVO.setScrappl_qtr(scrappl_qtr);
+			scrApplVO.setScrappl_appr_check("3");
+			List<HashMap<String,String>> selectScrApplList =  stuResService.selectScrApplList(scrApplVO);
+			model.addAttribute("scrList", selectScrList);
+			model.addAttribute("scrApplList", selectScrApplList);
+			model.addAttribute("scrCancelList", selectCancelList);
+			
+			GregorianCalendar today = new GregorianCalendar ( );
+			int today_year = today.get ( today.YEAR );	
+			ArrayList<String> yearList = new ArrayList<String>();
+			int IntegerEntrance_year = 2016;
+			try {
+				IntegerEntrance_year = Integer.parseInt(selectScrList.get(0).get("min_yr"));
+			} catch (Exception e) {
+				
+			}
+			for (int i = IntegerEntrance_year; i < today_year+1 ; i++) {
+				yearList.add(Integer.toString(i));
+			}
+			model.addAttribute("yearList",yearList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "admin/studentManage/studentScrList";
+	}
+	
+	
+	@RequestMapping("/studentUpdateScrList")
+	public String studentUpdateScrList(
+			Model model			
+			){
+		StudVO studVO = new StudVO();
+		
+		model.addAttribute("student",studVO);
+		return "redirect:studentScrList";
+	}
+	
+	
+	@RequestMapping("/studentLoaRtsList")
+	public String studentLoaRtsList(
+			Model model
+			,@RequestParam(value="scr_year",required=false)String scr_year
+			,@RequestParam(value="scr_qtr",required=false)String scr_qtr
+			,@RequestParam(value="scrappl_year",required=false)String scrappl_year
+			,@RequestParam(value="scrappl_qtr",required=false)String scrappl_qtr
+			,@RequestParam(value="scrCancel_year",required=false)String scrCancel_year
+			,@RequestParam(value="scrCancel_qtr",required=false)String scrCancel_qtr){
+		StudVO studVO = new StudVO();
+ScrapplVO scrApplVO = new ScrapplVO();
+		
+		try {
+			scrApplVO.setScrappl_yr(scr_year);
+			scrApplVO.setScrappl_qtr(scr_qtr);
+			scrApplVO.setScrappl_appr_check("1");
+			List<HashMap<String,String>> selectScrList =stuResService.selectScrApplList(scrApplVO);
+			scrApplVO.setScrappl_yr(scrCancel_year);
+			scrApplVO.setScrappl_qtr(scrCancel_qtr);
+			scrApplVO.setScrappl_appr_check("2");
+			List<HashMap<String,String>> selectCancelList =stuResService.selectScrApplList(scrApplVO);
+			scrApplVO.setScrappl_yr(scrappl_year);
+			scrApplVO.setScrappl_qtr(scrappl_qtr);
+			scrApplVO.setScrappl_appr_check("3");
+			List<HashMap<String,String>> selectScrApplList =  stuResService.selectScrApplList(scrApplVO);
+			model.addAttribute("scrList", selectScrList);
+			model.addAttribute("scrApplList", selectScrApplList);
+			model.addAttribute("scrCancelList", selectCancelList);
+			
+			GregorianCalendar today = new GregorianCalendar ( );
+			int today_year = today.get ( today.YEAR );	
+			ArrayList<String> yearList = new ArrayList<String>();
+			int IntegerEntrance_year = 2016;
+			try {
+				IntegerEntrance_year = Integer.parseInt(selectScrList.get(0).get("min_yr"));
+			} catch (Exception e) {
+				
+			}
+			for (int i = IntegerEntrance_year; i < today_year+1 ; i++) {
+				yearList.add(Integer.toString(i));
+			}
+			model.addAttribute("yearList",yearList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "admin/studentManage/studentLoaRtsList";
+	}
+	
+	
+	@RequestMapping("/studentUpdateLoaRtsList")
+	public String studentUpdateLoaRtsList(
+			@RequestParam("stud_num") String stud_num,
+			Model model){
+		StudVO studVO = new StudVO();
+		try {
+			studVO = adminStudentManageService.selectStud(stud_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("student",studVO);
+		return "redirect:studentLoaRtsList";
+	}
+	
+	
+	@RequestMapping("/studentLsList")
+	public String studentLsList(
+			Model model
+			,@RequestParam(value="scr_year",required=false)String scr_year
+			,@RequestParam(value="scr_qtr",required=false)String scr_qtr
+			,@RequestParam(value="scrappl_year",required=false)String scrappl_year
+			,@RequestParam(value="scrappl_qtr",required=false)String scrappl_qtr
+			,@RequestParam(value="scrCancel_year",required=false)String scrCancel_year
+			,@RequestParam(value="scrCancel_qtr",required=false)String scrCancel_qtr){
+ScrapplVO scrApplVO = new ScrapplVO();
+		
+		try {
+			scrApplVO.setScrappl_yr(scr_year);
+			scrApplVO.setScrappl_qtr(scr_qtr);
+			scrApplVO.setScrappl_appr_check("1");
+			List<HashMap<String,String>> selectScrList =stuResService.selectScrApplList(scrApplVO);
+			scrApplVO.setScrappl_yr(scrCancel_year);
+			scrApplVO.setScrappl_qtr(scrCancel_qtr);
+			scrApplVO.setScrappl_appr_check("2");
+			List<HashMap<String,String>> selectCancelList =stuResService.selectScrApplList(scrApplVO);
+			scrApplVO.setScrappl_yr(scrappl_year);
+			scrApplVO.setScrappl_qtr(scrappl_qtr);
+			scrApplVO.setScrappl_appr_check("3");
+			List<HashMap<String,String>> selectScrApplList =  stuResService.selectScrApplList(scrApplVO);
+			model.addAttribute("scrList", selectScrList);
+			model.addAttribute("scrApplList", selectScrApplList);
+			model.addAttribute("scrCancelList", selectCancelList);
+			
+			GregorianCalendar today = new GregorianCalendar ( );
+			int today_year = today.get ( today.YEAR );	
+			ArrayList<String> yearList = new ArrayList<String>();
+			int IntegerEntrance_year = 2016;
+			try {
+				IntegerEntrance_year = Integer.parseInt(selectScrList.get(0).get("min_yr"));
+			} catch (Exception e) {
+				
+			}
+			for (int i = IntegerEntrance_year; i < today_year+1 ; i++) {
+				yearList.add(Integer.toString(i));
+			}
+			model.addAttribute("yearList",yearList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "admin/studentManage/studentLsList";
+	}
+	
+	
+	@RequestMapping("/studentUpdateLsList")
+	public String studentUpdateLsList(
+			@RequestParam("stud_num") String stud_num,
+			Model model){
+		StudVO studVO = new StudVO();
+		try {
+			studVO = adminStudentManageService.selectStud(stud_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		model.addAttribute("student",studVO);
+		return "redirect:studentLsList";
 	}
 	
 	
