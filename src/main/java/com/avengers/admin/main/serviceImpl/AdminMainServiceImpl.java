@@ -133,4 +133,9 @@ public class AdminMainServiceImpl implements AdminMainService {
 		return getReinstatementDeptList;
 	}
 
+	@Override
+	public String selectSchedule(String admin_id) throws SQLException {
+		return mainDAO.selectSchedule(admin_id);
+	}
+
 }

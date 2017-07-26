@@ -85,23 +85,48 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 		return studentList;
 	}
 	 
-	@Override
-	public List<StudVO> getStudList(StudVO studVO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
-	// 총 글수
+	
+	//페이징 
 	@Override
-	public int getTotalCount() throws SQLException {
-		int result = (Integer) sqlSession.selectOne("admin.selectCountStudent");
-		return result;
+	public ArrayList<StudVO> selectStudList(StudVO studVO, int firstRow,int lastRow) throws SQLException {
+		int offset = firstRow-1;
+		int limit = lastRow-firstRow+1;
+		
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		HashMap map = new HashMap();
+		
+		map.put("stud_dept",studVO.getStud_dept());
+		map.put("stud_nm",studVO.getStud_nm());
+		
+		ArrayList<StudVO> studList = (ArrayList<StudVO>) sqlSession.selectList("admin.selectStudentList1",map, rowBounds);
+		return studList;
+	}
+	
+	@Override
+	public ArrayList<StudVO> selectSearchList(StudVO studVO) {
+		int offset = studVO.getStartRowNo()-1;
+		int limit = studVO.getEndRowNo()-studVO.getStartRowNo()+1;
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		HashMap map = new HashMap();
+		
+		map.put("searchFiled",studVO.getSearchFiled());
+		map.put("searchValue",studVO.getSearchValue());
+		map.put("stud_dept",studVO.getStud_dept());
+		map.put("stud_nm",studVO.getStud_nm());
+		ArrayList<StudVO> studentList = (ArrayList<StudVO>) sqlSession.selectList("admin.selectSearchList", map, rowBounds);
+		return studentList;
 	}
 	@Override
-	public Object selectPagingList(String queryId, Object params) {
-		// TODO Auto-generated method stub
-		return null;
+	public int selectStudCount(StudVO studVO) throws SQLException {
+		int count  = 0;
+		HashMap map = new HashMap();
+		map.put("value", studVO.getStud_nm());
+		map.put("stud_dept", studVO.getStud_dept());
+		count = (Integer) sqlSession.selectOne("admin.selectStudCount",map);
+		return count;
 	}
 
 }

@@ -17,7 +17,7 @@
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">성적증명서</h4>
 		</div>
 		<div class="panel-body" style="height: 580px; text-align: center;" >
-			<iframe src="${pageContext.request.contextPath}/resources/upload/grade.pdf" style="width:400px; height:100%; display: inline-block;" frameborder="0"></iframe>
+			<iframe src="${pageContext.request.contextPath}/resources/upload/grade.pdf" style="width:100%	; height:100%; display: inline-block;" frameborder="0"></iframe>
 		</div>
 	</div>
 </div>

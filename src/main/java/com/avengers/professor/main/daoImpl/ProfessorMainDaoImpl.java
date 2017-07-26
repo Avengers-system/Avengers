@@ -80,6 +80,29 @@ public class ProfessorMainDaoImpl implements ProfessorMainDao {
 		return dept;
 	}
 
+	@Override
+	public ArrayList<BoardVO> getProfessorMainSchoolNotice()
+			throws SQLException {
+		return (ArrayList<BoardVO>)sqlSession.selectList("board.getStudentMainSchoolNotice");
+	}
+
+	@Override
+	public ArrayList<BoardVO> getProfessorMainDepartNotice(String prfs_dept)
+			throws SQLException {
+		String stud_dept = "B"+prfs_dept;
+		return (ArrayList<BoardVO>)sqlSession.selectList("board.getStudentMainDepartment",stud_dept);
+	}
+
+	@Override
+	public ArrayList<BoardVO> getProfessorMainPotalNotice() throws SQLException {
+		return (ArrayList<BoardVO>)sqlSession.selectList("board.getStudentMainPotalNotice");
+	}
+
+	@Override
+	public String selectSchedule(String prfs_num) throws SQLException {
+		return (String)sqlSession.selectOne("perschd.professorSchedule",prfs_num);
+	}
+
 	
 
 }

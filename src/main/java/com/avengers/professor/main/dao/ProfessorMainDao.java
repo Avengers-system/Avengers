@@ -17,6 +17,21 @@ import com.avengers.db.dto.PrfsVO;
  *
  */
 public interface ProfessorMainDao {
+	
+	
+	
+ 	public ArrayList<BoardVO> getProfessorMainSchoolNotice() throws SQLException;
+ 	public ArrayList<BoardVO> getProfessorMainDepartNotice(String prfs_dept) throws SQLException;
+ 	public ArrayList<BoardVO> getProfessorMainPotalNotice() throws SQLException;
+	
+ 	public String selectSchedule(String prfs_num) throws SQLException;
+	
+	
+	
+	
+	
+	
+	
 		/**
 		 * 교수 화면 메인에 나오는 교수 정보
 		 * 교수의 아이디를 통해 조회

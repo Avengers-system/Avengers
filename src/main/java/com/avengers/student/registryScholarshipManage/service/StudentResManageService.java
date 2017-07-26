@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.avengers.db.dto.LoaRtsVO;
 import com.avengers.db.dto.RegVO;
+import com.avengers.db.dto.ScrVO;
 import com.avengers.db.dto.ScrapplVO;
 import com.avengers.db.dto.resSchStudentVO;
 
@@ -45,7 +46,7 @@ public interface StudentResManageService  {
 	 * @return
 	 * @throws SQLException
 	 */
-	public ArrayList<RegVO> selectRegList(String reg_stud)throws SQLException;
+	public List<HashMap<String,String>> selectRegList(RegVO regVO)throws SQLException;
 	
 	/**
 	 * 납부할 등록금조회
@@ -53,7 +54,7 @@ public interface StudentResManageService  {
 	 * @return
 	 * @throws SQLException
 	 */
-	public RegVO selectReg(String reg_stud)throws SQLException;
+	public List<HashMap<String,String>> selectReg(RegVO regVO)throws SQLException;
 	
 	/**
 	 * 등록금 분할납부신청
@@ -93,4 +94,10 @@ public interface StudentResManageService  {
 	 * @throws SQLException
 	 */
 	public resSchStudentVO selectStudInfo(String stud_num)throws SQLException;
+	/**
+	 * 장학의 기본정보들 조회
+	 * @return
+	 * @throws SQLException
+	 */
+	public ArrayList<ScrVO> selectScrVO()throws SQLException;
 }

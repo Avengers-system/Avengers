@@ -19,6 +19,8 @@
 	</select>
 	
 	
+	
+	
 	<select id="getFAQListCount" parameterType="com.avengers.db.dto.BoardVO" resultType="int">
     SELECT COUNT(*)  FROM BOARD WHERE BOARD_BC ='FAQ'  
         <if test="searchFiled != null and searchFiled != ''">

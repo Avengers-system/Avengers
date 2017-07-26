@@ -3,144 +3,30 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<style>
-			button#addStud{
-			} 
-			 .table-bordered {
-			border: 1px solid #dddddd;
-			border-collapse: separate;
-			border-left: 0;
-			-webkit-border-radius: 4px;
-			-moz-border-radius: 4px;
-			border-radius: 4px;
-			}
-			
-			.table {
-			width: 100%;
-			margin-bottom: 20px;
-			background-color: transparent;
-			border-collapse: collapse;
-			border-spacing: 0;
-			display: table;
-			}
-			
-			.widget.widget-table .table {
-			margin-bottom: 0;
-			border: none;
-			}
-			
-			.widget.widget-table .widget-content {
-			padding: 0;
-			}
-			
-			.widget .widget-header + .widget-content {
-			border-top: none;
-			-webkit-border-top-left-radius: 0;
-			-webkit-border-top-right-radius: 0;
-			-moz-border-radius-topleft: 0;
-			-moz-border-radius-topright: 0;
-			border-top-left-radius: 0;
-			border-top-right-radius: 0;
-			}
-			
-			.widget .widget-content {
-			padding: 20px 15px 15px;
-			background: #FFF;
-			border: 1px solid #D5D5D5;
-			-moz-border-radius: 5px;
-			-webkit-border-radius: 5px;
-			border-radius: 5px;
-			}
-			
-			.widget .widget-header {
-			position: relative;
-			height: 40px;
-			line-height: 40px;
-			background: #E9E9E9;
-			background: -moz-linear-gradient(top, #fafafa 0%, #e9e9e9 100%);
-			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fafafa), color-stop(100%, #e9e9e9));
-			background: -webkit-linear-gradient(top, #fafafa 0%, #e9e9e9 100%);
-			background: -o-linear-gradient(top, #fafafa 0%, #e9e9e9 100%);
-			background: -ms-linear-gradient(top, #fafafa 0%, #e9e9e9 100%);
-			background: linear-gradient(top, #fafafa 0%, #e9e9e9 100%);
-			text-shadow: 0 1px 0 #fff;
-			border-radius: 5px 5px 0 0;
-			box-shadow: 0 2px 5px rgba(0,0,0,0.1),inset 0 1px 0 white,inset 0 -1px 0 rgba(255,255,255,0.7);
-			border-bottom: 1px solid #bababa;
-			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#E9E9E9');
-			-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#E9E9E9')";
-			border: 1px solid #D5D5D5;
-			-webkit-border-top-left-radius: 4px;
-			-webkit-border-top-right-radius: 4px;
-			-moz-border-radius-topleft: 4px;
-			-moz-border-radius-topright: 4px;
-			border-top-left-radius: 4px;
-			border-top-right-radius: 4px;
-			-webkit-background-clip: padding-box;
-			}
-			
-			thead {
-			display: table-header-group;
-			vertical-align: middle;
-			border-color: inherit;
-			}
-			
-			.widget .widget-header h3 {
-			top: 2px;
-			position: relative;
-			left: 10px;
-			display: inline-block;
-			margin-right: 3em;
-			font-size: 14px;
-			font-weight: 600;
-			color: #555;
-			line-height: 18px;
-			text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
-			}
-			
-			.widget .widget-header [class^="icon-"], .widget .widget-header [class*=" icon-"] {
-			display: inline-block;
-			margin-left: 13px;
-			margin-right: -2px;
-			font-size: 16px;
-			color: #555;
-			vertical-align: middle;
-			}
-			 
-			 </style>
+ 
+ 
+<!-- 템플릿 페이지 -->
+<!-- Counsel Content -->
+<!-- Counsel Left Side -->
+<%@include file="../common/adminManageCategory.jsp" %>
+<!--  Counsel Right Side -->
+<div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
+			학생목록
+			</h4>
+		</div>
+		<div class="panel-body" style="height: 580px; text-align: center;" >
 
-
-<script>
-//검색하기
-		function fn_search() {
-			if (jQuery("#searchS").val() == "") {
-				return;
-			} else {
-				jQuery("input[name=searchFiled]").val(jQuery("#searchS").val());
-			}
-			var searchValue = jQuery("#searchI").val();
-			jQuery("input[name=searchValue]").val(searchValue);
-		
-			jQuery("input[name=pageNo]").val("1");
-			jQuery("form[name=frm]").attr("method", "post");
-			jQuery("form[name=frm]").attr("action", "").submit();
-		}
-
-</script>
-
-
-
-
-
-
-<div class="col-md-10 col-md-offset-1">
+			<!--  Counsel Right Side -->
+ 
                   <div class="panel">
-                    <div class="panel-heading"><h3>학생목록</h3></div>
-                    
                     <form name="frm">
-                    <input type="hidden" name="pageNo" /><!-- //페이지 번호 -->
-                    <input type="hidden" name="searchFiled" value="${pageVO.searchFiled }" /><!-- //검색조건 -->
-                    <input type="hidden" name="searchValue" value="${pageVO.searchValue }" /><!-- //검색어 -->
+                   						 <input type="hidden" name="searchFiled"	value="${pageVO.searchFiled }" />
+											<!-- //검색조건 -->
+											<input type="hidden" name="searchValue"	value="${pageVO.searchValue }" />
+											<!-- //검색어 -->
                     
                     <div class="panel-body">
                       <div class="responsive-table">
@@ -152,21 +38,24 @@
 		                       
 		                       <div class="col-sm-6">
 		                       
-				                       <div id="search">
-									        <select id="searchS">
+				                       <div >
+									        <select id="searchS" name="select">
 									            <option value="stud_nm">이름</option>
 									            <option value="stud_dept">학과</option>
 									        </select>
 						
 						                       <input name="value" id="searchI" type="search" style="margin-bottom:7px;" class="form-control input-sm" aria-controls="datatables-example"> 
-						                       <button value="SEARCH" id ="searchProf" style="margin-bottom:7px;" class="btn btn-primary" onclick="fn_search();">검색</button>
+						                       <button value="SEARCH" id ="searchStud" style="margin-bottom:7px;" class="btn btn-primary" onclick="fn_search();">검색</button>
 						                       <!-- 검색버튼  -->
-<%-- 						                       <button id ="searchProf" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/searchStudent'">검색</button> --%>
 						                       <!-- 추가버튼  -->
-						                       
-						                       <button style="margin-bottom:7px;" id ="addStud" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/studentInsert'">학생추가하기</button>
+						                                 <button id ="addStid" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/insertStudent'">학생추가하기</button>
 				                       			    </div>
-				                       </div>
+				               </div>
+				               
+				               
+				              
+		                       
+		                       
 		                       </div>
                        
                        </div>
@@ -284,13 +173,152 @@
 		                      </div>
 		                  </div>
 						</form>
-                </div>
-              </div>
  </div>
- 
+</div>
 
- 
- 
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<style>
+			button#addStud{
+			} 
+			 .table-bordered {
+			border: 1px solid #dddddd;
+			border-collapse: separate;
+			border-left: 0;
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			border-radius: 4px;
+			}
+			
+			.table {
+			width: 100%;
+			margin-bottom: 20px;
+			background-color: transparent;
+			border-collapse: collapse;
+			border-spacing: 0;
+			display: table;
+			}
+			
+			.widget.widget-table .table {
+			margin-bottom: 0;
+			border: none;
+			}
+			
+			.widget.widget-table .widget-content {
+			padding: 0;
+			}
+			
+			.widget .widget-header + .widget-content {
+			border-top: none;
+			-webkit-border-top-left-radius: 0;
+			-webkit-border-top-right-radius: 0;
+			-moz-border-radius-topleft: 0;
+			-moz-border-radius-topright: 0;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+			}
+			
+			.widget .widget-content {
+			padding: 20px 15px 15px;
+			background: #FFF;
+			border: 1px solid #D5D5D5;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			border-radius: 5px;
+			}
+			
+			.widget .widget-header {
+			position: relative;
+			height: 40px;
+			line-height: 40px;
+			background: #E9E9E9;
+			background: -moz-linear-gradient(top, #fafafa 0%, #e9e9e9 100%);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fafafa), color-stop(100%, #e9e9e9));
+			background: -webkit-linear-gradient(top, #fafafa 0%, #e9e9e9 100%);
+			background: -o-linear-gradient(top, #fafafa 0%, #e9e9e9 100%);
+			background: -ms-linear-gradient(top, #fafafa 0%, #e9e9e9 100%);
+			background: linear-gradient(top, #fafafa 0%, #e9e9e9 100%);
+			text-shadow: 0 1px 0 #fff;
+			border-radius: 5px 5px 0 0;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.1),inset 0 1px 0 white,inset 0 -1px 0 rgba(255,255,255,0.7);
+			border-bottom: 1px solid #bababa;
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#E9E9E9');
+			-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#E9E9E9')";
+			border: 1px solid #D5D5D5;
+			-webkit-border-top-left-radius: 4px;
+			-webkit-border-top-right-radius: 4px;
+			-moz-border-radius-topleft: 4px;
+			-moz-border-radius-topright: 4px;
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+			-webkit-background-clip: padding-box;
+			}
+			
+			thead {
+			display: table-header-group;
+			vertical-align: middle;
+			border-color: inherit;
+			}
+			
+			.widget .widget-header h3 {
+			top: 2px;
+			position: relative;
+			left: 10px;
+			display: inline-block;
+			margin-right: 3em;
+			font-size: 14px;
+			font-weight: 600;
+			color: #555;
+			line-height: 18px;
+			text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+			}
+			
+			.widget .widget-header [class^="icon-"], .widget .widget-header [class*=" icon-"] {
+			display: inline-block;
+			margin-left: 13px;
+			margin-right: -2px;
+			font-size: 16px;
+			color: #555;
+			vertical-align: middle;
+			}
+			 
+			 
+			.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover {
+    		color: #777;
+		    background-color: #fff;
+		    border-color: #ddd;
+}
+			 </style>
+
+
+
+
+<script>
+//검색하기
+		function fn_search() {
+			if (jQuery("#searchS").val() == "") {
+				return;
+			} else {
+				jQuery("input[name=searchFiled]").val(jQuery("#searchS").val());
+			}
+			var searchValue = jQuery("#searchI").val();
+			jQuery("input[name=searchValue]").val(searchValue);
+		
+			jQuery("input[name=pageNo]").val("1");
+			jQuery("form[name=frm]").attr("method", "post");
+			jQuery("form[name=frm]").attr("action", "").submit();
+		}
+
+</script>
+
  
  <script type="text/javascript">
 	//페이지 이동

@@ -119,10 +119,14 @@ public class AdminProfessorManageController {
 	@RequestMapping(value = "/updateProfessor")
 	public String updateProfessor(
 						CommandPrfsVO commandPrfsVO,
+						@RequestParam("prfs_pic")MultipartFile prfs_pic,
 						HttpServletRequest request,
 						HttpSession session
 						){
+		
+		commandPrfsVO.setPrfs_pic(prfs_pic);
 		PrfsVO prfsVO = commandPrfsVO.toPrfsVO();
+		
 		String path = request.getSession().getServletContext().getRealPath("resources/admin_professor_images");		
 		String filename= prfsVO.getPrfs_pic();
 		
