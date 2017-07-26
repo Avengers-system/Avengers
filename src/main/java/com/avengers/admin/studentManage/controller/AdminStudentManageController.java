@@ -34,9 +34,10 @@ public class AdminStudentManageController {
 	public String updateStudent(
 				CommandStudVO commandStudVO,
 				HttpServletRequest request,
+//				@RequestParam("stud_pic")MultipartFile stud_pic,
 				HttpSession session
 				){
-		
+//		commandStudVO.setStud_pic(stud_pic);
 		StudVO studVO = commandStudVO.toStudVO();
 		String path = request.getSession().getServletContext().getRealPath("resources/admin_student_images");
 		String filename= studVO.getStud_pic();
@@ -61,8 +62,8 @@ public class AdminStudentManageController {
 		}
 		
 		try {
-			adminStudentManageService.updateStud(studVO);
-			System.out.println("학생수정성공");
+			int result = adminStudentManageService.updateStud(studVO);
+			System.out.println("학생수정성공"+result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

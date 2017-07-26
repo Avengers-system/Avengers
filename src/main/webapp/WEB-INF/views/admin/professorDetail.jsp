@@ -25,7 +25,7 @@
   		   <!-- 이미지 미리보기 -->
   		   				<div class="col-md-12">
 			               <div class="filess" style="margin-bottom:20px;">
-			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="<%=request.getContextPath()%>/resources/admin_student_images/${student.stud_pic}"
+			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="<%=request.getContextPath()%>/resources/admin_professor_images/${professor.prfs_pic}"
 			                     id="profile-image" class="img-circle img-responsive">
 			                  <input style="width:100px;" id="profile-image-input"  accept="image/png, image/jpeg, image/gif" class="hidden" type="file">
 			               </div>
@@ -35,7 +35,7 @@
 	                   <span class="input-group-btn">
 	                   		<div class="col-md-8">
 	                   		<div class="col-md-4">
-	                   			<input type="text" value="${student.stud_pic}" class="form-control" style="width:310px;" id="image-preview-filename" disabled="disabled">
+	                   			<input type="text" value="${professor.prfs_pic}" class="form-control" style="width:310px;" id="image-preview-filename" disabled="disabled">
 	                   		</div>
 	                   		<div class="col-md-1">
 		                   		<div class="btn btn-default image-preview-input">
@@ -75,7 +75,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<select style="width:334px;" name="prfs_dept" class="selectpicker show-tick">
+								<select style="width:382px;" name="prfs_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
 									<option value="DEPT2">컴퓨터공학과</option> 
 									<option value="DEPT3">영어영문학과</option> 

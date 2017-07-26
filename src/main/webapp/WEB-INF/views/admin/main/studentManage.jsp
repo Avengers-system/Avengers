@@ -23,9 +23,10 @@
  
                   <div class="panel">
                     <form name="frm">
-                    <input type="hidden" name="pageNo" /><!-- //페이지 번호 -->
-                    <input type="hidden" name="searchFiled" value="${pageVO.searchFiled }" /><!-- //검색조건 -->
-                    <input type="hidden" name="searchValue" value="${pageVO.searchValue }" /><!-- //검색어 -->
+                   						 <input type="hidden" name="searchFiled"	value="${pageVO.searchFiled }" />
+											<!-- //검색조건 -->
+											<input type="hidden" name="searchValue"	value="${pageVO.searchValue }" />
+											<!-- //검색어 -->
                     
                     <div class="panel-body">
                       <div class="responsive-table">
@@ -44,13 +45,17 @@
 									        </select>
 						
 						                       <input name="value" id="searchI" type="search" style="margin-bottom:7px;" class="form-control input-sm" aria-controls="datatables-example"> 
-						                       <button value="SEARCH" id ="searchProf" style="margin-bottom:7px;" class="btn btn-primary" onclick="fn_search();">검색</button>
+						                       <button value="SEARCH" id ="searchStud" style="margin-bottom:7px;" class="btn btn-primary" onclick="fn_search();">검색</button>
 						                       <!-- 검색버튼  -->
-<%-- 						                       <button id ="searchProf" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/searchStudent'">검색</button> --%>
 						                       <!-- 추가버튼  -->
-						                                 <button style="margin-bottom:7px;" id ="addStud" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/studentInsert'">학생추가하기</button>
+						                                 <button id ="addStid" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/insertStudent'">학생추가하기</button>
 				                       			    </div>
-				                       </div>
+				               </div>
+				               
+				               
+				              
+		                       
+		                       
 		                       </div>
                        
                        </div>
@@ -170,15 +175,6 @@
 						</form>
  </div>
 </div>
-
-
-
-
-
-
-
-
-
 
 		</div>
 	</div>
