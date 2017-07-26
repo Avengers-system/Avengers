@@ -97,4 +97,18 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 		return amdinStudentDAO.selectStudCount(studVO);
 	}
 
+
+	@Override
+	public int getEmpListCount(StudVO studVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public List<StudVO> getEmpList(StudVO studVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

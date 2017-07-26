@@ -2,6 +2,7 @@ package com.avengers.admin.professorManage.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.avengers.db.dto.PrfsVO;
 
@@ -14,4 +15,6 @@ public interface AdminProfessorManageService {
 	public int updatePrfs(PrfsVO prfsVO)throws SQLException;//교수 수정
 	public int deletePrfs(String prfs_num)throws SQLException;//교수 삭제
 	public int insertSecurity(PrfsVO prfsVO2); //시큐리티 추가
+	public int getEmpListCount(PrfsVO prfsVO)throws SQLException;
+	public List<PrfsVO> getEmpList(PrfsVO prfsVO)throws SQLException;
 }
