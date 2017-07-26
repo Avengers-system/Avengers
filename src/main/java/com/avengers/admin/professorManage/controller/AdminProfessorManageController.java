@@ -37,7 +37,7 @@ public class AdminProfessorManageController {
 	@RequestMapping("/professorManage")
 	public String paging(Model model, @ModelAttribute("PrfsVO") PrfsVO prfsVO,
 			HttpServletRequest request) {
-		System.out.println(">>>> page home start!!");
+		System.out.println(">>>> professorManage start!!");
 	    //검색조건, 검색어
 	    System.out.println("SearchFiled 검색조건 : " + prfsVO.getSearchFiled());
 	    System.out.println("SearchValue 검색어 : " + prfsVO.getSearchValue());

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.avengers.admin.studentManage.service.AdminStudentManageService;
 import com.avengers.db.dto.CommandStudVO;
 import com.avengers.db.dto.PageVO;
+import com.avengers.db.dto.PrfsVO;
 import com.avengers.db.dto.StudVO;
 
 @Controller
@@ -29,6 +31,55 @@ public class AdminStudentManageController {
 
 	@Autowired
 	private AdminStudentManageService adminStudentManageService;
+	
+	
+	
+	@RequestMapping("/studentManage")
+	public String paging(Model model, @ModelAttribute("StudVO") StudVO studVO,
+			HttpServletRequest request){
+		System.out.println(">>>> studentManage start!!");
+	    //검색조건, 검색어
+	    System.out.println("SearchFiled 검색조건 : " + studVO.getSearchFiled());
+	    System.out.println("SearchValue 검색어 : " + studVO.getSearchValue());
+	  
+	    List<StudVO> studList = null;
+	    
+	    //--페이징 처리
+	    int totalCount;
+		try {
+			totalCount = adminStudentManageService.getEmpListCount(studVO);
+			studVO.setTotalCount(totalCount); //페이징 처리를 위한 setter 호출
+			model.addAttribute("studVO", studVO);
+			System.out.println("PageSize // 한 페이지에 보여줄 게시글 수 : " + studVO.getPageSize());
+			System.out.println("PageNo // 페이지 번호 : " + studVO.getPageNo());
+			System.out.println("StartRowNo //조회 시작 row 번호 : " + studVO.getStartRowNo());
+			System.out.println("EndRowNo //조회 마지막 now 번호 : " + studVO.getEndRowNo());
+			System.out.println("FirstPageNo // 첫 번째 페이지 번호 : " + studVO.getFirstPageNo());
+			System.out.println("FinalPageNo // 마지막 페이지 번호 : " + studVO.getFinalPageNo());
+			System.out.println("PrevPageNo // 이전 페이지 번호 : " + studVO.getPrevPageNo());
+			System.out.println("NextPageNo // 다음 페이지 번호 : " + studVO.getNextPageNo());
+			System.out.println("StartPageNo // 시작 페이지 (페이징 네비 기준) : " + studVO.getStartPageNo());
+			System.out.println("EndPageNo // 끝 페이지 (페이징 네비 기준) : " + studVO.getEndPageNo());
+			System.out.println("totalCount // 게시 글 전체 수 : " + totalCount);
+			studList  = adminStudentManageService.getEmpList(studVO);
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} //게시물 총갯수를 구한다
+	    //--페이징 처리
+	  
+		model.addAttribute("studentList", studList);
+		request.setAttribute("pageVO",studVO);
+		return "admin/main/studentManage";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/updateStudent")
 	public String updateStudent(
@@ -72,49 +123,7 @@ public class AdminStudentManageController {
 	}
 	
 	
-	@RequestMapping("/studentManage")
-	public String searchKeywordStudentList(
-			@RequestParam(value="value", defaultValue="1")String value,
-			Model model, @RequestParam(value="pageNo", defaultValue="1")String pageNo,
-			@RequestParam(value="select", defaultValue="all")String select
-			){
-		
-		System.out.println("value : "+value);
-		System.out.println("pageno: "+pageNo);
-		
-		ArrayList<StudVO> studentList = new ArrayList<StudVO>();
-		StudVO studVO = new StudVO();
-		
-		if (select.equals("학과")){
-			studVO.setStud_dept(value);
-		}else if(select.equals("이름")){
-			studVO.setStud_nm(value);
-		}
-		if(!select.equals("all")){
-			studVO.setSearchFiled(select);
-			studVO.setSearchValue(value);
-		}
-
-		//pageno 디폴트 1
-		if (pageNo!=null && pageNo.equals("")) {
-			studVO.setPageNo(Integer.parseInt(pageNo));
-		}
-		
-		int totalCount = 0;
-		
-		
-		try {
-			totalCount = adminStudentManageService.selectStudCount(studVO);
-			studVO.setTotalCount(totalCount);
-			studentList = adminStudentManageService.selectSearchList(studVO);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		model.addAttribute("studentList",studentList);
-		model.addAttribute("pageVO",studVO);
-		return "admin/main/studentManage";
-	}
+	
 	
  
 	
