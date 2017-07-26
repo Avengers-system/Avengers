@@ -33,8 +33,7 @@ public class StudentResManageServiceImpl implements StudentResManageService {
 
 	@Override
 	public int insertScrappl(ScrapplVO scrapplVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return stuResDAO.insertScrappl(scrapplVO);
 	}
 
 	@Override

@@ -168,11 +168,24 @@ public class StudentResManageController {
 	public String insertSchAppl(Principal principal,@RequestParam(value="scr_nm")String scr_nm,Model model,@RequestParam(value="scrappl_cause")String scrappl_cause){
 		ScrapplVO scrapplVO = new ScrapplVO();
 		try {
-					
+			GregorianCalendar today = new GregorianCalendar ( );
+			int today_year = today.get ( today.YEAR );
+			int qtr = today.get(today.MONTH)+1;
+			if(qtr>=1&&qtr<=5){
+				qtr=1;
+			}else if(qtr>=11){
+				qtr=1;
+				today_year+=1;
+			}else{
+				qtr=2;
+			}
+			
 			String stud_num = principal.getName();
 			scrapplVO.setScrappl_stud(stud_num);			
 			scrapplVO.setScrappl_scr(scr_nm);
 			scrapplVO.setScrappl_cause(scrappl_cause);
+			scrapplVO.setScrappl_yr(Integer.toString(today_year));
+			scrapplVO.setScrappl_qtr(Integer.toString(qtr));
 			stuResService.insertScrappl(scrapplVO);	
 			model.addAttribute("insertScrappl","success");
 		} catch (SQLException e) {

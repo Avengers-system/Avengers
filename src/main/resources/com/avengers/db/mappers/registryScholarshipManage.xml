@@ -78,6 +78,7 @@
         WHERE STUD_NUM=#{scrappl_stud}
        AND STUD_NUM=SCRAPPL_STUD
        AND SCRAPPL_SCR=SCR_NUM
+       AND SCRAPPL_APPR_CHECK='1'
        <if test="scrappl_yr !=null and scrappl_yr != '전체'">
        AND SCRAPPL_YR=#{scrappl_yr}
        </if>
@@ -110,8 +111,8 @@
 	</select> 
 	
 	<insert id="insertScrAppl" parameterType="com.avengers.db.dto.ScrapplVO">
-	INSERT INTO SCRAPPL(SCRAPPL_NUM,SCRAPPL_CAUSE,SCRAPPL_DATE,SCRAPPL_STUD,SCRAPPL_SCR) 
-	VALUES ('SCRAPPL'||SCRAPPL_SEQ.NEXTVAL,#{scrappl_cause}, SYSDATE,#{scrappl_stud} ,#{scrappl_scr} )   
+	INSERT INTO SCRAPPL(SCRAPPL_NUM,SCRAPPL_CAUSE,SCRAPPL_DATE,SCRAPPL_STUD,SCRAPPL_SCR,SCRAPPL_YR,SCRAPPL_QTR) 
+	VALUES ('SCRAPPL'||SCRAPPL_SEQ.NEXTVAL,#{scrappl_cause}, SYSDATE,#{scrappl_stud} ,#{scrappl_scr},#{scrappl_yr},#{scrappl_qtr})   
 	
 	</insert>
 	
