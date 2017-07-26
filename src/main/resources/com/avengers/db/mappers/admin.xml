@@ -5,22 +5,39 @@
 <mapper namespace="admin">
  
  
-<!--  	<select id="getEmpListCount" parameterType="com.avengers.db.dto.PrfsVO" resultType="int"> -->
-<!--     	SELECT COUNT(*)  FROM PROFESSOR WHERE 1=1   -->
-<!--         <if test="searchFiled != null and searchFiled != ''"> -->
-             
-<!--             AND ${searchFiled} LIKE '%' || #{searchValue} || '%' -->
-<!--         </if> -->
-<!-- 	</select> -->
+ 	<select id="getEmpListCount" parameterType="com.avengers.db.dto.PrfsVO" resultType="int">
+    	SELECT COUNT(*)  FROM PROFESSOR WHERE 1=1  
+        <if test="searchFiled != null and searchFiled != ''">
+            AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
+        </if>
+	</select>
 
- 	
- 
- 
- 
- 
- 
- 
- 
+
+	<select id="getEmpList" parameterType="com.avengers.db.dto.PrfsVO" resultType="com.avengers.db.dto.PrfsVO">
+    
+    SELECT 
+        a.PRFS_NUM, a.PRFS_NM, a.PRFS_ENG_NM, a.PRFS_BIR, a.PRFS_EMAIL, a.PRFS_PW, a.PRFS_REGNO,
+        a.PRFS_GEN, a.PRFS_PIC, a.PRFS_ACT_NUM, a.PRFS_BANK, a.PRFS_AH, a.PRFS_ADDR, a.PRFS_ZIP, 
+        a.PRFS_TEL, a.PRFS_HP, a.PRFS_DEPT
+    FROM (
+        	SELECT ROWNUM rnum, s.*
+        	FROM (
+	            SELECT PRFS_NUM, PRFS_NM, PRFS_ENG_NM, PRFS_BIR, PRFS_EMAIL, PRFS_PW, PRFS_REGNO, PRFS_GEN,
+	            PRFS_PIC, PRFS_ACT_NUM, PRFS_BANK, PRFS_AH, PRFS_ADDR, PRFS_ZIP, PRFS_TEL, PRFS_HP,
+	             PRFS_DEPT 
+	            FROM PROFESSOR
+	            WHERE 1=1  
+	            <if test="searchFiled != null and searchFiled != ''">
+	                AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
+	            </if>
+	            ORDER BY PRFS_NUM DESC
+        )s
+    )a 
+	
+	WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
+	
+	</select>
+	
  
 	<!-- 총 학생 수  -->
 	<select id="selectCountStudent" resultType="java.lang.Integer">

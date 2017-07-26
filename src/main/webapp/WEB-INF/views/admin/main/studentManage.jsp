@@ -74,7 +74,7 @@
 							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="학적상태: activate to sort column ascending" style="width: 100px;">
 							학적상태
 							</th>
-							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="학과: activate to sort column ascending" style="width: 218px;">
+							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="학과: activate to sort column ascending" style="width: 130px;">
 							학과
 							</th>
 							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="학년: activate to sort column ascending" style="width: 80px;">

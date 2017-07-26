@@ -17,4 +17,6 @@ public interface AdminProfessorManageDao {
 	public int selectCountPrfs(); //전체 교수 카운트
 	public ArrayList<PrfsVO> selectPrfsList(String key, int firstRow, int lastRow) throws SQLException;//전체 교수 목록 가져오기
 	public ArrayList<DeptVO> selectDeptList() throws SQLException; //전체 과목 리스트
+	public int getEmpListCount(PrfsVO prfsVO) throws SQLException;
+	public ArrayList<PrfsVO> getEmpList(PrfsVO prfsVO)throws SQLException;
 }
