@@ -31,7 +31,7 @@ public class ProfessorMainController {
 
 	   @RequestMapping("/main")
 	   public String professorMain(Model model,Principal principal){
-		   
+		   String deptNm = "";
 		   
 		   //오늘 날짜를 구해서 현재학기,현재년도를 구하기 위함입니다. 이걸 왜구하냐? 강의현황부분에서 현재년도,현재학기에 진행중인 강의만 보여줘야하기때문이죠
 		   GregorianCalendar today = new GregorianCalendar ( );
@@ -45,12 +45,11 @@ public class ProfessorMainController {
 		   String lct_qtr = "3";
 		   int month =  today.get ( today.MONTH ) + 1; //이함수가 월이 0부터11까지여서 우리식으로 계산하기위해 +1을해줍니다.
 		   //3월~6월사이면 1학기 9월~12월사이면 2학기라고 지정해주는 로직입니다.
-		   if(  month>=3&&month<=6){
+		   if(month>=3&&month<=8){
 			   lct_qtr="1";
-		   }else if(month>=9&&month<=12){
+		   }else if(month==1 || month==2 || month>=9&&month<=12){
 			   lct_qtr="2";
 		   }
-		   
 		try {
 			//위에서 구했던 교수 아이디로 해당교수의 정보를 구하는 로직이다.
 			PrfsVO prfs = professorMainService.selectPrfs(prfs_num);
@@ -79,12 +78,69 @@ public class ProfessorMainController {
 //			model.addAttribute("schoolNoticeList",schoolNoticeList );
 //			model.addAttribute("departmentNoticeList",departmentNoticeList );
 			model.addAttribute("schoolScheduleList",schoolScheduleList );
+			
+			
+			deptNm = prfs.getPrfs_dept();
+			String departmentNM = "";
+			switch (deptNm) {
+			case "DEPT1":
+				departmentNM = "멀티미디어공학과";
+				break;
+			case "DEPT2":
+				departmentNM = "컴퓨터공학과";
+				break;
+			case "DEPT3":
+				departmentNM = "영어영문학과";
+				break;
+			case "DEPT4":
+				departmentNM = "문예창작학과";
+				break;
+			case "DEPT5":
+				departmentNM = "경영학과";
+				break;
+			case "DEPT6":
+				departmentNM = "회계학과";
+				break;
+			case "DEPT7":
+				departmentNM = "간호학과";
+				break;
+			case "DEPT8":
+				departmentNM = "생활체육학과";
+				break;
+			case "DEPT9":
+				departmentNM = "국어교육과";
+				break;
+			case "DEPT10":
+				departmentNM = "수학교육과";
+				break;
+			}
+			
+			
+			model.addAttribute("department",departmentNM);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (NullPointerException e){
-			return view;
-			
+		} 
+		
+		   ArrayList<BoardVO> professorMainSchoolNotice = null;
+		   ArrayList<BoardVO> professorMainDepartNotice = null;
+		   ArrayList<BoardVO> professorMainPotalNotice = null;
+		   String professorMainDateContent = "";
+		
+		   try {
+			professorMainSchoolNotice = professorMainService.getProfessorMainSchoolNotice();
+			professorMainDepartNotice = professorMainService.getProfessorMainDepartNotice(deptNm);
+			professorMainPotalNotice = professorMainService.getProfessorMainPotalNotice(); 
+			professorMainDateContent = professorMainService.selectSchedule(prfs_num);
+			model.addAttribute("professorMainSchoolNotice",professorMainSchoolNotice);
+			model.addAttribute("professorMainDateContent",professorMainDateContent);
+			model.addAttribute("professorMainDepartNotice",professorMainDepartNotice);
+			model.addAttribute("professorMainPotalNotice",professorMainPotalNotice);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		
+		
 		   return view;
 	   }
 	   

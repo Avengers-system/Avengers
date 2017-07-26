@@ -62,4 +62,6 @@ public interface AdminMainService {
 	
 	public List<HashMap<String, String>> getReinstatementDeptList()throws SQLException;//복학한 학생의 수와 학과명
 
+	public String selectSchedule(String admin_id) throws SQLException;
+	
 }

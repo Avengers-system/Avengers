@@ -71,6 +71,29 @@ public class ProfessorMainServiceImpl implements ProfessorMainService {
 		return proMainDAO.selectDept(prfs_dept);
 	}
 
+	@Override
+	public ArrayList<BoardVO> getProfessorMainSchoolNotice()
+			throws SQLException {
+		return proMainDAO.getProfessorMainSchoolNotice();
+	}
+
+	@Override
+	public ArrayList<BoardVO> getProfessorMainDepartNotice(String prfs_dept)
+			throws SQLException {
+		
+		return proMainDAO.getProfessorMainDepartNotice(prfs_dept);
+	}
+
+	@Override
+	public ArrayList<BoardVO> getProfessorMainPotalNotice() throws SQLException {
+		return proMainDAO.getProfessorMainPotalNotice();
+	}
+
+	@Override
+	public String selectSchedule(String prfs_num) throws SQLException {
+		return proMainDAO.selectSchedule(prfs_num);
+	}
+
 	
 
 }

@@ -31,34 +31,37 @@
 	<!-- 개인정보 -->
 	<div class="col-md-2">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="background-color: #2196F3;">
+			<div class="panel-heading" style="background-color: #CC0000;">
 				<h4 class="panel-title" style="color: #ffffff;">개인정보</h4>
 			</div>
 			<!-- 내용 -->
-			<div class="panel-body" style="height: 260px;">
-				<img alt="" src="">
-				아이디:${admin.admin_id}</br>
-				이름:${admin.admin_nm}</br>
-				직책:${admin.admin_post}</br>
+			<div class="panel-body" style="height: 260px; line-height: 40px;">
+
+	<span class="label label-outline label-default" style="font-size: 15px;">이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름</span>
+			<span class="label label-outline label-default" style="display:inline-block;font-size: 15px; width: 160px;">${admin.admin_nm}</span><br>
+			<span class="label label-outline label-default" style="font-size: 15px;">직&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;책</span>
+			 <span class="label label-outline label-default" style="display:inline-block;font-size: 15px; width: 160px;">${admin.admin_post}</span><br>
+			<span class="label label-outline label-default" style="font-size: 15px;">이&nbsp;&nbsp;메&nbsp;&nbsp;일</span>
+			<span class="label label-outline label-default" style="display:inline-block;font-size: 15px; width: 160px;">${admin.admin_email}</span><br>			
 			</div>
 		</div>
 	</div>
 	<!-- 학생수 -->
-	<div class="col-md-3">
+	<div class="col-md-2">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="background-color: #2196F3;">
+			<div class="panel-heading" style="background-color: #CC0000;">
 				<h4 class="panel-title" style="color: #ffffff;">학생 현황</h4>
 			</div>
 			<!-- 내용 -->
-			<div class="panel-body" style="height: 260px;">
-            	<div id="doughnut-chart" style="width: 80%; height: 80%" ></div>
+			<div class="panel-body" style="height: 260px; text-align: center;">
+            	<div id="doughnut-chart" style="width: 80%; height: 80%; display: inline-block;" ></div>
 			</div>
 		</div>
 	</div>
 	<!-- 휴학현황 -->
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="background-color: #2196F3;">
+			<div class="panel-heading" style="background-color: #CC0000;">
 				<h4 class="panel-title" style="color: #ffffff;">휴학 현황</h4>
 			</div>
 			<!-- 내용 -->
@@ -68,9 +71,9 @@
 		</div>
 	</div>
 	<!-- 복학현황 -->
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="background-color: #2196F3;">
+			<div class="panel-heading" style="background-color: #CC0000;">
 				<h4 class="panel-title" style="color: #ffffff;">복학 현황</h4>
 			</div>
 			<!-- 내용 -->
@@ -83,19 +86,34 @@
 	<!-- 개인일정 -->
 	<div class="col-md-2">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="background-color: #2196F3;">
-				<h4 class="panel-title" style="color: #ffffff;">개인일정</h4>
+			<div class="panel-heading" style="background-color: #CC0000;">
+				<h4 class="panel-title" style="color: #ffffff;">SCHEDULE</h4>
 			</div>
 			<!-- 내용 -->
 			<div class="panel-body" style="height: 260px;">
-				<div id='calendar'></div>
+				<div class="time">
+					<h1 class="animated fadeInLeft" style="text-align: center; font-size: 50px; margin-top: 0; padding-top: 0;"></h1>
+					<p class="animated fadeInRight"
+						style="text-align: center; margin: 0; margin-bottom: 15px;"></p>
+					<span class="label label-outline label-default">오늘 일정</span><br>
+					<c:choose>
+						<c:when test="${not empty adminMainDateContent}">
+						<hr>
+							${adminMainDateContent}
+						</c:when>
+						<c:otherwise>
+						<hr>
+							등록된 일정이 없습니다.
+						</c:otherwise>
+					</c:choose>
+				</div>
 			</div>
 		</div>
 	</div>
 	<!-- 자퇴현황 -->
-	<div class="col-md-3">
+	<div class="col-md-5">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="background-color: #2196F3;">
+			<div class="panel-heading" style="background-color: #CC0000;">
 				<h4 class="panel-title" style="color: #ffffff;">자퇴 현황</h4>
 			</div>
 			<!-- 내용 -->
@@ -104,20 +122,11 @@
 			</div>
 		</div>
 	</div>
-	<!-- 장학현황 -->
-	<div class="col-md-3">
-		<div class="panel panel-default">
-			<div class="panel-heading" style="background-color: #2196F3;">
-				<h4 class="panel-title" style="color: #ffffff;">장학현황</h4>
-			</div>
-			<!-- 내용 -->
-			<div class="panel-body" style="height: 260px;"></div>
-		</div>
-	</div>
+
 	<!-- 교수현황 -->
-	<div class="col-md-3">
+	<div class="col-md-5">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="background-color: #2196F3;">
+			<div class="panel-heading" style="background-color: #CC0000;">
 				<h4 class="panel-title" style="color: #ffffff;">교수 현황</h4>
 			</div>
 			<!-- 내용 -->

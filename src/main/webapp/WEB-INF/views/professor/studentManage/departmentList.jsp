@@ -4,7 +4,7 @@
 
 <div class="col-xs-12">
 	<div class="panel panel-default">
-<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+<div class="panel-heading" style="background-color: #666666;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 			학과생 목록
 			</h4>

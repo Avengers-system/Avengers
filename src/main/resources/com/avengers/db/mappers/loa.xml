@@ -11,7 +11,7 @@
 	
 	<insert id="insertLeave" parameterType="com.avengers.db.dto.LoaVO">
 		insert into loa(loa_num,loa_start_date,loa_end_date,loa_cause,loa_appl_date,loa_appr_date,loa_appr_check,loa_rs_shcd_date,loa_stud,loa_admin)
-		values(#{loa_num},#{loa_start_date},#{loa_end_date},#{loa_cause},#{loa_appl_date},#{loa_appr_date},#{loa_appr_check},#{loa_rs_shcd_date},#{loa_stud},#{loa_admin})
+		values((select lpad((select max(loa_num) from loa)+1,19,'0') from dual),#{loa_start_date},#{loa_end_date},#{loa_cause},sysdate,#{loa_appr_date},'0',#{loa_rs_shcd_date},#{loa_stud},#{loa_admin})
 	</insert>
 	
 </mapper>
