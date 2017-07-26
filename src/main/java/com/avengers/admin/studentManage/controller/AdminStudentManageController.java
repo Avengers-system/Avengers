@@ -74,8 +74,8 @@ public class AdminStudentManageController {
 	@RequestMapping("/studentManage")
 	public String searchKeywordStudentList(
 			@RequestParam(value="value", defaultValue="1")String value,
-			Model model, @RequestParam(value="pageNo", defaultValue="1")String pageNo
-			, @RequestParam(value="select", defaultValue="all")String select
+			Model model, @RequestParam(value="pageNo", defaultValue="1")String pageNo,
+			@RequestParam(value="select", defaultValue="all")String select
 			){
 		
 		System.out.println("value : "+value);
@@ -93,10 +93,12 @@ public class AdminStudentManageController {
 			studVO.setSearchFiled(select);
 			studVO.setSearchValue(value);
 		}
-		
+
+		//pageno 디폴트 1
 		if (pageNo!=null && pageNo.equals("")) {
 			studVO.setPageNo(Integer.parseInt(pageNo));
 		}
+		
 		int totalCount = 0;
 		
 		

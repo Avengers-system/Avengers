@@ -66,48 +66,34 @@ div.input-group>span.input-group-addon{
 				 
 				  <input type="text" class="form-control"  value='${student.stud_num}'   disabled="disabled">
 			</div>
-			<br/>
   	  		<div class="input-group">
 				 <span class="input-group-addon" >이름</span>
 				  <input type="text" class="form-control" name='stud_nm' value='${student.stud_nm}'   >
 			</div>
-			<br/>
   	  		<div class="input-group">
 				 <span class="input-group-addon" >영문이름</span>
 				  <input type="text" class="form-control" name='stud_eng_nm' value='${student.stud_eng_nm}'  >
 			</div>
-			<br/>
-			
 			<div class="input-group">
 				 <span class="input-group-addon" >생년월일</span>
 				  <input type="date" class="form-control" name='stud_bir' value='<fmt:formatDate pattern = "yyyy-MM-dd" value = "${student.stud_bir}" />' >
 			</div>
-			<br/>
-			
 			<div class="input-group">
 				 <span class="input-group-addon" >이메일</span>
 				  <input type="text" class="form-control" name='stud_email'  value = "${student.stud_email}" /> 
 			</div>
-			<br/>
-			
 			<div class="input-group">
 				 <span class="input-group-addon" >비밀번호</span>
 				  <input type="text" class="form-control" name='stud_pw'  value = "${student.stud_pw}" /> 
 			</div>
-			<br/>
-			
 			<div class="input-group">
 				 <span class="input-group-addon" >학년</span>
 				  <input type="text" class="form-control" name='stud_grd' value='${student.stud_grd}'   >
 			</div>
-			<br/>
-			
 			<div class="input-group">
 				 <span class="input-group-addon" >주민등록번호</span>
 				  <input type="text" class="form-control" name='stud_regno' value='${student.stud_regno}'   >
 			</div>
-			<br/>
-			
 			 
   	  		<div class="input-group">
 					 <span class="input-group-addon" >성별</span>
@@ -128,81 +114,62 @@ div.input-group>span.input-group-addon{
 			                     <input type="radio"  name="stud_gen"  checked="checked" value="2">여자</label>
 		             		</c:otherwise>
 					</c:choose>
-					
 	                </div>
 					
 					</div>
-			<br/>
-			
 			<div class="input-group">
 				 <span class="input-group-addon" >학기</span>
 				  <input type="text" class="form-control" name='stud_qtr' value='${student.stud_qtr}'  >
 			</div>
-			<br/>
-			
 			<div class="input-group">
 				 <span class="input-group-addon" >학적상태</span>
 				  <input type="text" class="form-control" name='stud_schreg_code' value='${student.stud_schreg_code}'   >
 			</div>
-			<br/>
-			
 			<div class="input-group">
 				 <span class="input-group-addon" >계좌번호</span>
 				  <input type="text" class="form-control" name='stud_act_num' value='${student.stud_act_num}'   >
 			</div>
-			<br/>
 			<div class="input-group">
 				 <span class="input-group-addon" >은행</span>
 				  <input type="text" class="form-control" name='stud_bank' value='${student.stud_bank}'   >
 			</div>
-			<br/>
 			<div class="input-group">
 				 <span class="input-group-addon" >예금주</span>
 				  <input type="text" class="form-control" name='stud_ah' value='${student.stud_ah}'   >
 			</div>
-			<br/>
 			<div class="input-group">
 				 <span class="input-group-addon" >주소</span>
 				  <input type="text" class="form-control" name='stud_addr' value='${student.stud_addr}'   >
 			</div>
-			<br/>
 			<div class="input-group">
 				 <span class="input-group-addon" >우편번호</span>
 				  <input type="text" class="form-control" name='stud_zip' value='${student.stud_zip}'   >
 			</div>
-			<br/>
 			<div class="input-group">
 				 <span class="input-group-addon" >전화번호</span>
 				  <input type="text" class="form-control" name='stud_tel' value='${student.stud_tel}'   >
 			</div>
-			<br/>
 				<div class="input-group">
 				 <span class="input-group-addon" >휴대폰번호</span>
 				  <input type="text" class="form-control"  name='stud_hp' value='${student.stud_hp}'   >
 			</div>
-			<br/>
 			 <div class="input-group">
 				 <span class="input-group-addon" >학과</span>
 				 
 				  <input type="text" class="form-control" name='stud_dept' value='${student.stud_dept}'   >
 			</div>
-			<br/>
 			<div class="input-group">
 				 <span class="input-group-addon" >보호자이름</span>
 				  <input type="text" class="form-control" name='stud_guad_nm' value='${student.stud_guad_nm}'   >
 			</div>
-			<br/>
 			<div class="input-group">
 				 <span class="input-group-addon" >보호자관계</span>
 				  <input type="text" class="form-control" name='stud_guad_rel' value='${student.stud_guad_rel}'   >
 			</div>
-			<br/>
 			<div class="input-group">
 				 <span class="input-group-addon" >보호자휴대폰번호</span>
 				  <input type="text" class="form-control" name='stud_guad_hp' value='${student.stud_guad_hp}'   >
 			</div>
-			<br/>
-
 					<div class="col-md-5 detailBtn">
 						 <input type="submit" value="수정하기" >
 					</div>
@@ -210,7 +177,6 @@ div.input-group>span.input-group-addon{
 					<button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/admin/deleteStudent?stud_num=${student.stud_num}'">
 					삭제하기</button>
 					</div>
-
 			</form>
 
 		</div>
