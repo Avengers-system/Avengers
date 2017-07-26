@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,17 +20,224 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.avengers.db.dto.BoardVO;
+import com.avengers.db.dto.PerschdVO;
 import com.avengers.professor.HelpDesk.service.ProfessorHelpDeskService;
+import com.avengers.professor.mypage.service.ProfessorMypageService;
 
 @Controller
 @RequestMapping("/professor/helpDesk")
 public class ProfessorHelpDeskController {
 
 	@Autowired
+	private ProfessorMypageService myPageService;
+
+	@Autowired
 	public ProfessorHelpDeskService service;
+
+	/**
+	 * 학사일정등록
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/univSchd/univSchdedule")
+	public String univSchedule(
+			Principal principal,
+			HttpSession session,
+			Model model){
+
+		String scheduleId= principal.getName();
+		ArrayList<PerschdVO> univschdList = null;
+		ArrayList<PerschdVO> univschdList2 = new ArrayList<PerschdVO>();
+
+		String url="professor/univSchd/univSchdedule";
+		String message="";
+
+
+
+		try {
+			univschdList = myPageService.selectPerschdList("UNIVSCHD");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+			Date date1 = new Date();
+			Date date2 = new Date();
+			String start_date="";
+			String end_date="";
+			String writer="UNIVSCHD";
+
+			PerschdVO univschdVo = new PerschdVO();
+			for (int i = 0; i < univschdList.size(); i++) {
+				univschdVo = univschdList.get(i);
+
+				try {
+					date1 = sdf.parse(univschdList.get(i).getPerschd_start_date());
+					date2 = sdf.parse(univschdList.get(i).getPerschd_end_date());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				start_date = sdf.format(date1);
+				end_date = sdf.format(date2);
+
+				univschdVo.setPerschd_start_date(start_date);
+				univschdVo.setPerschd_end_date(end_date);
+				univschdList2.add(univschdVo);
+			}
+			if (univschdList != null) {
+				model.addAttribute("univschdList",univschdList2);
+				message = "학사일정이 조회되었습니다.";
+			}else{
+				message = "입력된 일정이 없습니다.";
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		session.setAttribute("message", message);
+		return url;
+
+	}
+
+
+	/**
+	 * 학사일정 세부조회
+	 * @param perschd_num
+	 * @param model
+	 * @return string
+	 */
+	@RequestMapping("/univSchd/univScheduleDetail")
+	@ResponseBody
+	public PerschdVO univSchedule(String perschd_title,
+			HttpSession session
+			, Model model){
+		String message="";
+
+
+		PerschdVO univschd = new PerschdVO();
+		if (univschd != null) {
+			univschd = myPageService.selectPerschd_title(perschd_title);
+			message="해당날짜에 등록된 일정이 없습니다";
+			session.setAttribute("message", message);
+		}
+		return univschd;
+	}
+
+
+	/**
+	 * ★일정 등록★
+	 * @param perschd
+	 * @param model
+	 * @return string
+	 */
+	@RequestMapping("/univScheduleInsert")
+	public String myScheduleInsert(
+			PerschdVO univschd,
+			Principal who,
+			HttpSession session,
+			@RequestParam("PERSCHD_START_DATE")String perschd_start_date,
+			@RequestParam("PERSCHD_END_DATE")String perschd_end_date,
+			@RequestParam("PERSCHD_TITLE")String perschd_title,
+			@RequestParam("PERSCHD_CONT")String perschd_cont
+			){
+
+		String message="일정등록을 실패였습니다.";
+
+		univschd.setPerschd_writer("UNIVSCHD");
+		univschd.setPerschd_cont(perschd_cont);
+		univschd.setPerschd_start_date(perschd_start_date);
+		univschd.setPerschd_end_date(perschd_end_date);
+		univschd.setPerschd_title(perschd_title);
+
+		try {
+			int success = myPageService.insertPerschd(univschd);
+			if (success == 1) {
+				message="학사일정등록에 성공하였습니다.";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		session.setAttribute("message", message);
+
+		return "redirect:/professor/univSchd/univSchdedule";
+	}
+
+	/**
+	 * 일정 삭제★★★★★★★★★★★★★
+	 * @param perschd_num
+	 * @param session
+	 * @param model
+	 * @return String
+	 */
+	@RequestMapping(value="/univSchd/univScheduleDelete")
+	public String univScheduleDelete(
+			HttpSession session,
+			@RequestParam()String perschd_num){
+		String url = "redirect:/professor/univSchd/univSchdedule";
+		String message = "일정삭제를 실패하였습니다.";
+
+		try {
+			int success = myPageService.deletePerschd(Integer.parseInt(perschd_num));
+			if (success!=-1) {
+				message="일정 삭제를 성공하였습니다.";
+			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		session.setAttribute("message", message);
+
+		return url;
+	}
+
+	/**
+	 * 일정수정 
+	 * @param perschd
+	 * @param session
+	 * @return String
+	 */
+	@RequestMapping("/univSchd/univScheduleUpdate")
+	public String univScheduleUpdate(
+			@RequestParam("perschd_num")Integer perschd_num,
+			@RequestParam("perschd_cont")String perschd_cont,
+			@RequestParam("perschd_title")String perschd_title,
+			@RequestParam("perschd_start_date")String perschd_start_date,
+			@RequestParam("perschd_end_date")String perschd_end_date,
+			HttpSession session
+			){
+		String message="";
+		PerschdVO perschd = new PerschdVO();
+		perschd.setPerschd_num(perschd_num);
+		perschd.setPerschd_cont(perschd_cont);
+		perschd.setPerschd_title(perschd_title);
+		perschd.setPerschd_start_date(perschd_start_date);
+		perschd.setPerschd_end_date(perschd_end_date);
+
+		try {
+			int success = myPageService.updatePerschd(perschd);
+			if (success !=-1) {
+				message="일저정수정을 성공하였습니다";
+			}else if(success ==-1){
+				message="일정수정을 실패하였습니다.";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		session.setAttribute("message", message);
+		return "redirect:/professor/univSchd/univSchdedule";
+	}
+
+
+
+
+
+
+
+
+
+
 
 	@RequestMapping("/main/helpDeskProfMain")
 	public String helpDeskProfMain(Model model, Principal principal){
@@ -179,21 +388,21 @@ public class ProfessorHelpDeskController {
 
 	@RequestMapping("faqProfNoticeList")//교수님용 FAQ게시판조회
 	public String faqProNoticefList(Model model, Principal principal, String pageNo){
-		
+
 		BoardVO boardVO = new BoardVO();
 		ArrayList<BoardVO> boardList = null;
-		
+
 		String key = principal.getName();
 		String bc_num = "FAQ_PROF";
 		boardVO.setBoard_bc(bc_num);
 		boardVO.setBoard_writer(key);
-		
+
 		if(pageNo!=null && !pageNo.equals("")){
 			boardVO.setPageNo(Integer.parseInt(pageNo));
 		}
-		
+
 		int totalCount = 0;
-		
+
 		try {
 			totalCount = service.selectBoardCount(boardVO);
 			boardVO.setTotalCount(totalCount);
@@ -204,26 +413,26 @@ public class ProfessorHelpDeskController {
 		model.addAttribute("pageVO", boardVO);
 		model.addAttribute("faqProfNoticeList", boardList);
 		return "professor/helpDesk/faqProfNotice";
-		
+
 	}
-	
+
 	@RequestMapping("qnaProfNoticeList")// 교수님용 Q&A 게시판조회
 	public String profQnaList(Model model, Principal principal, String pageNo){
-		
+
 		BoardVO boardVO = new BoardVO();
 		ArrayList<BoardVO> boardList = null;
-		
+
 		String key = principal.getName();
 		String bc_num = "QNA_PROF";
 		boardVO.setBoard_bc(bc_num);
 		boardVO.setBoard_writer(key);
-		
+
 		if(pageNo!=null && !pageNo.equals("")){
 			boardVO.setPageNo(Integer.parseInt(pageNo));
 		}
-		
+
 		int totalCount = 0;
-		
+
 		try {
 			totalCount = service.selectBoardCount(boardVO);
 			boardVO.setTotalCount(totalCount);
@@ -234,10 +443,10 @@ public class ProfessorHelpDeskController {
 		model.addAttribute("pageVO", boardVO);
 		model.addAttribute("qnaProfNoticeList", boardList);
 		return "professor/helpDesk/qnaProfNotice";
-		
+
 	}
-	
-	
+
+
 	@RequestMapping("univProfNoticeList")// 학교게시판조회
 	public String profUnivList(Model model, Principal principal, String pageNo){
 
@@ -762,8 +971,8 @@ public class ProfessorHelpDeskController {
 		model.addAttribute("deptNoticeList",boardVo);
 		return "professor/helpDesk/deptDetail";
 	}
-	
-	
+
+
 	@RequestMapping("/faqProfDetail")// 교수용 FAQ게시판 글 상세보기
 	public String detailFaqProf(@RequestParam("board_num")String board_num,
 			@RequestParam("board_count")String board_count, Model model){
@@ -777,9 +986,9 @@ public class ProfessorHelpDeskController {
 		model.addAttribute("faqProfNoticeList",boardVo);
 		return "professor/helpDesk/faqProfDetail";
 	}
-	
-		
-	
+
+
+
 
 
 	@RequestMapping("/qnaProfDetail")// QNA게시판 글 상세보기
@@ -893,14 +1102,14 @@ public class ProfessorHelpDeskController {
 		return "professor/helpDesk/deptNotice";
 
 	}
-	
-	
+
+
 	@RequestMapping("faqProfSearch")// 교수용 FAQ 글 검색
 	public String faqProfSearch(@RequestParam("board_title")String board_title,
 			Model model, Principal principal, String pageNo){
-		
+
 		ArrayList<BoardVO> boardList = null;
-		
+
 		BoardVO boardVO = new BoardVO();
 		String bc_num = "FAQ_PROF";
 		boardVO.setBoard_bc(bc_num);
@@ -919,9 +1128,9 @@ public class ProfessorHelpDeskController {
 		model.addAttribute("faqProfNoticeList", boardList);
 		model.addAttribute("pageVO", boardVO);
 		return "professor/helpDesk/faqProfNotice";
-		
+
 	}
-	
+
 
 	@RequestMapping("qnaProfSearch")// QNA 글 검색
 	public String profqnaSearch(@RequestParam("board_title")String board_title,
@@ -982,7 +1191,7 @@ public class ProfessorHelpDeskController {
 			Model model, Principal principal){
 
 		ArrayList<BoardVO> boardList = null;
-		
+
 
 		BoardVO boardVO = new BoardVO();
 		String bc_num = "UNIVSCHD";
@@ -1000,10 +1209,10 @@ public class ProfessorHelpDeskController {
 
 	}
 
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 }

@@ -10,7 +10,6 @@
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
    <!-- 테스트용 사이드 -->
-<%@include file="../helpDesk/helpDesk_leftSide.jsp" %>   
 </div>
 <div class="col-md-10" id="commonRightSide">
 </div>
