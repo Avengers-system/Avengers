@@ -58,7 +58,7 @@
 	<!-- 학생의 시험점수 업데이트 -->
 	<update id="updateExamPoint" parameterType="java.lang.String">
 		UPDATE TE
-		SET    TE_EXAM_POINT = (SELECT SUM(EQ_SCORE)
+		SET    TE_EXAM_POINT = (SELECT case when SUM(EQ_SCORE) IS NULL then 0 else SUM(EQ_SCORE) end
 		                        FROM   SA, TE, EXAM, EQ
 		                        WHERE  SA_TE = TE_NUM
 		                        AND    EXAM_NUM = TE_EXAM

@@ -12,7 +12,8 @@
 				EQ_EXMP_ONE,
 				EQ_EXMP_TWO,
 				EQ_EXMP_THREE,
-				EQ_EXMP_FOUR
+				EQ_EXMP_FOUR,
+				EQ_SCORE
 		FROM   EQ, EXAM
 		WHERE  EXAM_NUM = EQ_EXAM
 		AND    EXAM_NUM = #{exam_num}
@@ -45,6 +46,7 @@
 			  ,EQ_ANS = #{eq_ans}
 			  </if>
 			  ,EQ_EXAM = #{eq_exam}
+			  ,EQ_SCORE = #{eq_score}
 		WHERE EQ_NUM = #{eq_num}
 	</update>
 	
@@ -61,7 +63,8 @@
 					  ,EQ_EXMP_FOUR
 					  ,EQ_ANS
 					  </if>
-					  ,EQ_EXAM)
+					  ,EQ_EXAM
+					  ,EQ_SCORE)
 		VALUES('EQ'||EQ_SEQ.NEXTVAL
 			  ,#{eq_qtna}
 			  ,#{eq_qtn}
@@ -73,7 +76,8 @@
 			  ,#{eq_exmp_four}
 			  ,#{eq_ans}
 			  </if>
-			  ,#{eq_exam})
+			  ,#{eq_exam}
+			  ,#{eq_score})
 	</insert>
 	
 	<select id="selectEqPkList" parameterType="java.lang.String" resultType="java.lang.String">

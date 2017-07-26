@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.avengers.db.dto.AsgnVO;
 import com.avengers.db.dto.EqVO;
@@ -365,6 +366,8 @@ public class ProfessorClassManageController {
 				eqVO.setEq_ans(request.getParameter("eq_ans"+i));
 			}
 			eqVO.setEq_exam(exam_num);
+			//점수저장
+			eqVO.setEq_score(Integer.valueOf(request.getParameter("eq_score"+i)));
 			eqList.add(eqVO);
 		}
 		
@@ -435,7 +438,7 @@ public class ProfessorClassManageController {
 		
 		//DB에 시험시작날짜하고 종료날짜를 넣어서 비교하는게 좋을꺼같다.
 		String start = "2017-07-20";//포함
-		String end = "2017-07-23";//미포함
+		String end = "2017-08-30";//미포함
 		
 		Date sDate = new Date();//시험등록 시작일을 담기 위한 DATE변수
 		Date eDate = new Date();//시험등록 종료일을 담기 위한 DATE변수
@@ -549,12 +552,12 @@ public class ProfessorClassManageController {
 		int result = 0;
 		try {
 			result = pcmService.updateSa(saList);
-			if(result <= 0){
+			if(result < 0){
 				return "-1";
 			}
 			
 			result = pcmService.updateExamPoint(te_num);
-			if(result <= 0){
+			if(result < 0){
 				return "-1";
 			}
 			
@@ -619,10 +622,10 @@ public class ProfessorClassManageController {
 		asgnVO.setAsgn_num(lct_yr+""+lct_qtr);
 		asgnVO.setAsgn_lct((String)request.getSession().getAttribute("lct_num"));
 		
-		String upload="D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/asgn/";
+		String upload= request.getSession().getServletContext().getRealPath("resources/asgn/");
 		
 		if(!asgn_sub_form.isEmpty()){
-			File file = new File(upload, asgn_sub_form.getOriginalFilename());
+			File file = new File(upload,asgn_sub_form.getOriginalFilename());
 			try {
 				asgn_sub_form.transferTo(file);
 				asgnVO.setAsgn_sub_form(file.getName());
@@ -632,7 +635,8 @@ public class ProfessorClassManageController {
 				e.printStackTrace();
 			}
 		}
-		//파일업로드 중간에 나감 있다가 갔다와서 해야됨
+		
+		
 		try {
 			//과제 등록완료
 			int result = pcmService.insertAsgn(asgnVO);
@@ -663,6 +667,97 @@ public class ProfessorClassManageController {
 			e.printStackTrace();
 		}
 		
+		return view;
+	}
+	
+	//첨부파일 realPath경로 다운로드
+	@RequestMapping("professor/download")
+	public ModelAndView download(HttpServletRequest request,
+								@RequestParam("fileName")String fileName){
+		String path = request.getSession().getServletContext().getRealPath("resources/asgn/"+fileName);
+		File file = new File(path);
+		return new ModelAndView("download", "downloadFile", file);
+	}
+	
+	@RequestMapping("professor/classManage/lectureAsgnDetail")
+	public String professorLectureAsgnDetail(HttpServletRequest request
+											,Model model){
+		String view = "professor/classManage/lectureAsgnDetail";
+		
+		String asgn_num = request.getParameter("asgn_num");
+		
+		Map<String, String> asgnInfo = new HashMap<String, String>();
+		
+		try {
+			asgnInfo = pcmService.selectAsgnInfo(asgn_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("asgnInfo", asgnInfo);
+		
+		return view;
+	}
+	
+	@RequestMapping("professor/classManage/lectureTakeAsgnStudent")
+	public String professorLectureTakeAsgnStudent(HttpServletRequest request
+												 ,Model model){
+		String view = "professor/classManage/lectureTakeAsgnStudent";
+		
+		String asgn_num = request.getParameter("asgn_num");
+		
+		ArrayList<Map<String, String>> asgnOfStudList = null;
+		
+		try {
+			asgnOfStudList = pcmService.selectAsgnOfStudList(asgn_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("asgnOfStudList", asgnOfStudList);
+		return view;
+	}
+	
+	@RequestMapping("professor/classManage/lectureAsgnStudentDetail")
+	public String professorLectureAsgnStudentDetail(HttpServletRequest request, Model model){
+		String view = "professor/classManage/lectureAsgnStudentDetail";
+		
+		String sub_num = request.getParameter("sub_num");
+		
+		Map<String, String> subDetail = null;
+		
+		try {
+			subDetail = pcmService.selectSubDetail(sub_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("subDetail", subDetail);
+		
+		return view;
+	}
+	
+	@RequestMapping("professor/classManage/updateSubSjtPoint")
+	public String professorUpdateSubSjtPoint(HttpServletRequest request){
+		String view = "redirect:lectureTakeAsgnStudent?asgn_num="+request.getParameter("asgn_num");
+		//점수, 제출번호, 과제번호를 파라미터로 가져옴
+		String sub_sjt_point = request.getParameter("sub_sjt_point");
+		String sub_num = request.getParameter("sub_num");
+		
+		Map<String, String> key = new HashMap<String, String>();
+		
+		key.put("sub_num", sub_num);
+		key.put("sub_sjt_point", sub_sjt_point);
+		
+		int result = -1;
+		
+		try {
+			result = pcmService.updateSubSjtPoint(key);
+			if(result == -1){
+				//에러
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return view;
 	}
 }

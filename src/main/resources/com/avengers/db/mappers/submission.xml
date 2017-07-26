@@ -10,6 +10,9 @@
 			  ,SUB_TITLE = #{sub_title}
 			  ,SUB_CONT = #{sub_cont}
 			  ,SUB_DATE = SYSDATE
+			  <if test="sub_af != null">
+			  ,SUB_AF = #{sub_af}
+			  </if>
 		WHERE  SUB_STUD = #{sub_stud}
 		AND    SUB_ASGN = #{sub_asgn}
 	</update>
@@ -24,4 +27,51 @@
     WHERE STUD_NUM = TL_STUD
     AND   TL_LCT = #{lct_num}
 	</insert>
+	
+	<!-- 학생이 제출한 과제 상세보기 -->
+	<resultMap type="java.util.HashMap" id="subDetail">
+		<result javaType="java.lang.String" column="SUB_NUM" property="sub_num"/>
+		<result javaType="java.lang.String" column="COL_NM" property="col_nm"/>
+		<result javaType="java.lang.String" column="DEPT_NM" property="dept_nm"/>
+		<result javaType="java.lang.String" column="STUD_NUM" property="stud_num"/>
+		<result javaType="java.lang.String" column="STUD_NM" property="stud_nm"/>
+		<result javaType="java.lang.String" column="STUD_HP" property="stud_hp"/>
+		<result javaType="java.lang.String" column="SUB_TITLE" property="sub_title"/>
+		<result javaType="java.lang.String" column="SUB_SJT_POINT" property="sub_sjt_point"/>
+		<result javaType="java.lang.String" column="SUB_DATE" property="sub_date"/>
+		<result javaType="java.lang.String" column="SUB_CONT" property="sub_cont"/>
+		<result javaType="java.lang.String" column="SUB_AF" property="sub_af"/>
+		<result javaType="java.lang.String" column="ASGN_NUM" property="asgn_num"/>
+	</resultMap>
+	<!-- 학생이 제출한 과제 상세보기 -->
+	<select id="selectSubDetail" parameterType="java.lang.String" resultMap="subDetail">
+		SELECT SUB_NUM
+		      ,COL_NM
+		      ,DEPT_NM
+		      ,STUD_NUM
+		      ,STUD_NM
+		      ,STUD_HP
+		      ,SUB_TITLE
+		      ,case when SUB_SJT_POINT IS NULL then 0 else SUB_SJT_POINT end AS SUB_SJT_POINT
+		      ,TO_CHAR(SUB_DATE,'YY/MM/DD') AS SUB_DATE
+		      ,SUB_CONT
+		      ,SUB_AF
+		      ,ASGN_NUM
+		FROM   SUBMISSION, ASGN, LECTURE, TL, STUDENT, DEPARTMENT, COLLEAGE
+		WHERE  SUB_ASGN = ASGN_NUM
+		AND    ASGN_LCT = LCT_NUM
+		AND    LCT_NUM = TL_LCT
+		AND    STUD_NUM = TL_STUD
+		AND    SUB_STUD = STUD_NUM
+		AND    STUD_DEPT = DEPT_NUM
+		AND    DEPT_COL = COL_CODE
+		AND    SUB_NUM = #{sub_num}
+	</select>
+	
+	<!-- 학생점수 업데이트 -->
+	<update id="updateSubSjtPoint" parameterType="java.util.HashMap">
+		UPDATE SUBMISSION
+		SET    SUB_SJT_POINT = #{sub_sjt_point}
+		WHERE  SUB_NUM = #{sub_num}
+	</update>
 </mapper>

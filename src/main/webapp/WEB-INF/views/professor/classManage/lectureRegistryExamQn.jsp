@@ -14,6 +14,7 @@ $(function(){
 					"<input type='hidden' class='eq_num' name='eq_num"+count+"' value='-1'/>"+
 					"<input type='text' class='eq_qtna' name='eq_qtna"+count+"' readonly value='"+count+"'/>."+
 					"<input type='text' class='eq_qtn' name='eq_qtn"+count+"' value=''/>"+
+					"배점<input type='text' name='eq_score"+count+"' class='eq_score' style='width:50px'/>"+
 					"<br/>"+
 					"①<input type='text' class='eq_exmp_one' name='eq_exmp_one"+count+"' value=''/><br/>"+
 					"②<input type='text' class='eq_exmp_two' name='eq_exmp_two"+count+"' value=''/><br/>"+
@@ -27,6 +28,7 @@ $(function(){
 				"<input type='hidden' class='eq_num' name='eq_num"+count+"' value='-1'/>"+
 				"<input type='text' class='eq_qtna' name='eq_qtna"+count+"' readonly value='"+count+"'/>."+
 				"<input type='text' class='eq_qtn' name='eq_qtn"+count+"' value=''/>"+
+				"배점<input type='text' name='eq_score"+count+"' class='eq_score' style='width:50px'/>"+
 				"<input type='hidden' class='eq_qtn_type' name='eq_qtn_type"+count+"' value='2'/><br/>"+
 				"주관식문항은 문제만 입력가능합니다.<input type='button' id='removeExamBtn' value='삭제'/><br/><br/>"+
 				"</div> ";
@@ -78,6 +80,7 @@ $(function(){
 				$(".examQn").eq(i).find($(".eq_ans")).attr("name","eq_ans"+(i+1));
 			}
 			$(".examQn").eq(i).find($(".eq_qtna")).attr("readonly",true);
+			$(".examQn").eq(i).find($(".eq_score")).attr("name","eq_score"+(i+1));
 // 					}
 // 				}
 // 			})
@@ -129,13 +132,12 @@ $(function(){
 		<form name="examRegistry">
 			<c:choose>
 				<c:when test="${eqList eq null }">
-				
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${eqList }" var="eqInfo" varStatus="status">
 						<div class="examQn">
 							문제고유번호 : <input type="hidden" class="eq_num" name="eq_num${status.count}" value="${eqInfo.getEq_num() }" /><br/>
-							<input type="text" class="eq_qtna" readonly name="eq_qtna${status.count}" value="${eqInfo.getEq_qtna() }"/>.<input type="text" readonly class="eq_qtn" name="eq_qtn${status.count}" value="${eqInfo.getEq_qtn() }"/><br/>
+							<input type="text" class="eq_qtna" readonly name="eq_qtna${status.count}" value="${eqInfo.getEq_qtna() }"/>.<input type="text" readonly class="eq_qtn" name="eq_qtn${status.count}" value="${eqInfo.getEq_qtn() }"/>배점<input type="text" name="eq_score${status.count }" class="eq_score" value="${eqInfo.getEq_score()}" style="width:100px"/><br/>
 							<input type="hidden" class="eq_qtn_type" name="eq_qtn_type${status.count}" value="${eqInfo.getEq_qtn_type() }"/>
 							<c:choose>
 								<c:when test="${eqInfo.getEq_qtn_type() eq 1 }">

@@ -10,6 +10,7 @@
 	 	<result javaType="java.lang.String" column="DEPT_NUM" property="dept_num"/>
  	 </resultMap>
 	<!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
+	
 	<select id="getPfrsOfDeptList" resultMap="pfrsOfDept">
 		SELECT COUNT(PRFS_NUM) as count, DEPT_NM, DEPT_NUM
 		FROM   PROFESSOR, DEPARTMENT
