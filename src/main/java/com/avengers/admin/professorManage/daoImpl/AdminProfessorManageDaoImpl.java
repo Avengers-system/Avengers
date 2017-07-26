@@ -41,6 +41,7 @@ public class AdminProfessorManageDaoImpl implements AdminProfessorManageDao {
 	@Override
 	public int updatePrfs(PrfsVO prfsVO) throws SQLException {
 		int result = sqlSession.update("prfs.updatePrfs", prfsVO);
+		System.out.println(prfsVO.getPrfs_pic());
 		return result;
 	}
 
@@ -80,6 +81,19 @@ public class AdminProfessorManageDaoImpl implements AdminProfessorManageDao {
 		ArrayList<DeptVO> selectDepList = new ArrayList<DeptVO>(); 
 		selectDepList = (ArrayList<DeptVO>) sqlSession.selectList("admin.selectDeptList");
 		return selectDepList;
+	}
+	
+	@Override
+	public int getEmpListCount(PrfsVO prfsVO) throws SQLException {
+		int result = (int) sqlSession.selectOne("admin.getEmpListCount",prfsVO);
+		System.out.println("daoimpl getEmpListCount result : "+result);
+		return result;
+	}
+	
+	@Override
+	public ArrayList<PrfsVO> getEmpList(PrfsVO prfsVO) throws SQLException {
+		ArrayList<PrfsVO> prfsList = (ArrayList<PrfsVO>) sqlSession.selectList("admin.getEmpList",prfsVO);
+		return prfsList;
 	}
 
 }

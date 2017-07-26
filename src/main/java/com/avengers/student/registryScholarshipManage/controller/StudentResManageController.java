@@ -62,7 +62,8 @@ public class StudentResManageController {
 			,@RequestParam(value="scr_year",required=false)String scr_year
 			,@RequestParam(value="scr_qtr",required=false)String scr_qtr
 			,@RequestParam(value="scrappl_year",required=false)String scrappl_year
-			,@RequestParam(value="scrappl_qtr",required=false)String scrappl_qtr){
+			,@RequestParam(value="scrappl_qtr",required=false)String scrappl_qtr
+			){
 		String url="student/registryScholarshipManage/registryScholarshipManageMain";
 		String loa_stud= princiapl.getName();
 		String entrance_year = loa_stud.substring(0,4);//입학년도

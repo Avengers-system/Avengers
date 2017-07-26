@@ -17,7 +17,7 @@
 			포털소식
 		</div>
 	</a>
-	<a href="${pageContext.request.contextPath}/student/helpDesk/univStudSchdNoticeList">
+	<a href="${pageContext.request.contextPath}/student/helpDesk/univSchd/univSchdedule">
 		<div style="height: 40px; background-color: #2196F3; color: #fff; border-radius: 5px; font-size: 15px; text-align: center; padding-top: 8px; margin-top: 10px;">
 			학사일정
 		</div>

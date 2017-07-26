@@ -165,21 +165,5 @@
         </div>
 
 
-<script>
-// $("select").change(function(){
-// 	$.ajax({
-// 		type:"POST",
-// 		url:'studRes',
-// 		data:{
-// 			scr_year:$('#scr_year').val() ,
-// 			scr_qtr:$('#scr_qtr').val() ,
-// 			scrappl_year:$('#scrappl_year').val() ,
-// 			scrappl_qtr:$('#scrappl_qtr').val()			
-// 		},
-// 		success:function(){
-// 			location.href="${pageContext.request.contextPath}/student/studRes";
-// 		}
-// 	});
-// })
-</script>
+
 

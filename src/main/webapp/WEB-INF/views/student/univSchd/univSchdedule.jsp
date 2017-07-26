@@ -1,4 +1,3 @@
-<%@page import="com.avengers.admin.mypage.service.AdminMypageService"%>
 <%@page import="com.avengers.db.dto.PerschdVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -83,11 +82,7 @@ ol, ul {
 	<div>
 		<div class='two-col'>
 
-			<div class="col-md-3 col-md-offset-9" style="padding-left: 0px;">
-				<a href="#" class="button" data-toggle="modal"
-					data-target="#addSchedule">일정등록 </a>
-
-			</div>
+			
 
 
 			<div id='calendar'></div>
@@ -249,14 +244,13 @@ ol, ul {
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title">일정등록</h4>
 			</div>
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-8 col-md-offset-2">
 							<form
-								action="${pageContext.request.contextPath }/admin/univScheduleInsert"
+								action="${pageContext.request.contextPath }/student/univScheduleInsert"
 								method="POST">
 								<ul>
 									<input type="hidden" class="form-control" name="PERSCHD_NUM">

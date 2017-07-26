@@ -12,8 +12,7 @@
 	<c:remove var="message" scope="session"/>
 </c:if>
 
-<!-- Admin Header -->
-<%@include file="../common/topCategory.jsp"%>
+<!-- student Header -->
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
 <%@include file="../common/studHelpDeskSide.jsp"%>
@@ -22,13 +21,11 @@
 		<c:when test="${not empty perschd}">
 				<form name="univScheduleDetail" id="scheduleDetail">
 					번호:<input type="text" name="perschd_num" value="${perschd.perschd_num}" readonly="readonly"/><br/>
-					제목:<input type="text" name="perschd_title" value="${perschd.perschd_title}"/><br/>
+					제목:<input type="text" name="perschd_title" value="${perschd.perschd_title} readonly="readonly""/><br/>
 					내용:<textarea rows="5" cols="10" name="perschd_cont" >${perschd.perschd_cont}</textarea><br/>
 					작성자:<input type="text" name="perschd_writer" value="${perschd.perschd_writer}" readonly="readonly"/><br/>
-					시작일:<input type="text" name="perschd_start_date" value="${perschd.perschd_start_date}">
-					종료일 <input type="text" name="perschd_end_date" value="${perschd.perschd_end_date}"/><br/>
-				<input type="button" id="scheduleMod" value="수정"/>
-				<input type="button" id="scheduleDel" value="삭제"/>
+					시작일:<input type="text" name="perschd_start_date" value="${perschd.perschd_start_date}" readonly="readonly">
+					종료일 <input type="text" name="perschd_end_date" value="${perschd.perschd_end_date}" readonly="readonly"/><br/>
 				</form>
 		</c:when>
 	</c:choose>
@@ -42,7 +39,7 @@
 			
 			$.ajax({
 				type : "post",
-				url :"${myContextPath}/admin/univSchd/univScheduleUpdate",
+				url :"${myContextPath}/student/univSchd/univScheduleUpdate",
 				cache : false,
 				data :  formData,
 				success: onModSuccess()
@@ -50,14 +47,14 @@
 		});
 	});
 	function onModSuccess(){
-		location.href="${myContextPath}/admin/univSchd/univSchdedule";
+		location.href="${myContextPath}/student/univSchd/univSchdedule";
 	}
 	$(document).ready(function(){
 		$("#scheduleDel").click(function(){
 			var formData = $("#scheduleDetail").serialize();
 				$.ajax({
 					type : "post",
-					url :"${myContextPath}/admin/univSchd/univScheduleDelete",
+					url :"${myContextPath}/student/univSchd/univScheduleDelete",
 					cache : false,
 					data :  formData,
 					success: onDelSuccess()
@@ -65,7 +62,7 @@
 		});
 	});
 	function onDelSuccess(){
-		location.href="${myContextPath}/admin/univSchd/univSchdedule";
+		location.href="${myContextPath}/student/univSchd/univSchdedule";
 	}
 </script>
 
