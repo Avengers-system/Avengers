@@ -16,7 +16,7 @@
 <%@include file="../common/topCategory.jsp"%>
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
-	<%@include file="../common/myPageSideCategory.jsp"%>
+<%@include file="../common/studHelpDeskSide.jsp"%>
 </div>
 <c:choose>
 		<c:when test="${not empty perschd}">

@@ -63,6 +63,7 @@
        WHERE STUD_NUM=#{scrappl_stud}
        AND STUD_NUM=SCRAPPL_STUD
        AND SCRAPPL_SCR=SCR_NUM
+       AND SCRAPPL_APPR_CHECK='1'
        <if test="scrappl_yr !=null and scrappl_yr !='전체'">
        AND SCRAPPL_YR=#{scrappl_yr}
        </if>
@@ -78,7 +79,7 @@
         WHERE STUD_NUM=#{scrappl_stud}
        AND STUD_NUM=SCRAPPL_STUD
        AND SCRAPPL_SCR=SCR_NUM
-       AND SCRAPPL_APPR_CHECK='1'
+       
        <if test="scrappl_yr !=null and scrappl_yr != '전체'">
        AND SCRAPPL_YR=#{scrappl_yr}
        </if>

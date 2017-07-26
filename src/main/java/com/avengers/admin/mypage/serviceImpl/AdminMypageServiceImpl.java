@@ -34,8 +34,8 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 
 	@Override
 	public ArrayList<PerschdVO> selectPerschdList(String perschd_writer)throws SQLException {
-		ArrayList<PerschdVO> perschdList= null;
-		perschdList = myPageDAO.selectPerschdList(perschd_writer);
+		ArrayList<PerschdVO> perschdList= myPageDAO.selectPerschdList(perschd_writer);
+		System.out.println(perschd_writer+"야");
 		return perschdList;
 	}
 

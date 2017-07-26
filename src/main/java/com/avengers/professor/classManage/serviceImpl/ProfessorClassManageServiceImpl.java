@@ -31,215 +31,14 @@ public class ProfessorClassManageServiceImpl implements ProfessorClassManageServ
 	public void setProClassDAO(ProfessorClassManageDao proClassDAO) {
 		this.proClassDAO = proClassDAO;
 	}
-
-	@Override
-	public ArrayList<LctVO> selectLctList(String key, int firstRow, int endRow)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public LctVO selectLct(String lct_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int insertLct(LctVO lctVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	//배현상------------------------------------------------------------------
+	
 	@Override
 	public int updateLct(LctVO lctVO) throws SQLException {
 		int result = proClassDAO.updateLct(lctVO);
 		return result;
 	}
-
-	@Override
-	public ArrayList<ExamVO> selectExamList(String key, int firstRow, int endRow)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ExamVO selectExam(String exam_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int updateExam(ExamVO examVO, String exam_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteExam(String exam_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public ArrayList<TeVO> selectTeList(String key, String exam_lct,
-			int firstRow, int endRow) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
-
-	@Override
-	public ArrayList<SaVO> selectSaList(String te_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int insertTe(TeVO teVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateTe(TeVO teVO, String te_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public ArrayList<AsgnVO> selectAsgnList(String key, int firstRow, int endRow)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AsgnVO selectAsgn(String asgn_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-
-	@Override
-	public int updateAsgn(AsgnVO asgnVO, String asgn_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteAsgn(String asgn_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public ArrayList<SubVO> selectSubList(String key, int firstRow, int endRow)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public SubVO selectSub(String sub_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int updateSub(SubVO subVO, String sub_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public ArrayList<TlVO> selectTlList(String key, int firstRow, int endRow)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public TlVO selectTl(String tl_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int updateTl(TlVO tlVO, String tl_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public ArrayList<AtdcVO> selectAtdcList(Date atdc_date, String lct_num)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int updateAtdc(AtdcVO atdcVO, Date atdc_date, String atdc_tl)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public ArrayList<AcVO> selectAcList(String ac_atdc) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AcVO selectAc(String ac_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<BoardVO> selectBoardList(String key, int firstRow,
-			int endRow) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public BoardVO selectBoard(String board_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int insertBoard(BoardVO boardVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateBoard(BoardVO boardVO, String board_num)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public ArrayList<LaVO> selectLaList(int firstRow, int endRow)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public LaVO selectLa(String la_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	//배현상------------------------------------------------------------------
 	@Override
 	public ArrayList<Map<String, String>> selectPrfsLecture(String prfs_num)
 			throws SQLException {
@@ -390,6 +189,33 @@ public class ProfessorClassManageServiceImpl implements ProfessorClassManageServ
 	@Override
 	public int updateAsgnCheck(String asgn_num) throws SQLException {
 		int result = proClassDAO.updateAsgnCheck(asgn_num);
+		return result;
+	}
+
+	@Override
+	public Map<String, String> selectAsgnInfo(String asgn_num)
+			throws SQLException {
+		Map<String, String> asgnInfo = proClassDAO.selectAsgnInfo(asgn_num);
+		return asgnInfo;
+	}
+
+	@Override
+	public ArrayList<Map<String, String>> selectAsgnOfStudList(String asgn_num)
+			throws SQLException {
+		ArrayList<Map<String, String>> asgnOfStudList = proClassDAO.selectAsgnOfStudList(asgn_num);
+		return asgnOfStudList;
+	}
+
+	@Override
+	public Map<String, String> selectSubDetail(String sub_num)
+			throws SQLException {
+		Map<String, String> subDetail = proClassDAO.selectSubDetail(sub_num);
+		return subDetail;
+	}
+
+	@Override
+	public int updateSubSjtPoint(Map<String, String> key) throws SQLException {
+		int result = proClassDAO.updateSubSjtPoint(key);
 		return result;
 	}
 }

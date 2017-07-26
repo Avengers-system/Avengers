@@ -1,6 +1,7 @@
 package com.avengers.student.mypage.serviceImpl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,21 +41,47 @@ public class StudentMypageServiceImpl implements StudentMypageService{
 	}
 
 	@Override
-	public int insertPerschd(PerschdVO perschd) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertPerschd(PerschdVO perschdVO) throws SQLException {
+		int result = stuMypageDAO.insertPerschd(perschdVO);
+		return result;
 	}
 
 	@Override
-	public int updatePerschd(PerschdVO perschd) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updatePerschd(PerschdVO perschdVO) throws SQLException {
+		int success = -1; 
+		success = stuMypageDAO.updatePerschd(perschdVO);
+		return success;
 	}
 
 	@Override
-	public int deletePersched(PerschdVO persched) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public ArrayList<PerschdVO> selectPerschdList(String perschd_writer)
+			throws SQLException {
+		ArrayList<PerschdVO> perschdList= stuMypageDAO.selectPerschdList(perschd_writer);
+		System.out.println(perschd_writer+"야");
+		return perschdList;
 	}
 
+	@Override
+	public PerschdVO selectPerschd(int perschd_num) throws SQLException {
+		PerschdVO pershcdVO = null;
+		pershcdVO = stuMypageDAO.selectPerschd(perschd_num);
+		return pershcdVO;
+	}
+
+	@Override
+	public int deletePerschd(int perschd_num) throws SQLException {
+		int success= -1;
+		success = stuMypageDAO.deletePerschd(perschd_num);
+		return success;
+	}
+
+	@Override
+	public PerschdVO selectPerschd_title(String title) {
+		return  stuMypageDAO.selectPerschd_title(title);
+	}
+
+
+	
+	
+	
 }

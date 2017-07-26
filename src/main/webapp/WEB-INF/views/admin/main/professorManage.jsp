@@ -3,11 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<!-- Counsel Content -->
-<!-- Counsel Left Side -->
- <%@include file="../common/adminManageCategory.jsp" %>
- 
+<!-- 템플릿 페이지 -->
 <style>
 	#professorTable,  #professorTable td{
 		border : 2px solid black;
@@ -19,11 +15,20 @@
  
  }
 </style>
- 
+<!-- Counsel Content -->
+<!-- Counsel Left Side -->
+ <%@include file="../common/adminManageCategory.jsp" %>
+<!--  Counsel Right Side -->
 <div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
+			교수목록
+			</h4>
+		</div>
+		<div class="panel-body" style="height: 580px; text-align: center;" >
 
-                  <div class="panel">
-                    <div class="panel-heading"><h3>교수목록</h3></div>
+			<div class="panel">
                     <div class="panel-body">
                       <div class="responsive-table">
                       <div id="datatables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
@@ -141,3 +146,6 @@
 	<div class="col-md-8 col-md-offset-2">
     				
 </div>
+	</div>
+</div>
+   

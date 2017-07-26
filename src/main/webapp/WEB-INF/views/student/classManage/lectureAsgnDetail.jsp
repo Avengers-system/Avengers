@@ -23,8 +23,8 @@
 		</form>
 	</div>
 	-----------------------------------------------------------------------------------------------
-	<form name="submission" method="post" action="lectureAsgnSubmit">
-		<input type="text" name="asgn_num" value="${asgn_num}"/>
+	<form name="submission" method="post" action="lectureAsgnSubmit" enctype="multipart/form-data">
+		<input type="text" hidden="true" name="asgn_num" value="${asgn_num}"/>
 		제목 : <input type="text" name="sub_title"/><br/>
 		내용 : <br/><textarea cols="100" rows="10" name="sub_cont"></textarea><br/>
 		첨부파일 : <input type="file" name="sub_af">
