@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -301,13 +302,20 @@ public class AdminStudentManageController {
 	}
 	
 	
-	@RequestMapping("/studentUpdateScrList")
+	@RequestMapping(value="/studentUpdateScrList",method=RequestMethod.POST)
 	public String studentUpdateScrList(
-			Model model			
+			Model model
+			,@RequestParam(value="scrappl_num",required=false)String scrappl_num
+			,@RequestParam(value="scrappl_appr_check",required=false)String scrappl_appr_check
 			){
-		StudVO studVO = new StudVO();
-		
-		model.addAttribute("student",studVO);
+		ScrapplVO scrapplVO = new ScrapplVO();
+		scrapplVO.setScrappl_num(scrappl_num);
+		scrapplVO.setScrappl_appr_check(scrappl_appr_check);
+		try {
+			stuResService.updateScrappl(scrapplVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
 		return "redirect:studentScrList";
 	}
 	
@@ -361,7 +369,7 @@ ScrapplVO scrApplVO = new ScrapplVO();
 	}
 	
 	
-	@RequestMapping("/studentUpdateLoaRtsList")
+	@RequestMapping(value="/studentUpdateLoaRtsList",method=RequestMethod.POST)
 	public String studentUpdateLoaRtsList(
 			@RequestParam("stud_num") String stud_num,
 			Model model){
@@ -425,7 +433,7 @@ ScrapplVO scrApplVO = new ScrapplVO();
 	}
 	
 	
-	@RequestMapping("/studentUpdateLsList")
+	@RequestMapping(value="/studentUpdateLsList",method=RequestMethod.POST)
 	public String studentUpdateLsList(
 			@RequestParam("stud_num") String stud_num,
 			Model model){

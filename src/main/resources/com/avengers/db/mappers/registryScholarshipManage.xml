@@ -3,10 +3,11 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resSchManage">
- 	<!-- 2017.07.24일자 수정 -->
+ 	<!-- 2017.07.26일자 수정 -->
     <resultMap id="scr" type="java.util.HashMap">
         <result javaType="java.lang.String" column="SCRAPPL_YR" property="scrappl_yr"/>
         <result javaType="java.lang.String" column="SCRAPPL_QTR" property="scrappl_qtr"/>
+        <result javaType="java.lang.String" column="SCRAPPL_NUM" property="scrappl_num"/>
         <result javaType="java.lang.String" column="SCR_NM" property="scr_nm"/>
         <result javaType="java.lang.String" column="SCR_MONEY" property="scr_money"/>
         <result javaType="java.lang.String" column="STUD_BANK" property="stud_bank"/>
@@ -82,7 +83,7 @@
    	<!-- 2017.07.26일자 수정 -->
     <select id="scrApplSelect" parameterType="com.avengers.db.dto.ScrapplVO"  resultMap="scr">
       SELECT  MIN(SCRAPPL_YR) as MIN_YR,SCRAPPL_YR,SCRAPPL_QTR,SCR_NM,SCR_MONEY,SCRAPPL_CAUSE
-      ,STUD_BANK,STUD_AH,STUD_ACT_NUM,SCRAPPL_DATE,STUD_NM,STUD_NUM 
+      ,STUD_BANK,STUD_AH,STUD_ACT_NUM,SCRAPPL_DATE,STUD_NM,STUD_NUM,SCRAPPL_NUM 
        FROM SCR,SCRAPPL,STUDENT
        WHERE STUD_NUM=SCRAPPL_STUD
        AND SCRAPPL_SCR=SCR_NUM
@@ -98,7 +99,7 @@
        <if test="scrappl_qtr !=null and scrappl_qtr != '전체'">
        AND SCRAPPL_QTR=#{scrappl_qtr}
        </if>
-       GROUP BY SCRAPPL_YR,SCRAPPL_QTR,SCR_NM,SCR_MONEY,SCRAPPL_CAUSE,STUD_BANK,STUD_AH,STUD_ACT_NUM,SCRAPPL_DATE,STUD_NM,STUD_NUM 
+       GROUP BY SCRAPPL_YR,SCRAPPL_QTR,SCR_NM,SCR_MONEY,SCRAPPL_CAUSE,STUD_BANK,STUD_AH,STUD_ACT_NUM,SCRAPPL_DATE,STUD_NM,STUD_NUM,SCRAPPL_NUM  
    </select>
    <!-- 2017.07.24일자 수정 -->
    <select id="studInfoSelect" parameterType="com.avengers.db.dto.resSchStudentVO" resultType="com.avengers.db.dto.resSchStudentVO">
@@ -178,6 +179,12 @@
 	AND STUD_DEPT=DEPT_NUM
 	AND REG_YR=#{reg_yr}
 	AND REG_QTR=#{reg_qtr}	
-	</select>	
+	</select>
+	
+	<update id="scrUpdate" parameterType="com.avengers.db.dto.ScrapplVO">
+	UPDATE SCRAPPL 
+	SET SCRAPPL_APPR_CHECK = #{scrappl_appr_check}
+	WHERE  SCRAPPL_NUM = #{scrappl_num} 
+	</update>	
 	
 </mapper>
