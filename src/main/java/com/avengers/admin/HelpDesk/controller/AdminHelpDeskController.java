@@ -249,7 +249,7 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		}
 		session.setAttribute("message", message);
 
-		return "redirect:/admin/univSchd/univSchdedule";
+		return "redirect:/student/univSchd/univSchdedule";
 	}
 	/**
 	 * 일정 삭제★★★★★★★★★★★★★
@@ -293,7 +293,6 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 			@RequestParam("perschd_title")String perschd_title,
 			@RequestParam("perschd_start_date")String perschd_start_date,
 			@RequestParam("perschd_end_date")String perschd_end_date,
-			//			PerschdVO perschd,
 			HttpSession session
 			){
 		String message="";
@@ -315,7 +314,7 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 			e.printStackTrace();
 		}
 		session.setAttribute("message", message);
-		return "redirect:/admin/univSchd/univSchdedule";
+		return "redirect:/student/univSchd/univSchdedule";
 	}
 
 

@@ -4,8 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@include file="../common/helpDesk_leftSide.jsp"%>
-
+<%@include file="../common/studHelpDeskSide.jsp"%>
 
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 <meta name='description'

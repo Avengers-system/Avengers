@@ -1,6 +1,7 @@
 package com.avengers.student.mypage.daoImpl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -39,22 +40,46 @@ public class StudentMyPageDaoImpl implements StudentMyPageDao{
 		return null;
 	}
 
-	@Override
-	public int insertPerschd(PerschdVO perschd) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	@Override // 일정등록
+	public int insertPerschd(PerschdVO perschdVO) throws SQLException {
+		int result = sqlSession.insert("perschd.insertSchd",perschdVO);
+		return result;
+	}
+
+	@Override // 일정수정
+	public int updatePerschd(PerschdVO perschdVO) throws SQLException {
+		int success = -1;
+		success = sqlSession.update("perschd.updateSchd", perschdVO);
+		return success;
+	}
+
+	@Override //일정보여주기
+	public ArrayList<PerschdVO> selectPerschdList(String perschd_writer){
+		ArrayList<PerschdVO> perschdList = new ArrayList<PerschdVO>();
+		perschdList =  (ArrayList<PerschdVO>) sqlSession.selectList("perschd.selectPerschdList", perschd_writer);
+		System.out.println("size : "+ perschdList.size());
+		return perschdList;
 	}
 
 	@Override
-	public int updatePerschd(PerschdVO perschd) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public PerschdVO selectPerschd(int perschd_num) throws SQLException {
+		PerschdVO perschdVO = null;
+		perschdVO = (PerschdVO) sqlSession.selectOne("perschd.getPerschd", perschd_num);
+		return perschdVO;
+	}
+
+	@Override // 일정삭제
+	public int deletePerschd(int perschd_num) throws SQLException {
+		int success = -1;
+		success = sqlSession.delete("perschd.deleteSchd", perschd_num);
+		return success;
 	}
 
 	@Override
-	public int deletePersched(PerschdVO persched) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public PerschdVO selectPerschd_title(String perschd_title) {
+		PerschdVO perschdVO = (PerschdVO) sqlSession.selectOne("perschd.selectSchdTitle",perschd_title);
+		return perschdVO;
 	}
 
+	
 }
