@@ -58,7 +58,6 @@ public class AdminMainController {
 			selectLeaveDeptList = adminMainService.getLeaveDeptList();
 			getDropOffDeptList = adminMainService.getDropOffDeptList();
 			getReinstatementDeptList = adminMainService.getReinstatementDeptList();
-			System.out.println(getReinstatementDeptList.size()+"!!!!!!!!!!!!!!!!!!!!!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

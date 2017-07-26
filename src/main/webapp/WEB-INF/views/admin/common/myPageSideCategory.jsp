@@ -1,44 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<style>
 
-<div id="col-xs-12 left-menu">
-              <div class="sub-left-menu scroll" tabindex="5000" style="overflow: hidden; outline: none;">
-                <ul class="nav nav-list">
-                
-                    <li class="time">
-                      <h1 class="animated fadeInLeft">20:36</h1>
-                      <p class="animated fadeInRight">Thursday, July 20th 2017</p>
-                    </li>
-                    
-                    
-                    <li class="active ripple"onclick="myInfo_go()">
-                      <a class="tree-toggle nav-header">
-                      <span class="fa-home fa" ></span> 개인정보 
-                        <span class="fa-angle-right fa right-arrow text-right"></span>
-                      </a>
-                    </li>
-                    
-                    <li class="ripple" onclick="mySchedule_go()">
-                      <a class="tree-toggle nav-header">
-                        <span class="fa-diamond fa"></span> 개인일정관리
-                        <span class="fa-angle-right fa right-arrow text-right"></span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-            </div>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript">
-function adminMain_go(){
-  location.href="<%=request.getContextPath()%>/admin/main/adminMain";
-  }
-function logout_go(){
-   location.href="<%=request.getContextPath()%>/common/logout";
-   }
-function myInfo_go(){
-    location.href="<%=request.getContextPath()%>/admin/mypage/myInfo";
-    }
-function mySchedule_go(){
-    location.href="<%=request.getContextPath()%>/admin/mypage/mySchedule";
-	}
-</script>
+#commonRightSide{
+margin-top:50px;
+
+}
+
+div.detailBtn>*{
+	margin:0 auto;
+}
+
+div.input-group{
+	width : 400px;
+}
+
+div.input-group>span.input-group-addon{
+	width:120px;
+}
+
+</style>
+    
+    
+<div class="col-md-2">
+
+	<!-- a 태그에 URL 적고 div 사이에 메뉴 이름을 적는다.  ${pageContext.request.contextPath}-->
+	<a href="${pageContext.request.contextPath}/admin/mypage/myInfo">
+		<div style="height: 40px; background-color: #CC0000; color: #fff; border-radius: 5px; font-size: 15px; text-align: center; padding-top: 8px; margin-top: 10px;">
+			개인정보 
+		</div>
+	</a>
+	<a href="${pageContext.request.contextPath}/admin/mypage/mySchedule">
+		<div style="height: 40px; background-color: #CC0000; color: #fff; border-radius: 5px; font-size: 15px; text-align: center; padding-top: 8px; margin-top: 10px;">
+			개인일정관리
+		</div>
+	</a>
+</div>
