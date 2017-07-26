@@ -3,8 +3,11 @@ package com.avengers.student.main.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.avengers.db.dto.AdmissionApplicationVO;
 import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.CnsVO;
 import com.avengers.db.dto.DeptVO;
@@ -27,6 +30,24 @@ public interface StudentMainDao {
  	public ArrayList<BoardVO> selectSchoolNoticeList() throws SQLException;
  	public ArrayList<BoardVO> selectDepartmentNoticeList(String bc_dept) throws SQLException;
  	public ArrayList<PerschdVO> selectSchoolScheduleList() throws SQLException;
+ 	public String selectSchedule(String stud_num) throws SQLException;
+ 	
+ 	
+ 	public ArrayList<BoardVO> getStudMainSchoolNotice() throws SQLException;
+ 	public ArrayList<BoardVO> getStudMainDepartNotice(String stud_dept) throws SQLException;
+ 	public ArrayList<BoardVO> getStudMainPotalNotice() throws SQLException;
+ 	public String getDeptNum(String stud_num) throws SQLException;
+ 	
+ 	public List<HashMap<String, String>> selectCartList(AdmissionApplicationVO cart_stud) throws SQLException;
+ 	public List<HashMap<String, String>> selectLctList(AdmissionApplicationVO lctVO) throws SQLException;
+ 	public List<HashMap<String, String>> selectTlList(AdmissionApplicationVO tl_stud) throws SQLException;
+ 	public StudVO selectStudMaxCrd(String stud_num) throws SQLException;
+ 	public ArrayList<TlVO> selectTl_LCTList(TlVO tlVO) throws SQLException;
+ 	public LctVO selectLct(String tl_lct) throws SQLException;
+ 	
+ 	
+ 	
+ 	
 	
 	public String allGrades(String stud_num) throws SQLException;
 	public ArrayList<StudentMainVO> selectLectureList(String tl_stud,String lct_yr, String lct_qtr) throws SQLException;

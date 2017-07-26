@@ -83,9 +83,120 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 </sec:authorize>
 
 
-<!--  로그인시 보여주는 화면 -->
-<sec:authorize access="isAuthenticated()">
-	<nav class="navbar navbar-default header bg-white "	style="height: 100px; margin: 0;">
+
+
+
+
+<!-- 관리자 로그인시 보여주는 화면 -->
+<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+<nav class="navbar navbar-default header bg-white "	style="height: 100px; margin: 0;">
+		<div class="col-md-12 nav-wrapper">
+			<div class="col-md-2">
+				<a href="${pageContext.request.contextPath}/main" style="color: #CC0000;">
+				<b style="font-size: 80px; color: #CC0000;">A</b>&nbsp;&nbsp;UNIVERSITY</a>
+			</div>
+			<!-- Header -->
+			<!--자동로그아웃-->
+				
+				<div class="col-md-10" style="margin-top: 30px; text-align: right;">
+				<span class="label label-danger" id="timer"
+					style="display: inline-block; font-size: 15px; height: 42px; text-align: center; padding-top: 11px;"></span>
+					<button class="btn btn-outline btn-primary"  onclick="fncClearTime()">
+						<div>
+							<span>시간연장</span>
+						</div>
+					</button>
+					<button class=" btn btn-outline btn-primary"
+						onclick="removeTimer()">
+						<div>
+							<span>타이머중단</span>
+						</div>
+					</button>
+					<button class="btn btn-outline btn-primary"
+						onclick="location.href='${pageContext.request.contextPath}/logout'">
+						<div>
+							<span>로그아웃</span>
+						</div>
+					</button>
+				</div>
+		</div>
+	</nav>
+
+	<nav class="navbar navbar-default header bg-blue" style="height: 100%;  margin-top: 17px;">
+		<div class="col-xs-12 nav-wrapper" style="background-color: #CC0000;">
+			<div class="navbar-header">
+				<ul class="nav nav-tabs nav-tabs-v1">
+					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/main/adminMain">Main</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/mypage/">My Page</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/professorManage">교수관리</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/studentManage">학생관리</a></li>
+					<li role="presentation"><a href="#">강의관리</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/univNoticeList">Help Desk</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</sec:authorize>
+
+
+
+<!-- 교수 로그인시 보여주는 화면 -->
+<sec:authorize access="hasAnyRole('ROLE_PROF')">
+
+<nav class="navbar navbar-default header bg-white "	style="height: 100px; margin: 0;">
+		<div class="col-md-12 nav-wrapper">
+			<div class="col-md-2">
+				<a href="${pageContext.request.contextPath}/main" style="color: #666666;">
+				<b style="font-size: 80px; color: #666666;">A</b>&nbsp;&nbsp;UNIVERSITY</a>
+			</div>
+			<!-- Header -->
+			<!--자동로그아웃-->
+				
+				<div class="col-md-10" style="margin-top: 30px; text-align: right;">
+				<span class="label label-danger" id="timer"
+					style="display: inline-block; font-size: 15px; height: 42px; text-align: center; padding-top: 11px;"></span>
+					<button class="btn btn-outline btn-primary"  onclick="fncClearTime()">
+						<div>
+							<span>시간연장</span>
+						</div>
+					</button>
+					<button class=" btn btn-outline btn-primary"
+						onclick="removeTimer()">
+						<div>
+							<span>타이머중단</span>
+						</div>
+					</button>
+					<button class="btn btn-outline btn-primary"
+						onclick="location.href='${pageContext.request.contextPath}/logout'">
+						<div>
+							<span>로그아웃</span>
+						</div>
+					</button>
+				</div>
+		</div>
+	</nav>
+	<nav class="navbar navbar-default header bg-blue" style="height: 100%;  margin-top: 17px;">
+		<div class="col-xs-12 nav-wrapper" style=" background-color: #666666;">
+			<div class="navbar-header">
+				<ul class="nav nav-tabs nav-tabs-v1">
+					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/main">Main</a></li>
+					<li role="presentation"><a href="#">My Page</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/classManage/classMain">수업관리</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/studentManage/departmentList">학생관리</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/counsel/counselList">상담</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/helpDesk/main/helpDeskProfMain">Help Desk</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</sec:authorize>
+
+
+
+<!-- 학생 로그인시 보여주는 화면 -->
+<sec:authorize access="hasAnyRole('ROLE_STUD')">
+
+<nav class="navbar navbar-default header bg-white "	style="height: 100px; margin: 0;">
 		<div class="col-md-12 nav-wrapper">
 			<div class="col-md-2">
 				<a href="${pageContext.request.contextPath}/main">
@@ -117,52 +228,6 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 				</div>
 		</div>
 	</nav>
-</sec:authorize>
-
-
-
-<!-- 관리자 로그인시 보여주는 화면 -->
-<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-	<nav class="navbar navbar-default header bg-blue" style="height: 100%; margin-top: 17px;">
-		<div class="col-xs-12 nav-wrapper">
-			<div class="navbar-header">
-				<ul class="nav nav-tabs nav-tabs-v1">
-					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/main/adminMain">Main</a></li>
-					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/mypage/">My Page</a></li>
-					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/professorManage">교수관리</a></li>
-					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/studentManage">학생관리</a></li>
-					<li role="presentation"><a href="#">강의관리</a></li>
-					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/main/helpDeskMain">Help Desk</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-</sec:authorize>
-
-
-
-<!-- 교수 로그인시 보여주는 화면 -->
-<sec:authorize access="hasAnyRole('ROLE_PROF')">
-	<nav class="navbar navbar-default header bg-blue" style="height: 100%; margin-top: 17px;">
-		<div class="col-xs-12 nav-wrapper">
-			<div class="navbar-header">
-				<ul class="nav nav-tabs nav-tabs-v1">
-					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/main">Main</a></li>
-					<li role="presentation"><a href="#">My Page</a></li>
-					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/classManage/classMain">수업관리</a></li>
-					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/studentManage/departmentList">학생관리</a></li>
-					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/counsel/counselList">상담</a></li>
-					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/helpDesk/main/helpDeskProfMain">Help Desk</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-</sec:authorize>
-
-
-
-<!-- 학생 로그인시 보여주는 화면 -->
-<sec:authorize access="hasAnyRole('ROLE_STUD')">
 	<nav class="navbar navbar-default header bg-blue" style="height: 100%; margin-top: 17px;">
 		<div class="col-xs-12 nav-wrapper">
 			<div class="navbar-header">

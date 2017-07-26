@@ -179,4 +179,9 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 	</update> 
 	
 	
+	<select id="selectStudentDeptNum" parameterType="java.lang.String" resultType="java.lang.String">
+		select 'B'||stud_dept from Student where stud_num=#{stud_num}
+	</select>
+	
+	
 </mapper>

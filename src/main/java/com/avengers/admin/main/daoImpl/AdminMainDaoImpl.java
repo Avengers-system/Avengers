@@ -108,11 +108,25 @@ public class AdminMainDaoImpl implements AdminMainDao {
 		return nextPrfsNum;
 	}
 	@Override
-	public List<HashMap<String, String>> selectLeaveDeptList()
+	public List<HashMap<String, String>> getLeaveDeptList()
 			throws SQLException {
-		List<HashMap<String, String>> selectLeaveDeptList = new ArrayList<HashMap<String,String>>();
-		selectLeaveDeptList = (List<HashMap<String, String>>)sqlSession.selectList("department.getLeaveDeptList");
-		return selectLeaveDeptList;
+		List<HashMap<String, String>> getLeaveDeptList = new ArrayList<HashMap<String,String>>();
+		getLeaveDeptList = (List<HashMap<String, String>>)sqlSession.selectList("department.getLeaveDeptList");
+		return getLeaveDeptList;
+	}
+	@Override
+	public List<HashMap<String, String>> getDropOffDeptList()
+			throws SQLException {
+		List<HashMap<String, String>> getDropOffDeptList = new ArrayList<HashMap<String,String>>();
+		getDropOffDeptList =(List<HashMap<String, String>>)sqlSession.selectList("department.getDropOffDeptList");
+		return getDropOffDeptList;
+	}
+	@Override
+	public List<HashMap<String, String>> getReinstatementDeptList()
+			throws SQLException {
+		List<HashMap<String, String>> getReinstatementDeptList = new ArrayList<HashMap<String,String>>();
+		getReinstatementDeptList = (List<HashMap<String, String>>)sqlSession.selectList("department.getReinstatementDeptList");
+		return getReinstatementDeptList;
 	}
 
 }

@@ -6,6 +6,19 @@
 
 <mapper namespace="board">
 	
+	
+	<select id="getStudentMainSchoolNotice" resultType="com.avengers.db.dto.BoardVO">
+		select * from board where board_bc = 'UNIV' ORDER BY BOARD_NUM DESC
+	</select>
+	<select id="getStudentMainDepartment" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
+		select * from board where board_bc = #{stud_dept} ORDER BY BOARD_NUM DESC
+	</select>
+	
+	<select id="getStudentMainPotalNotice" resultType="com.avengers.db.dto.BoardVO">
+		select * from board where board_bc = 'PORTAL' ORDER BY BOARD_NUM DESC
+	</select>
+	
+	
 	<select id="getFAQListCount" parameterType="com.avengers.db.dto.BoardVO" resultType="int">
     SELECT COUNT(*)  FROM BOARD WHERE BOARD_BC ='FAQ'  
         <if test="searchFiled != null and searchFiled != ''">
