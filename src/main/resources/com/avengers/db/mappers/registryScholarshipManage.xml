@@ -129,6 +129,8 @@
         <result javaType="java.lang.String" column="DP_PYMT_DATE" property="dp_pymt_date"/>
         <result javaType="java.lang.String" column="STUD_NM" property="stud_nm"/>
         <result javaType="java.lang.String" column="STUD_NUM" property="stud_num"/>
+        <result javaType="java.lang.String" column="SCR_MONEY" property="scr_money"/>
+        <result javaType="java.lang.String" column="DEPT_ENTR_FEE" property="dept_entr_fee"/>
   </resultMap> 
 	
 	<select id="selectRegList" parameterType="com.avengers.db.dto.RegVO" resultMap="reg">
@@ -150,13 +152,17 @@
 	
 	
 	<select id="selectReg" parameterType="com.avengers.db.dto.RegVO" resultMap="reg">
-	SELECT REG_YR,REG_QTR,STUD_NM,STUD_NUM,DEPT_NM,DEPT_TTN,REG_PYMT_BANK,REG_PYMT_ACT
-	FROM REGISTRY,DEPARTMENT,STUDENT
+	SELECT REG_YR,REG_QTR,STUD_NM,STUD_NUM,DEPT_NM,DEPT_TTN,REG_PYMT_BANK,REG_PYMT_ACT,SCR_MONEY,DEPT_ENTR_FEE
+	FROM REGISTRY,DEPARTMENT,STUDENT,SCR,SCRAPPL
 	WHERE REG_STUD=#{reg_stud}
 	AND STUD_NUM=#{reg_stud}
+	AND SCRAPPL_STUD=#{reg_stud}
+	AND SCRAPPL_YR=#{reg_yr}
+	AND SCRAPPL_QTR=#{reg_qtr}
+	AND SCR_NUM=SCRAPPL_SCR
 	AND STUD_DEPT=DEPT_NUM
 	AND REG_YR=#{reg_yr}
-	AND REG_QTR=#{reg_qtr}
+	AND REG_QTR=#{reg_qtr}	
 	</select>	
 	
 </mapper>

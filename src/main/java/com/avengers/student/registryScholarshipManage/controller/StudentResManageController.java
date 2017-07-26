@@ -10,10 +10,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +19,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.view.document.AbstractPdfView;
 
 import com.avengers.db.dto.LoaRtsVO;
 import com.avengers.db.dto.RegVO;
@@ -37,13 +34,13 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.lowagie.text.BadElementException;
 import com.lowagie.text.Cell;
-import com.lowagie.text.Table;
-import com.lowagie.text.pdf.PdfTable;
 /**
  * 학생 등록/장학관리
  * @author 조영훈
@@ -306,8 +303,6 @@ public class StudentResManageController {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (BadElementException e) {
-			e.printStackTrace();
 		}
 		
 		
@@ -318,12 +313,12 @@ public class StudentResManageController {
 	
 	
 	
-	public void createGradeCertificate(List<HashMap<String,String>> tuitionList,String path) throws DocumentException, IOException, BadElementException{
+	public void createGradeCertificate(List<HashMap<String,String>> tuitionList,String path) throws DocumentException, IOException{
 		//pdf 만들기
 
 		String filename = path+"resources/upload/tuition.pdf";
 		
-		
+		String entrance_year = tuitionList.get(0).get("stud_num").substring(0,4);//입학년도
 		
 		Document document = new Document();
 		PdfWriter.getInstance(document, new FileOutputStream(filename));
@@ -358,28 +353,205 @@ public class StudentResManageController {
 		paragraph3.setIndentationRight(50);
 
 		document.addTitle("등록금 고지서");
-		// 제목
-		Chunk chunk = new Chunk("등록금 고지서\n"
-		+tuitionList.get(0).get("reg_yr")+"년도\n"
-		+tuitionList.get(0).get("reg_qtr")+"학기\n"
-		+tuitionList.get(0).get("dept_nm")+"학과\n", font);
-		paragraph2.add(chunk);
-		document.add(paragraph2);
-
-		// 내용
-		document.add(new Paragraph("  성             명 : " + tuitionList.get(0).get("stud_nm"), font));
-		document.add(new Paragraph("  학             번 : "+ tuitionList.get(0).get("stud_num"), font));
-		document.add(new Paragraph("  학             과 : "+ tuitionList.get(0).get("dept_nm"), font));
 		
 		
 		
-		document.add(new Paragraph("  등록금 : "+ tuitionList.get(0).get("dept_ttn"), font));
-		document.add(new Paragraph("  납부은행 : "+ tuitionList.get(0).get("reg_pymt_bank") , font));
-		document.add(new Paragraph("  납부계좌 : "+tuitionList.get(0).get("reg_pymt_act"), font));
-
-		Date today = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
-		document.add(new Paragraph("  " + sdf.format(today), font));
+		
+		
+		
+		PdfPTable table = new PdfPTable(4);
+		table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+		table.getDefaultCell().setVerticalAlignment(Element.ALIGN_CENTER);
+		table.getDefaultCell().setPaddingBottom(2f);
+		table.getDefaultCell().setMinimumHeight(18f);
+		table.setWidths(new int[]{50,50,50,50});	
+		
+		PdfPCell cell = new PdfPCell(new Paragraph("등록금     납입    고지서",font));
+		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		cell.setColspan(4);
+		table.addCell(cell);
+		
+		 cell = new PdfPCell(new Paragraph(tuitionList.get(0).get("reg_yr")+"   학년도    "
+				 +tuitionList.get(0).get("reg_qtr")+"   학기     납입금 ",font));
+		 cell.setColspan(4);
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setMinimumHeight(18f);
+		 table.addCell(cell);
+		 
+		 cell = new PdfPCell(new Paragraph("학    과",font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 
+		 cell = new PdfPCell(new Paragraph(tuitionList.get(0).get("dept_nm"),font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(3);
+		 table.addCell(cell);
+		 
+		 cell = new PdfPCell(new Paragraph("학    번",font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 
+		 cell = new PdfPCell(new Paragraph(tuitionList.get(0).get("stud_num"),font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 
+		 cell = new PdfPCell(new Paragraph("성    명",font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 
+		 cell = new PdfPCell(new Paragraph(tuitionList.get(0).get("stud_nm"),font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 
+		 cell = new PdfPCell(new Paragraph("구    분",font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 cell = new PdfPCell(new Paragraph("등  록  금",font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 cell = new PdfPCell(new Paragraph("장  학  금",font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 cell = new PdfPCell(new Paragraph("납입금액",font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 cell = new PdfPCell(new Paragraph("입  학  금",font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 if(entrance_year.equals(tuitionList.get(0).get("reg_yr"))
+				 &&tuitionList.get(0).get("reg_qtr").equals("1")){
+			 cell = new PdfPCell(new Paragraph(tuitionList.get(0).get("dept_entr_fee"),font));
+		 }else{
+			 cell = new PdfPCell(new Paragraph("0",font));
+		 }
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 cell = new PdfPCell(new Paragraph("0",font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 
+		 if(entrance_year.equals(tuitionList.get(0).get("reg_yr"))
+				 &&tuitionList.get(0).get("reg_qtr").equals("1")){
+			 cell = new PdfPCell(new Paragraph(tuitionList.get(0).get("dept_entr_fee"),font));
+		 }else{
+			 cell = new PdfPCell(new Paragraph("0",font));
+		 }
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 
+		 cell = new PdfPCell(new Paragraph("수  업  료",font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 cell = new PdfPCell(new Paragraph(tuitionList.get(0).get("dept_ttn"),font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 cell = new PdfPCell(new Paragraph(tuitionList.get(0).get("scr_money"),font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 cell = new PdfPCell(new Paragraph(
+				 Integer.toString(Integer.parseInt(tuitionList.get(0).get("dept_ttn"))-Integer.parseInt(tuitionList.get(0).get("scr_money"))),font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 cell = new PdfPCell(new Paragraph("계",font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 
+		 if(entrance_year.equals(tuitionList.get(0).get("reg_yr"))
+				 &&tuitionList.get(0).get("reg_qtr").equals("1")){
+			 cell = new PdfPCell(new Paragraph(
+			Integer.toString(Integer.parseInt(tuitionList.get(0).get("dept_entr_fee")
+			+Integer.parseInt(tuitionList.get(0).get("dept_ttn")))),font));
+		 }else{
+			 cell = new PdfPCell(new Paragraph(tuitionList.get(0).get("dept_ttn"),font));			 
+		 }
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 
+		 cell = new PdfPCell(new Paragraph(tuitionList.get(0).get("scr_money"),font));
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 
+		 if(entrance_year.equals(tuitionList.get(0).get("reg_yr"))
+				 &&tuitionList.get(0).get("reg_qtr").equals("1")){
+			 cell = new PdfPCell(new Paragraph(
+			 Integer.toString(Integer.parseInt(tuitionList.get(0).get("dept_entr_fee"))
+			+Integer.parseInt(tuitionList.get(0).get("dept_ttn"))-Integer.parseInt(tuitionList.get(0).get("scr_money"))),font));
+		 }else{
+			 cell = new PdfPCell(new Paragraph(
+					 Integer.toString(Integer.parseInt(tuitionList.get(0).get("dept_ttn"))-Integer.parseInt(tuitionList.get(0).get("scr_money"))),font));
+		 }
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(1);
+		 table.addCell(cell);
+		 
+		 if(tuitionList.get(0).get("reg_qtr").equals("1")){
+			 cell = new PdfPCell(new Paragraph(
+					 "납부기간 : 02월 20일 ~ 02월 23일 "+"\n"
+					+"납부은행 : "+ tuitionList.get(0).get("reg_pymt_bank")+"\n"
+					+"납부계좌 : "+ tuitionList.get(0).get("reg_pymt_act")+"\n\n"
+					+"* 반드시 본인 명의로 입금하셔야 합니다."+"\n"
+					+"* 문의사항은 학사관리실로 연락바랍니다. (042-629-7114)",font));			 
+		 }else{
+			 cell = new PdfPCell(new Paragraph(
+					 "납부기간 : 08월 21일  ~ 08월 24일"+"\n"
+					+"납부은행 : "+ tuitionList.get(0).get("reg_pymt_bank")+"\n"
+					+"납부계좌 : "+tuitionList.get(0).get("reg_pymt_act")+"\n\n"
+					+"* 반드시 본인 명의로 입금하셔야 합니다."+"\n"
+					+"* 문의사항은 학사관리실로 연락바랍니다. (042-629-7114)",font));
+		 }
+		 cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		 cell.setColspan(4);
+		 table.addCell(cell);
+		 
+		 
+		 
+		 document.add(table);
+		
+		
 		
 		// ㅇㅇ 대학교
 		Chunk chunk2 = new Chunk("[A]  U N I V E R C I T Y", font);
@@ -389,8 +561,8 @@ public class StudentResManageController {
 			
 		// 도장 추가
 		Image image2 = Image.getInstance(path+"resources/upload/sign.png");
-		image2.setAbsolutePosition(450f, 95f);
-		image2.scaleAbsolute(50, 50);
+		image2.setAbsolutePosition(340f, 95f);
+		image2.scaleAbsolute(150,150 );
 		document.add(image2);
 
 		// step 5
