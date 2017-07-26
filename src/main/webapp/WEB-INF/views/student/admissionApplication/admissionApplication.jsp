@@ -42,15 +42,15 @@
 	}
 	table{
 		overflow:auto;
-	}
+	}	
 </style>
 
-    	 <div class="col-md-12" id="info">
-    	 <div class="col-md-12"> 
-    	 <div class="panel">
-    	 <div class="panel-heading">
+    	<div class="col-xs-12" id="info">
+	<div class="panel panel-default">
+		<div class="panel-heading"
+			style="background-color: #2196F3; margin-top: 10px;">
        		<!-- 학생개인정보 -->       		
-			<h3> 개인정보 </h3>
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;"> 개인정보 </h4>
 		</div>
 		 <div class="panel-body" style="font-size:16px;" >
 		 	<dl class="dl-horizontal">	
@@ -60,19 +60,19 @@
 			<dt>학적상태</dt><dd>${studentInfo.stud_schreg_code}</dd>      
 			<dt>최대 신청가능 학점</dt><dd>${studentInfo.stud_max_crd}</dd>        
 			<dt>현재 신청 학점</dt><dd>${cur_score}</dd>
-			 </dl>	
+			 </dl>
+			<button class="btn btn-outline btn-primary pull-right" onclick="location.href='${pageContext.request.contextPath}/student/pdfView'">시간표보기</button>
 		  </div>       
         </div>
         </div>
-        </div>	
         
-        <div class="col-md-12" id="search">
-    	 <div class="col-md-12"> 
-    	 <div class="panel">
-    	 <div class="panel-heading">
-       		<h3> 검색 </h3>
+        <div class="col-xs-12" id="search">
+    	<div class="panel panel-default">
+		<div class="panel-heading"
+			style="background-color: #2196F3; margin-top: 10px;">
+       		<h4 style="color: #fff; font-weight: bold; font-size: 20px;"> 검색 </h4>
        		 </div> 
-       	<div class="panel-body">
+       	<div class="panel-body" >
        	<!-- 셀렉트박스와 검색 셀렉트박스는 학년,이수구분 -->
 			<form action = "${pageContext.request.contextPath}/student/admissionApplication" method="post">
 				학년 <select name="sjt_estm_grd">							
@@ -84,22 +84,22 @@
 					<option selected="selected" value="전%">전공</option>
 					<option value="교%">교양</option>
 				</select> 강의명 <input type="text" name="lct_nm" />
-				<input type = "submit" value="검색">
+				<input class="btn btn-outline btn-primary" style="height:50px;" type = "submit" value="검색">
 			</form>
+				  	
+			
        	</div>	       
-        </div>
         </div>
         </div>
         		
          	
 		
-        <div class="col-md-12 top-20 padding-0">
-        <div class="col-md-12">             
-        <div class="col-xs-12" id="lct">
-        <div class="panel">  
+        <div class="col-xs-12">
+	<div class="panel panel-default">
        	 	<!-- 강의리스트 -->
-       	 	<div class="panel-heading">       	 	
-			<h3>강의리스트</h3>
+       	 	<div class="panel-heading"
+			style="background-color: #2196F3; margin-top: 10px;">      	 	
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">강의리스트</h4>
 			</div>
 			<div class="panel-body">
 			<div class="responsive-table">
@@ -128,7 +128,7 @@
 								<td>
 									<form action = "${pageContext.request.contextPath}/student/insertCart" method="post">
 									<input type="hidden" name="cart_lct" value="${lct.get('lct_num')}" />
-									<input type = "submit" value="장바구니담기">
+									<input class="btn btn-outline btn-primary" type = "submit" value="장바구니담기">
 									</form>
 								</td>
 								<c:choose>		
@@ -136,7 +136,7 @@
 										<td>
 											<form action = "${pageContext.request.contextPath}/student/insertTl" method="post">
 											<input type="hidden" name="lct_num" value="${lct.get('lct_num')}" />
-											<input type = "submit" value="신청">
+											<input class="btn btn-outline btn-primary" type = "submit" value="신청">
 											</form>
 										</td>
 									</c:when>
@@ -153,7 +153,7 @@
 								<td>
 								<form action = "${pageContext.request.contextPath}/student/lectureDetail" method="post">
 								<input type="hidden" name="lct_num" value="${lct.get('lct_num')}" />
-								<input type = "submit" value="강의계획서">
+								<input class="btn btn-outline btn-primary" type = "submit" value="강의계획서">
 								</form>
 								</td>
 							</tr>
@@ -171,16 +171,13 @@
         </div>
         </div>
         </div>
-        </div>
-        </div> 
         
-        <div class="col-md-12 top-20 padding-0">		
-        <div class="col-md-12" id="admission">
-        <div class="col-xs-12 col-md-1" id="cart">
-        <div class="panel">
+        <div class="col-xs-12">
+	<div class="panel panel-default">
         		<!-- 장바구니리스트 -->
-        		<div class="panel-heading">
-				<h3>장바구니리스트</h3>
+        		<div class="panel-heading"
+			style="background-color: #2196F3; margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">장바구니리스트</h4>
 				</div>
 				<div class="panel-body">
 					<div class="responsive-table">
@@ -211,7 +208,7 @@
 									<td>
 									<form action = "${pageContext.request.contextPath}/student/deleteCart" method="post">
 									<input type="hidden" name="cart_lct" value="${cart.get('lct_num')}" />
-									<input type = "submit" value="취소">
+									<input class="btn btn-outline btn-primary" type = "submit" value="취소">
 									</form>
 									</td>
 									<c:choose>		
@@ -219,7 +216,7 @@
 											<td>
 											<form action = "${pageContext.request.contextPath}/student/insertTl" method="post">
 											<input type="hidden" name="lct_num" value="${cart.get('lct_num')}" />
-											<input type = "submit" value="신청">
+											<input class="btn btn-outline btn-primary" type = "submit" value="신청">
 											</form>
 											</td>
 										</c:when>
@@ -234,7 +231,7 @@
 									<td>
 									<form action = "${pageContext.request.contextPath}/student/lectureDetail" method="post">
 									<input type="hidden" name="lct_num" value="${cart.get('lct_num')}" />
-									<input type = "submit" value="강의계획서">
+									<input class="btn btn-outline btn-primary" type = "submit" value="강의계획서">
 									</form>
 									</td>
 								</tr>
@@ -252,22 +249,15 @@
 			</div>
 			</div>
 			</div>
-			</div>
-			</div>
-			<div class="col-md-12 top-20 padding-0">		
-        	<div class="col-md-12" id="admission">        
-        	<div class="col-xs-12 col-md-1" id="tl">
-        	<div class="panel">
+			
+			<div class="col-xs-12">
+	<div class="panel panel-default">
        			<!-- 강의신청내역리스트(본수강신청기간에만) -->
 				
-					<div class="panel-heading">
-					<div style="width:50%;">   
-					<h3>강의신청내역</h3>
-					<button onclick="location.href='${pageContext.request.contextPath}/student/pdfView'">시간표보기</button>  
-					</div>
-					<!-- 시간표보기 -->
-					<div style="width:50%;">
-					</div>
+					<div class="panel-heading"
+			style="background-color: #2196F3; margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">강의신청내역</h4>
+					
 					</div>
 					<div class="panel-body">
 					<div class="responsive-table">
@@ -293,7 +283,7 @@
 											<td>
 											<form action = "${pageContext.request.contextPath}/student/deleteTl" method="post">
 											<input type="hidden" name="tl_num" value="${admission.get('tl_num')}" />
-											<input type = "submit" value="취소">
+											<input class="btn btn-outline btn-primary" type = "submit" value="취소">
 											</form>
 											</td>								
 											<td>${admission.get("lct_num")}</td>
@@ -306,7 +296,7 @@
 											<td>
 											<form action = "${pageContext.request.contextPath}/student/lectureDetail" method="post">
 											<input type="hidden" name="lct_num" value="${admission.get('lct_num')}" />
-											<input type = "submit" value="강의계획서">
+											<input class="btn btn-outline btn-primary" type = "submit" value="강의계획서">
 											</form>
 											</td>
 										</tr>
@@ -324,7 +314,4 @@
 							</div>						
         	</div>
         	</div>
-        	</div>	
-        	
-        </div>
 

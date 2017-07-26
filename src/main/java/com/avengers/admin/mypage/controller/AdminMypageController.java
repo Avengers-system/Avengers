@@ -10,9 +10,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -110,9 +112,10 @@ public class AdminMypageController {
 			@RequestParam("file")MultipartFile myImage
 			,@ModelAttribute("admin") AdminVO admin
 			,HttpSession session
+			,HttpServletRequest request
 			,Model model){
 		String url="redirect:/admin/mypage/";
-		String upload="C:/Users/pc13/git/Avengers/src/main/webapp/resources/myInfo_images";
+		String upload = request.getSession().getServletContext().getRealPath("resources/myInfo_images");	
 		String message="수정이 실패하였습니다.";
 		
 		
@@ -333,7 +336,6 @@ public class AdminMypageController {
 		perschd.setPerschd_start_date(perschd_start_date);
 		perschd.setPerschd_end_date(perschd_end_date);
 		
-		System.out.println(perschd.toString());
 		
 			try {
 				int success = myPageService.updatePerschd(perschd);

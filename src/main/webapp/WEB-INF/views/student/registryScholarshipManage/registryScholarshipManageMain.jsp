@@ -6,14 +6,12 @@
 
 
 <!--side Category-->
-<div class="col-md-2" id="commonLeftSide">
 	<%@include file="../common/resSchSideCategory.jsp" %>
-</div>
-<div class="col-md-10 padding-0">
- <div class="col-md-12 padding-0" id="search">
-    	 <div class="panel">
-    	 <div class="panel-heading">
-       		<h3> 학생정보 </h3>
+<div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
+       		 학생정보 </h4>
        		 </div> 
        	<div class="panel-body" style="font-size:16px;">
        	<dl class="dl-horizontal">
@@ -29,11 +27,13 @@
         </div>
         </div>
 
-<div class="col-md-12 top-20 padding-0">
-        <div class="panel">  
-       	 	<!-- 장학내역 -->
-       	 	<div class="panel-heading">       	 	
-			<h3>장학내역</h3>
+<div class="col-md-2">
+</div>
+
+<div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">장학내역</h4>
 			<form action = "${pageContext.request.contextPath}/student/studRes" method="post">
 					년도<select name="scr_year" id="scr_year">
 						<option selected="selected">전체</option>
@@ -95,12 +95,13 @@
         </div>
 
 
+<div class="col-md-2">
+</div>
 
-<div class="col-md-12 top-20 padding-0">
-        <div class="panel">  
-       	 	<!-- 신청내역 -->
-       	 	<div class="panel-heading">       	 	
-			<h3>신청내역</h3>
+<div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">신청내역</h4>
 			<form action = "${pageContext.request.contextPath}/student/studRes" method="post">
 			년도<select name="scrappl_year" id="scrappl_year">
 						<option selected="selected" >전체</option>
@@ -163,7 +164,6 @@
         </div>
         </div>
 
-</div>
 
 <script>
 // $("select").change(function(){

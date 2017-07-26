@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,19 +22,227 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.avengers.admin.mypage.service.AdminMypageService;
 import com.avengers.db.dto.BoardVO;
+import com.avengers.db.dto.PerschdVO;
+import com.avengers.db.dto.StudVO;
 import com.avengers.student.HelpDesk.service.StudentHelpDeskService;
+import com.avengers.student.mypage.service.StudentMypageService;
 
 @RequestMapping("/student/helpDesk")
 @Controller
 public class StudentHelpDeskController {
 
 	@Autowired
+	private StudentMypageService myPageService;
+	
+	
+	@Autowired
 	public StudentHelpDeskService service;
 
+	
+	/**
+	 * 학사일정등록
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/univSchd/univSchdedule")
+	public String univSchedule(
+			Principal principal,
+			HttpSession session,
+			Model model){
 
+		String scheduleId= principal.getName();
+		ArrayList<PerschdVO> univschdList = null;
+		ArrayList<PerschdVO> univschdList2 = new ArrayList<PerschdVO>();
+
+		String url="student/univSchd/univSchdedule";
+		String message="";
+
+
+
+		try {
+			univschdList = myPageService.selectPerschdList("UNIVSCHD");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+			Date date1 = new Date();
+			Date date2 = new Date();
+			String start_date="";
+			String end_date="";
+			String writer="UNIVSCHD";
+
+			PerschdVO univschdVo = new PerschdVO();
+			for (int i = 0; i < univschdList.size(); i++) {
+				univschdVo = univschdList.get(i);
+
+				try {
+					date1 = sdf.parse(univschdList.get(i).getPerschd_start_date());
+					date2 = sdf.parse(univschdList.get(i).getPerschd_end_date());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				start_date = sdf.format(date1);
+				end_date = sdf.format(date2);
+
+				univschdVo.setPerschd_start_date(start_date);
+				univschdVo.setPerschd_end_date(end_date);
+				//				univschdVo.setPerschd_writer(writer);
+				univschdList2.add(univschdVo);
+			}
+			if (univschdList != null) {
+				model.addAttribute("univschdList",univschdList2);
+				message = "학사일정이 조회되었습니다.";
+			}else{
+				message = "입력된 일정이 없습니다.";
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		session.setAttribute("message", message);
+		return url;
+
+	}
+
+
+
+	/**
+	 * 학사일정 세부조회
+	 * @param perschd_num
+	 * @param model
+	 * @return string
+	 */
+	@RequestMapping("/univSchd/univScheduleDetail")
+	@ResponseBody
+	public PerschdVO univSchedule(String perschd_title,
+			HttpSession session
+			, Model model){
+		String message="";
+
+
+		PerschdVO univschd = new PerschdVO();
+		if (univschd != null) {
+			univschd = myPageService.selectPerschd_title(perschd_title);
+			message="해당날짜에 등록된 일정이 없습니다";
+			session.setAttribute("message", message);
+		}
+		return univschd;
+	}
+
+
+	/**
+	 * ★일정 등록★
+	 * @param perschd
+	 * @param model
+	 * @return string
+	 */
+	@RequestMapping("/univScheduleInsert")
+	public String myScheduleInsert(
+			PerschdVO univschd,
+			Principal who,
+			HttpSession session,
+			@RequestParam("PERSCHD_START_DATE")String perschd_start_date,
+			@RequestParam("PERSCHD_END_DATE")String perschd_end_date,
+			@RequestParam("PERSCHD_TITLE")String perschd_title,
+			@RequestParam("PERSCHD_CONT")String perschd_cont
+			){
+
+		String message="일정등록을 실패였습니다.";
+
+		univschd.setPerschd_writer("UNIVSCHD");
+		univschd.setPerschd_cont(perschd_cont);
+		univschd.setPerschd_start_date(perschd_start_date);
+		univschd.setPerschd_end_date(perschd_end_date);
+		univschd.setPerschd_title(perschd_title);
+
+		try {
+			int success = myPageService.insertPerschd(univschd);
+			if (success == 1) {
+				message="학사일정등록에 성공하였습니다.";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		session.setAttribute("message", message);
+
+		return "redirect:/student/univSchd/univSchdedule";
+	}
+	/**
+	 * 일정 삭제★★★★★★★★★★★★★
+	 * @param perschd_num
+	 * @param session
+	 * @param model
+	 * @return String
+	 */
+	@RequestMapping(value="/univSchd/univScheduleDelete")
+	public String univScheduleDelete(
+			HttpSession session,
+			@RequestParam()String perschd_num){
+		String url = "redirect:/admin/univSchd/univSchdedule";
+		String message = "일정삭제를 실패하였습니다.";
+
+		try {
+			int success = myPageService.deletePerschd(Integer.parseInt(perschd_num));
+			if (success!=-1) {
+				message="일정 삭제를 성공하였습니다.";
+			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		session.setAttribute("message", message);
+
+		return url;
+	}
+
+	/**
+	 * 일정수정 
+	 * @param perschd
+	 * @param session
+	 * @return String
+	 */
+	@RequestMapping("/univSchd/univScheduleUpdate")
+	public String univScheduleUpdate(
+			@RequestParam("perschd_num")Integer perschd_num,
+			@RequestParam("perschd_cont")String perschd_cont,
+			@RequestParam("perschd_title")String perschd_title,
+			@RequestParam("perschd_start_date")String perschd_start_date,
+			@RequestParam("perschd_end_date")String perschd_end_date,
+			HttpSession session
+			){
+		String message="";
+		PerschdVO perschd = new PerschdVO();
+		perschd.setPerschd_num(perschd_num);
+		perschd.setPerschd_cont(perschd_cont);
+		perschd.setPerschd_title(perschd_title);
+		perschd.setPerschd_start_date(perschd_start_date);
+		perschd.setPerschd_end_date(perschd_end_date);
+
+		try {
+			int success = myPageService.updatePerschd(perschd);
+			if (success !=-1) {
+				message="일저정수정을 성공하였습니다";
+			}else if(success ==-1){
+				message="일정수정을 실패하였습니다.";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		session.setAttribute("message", message);
+		return "redirect:/student/univSchd/univSchdedule";
+	}
+
+	
+	
+	/**
+	 * 1.게시판조회
+	 * 
+	 * */
+	
 	@RequestMapping("/studentFAQList")
 	public String studentFAQList(Model model, @ModelAttribute BoardVO boardVO) {
 		//검색조건, 검색어

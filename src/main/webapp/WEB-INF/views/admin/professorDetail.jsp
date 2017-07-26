@@ -1,217 +1,364 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+  <!-- jQuery와 Postcodify를 로딩한다 -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 
+
+<!-- Counsel Content -->
+<!-- Counsel Left Side -->
+<%@include file="common/adminManageCategory.jsp" %>
+<!--  Counsel Right Side -->
+<div class="col-md-10" id="commonRightSide">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">상세보기</h4>
+		</div>
+		<div class="panel-body" style="height: 580px; text-align: center;" >
+
+			<div class="row">
+  	<div class="col-md-12">
+ 		 <form name="insertProfessor"  method="post" action="${pageContext.request.contextPath }/admin/updateProfessor" enctype="multipart/form-data">
+  		<div class="col-md-12" style="margin-top:30px;">
+  		   <!-- 이미지 미리보기 -->
+  		   				<div class="col-md-12">
+			               <div class="filess" style="margin-bottom:20px;">
+			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="<%=request.getContextPath()%>/resources/admin_professor_images/${professor.prfs_pic}"
+			                     id="profile-image" class="img-circle img-responsive">
+			                  <input style="width:100px;" id="profile-image-input"  accept="image/png, image/jpeg, image/gif" class="hidden" type="file" name="prfs_pic" value="${professor.prfs_pic}">
+			               </div>
+              			</div>
+              
+               
+	                   <span class="input-group-btn">
+	                   		<div class="col-md-8">
+	                   		<div class="col-md-4">
+	                   			<input type="text" value="${professor.prfs_pic}" class="form-control" style="width:310px;" id="image-preview-filename" >
+	                   		</div>
+	                   		<div class="col-md-1">
+		                   		<div class="btn btn-default image-preview-input">
+		                           <input type="file" accept="image/png, image/jpeg, image/gif" name="prfs_pic" />
+		                           <span class="image-preview-input-title">업로드</span>
+		                        </div>
+		                   	</div>
+	                   		
+	                        </div>
+	                   </span>
+              
+  		</div> 
+
+
+		<div class="col-md-12" id="prof_inform">
+				<div class="col-md-5">
+					 <input type="hidden" name="prfs_num" value="${professor.prfs_num }">
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">이름</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="prfs_nm" value="${professor.prfs_nm }" >
+							</div>
+						</div>
+				</div>
+				  
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">영문이름</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="prfs_eng_nm" value="${professor.prfs_eng_nm }">
+							</div>
+						</div>
+				</div>
+
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">학과</label>
+							<div class="col-sm-8">
+								<select style="width:387px;" name="prfs_dept" class="selectpicker show-tick">
+									<option value="DEPT1">멀티미디어공학과</option> 
+									<option value="DEPT2">컴퓨터공학과</option> 
+									<option value="DEPT3">영어영문학과</option> 
+									<option value="DEPT4">문예창작학과</option> 
+									<option value="DEPT5">경영학과</option> 
+									<option value="DEPT6">회계학과</option> 
+									<option value="DEPT7">간호학과</option> 
+									<option value="DEPT8">생활체육학과</option> 
+									<option value="DEPT9">국어교육과</option> 
+									<option value="DEPT10">수학교육과</option> 
+						 		 </select>
+							</div>
+						</div>
+				</div>
+				  
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">주민등록번호</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="prfs_regno"  value="${professor.prfs_regno }">
+							</div>
+						</div>
+				</div>
+					 
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">생년월일</label>
+							<div class="col-sm-8">
+								<input type="date" class="form-control" name="prfs_bir" value='<fmt:formatDate pattern = "yyyy-MM-dd" value = "${professor.prfs_bir}" />'>
+							</div>
+						</div>
+				</div>
+					 	   
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">전화번호</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="prfs_tel" value="${professor.prfs_tel }">
+							</div>
+						</div>
+				</div>	 
+				
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">계좌번호</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="prfs_act_num" value="${professor.prfs_act_num }" >
+							</div>
+						</div>
+				</div>	 
+					 
+					</div>
+
+
+
+					<div class="col-md-5">
+					
+					
+					<div class="col-md-12">
+							<div class="form-group">
+								<label class="col-sm-4 control-label text-right">은행명</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="prfs_bank"  value="${professor.prfs_bank }">
+								</div>
+							</div>
+					</div>
+					
+			 
+					<div class="col-md-12">
+							<div class="form-group">
+								<label class="col-sm-4 control-label text-right">예금주</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="prfs_ah" value="${professor.prfs_ah }">
+								</div>
+							</div>
+					</div>
+							 
+					<div class="col-md-12">
+							<div class="form-group">
+								<label class="col-sm-4 control-label text-right">우편번호</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="prfs_zip" value="${professor.prfs_zip }">
+								</div>
+							</div>
+					</div>
+							 
+					<div class="col-md-12">
+							<div class="form-group">
+								<label class="col-sm-4 control-label text-right">주소</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="prfs_addr" value="${professor.prfs_addr }">
+								</div>
+							</div>
+					</div>
+							 		 
+					<div class="col-md-12">
+							<div class="form-group">
+								<label class="col-sm-4 control-label text-right">휴대폰번호</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="prfs_hp" value="${professor.prfs_hp }">
+								</div>
+							</div>
+					</div>		 
+							 
+					<div class="col-md-12">
+							<div class="form-group">
+								<label class="col-sm-4 control-label text-right">이메일</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="prfs_email" value="${professor.prfs_email }">
+								</div>
+							</div>
+					</div>		  
+		
+					<div class="col-md-12">
+							<div class="form-group">
+								<label class="col-sm-4 control-label text-right">비밀번호</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="prfs_pw" value="${professor.prfs_pw }">
+								</div>
+							</div>
+					</div>		  
+			 
+					<div class="col-md-12">
+							<div class="form-group">
+								<label class="col-sm-4 control-label text-right">성별</label>
+								<div class="col-sm-8">
+									<div class="radio" >
+									<c:choose>
+										<c:when test="${professor.prfs_gen eq '1'}">
+											<div class="col-md-6"><label><input type="radio" name="prfs_gen" checked="checked" value="1">남자</label></div>
+									      	<div class="col-md-6"><label><input type="radio" name="prfs_gen" value="2">여자</label></div>
+								      	</c:when>
+								      	<c:otherwise>
+											<div class="col-md-6"><label><input type="radio" name="prfs_gen" value="1">남자</label></div>
+									      	<div class="col-md-6"><label><input type="radio" name="prfs_gen" checked="checked" value="2">여자</label></div>
+								      	</c:otherwise>
+							      	</c:choose>
+						   	  </div>
+								</div>
+							</div>
+					</div>	
+							 
+					</div>
+					<div class="col-md-2" style="margin-top:225px;">
+					<input class="submit btn btn-danger" type="submit" value="수정하기">
+					<input class="submit btn btn-danger" type="button" value="삭제하기" onclick="location.href='${pageContext.request.contextPath }/admin/deleteProfessor?prfs_num=${professor.prfs_num}'">
+					</div>
+					
+					
+	  		</div>
+				 
+						
+  
+			  </div>
+			</div>
+  
+      </form>
+ 	</div>
+ 
+  
+
+
+		</div>
+	</div>
+</div>
 
 <script>
-$(function() {
-	
-   //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
-   $('#profile-image').on('click', function() {
-      $('#profile-image-input').click();
-      
-      $("#profile-image-input").change(function (){     
-           
-           var file = this.files[0];
-           var reader = new FileReader();
-           // Set preview image into the popover data-content
-           reader.onload = function (e) {
-               $(".image-preview-input-title").text("변경");
-                $("#image-preview-filename").val(file.name);            
-               $("#profile-image").attr('src', e.target.result);
-           }        
-           reader.readAsDataURL(file);
-       });
-   });
-   
-   // 업로드 버튼으로 그림피일 업로드 후 미리보기
-   $(".image-preview-input input:file").change(function (){     
-        
-        var file = this.files[0];
-        var reader = new FileReader();
-        //Set preview image into the popover data-content
-        reader.onload = function (e) {
-            $(".image-preview-input-title").text("변경");
-            $("#image-preview-filename").val(file.name);            
-            $("#profile-image").attr('src', e.target.result);
-        }        
-        reader.readAsDataURL(file);
-    });
- 
-});
+	$(function() {
+	   //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
+	   $('#profile-image').on('click', function() {
+	      $('#profile-image-input').click();
+	      
+	      $("#profile-image-input").change(function (){     
+	           
+	           var file = this.files[0];
+	           var reader = new FileReader();
+	           // Set preview image into the popover data-content
+	           reader.onload = function (e) {
+	               $(".image-preview-input-title").text("변경");
+	                $("#image-preview-filename").val(file.name);            
+	               $("#profile-image").attr('src', e.target.result);
+	           }        
+	           reader.readAsDataURL(file);
+	       });
+	   });
+	   
+	   // 업로드 버튼으로 그림피일 업로드 후 미리보기
+	   $(".image-preview-input input:file").change(function (){     
+	        
+	        var file = this.files[0];
+	        var reader = new FileReader();
+	        //Set preview image into the popover data-content
+	        reader.onload = function (e) {
+	            $(".image-preview-input-title").text("변경");
+	            $("#image-preview-filename").val(file.name);            
+	            $("#profile-image").attr('src', e.target.result);
+	        }        
+	        reader.readAsDataURL(file);
+	    });
+	 
+	});
 </script>
  
+ 
 <style>
+ 
+    .table-bordered>thead>tr>th {
+	text-align: center;
+	}
+	
+	div>.filess{
+	margin-left:60px;width:130px; height:150px;
+	}
+	
+	div>#profile-image{
+    border: 1px solid gray;
+    margin: 0 auto;
+    height: 150px;
+    width: 130px;
+	}
 
-#commonRightSide{
-margin-top:50px;
-
+ 
+	
+	fieldset {
+    min-width: 0;
+    padding: 0;
+    border: 2px solid #b5bdd0;
+/*     width: 400px; */
+    margin: 0 auto;
+}
+	
+	
+.checkbox label, .radio label {
+    min-height: 20px;
+    padding-left: 40px;
+    padding-right: 10px;
+    font-weight: 400;
+    cursor: pointer;
 }
 
-div.detailBtn>*{
-	margin:0 auto;
+ .image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+   }
+   .image-preview-input input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      filter: alpha(opacity=0);
+   }
+   .image-preview-input-title {
+       margin-left:2px;
+   }
+ 
+   img {
+      cursor:pointer;
+   }
+   .files-crw {
+      width : 165px;
+      height: 220px;
+   }
+
+ 	 
+
+
+.input-group .form-control:last-child, .input-group-addon:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
-div.input-group{
-	width : 400px;
-}
-
-div.input-group>span.input-group-addon{
-	width:120px;
-}
+	div#prof_inform{
+		margin-top:50px;
+	}
 
 </style>
 
-
-<!-- Admin Header -->
-<%-- <%@include file="common/topCategory.jsp"%> --%>
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide">
-<%-- <%@include file="common/mainSideCategory.jsp" %>     --%>
-</div>
-<div class="col-md-10" id="commonRightSide">
-
-
-		<div class="col-md-12">
-			<legend>상세정보</legend>
-	
-		<form name="updateProfessor" enctype="multipart/form-data" action="${pageContext.request.contextPath }/admin/updateProfessor" method="post">
-	
-					<div class="col-md-12" >
-			         <!-- 이미지 미리보기 -->
-			               <div class="filess" >
-			                  <img  style="height:150px;width:130px;" alt="professor Pic" 
-			                  src="<%=request.getContextPath()%>/resources/admin_professor_images/${professor.prfs_pic}"
-			                     id="profile-image" class="img-circle img-responsive">
-			                  <input style="width:100px;" id="profile-image-input"  accept="image/png, image/jpeg, image/gif" class="hidden" type="file">
-			               </div>
-			               
-			               <label class='control-label'>이미지</label>
-			                      <span class="input-group-btn">
-			                       <input type="text" class="form-control" value="${professor.prfs_pic}" style="width:230px;" id="image-preview-filename" disabled="disabled">
-			                            <div class="btn btn-default image-preview-input">
-			                              <input type="file" accept="image/png, image/jpeg, image/gif" name="prfs_pic"/>
-					                      <span class="image-preview-input-title">업로드</span>
-			                           </div>
-			                      </span>
-			        </div>
-	
-				<div class="col-md-6">
-						<div class="input-group">
-					 <span class="input-group-addon" >교수번호 </span>
-					  <input type="hidden" class="form-control" name="prfs_num" value="${professor.prfs_num}">
-					  ${professor.prfs_num}
-					</div>
-					<br>
-					<div class="input-group">
-					 <span class="input-group-addon" >이름 </span>
-					  <input type="text" class="form-control" placeholder="홍길동" name="prfs_nm" value="${professor.prfs_nm}">
-					</div>
-					<br>
-					<div class="input-group">
-					 <span class="input-group-addon" >영문이름</span>
-					  <input type="text" class="form-control" name="prfs_eng_nm" value="${professor.prfs_eng_nm}">
-					</div>
-					<br>
-					<div class="input-group">
-					 <span class="input-group-addon" >학과번호</span>
-					  <input type="text" class="form-control" name="prfs_dept" value="${professor.prfs_dept}">
-					</div>
-					<br>
-					<div class="input-group">
-					 <span class="input-group-addon" >생년월일</span>
-					  <input type="date" class="form-control" name="prfs_bir" value='<fmt:formatDate pattern = "yyyy-MM-dd" value = "${professor.prfs_bir}" />'>
-					</div>	
-					<br>	
-					<div class="input-group">
-					 <span class="input-group-addon" >주민등록번호</span>
-					  <input type="text" class="form-control" name="prfs_regno" value="${professor.prfs_regno}">
-					</div>
-					<br>		
-					<div class="input-group">
-					 <span class="input-group-addon" >성별</span>
-					
-					 <div class="radio" >
-					 
-					 <c:choose>
-							<c:when test="${professor.prfs_gen eq '1'}">
-			                     <label>
-			                     <input type="radio"   name="prfs_gen" checked="checked" value="1">남자</label>
-			                     <label>
-			                     <input type="radio"     value="2">여자</label>
-	                  		</c:when>
-							<c:otherwise>
-			                     <label>
-			                     <input type="radio"    value="1">남자</label>
-								<label>
-			                     <input type="radio"  name="prfs_gen"  checked="checked" value="2">여자</label>
-		             		</c:otherwise>
-					</c:choose>
-					
-	                </div>
-					
-					</div>		
-					<br>
-						<div class="input-group">
-						 <span class="input-group-addon" >휴대폰번호</span>
-						  <input type="text" class="form-control" name="prfs_hp" value="${professor.prfs_hp}">
-						</div>		
-		
-	
-	</div>
-	
-	<div class="col-md-6">
-	
-			<div class="input-group">
-					 <span class="input-group-addon" >전화번호</span>
-					  <input type="text" class="form-control" name="prfs_tel" value="${professor.prfs_tel}">
-			</div>
-					
-			<div class="input-group">
-					 <span class="input-group-addon" >계좌번호</span>
-					  <input type="text" class="form-control" name="prfs_act_num" value="${professor.prfs_act_num}">
-			</div>
-
-			<div class="input-group">
-					 <span class="input-group-addon" >은행명</span>
-					  <input type="text" class="form-control" name="prfs_bank" value="${professor.prfs_bank}">
-			</div>
-
-			<div class="input-group">
-					 <span class="input-group-addon" >예금주</span>
-					  <input type="text" class="form-control" name="prfs_ah" value="${professor.prfs_ah}">
-			</div>
-	
-			<div class="input-group">
-					 <span class="input-group-addon" >우편번호</span>
-					  <input type="text" class="form-control" name="prfs_zip" value="${professor.prfs_zip}">
-			</div>
-
-			<div class="input-group">
-					 <span class="input-group-addon" >주소</span>
-					  <input type="text" class="form-control" name="prfs_addr" value="${professor.prfs_addr}">
-			</div>
-			
-			<div class="input-group">
-					 <span class="input-group-addon" >이메일</span>
-					  <input type="text" class="form-control" name="prfs_email" value="${professor.prfs_email}">
-			</div>
-
-			<div class="input-group">
-					 <span class="input-group-addon" >비밀번호</span>
-					  <input type="text" class="form-control" name="prfs_pw" value="${professor.prfs_pw}">
-			</div>
-	
-	</div>
-		<hr />
-			<div class="col-md-5 detailBtn">
-				<input type="submit" value="수정하기" >
-			</div>
-			<div class="col-md-5 detailBtn">
-				<button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/admin/deleteProfessor?prfs_num=${professor.prfs_num}'">삭제하기</button>
-			</div>
-	</form>
-		
-	</div>
-</div>
+ 

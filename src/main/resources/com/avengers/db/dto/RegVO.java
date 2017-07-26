@@ -3,6 +3,7 @@ package com.avengers.db.dto;
  * 학생의 등록현황에 대한 관리
  * @author 배진
  * 2017.07.10 최초작성
+ * 2017.07.25 등록금년도,학기 추가
  */
 public class RegVO {
 	private String reg_num; // 등록 고유번호
@@ -13,6 +14,25 @@ public class RegVO {
 	private String reg_pymt_method; // 분할방법
 	private String reg_stud; // 학생 고유번호
 	private String reg_admin; // 관리자 아이디
+	private String reg_yr;//등록금 년도
+	private String reg_qtr;//등록금 학기
+	
+
+	public String getReg_yr() {
+		return reg_yr;
+	}
+
+	public void setReg_yr(String reg_yr) {
+		this.reg_yr = reg_yr;
+	}
+
+	public String getReg_qtr() {
+		return reg_qtr;
+	}
+
+	public void setReg_qtr(String reg_qtr) {
+		this.reg_qtr = reg_qtr;
+	}
 
 	public String getReg_num() {
 		return reg_num;

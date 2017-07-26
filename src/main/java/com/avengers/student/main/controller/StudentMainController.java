@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +13,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.avengers.db.dto.AdmissionApplicationVO;
 import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.CnsVO;
 import com.avengers.db.dto.DeptVO;
+import com.avengers.db.dto.LctVO;
 import com.avengers.db.dto.PerschdVO;
 import com.avengers.db.dto.StudVO;
 import com.avengers.db.dto.StudentMainVO;
+import com.avengers.db.dto.TlVO;
+import com.avengers.student.HelpDesk.service.StudentHelpDeskService;
 import com.avengers.student.main.service.StudentMainService;
 
 /**
@@ -31,6 +37,9 @@ public class StudentMainController {
 	
 	@Autowired
 	private StudentMainService studentMainService;
+	
+	@Autowired
+	private StudentHelpDeskService service;
 	
 	
 	@RequestMapping("student/classManage/classMain")
@@ -53,7 +62,71 @@ public class StudentMainController {
 	}
 	
 	@RequestMapping("student/studentMain")
-	public String studentMain(Principal principal, Model model){
+	public String studentMain(Principal principal, Model model, AdmissionApplicationVO admissionVO){
+			String studentMainDateContent = null;
+		 if(admissionVO==null){
+			   admissionVO=new AdmissionApplicationVO();
+		   }		  
+		   String stud_num = principal.getName();
+		   String deptNum = null;
+		   
+		   ArrayList<BoardVO> studMainSchoolNotice = null;
+		   ArrayList<BoardVO> studMainDepartNotice = null;
+		   ArrayList<BoardVO> studMainPotalNotice = null;
+		   
+		   
+		   try {
+				   deptNum = studentMainService.getDeptNum(stud_num);
+				   studMainSchoolNotice = studentMainService.getStudMainSchoolNotice();
+			   studMainDepartNotice = studentMainService.getStudMainDepartNotice(deptNum);
+				studMainPotalNotice = studentMainService.getStudMainPotalNotice();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		   
+		   model.addAttribute("studMainPotalNotice",studMainPotalNotice);
+		   model.addAttribute("studMainDepartNotice",studMainDepartNotice);
+		   model.addAttribute("studMainSchoolNotice",studMainSchoolNotice);
+		   
+		   
+		   
+		   
+		   
+		   
+		   admissionVO.setStud_num(stud_num);
+		   int cur_score = 0;
+		   try {
+			   
+			studentMainDateContent = studentMainService.selectSchedule(stud_num);
+			List<HashMap<String,String>> cartList=studentMainService.selectCartList(admissionVO);
+			List<HashMap<String,String>> lectureList=studentMainService.selectLctList(admissionVO);
+			List<HashMap<String,String>> admissionApplicationList=studentMainService.selectTlList(admissionVO);
+			StudVO studentInfo = studentMainService.selectStudMaxCrd(stud_num);
+			TlVO tlVO = new TlVO();
+			tlVO.setTl_stud(stud_num);
+			ArrayList<TlVO> tlList = studentMainService.selectTl_LCTList(tlVO);
+			for(TlVO tl:tlList){
+				LctVO lct =studentMainService.selectLct(tl.getTl_lct());
+				cur_score+=Integer.parseInt(lct.getLct_crd());				
+			}
+			model.addAttribute("scheduleContent",studentMainDateContent);
+			model.addAttribute("term","본수강신청");
+			model.addAttribute("cartList",cartList);
+			model.addAttribute("lectureList",lectureList);
+			model.addAttribute("admissionApplicationList",admissionApplicationList);
+			model.addAttribute("cur_score",cur_score);
+			model.addAttribute("studentInfo",studentInfo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}			   
+		
+		
+		
+		
+		
+		
+		
+		
 		GregorianCalendar today = new GregorianCalendar ( );
         String lct_yr = Integer.toString(today.get ( today.YEAR ));         
         String lct_qtr = "3";
@@ -63,12 +136,12 @@ public class StudentMainController {
         }else if(month>=9&&month<=12){
            lct_qtr="2";
         }
-		String stud_num = principal.getName();
 		StudVO studVO = new StudVO();
 		DeptVO deptVO = new DeptVO();
 		ArrayList<PerschdVO> perschdList =new ArrayList<PerschdVO>() ;
 		ArrayList<StudentMainVO> studentLectureList=new ArrayList<StudentMainVO>() ;
 		ArrayList<CnsVO> studentConsult=new ArrayList<CnsVO>() ;
+		
 		
 		ArrayList<BoardVO> selectPortalNoticeList = new ArrayList<BoardVO>();
 		ArrayList<BoardVO> selectSchoolNoticeList = new ArrayList<BoardVO>();
@@ -76,6 +149,9 @@ public class StudentMainController {
 		ArrayList<PerschdVO> selectSchoolScheduleList = new ArrayList<PerschdVO>();
 		String bc_dept = "";
 		String allLevelComplete = "";
+		
+		ArrayList<BoardVO> deptBL = null;
+		ArrayList<BoardVO> univBL = null;
 		try {
 	    	
 	        
@@ -88,11 +164,19 @@ public class StudentMainController {
 			studentConsult = studentMainService.selectCnsList(stud_num);
 			
 			selectPortalNoticeList = studentMainService.selectPortalNoticeList();
-//			selectSchoolNoticeList = studentMainService.selectSchoolNoticeList();
-//			selectDepartmentNoticeList = studentMainService.selectDepartmentNoticeList(bc_dept);
-//			selectSchoolScheduleList = studentMainService.selectSchoolScheduleList();
+			BoardVO univBVO = new BoardVO();
+			univBVO.setBoard_bc("UNIV");
+			univBL = service.selectStuBoardList(univBVO, 1, 5);
 			
-//			allLevelComplete = studentMainService.allGrades(stud_num);
+			String deptKey = principal.getName();
+			String deptBc_num = "B";
+
+			BoardVO deptBVO = new BoardVO();
+			deptBc_num += service.selectStuDept(deptKey);
+			deptBVO.setBoard_bc(deptBc_num);
+			deptBL = service.selectStuBoardList(deptBVO,1,5);
+			
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -102,11 +186,10 @@ public class StudentMainController {
 		model.addAttribute("perschdList", perschdList);
 		model.addAttribute("lectureList",studentLectureList);
 		model.addAttribute("consultList",studentConsult);
+		
 		model.addAttribute("portalNoticeList",selectPortalNoticeList);
-//        model.addAttribute("schoolNoticeList",selectSchoolNoticeList);
-//        model.addAttribute("departmentNoticeList",selectDepartmentNoticeList);
-//        model.addAttribute("schoolScheduleList",selectSchoolScheduleList);
-//		model.addAttribute("allGrades",allLevelComplete);
+		model.addAttribute("deptNoticeList",deptBL);
+		model.addAttribute("univNoticeList",univBL);
 		
 		return "student/studentMain";
 	}

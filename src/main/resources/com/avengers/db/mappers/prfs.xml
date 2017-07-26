@@ -14,7 +14,7 @@
 		SELECT COUNT(*) FROM professor	
 	</select>
 
-	<update id="updatePrfs" parameterType="java.lang.String" >
+	<update id="updatePrfs" parameterType="com.avengers.db.dto.PrfsVO" >
 		UPDATE professor
 		SET 
 		PRFS_PIC =#{prfs_pic},

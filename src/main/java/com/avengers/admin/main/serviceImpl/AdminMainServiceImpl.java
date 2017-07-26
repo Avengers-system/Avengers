@@ -2,6 +2,8 @@ package com.avengers.admin.main.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +107,35 @@ public class AdminMainServiceImpl implements AdminMainService {
 	public String selectNextPrfsNum() throws SQLException {
 		String nextPrfsNum = mainDAO.selectNextPrfsNum();
 		return nextPrfsNum;
+	}
+
+	@Override
+	public List<HashMap<String, String>> getLeaveDeptList()
+			throws SQLException {
+		List<HashMap<String, String>> getLeaveDeptList  = null;
+		getLeaveDeptList = mainDAO.getLeaveDeptList();
+		return getLeaveDeptList;
+	}
+
+	@Override
+	public List<HashMap<String, String>> getDropOffDeptList()
+			throws SQLException {
+		List<HashMap<String, String>> getDropOffDeptList= null;
+		getDropOffDeptList = mainDAO.getDropOffDeptList();
+		return getDropOffDeptList;
+	}
+
+	@Override
+	public List<HashMap<String, String>> getReinstatementDeptList()
+			throws SQLException {
+		List<HashMap<String, String>>  getReinstatementDeptList = null;
+		getReinstatementDeptList = mainDAO.getReinstatementDeptList();
+		return getReinstatementDeptList;
+	}
+
+	@Override
+	public String selectSchedule(String admin_id) throws SQLException {
+		return mainDAO.selectSchedule(admin_id);
 	}
 
 }

@@ -2,7 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!-- 템플릿 페이지 -->
 <style>
 	#professorTable,  #professorTable td{
 		border : 2px solid black;
@@ -14,46 +15,39 @@
  
  }
 </style>
+<!-- Counsel Content -->
+<!-- Counsel Left Side -->
+ <%@include file="../common/adminManageCategory.jsp" %>
+<!--  Counsel Right Side -->
+<div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
+			교수목록
+			</h4>
+		</div>
+		<div class="panel-body" style="height: 580px; text-align: center;" >
 
-
-
-
-<!-- Admin Header -->
-<%-- <%@include file="../common/topCategory.jsp"%> --%>
-
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide">
-<!-- 테스트용 사이드 -->
-<%@include file="../common/admin_side.jsp" %>   
-</div>
-
-
-<div class="col-md-10" id="commonRightSide">
- 
-	<div class="col-md-10 col-md-offset-1">
-                  <div class="panel">
-                    <div class="panel-heading"><h3>교수목록</h3></div>
+			<div class="panel">
                     <div class="panel-body">
                       <div class="responsive-table">
                       <div id="datatables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                       <div class="row"><div class="col-sm-6">
                       		<div class="dataTables_length" id="datatables-example_length">
-			                      <label>Show 
-				                      <select name="datatables-example_length" aria-controls="datatables-example" class="form-control input-sm">
-					                      <option value="10">10</option>
-					                      <option value="25">25</option>
-					                      <option value="50">50</option>
-					                      <option value="100">100</option>
-				                      </select>
-			                       		entries
-			                      </label>
 		                    </div>
 		                       </div>
 		                       
 		                       <div class="col-sm-6">
 		                       
 				                       <div id="datatables-example_filter" class="dataTables_filter">
-				                       
+				                       		
+				                       		<input type="hidden" name="searchFiled"	value="${pageVO.searchFiled }" />
+											
+											<!-- //검색조건 -->
+											<input type="hidden" name="searchValue"	value="${pageVO.searchValue }" />
+											<!-- //검색어 -->
+						                     
+						                     
 						                       <!-- 셀렉트 -->
 						                       <select name="key">
 						                       		<option value="choice">이름</option>
@@ -152,3 +146,6 @@
 	<div class="col-md-8 col-md-offset-2">
     				
 </div>
+	</div>
+</div>
+   

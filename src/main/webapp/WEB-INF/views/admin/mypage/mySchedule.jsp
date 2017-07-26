@@ -6,7 +6,6 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-
 <style>
 ol, ul {
     margin-top: 10px;
@@ -25,34 +24,25 @@ ol, ul {
 
 }
 </style>
-
-
-
-	<!-- Admin Header -->
-<%-- 	<%@include file="../common/topCategory.jsp"%> --%>
-	
-		<!-- Content -->
-		<div class="col-md-2" id="commonLeftSide">
-<%-- 			<%@include file="../common/mainSideCategory.jsp" %> --%>
+<!-- Content -->
+<!-- side menu -->
+<%@include file="../common/myPageSideCategory.jsp"%>
+<!--  Counsel Right Side -->
+<div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #CC0000;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
+				개인일정
+			</h4>
 		</div>
-
-		<div class="col-md-10" id="commonRightSide">
-
-		<div id='body' class='section' >
-		<div>
-			<div class='two-col'>
-			
+		<div class="panel-body" style="height: 580px; text-align: center;" >
 			<div class="col-md-3 col-md-offset-9" style="padding-left:0px;">
 				<a href="#" class="button" data-toggle="modal" data-target="#addSchedule">일정등록 </a>
-			
-				</div>
-			
-			
-					<div id='calendar'></div>
-				</div>
 			</div>
+			<div id='calendar'></div>
 		</div>
-
+	</div>
+</div>
 <script>
  
 	$(function() {
@@ -89,18 +79,45 @@ ol, ul {
 			         start:'<%=perschdVO.getPerschd_start_date() %>',
 			         end:'<%=perschdVO.getPerschd_end_date() %>',
 			         content:'<%=perschdVO.getPerschd_cont() %>',
-			    	 date:'<%=perschdVO.getPerschd_date() %>'
+			    	 time:'<%=perschdVO.getPerschd_date() %>'
 			     }
 			     
 			    		<%
+			    		System.out.println(perschdVO.getPerschd_end_date()+"!!!");
 							}
 			    		%> 
 			],
+			eventClick:function(event) {
+				
+				$.ajax({
+					url  : 'myScheduleDetail',
+					type : 'post',
+					data : "perschd_title="+event.title,
+					success : function(perschd){						
+					$('#perschd_num').val(perschd.perschd_num);
+					$('#perschd_writer').val(perschd.perschd_writer);
+					$('#perschd_title').val(perschd.perschd_title);
+					$('#perschd_start_date').val(perschd.perschd_start_date);
+					$('#perschd_end_date').val(perschd.perschd_end_date);
+					$('#perschd_cont').val(perschd.perschd_cont);
+// 					$('#perschd_date').val(perschd.perschd_date);
+					
+					},
+					error: function(){
+						alert("error");
+					}
+				})
+
+				//모달불러오기 
+				$(this).attr("data-toggle","modal");
+				$(this).attr("data-target","#editSchedule");
+            }
 	});
 		
 			
 		})
  
+		
 	function deleteSchd(){
 		myForm.method="post";
 		myForm.action="myScheduleDelete";
@@ -111,6 +128,7 @@ ol, ul {
 
 
 <!-- 상세보기&수정 모달 -->
+
 <div class="modal fade" id="editSchedule">
       <div class="modal-dialog">
          <div class="modal-content">

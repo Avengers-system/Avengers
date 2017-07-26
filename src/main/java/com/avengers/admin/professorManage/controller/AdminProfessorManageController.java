@@ -81,7 +81,7 @@ public class AdminProfessorManageController {
 		System.out.println("얍!!!"+path);
 		model.addAttribute("path",path);
 		model.addAttribute("professor",prfsVO);
-		return "admin/mypage/professorDetail";
+		return "admin/professorDetail";
 	}
 	
 	/**
@@ -108,7 +108,6 @@ public class AdminProfessorManageController {
 	}
 	
 	
-	
 	/**
 	 * 교수수정하기 
 	 * @param commandPrfsVO
@@ -120,9 +119,12 @@ public class AdminProfessorManageController {
 	@RequestMapping(value = "/updateProfessor")
 	public String updateProfessor(
 						CommandPrfsVO commandPrfsVO,
+						@RequestParam("prfs_pic")MultipartFile prfs_pic,
 						HttpServletRequest request,
 						HttpSession session
 						){
+		
+		commandPrfsVO.setPrfs_pic(prfs_pic);
 		PrfsVO prfsVO = commandPrfsVO.toPrfsVO();
 		
 		String path = request.getSession().getServletContext().getRealPath("resources/admin_professor_images");		
@@ -131,6 +133,7 @@ public class AdminProfessorManageController {
 		System.out.println("path : "+path);
 		System.out.println("filename : "+filename);
 		System.out.println("prfsVO number : "+ prfsVO.getPrfs_num());
+		System.out.println();
 		System.out.println(commandPrfsVO.toString());
 		System.out.println();
 		
@@ -140,16 +143,18 @@ public class AdminProfessorManageController {
  
 			try {
 				commandPrfsVO.getPrfs_pic().transferTo(file); // 깃 위치로 전송
-				adminProfessorManageService.updatePrfs(prfsVO);
-				System.out.println("성공");
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
+			}  catch (IOException e) {
 				e.printStackTrace();
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		try {
+			adminProfessorManageService.updatePrfs(prfsVO);
+			System.out.println("성공");
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 		return "redirect:professorManage";
@@ -185,7 +190,6 @@ public class AdminProfessorManageController {
 				commandPrfsVO.getPrfs_pic().transferTo(file); // 깃 위치로 전송
 				
 				adminProfessorManageService.insertPrfs(prfsVO);
-				
 				prfsVO.setPrfs_num(adminProfessorManageService.selectPrfsNum());
 				adminProfessorManageService.insertSecurity(prfsVO);
 				
