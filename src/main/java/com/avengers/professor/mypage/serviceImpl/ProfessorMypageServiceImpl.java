@@ -23,9 +23,8 @@ public class ProfessorMypageServiceImpl implements ProfessorMypageService {
 
 	@Override
 	public PrfsVO selectPrfs(String prfs_num) throws SQLException {
-		return null;
 		PrfsVO profVO = null;
-		profVO= proMyPageDAO.selectPrfs(prfs_num);
+		profVO= myPageDAO.selectPrfs(prfs_num);
 		return profVO;
 	}
 
