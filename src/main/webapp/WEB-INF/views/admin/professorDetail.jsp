@@ -52,7 +52,16 @@
 
 		<div class="col-md-12" id="prof_inform">
 				<div class="col-md-5">
-					 <input type="hidden" name="prfs_num" value="${professor.prfs_num }">
+					 
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">교수번호</label>
+							<div class="col-sm-8">
+								<input type="hidden" class="form-control"  value="${professor.prfs_num }"  name="prfs_num">
+								<input type="text" class="form-control"  value="${professor.prfs_num }" disabled="disabled" >
+							</div>
+						</div>
+				</div>
 				<div class="col-md-12">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">이름</label>

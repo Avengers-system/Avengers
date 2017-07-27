@@ -17,7 +17,9 @@
 	<update id="updatePrfs" parameterType="com.avengers.db.dto.PrfsVO" >
 		UPDATE professor
 		SET 
-		PRFS_PIC =#{prfs_pic},
+		<if test="prfs_pic != null">
+            PRFS_PIC=#{prfs_pic},
+        </if>
 		PRFS_NM =#{prfs_nm},
 		PRFS_ENG_NM =#{prfs_eng_nm},
 		PRFS_DEPT=#{prfs_dept}, 
