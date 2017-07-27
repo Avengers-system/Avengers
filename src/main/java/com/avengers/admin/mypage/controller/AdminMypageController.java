@@ -223,15 +223,16 @@ public class AdminMypageController {
 			HttpSession session
 			,Model model
 			){
-		System.out.println("?!?!?!?!?!?!:::::::"+perschd_num);
 		String message="";
 		
 		PerschdVO perschd = new PerschdVO();
 			System.out.println(perschd.getPerschd_date());
 		if(perschd != null){
 					perschd = myPageService.selectPerschd_title(perschd_num);
+//					model.addAttribute("perschd", perschd);
 					message="해당날짜에 등록된 일정이 없습니다.";
 					session.setAttribute("message", message);
+					session.setAttribute("perschd", perschd);
 				
 			}
 		
@@ -289,21 +290,20 @@ public class AdminMypageController {
 	@RequestMapping(value="/myScheduleDelete")
 	public String myScheduleDelete(
 			HttpSession session,
-			@RequestParam()String perschd_num
+			PerschdVO perschd
 			){
+		
+		System.out.println("시작"+perschd.getPerschd_start_date());
+		System.out.println(perschd.getPerschd_end_date());
+		System.out.println("삭제할번호?!?!"+perschd.getPerschd_num());
 		String url="redirect:/admin/mypage/mySchedule";
-		String message="일정 삭제를 실패하였습니다.";
 		
 		try {
-			int success = myPageService.deletePerschd(Integer.parseInt(perschd_num));
-			if(success != -1){
-				message="일정 삭제를 성공하였습니다.";
-			}
+			int success = myPageService.deletePerschd(perschd.getPerschd_num());
+			System.out.println("일정삭제성공");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		session.setAttribute("message", message);
 	
 	return "redirect:/admin/mypage/mySchedule";
 	}
@@ -318,36 +318,28 @@ public class AdminMypageController {
 	 */
 	@RequestMapping("/myScheduleUpdate")
 	public String myScheduleUpdate(
-				@RequestParam("perschd_num")Integer perschd_num,
-				@RequestParam("perschd_cont")String perschd_cont,
-				@RequestParam("perschd_title")String perschd_title,
-				@RequestParam("perschd_start_date")String perschd_start_date,
-				@RequestParam("perschd_end_date")String perschd_end_date,
-//				PerschdVO perschd,
+//				@RequestParam("perschd_num")Integer perschd_num,
+//				@RequestParam("perschd_cont")String perschd_cont,
+//				@RequestParam("perschd_title")String perschd_title,
+//				@RequestParam("perschd_start_date")String perschd_start_date,
+//				@RequestParam("perschd_end_date")String perschd_end_date,
+				PerschdVO perschd,
 				HttpSession session
 			){
 		
 		String message="";
-		PerschdVO perschd = new PerschdVO();
-		perschd.setPerschd_num(perschd_num);
-		perschd.setPerschd_cont(perschd_cont);
-		perschd.setPerschd_title(perschd_title);
-		perschd.setPerschd_start_date(perschd_start_date);
-		perschd.setPerschd_end_date(perschd_end_date);
-		
+//		PerschdVO perschd = new PerschdVO();
 		System.out.println(perschd.toString());
+		perschd.setPerschd_num(perschd.getPerschd_num());
+		perschd.setPerschd_cont(perschd.getPerschd_cont());
+		perschd.setPerschd_title(perschd.getPerschd_title());
+		perschd.setPerschd_start_date(perschd.getPerschd_start_date());
+		perschd.setPerschd_end_date(perschd.getPerschd_end_date());
+		
 		
 			try {
 				int success = myPageService.updatePerschd(perschd);
-					
-					if(success != -1){
-							message="일정 수정을 성공하였습니다.";
-							System.out.println(message);
-					} else if(success == -1){
-							message="일정 수정을 실패하였습니다.";
-							System.out.println(message);
-					}
-				
+				System.out.println("수정성공!!!!");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
