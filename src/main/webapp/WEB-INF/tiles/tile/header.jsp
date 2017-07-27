@@ -194,7 +194,7 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 
 
 <!-- 학생 로그인시 보여주는 화면 -->
-<sec:authorize access="hasAnyRole('ROLE_STUD')">
+<sec:authorize access="hasAnyRole('ROLE_STUD','ROLE_WSS')">
 
 <nav class="navbar navbar-default header bg-white "	style="height: 100px; margin: 0;">
 		<div class="col-md-12 nav-wrapper">
@@ -233,7 +233,7 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 			<div class="navbar-header">
 				<ul class="nav nav-tabs nav-tabs-v1">
 					<li role="presentation"><a href="${pageContext.request.contextPath}/student/studentMain">Main</a></li>
-					<li role="presentation"><a href="${pageContext.request.contextPath}/student/mypage/studentMypage">My Page</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/student/mypage/myInfo">My Page</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/student/schoolRegister/certificate">학적</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/student/classManage/classMain">수업</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/student/admissionApplication">수강신청</a></li>

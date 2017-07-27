@@ -141,7 +141,7 @@
 														<td><a
 															href="${pageContext.request.contextPath}/admin/qnaProfDetail?board_num=${qnaProfNoticeList.board_num}&board_count=${qnaProfNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 																${qnaProfNoticeList.board_title} </a></td>
-														<td>${qnaProfNoticeList.board_date}</td>
+														<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${qnaProfNoticeList.board_date}" /></td>
 														<td>${qnaProfNoticeList.board_writer}</td>
 														<td>${qnaProfNoticeList.board_bc}</td>
 														<td>${qnaProfNoticeList.board_count}</td>

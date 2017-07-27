@@ -33,6 +33,8 @@
 			<table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
 				<thead>
 				<tr>
+					<td>승인</td>
+					<td>반려</td>
 					<td>년도</td>
 					<td>학기</td>
 					<td>학번</td>
@@ -49,7 +51,21 @@
 				<c:choose>
 					<c:when test="${not empty scrList}">
 						<c:forEach var="scr" items="${scrList}" varStatus="status">
-							<tr>											
+							<tr>
+								<td>
+									<form action = "${pageContext.request.contextPath}/admin/studentUpdateScrList" method="post">
+									<input type="hidden" name="scrappl_num" value="${scr.get('scrappl_num')}" />
+									<input type="hidden" name="scrappl_appr_check" value="1" />
+									<input class="btn btn-outline btn-primary" type = "submit" value="승인">
+									</form>
+								</td>
+								<td>
+									<form action = "${pageContext.request.contextPath}/admin/studentUpdateScrList" method="post">
+									<input type="hidden" name="scrappl_num" value="${scr.get('scrappl_num')}" />
+									<input type="hidden" name="scrappl_appr_check" value="2" />
+									<input class="btn btn-outline btn-primary" type = "submit" value="반려">
+									</form>
+								</td>											
 								<td>${scr.get("scrappl_yr")}</td>
 								<td>${scr.get("scrappl_qtr")}</td>
 								<td>${scr.get("stud_num")}</td>
@@ -107,6 +123,7 @@
 			<table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
 				<thead>
 				<tr>
+					<td>승인취소</td>
 					<td>년도</td>
 					<td>학기</td>
 					<td>학번</td>
@@ -123,7 +140,14 @@
 				<c:choose>
 					<c:when test="${not empty scrApplList}">
 						<c:forEach var="scr" items="${scrApplList}" varStatus="status">
-							<tr>											
+							<tr>
+								<td>
+									<form action = "${pageContext.request.contextPath}/admin/studentUpdateScrList" method="post">
+									<input type="hidden" name="scrappl_num" value="${scr.get('scrappl_num')}" />
+									<input type="hidden" name="scrappl_appr_check" value="3" />
+									<input class="btn btn-outline btn-primary" type = "submit" value="승인취소">
+									</form>
+								</td>													
 								<td>${scr.get("scrappl_yr")}</td>
 								<td>${scr.get("scrappl_qtr")}</td>
 								<td>${scr.get("stud_num")}</td>
@@ -179,6 +203,7 @@
 			<table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
 				<thead>
 				<tr>
+					<td>반려취소</td>
 					<td>년도</td>
 					<td>학기</td>
 					<td>학번</td>
@@ -195,7 +220,14 @@
 				<c:choose>
 					<c:when test="${not empty scrCancelList}">
 						<c:forEach var="scr" items="${scrCancelList}" varStatus="status">
-							<tr>											
+							<tr>
+								<td>
+									<form action = "${pageContext.request.contextPath}/admin/studentUpdateScrList" method="post">
+									<input type="hidden" name="scrappl_num" value="${scr.get('scrappl_num')}" />
+									<input type="hidden" name="scrappl_appr_check" value="3" />
+									<input class="btn btn-outline btn-primary" type = "submit" value="반려취소">
+									</form>
+								</td>												
 								<td>${scr.get("scrappl_yr")}</td>
 								<td>${scr.get("scrappl_qtr")}</td>
 								<td>${scr.get("stud_num")}</td>

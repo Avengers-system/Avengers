@@ -23,10 +23,11 @@
 					<form name="updateDeptBoard" action="deptUpdate" method="post"
 						enctype="multipart/form-data">
 
-						숫자:<input type="text" name="board_num"
+						번호:<input type="text" name="board_num"
 							value="${deptNoticeList.board_num}" readonly><br>
 						제목:<input type="text" name="board_title"
-							value="${deptNoticeList.board_title}"><br> 내용:<input
+							value="${deptNoticeList.board_title}"><br> 
+						내용:<input
 							type="text" name="board_cont"
 							value="${deptNoticeList.board_cont}"><br>
 						<%--           날짜:<input type="text" name="board_date" value="${portalNoticeList.board_date}" readonly> --%>

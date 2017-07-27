@@ -29,15 +29,17 @@ public class StudentMypageServiceImpl implements StudentMypageService{
 	}
 
 	@Override
-	public int updateMyInfo(StudVO stud, DeptVO dept) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateMyInfo(StudVO stud) throws SQLException {
+		int success = -1;
+		success = stuMypageDAO.updateMyInfo(stud);
+		return success;
 	}
 
 	@Override
 	public StudVO selectMyInfo(String stud_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		StudVO studVO  = null;
+		studVO = stuMypageDAO.selectMyInfo(stud_num);
+		return studVO;
 	}
 
 	@Override

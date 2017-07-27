@@ -66,6 +66,8 @@ ol, ul {
 	margin-top: 50px;
 }
 </style>
+
+
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<!--  메뉴제목 -->

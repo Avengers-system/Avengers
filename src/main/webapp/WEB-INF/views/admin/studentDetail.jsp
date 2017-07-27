@@ -20,9 +20,9 @@
   		   <!-- 이미지 미리보기 -->
   		   				<div class="col-md-12">
 			               <div class="filess" style="margin-bottom:20px;">
-			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="<%=request.getContextPath()%>/resources/admin_professor_images/${student.stud_pic}"
+			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="${pageContext.request.contextPath }/resources/admin_student_images/${student.stud_pic}"
 			                     id="profile-image" class="img-circle img-responsive">
-			                  <input style="width:100px;" id="profile-image-input"  accept="image/png, image/jpeg, image/gif" class="hidden" type="file">
+			                  <input style="width:100px;" id="profile-image-input"  accept="image/png, image/jpeg, image/gif" class="hidden" type="file" name="stud_pic">
 			               </div>
               			</div>
               
@@ -34,7 +34,7 @@
 	                   		</div>
 	                   		<div class="col-md-1">
 		                   		<div class="btn btn-default image-preview-input">
-		                           <input type="file" accept="image/png, image/jpeg, image/gif" name="stud_pic"/>
+		                           <input type="file" accept="image/png, image/jpeg, image/gif" />
 		                           <span class="image-preview-input-title">업로드</span>
 		                        </div>
 		                   	</div>

@@ -17,18 +17,7 @@ public interface AdminStudentManageService {
 	public String selectStudNum()throws SQLException; //학생번호가져오기
 	public void insertSecurity(StudVO studVO); // 시큐리티등록하기
 	public ArrayList<StudVO> selectStudbyKeyword(String keyword);
-
-	
-	
-	//페이징처리
-		public ArrayList<StudVO> selectStudList(StudVO studVO,int firstRow,int lastRow)throws SQLException;//게시판글 전체목록 읽어오기
-		public ArrayList<StudVO> selectSearchList(StudVO studVO);//게시판 검색 읽어오기
-		public int selectStudCount(StudVO studVO) throws SQLException;
-		public int getEmpListCount(StudVO studVO)throws SQLException;
-		public List<StudVO> getEmpList(StudVO studVO)throws SQLException;
-		
-
-
-
+	public int getEmpListCount(StudVO studVO)throws SQLException;
+	public List<StudVO> getEmpList(StudVO studVO)throws SQLException;
 
 }
