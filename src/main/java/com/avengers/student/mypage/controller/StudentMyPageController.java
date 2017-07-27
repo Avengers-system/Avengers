@@ -6,8 +6,6 @@ import java.security.Principal;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
