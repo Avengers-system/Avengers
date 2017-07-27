@@ -33,20 +33,18 @@
 	
 	
 	<select id="selectSchdTitle" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
-		SELECT
-			PERSCHD_NUM,
-			PERSCHD_TITLE,
-			PERSCHD_CONT,
-			TO_CHAR(PERSCHD_DATE,'YYYY-MM-DD HH24:MI:SS'),
-			PERSCHD_START_DATE,
-			PERSCHD_END_DATE,
-			PERSCHD_WRITER
-		FROM PERSCHD
-		WHERE PERSCHD_TITLE = #{perschd_title}
-	
-	
-	</select>
-
+      SELECT
+         PERSCHD_TITLE,
+         PERSCHD_CONT,
+         TO_CHAR(PERSCHD_DATE,'YYYY-MM-DD HH24:MI:SS'),
+         PERSCHD_START_DATE,
+         PERSCHD_END_DATE,
+         PERSCHD_WRITER
+      FROM PERSCHD
+      WHERE PERSCHD_NUM = #{perschd_num}
+   
+   
+   </select>
 
 
 	<select id="selectSchoolScheduleList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">

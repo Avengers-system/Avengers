@@ -197,7 +197,7 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 	 */
 	@RequestMapping("/univSchd/univScheduleDetail")
 	@ResponseBody
-	public PerschdVO univSchedule(String perschd_title,
+	public PerschdVO univSchedule(String perschd_num,
 			HttpSession session
 			, Model model){
 		String message="";
@@ -205,7 +205,7 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 
 		PerschdVO univschd = new PerschdVO();
 		if (univschd != null) {
-			univschd = myPageService.selectPerschd_title(perschd_title);
+			univschd = myPageService.selectPerschd_title(perschd_num);
 			message="해당날짜에 등록된 일정이 없습니다";
 			session.setAttribute("message", message);
 		}
