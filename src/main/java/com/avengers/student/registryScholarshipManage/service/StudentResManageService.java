@@ -100,4 +100,11 @@ public interface StudentResManageService  {
 	 * @throws SQLException
 	 */
 	public ArrayList<ScrVO> selectScrVO()throws SQLException;
+	/**
+	 * 장학금정보 업데이트
+	 * 
+	 * @param scrapplVO
+	 * @return
+	 */		
+	public int updateScrappl(ScrapplVO scrapplVO)throws SQLException;
 }

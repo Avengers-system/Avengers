@@ -101,6 +101,12 @@ public class StudentResManageDaoImpl implements StudentResManageDao{
 		ArrayList<ScrVO> scrVO = (ArrayList<ScrVO>) sqlSession.selectList("resSchManage.scrList");
 		return scrVO;
 	}
+
+	@Override
+	public int updateScrappl(ScrapplVO scrapplVO) throws SQLException {
+		int updateScrappl = sqlSession.update("resSchManage.scrUpdate",scrapplVO);
+		return updateScrappl;
+	}
 	
 	
 
