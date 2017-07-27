@@ -17,13 +17,23 @@
 	<update id="updatePrfs" parameterType="com.avengers.db.dto.PrfsVO" >
 		UPDATE professor
 		SET 
-		PRFS_PIC =#{prfs_pic},
+		<if test="prfs_pic != null">
+			PRFS_PIC =#{prfs_pic},
+		</if>
 		PRFS_NM =#{prfs_nm},
 		PRFS_ENG_NM =#{prfs_eng_nm},
-		PRFS_DEPT=#{prfs_dept}, 
-		PRFS_BIR =#{prfs_bir},
-		PRFS_REGNO=#{prfs_regno},
-		PRFS_GEN =#{prfs_gen},
+		<if test="prfs_dept != null">
+			PRFS_DEPT=#{prfs_dept}, 
+		</if>
+		<if test="prfs_bir != null">
+			PRFS_BIR =#{prfs_bir},
+		</if>
+		<if test="prfs_regno != null">
+			PRFS_REGNO=#{prfs_regno},
+		</if>
+		<if test="prfs_gen != null">
+			PRFS_GEN =#{prfs_gen},
+		</if>
 		PRFS_HP=#{prfs_hp},
 		PRFS_TEL=#{prfs_tel},
 		PRFS_ACT_NUM =#{prfs_act_num},

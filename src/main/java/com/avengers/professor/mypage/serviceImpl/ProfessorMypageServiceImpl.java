@@ -29,8 +29,10 @@ public class ProfessorMypageServiceImpl implements ProfessorMypageService {
 	}
 
 	@Override
-	public int updatePrfs(PrfsVO prfsVO, String prfs_num) throws SQLException {
-		return 0;
+	public int updatePrfs(PrfsVO prfsVO) throws SQLException {
+		int success = -1;
+		success = myPageDAO.updatePrfs(prfsVO);
+		return success;
 	}
 
 	@Override // 일정불러오기
