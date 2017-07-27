@@ -141,8 +141,7 @@
         jQuery("form[name=frm]").attr("action","").submit();
     }
 </script>
- 
-<%@include file="../common/adminManageCategory.jsp" %>
+ <%@include file="../common/studentDetailSideCategory.jsp" %>
 <!--  Counsel Right Side -->
 <div class="col-md-10">
 	<div class="panel panel-default">

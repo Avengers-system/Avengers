@@ -134,9 +134,9 @@
 								<input type="text" class="form-control" name="prfs_act_num" value="${professor.prfs_act_num }" >
 							</div>
 						</div>
-				</div>	 
-					 
-					</div>
+				</div>	
+				
+				</div>
 
 
 
