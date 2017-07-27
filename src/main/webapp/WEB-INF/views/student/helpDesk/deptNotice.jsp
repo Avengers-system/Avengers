@@ -52,7 +52,7 @@
 							<sec:authorize access="hasRole('ROLE_WSS')">
 								<div
 									style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
-									<a ref="<%=request.getContextPath()%>/student/helpDesk/deptStudWriteForm">글쓰기</a>
+									<a href="<%=request.getContextPath()%>/student/helpDesk/deptStudWriteForm">글쓰기</a>
 								</div>
 							</sec:authorize>
 

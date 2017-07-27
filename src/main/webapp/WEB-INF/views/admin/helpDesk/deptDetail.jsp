@@ -37,8 +37,8 @@
 							value="${deptNoticeList.board_af}"><br> 첨부할파일:<input
 							type="file" name="boardtoa" value="${deptNoticeList.board_af}"><br>
 						게시판분류고유번호:<input type="text" name="board_bc"
-							value="${deptNoticeList.board_bc}" readonly><br> <a
-							href="<%=request.getContextPath()%>/admin/main/download?fileName=${deptNoticeList.board_af}&board_num=${board_num}">다운</a>
+							value="${deptNoticeList.board_bc}" readonly><br>
+							<a href="<%=request.getContextPath()%>/admin/main/download?fileName=${deptNoticeList.board_af}&board_num=${board_num}">다운</a>
 						<input type="submit" value="수정"> <a
 							href="deptDelete?board_num=${deptNoticeList.board_num}"><input
 							type="button" value="삭제"></a>

@@ -16,4 +16,6 @@ public interface AdminHelpDeskService {
 		public BoardVO selectInsertBaseData() throws SQLException;
 		public int updateBoardCount(String board_num, String board_count) throws SQLException;
 		public int selectBoardCount(BoardVO boardVO) throws SQLException;
+		public int selectMultiBoardCount(BoardVO boardVO) throws SQLException;
+		public ArrayList<BoardVO> searchMultiBoardList(BoardVO boardVO)	throws SQLException;
 }

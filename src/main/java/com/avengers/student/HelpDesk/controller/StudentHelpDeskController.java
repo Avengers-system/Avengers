@@ -732,14 +732,18 @@ public class StudentHelpDeskController {
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				service.insertStuBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+		}else{
+			boardVO.setBoard_af("");
+		}
+		try {
+			service.insertStuBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return url;
 	}
@@ -765,14 +769,18 @@ public class StudentHelpDeskController {
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				service.insertStuBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+		}else{
+			boardVO.setBoard_af("");
+		}
+		try {
+			service.insertStuBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return url;
 	}
@@ -799,14 +807,18 @@ public class StudentHelpDeskController {
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				service.insertStuBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+		}else{
+			boardVO.setBoard_af("");
+		}
+		try {
+			service.insertStuBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return url;
 	}
@@ -883,16 +895,20 @@ public class StudentHelpDeskController {
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				service.updateStuBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+		}else{
+			boardVO.setBoard_af("");
 		}
 
+		try {
+			service.updateStuBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return url;
 	}
 
@@ -911,16 +927,20 @@ public class StudentHelpDeskController {
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				service.updateStuBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+		}else{
+			boardVO.setBoard_af("");
 		}
 
+		try {
+			service.updateStuBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return url;
 	}
 
@@ -940,16 +960,20 @@ public class StudentHelpDeskController {
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				service.updateStuBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+		}else{
+			boardVO.setBoard_af("");
 		}
 
+		try {
+			service.updateStuBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return url;
 	}
 

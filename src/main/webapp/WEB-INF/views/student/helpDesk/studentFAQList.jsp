@@ -112,14 +112,11 @@
 		</div>
 	</form>
 
-	<sec:authorize access="hasRole('ROLE_WSS')">
 		<form
 			action="${pageContext.request.contextPath}/student/helpDesk/studentFAQWritePage"
 			method="post">
 			<input type="hidden" name="pageNo" value="${pageVO.pageNo}">
-			<input type="submit" value="글쓰기">
 		</form>
-	</sec:authorize>
 
 
 </div>

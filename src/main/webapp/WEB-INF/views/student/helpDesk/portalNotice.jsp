@@ -49,15 +49,7 @@
 								<div class="row">
 
 									<form
-										action="<%=request.getContextPath()%>/student/helpDesk/portalStudSearch?board_title=${portalSearch.board_title}">
-										<sec:authorize access="hasRole('ROLE_WSS')">
-
-											<div
-												style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
-												<a
-													href="<%=request.getContextPath()%>/student/helpDesk/portalStudWriteForm">글쓰기</a>
-											</div>
-										</sec:authorize>
+										action="<%=request.getContextPath()%>/student/helpDesk/portalStudSearch">
 										<div class="col-sm-6" style="float: left; width: 225px;">
 											<div id="datatables-example_filter" class="dataTables_filter"
 												style="width: 20%;">

@@ -37,7 +37,9 @@
 							value="${univNoticeList.board_af}"><br> 첨부할파일:<input
 							type="file" name="boardtoa" value="${univNoticeList.board_af}"><br>
 						게시판코드:<input type="text" name="board_bc"
-							value="${univNoticeList.board_bc}" readonly><br> <input
+							value="${univNoticeList.board_bc}" readonly><br>
+							<a href="<%=request.getContextPath()%>/admin/main/download?fileName=${univNoticeList.board_af}&board_num=${board_num}">다운</a>
+							 <input
 							type="submit" value="수정"> <a
 							href="univDelete?board_num=${univNoticeList.board_num}"><input
 							type="button" value="삭제"></a>

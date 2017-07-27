@@ -46,6 +46,7 @@
 
 										<form
 											action="<%=request.getContextPath()%>/admin/faqProfSearch?board_title=${faqProfSearch.board_title}">
+											
 											<div
 												style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
 

@@ -16,4 +16,5 @@ public interface AdminHelpDeskDao {
 	public BoardVO selectInsertBaseData() throws SQLException;// 입력시 데이터 보이게하기
 	public int updateBoardCount(String board_num, String board_count) throws SQLException;
 	public int selectBoardCount(BoardVO boardVO) throws SQLException;
+	public ArrayList<BoardVO> selectMultiSearchList(BoardVO boardVO) throws SQLException;
 }
