@@ -1,101 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="perschd">
 
-	<select id="studentSchedule" parameterType="java.lang.String" resultType="java.lang.String">
-		select PERSCHD_CONT from perschd where perschd_writer = #{stud_num} and perschd_date like sysdate
-	</select>
-	
-	<select id="adminSchedule" parameterType="java.lang.String" resultType="java.lang.String">
-		select PERSCHD_CONT from perschd where perschd_writer = #{admin_id} and perschd_date like sysdate
-	</select>
-	
-	<select id="professorSchedule" parameterType="java.lang.String" resultType="java.lang.String">
-		select PERSCHD_CONT from perschd where perschd_writer = #{prfs_num} and perschd_date like sysdate
-	</select>
+   <select id="studentSchedule" parameterType="java.lang.String" resultType="java.lang.String">
+      select PERSCHD_CONT from perschd where perschd_writer = #{stud_num} and perschd_date like sysdate
+   </select>
+   
+   <select id="adminSchedule" parameterType="java.lang.String" resultType="java.lang.String">
+      select PERSCHD_CONT from perschd where perschd_writer = #{admin_id} and perschd_date like sysdate
+   </select>
+   
+   <select id="professorSchedule" parameterType="java.lang.String" resultType="java.lang.String">
+      select PERSCHD_CONT from perschd where perschd_writer = #{prfs_num} and perschd_date like sysdate
+   </select>
 
 
-	<select id="selectPerschdList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
-	
-		SELECT
-			PERSCHD_NUM,
-			PERSCHD_TITLE,
-			PERSCHD_CONT,
-			TO_CHAR(PERSCHD_DATE,'YYYY-MM-DD'),
-			PERSCHD_START_DATE,
-			PERSCHD_END_DATE,
-			PERSCHD_WRITER
-		FROM PERSCHD
-		WHERE PERSCHD_WRITER = #{perschd_writer}
-	</select>
-	
-	
-	<select id="selectSchdTitle" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
-		SELECT
-			PERSCHD_NUM,
-			PERSCHD_TITLE,
-			PERSCHD_CONT,
-			TO_CHAR(PERSCHD_DATE,'YYYY-MM-DD HH24:MI:SS'),
-			PERSCHD_START_DATE,
-			PERSCHD_END_DATE,
-			PERSCHD_WRITER
-		FROM PERSCHD
-		WHERE PERSCHD_TITLE = #{perschd_title}
-	
-	
-	</select>
+   <select id="selectPerschdList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
+   
+      SELECT
+         PERSCHD_NUM,
+         PERSCHD_TITLE,
+         PERSCHD_CONT,
+         TO_CHAR(PERSCHD_DATE,'YYYY-MM-DD'),
+         PERSCHD_START_DATE,
+         PERSCHD_END_DATE,
+         PERSCHD_WRITER
+      FROM PERSCHD
+      WHERE PERSCHD_WRITER = #{perschd_writer}
+   </select>
+   
+   
+   <select id="selectSchdTitle" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
+      SELECT
+         PERSCHD_TITLE,
+         PERSCHD_CONT,
+         TO_CHAR(PERSCHD_DATE,'YYYY-MM-DD HH24:MI:SS'),
+         PERSCHD_START_DATE,
+         PERSCHD_END_DATE,
+         PERSCHD_WRITER
+      FROM PERSCHD
+      WHERE PERSCHD_NUM = #{perschd_num}
+   
+   
+   </select>
 
 
 
-	<select id="selectSchoolScheduleList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
-		SELECT * FROM PERSCHD WHERE PERSCHD_WRITER='UNIV' 
-	</select>
-	
-	<select id="getPerschd" parameterType="Integer" resultType="com.avengers.db.dto.PerschdVO">
-		SELECT * FROM PERSCHD WHERE PERSCHD_NUM=#{perschd_num} 
-	</select>
-	
-	
-	<insert id="insertSchd" parameterType="com.avengers.db.dto.PerschdVO">
-	
-		INSERT 
-			INTO PERSCHD
-			(
-			 	PERSCHD_NUM,
-				PERSCHD_TITLE,
-				PERSCHD_CONT,
-				PERSCHD_DATE,
-				PERSCHD_START_DATE,
-				PERSCHD_END_DATE,
-				PERSCHD_WRITER
-			) VALUES (
-				PERSCHD_SEQ.nextval,
-				#{perschd_title},
-				#{perschd_cont},
-				SYSDATE,
-				TO_DATE(#{perschd_start_date},'YYYY-MM-DD'),
-				TO_DATE(#{perschd_end_date},'YYYY-MM-DD'),
-				#{perschd_writer}
-			)
-			
-	</insert>
-	
-	
-	<update id="updateSchd" parameterType="com.avengers.db.dto.PerschdVO">
-		UPDATE PERSCHD
-		SET 
-			PERSCHD_TITLE = #{perschd_title},
-			PERSCHD_CONT= #{perschd_cont},
-			PERSCHD_START_DATE = TO_DATE(#{perschd_start_date},'YYYY-MM-DD'),
-			PERSCHD_END_DATE = TO_DATE(#{perschd_end_date},'YYYY-MM-DD')
-		WHERE PERSCHD_NUM=#{perschd_num} 
-	</update>
-	
-	<delete id="deleteSchd" parameterType="java.lang.String">
-		DELETE FROM PERSCHD WHERE PERSCHD_NUM=#{perschd_num}
-	</delete>
-	
+   <select id="selectSchoolScheduleList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
+      SELECT * FROM PERSCHD WHERE PERSCHD_WRITER='UNIV' 
+   </select>
+   
+   <select id="getPerschd" parameterType="Integer" resultType="com.avengers.db.dto.PerschdVO">
+      SELECT * FROM PERSCHD WHERE PERSCHD_NUM=#{perschd_num} 
+   </select>
+   
+   
+   <insert id="insertSchd" parameterType="com.avengers.db.dto.PerschdVO">
+   
+      INSERT 
+         INTO PERSCHD
+         (
+             PERSCHD_NUM,
+            PERSCHD_TITLE,
+            PERSCHD_CONT,
+            PERSCHD_DATE,
+            PERSCHD_START_DATE,
+            PERSCHD_END_DATE,
+            PERSCHD_WRITER
+         ) VALUES (
+            PERSCHD_SEQ.nextval,
+            #{perschd_title},
+            #{perschd_cont},
+            SYSDATE,
+            TO_DATE(#{perschd_start_date},'YYYY-MM-DD'),
+            TO_DATE(#{perschd_end_date},'YYYY-MM-DD'),
+            #{perschd_writer}
+         )
+         
+   </insert>
+   
+   
+   <update id="updateSchd" parameterType="com.avengers.db.dto.PerschdVO">
+      UPDATE PERSCHD
+      SET 
+         PERSCHD_TITLE = #{perschd_title},
+         PERSCHD_CONT= #{perschd_cont},
+         PERSCHD_START_DATE = TO_DATE(#{perschd_start_date},'YYYY-MM-DD'),
+         PERSCHD_END_DATE = TO_DATE(#{perschd_end_date},'YYYY-MM-DD')
+      WHERE PERSCHD_NUM=#{perschd_num} 
+   </update>
+   
+   <delete id="deleteSchd" parameterType="java.lang.String">
+      DELETE FROM PERSCHD WHERE PERSCHD_NUM=#{perschd_num}
+   </delete>
+   
 </mapper>
-
