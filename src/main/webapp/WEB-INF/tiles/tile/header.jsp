@@ -233,7 +233,7 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 			<div class="navbar-header">
 				<ul class="nav nav-tabs nav-tabs-v1">
 					<li role="presentation"><a href="${pageContext.request.contextPath}/student/studentMain">Main</a></li>
-					<li role="presentation"><a href="${pageContext.request.contextPath}/student/mypage/studentMypage">My Page</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/student/mypage/myInfo">My Page</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/student/schoolRegister/certificate">학적</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/student/classManage/classMain">수업</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/student/admissionApplication">수강신청</a></li>

@@ -29,15 +29,17 @@ public class StudentMyPageDaoImpl implements StudentMyPageDao{
 	}
 
 	@Override
-	public int updateMyInfo(StudVO stud, DeptVO dept) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateMyInfo(StudVO stud) throws SQLException {
+		int success = -1;
+		success = sqlSession.update("student.updateStud",stud);
+		return success;
 	}
 
 	@Override
 	public StudVO selectMyInfo(String stud_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		StudVO studVO = new StudVO();
+		studVO = (StudVO) sqlSession.selectOne("student.getStudentInfo", stud_num);
+		return studVO;
 	}
 
 	@Override // 일정등록

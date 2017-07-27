@@ -98,7 +98,22 @@
 	</select>
 	
 	<update id="updateStud" parameterType="com.avengers.db.dto.StudVO">
-	
+	UPDATE STUDENT
+	SET	
+		<if test="stud_pic != null">
+			STUD_PIC=#{stud_pic},
+		</if>
+		STUD_PW=#{stud_pw},
+		STUD_ENG_NM=#{stud_eng_nm},
+		STUD_BANK=#{stud_bank},
+		STUD_AH=#{stud_ah},
+		STUD_ACT_NUM=#{stud_act_num},
+		STUD_ADDR=#{stud_addr},
+		STUD_ZIP=#{stud_zip},
+		STUD_TEL=#{stud_tel},
+		STUD_HP=#{stud_hp},
+		STUD_EMAIL=#{stud_email}
+	WHERE STUD_NUM=#{stud_num}
 	
 	
 	</update>

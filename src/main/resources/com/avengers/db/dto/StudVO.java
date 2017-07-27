@@ -25,6 +25,18 @@ public class StudVO extends PageVO{
 	private String stud_act_num;//계좌번호
 	private String stud_bank;//은행명
 	private String stud_ah;//예금주
+	private String stud_addr;//주소
+	private String stud_zip;//우편번호
+	private String stud_tel;//전화번호
+	private String stud_hp;//휴대폰번호
+	private String stud_dept;//학과번호
+	private String stud_guad_nm;//보호자 이름
+	private String stud_guad_rel;//보호자 관계
+	private String stud_guad_hp;//보호자 핸드폰
+	private String stud_max_crd;//최대신청가능 학점
+	
+	
+	
 	@Override
 	public String toString() {
 		return "StudVO [stud_num=" + stud_num + ", stud_nm=" + stud_nm
@@ -41,15 +53,6 @@ public class StudVO extends PageVO{
 				+ ", stud_guad_rel=" + stud_guad_rel + ", stud_guad_hp="
 				+ stud_guad_hp + ", stud_max_crd=" + stud_max_crd + "]";
 	}
-	private String stud_addr;//주소
-	private String stud_zip;//우편번호
-	private String stud_tel;//전화번호
-	private String stud_hp;//휴대폰번호
-	private String stud_dept;//학과번호
-	private String stud_guad_nm;//보호자 이름
-	private String stud_guad_rel;//보호자 관계
-	private String stud_guad_hp;//보호자 핸드폰
-	private String stud_max_crd;//최대신청가능 학점
 	public String getStud_num() {
 		return stud_num;
 	}
