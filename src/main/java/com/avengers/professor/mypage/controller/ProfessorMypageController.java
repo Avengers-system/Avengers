@@ -47,8 +47,8 @@ public class ProfessorMypageController {
 	  
 	  @RequestMapping(value="/myInfoUpdate",method=RequestMethod.POST)
 	  public String professorMyPageUpdate(
-			  @RequestParam(value="prfs_pic",required=false)MultipartFile prfs_pic,
-			  @ModelAttribute("prfs")PrfsVO prfs,
+			  @RequestParam(value="file",required=false)MultipartFile prfs_pic,
+			  PrfsVO prfs,
 			  HttpServletRequest request,
 			  Model model
 			  ){
@@ -56,6 +56,8 @@ public class ProfessorMypageController {
 		  String url="redirect:/professor/mypage/myInfo";
 		  String upload = request.getSession().getServletContext().getRealPath("resources/myInfo_images");
 		  String message="수정이 실패하였습니다.";
+		  
+		  System.out.println(prfs.getPageNo());
 		  
 		  if(!prfs_pic.isEmpty()){
 			  File file = new File(upload,prfs_pic.getOriginalFilename());

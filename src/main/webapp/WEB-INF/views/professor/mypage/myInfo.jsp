@@ -25,8 +25,8 @@
 
 				<div class="row">
 					<div class="col-md-12">
-					<c:choose>
-				<c:when test="${not empty prfs}">
+						<c:choose>
+							<c:when test="${not empty prfs}">
 						<form name="insertProfessor" method="post"
 							action="${pageContext.request.contextPath}/professor/mypage/myInfoUpdate"
 							enctype="multipart/form-data">
@@ -37,7 +37,8 @@
 										<img style="height: 150px; width: 130px; margin-left: 50px;"
 											alt="User Pic"
 											src="${myContextPath}/resources/myInfo_images/${prfs.prfs_pic}"
-											id="profile-image" class="img-circle img-responsive"> <input
+											id="profile-image" class="img-circle img-responsive"> 
+										<input
 											style="width: 100px;" id="profile-image-input"
 											accept="image/png, image/jpeg, image/gif" class="hidden"
 											type="file">
@@ -54,7 +55,7 @@
 										<div class="col-md-1">
 											<div class="btn btn-default image-preview-input">
 												<input type="file" accept="image/png, image/jpeg, image/gif"
-													name="prfs_pic" /> <span class="image-preview-input-title">업로드</span>
+													name="file" /> <span class="image-preview-input-title">업로드</span>
 											</div>
 										</div>
 
@@ -152,15 +153,6 @@
 											<label class="col-sm-4 control-label text-right">주민등록번호</label>
 											<div class="col-sm-8">
 												<input type="text" class="form-control" name="prfs_regno" value="${prfs.prfs_regno}" readonly="readonly">
-											</div>
-										</div>
-									</div>
-
-									<div class="col-md-12">
-										<div class="form-group">
-											<label class="col-sm-4 control-label text-right">생년월일</label>
-											<div class="col-sm-8">
-												<input type="text" name="prfs_bir" name="prfs_bir" value="${prfs.prfs_bir}">
 											</div>
 										</div>
 									</div>
