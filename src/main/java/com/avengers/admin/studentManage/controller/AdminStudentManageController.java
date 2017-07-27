@@ -276,7 +276,7 @@ public class AdminStudentManageController {
 		try {
 			scrApplVO.setScrappl_yr(scr_year);
 			scrApplVO.setScrappl_qtr(scr_qtr);
-			scrApplVO.setScrappl_appr_check("1");
+			scrApplVO.setScrappl_appr_check("3");
 			List<HashMap<String,String>> selectScrList =stuResService.selectScrApplList(scrApplVO);
 			scrApplVO.setScrappl_yr(scrCancel_year);
 			scrApplVO.setScrappl_qtr(scrCancel_qtr);
@@ -284,7 +284,7 @@ public class AdminStudentManageController {
 			List<HashMap<String,String>> selectCancelList =stuResService.selectScrApplList(scrApplVO);
 			scrApplVO.setScrappl_yr(scrappl_year);
 			scrApplVO.setScrappl_qtr(scrappl_qtr);
-			scrApplVO.setScrappl_appr_check("3");
+			scrApplVO.setScrappl_appr_check("1");
 			List<HashMap<String,String>> selectScrApplList =  stuResService.selectScrApplList(scrApplVO);
 			model.addAttribute("scrList", selectScrList);
 			model.addAttribute("scrApplList", selectScrApplList);
@@ -316,6 +316,8 @@ public class AdminStudentManageController {
 			,@RequestParam(value="scrappl_num",required=false)String scrappl_num
 			,@RequestParam(value="scrappl_appr_check",required=false)String scrappl_appr_check
 			){
+		System.out.println(scrappl_num);
+		System.out.println(scrappl_appr_check);
 		ScrapplVO scrapplVO = new ScrapplVO();
 		scrapplVO.setScrappl_num(scrappl_num);
 		scrapplVO.setScrappl_appr_check(scrappl_appr_check);
