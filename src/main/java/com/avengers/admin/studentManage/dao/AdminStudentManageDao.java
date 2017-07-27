@@ -2,11 +2,11 @@ package com.avengers.admin.studentManage.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import com.avengers.db.dto.BoardVO;
-import com.avengers.db.dto.EmpVO;
+import com.avengers.db.dto.LoaVO;
+import com.avengers.db.dto.RtsVO;
 import com.avengers.db.dto.StudVO;
 
 public interface AdminStudentManageDao {
@@ -19,15 +19,26 @@ public interface AdminStudentManageDao {
 	public String selectStudNum()throws SQLException; //학생번호(최근)
 	public int insertSecurity(StudVO studVO); //시큐리티등록
 	public ArrayList<StudVO> selectStudbyKeyword(String keyword);
-
-
-
-
-	//페이징처리
-	
-	public ArrayList<StudVO> selectStudList(StudVO studVO,int firstRow,int lastRow)throws SQLException;//게시판글 전체목록 읽어오기
-	public ArrayList<StudVO> selectSearchList(StudVO studVO);//게시판 검색 읽어오기
-	public int selectStudCount(StudVO studVO) throws SQLException;
-	
+	public int getEmpListCount(StudVO studVO)throws SQLException;
+	public ArrayList<StudVO> getEmpList(StudVO studVO)throws SQLException;
+	/** 휴학리스트 검색
+	 *  2017.07.27일자 추가 -배진 
+	 *  
+	 */
+	public List<HashMap<String,String>> selectLoaList(LoaVO loaVO)throws SQLException;
+	/** 복학리스트 검색
+	 *  2017.07.27일자 추가 -배진 
+	 *  
+	 */
+	public List<HashMap<String,String>> selectRtsList(RtsVO rtsVO)throws SQLException;
+	/** 휴학리스트 업데이트
+	 *  2017.07.27일자 추가 -배진 
+	 *  
+	 */
+	public int updateLoaList(LoaVO loaVO)throws SQLException;
+	/** 복학리스트 업데이트
+	 *  2017.07.27일자 추가 -배진 
+	 */
+	public int updateRtsList(RtsVO rtsVO)throws SQLException;
 
 }

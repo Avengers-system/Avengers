@@ -14,4 +14,54 @@
 		values((select lpad((select max(loa_num) from loa)+1,19,'0') from dual),#{loa_start_date},#{loa_end_date},#{loa_cause},sysdate,#{loa_appr_date},'0',#{loa_rs_shcd_date},#{loa_stud},#{loa_admin})
 	</insert>
 	
+	
+	
+		<!-- 2017.07.27일자 추가 -배진 -->
+	<resultMap id="loaMap" type="java.util.HashMap">
+        <result javaType="java.lang.String" column="LOA_START_DATE" property="loa_start_date"/>
+        <result javaType="java.lang.String" column="LOA_END_DATE" property="loa_end_date"/>
+        <result javaType="java.lang.String" column="LOA_RS_SHCD_DATE" property="loa_rs_shcd_date"/>
+        <result javaType="java.lang.String" column="STUD_NUM" property="stud_num"/>
+        <result javaType="java.lang.String" column="STUD_NM" property="stud_nm"/>
+        <result javaType="java.lang.String" column="DEPT_NM" property="dept_nm"/>
+        <result javaType="java.lang.String" column="LOA_CAUSE" property="loa_cause"/>
+        <result javaType="java.lang.String" column="LOA_APPL_DATE" property="loa_appl_date"/>
+        <result javaType="java.lang.String" column="LOA_NUM" property="loa_num"/>
+        <result javaType="java.lang.String" column="MIN_YR" property="min_yr"/>
+  </resultMap> 
+	<!-- 2017.07.27일자 추가 -배진 -->
+	<select id="selectLoaList" parameterType="com.avengers.db.dto.LoaVO" resultMap="loaMap">
+	SELECT LOA_START_DATE
+		  ,LOA_END_DATE
+		  ,LOA_RS_SHCD_DATE
+		  ,STUD_NUM
+		  ,STUD_NM
+		  ,DEPT_NM
+		  ,LOA_CAUSE
+		  ,LOA_APPL_DATE
+		  ,LOA_NUM
+		  ,MIN(LOA_APPL_DATE) as MIN_YR
+	FROM LOA,DEPARTMENT,STUDENT
+	WHERE LOA_STUD=STUD_NUM
+	AND STUD_DEPT=DEPT_NUM
+	<if test="loa_appl_date !=null and loa_appl_date != '전체'">
+	AND LOA_APPL_DATE LIKE SUBSTR(#{loa_appl_date},3,2)||'%'
+	</if>	
+	GROUP BY LOA_START_DATE
+		  ,LOA_END_DATE
+		  ,LOA_RS_SHCD_DATE
+		  ,STUD_NUM
+		  ,STUD_NM
+		  ,DEPT_NM
+		  ,LOA_CAUSE
+		  ,LOA_APPL_DATE
+		  ,LOA_NUM
+	</select>
+	
+	<update id="updateLoa" parameterType="com.avengers.db.dto.LoaVO">
+	UPDATE LOA 
+	SET LOA_APPR_CHECK = #{loa_appr_check}
+	WHERE  LOA_NUM = #{loa_num} 
+	</update>	
+	
 </mapper>

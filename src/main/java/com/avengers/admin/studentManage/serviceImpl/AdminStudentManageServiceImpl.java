@@ -2,6 +2,7 @@ package com.avengers.admin.studentManage.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,9 @@ import org.springframework.stereotype.Service;
 import com.avengers.admin.studentManage.dao.AdminStudentManageDao;
 import com.avengers.admin.studentManage.service.AdminStudentManageService;
 import com.avengers.db.dto.BoardVO;
+import com.avengers.db.dto.LoaVO;
+import com.avengers.db.dto.PrfsVO;
+import com.avengers.db.dto.RtsVO;
 import com.avengers.db.dto.StudVO;
 @Service
 public class AdminStudentManageServiceImpl implements AdminStudentManageService {
@@ -75,40 +79,54 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 		return amdinStudentDAO.selectStudbyKeyword(keyword);
 	}
 
-
-	
-	
 	//페이징처리
-	
-	@Override
-	public ArrayList<StudVO> selectStudList(StudVO studVO, int firstRow, int lastRow) throws SQLException {
-		return amdinStudentDAO.selectStudList(studVO, firstRow, lastRow);
-	}
-
-
-	@Override
-	public ArrayList<StudVO> selectSearchList(StudVO studVO) {
-		return amdinStudentDAO.selectSearchList(studVO);
-	}
-
-
-	@Override
-	public int selectStudCount(StudVO studVO) throws SQLException {
-		return amdinStudentDAO.selectStudCount(studVO);
-	}
-
-
 	@Override
 	public int getEmpListCount(StudVO studVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = amdinStudentDAO.getEmpListCount(studVO);
+		return result;
 	}
 
 
 	@Override
 	public List<StudVO> getEmpList(StudVO studVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<StudVO> studList = amdinStudentDAO.getEmpList(studVO);
+		return studList;
+	}
+
+	/**
+	 *  2017.07.27일자 추가 -배진 
+	 */
+	@Override
+	public List<HashMap<String, String>> selectLoaList(LoaVO loaVO)
+			throws SQLException {
+		return amdinStudentDAO.selectLoaList(loaVO);
+	}
+	
+	/**
+	 *  2017.07.27일자 추가 -배진 
+	 */
+	@Override
+	public List<HashMap<String, String>> selectRtsList(RtsVO rtsVO)
+			throws SQLException {
+		return amdinStudentDAO.selectRtsList(rtsVO);
+	}
+
+	/**
+	 *  2017.07.27일자 추가 -배진 
+	 */
+	@Override
+	public int updateLoaList(LoaVO loaVO)
+			throws SQLException {
+		return amdinStudentDAO.updateLoaList(loaVO);
+	}
+	
+	/**
+	 *  2017.07.27일자 추가 -배진 
+	 */
+	@Override
+	public int updateRtsList(RtsVO rtsVO)
+			throws SQLException {
+		return amdinStudentDAO.updateRtsList(rtsVO);
 	}
 
 }

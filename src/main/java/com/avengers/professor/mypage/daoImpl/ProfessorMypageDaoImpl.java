@@ -23,14 +23,15 @@ public class ProfessorMypageDaoImpl implements ProfessorMypageDao {
 	@Override
 	public PrfsVO selectPrfs(String prfs_num) throws SQLException {
 		PrfsVO profVO = new PrfsVO();
-		profVO = (PrfsVO) sqlSession.selectOne("professor.getProfessor", prfs_num);
+		profVO = (PrfsVO) sqlSession.selectOne("prfs.selectPrfs", prfs_num);
 		return profVO;
 	}
 
 	@Override
-	public int updatePrfs(PrfsVO prfsVO, String prfs_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updatePrfs(PrfsVO prfsVO) throws SQLException {
+		int success = -1;//업데이트 성공 여부 -1실패, 1 성공
+		success = sqlSession.update("prfs.updatePrfs", prfsVO);
+		return success;
 	}
 
 	@Override

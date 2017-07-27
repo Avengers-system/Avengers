@@ -114,7 +114,7 @@ public class AdminMypageController {
 			,HttpSession session
 			,HttpServletRequest request
 			,Model model){
-		String url="redirect:/admin/mypage/";
+		String url="redirect:/admin/mypage/myInfo";
 		String upload = request.getSession().getServletContext().getRealPath("resources/myInfo_images");	
 		String message="수정이 실패하였습니다.";
 		

@@ -247,8 +247,7 @@ public class StudentAdmissionApplicationController {
 		    
 		    //1주에 수업이2번일때 수업일수를 계속 7일더해주는게 아닌 각각 수업요일에 따라 번갈아가며 일정기간을 더해주기위한 변수
 		    int term1= 0;
-		    int term2= 0;
-		    
+		    int term2= 0;		    
 		    
 		    //1주에 수업이 2번일때 둘중 학사일정 개강일과 가장 차이가 적은것
 		    if(selectLctLr.size()==2){
@@ -264,15 +263,13 @@ public class StudentAdmissionApplicationController {
 		    }
 		    if(term1<0){
 		    	term1+=7;
-		    }
-		    
+		    }		    
 		    term2=7-term1;		    
 			
 		    //학사일정 개강일에서 해당수업의 실제 첫수업날짜(개강일)을 구하기위해 수업요일-개강요일을 더해준다.		    
 		    today.add(Calendar.DAY_OF_YEAR, checkPlusDay);
 		    AtdcVO atdcVO = new AtdcVO();
-			atdcVO.setAtdc_tl(tl_num);
-		    
+			atdcVO.setAtdc_tl(tl_num);		    
 		    
 			int plusDay = 0;
 			atdcVO.setAtdc_date(today.getTime());
@@ -366,16 +363,7 @@ public class StudentAdmissionApplicationController {
 						timeList.put(arr2[1]+arr2[i], lct_nm+" - "+prfs_nm);
 					}
 				}
-			}
-						
-					
-				
-			
-			
-			
-			
-			
-			
+			}		
 			model.addAttribute("TlList", timeList);
 		} catch (SQLException e) {
 			e.printStackTrace();

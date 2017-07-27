@@ -123,8 +123,7 @@
        	<div class="panel-body" style="font-size:16px;">       			
 		<div class="box-v5 panel">
 		<div class="panel-heading padding-0 bg-white border-none">	             
-		<textarea required placeholder="신청사유를 적어주세요." name="scrappl_cause">					 
-		</textarea>
+		<textarea required placeholder="신청사유를 적어주세요." name="scrappl_cause"></textarea>
 		</div>
 		</div>		
 		</div>

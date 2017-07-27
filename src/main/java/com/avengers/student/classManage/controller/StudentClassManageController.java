@@ -296,7 +296,8 @@ public class StudentClassManageController {
 	@ResponseBody
 	public String studentExamTimeCheck(@RequestParam(value="exam_num")String exam_num){
 		Map<String, String> examTimeInfo = null;
-		int result = 0;
+		int result = 1;
+		/*
 		try {
 			examTimeInfo = scmService.selectExamTimeInfo(exam_num);
 			if(examTimeInfo == null || examTimeInfo.isEmpty()){
@@ -351,7 +352,7 @@ public class StudentClassManageController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+		*/
 		return String.valueOf(result);
 	}
 	
