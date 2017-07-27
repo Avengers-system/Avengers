@@ -23,7 +23,7 @@
         	FROM (
 	            SELECT STUD_NUM, STUD_NM, STUD_ENG_NM, STUD_BIR, STUD_EMAIL, STUD_PW, STUD_GRD, STUD_REGNO,
 	            STUD_GEN, STUD_QTR, STUD_SCHREG_CODE, STUD_PIC, STUD_ACT_NUM, STUD_BANK, STUD_AH 
-	            FROM PROFESSOR
+	            FROM STUDENT
 	            WHERE 1=1  
 	            <if test="searchFiled != null and searchFiled != ''">
 	                AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
