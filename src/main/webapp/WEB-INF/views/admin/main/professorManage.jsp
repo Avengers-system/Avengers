@@ -141,38 +141,43 @@
 					</div>
 					
 					<div class="row">
-							
 							<div class="col-md-6 col-md-offset-3">
-							<div class="dataTables_paginate paging_simple_numbers" id="datatables-example_paginate">
-								 <ul class="pagination">
-								 <c:choose>
-									 <c:when test="${pageVO.finalPageNo eq pageVO.pageNo}">
-										 <li class="paginate_button previous disabled"><a href="javascript:fn_movePage('1')" class="font" style="text-decoration: none;">처음으로</a></li>
-									 </c:when>
-									 <c:otherwise>
-<%-- 									 	<c:if test="${pageVO.pageNo ne 1}"> --%>
-<%-- 									 		<li class="paginate_button previous disabled"><a href="javascript:fn_movePage('${pageVO.pageNo -4}')" class="font" style="text-decoration: none;">이전</a></li> --%>
-<%-- 									 	</c:if> --%>
-
-										 <li class="paginate_button previous disabled"><a href="javascript:fn_movePage('${pageVO.pageNo }')" class="font" style="text-decoration: none;">${pageVO.pageNo }</a></li>
-										 <li class="paginate_button previous disabled"><a href="javascript:fn_movePage('${pageVO.pageNo +1}')" class="font" style="text-decoration: none;">${pageVO.pageNo +1}</a></li>
-										 <li class="paginate_button previous disabled"><a href="javascript:fn_movePage('${pageVO.pageNo +2}')"  class="font" style="text-decoration: none;">${pageVO.pageNo +2}</a></li>
-										 <li class="paginate_button previous disabled"><a href="javascript:fn_movePage('${pageVO.pageNo +3}')" class="font" style="text-decoration: none;">${pageVO.pageNo +3}</a></li>
-										 <li class="paginate_button previous disabled"><a href="javascript:fn_movePage('${pageVO.pageNo +4}')" class="font" style="text-decoration: none;">${pageVO.pageNo +4}</a></li>
-										 <li class="paginate_button previous disabled"><a href="javascript:fn_movePage('${pageVO.nextPageNo }')" style="text-decoration: none;">다음</a></li>
-										 <li class="paginate_button previous disabled"><a href="javascript:fn_movePage('${pageVO.finalPageNo }')" style="text-decoration: none;">마지막</a></li>
-									 
-									 
-									 </c:otherwise>
-								 </c:choose>
-								 
-								 
-								 </ul>
-								
+									<div class="dataTables_paginate paging_simple_numbers" id="datatables-example_paginate">
+											<ul class="pagination">
+													<c:choose>
+															<c:when test="${pageVO.pageNo != 0}">
+															        <c:if test="${pageVO.pageNo > pageVO.pageBlock}">
+															            <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.firstPageNo})" style="text-decoration: none;">처음으로</a></li>
+															       	</c:if>
+																	<c:if test="${pageVO.pageNo != 1}">
+																	    <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.prevPageNo})" style="text-decoration: none;"> < </a></li>
+																	</c:if>
+																			<c:forEach var="i" begin="${pageVO.startPageNo}" end="${pageVO.endPageNo}" step="1">
+																			      	<c:choose>
+																			         		<c:when test="${i eq pageVO.pageNo}">
+																					             <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${i})" style="text-decoration: none;">
+																					               <font style="font-weight: bold;">${i}</font>
+																					               </a>
+																					              </li>
+																			                </c:when>
+																			               
+																			                <c:otherwise>
+																			                	<li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${i})" style="text-decoration: none;">${i}</a></li>
+																						     </c:otherwise>
+															          				</c:choose>
+														 					</c:forEach>
+																	<c:if test="${pageVO.pageNo != pageVO.finalPageNo }">
+																			             <li class="paginate_button previous disabled"><li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.nextPageNo})" style="text-decoration: none;"> > </a></li>
+																	</c:if>
+																	<c:if test="${pageVO.endPageNo lt pageVO.finalPageNo }">
+																	 		<li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.finalPageNo})" style="text-decoration: none;">마지막</a></li>
+																	</c:if>
+															</c:when>
+												</c:choose>									
+															</ul>
+											</div>
+									</div>
 								</div>
-							 
-							</div>
-							</div>
 						</div>
                       </div>
                   </div>
