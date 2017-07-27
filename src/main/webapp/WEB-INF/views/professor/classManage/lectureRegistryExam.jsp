@@ -19,9 +19,7 @@ $(function() {
   });
 });
 </script>
-<div class="col-md-2" id="commonLeftSide">
-	<%@include file="../common/classManageLectureSideCategory.jsp"%>
-</div>
+<%@include file="../common/classManageLectureSideCategory.jsp"%>
 
 <div class="col-md-10">
 	<div class="panel panel-default">

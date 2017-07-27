@@ -1,17 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<div class="col-md-2" id="commonLeftSide">
-	<%@include file="../common/classManageLectureSideCategory.jsp"%>
-</div>
+<%@include file="../common/classManageLectureSideCategory.jsp"%>
 
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading"
 		style="background-color: #666666; margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
-			과제상세페이지</h4>
+			시험문제등록</h4>
 		</div>
 		<div class="panel-body">
 			<form>
@@ -21,9 +18,11 @@
 					</c:when>
 				<c:otherwise>
 					<c:forEach items="${eqList }" var="eqInfo" varStatus="status">
-						<div class="examQn">
-							<input type="hidden" name="eq_num" disabled="disabled" value="${eqInfo.getEq_num() }"/><br/>
-								${eqInfo.getEq_qtna() }.${eqInfo.getEq_qtn() }(배점:${eqInfo.getEq_score()}점)<br/>
+						<div class="examQn" style="font-size:20px">
+							<div style="border:2px solid lightgrey;width:100%">
+							<input type="hidden" name="eq_num" disabled="disabled" value="${eqInfo.getEq_num() }"/>
+								<b>문제${eqInfo.getEq_qtna() }</b>.${eqInfo.getEq_qtn() }(배점:${eqInfo.getEq_score()}점)<br/>
+							</div>
 							<c:choose>
 								<c:when test="${eqInfo.getEq_qtn_type() eq 1 }">
 									① ${eqInfo.getEq_exmp_one()}<br/>
@@ -41,8 +40,8 @@
 				</c:otherwise>
 				</c:choose>
 			</form>
-			<button id="ExamEqRegistryBtn">시험등록/수정</button>
-			<button onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureExam'">뒤로가기</button>
+			<button id="ExamEqRegistryBtn" class="btn btn-outline btn-primary">시험등록/수정</button>
+			<button onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureExam'" class="btn btn-outline btn-primary">뒤로가기</button>
 		</div>
 	</div>
 </div>

@@ -253,10 +253,6 @@ public class ProfessorClassManageController {
 		examVO.setExam_num(lctVO.getLct_yr() + "" + lctVO.getLct_qtr());
 		examVO.setExam_lct((String)request.getSession().getAttribute("lct_num"));
 		
-		System.out.println(examVO.getExam_date() + "\n" + examVO.getExam_end_date()+
-							"\n" + examVO.getExam_lct() + "\n" + examVO.getExam_num() + "\n" +examVO.getExam_start_date() + 
-							"\n" + examVO.getExam_type());
-		
 		int result = -1;
 		
 		try {
@@ -596,14 +592,17 @@ public class ProfessorClassManageController {
 	public String professorLectureRegistryAsgn(HttpServletRequest request, Model model){
 		String view = "professor/classManage/lectureRegistryAsgn";
 		LctVO lctVO = null;
+		Map<String, String> lctNm = null;
 		try {
 			lctVO = pcmService.selectLctYearQtr((String)request.getSession().getAttribute("lct_num"));
+			lctNm = pcmService.selectLctNmInfo((String)request.getSession().getAttribute("lct_num"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		if(lctVO != null){
+		if(lctVO != null && lctNm != null){
 			model.addAttribute("lctVO", lctVO);
+			model.addAttribute("lctNm", lctNm);
 		}
 		
 		return view;
