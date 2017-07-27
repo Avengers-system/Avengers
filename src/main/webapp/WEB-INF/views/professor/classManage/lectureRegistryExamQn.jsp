@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 $(function(){
 	$(document).on("click", "#addExamBtn", function(){	
@@ -12,25 +11,25 @@ $(function(){
 		if($('#select').val() == 1){
 			qn1 = "<div class='examQn'>"+
 					"<input type='hidden' class='eq_num' name='eq_num"+count+"' value='-1'/>"+
-					"<input type='text' class='eq_qtna' name='eq_qtna"+count+"' readonly value='"+count+"'/>."+
+					"<input type='text' class='eq_qtna' name='eq_qtna"+count+"' readonly value='"+count+"'/><b style='font-size:15px'>.</b>"+
 					"<input type='text' class='eq_qtn' name='eq_qtn"+count+"' value=''/>"+
-					"배점<input type='text' name='eq_score"+count+"' class='eq_score' style='width:50px'/>"+
+					"<input type='text' placeholder='score' name='eq_score"+count+"' class='eq_score' style='width:50px'/>"+
 					"<br/>"+
-					"①<input type='text' class='eq_exmp_one' name='eq_exmp_one"+count+"' value=''/><br/>"+
-					"②<input type='text' class='eq_exmp_two' name='eq_exmp_two"+count+"' value=''/><br/>"+
-					"③<input type='text' class='eq_exmp_three' name='eq_exmp_three"+count+"' value=''/><br/>"+
-					"④<input type='text' class='eq_exmp_four' name='eq_exmp_four"+count+"' value=''/><br/>"+
+					"<b style='font-size:32px;'>①</b><input type='text' class='eq_exmp_one' name='eq_exmp_one"+count+"' value=''/><br/>"+
+					"<b style='font-size:32px;'>②</b><input type='text' class='eq_exmp_two' name='eq_exmp_two"+count+"' value=''/><br/>"+
+					"<b style='font-size:32px;'>③</b><input type='text' class='eq_exmp_three' name='eq_exmp_three"+count+"' value=''/><br/>"+
+					"<b style='font-size:32px;'>④</b><input type='text' class='eq_exmp_four' name='eq_exmp_four"+count+"' value=''/><br/>"+
 					"<input type='hidden' class='eq_qtn_type' name='eq_qtn_type"+count+"' value='1'/>"+
-					"답:<input type='text' class='eq_ans' name='eq_ans"+count+"' value=''/><input type='button' id='removeExamBtn' value='삭제'/><br/><br/>"+
+					"<b style='font-size:32px;'>답</b><input type='text' class='eq_ans' name='eq_ans"+count+"' value=''/><input type='button' id='removeExamBtn' class='btn btn-outline btn-primary' value='삭제'/><br/><br/>"+
 					"</div> ";
 		} else{
 			qn1 = "<div class='examQn'>"+
 				"<input type='hidden' class='eq_num' name='eq_num"+count+"' value='-1'/>"+
 				"<input type='text' class='eq_qtna' name='eq_qtna"+count+"' readonly value='"+count+"'/>."+
 				"<input type='text' class='eq_qtn' name='eq_qtn"+count+"' value=''/>"+
-				"배점<input type='text' name='eq_score"+count+"' class='eq_score' style='width:50px'/>"+
+				"<input type='text' placeholder='점수' name='eq_score"+count+"' class='eq_score' style='width:50px'/>"+
 				"<input type='hidden' class='eq_qtn_type' name='eq_qtn_type"+count+"' value='2'/><br/>"+
-				"주관식문항은 문제만 입력가능합니다.<input type='button' id='removeExamBtn' value='삭제'/><br/><br/>"+
+				"<b style='font-size:20px;'>주관식문항은 문제만 입력가능합니다.</b><input type='button' id='removeExamBtn' class='btn btn-outline btn-primary' value='삭제'/><br/><br/>"+
 				"</div> ";
 		}
 		if(count == 1){
@@ -109,16 +108,18 @@ $(function(){
  		text-align:center;
  	}
  	.eq_qtn{
- 		width:483px;
+ 		width:600px;
  	}
 	
  	.eq_exmp_one, .eq_exmp_two, .eq_exmp_three, .eq_exmp_four{
- 		width:500px;
+ 		width:600px;
+ 	}
+ 	
+ 	#removeExamBtn{
+ 		margin-left:15px
  	}
 </style>
-<div class="col-md-2" id="commonLeftSide">
-	<%@include file="../common/classManageLectureSideCategory.jsp"%>
-</div>
+<%@include file="../common/classManageLectureSideCategory.jsp"%>
 
 <div class="col-md-10">
 	<div class="panel panel-default">
@@ -127,39 +128,43 @@ $(function(){
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">시험등록 및 수정</h4>
 		</div>
 		<div class="panel-body">
-			<select id="select" style="height:20px">
-				<option value="1">객관식</option>
-				<option value="2">주관식</option>
-			</select>
-			<button id="addExamBtn">추가</button>
+			<div>
+				<select id="select" style="height:40px">
+					<option value="1">객관식</option>
+					<option value="2">주관식</option>
+				</select>
+				<button id="addExamBtn" class="btn btn-outline btn-primary" style="margin-bottom:4px">추가</button>
+			</div>
 			<form name="examRegistry">
 				<c:choose>
 					<c:when test="${eqList eq null }">
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${eqList }" var="eqInfo" varStatus="status">
-							<div class="examQn">
-								문제고유번호 : <input type="hidden" class="eq_num" name="eq_num${status.count}" value="${eqInfo.getEq_num() }" /><br/>
-								<input type="text" class="eq_qtna" readonly name="eq_qtna${status.count}" value="${eqInfo.getEq_qtna() }"/>.<input type="text" readonly class="eq_qtn" name="eq_qtn${status.count}" value="${eqInfo.getEq_qtn() }"/>배점<input type="text" name="eq_score${status.count }" class="eq_score" value="${eqInfo.getEq_score()}" style="width:100px"/><br/>
-								<input type="hidden" class="eq_qtn_type" name="eq_qtn_type${status.count}" value="${eqInfo.getEq_qtn_type() }"/>
-								<c:choose>
-									<c:when test="${eqInfo.getEq_qtn_type() eq 1 }">
-										①<input type="text" class="eq_exmp_one" name="eq_exmp_one${status.count}" value="${eqInfo.getEq_exmp_one() }"/><br/>
-										②<input type="text" class="eq_exmp_two" name="eq_exmp_two${status.count}" value="${eqInfo.getEq_exmp_two() }"/><br/>
-										③<input type="text" class="eq_exmp_three" name="eq_exmp_three${status.count}" value="${eqInfo.getEq_exmp_three() }"/><br/>
-										④<input type="text" class="eq_exmp_four" name="eq_exmp_four${status.count}" value="${eqInfo.getEq_exmp_four() }"/><br/>
-										답:<input type="text" class="eq_ans" name="eq_ans${status.count}" value="${eqInfo.getEq_ans() }"/><input type="button" id="removeExamBtn" value="삭제"/><br/><br/>
-									</c:when>
-									<c:otherwise>
-										주관식문항은 문제만 입력이 가능합니다.<input type="button" id="removeExamBtn" value="삭제"/><br/><br/>
-									</c:otherwise>
-								</c:choose>
-							</div>
-						</c:forEach>
+						<div>
+							<c:forEach items="${eqList }" var="eqInfo" varStatus="status">
+								<div class="examQn">
+									문제고유번호 : <input type="hidden" class="eq_num" name="eq_num${status.count}" value="${eqInfo.getEq_num() }" /><br/>
+									<input type="text" class="eq_qtna" readonly name="eq_qtna${status.count}" value="${eqInfo.getEq_qtna() }"/>.<input type="text" readonly class="eq_qtn" name="eq_qtn${status.count}" value="${eqInfo.getEq_qtn() }"/><input type="text" placeholder="점수" name="eq_score${status.count }" class="eq_score" value="${eqInfo.getEq_score()}" style="width:100px"/><br/>
+									<input type="hidden" class="eq_qtn_type" name="eq_qtn_type${status.count}" value="${eqInfo.getEq_qtn_type() }"/>
+									<c:choose>
+										<c:when test="${eqInfo.getEq_qtn_type() eq 1 }">
+											①<input type="text" class="eq_exmp_one" name="eq_exmp_one${status.count}" value="${eqInfo.getEq_exmp_one() }"/><br/>
+											②<input type="text" class="eq_exmp_two" name="eq_exmp_two${status.count}" value="${eqInfo.getEq_exmp_two() }"/><br/>
+											③<input type="text" class="eq_exmp_three" name="eq_exmp_three${status.count}" value="${eqInfo.getEq_exmp_three() }"/><br/>
+											④<input type="text" class="eq_exmp_four" name="eq_exmp_four${status.count}" value="${eqInfo.getEq_exmp_four() }"/><br/>
+											답:<input type="text" class="eq_ans" name="eq_ans${status.count}" value="${eqInfo.getEq_ans() }"/><input type="button" id="removeExamBtn" value="삭제"/><br/><br/>
+										</c:when>
+										<c:otherwise>
+											주관식문항은 문제만 입력이 가능합니다.<input type="button" id="removeExamBtn" class="btn btn-outline btn-primary" value="삭제"/><br/><br/>
+										</c:otherwise>
+									</c:choose>
+								</div>
+							</c:forEach>
+						</div>
 					</c:otherwise>
 				</c:choose>
-				<input type="button" id="examRegistryBtn" value="등록"/>
-				<input type="button" value="뒤로가기" onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureExamQn?exam_num=${exam_num}&division=1'"/>
+				<input type="button" id="examRegistryBtn" value="등록" class="btn btn-outline btn-primary"/>
+				<input type="button" value="뒤로가기" onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureExamQn?exam_num=${exam_num}&division=1'" class="btn btn-outline btn-primary"/>
 	<!-- 		status의 마지막값을 파라미터로 넘겨서 확인?? -->
 			</form>
 		</div>

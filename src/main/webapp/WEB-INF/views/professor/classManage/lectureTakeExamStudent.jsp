@@ -12,14 +12,12 @@
 	}
 	//TE테이블에서 점수가져와가지고 채점을 한 학생들은 점수 써주고 채점 아직 안한 학생들은 미채점이라고 써주자
 </script>
-<div class="col-md-2" id="commonLeftSide">
-	<%@include file="../common/classManageLectureSideCategory.jsp"%>
-</div>
+<%@include file="../common/classManageLectureSideCategory.jsp"%>
 
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #666666; margin-top: 10px;">
-			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">과제상세페이지</h4>
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">학생시험조회</h4>
 		</div>
 		<div class="panel-body">
 	<!-- 만약에 응시자가 존재하지 않는 경우가 있나?? -->
