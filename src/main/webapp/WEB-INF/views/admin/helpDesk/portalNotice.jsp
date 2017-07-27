@@ -150,7 +150,7 @@
 														<td><a
 															href="${pageContext.request.contextPath}/admin/portalDetail?board_num=${portalNoticeList.board_num}&board_count=${portalNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 																${portalNoticeList.board_title} </a></td>
-														<td>${portalNoticeList.board_date}</td>
+														<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${portalNoticeList.board_date}" /></td>
 														<td>${portalNoticeList.board_writer}</td>
 														<td>${portalNoticeList.board_af}</td>
 														<td>${portalNoticeList.board_bc}</td>
@@ -160,14 +160,6 @@
 											</c:forEach>
 								</table>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-5">
-								<div class="dataTables_info" id="datatables-example_info"
-									role="status" aria-live="polite">Showing 1 to 57 of 57
-									entries</div>
-							</div>
-
 						</div>
 						<!-- 페이징처리 -->
 						<div class="dataTables_paginate paging_simple_numbers"

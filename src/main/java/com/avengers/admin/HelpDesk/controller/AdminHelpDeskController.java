@@ -248,7 +248,7 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		}
 		session.setAttribute("message", message);
 
-		return "redirect:/student/univSchd/univSchdedule";
+		return "redirect:/admin/univSchd/univSchdedule";
 	}
 	/**
 	 * 일정 삭제★★★★★★★★★★★★★
@@ -313,7 +313,7 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 			e.printStackTrace();
 		}
 		session.setAttribute("message", message);
-		return "redirect:/student/univSchd/univSchdedule";
+		return "redirect:/admin/univSchd/univSchdedule";
 	}
 
 
@@ -578,7 +578,9 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("insertBoard",boardVo);
+//		model.addAttribute("insertBoard",boardVo);
+		model.addAttribute("insertBoard",new BoardVO());
+		model.addAttribute("resultUrl","portalWrite");
 
 		return "admin/helpDesk/portalWrite";
 	}
