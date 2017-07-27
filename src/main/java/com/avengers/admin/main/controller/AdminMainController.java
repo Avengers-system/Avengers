@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
+
 import com.avengers.admin.main.service.AdminMainService;
 import com.avengers.db.dto.AdminVO;
 import com.avengers.db.dto.LoaVO;
@@ -48,7 +49,7 @@ public class AdminMainController {
 	   List<HashMap<String, String>> selectLeaveDeptList = null;//학과당 휴학생의 수 가져오기
 	   List<HashMap<String, String>> getDropOffDeptList = null;//학과당 자퇴학생의 수 가져오기
 	   List<HashMap<String, String>> getReinstatementDeptList = null;//복학한 학생의 수와 학과명
-	   String adminMainDateContent = null;
+	   ArrayList<String> adminMainDateContent = null;
 	   
 	   
 	   try {

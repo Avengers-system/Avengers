@@ -55,9 +55,7 @@ public class PagePDFView extends AbstractPdfView{
 			table.addCell(tlList.get("4"+(i+1)));
 			table.addCell(tlList.get("5"+(i+1)));
 			table.addCell(tlList.get("6"+(i+1)));
-		}
-			
-	
+		}	
 		document.add(table);
 		
 	}

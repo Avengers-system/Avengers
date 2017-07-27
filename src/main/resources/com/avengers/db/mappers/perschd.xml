@@ -20,34 +20,35 @@
    </select>
 
 
-   <select id="selectPerschdList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
-   
-      SELECT
-         PERSCHD_NUM,
-         PERSCHD_TITLE,
-         PERSCHD_CONT,
-         TO_CHAR(PERSCHD_DATE,'YYYY-MM-DD'),
-         PERSCHD_START_DATE,
-         PERSCHD_END_DATE,
-         PERSCHD_WRITER
-      FROM PERSCHD
-      WHERE PERSCHD_WRITER = #{perschd_writer}
-   </select>
-   
-   
-   <select id="selectSchdTitle" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
-      SELECT
-         PERSCHD_TITLE,
-         PERSCHD_CONT,
-         TO_CHAR(PERSCHD_DATE,'YYYY-MM-DD HH24:MI:SS'),
-         PERSCHD_START_DATE,
-         PERSCHD_END_DATE,
-         PERSCHD_WRITER
-      FROM PERSCHD
-      WHERE PERSCHD_NUM = #{perschd_num}
-   
-   
-   </select>
+	<select id="selectPerschdList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
+	
+		SELECT
+			PERSCHD_NUM,
+			PERSCHD_TITLE,
+			PERSCHD_CONT,
+			TO_CHAR(PERSCHD_DATE,'YYYY-MM-DD'),
+			TO_CHAR(PERSCHD_START_DATE,'YYYY-MM-DD') as PERSCHD_START_DATE ,
+			TO_CHAR(PERSCHD_END_DATE,'YYYY-MM-DD') as PERSCHD_END_DATE ,
+			PERSCHD_WRITER
+		FROM PERSCHD
+		WHERE PERSCHD_WRITER = #{perschd_writer}
+	</select>
+	
+	
+	<select id="selectSchdTitle" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">
+		SELECT
+			PERSCHD_NUM,
+			PERSCHD_TITLE,
+			PERSCHD_CONT,
+			TO_CHAR(PERSCHD_DATE,'YYYY-MM-DD'),
+			TO_CHAR(PERSCHD_START_DATE,'YYYY-MM-DD') as PERSCHD_START_DATE ,
+			TO_CHAR(PERSCHD_END_DATE,'YYYY-MM-DD') as PERSCHD_END_DATE ,
+			PERSCHD_WRITER
+		FROM PERSCHD
+		WHERE PERSCHD_TITLE = #{perschd_title}
+	
+	
+	</select>
 
 
 
