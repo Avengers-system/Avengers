@@ -197,7 +197,7 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 	 */
 	@RequestMapping("/univSchd/univScheduleDetail")
 	@ResponseBody
-	public PerschdVO univSchedule(String perschd_title,
+	public PerschdVO univSchedule(String perschd_num,
 			HttpSession session
 			, Model model){
 		String message="";
@@ -205,7 +205,7 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 
 		PerschdVO univschd = new PerschdVO();
 		if (univschd != null) {
-			univschd = myPageService.selectPerschd_title(perschd_title);
+			univschd = myPageService.selectPerschd_title(perschd_num);
 			message="해당날짜에 등록된 일정이 없습니다";
 			session.setAttribute("message", message);
 		}
@@ -248,7 +248,7 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		}
 		session.setAttribute("message", message);
 
-		return "redirect:/student/univSchd/univSchdedule";
+		return "redirect:/admin/univSchd/univSchdedule";
 	}
 	/**
 	 * 일정 삭제★★★★★★★★★★★★★
@@ -313,7 +313,7 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 			e.printStackTrace();
 		}
 		session.setAttribute("message", message);
-		return "redirect:/student/univSchd/univSchdedule";
+		return "redirect:/admin/univSchd/univSchdedule";
 	}
 
 
@@ -578,7 +578,9 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("insertBoard",boardVo);
+//		model.addAttribute("insertBoard",boardVo);
+		model.addAttribute("insertBoard",new BoardVO());
+		model.addAttribute("resultUrl","portalWrite");
 
 		return "admin/helpDesk/portalWrite";
 	}

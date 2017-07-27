@@ -10,7 +10,7 @@
 
 <c:choose>
       <c:when test="${not empty qnaNoticeList}">
-      <form name="updateQnaBoard" action="qnaUpdate">
+      <form name="updateQnaBoard" action="qnaStudUpdate">
          
           숫자:<input type="text" name="board_num" value="${qnaNoticeList.board_num}" readonly><br>
           제목:<input type="text" name="board_title" value="${qnaNoticeList.board_title}"><br>
@@ -19,7 +19,7 @@
           게시판분류고유번호:<input type="text" name="board_bc" value="${qnaNoticeList.board_bc}" readonly><br>
          
         <input type="submit" value="수정"> 
-		<a href="qnaDelete?board_num=${qnaNoticeList.board_num}"><input type="button" value="삭제"></a>
+		<a href="qnaStudDelete?board_num=${qnaNoticeList.board_num}"><input type="button" value="삭제"></a>
       </form>      
          
          

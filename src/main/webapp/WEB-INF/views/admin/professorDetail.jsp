@@ -52,7 +52,16 @@
 
 		<div class="col-md-12" id="prof_inform">
 				<div class="col-md-5">
-					 <input type="hidden" name="prfs_num" value="${professor.prfs_num }">
+					 
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">교수번호</label>
+							<div class="col-sm-8">
+								<input type="hidden" class="form-control"  value="${professor.prfs_num }"  name="prfs_num">
+								<input type="text" class="form-control"  value="${professor.prfs_num }" disabled="disabled" >
+							</div>
+						</div>
+				</div>
 				<div class="col-md-12">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">이름</label>
@@ -75,7 +84,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<select style="width:387px;" name="prfs_dept" class="selectpicker show-tick">
+								<select style="width:334px;" name="prfs_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
 									<option value="DEPT2">컴퓨터공학과</option> 
 									<option value="DEPT3">영어영문학과</option> 
@@ -125,9 +134,9 @@
 								<input type="text" class="form-control" name="prfs_act_num" value="${professor.prfs_act_num }" >
 							</div>
 						</div>
-				</div>	 
-					 
-					</div>
+				</div>	
+				
+				</div>
 
 
 

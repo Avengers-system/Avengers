@@ -126,6 +126,7 @@ ol, ul {
                      if(i>0) out.print(",");
                      PerschdVO perschdVO = perschdList.get(i);%>
            { 
+        	   number :'<%=perschdVO.getPerschd_num()%>',
               title: '<%=perschdVO.getPerschd_title()%>',
                start:'<%=perschdVO.getPerschd_start_date()%>',
                end:'<%=perschdVO.getPerschd_end_date()%>',

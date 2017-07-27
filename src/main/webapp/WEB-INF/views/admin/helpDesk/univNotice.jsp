@@ -144,7 +144,7 @@
 												<td><a
 													href="${pageContext.request.contextPath}/admin/univDetail?board_num=${univNoticeList.board_num}&board_count=${univNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 														${univNoticeList.board_title} </a></td>
-												<td>${univNoticeList.board_date}</td>
+												<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${univNoticeList.board_date}" /></td>
 												<td>${univNoticeList.board_writer}</td>
 												<td>${univNoticeList.board_af}</td>
 												<td>${univNoticeList.board_bc}</td>
@@ -154,14 +154,6 @@
 									</c:forEach>
 						</table>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-5">
-						<div class="dataTables_info" id="datatables-example_info"
-							role="status" aria-live="polite">Showing 1 to 57 of 57
-							entries</div>
-					</div>
-
 				</div>
 				<!-- 페이징처리 -->
 				<div class="dataTables_paginate paging_simple_numbers"

@@ -193,7 +193,7 @@ public class AdminMypageController {
 					end_date = sdf.format(date2);
 		    
 					perschdVO.setPerschd_start_date(start_date);
-					perschdVO.setPerschd_start_date(end_date);
+					perschdVO.setPerschd_end_date(end_date);
 					perschdList2.add(perschdVO);
 		    }
 			if(perschdList != null){
@@ -219,18 +219,17 @@ public class AdminMypageController {
 	@RequestMapping("/myScheduleDetail")
 	@ResponseBody   //없으면 viewresolver로 빠짐 json필요할때 사용할것 
 	public PerschdVO myScheduleDetails(
-			
-			String perschd_title,
+			String perschd_num,
 			HttpSession session
 			,Model model
 			){
-		System.out.println("?!?!?!?!?!?!:::::::"+perschd_title);
+		System.out.println("?!?!?!?!?!?!:::::::"+perschd_num);
 		String message="";
 		
 		PerschdVO perschd = new PerschdVO();
 			System.out.println(perschd.getPerschd_date());
 		if(perschd != null){
-					perschd = myPageService.selectPerschd_title(perschd_title);
+					perschd = myPageService.selectPerschd_title(perschd_num);
 					message="해당날짜에 등록된 일정이 없습니다.";
 					session.setAttribute("message", message);
 				
@@ -255,6 +254,7 @@ public class AdminMypageController {
 			@RequestParam("PERSCHD_END_DATE")String perschd_end_date,
 			@RequestParam("PERSCHD_TITLE")String perschd_title,
 			@RequestParam("PERSCHD_CONT")String perschd_cont
+			
 			){
 		
 		String message="일정등록을 실패하였습니다.";

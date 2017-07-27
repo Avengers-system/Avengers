@@ -81,28 +81,20 @@ public class AdminStudentManageController {
 	
 	
 	
-	
-	
-	
-	
-	
 	@RequestMapping(value = "/updateStudent")
 	public String updateStudent(
 				CommandStudVO commandStudVO,
 				HttpServletRequest request,
-//				@RequestParam("stud_pic")MultipartFile stud_pic,
+				@RequestParam("stud_pic")MultipartFile stud_pic,
 				HttpSession session
 				){
-//		commandStudVO.setStud_pic(stud_pic);
+		commandStudVO.setStud_pic(stud_pic);
 		StudVO studVO = commandStudVO.toStudVO();
 		String path = request.getSession().getServletContext().getRealPath("resources/admin_student_images");
-		String filename= studVO.getStud_pic();
 		
-		System.out.println("filename : "+filename);
-		System.out.println("studVO number : "+ studVO.getStud_num());
-		System.out.println(studVO.toString());
 		
-		if (!studVO.getStud_pic().isEmpty()) {
+		System.out.println("수정 "+studVO.toString());
+		
 			File file = new File(path, studVO.getStud_pic());
  
 			try {
@@ -113,9 +105,7 @@ public class AdminStudentManageController {
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			}
-			
-			
-		}
+		
 		
 		try {
 			int result = adminStudentManageService.updateStud(studVO);
@@ -141,11 +131,14 @@ public class AdminStudentManageController {
 	 */
 	@RequestMapping(value = "/insertStudent")
 	public String insertStudent(CommandStudVO commandStudVO, 
+			@RequestParam("stud_max_crd") String stud_max_crd,
 			HttpSession session,
 			HttpServletRequest request){
 		
-		System.out.println("학생등록중?????????");
+		
 		StudVO studVO =  commandStudVO.toStudVO();
+		studVO.setStud_max_crd(stud_max_crd);
+		System.out.println("담긴거 : "+studVO.toString());
 		
 		
 		// 깃 경로 (동일)
@@ -276,7 +269,7 @@ public class AdminStudentManageController {
 		try {
 			scrApplVO.setScrappl_yr(scr_year);
 			scrApplVO.setScrappl_qtr(scr_qtr);
-			scrApplVO.setScrappl_appr_check("1");
+			scrApplVO.setScrappl_appr_check("3");
 			List<HashMap<String,String>> selectScrList =stuResService.selectScrApplList(scrApplVO);
 			scrApplVO.setScrappl_yr(scrCancel_year);
 			scrApplVO.setScrappl_qtr(scrCancel_qtr);
@@ -284,7 +277,7 @@ public class AdminStudentManageController {
 			List<HashMap<String,String>> selectCancelList =stuResService.selectScrApplList(scrApplVO);
 			scrApplVO.setScrappl_yr(scrappl_year);
 			scrApplVO.setScrappl_qtr(scrappl_qtr);
-			scrApplVO.setScrappl_appr_check("3");
+			scrApplVO.setScrappl_appr_check("1");
 			List<HashMap<String,String>> selectScrApplList =  stuResService.selectScrApplList(scrApplVO);
 			model.addAttribute("scrList", selectScrList);
 			model.addAttribute("scrApplList", selectScrApplList);
@@ -316,6 +309,8 @@ public class AdminStudentManageController {
 			,@RequestParam(value="scrappl_num",required=false)String scrappl_num
 			,@RequestParam(value="scrappl_appr_check",required=false)String scrappl_appr_check
 			){
+		System.out.println(scrappl_num);
+		System.out.println(scrappl_appr_check);
 		ScrapplVO scrapplVO = new ScrapplVO();
 		scrapplVO.setScrappl_num(scrappl_num);
 		scrapplVO.setScrappl_appr_check(scrappl_appr_check);

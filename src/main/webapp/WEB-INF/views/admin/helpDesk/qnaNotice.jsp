@@ -147,6 +147,7 @@
 																		href="${pageContext.request.contextPath}/admin/qnaDetail?board_num=${qnaNoticeList.board_num}&board_count=${qnaNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 																			${qnaNoticeList.board_title} </a></td>
 																	<td>${qnaNoticeList.board_date}</td>
+																	<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${qnaNoticeList.board_date}" /></td>
 																	<td>${qnaNoticeList.board_writer}</td>
 																	<td>${qnaNoticeList.board_bc}</td>
 																	<td>${qnaNoticeList.board_count}</td>
@@ -155,14 +156,6 @@
 														</c:forEach>
 											</table>
 										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-5">
-											<div class="dataTables_info" id="datatables-example_info"
-												role="status" aria-live="polite">Showing 1 to 57 of 57
-												entries</div>
-										</div>
-
 									</div>
 									<!-- 페이징처리 -->
 									<div class="dataTables_paginate paging_simple_numbers"
@@ -253,13 +246,3 @@
 
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-

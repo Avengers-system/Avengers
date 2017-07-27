@@ -194,7 +194,7 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 
 
 <!-- 학생 로그인시 보여주는 화면 -->
-<sec:authorize access="hasAnyRole('ROLE_STUD')">
+<sec:authorize access="hasAnyRole('ROLE_STUD','ROLE_WSS')">
 
 <nav class="navbar navbar-default header bg-white "	style="height: 100px; margin: 0;">
 		<div class="col-md-12 nav-wrapper">

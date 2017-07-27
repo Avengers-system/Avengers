@@ -47,14 +47,25 @@ $(function() {
  
 });
 </script>
- 
-
-  
 <style>
 
-/*    input.form-control{ */
-/*    width:35%; */
-/*    } */
+
+.form-control {
+    display: block;
+    width: 334px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+
+
+
+	.col-sm-4{
+	padding-top: 5px;
+	}
    
     .table-bordered>thead>tr>th {
    text-align: center;
@@ -70,8 +81,6 @@ $(function() {
     height: 150px;
     width: 130px;
    }
-
- 
    
    fieldset {
     min-width: 0;
@@ -120,16 +129,10 @@ $(function() {
       width : 165px;
       height: 220px;
    }
-
- .control-label{
-/*  width : 100px; */
- }
-
-
+ 
 
 .input-group .form-control:last-child, .input-group-addon:last-child {
     border-top-left-radius: 0;
-    width: 300px;
     border-bottom-left-radius: 0;
 }
 
