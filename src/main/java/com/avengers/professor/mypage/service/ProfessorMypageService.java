@@ -8,7 +8,7 @@ import com.avengers.db.dto.PrfsVO;
 
 public interface ProfessorMypageService {
 	public PrfsVO selectPrfs(String prfs_num)throws SQLException; //로그인한 교수의 정보를가져온다.
-	public int updatePrfs(PrfsVO prfsVO,String prfs_num)throws SQLException;//교수 정보수정
+	public int updatePrfs(PrfsVO prfsVO)throws SQLException;//교수 정보수정
 	
 	public ArrayList<PerschdVO> selectPerschdList(String perschd_writer)throws SQLException;//일정 전체목록 읽어오기
 	public PerschdVO selectPerschd(int perschd_num)throws SQLException;//일정 선택 읽어오기

@@ -81,28 +81,20 @@ public class AdminStudentManageController {
 	
 	
 	
-	
-	
-	
-	
-	
 	@RequestMapping(value = "/updateStudent")
 	public String updateStudent(
 				CommandStudVO commandStudVO,
 				HttpServletRequest request,
-//				@RequestParam("stud_pic")MultipartFile stud_pic,
+				@RequestParam("stud_pic")MultipartFile stud_pic,
 				HttpSession session
 				){
-//		commandStudVO.setStud_pic(stud_pic);
+		commandStudVO.setStud_pic(stud_pic);
 		StudVO studVO = commandStudVO.toStudVO();
 		String path = request.getSession().getServletContext().getRealPath("resources/admin_student_images");
-		String filename= studVO.getStud_pic();
 		
-		System.out.println("filename : "+filename);
-		System.out.println("studVO number : "+ studVO.getStud_num());
-		System.out.println(studVO.toString());
 		
-		if (!studVO.getStud_pic().isEmpty()) {
+		System.out.println("수정 "+studVO.toString());
+		
 			File file = new File(path, studVO.getStud_pic());
  
 			try {
@@ -113,9 +105,7 @@ public class AdminStudentManageController {
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			}
-			
-			
-		}
+		
 		
 		try {
 			int result = adminStudentManageService.updateStud(studVO);
@@ -141,11 +131,14 @@ public class AdminStudentManageController {
 	 */
 	@RequestMapping(value = "/insertStudent")
 	public String insertStudent(CommandStudVO commandStudVO, 
+			@RequestParam("stud_max_crd") String stud_max_crd,
 			HttpSession session,
 			HttpServletRequest request){
 		
-		System.out.println("학생등록중?????????");
+		
 		StudVO studVO =  commandStudVO.toStudVO();
+		studVO.setStud_max_crd(stud_max_crd);
+		System.out.println("담긴거 : "+studVO.toString());
 		
 		
 		// 깃 경로 (동일)
