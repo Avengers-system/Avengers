@@ -169,11 +169,12 @@
 									            <option value="stud_dept">학과</option>
 									        </select>
 						
-						                       <input id="searchI" name="searchValue" type="search" style="margin-bottom:7px;" class="form-control input-sm" aria-controls="datatables-example"> 
+						                       <input type="search" id="searchI" name="searchValue" style="margin-bottom:7px;" class="form-control input-sm" aria-controls="datatables-example"> 
 						                       <button  id ="searchStud" style="margin-bottom:7px;" class="btn btn-primary" onclick="fn_search();">검색</button>
 						                       <!-- 검색버튼  -->
 						                       <!-- 추가버튼  -->
-						                                 <button id ="addStud" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/insertStudent'">학생추가하기</button>
+						                       
+						                       <button id ="addStud" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/studentInsert'">학생추가하기</button>
 				                       </div>
 				               </div>
 		                  </div>
@@ -219,80 +220,81 @@
                       
                       <tbody>
                       <c:choose>
-                      	<c:when test="${!empty studentList}">
-                      	<c:forEach var="student" items="${studentList}">
-		                      <tr role="row" class="odd">
-		                          <td class="sorting_1">${student.stud_num }</td>
-		                          <td ><a href="${pageContext.request.contextPath}/admin/studentDetail?stud_num=${student.stud_num}">${student.stud_nm}</a></td>
-		                          <td >${student.stud_schreg_code }</td>
-		                          <td >${student.stud_dept }</td>
-		                          <td >${student.stud_grd }</td>
-		                          <td >${student.stud_qtr }</td>
-		                          
-		                          <c:choose>
-										<c:when test="${student.stud_gen == '2'}">
-												<td>여자</td>
-										</c:when>
-										<c:otherwise>
-												<td>남자</td>
-										</c:otherwise>
-								 </c:choose>
-								 
-		                          	<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${student.stud_bir}" /></td>
-										<td>${student.stud_hp }</td>
-										<td>${student.stud_regno}</td>
-										<td>${student.stud_zip}</td>
-										<td>${student.stud_addr}</td>
-		                     </tr>
-						</c:forEach>
-                      	</c:when>
+		                      	<c:when test="${!empty studentList}">
+		                      	<c:forEach var="student" items="${studentList}">
+				                      <tr role="row" class="odd">
+				                          <td class="sorting_1">${student.stud_num }</td>
+				                          <td ><a href="${pageContext.request.contextPath}/admin/studentDetail?stud_num=${student.stud_num}">${student.stud_nm}</a></td>
+				                          <td >${student.stud_schreg_code }</td>
+				                          <td >${student.stud_dept }</td>
+				                          <td >${student.stud_grd }</td>
+				                          <td >${student.stud_qtr }</td>
+				                          
+				                          <c:choose>
+												<c:when test="${student.stud_gen == '2'}">
+														<td>여자</td>
+												</c:when>
+												<c:otherwise>
+														<td>남자</td>
+												</c:otherwise>
+										 </c:choose>
+										 
+				                          	<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${student.stud_bir}" /></td>
+												<td>${student.stud_hp }</td>
+												<td>${student.stud_regno}</td>
+												<td>${student.stud_zip}</td>
+												<td>${student.stud_addr}</td>
+				                     </tr>
+								</c:forEach>
+		                      	</c:when>
                       	
-                      	
-                      	<c:otherwise>
-                      	조회 내용이 없습니다.
-                      	</c:otherwise>
+		                      	<c:otherwise>
+		                      	조회 내용이 없습니다.
+		                      	</c:otherwise>
                       </c:choose>
                       </tbody>
                         </table>
 						</div>
 						</div>
 
-<!-- 						<div class="row"> -->
-<!-- 							<div class="col-md-6 col-md-offset-3"> -->
-<!-- 									<div class="dataTables_paginate paging_simple_numbers" id="datatables-example_paginate"> -->
-<!-- 											<ul class="pagination"> -->
-<%-- 												<c:if test="${pageVO.pageNo != 0}"> --%>
-<%-- 												        <c:if test="${pageVO.pageNo > pageVO.pageBlock}"> --%>
-<%-- 												            <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.firstPageNo})" style="text-decoration: none;">처음으로</a></li> --%>
-<%-- 												       </c:if> --%>
-<%-- 														<c:if test="${pageVO.pageNo != 1}"> --%>
-<%-- 														    <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.prevPageNo})" style="text-decoration: none;">이전</a></li> --%>
-<%-- 														</c:if> --%>
-<%-- 															<c:forEach var="i" begin="${pageVO.startPageNo}" end="${pageVO.endPageNo}" step="1"> --%>
-<%-- 																      <c:choose> --%>
-<%-- 																             <c:when test="${i eq pageVO.pageNo}"> --%>
-<%-- 																             <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${i})" style="text-decoration: none;"> --%>
-<%-- 																               <font style="font-weight: bold;">${i}</font> --%>
-<!-- 																               </a> -->
-<!-- 																              </li> -->
-<%-- 																              </c:when> --%>
-																              
-<%-- 																              <c:otherwise> --%>
-<%-- 																                	<li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${i})" style="text-decoration: none;">${i}</a></li> --%>
-<%-- 																			   </c:otherwise> --%>
-<%-- 															          </c:choose> --%>
-<%-- 														 </c:forEach> --%>
-<%-- 																		<c:if test="${pageVO.pageNo != pageVO.finalPageNo }"> --%>
-<%-- 																			             <li class="paginate_button previous disabled"><li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.nextPageNo})" style="text-decoration: none;">다음</a></li> --%>
-<%-- 																			        </c:if> --%>
-<%-- 																			        <c:if test="${pageVO.endPageNo < pageVO.finalPageNo }"> --%>
-<%-- 																			             <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.finalPageNo})" style="text-decoration: none;">마지막</a></li> --%>
-<%-- 																			        </c:if> --%>
-<%-- 																		</c:if>											 --%>
-<!-- 															</ul> -->
-<!-- 											</div> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
+						<div class="row">
+							<div class="col-md-6 col-md-offset-3">
+									<div class="dataTables_paginate paging_simple_numbers" id="datatables-example_paginate">
+											<ul class="pagination">
+													<c:choose>
+															<c:when test="${pageVO.pageNo != 0}">
+															        <c:if test="${pageVO.pageNo > pageVO.pageBlock}">
+															            <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.firstPageNo})" style="text-decoration: none;">처음으로</a></li>
+															       	</c:if>
+																	<c:if test="${pageVO.pageNo != 1}">
+																	    <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.prevPageNo})" style="text-decoration: none;"> < </a></li>
+																	</c:if>
+																			<c:forEach var="i" begin="${pageVO.startPageNo}" end="${pageVO.endPageNo}" step="1">
+																			      	<c:choose>
+																			         		<c:when test="${i eq pageVO.pageNo}">
+																					             <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${i})" style="text-decoration: none;">
+																					               <font style="font-weight: bold;">${i}</font>
+																					               </a>
+																					              </li>
+																			                </c:when>
+																			               
+																			                <c:otherwise>
+																			                	<li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${i})" style="text-decoration: none;">${i}</a></li>
+																						     </c:otherwise>
+															          				</c:choose>
+														 					</c:forEach>
+																	<c:if test="${pageVO.pageNo != pageVO.finalPageNo }">
+																			             <li class="paginate_button previous disabled"><li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.nextPageNo})" style="text-decoration: none;"> > </a></li>
+																	</c:if>
+																	<c:if test="${pageVO.endPageNo lt pageVO.finalPageNo }">
+																	 		<li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.finalPageNo})" style="text-decoration: none;">마지막</a></li>
+																	</c:if>
+															</c:when>
+												</c:choose>									
+															</ul>
+											</div>
+									</div>
+								</div>
 								</div>
 		                      </div>
 		                  </div>
