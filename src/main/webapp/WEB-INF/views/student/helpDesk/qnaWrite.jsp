@@ -10,7 +10,7 @@
 <h1>Q&A 답변하기</h1>
 
 
-<form name="insertqnaBoard" action="qnaWrite">
+<form name="insertqnaBoard" action="qnaStudWrite">
 
 	게시판번호    :<input type="text" name="board_num" readonly value="${insertBoard.board_num}"><br>
 	제목    :<input type="text" name="board_title"><br>
