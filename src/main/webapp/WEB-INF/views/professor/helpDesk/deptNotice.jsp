@@ -45,7 +45,8 @@
 					<div class="row">
 
 						<form
-							action="<%=request.getContextPath()%>/professor/helpDesk/deptProfSearch?board_title=${deptSearch.board_title}">
+							action="<%=request.getContextPath()%>/professor/helpDesk/deptProfSearch?board_title=
+							${deptSearch.board_title}">
 
 							<div
 								style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">

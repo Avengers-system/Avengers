@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper
-	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
-	
-	
-	<select id="getStudentMainSchoolNotice" resultType="com.avengers.db.dto.BoardVO">
-		select * from board where board_bc = 'UNIV' ORDER BY BOARD_NUM DESC
-	</select>
-	<select id="getStudentMainDepartment" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
-		select * from board where board_bc = #{stud_dept} ORDER BY BOARD_NUM DESC
-	</select>
-	
-	<select id="getStudentMainPotalNotice" resultType="com.avengers.db.dto.BoardVO">
-		select * from board where board_bc = 'PORTAL' ORDER BY BOARD_NUM DESC
-	</select>
-	
-	
-	
-	
-	<select id="getFAQListCount" parameterType="com.avengers.db.dto.BoardVO" resultType="int">
+   
+   
+   <select id="getStudentMainSchoolNotice" resultType="com.avengers.db.dto.BoardVO">
+      select * from board where board_bc = 'UNIV' ORDER BY BOARD_NUM DESC
+   </select>
+   <select id="getStudentMainDepartment" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
+      select * from board where board_bc = #{stud_dept} ORDER BY BOARD_NUM DESC
+   </select>
+   
+   <select id="getStudentMainPotalNotice" resultType="com.avengers.db.dto.BoardVO">
+      select * from board where board_bc = 'PORTAL' ORDER BY BOARD_NUM DESC
+   </select>
+   
+   
+   
+   
+   <select id="getFAQListCount" parameterType="com.avengers.db.dto.BoardVO" resultType="int">
     SELECT COUNT(*)  FROM BOARD WHERE BOARD_BC ='FAQ'  
         <if test="searchFiled != null and searchFiled != ''">
             AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
         </if>
-	</select>
+   </select>
  
 <select id="getFAQList" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO">
     SELECT 
@@ -47,21 +47,21 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 </select>
 
 <select id="getFAQDetail" parameterType="int" resultType="com.avengers.db.dto.BoardVO">
-	select * from board where board_num=#{board_num}
+   select * from board where board_num=#{board_num}
 </select>
 
 
 <update id="updateStudentFAQ" parameterType="com.avengers.db.dto.BoardVO">
-	update board set board_title=#{board_title}, board_cont=#{board_cont}, board_af=#{board_af},board_aff=#{board_aff} where board_num=#{board_num}
+   update board set board_title=#{board_title}, board_cont=#{board_cont}, board_af=#{board_af},board_aff=#{board_aff} where board_num=#{board_num}
 </update>
 
 <delete id="deleteStudentFAQ" parameterType="com.avengers.db.dto.BoardVO">
-	delete from board where board_num=#{board_num}
+   delete from board where board_num=#{board_num}
 </delete>
 
 <insert id="writeStudentFAQ" parameterType="com.avengers.db.dto.BoardVO">
-	insert into board (board_num, board_title, board_cont, board_writer, board_date, board_af, board_bc, board_count, board_aff)
-	values ((select max(board_num) from board)+1, #{board_title}, #{board_cont}, 'admin', sysdate, #{board_af},'FAQ','0',#{board_aff}) 
+   insert into board (board_num, board_title, board_cont, board_writer, board_date, board_af, board_bc, board_count, board_aff)
+   values ((select max(board_num) from board)+1, #{board_title}, #{board_cont}, 'admin', sysdate, #{board_af},'FAQ','0',#{board_aff}) 
 </insert>
 
 
@@ -74,140 +74,132 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 
 
 
-	
-	<!-- 게시판중 포탈공지사항을 검색하는 구문  -->	
+   
+   <!-- 게시판중 포탈공지사항을 검색하는 구문  -->   
 
 
-	<select id="selectPortalNoticeList" resultType="com.avengers.db.dto.BoardVO">
-		SELECT * FROM BOARD WHERE BOARD_BC='PORTAL' 
-	</select>
-	
-	<select id="selectBoardOne" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
-		SELECT
-			   board_num
-			  ,board_title
-			  ,board_cont
-			  ,to_char(board_date,'YYYY-MM-DD HH24:MI:SS') as board_date
-			  ,board_writer
-			  ,board_af
-			  ,board_bc
-			  ,board_count 
-		 FROM board WHERE board_num=#{board_num} 
-	</select>
-<!-- 	다른 -->
-	<select id="selectSearchList" parameterType="map" 
-	resultType="com.avengers.db.dto.BoardVO">
-	SELECT * FROM BOARD 
-	WHERE  1=1
-	AND BOARD_BC =#{BOARD_BC}
-	<if test="BOARD_WRITER != null and BOARD_WRITER != ''">
-	AND BOARD_WRITER LIKE '%'||#{BOARD_WRITER}||'%'
-	</if>
-	<if test="BOARD_TITLE != null and BOARD_TITLE != ''">
-		 and BOARD_TITLE like '%' || #{BOARD_TITLE} || '%'
- 	</if>
-	ORDER BY BOARD_NUM DESC 
+   <select id="selectPortalNoticeList" resultType="com.avengers.db.dto.BoardVO">
+      SELECT * FROM BOARD WHERE BOARD_BC='PORTAL' 
+   </select>
+   
+   <select id="selectBoardOne" parameterType="java.lang.String" resultType="com.avengers.db.dto.BoardVO">
+      SELECT
+            board_num
+           ,board_title
+           ,board_cont
+           ,board_date
+           ,board_writer
+           ,board_af
+           ,board_bc
+           ,board_count 
+       FROM BOARD WHERE BOARD_num=#{BOARD_num} 
+   </select>
+<!--    다른 -->
+   <select id="selectSearchList" parameterType="map" 
+   resultType="com.avengers.db.dto.BoardVO">
+   SELECT * FROM BOARD 
+   WHERE  BOARD_TITLE LIKE '%'||#{BOARD_TITLE}||'%' 
+   AND BOARD_BC=#{BOARD_BC, jdbcType=VARCHAR} 
+   ORDER BY BOARD_NUM DESC 
 
-	</select>
-<!-- 	AND BOARD_TITLE LIKE '%'||#{BOARD_TITLE}||'%'  -->
-	
-	<select id="insertBaseData" resultType="com.avengers.db.dto.BoardVO">
-		SELECT
-			BOARD_SEQ.NEXTVAL as board_num
-			,sysdate as board_date
-		FROM dual
-	</select>
-	
-	
-	<!-- 게시판중 포탈공지사항을 입력하는 구문  -->	
-	<insert id="insertBoard" parameterType="map">
-		INSERT INTO BOARD(
-		BOARD_NUM
-		,BOARD_TITLE
-		,BOARD_CONT
-		,BOARD_WRITER
-		,BOARD_DATE
-		<if test="BOARD_AF != null">
-		,BOARD_AF
-		</if>
-		,BOARD_BC
-		,BOARD_COUNT
-		)
-		VALUES(
-		#{BOARD_NUM, jdbcType=VARCHAR}
-		,#{BOARD_TITLE, jdbcType=VARCHAR}
-		,#{BOARD_CONT, jdbcType=VARCHAR}
-		,#{BOARD_WRITER, jdbcType=VARCHAR}
-		,SYSDATE
-		<if test="BOARD_AF != null">
-		,#{BOARD_AF, jdbcType=VARCHAR}
-		</if>
-		,#{BOARD_BC, jdbcType=VARCHAR}
-		,0
-		)
+   </select>
+   
+   <select id="insertBaseData" resultType="com.avengers.db.dto.BoardVO">
+      SELECT
+         BOARD_SEQ.NEXTVAL as board_num
+         ,sysdate as board_date
+      FROM dual
+   </select>
+   
+   
+   <!-- 게시판중 포탈공지사항을 입력하는 구문  -->   
+   <insert id="insertBoard" parameterType="map">
+      INSERT INTO BOARD(
+      BOARD_NUM
+      ,BOARD_TITLE
+      ,BOARD_CONT
+      ,BOARD_WRITER
+      ,BOARD_DATE
+      <if test="BOARD_AF != null">
+      ,BOARD_AF
+      </if>
+      ,BOARD_BC
+      ,BOARD_COUNT
+      )
+      VALUES(
+      #{BOARD_NUM, jdbcType=VARCHAR}
+      ,#{BOARD_TITLE, jdbcType=VARCHAR}
+      ,#{BOARD_CONT, jdbcType=VARCHAR}
+      ,#{BOARD_WRITER, jdbcType=VARCHAR}
+      ,SYSDATE
+      <if test="BOARD_AF != null">
+      ,#{BOARD_AF, jdbcType=VARCHAR}
+      </if>
+      ,#{BOARD_BC, jdbcType=VARCHAR}
+      ,0
+      )
 
-	</insert>
-	
-	<update id="updateBoard" parameterType="map">
-	update board set BOARD_TITLE=#{BOARD_TITLE, jdbcType=VARCHAR}
-					,BOARD_CONT=#{BOARD_CONT, jdbcType=VARCHAR}
-					,BOARD_DATE=sysdate
-					,BOARD_AF=#{BOARD_AF, jdbcType=VARCHAR}
+   </insert>
+   
+   <update id="updateBoard" parameterType="map">
+   update board set BOARD_TITLE=#{BOARD_TITLE, jdbcType=VARCHAR}
+               ,BOARD_CONT=#{BOARD_CONT, jdbcType=VARCHAR}
+               ,BOARD_DATE=sysdate
+               ,BOARD_AF=#{BOARD_AF, jdbcType=VARCHAR}
                where BOARD_NUM=#{BOARD_NUM, jdbcType=VARCHAR}
-	</update>
+   </update>
 
-	<update id="deleteBoard" parameterType="int">
-	delete from Board where
-					  board_num=#{board_num}
-					 
-	</update>
-	
-	<!-- 게시판중 학교공지사항을 검색하는 구문  -->	
-	<select id="selectSchoolNoticeList" parameterType="java.lang.String" >
-		SELECT * FROM BOARD WHERE BOARD_BC='UNIV'  
-	</select>
-	
+   <update id="deleteBoard" parameterType="int">
+   delete from Board where
+                 board_num=#{board_num}
+                
+   </update>
+   
+   <!-- 게시판중 학교공지사항을 검색하는 구문  -->   
+   <select id="selectSchoolNoticeList" parameterType="java.lang.String" >
+      SELECT * FROM BOARD WHERE BOARD_BC='UNIV'  
+   </select>
+   
 
    
-	<!-- 다름 -->
-	<select id="selectBoardNoticeList" parameterType="map" resultType="com.avengers.db.dto.BoardVO">
-		 select *
-		 from board where BOARD_BC=#{BOARD_BC}
-		 <if test="searchFiled != null and searchFiled != ''">
-		 and ${searchFiled} like '%' || #{searchValue} || '%'
-		 </if>
-		 ORDER BY BOARD_NUM DESC
-	</select>
-	
-	<!-- 추가 -->
-	<select id="selectBoardCount" parameterType="map" resultType="java.lang.Integer">
-		select count(*)
-		from board
-		where 1=1
-		AND BOARD_BC LIKE '%'||#{BOARD_BC}||'%'
-	</select>
-<!-- 		<if test="board_title != null and board_title != ''"> -->
-<!-- 		 and board_title like '%' || #{board_title} || '%' -->
-<!-- 		 </if> -->
-	
-	<update id="updateBoardCount" parameterType="map">
-		update board
-		set BOARD_COUNT = #{BOARD_COUNT} + 1
-		where BOARD_NUM = #{BOARD_NUM}
-	</update>
-	
-	
-	
+   <!-- 다름 -->
+   <select id="selectBoardNoticeList" parameterType="map" resultType="com.avengers.db.dto.BoardVO">
+       select *
+       from board where BOARD_BC=#{BOARD_BC}
+       <if test="searchFiled != null and searchFiled != ''">
+       and ${searchFiled} like '%' || #{searchValue} || '%'
+       </if>
+       ORDER BY BOARD_NUM DESC
+   </select>
+   
+   <!-- 추가 -->
+   <select id="selectBoardCount" parameterType="com.avengers.db.dto.BoardVO" resultType="Integer">
+      select count(*)
+      from board
+      where BOARD_BC=#{BOARD_BC}
+      <if test="board_title != null and board_title != ''">
+       and board_title like '%' || #{board_title} || '%'
+       </if>
+   </select>
+   
+   <update id="updateBoardCount" parameterType="map">
+      update board
+      set BOARD_COUNT = #{BOARD_COUNT} + 1
+      where BOARD_NUM = #{BOARD_NUM}
+   </update>
+   
+   
+   
 
 
-	<!-- 학사일정게시판 조회 -->	
-	<select id="selectUnivschdList" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO">
-		SELECT * FROM BOARD 
-		WHERE BOARD_BC= 'UNIVSCHD' 
-		AND BOARD_TITLE LIKE #{board_title}||'%'
-		<if test="board_cont != null">
-		AND BOARD_CONT = #{board_cont}
-		</if>
-	</select>
+   <!-- 학사일정게시판 조회 -->   
+   <select id="selectUnivschdList" parameterType="com.avengers.db.dto.BoardVO" resultType="com.avengers.db.dto.BoardVO">
+      SELECT * FROM BOARD 
+      WHERE BOARD_BC= 'UNIVSCHD' 
+      AND BOARD_TITLE LIKE #{board_title}||'%'
+      <if test="board_cont != null">
+      AND BOARD_CONT = #{board_cont}
+      </if>
+   </select>
 
 </mapper>

@@ -1,9 +1,10 @@
+<%-- <%@page import="com.avengers.student.mypage.service.studentMypageService"%> --%>
 <%@page import="com.avengers.db.dto.PerschdVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@include file="../common/studHelpDeskSide.jsp"%>
+
 
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 <meta name='description'
@@ -66,8 +67,6 @@ ol, ul {
 	margin-top: 50px;
 }
 </style>
-
-
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<!--  메뉴제목 -->
@@ -84,7 +83,11 @@ ol, ul {
 	<div>
 		<div class='two-col'>
 
-			
+			<div class="col-md-3 col-md-offset-9" style="padding-left: 0px;">
+				<a href="#" class="button" data-toggle="modal"
+					data-target="#addSchedule">일정등록 </a>
+
+			</div>
 
 
 			<div id='calendar'></div>
@@ -117,7 +120,7 @@ ol, ul {
          eventLimit: false,//하루에 이벤트가 3개이상이면 more표시로 줄여주는 기능 다 보여줘야하기 때문에 false
          events: [
                   
-                  <%List<PerschdVO> perschdList = (List<PerschdVO>)request.getAttribute("univschdList");%>
+                  <%List<PerschdVO> perschdList = (List<PerschdVO>)request.getAttribute("perschdList");%>
                   <%for(int i=0; i<perschdList.size();i++){
                      if(i>0) out.print(",");
                      PerschdVO perschdVO = perschdList.get(i);%>
@@ -135,7 +138,7 @@ ol, ul {
          eventClick:function(event) {
             
             $.ajax({
-               url  : 'univScheduleDetail',
+               url  : 'studScheduleDetail',
                type : 'post',
                data : "perschd_title="+event.title,
                success : function(perschd){                  
@@ -162,9 +165,9 @@ ol, ul {
  
       
    function deleteSchd(){
-	  univForm.method="post";
-      univForm.action="univScheduleDelete";
-      univForm.submit();
+	  studForm.method="post";
+      studForm.action="studScheduleDelete";
+      studForm.submit();
    }
       
    </script>
@@ -185,7 +188,7 @@ ol, ul {
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-8 col-md-offset-2">
-							<form action="univScheduleUpdate" method="POST" name="univForm">
+							<form action="studScheduleUpdate" method="POST" name="studForm">
 
 								<ul>
 									<input id="perschd_num" type="hidden" class="form-control"
@@ -246,13 +249,14 @@ ol, ul {
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
+				<h4 class="modal-title">일정등록</h4>
 			</div>
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-8 col-md-offset-2">
 							<form
-								action="${pageContext.request.contextPath }/student/univScheduleInsert"
+								action="${pageContext.request.contextPath }/student/studScheduleInsert"
 								method="POST">
 								<ul>
 									<input type="hidden" class="form-control" name="PERSCHD_NUM">

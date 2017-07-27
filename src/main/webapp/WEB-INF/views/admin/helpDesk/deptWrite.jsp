@@ -6,6 +6,7 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../common/helpDesk_leftSide.jsp"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
 
 
@@ -61,11 +62,10 @@
 
 			<div class="form-group form-animate-text"
 				style="margin-top: 40px !important;">
-				<label>날짜 </label><br> <br> <input type="text"
-					name="board_date" class="form-text" id="validate_lastname"
-					name="validate_lastname" required
-					style="width: 324px; margin-top: 10px;"
-					value="${insertBoard.board_date}" readonly> <span
+				<label>날짜 </label><br> <br> 
+				<input type="text" name="board_date" class="form-text" id="validate_lastname" name="validate_lastname" required style="width: 324px; margin-top: 10px;"  fmt:formatDate pattern = "yyyy-MM-dd" value="${insertBoard.board_date}" readonly> 
+					
+					<span
 					class="bar"></span>
 			</div>
 			<%

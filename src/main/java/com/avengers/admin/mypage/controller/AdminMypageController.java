@@ -193,7 +193,7 @@ public class AdminMypageController {
 					end_date = sdf.format(date2);
 		    
 					perschdVO.setPerschd_start_date(start_date);
-					perschdVO.setPerschd_start_date(end_date);
+					perschdVO.setPerschd_end_date(end_date);
 					perschdList2.add(perschdVO);
 		    }
 			if(perschdList != null){
@@ -255,6 +255,7 @@ public class AdminMypageController {
 			@RequestParam("PERSCHD_END_DATE")String perschd_end_date,
 			@RequestParam("PERSCHD_TITLE")String perschd_title,
 			@RequestParam("PERSCHD_CONT")String perschd_cont
+			
 			){
 		
 		String message="일정등록을 실패하였습니다.";
