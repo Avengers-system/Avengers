@@ -15,56 +15,62 @@ import com.avengers.professor.mypage.service.ProfessorMypageService;
 public class ProfessorMypageServiceImpl implements ProfessorMypageService {
 
 	@Autowired
-	private ProfessorMypageDao proMyPageDAO;
+	private ProfessorMypageDao myPageDAO;
 	
 	public void setProMyPageDAO(ProfessorMypageDao proMyPageDAO) {
-		this.proMyPageDAO = proMyPageDAO;
+		this.myPageDAO = proMyPageDAO;
 	}
 
 	@Override
 	public PrfsVO selectPrfs(String prfs_num) throws SQLException {
 		PrfsVO profVO = null;
-		profVO= proMyPageDAO.selectPrfs(prfs_num);
+		profVO= myPageDAO.selectPrfs(prfs_num);
 		return profVO;
 	}
 
 	@Override
 	public int updatePrfs(PrfsVO prfsVO, String prfs_num) throws SQLException {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
-	public ArrayList<PerschdVO> selectPerschdList(String perschd_psc)
+	@Override // 일정불러오기
+	public ArrayList<PerschdVO> selectPerschdList(String perschd_writer)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<PerschdVO> perschdList= myPageDAO.selectPerschdList(perschd_writer);
+		return perschdList;
+	}
+
+	@Override // 세부일정보기
+	public PerschdVO selectPerschd(int perschd_num) throws SQLException {
+		PerschdVO pershcdVO = null;
+		pershcdVO = myPageDAO.selectPerschd(perschd_num);
+		return pershcdVO;
+	}
+
+	@Override // 일정등록하기
+	public int insertPerschd(PerschdVO perschdVO) throws SQLException {
+		int result = myPageDAO.insertPerschd(perschdVO);
+		return result;
+	}
+
+	@Override // 일정수정하기
+	public int updatePerschd(PerschdVO perschdVO) throws SQLException {
+		int success = -1; 
+		success = myPageDAO.updatePerschd(perschdVO);
+		return success;
+	}
+
+	@Override // 일정삭제하기
+	public int deletePerschd(int perschd_num) throws SQLException {
+		int success= -1;
+		success = myPageDAO.deletePerschd(perschd_num);
+		return success;
 	}
 
 	@Override
-	public PerschdVO selectPerschd(String perschd_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public PerschdVO selectPerschd_title(String title) {
+		return myPageDAO.selectPerschd_title(title);
 	}
 
-	@Override
-	public int insertPerschd(PerschdVO perschdVO, String perschd_psc)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updatePerschd(PerschdVO perschdVO, String perschd_num)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deletePerschd(String perschd_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }

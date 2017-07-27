@@ -90,4 +90,9 @@ public class StudentResManageServiceImpl implements StudentResManageService {
 		return stuResDAO.selectScrVO();
 	}
 
+	@Override
+	public int updateScrappl(ScrapplVO scrapplVO) throws SQLException {
+		return stuResDAO.updateScrappl(scrapplVO);
+	}
+
 }

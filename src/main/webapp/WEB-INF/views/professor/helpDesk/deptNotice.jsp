@@ -1,27 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<!-- Content -->
-<div class="col-md-2" id="commonLeftSide" style="width: 14%; text-align: center;">
-   <!-- 테스트용 사이드 -->
-<%@include file="../helpDesk/proHelpDesk_leftSide.jsp"%>
-</div>
-<div class="col-md-10" id="commonRightSide">
+<%@include file="../common/profHelpDeskSide.jsp"%>
 
 
-<!-- jQuery-->
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
-<!-- Bootstrap -->
-<script
-	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<!-- User Custom -->
-<script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
+	<div class="col-md-10">
+	<div class="panel panel-default">
+		<!--  메뉴제목 -->
+		<div class="panel-heading"
+			style="background-color: #2196F3; margin-top: 0px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 
-<script type="text/javascript">
+				학과소식</h4>
+		</div>
+		<div class="panel-body" style="height: 800px; text-align: center;">
+		
+		<script type="text/javascript">
 	//페이지 이동
 	function fn_movePage(val) {
 		jQuery("input[name=pageNo]").val(val);
@@ -46,39 +42,38 @@
 
 
 
-<div class="col-md-10" id="commonRightSide" style="margin-left: 0px; margin-right: 0px; float: left;" >
-	<div class="col-md-12">
-		<div class="panel">
-			<div class="panel-heading">
-				<h3>학과소식</h3>
-			</div>
-			<div class="panel-body">
-				<div class="responsive-table">
 					<div class="row">
 
 						<form
 							action="<%=request.getContextPath()%>/professor/helpDesk/deptProfSearch?board_title=${deptSearch.board_title}">
-							
-							<div style="text-align: right; margin-right: 28px; margin-top:13px; margin-bottom: -20px; ">
-							<a href="<%=request.getContextPath()%>/professor/helpDesk/deptProfWriteForm">글쓰기</a></div>
-							
-							<div class="col-sm-6" style="float: left; width:225px;  ">
-								<div id="datatables-example_filter" class="dataTables_filter" style="width: 20%;">
+
+							<div
+								style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
+								<a
+									href="<%=request.getContextPath()%>/professor/helpDesk/deptProfWriteForm">글쓰기</a>
+							</div>
+
+							<div class="col-sm-6" style="float: left; width: 225px;">
+								<div id="datatables-example_filter" class="dataTables_filter"
+									style="width: 20%;">
 
 									<label><input type="search"
 										class="form-control input-sm" placeholder="글 제목을 입력해주세요"
-										aria-controls="datatables-example" name="board_title" style="width:200px; text-align: center;">
-										</label>
+										aria-controls="datatables-example" name="board_title"
+										style="width: 200px; text-align: center;"> </label>
 									<!-- 검색 -->
 								</div>
-									
+
 							</div>
-										<div style="margin-bottom: -6px; margin-top: 5px;" class="dataTables_paginate paging_simple_numbers"
-							id="datatables-example_paginate" style="text-align: center;">
-									<input type="submit" value="검색" style="margin-bottom: -6px;"></div>
+							<div style="margin-bottom: -6px; margin-top: 5px;"
+								class="dataTables_paginate paging_simple_numbers"
+								id="datatables-example_paginate" style="text-align: center;">
+								<input type="submit" value="검색" style="margin-bottom: -6px;">
+							</div>
 							<div class="col-sm-6"
 								style="width: 50px; height: 0px; flaot: right;">
-								<div class="dataTables_length" id="datatables-example_length" style="margin-bottom: 0px;">
+								<div class="dataTables_length" id="datatables-example_length"
+									style="margin-bottom: 0px;">
 									</select>
 								</div>
 							</div>
@@ -102,17 +97,19 @@
 								<table id="datatables-example"
 									class="table table-striped table-bordered dataTable no-footer"
 									width="100%" cellspacing="0" role="grid"
-									aria-describedby="datatables-example_info" style="width: 100%; text-align: center;">
+									aria-describedby="datatables-example_info"
+									style="width: 100%; text-align: center;">
 									<thead>
-										<tr role="row" >
+										<tr role="row">
 											<th class="sorting_asc" tabindex="0"
 												aria-controls="datatables-example" rowspan="1" colspan="1"
 												aria-label="Name: activate to sort column descending"
-												aria-sort="ascending" style="width: 110px; text-align: center;">번호</th>
+												aria-sort="ascending"
+												style="width: 110px; text-align: center;">번호</th>
 											<th class="sorting" tabindex="0"
 												aria-controls="datatables-example" rowspan="1" colspan="1"
 												aria-label="Position: activate to sort column ascending"
-												style="width: 370px; text-align: center;" >제목</th>
+												style="width: 370px; text-align: center;">제목</th>
 											<th class="sorting" tabindex="0"
 												aria-controls="datatables-example" rowspan="1" colspan="1"
 												aria-label="Office: activate to sort column ascending"
@@ -139,15 +136,13 @@
 
 									<c:choose>
 										<c:when test="${not empty deptNoticeList}">
-											<c:forEach var="deptNoticeList"
-												items="${deptNoticeList }">
+											<c:forEach var="deptNoticeList" items="${deptNoticeList }">
 												<tbody>
 													<tr role="row" class="odd">
 														<td>${deptNoticeList.board_num}</td>
 														<td><a
 															href="${pageContext.request.contextPath}/professor/helpDesk/deptProfDetail?board_num=${deptNoticeList.board_num}&board_count=${deptNoticeList.board_count}&pageNo=${pageVO.pageNo}">
-															${deptNoticeList.board_title}
-														</a></td>
+																${deptNoticeList.board_title} </a></td>
 														<td>${deptNoticeList.board_date}</td>
 														<td>${deptNoticeList.board_writer}</td>
 														<td>${deptNoticeList.board_af}</td>
@@ -159,14 +154,7 @@
 								</table>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-sm-5">
-								<div class="dataTables_info" id="datatables-example_info"
-									role="status" aria-live="polite">Showing 1 to 57 of 57
-									entries</div>
-							</div>
 
-						</div>
 						<!-- 페이징처리 -->
 						<div class="dataTables_paginate paging_simple_numbers"
 							id="datatables-example_paginate" style="text-align: center;">
@@ -246,6 +234,14 @@
 		</div>
 	</div>
 </div>
+		
+		</div>	
+
+	</div>
+</div>
+
+
+
 
 
 

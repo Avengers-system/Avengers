@@ -17,6 +17,8 @@
 			}
 			var imgTag = "<img src='../../resources/images/check.png' class='checkImg' width='20px' style='position:absolute; left:20px'/>";
 			$(".studEq").eq(qtna-1).find($("a")).eq(ans-1).prepend(imgTag);
+			var imgTag = "<img src='../../resources/images/check.png' class='answerImg' width='20px' style='position:absolute; left:20px'/>";
+			$(".answerSheet").eq(qtna-1).find($("td")).eq(ans-1).prepend(imgTag);
 			if(index == 0){
 				qtnas[index] = qtna;
 				answers[index] = ans;
@@ -109,18 +111,20 @@
 </style>
 <!--side Category-->
 <%@include file="../common/classManageLectureSideCategory.jsp" %>
-<div class="col-md-10">
+<div class="col-md-8">
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">시험응시</h4>
 		</div>
-		<div class="panel-body" style="height: 580px; text-align: center;" >
+		<div class="panel-body">
 			<!--1.주관식 2.객관식 -->
 			<form>
 				<c:forEach items="${eqList}" var="eq1" varStatus="status">
 					<div class="studEq" style="font-size:20px">
-					${eq1.getEq_qtna() }.
-					${eq1.getEq_qtn() }(배점:${eq1.getEq_score()}점)<br/>
+					<div style="border:2px solid lightgrey;width:87.5%">
+						문제${eq1.getEq_qtna() }.
+						${eq1.getEq_qtn() }(배점:${eq1.getEq_score()}점)
+					</div>
 					<c:choose>
 						<c:when test="${eq1.getEq_qtn_type() eq 1}">
 							<a href="javascript:ans_check(${eq1.getEq_qtna() },1)">①${eq1.getEq_exmp_one() }</a><br/>
@@ -136,6 +140,45 @@
 				</c:forEach>
 			</form>
 			<button onclick="javascript:exam_submit();">제출</button>
+		</div>
+	</div>
+</div>
+<div class="col-md-2">
+	<div class="panel panel-default" style="position:fixed; width:270px; height:500px">
+		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">답안지</h4>
+		</div>
+		<div class="panel-body">
+			<table style="width: 100%;">
+				<thead>
+					<tr>
+						<th style="text-align:center">①</th>
+						<th style="text-align:center">②</th>
+						<th style="text-align:center">③</th>
+						<th style="text-align:center">④</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${eqList}" var="eq1" varStatus="status">
+						<c:choose>
+							<c:when test="${eq1.getEq_qtn_type() eq 1}">
+								<tr class="answerSheet">
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="4"></td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>
