@@ -133,7 +133,7 @@
  
 
 	<!-- 학생수정 -->
-	<update id="updateStudent" parameterType="com.avengers.db.dto.StudVO">
+	<update id="updateStudent" parameterType="map">
 	update student
 	set 
 	STUD_NM = #{stud_nm },
@@ -146,7 +146,9 @@
 	STUD_GEN= #{stud_gen jdbcType=CHAR},
 	STUD_QTR= #{stud_qtr jdbcType=CHAR},
 	STUD_SCHREG_CODE= #{stud_schreg_code jdbcType=VARCHAR},
-	STUD_PIC= #{stud_pic jdbcType=VARCHAR},
+	<if test="stud_pic != null">
+           STUD_PIC= #{stud_pic jdbcType=VARCHAR},
+    </if>
 	STUD_ACT_NUM= #{stud_act_num jdbcType=VARCHAR},
 	STUD_BANK= #{stud_bank jdbcType=VARCHAR},
 	STUD_AH= #{stud_ah jdbcType=VARCHAR},

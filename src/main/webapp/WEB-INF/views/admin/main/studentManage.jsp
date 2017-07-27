@@ -298,11 +298,13 @@
 }
 			 </style>
 
+
 <!-- 페이지 이동 스크립트 -->
+
  <script type="text/javascript">
+ 
     function fn_movePage(val){
-    	alert('누른 페이지 : '+val);
-        jQuery("input[name=pageNo]").val(val);
+    	jQuery("input[name=pageNo]").val(val);
         jQuery("form[name=frm]").attr("method", "post");
         jQuery("form[name=frm]").attr("action","").submit();
     }
@@ -376,7 +378,7 @@
                         <tr role="row">
 							<th class="sorting_asc" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="학번: activate to sort column descending" 
 							aria-sort="ascending" style="width: 100px;">학번</th>
-							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="이름: activate to sort column ascending" style="width: 150px;">이름</th>
+							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="이름: activate to sort column ascending" style="width: 100px;">이름</th>
 							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="학적상태: activate to sort column ascending" style="width: 100px;">
 							학적상태</th>
 							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="학과: activate to sort column ascending" style="width: 130px;">
@@ -385,13 +387,13 @@
 							학년</th>
 							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="학기: activate to sort column ascending" style="width: 80px;">
 							학기</th>
-							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="성별: activate to sort column ascending" style="width: 100px;">
+							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="성별: activate to sort column ascending" style="width: 80px;">
 							성별</th>
-							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="생년월일: activate to sort column ascending" style="width: 176px;">
+							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="생년월일: activate to sort column ascending" style="width: 100px;">
 							생년월일</th>
-							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="휴대폰번호: activate to sort column ascending" style="width: 176px;">
+							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="휴대폰번호: activate to sort column ascending" style="width: 150px;">
 							휴대폰번호</th>
-							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="주민등록번호: activate to sort column ascending" style="width: 176px;">
+							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="주민등록번호: activate to sort column ascending" style="width: 146px;">
 							주민등록번호</th>
 							<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="우편번호: activate to sort column ascending" style="width: 100px;">
 							우편번호</th>
@@ -446,30 +448,30 @@
 													<c:choose>
 															<c:when test="${pageVO.pageNo != 0}">
 															        <c:if test="${pageVO.pageNo > pageVO.pageBlock}">
-															            <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.firstPageNo})" style="text-decoration: none;">처음으로</a></li>
+															            <li class="paginate_button previous disabled"><a class="aaa" href="javascript:fn_movePage(${pageVO.firstPageNo})" style="text-decoration: none;">처음으로</a></li>
 															       	</c:if>
 																	<c:if test="${pageVO.pageNo != 1}">
-																	    <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.prevPageNo})" style="text-decoration: none;"> < </a></li>
+																	    <li class="paginate_button previous disabled"><a class="aaa" href="javascript:fn_movePage(${pageVO.prevPageNo})" style="text-decoration: none;"> < </a></li>
 																	</c:if>
 																			<c:forEach var="i" begin="${pageVO.startPageNo}" end="${pageVO.endPageNo}" step="1">
 																			      	<c:choose>
 																			         		<c:when test="${i eq pageVO.pageNo}">
-																					             <li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${i})" style="text-decoration: none;">
+																					             <li class="paginate_button previous disabled"><a class="aaa" href="javascript:fn_movePage(${i})" style="text-decoration: none;">
 																					               <font style="font-weight: bold;">${i}</font>
 																					               </a>
 																					              </li>
 																			                </c:when>
 																			               
 																			                <c:otherwise>
-																			                	<li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${i})" style="text-decoration: none;">${i}</a></li>
+																			                	<li class="paginate_button previous disabled"><a class="aaa"  href="javascript:fn_movePage(${i})" style="text-decoration: none;">${i}</a></li>
 																						     </c:otherwise>
 															          				</c:choose>
 														 					</c:forEach>
 																	<c:if test="${pageVO.pageNo != pageVO.finalPageNo }">
-																			             <li class="paginate_button previous disabled"><li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.nextPageNo})" style="text-decoration: none;"> > </a></li>
+																			             <li class="paginate_button previous disabled"><li class="paginate_button previous disabled"><a class="aaa" href="javascript:fn_movePage(${pageVO.nextPageNo})" style="text-decoration: none;"> > </a></li>
 																	</c:if>
 																	<c:if test="${pageVO.endPageNo lt pageVO.finalPageNo }">
-																	 		<li class="paginate_button previous disabled"><a href="javascript:fn_movePage(${pageVO.finalPageNo})" style="text-decoration: none;">마지막</a></li>
+																	 		<li class="paginate_button previous disabled"><a class="aaa" href="javascript:fn_movePage(${pageVO.finalPageNo})" style="text-decoration: none;">마지막</a></li>
 																	</c:if>
 															</c:when>
 												</c:choose>									

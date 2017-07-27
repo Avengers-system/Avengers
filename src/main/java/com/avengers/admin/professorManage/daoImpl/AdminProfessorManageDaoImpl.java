@@ -2,6 +2,7 @@ package com.avengers.admin.professorManage.daoImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,29 @@ public class AdminProfessorManageDaoImpl implements AdminProfessorManageDao {
 
 	@Override
 	public int updatePrfs(PrfsVO prfsVO) throws SQLException {
-		int result = sqlSession.update("prfs.updatePrfs", prfsVO);
+		HashMap map = new HashMap();
+		map.put("prfs_nm", prfsVO.getPrfs_nm());
+		map.put("prfs_eng_nm", prfsVO.getPrfs_eng_nm());
+		map.put("prfs_dept", prfsVO.getPrfs_dept());
+		map.put("prfs_bir", prfsVO.getPrfs_bir());
+		map.put("prfs_regno", prfsVO.getPrfs_regno());
+		map.put("prfs_gen", prfsVO.getPrfs_gen());
+		map.put("prfs_hp", prfsVO.getPrfs_hp());
+		map.put("prfs_tel", prfsVO.getPrfs_tel());
+		map.put("prfs_act_num", prfsVO.getPrfs_act_num());
+		map.put("prfs_bank", prfsVO.getPrfs_bank());
+		map.put("prfs_ah", prfsVO.getPrfs_ah());
+		map.put("prfs_zip", prfsVO.getPrfs_zip());
+		map.put("prfs_addr", prfsVO.getPrfs_addr());
+		map.put("prfs_email", prfsVO.getPrfs_email());
+		map.put("prfs_pw", prfsVO.getPrfs_pw());
+		map.put("prfs_num", prfsVO.getPrfs_num());
+		
+		if(!prfsVO.getPrfs_pic().isEmpty()){
+			map.put("prfs_pic", prfsVO.getPrfs_pic());	
+		}
+		
+		int result = sqlSession.update("prfs.updatePrfs", map);
 		System.out.println(prfsVO.getPrfs_pic());
 		return result;
 	}
