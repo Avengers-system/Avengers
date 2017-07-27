@@ -41,6 +41,9 @@
 							type="submit" value="수정"> <a
 							href="univDelete?board_num=${univNoticeList.board_num}"><input
 							type="button" value="삭제"></a>
+							
+							<a href="<%=request.getContextPath()%>/admin/main/download?fileName=${deptNoticeList.board_af}&board_num=${board_num}">다운</a>
+							
 					</form>
 
 

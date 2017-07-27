@@ -75,7 +75,6 @@ ol, ul {
                         PerschdVO perschdVO = perschdList.get(i);
                      %>
               { 
-                 number : '<%=perschdVO.getPerschd_num()%>',
                  title: '<%=perschdVO.getPerschd_title() %>',
                   start:'<%=perschdVO.getPerschd_start_date() %>',
                   end:'<%=perschdVO.getPerschd_end_date() %>',
@@ -89,11 +88,11 @@ ol, ul {
                    %> 
          ],
          eventClick:function(event) {
-            alert(event.number);
+            
             $.ajax({
                url  : 'myScheduleDetail',
                type : 'post',
-               data : "perschd_num="+event.number,
+               data : "perschd_title="+event.title,
                success : function(perschd){                  
                $('#perschd_num').val(perschd.perschd_num);
                $('#perschd_writer').val(perschd.perschd_writer);

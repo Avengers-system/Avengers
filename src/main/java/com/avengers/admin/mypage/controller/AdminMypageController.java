@@ -219,17 +219,17 @@ public class AdminMypageController {
 	@RequestMapping("/myScheduleDetail")
 	@ResponseBody   //없으면 viewresolver로 빠짐 json필요할때 사용할것 
 	public PerschdVO myScheduleDetails(
-			String perschd_num,
+			String perschd_title,
 			HttpSession session
 			,Model model
 			){
-		System.out.println("?!?!?!?!?!?!:::::::"+perschd_num);
+		System.out.println("?!?!?!?!?!?!:::::::"+perschd_title);
 		String message="";
 		
 		PerschdVO perschd = new PerschdVO();
 			System.out.println(perschd.getPerschd_date());
 		if(perschd != null){
-					perschd = myPageService.selectPerschd_title(perschd_num);
+					perschd = myPageService.selectPerschd_title(perschd_title);
 					message="해당날짜에 등록된 일정이 없습니다.";
 					session.setAttribute("message", message);
 				

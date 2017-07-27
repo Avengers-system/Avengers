@@ -166,7 +166,7 @@ public class StudentMyPageController {
 	public String studScheduleDelete(
 			
 			HttpSession session,
-			@RequestParam()String perschd_num
+			@RequestParam("perschd_num")String perschd_num
 			){
 		String url="redirect:/student/studSchd/studSchedule";
 		String message="일정삭제를 실패하였습니다.";

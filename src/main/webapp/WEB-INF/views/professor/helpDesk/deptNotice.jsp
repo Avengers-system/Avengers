@@ -144,7 +144,7 @@
 														<td><a
 															href="${pageContext.request.contextPath}/professor/helpDesk/deptProfDetail?board_num=${deptNoticeList.board_num}&board_count=${deptNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 																${deptNoticeList.board_title} </a></td>
-														<td>${deptNoticeList.board_date}</td>
+														<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${deptNoticeList.board_date}" /></td>
 														<td>${deptNoticeList.board_writer}</td>
 														<td>${deptNoticeList.board_af}</td>
 														<td>${deptNoticeList.board_bc}</td>
