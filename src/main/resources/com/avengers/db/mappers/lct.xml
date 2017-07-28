@@ -196,4 +196,31 @@
 		SET LCT_CNT_NUM=LCT_CNT_NUM+1 
 		WHERE LCT_NUM=#{tl_lct}
 	</update>
+	
+	<resultMap type="java.util.HashMap" id="allLctInfo">
+		<result javaType="java.lang.String" column="LCT_YR" property="lct_yr"/>
+		<result javaType="java.lang.String" column="LCT_QTR" property="lct_qtr"/>
+		<result javaType="java.lang.String" column="LCT_NM" property="lct_nm"/>
+		<result javaType="java.lang.String" column="SJT_CD" property="sjt_cd"/>
+		<result javaType="java.lang.String" column="SJT_ESTM_GRD" property="sjt_estm_grd"/>
+		<result javaType="java.lang.String" column="SJT_CRD" property="sjt_crd"/>
+		<result javaType="java.lang.String" column="PRFS_NM" property="prfs_nm"/>
+		<result javaType="java.lang.String" column="SJT_DEPT" property="sjt_dept"/>
+	</resultMap>
+	<!-- 강의의 모두를 가져온다 -->
+	<select id="selectAllLctList" resultMap="allLctInfo">
+		SELECT LCT_YR
+		      ,LCT_QTR
+		      ,LCT_NM
+		      ,SJT_CD
+		      ,SJT_ESTM_GRD
+		      ,SJT_CRD
+		      ,PRFS_NM
+		      ,NVL(SJT_DEPT,'모든학과') AS SJT_DEPT
+		FROM   LECTURE, PROFESSOR, SUBJECT, DEPARTMENT
+		WHERE  PRFS_NUM = LCT_PRFS
+		AND    LCT_SJT = SJT_NUM
+		AND    PRFS_DEPT = DEPT_NUM
+		ORDER BY LCT_YR DESC, LCT_QTR DESC
+	</select>
 </mapper>

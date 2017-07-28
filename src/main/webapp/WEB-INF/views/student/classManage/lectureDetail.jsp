@@ -110,8 +110,7 @@
 		    <div class="form-group">
 				<label class="control-label col-sm-1"></label>
 				<div class="col-sm-10">
-					<input type="button" class="btn btn-outline btn-primary" onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureModifyDetail'" value="수정"/>
-					<input type="button" class="btn btn-outline btn-primary" onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureMain'" value="뒤로가기"/>
+					<input type="button" class="btn btn-outline btn-primary" onclick="location.href='${pageContext.request.contextPath }/student/classManage/lectureMain'" value="뒤로가기"/>
 				</div>
 		    </div>
 			</form>
