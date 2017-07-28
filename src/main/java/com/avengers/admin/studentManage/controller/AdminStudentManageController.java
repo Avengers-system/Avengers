@@ -2,9 +2,11 @@ package com.avengers.admin.studentManage.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.Principal;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -20,12 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.avengers.admin.studentManage.service.AdminStudentManageService;
 import com.avengers.db.dto.CommandStudVO;
-import com.avengers.db.dto.PageVO;
-import com.avengers.db.dto.PrfsVO;
+import com.avengers.db.dto.LoaVO;
+import com.avengers.db.dto.RtsVO;
 import com.avengers.db.dto.ScrapplVO;
 import com.avengers.db.dto.StudVO;
 import com.avengers.student.registryScholarshipManage.serviceImpl.StudentResManageServiceImpl;
@@ -86,10 +87,12 @@ public class AdminStudentManageController {
 				CommandStudVO commandStudVO,
 				HttpServletRequest request,
 				@RequestParam("stud_pic")MultipartFile stud_pic,
+				@RequestParam("stud_max_crd")Integer stud_max_crd,
 				HttpSession session
 				){
 		commandStudVO.setStud_pic(stud_pic);
 		StudVO studVO = commandStudVO.toStudVO();
+		studVO.setStud_max_crd(stud_max_crd+"");
 		String path = request.getSession().getServletContext().getRealPath("resources/admin_student_images");
 		
 		
@@ -246,7 +249,7 @@ public class AdminStudentManageController {
 	}
 	
 	
-	//여기부터 2017.07.28 추가 - 배진
+	//여기부터 2017.07.27 추가 - 배진
 	@Autowired
 	private StudentResManageServiceImpl stuResService;
 	/**
@@ -309,8 +312,6 @@ public class AdminStudentManageController {
 			,@RequestParam(value="scrappl_num",required=false)String scrappl_num
 			,@RequestParam(value="scrappl_appr_check",required=false)String scrappl_appr_check
 			){
-		System.out.println(scrappl_num);
-		System.out.println(scrappl_appr_check);
 		ScrapplVO scrapplVO = new ScrapplVO();
 		scrapplVO.setScrappl_num(scrappl_num);
 		scrapplVO.setScrappl_appr_check(scrappl_appr_check);
@@ -326,64 +327,96 @@ public class AdminStudentManageController {
 	@RequestMapping("/studentLoaRtsList")
 	public String studentLoaRtsList(
 			Model model
-			,@RequestParam(value="scr_year",required=false)String scr_year
-			,@RequestParam(value="scr_qtr",required=false)String scr_qtr
-			,@RequestParam(value="scrappl_year",required=false)String scrappl_year
-			,@RequestParam(value="scrappl_qtr",required=false)String scrappl_qtr
-			,@RequestParam(value="scrCancel_year",required=false)String scrCancel_year
-			,@RequestParam(value="scrCancel_qtr",required=false)String scrCancel_qtr){
-		StudVO studVO = new StudVO();
-ScrapplVO scrApplVO = new ScrapplVO();
-		
+			,@RequestParam(value="untreat_year",required=false)String untreat_year
+			,@RequestParam(value="treat_year",required=false)String treat_year
+			,@RequestParam(value="cancel_year",required=false)String cancel_year
+			){
+			RtsVO rtsVO = new RtsVO();
+			LoaVO loaVO = new LoaVO();
 		try {
-			scrApplVO.setScrappl_yr(scr_year);
-			scrApplVO.setScrappl_qtr(scr_qtr);
-			scrApplVO.setScrappl_appr_check("1");
-			List<HashMap<String,String>> selectScrList =stuResService.selectScrApplList(scrApplVO);
-			scrApplVO.setScrappl_yr(scrCancel_year);
-			scrApplVO.setScrappl_qtr(scrCancel_qtr);
-			scrApplVO.setScrappl_appr_check("2");
-			List<HashMap<String,String>> selectCancelList =stuResService.selectScrApplList(scrApplVO);
-			scrApplVO.setScrappl_yr(scrappl_year);
-			scrApplVO.setScrappl_qtr(scrappl_qtr);
-			scrApplVO.setScrappl_appr_check("3");
-			List<HashMap<String,String>> selectScrApplList =  stuResService.selectScrApplList(scrApplVO);
-			model.addAttribute("scrList", selectScrList);
-			model.addAttribute("scrApplList", selectScrApplList);
-			model.addAttribute("scrCancelList", selectCancelList);
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy");
+			Date untreatYear = transFormat.parse(untreat_year);
+			Date treatYear = transFormat.parse(treat_year);
+			Date cancelYear = transFormat.parse(cancel_year);
+			
+			rtsVO.setRts_appr_check("3");
+			rtsVO.setRts_appl_date(untreatYear);
+			loaVO.setLoa_appr_check("3");
+			loaVO.setLoa_appl_date(untreatYear);
+			List<HashMap<String,String>> untreatLoaList =adminStudentManageService.selectLoaList(loaVO);
+			List<HashMap<String,String>> untreatRtsList =adminStudentManageService.selectRtsList(rtsVO);
+			
+			rtsVO.setRts_appr_check("1");
+			rtsVO.setRts_appl_date(treatYear);
+			loaVO.setLoa_appr_check("1");
+			loaVO.setLoa_appl_date(treatYear);
+			List<HashMap<String,String>> treatLoaList =adminStudentManageService.selectLoaList(loaVO);
+			List<HashMap<String,String>> treatRtsList =adminStudentManageService.selectRtsList(rtsVO);
+			
+			
+			rtsVO.setRts_appr_check("2");
+			rtsVO.setRts_appl_date(cancelYear);
+			loaVO.setLoa_appr_check("2");
+			loaVO.setLoa_appl_date(cancelYear);
+			List<HashMap<String,String>> cancelLoaList =adminStudentManageService.selectLoaList(loaVO);
+			List<HashMap<String,String>> cancelRtsList =adminStudentManageService.selectRtsList(rtsVO);
+			
+			model.addAttribute("untreatLoaList", untreatLoaList);
+			model.addAttribute("treatLoaList", treatLoaList);
+			model.addAttribute("cancelLoaList", cancelLoaList);
+			
+			model.addAttribute("untreatRtsList", untreatRtsList);
+			model.addAttribute("treatRtsList", treatRtsList);
+			model.addAttribute("cancelRtsList", cancelRtsList);
 			
 			GregorianCalendar today = new GregorianCalendar ( );
 			int today_year = today.get ( today.YEAR );	
 			ArrayList<String> yearList = new ArrayList<String>();
-			int IntegerEntrance_year = 2016;
-			try {
-				IntegerEntrance_year = Integer.parseInt(selectScrList.get(0).get("min_yr"));
-			} catch (Exception e) {
-				
-			}
+			int IntegerEntrance_year = 2010;
+			
 			for (int i = IntegerEntrance_year; i < today_year+1 ; i++) {
 				yearList.add(Integer.toString(i));
 			}
 			model.addAttribute("yearList",yearList);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
 		return "admin/studentManage/studentLoaRtsList";
 	}
 	
 	
-	@RequestMapping(value="/studentUpdateLoaRtsList",method=RequestMethod.POST)
-	public String studentUpdateLoaRtsList(
-			@RequestParam("stud_num") String stud_num,
-			Model model){
-		StudVO studVO = new StudVO();
+	@RequestMapping(value="/studentUpdateLoaList",method=RequestMethod.POST)
+	public String studentUpdateLoaList(
+			Model model
+			,@RequestParam(value="loa_num",required=false)String loa_num
+			,@RequestParam(value="loa_appr_check",required=false)String loa_appr_check
+			){
+		LoaVO loaVO = new LoaVO();
+		loaVO.setLoa_num(loa_num);
+		loaVO.setLoa_appr_check(loa_appr_check);
 		try {
-			studVO = adminStudentManageService.selectStud(stud_num);
+			adminStudentManageService.updateLoaList(loaVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
-		model.addAttribute("student",studVO);
+		}	
+		return "redirect:studentLoaRtsList";
+	}
+	@RequestMapping(value="/studentUpdateRtsList",method=RequestMethod.POST)
+	public String studentUpdateRtsList(
+			Model model
+			,@RequestParam(value="rts_num",required=false)String rts_num
+			,@RequestParam(value="rts_appr_check",required=false)String rts_appr_check
+			){
+		RtsVO rtsVO = new RtsVO();
+		rtsVO.setRts_num(rts_num);
+		rtsVO.setRts_appr_check(rts_appr_check);
+		try {
+			adminStudentManageService.updateRtsList(rtsVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
 		return "redirect:studentLoaRtsList";
 	}
 	

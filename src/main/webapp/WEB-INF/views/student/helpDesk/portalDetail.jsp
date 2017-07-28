@@ -17,7 +17,11 @@
           제목:<input type="text" name="board_title" value="${portalNoticeList.board_title}"><br>
           내용:<input type="text" name="board_cont" value="${portalNoticeList.board_cont}"><br>
           작성자:<input type="text" name="board_writer" value="${portalNoticeList.board_writer}" readonly><br>
-          첨부된파일:<input type="text" name="board_af" value="${portalNoticeList.board_af}"><br>
+          
+            첨부파일다운:<a href="<%=request.getContextPath()%>/student/helpDesk/main/download?fileName=${portalNoticeList.board_af}&board_num=${board_num}" style="text-decoration: underline;">
+					${portalNoticeList.board_af}
+					</a><br>
+
           <sec:authorize access="hasRole('ROLE_WSS')">
           첨부할파일:<input type="file" name="boardtoa" value="${portalNoticeList.board_af}"><br></sec:authorize>
           게시판분류고유번호:<input type="text" name="board_bc" value="${portalNoticeList.board_bc}" readonly><br>

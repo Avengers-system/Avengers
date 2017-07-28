@@ -22,7 +22,7 @@
 				<c:when test="${not empty faqNoticeList}">
 					<form name="updatefaqBoard" action="faqUpdate">
 
-						숫자:<input type="text" name="board_num"
+						번호:<input type="text" name="board_num"
 							value="${faqNoticeList.board_num}" readonly><br> 제목:<input
 							type="text" name="board_title"
 							value="${faqNoticeList.board_title}"><br> 내용:<input

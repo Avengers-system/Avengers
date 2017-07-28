@@ -128,9 +128,11 @@ public class AdminMainDaoImpl implements AdminMainDao {
 		getReinstatementDeptList = (List<HashMap<String, String>>)sqlSession.selectList("department.getReinstatementDeptList");
 		return getReinstatementDeptList;
 	}
+	
+	 
 	@Override
-	public String selectSchedule(String admin_id) throws SQLException {
-		return (String) sqlSession.selectOne("perschd.adminSchedule",admin_id);
+	public ArrayList<String> selectSchedule(String admin_id) throws SQLException {
+		return (ArrayList<String>) sqlSession.selectList("perschd.adminSchedule",admin_id);
 	}
 
 }

@@ -13,7 +13,9 @@ import org.springframework.stereotype.Repository;
 
 import com.avengers.admin.studentManage.dao.AdminStudentManageDao;
 import com.avengers.db.dto.BoardVO;
+import com.avengers.db.dto.LoaVO;
 import com.avengers.db.dto.PrfsVO;
+import com.avengers.db.dto.RtsVO;
 import com.avengers.db.dto.StudVO;
 @Repository
 public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
@@ -46,7 +48,6 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 
 	@Override
 	public int updateStud(StudVO studVO) throws SQLException {
-		
 		HashMap map = new HashMap();
 		map.put("stud_nm", studVO.getStud_nm());
 		map.put("stud_eng_nm", studVO.getStud_eng_nm());
@@ -58,7 +59,6 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 		map.put("stud_gen", studVO.getStud_gen());	
 		map.put("stud_qtr", studVO.getStud_qtr());	
 		map.put("stud_schreg_code", studVO.getStud_schreg_code());	
-
 		map.put("stud_act_num", studVO.getStud_act_num());
 		map.put("stud_bank", studVO.getStud_bank());
 		map.put("stud_ah", studVO.getStud_ah());	
@@ -71,6 +71,7 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 		map.put("stud_guad_rel", studVO.getStud_guad_rel());
 		map.put("stud_guad_hp", studVO.getStud_hp());
 		map.put("stud_num", studVO.getStud_num());
+		map.put("stud_max_crd", studVO.getStud_max_crd());
 		
 		if(!studVO.getStud_pic().isEmpty()){
 			map.put("stud_pic", studVO.getStud_pic());	
@@ -127,6 +128,42 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 	public ArrayList<StudVO> getEmpList(StudVO studVO) throws SQLException {
 		ArrayList<StudVO> studList = (ArrayList<StudVO>) sqlSession.selectList("admin.getStudEmpList",studVO);
 		return studList;
+	}
+	/**
+	 *  2017.07.27일자 추가 -배진 
+	 */
+	@Override
+	public List<HashMap<String, String>> selectLoaList(LoaVO loaVO)
+			throws SQLException {
+		List<HashMap<String, String>> selectLoaList = (List<HashMap<String, String>>) sqlSession.selectList("loa.selectLoaList",loaVO);
+		return selectLoaList;
+	}
+	/**
+	 *  2017.07.27일자 추가 -배진 
+	 */
+	@Override
+	public List<HashMap<String, String>> selectRtsList(RtsVO rtsVO)
+			throws SQLException {
+		List<HashMap<String, String>> selectRtsList = (List<HashMap<String, String>>) sqlSession.selectList("rts.selectRtsList",rtsVO);
+		return selectRtsList;
+	}
+	/**
+	 *  2017.07.27일자 추가 -배진 
+	 */
+	@Override
+	public int updateLoaList(LoaVO loaVO)
+			throws SQLException {
+		int updateLoaList = (int) sqlSession.update("loa.updateLoa",loaVO);
+		return updateLoaList;
+	}
+	/**
+	 *  2017.07.27일자 추가 -배진 
+	 */
+	@Override
+	public int updateRtsList(RtsVO rtsVO)
+			throws SQLException {
+		int updateRtsList = (int) sqlSession.update("rts.updateRts",rtsVO);
+		return updateRtsList;
 	}
 
 }

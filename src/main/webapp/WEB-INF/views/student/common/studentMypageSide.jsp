@@ -7,7 +7,7 @@
 		<div style="height: 40px; background-color: #2196F3; color: #fff; border-radius: 5px; font-size: 15px; text-align: center; padding-top: 8px; margin-top: 10px;">
 			개인정보</div>
 	</a>
-	<a href="${pageContext.request.contextPath}/student/mypage/mySchedule">
+	<a href="${pageContext.request.contextPath}/student/mypage/studSchd/studSchedule">
 		<div style="height: 40px; background-color: #2196F3; color: #fff; border-radius: 5px; font-size: 15px; text-align: center; padding-top: 8px; margin-top: 10px;">
 			개인일정관리
 		</div>

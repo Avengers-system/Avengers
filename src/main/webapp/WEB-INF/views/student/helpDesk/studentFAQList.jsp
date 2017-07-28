@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@include file="../common/studHelpDeskSide.jsp"%>
 <div class="col-md-10">
 	<div class="panel panel-default">
@@ -50,7 +51,7 @@
 								<td><a
 									href="${pageContext.request.contextPath}/student/helpDesk/studentFAQDetail?pageNo=${pageVO.pageNo}&board_num=${resutList.board_num}">${resutList.board_title}</a></td>
 								<td>${resutList.board_writer}</td>
-								<td>${resutList.board_date}</td>
+								<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${resutList.board_date}" /></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -58,11 +59,7 @@
 			</div>
 
 			<div id="page">
-				<div class="col-sm-5">
-					<div class="dataTables_info" id="datatables-example_info"
-						role="status" aria-live="polite">Showing 1 to 10 of 57
-						entries</div>
-				</div>
+				
 				<ul class="pagination">
 					<c:if test="${pageVO.pageNo != 0}">
 
@@ -112,14 +109,11 @@
 		</div>
 	</form>
 
-	<sec:authorize access="hasRole('ROLE_WSS')">
 		<form
 			action="${pageContext.request.contextPath}/student/helpDesk/studentFAQWritePage"
 			method="post">
 			<input type="hidden" name="pageNo" value="${pageVO.pageNo}">
-			<input type="submit" value="글쓰기">
 		</form>
-	</sec:authorize>
 
 
 </div>

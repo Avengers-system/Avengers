@@ -4,17 +4,20 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="perschd">
 
-	<select id="studentSchedule" parameterType="java.lang.String" resultType="java.lang.String">
-		select PERSCHD_CONT from perschd where perschd_writer = #{stud_num} and perschd_date like sysdate
-	</select>
-	
-	<select id="adminSchedule" parameterType="java.lang.String" resultType="java.lang.String">
-		select PERSCHD_CONT from perschd where perschd_writer = #{admin_id} and perschd_date like sysdate
-	</select>
-	
-	<select id="professorSchedule" parameterType="java.lang.String" resultType="java.lang.String">
-		select PERSCHD_CONT from perschd where perschd_writer = #{prfs_num} and perschd_date like sysdate
-	</select>
+   <select id="studentSchedule" parameterType="java.lang.String" resultType="java.lang.String">
+      select PERSCHD_CONT from perschd where perschd_writer = #{stud_num} and perschd_date like sysdate
+      and perschd_num = (select max(perschd_num) from perschd where perschd_writer = #{stud_num} and perschd_date like sysdate)
+   </select>
+   
+   <select id="adminSchedule" parameterType="java.lang.String" resultType="java.lang.String">
+     select PERSCHD_CONT from perschd where perschd_writer = #{admin_id} and perschd_date like sysdate 
+     and perschd_num = (select max(perschd_num) from perschd where perschd_writer = #{admin_id} and perschd_date like sysdate)
+   </select>
+   
+   <select id="professorSchedule" parameterType="java.lang.String" resultType="java.lang.String">
+      select PERSCHD_CONT from perschd where perschd_writer = #{prfs_num} and perschd_date like sysdate
+      and perschd_num = (select max(perschd_num) from perschd where perschd_writer = #{prfs_num} and perschd_date like sysdate)
+   </select>
 
 
 	<select id="selectPerschdList" parameterType="java.lang.String" resultType="com.avengers.db.dto.PerschdVO">

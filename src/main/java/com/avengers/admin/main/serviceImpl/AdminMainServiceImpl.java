@@ -134,7 +134,7 @@ public class AdminMainServiceImpl implements AdminMainService {
 	}
 
 	@Override
-	public String selectSchedule(String admin_id) throws SQLException {
+	public ArrayList<String> selectSchedule(String admin_id) throws SQLException {
 		return mainDAO.selectSchedule(admin_id);
 	}
 

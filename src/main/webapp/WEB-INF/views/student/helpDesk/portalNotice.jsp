@@ -49,15 +49,7 @@
 								<div class="row">
 
 									<form
-										action="<%=request.getContextPath()%>/student/helpDesk/portalStudSearch?board_title=${portalSearch.board_title}">
-										<sec:authorize access="hasRole('ROLE_WSS')">
-
-											<div
-												style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
-												<a
-													href="<%=request.getContextPath()%>/student/helpDesk/portalStudWriteForm">글쓰기</a>
-											</div>
-										</sec:authorize>
+										action="<%=request.getContextPath()%>/student/helpDesk/portalStudSearch">
 										<div class="col-sm-6" style="float: left; width: 225px;">
 											<div id="datatables-example_filter" class="dataTables_filter"
 												style="width: 20%;">
@@ -159,7 +151,7 @@
 																	<td><a
 																		href="${pageContext.request.contextPath}/student/helpDesk/portalStudDetail?board_num=${portalNoticeList.board_num}&board_count=${portalNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 																			${portalNoticeList.board_title} </a></td>
-																	<td>${portalNoticeList.board_date}</td>
+																	<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${portalNoticeList.board_date}" /></td>
 																	<td>${portalNoticeList.board_writer}</td>
 																	<td>${portalNoticeList.board_af}</td>
 																	<td>${portalNoticeList.board_bc}</td>
