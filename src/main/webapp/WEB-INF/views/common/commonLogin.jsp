@@ -99,7 +99,13 @@
 
 
 <div class="container">
-        <form class="form-signin" action="<c:url value='/loginForm'/>"	method="post">
+        <input type="hidden" id="rsaPublicKeyModulus" value="${publicKeyModulus}" />
+        <input type="hidden" id="rsaPublicKeyExponent" value="${publicKeyExponent}" />
+        <form id="securedLoginForm" name="securedLoginForm" action="<c:url value='/test'/>" method="post" style="display: none;">
+            <input type="hidden" name="securedUsername" id="securedUsername" value="" />
+            <input type="hidden" name="securedPassword" id="securedPassword" value="" />
+        </form>
+         <div class="form-signin">
           <div class="panel periodic-login">
               <span class="atomic-number">&copy;Avengers</span>
               <div class="panel-body text-center">
@@ -109,25 +115,23 @@
 
                   <i class="icons icon-arrow-down"></i>
                   <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                    <input type="text" class="form-text" required name="id">
+                    <input type="text" class="form-text" required id="username">
                     <span class="bar"></span>
                     <label>Username</label>
                   </div>
                   <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                    <input type="password" class="form-text" required name="pwd">
+                    <input type="password" class="form-text" required id="password">
                     <span class="bar"></span>
                     <label>Password</label>
                   </div>
-     
-                  <input type="submit" class="btn col-md-12" value="SignIn"/>
+     			  <button onclick="validateEncryptedForm(); return false;" class="btn col-md-12">SignIn</button>
               </div>
                 <div class="text-center" style="padding:5px;">
                     <a href="#" data-toggle="modal" data-target="#findId">Forgot Username </a>
                     <a href="a" data-toggle="modal" data-target="#findPwd">| Password</a>
                 </div>
           </div>
-        </form>
-
+		</div>
       </div>
 
 

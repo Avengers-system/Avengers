@@ -183,7 +183,6 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/mypage/myInfo">My Page</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/classManage/classMain">수업관리</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/studentManage/departmentList">학생관리</a></li>
-					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/counsel/counselList">상담</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/helpDesk/univSchd/univSchdedule">Help Desk</a></li>
 				</ul>
 			</div>
@@ -238,7 +237,7 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 					<li role="presentation"><a href="${pageContext.request.contextPath}/student/classManage/classMain">수업</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/student/admissionApplication">수강신청</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/student/studRes">등록&장학</a></li>
-					<li role="presentation"><a href="${pageContext.request.contextPath}/student/counsel/counselList">상담</a></li>
+
 					<li role="presentation"><a href="${pageContext.request.contextPath}/student/helpDesk/univSchd/univSchdedule">Help Desk</a></li>
 				</ul>
 			</div>
