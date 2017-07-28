@@ -26,7 +26,17 @@ public class PrfsVO extends PageVO{
 	private String prfs_tel;// 전화번호
 	private String prfs_hp;// 휴대폰번호
 	private String prfs_dept;// 학과번호
+	//enabled추가용
+	private String enabled;
 	
+
+	public String getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
 
 	public String getPrfs_num() {
 		return prfs_num;

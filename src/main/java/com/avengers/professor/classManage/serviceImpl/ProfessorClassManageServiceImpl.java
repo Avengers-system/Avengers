@@ -224,4 +224,11 @@ public class ProfessorClassManageServiceImpl implements ProfessorClassManageServ
 		int result = proClassDAO.updateAsgn(asgnVO);
 		return result;
 	}
+
+	@Override
+	public Map<String, String> selectLctNmInfo(String lct_num)
+			throws SQLException {
+		Map<String, String> lctNmInfo = proClassDAO.selectLctNmInfo(lct_num);
+		return lctNmInfo;
+	}
 }

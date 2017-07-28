@@ -27,7 +27,18 @@
          </tr>
       </c:forEach> 
    --> 
-
+   <resultMap type="java.util.HashMap" id="lctNmInfo">
+   		<result javaType="java.lang.String" column="LCT_NM" property="lct_nm"/>
+   		<result javaType="java.lang.String" column="LCT_NM_CLASS" property="lct_nm_class"/>
+   </resultMap>	
+   
+   <select id="selectLctNmInfo" parameterType="java.lang.String" resultMap="lctNmInfo">
+   		SELECT REGEXP_REPLACE(LCT_NM,'.{1}$') AS LCT_NM
+			   ,SUBSTR(LCT_NM,-1) AS LCT_NM_CLASS
+		FROM   LECTURE
+		WHERE  LCT_NUM = #{lct_num}
+   </select>
+	
   <resultMap id="MainLct" type="java.util.HashMap">
         <result javaType="java.lang.String" column="LCT_NUM" property="lct_num"/>
         <result javaType="java.lang.String" column="LR_NUM" property="lr_num"/>

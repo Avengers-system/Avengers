@@ -17,4 +17,11 @@ public interface AdminProfessorManageService {
 	public int insertSecurity(PrfsVO prfsVO2); //시큐리티 추가
 	public int getEmpListCount(PrfsVO prfsVO)throws SQLException;
 	public List<PrfsVO> getEmpList(PrfsVO prfsVO)throws SQLException;
+	
+	/**
+	 * 교수vo의 enabled변경
+	 * @param prfs_num
+	 * @throws SQLException
+	 */
+	public void updatePrfsEnabled(String prfs_num)throws SQLException;
 }

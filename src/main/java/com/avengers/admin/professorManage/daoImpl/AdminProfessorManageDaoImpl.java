@@ -118,5 +118,10 @@ public class AdminProfessorManageDaoImpl implements AdminProfessorManageDao {
 		ArrayList<PrfsVO> prfsList = (ArrayList<PrfsVO>) sqlSession.selectList("admin.getPrfsEmpList",prfsVO);
 		return prfsList;
 	}
+	@Override
+	public void updatePrfsEnabled(String prfs_num) throws SQLException {
+		sqlSession.update("admin.updatePrfsEnable",prfs_num);
+		
+	}
 
 }
