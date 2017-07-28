@@ -106,6 +106,7 @@ public class AdminProfessorManageController {
 	@RequestMapping("/professorDetail")
 	public String professorDetail(
 			@RequestParam("prfs_num") String prfs_num,
+			@RequestParam("pageNo")Integer pageNo,
 			Model model){
 		
 	 
@@ -118,7 +119,9 @@ public class AdminProfessorManageController {
 		
 		String path="D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/admin_professor_images/";
 		path += prfsVO.getPrfs_pic();
-		System.out.println("얍!!!"+path);
+		prfsVO.setPageNo(pageNo);
+		System.out.println("교수 디테일 이미지 경로 : "+path);
+		System.out.println("교수 디테일 페이지번호 : "+pageNo);
 		model.addAttribute("path",path);
 		model.addAttribute("professor",prfsVO);
 		return "admin/professorDetail";
@@ -132,18 +135,18 @@ public class AdminProfessorManageController {
 	@RequestMapping("/deleteProfessor")
 	public String deleteProfessor(@RequestParam("prfs_num") String prfs_num,
 									Model model){
-		if(prfs_num!=null || prfs_num!=""){
 			
 			try {
+				adminProfessorManageService.updatePrfsEnabled(prfs_num);
 				adminProfessorManageService.deletePrfs(prfs_num);
 				System.out.println(prfs_num + "번 교수 삭제!");
 			} catch (SQLException e) {
 				e.printStackTrace();
+				System.out.println("교수삭제실패");
 			}
 			//enabled 만 1로 바꾸면 됨 
 			String msg = "삭제 완료되었습니다.";
 			model.addAttribute("msg",msg);
-		}
 	return "redirect:professorManage";	
 	}
 	
@@ -160,6 +163,7 @@ public class AdminProfessorManageController {
 	public String updateProfessor(
 						CommandPrfsVO commandPrfsVO,
 						@RequestParam("prfs_pic")MultipartFile prfs_pic,
+						@RequestParam("pageNo")Integer pageNo,
 						HttpServletRequest request,
 						HttpSession session
 						){
@@ -170,12 +174,11 @@ public class AdminProfessorManageController {
 		String path = request.getSession().getServletContext().getRealPath("resources/admin_professor_images");		
 		String filename= prfsVO.getPrfs_pic();
 		
-		System.out.println("path : "+path);
 		System.out.println("filename : "+filename);
-		System.out.println("prfsVO number : "+ prfsVO.getPrfs_num());
-		System.out.println();
+		prfsVO.setPageNo(pageNo);
+		System.out.println("교수 수정 페이지번호 : "+pageNo );
 		System.out.println(commandPrfsVO.toString());
-		System.out.println();
+ 
 		
 		
 		if (!prfsVO.getPrfs_pic().isEmpty()) {
@@ -190,11 +193,13 @@ public class AdminProfessorManageController {
 			}
 		}
 		
+		String message ="실패";
 		try {
 			adminProfessorManageService.updatePrfs(prfsVO);
 			System.out.println("성공");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println(message);
 		}
 		
 		return "redirect:professorManage";
@@ -221,7 +226,6 @@ public class AdminProfessorManageController {
 		
 		System.out.println("path"+path);
 		System.out.println("filename:"+filename);
-		
 	
 		if (!prfsVO.getPrfs_pic().isEmpty()) {
 			File file = new File(path, prfsVO.getPrfs_pic());
@@ -232,10 +236,10 @@ public class AdminProfessorManageController {
 				adminProfessorManageService.insertPrfs(prfsVO);
 				prfsVO.setPrfs_num(adminProfessorManageService.selectPrfsNum());
 				adminProfessorManageService.insertSecurity(prfsVO);
-				
 				System.out.println("성공");
 			} catch (SQLException e) {
 				e.printStackTrace();
+				System.out.println("실패");
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (IllegalStateException e) {

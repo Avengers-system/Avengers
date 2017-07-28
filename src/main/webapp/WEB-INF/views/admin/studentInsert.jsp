@@ -229,6 +229,9 @@ $(function() {
                      <label><input type="radio" name="stud_qtr" value="2">2</label>
                 </div>
                 
+                <label class='control-label'>학점</label>
+                 <input type="text" class="form-control" name="stud_max_crd" value="25" >  
+                
                 <label class='control-label'>학적상태</label>
                 <div class="radio" >
                      <label><input type="radio" name="stud_schreg_code" checked="checked" value="재학">재학</label>
@@ -241,7 +244,7 @@ $(function() {
              
              <div class="col-md-5 col-md-offset-1">
                <label class='control-label'>이메일</label>
-               <input type="text" class="form-control" name="std_email"  >
+               <input type="text" class="form-control" name="stud_email"  >
                
                <label class='control-label'>비밀번호</label>
                <input type="text" class="form-control" name="stud_pw"  >
