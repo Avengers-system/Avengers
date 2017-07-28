@@ -65,15 +65,7 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 </insert>
 
 
-
-
-
-
-
-
-
-
-
+ 
 	
 	<!-- 게시판중 포탈공지사항을 검색하는 구문  -->	
 

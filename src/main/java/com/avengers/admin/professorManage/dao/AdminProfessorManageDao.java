@@ -25,4 +25,5 @@ public interface AdminProfessorManageDao {
 	 * @throws SQLException
 	 */
 	public void updatePrfsEnabled(String prfs_num)throws SQLException;
+	 
 }
