@@ -158,11 +158,7 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-sm-5">
-												<div class="dataTables_info" id="datatables-example_info"
-													role="status" aria-live="polite">Showing 1 to 57 of
-													57 entries</div>
-											</div>
+											
 
 										</div>
 										<!-- 페이징처리 -->

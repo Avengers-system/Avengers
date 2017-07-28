@@ -41,6 +41,12 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 	@Autowired
 	private AdminHelpDeskService adminHelpDeskService;
 
+	/**
+	 * 파일 다운로드
+	 * @param request
+	 * @param fileName
+	 * @return
+	 */
 	@RequestMapping("/main/download")
 	public ModelAndView download(HttpServletRequest request
 			,@RequestParam("fileName")String fileName){
@@ -572,15 +578,12 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 
 		BoardVO boardVo=null;
 
-		System.out.println("controller" + bc_num);
 		try {
 			boardVo = adminHelpDeskService.selectInsertBaseData();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-//		model.addAttribute("insertBoard",boardVo);
-		model.addAttribute("insertBoard",new BoardVO());
-		model.addAttribute("resultUrl","portalWrite");
+		model.addAttribute("insertBoard",boardVo);
 
 		return "admin/helpDesk/portalWrite";
 	}
@@ -601,6 +604,7 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		System.out.println(boardVo.getBoard_num()+"controller");
 		return "admin/helpDesk/deptWrite";
 	}
+	
 	@RequestMapping("/faqWriteForm")// FAQ게시판 글쓰기 양식
 	public String adminFaqWriteForm(@ModelAttribute BoardVO boardVO, Model model,
 			String bc_num){
@@ -706,9 +710,9 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		BoardVO boardVO = new BoardVO();
 		String url = "redirect:portalNoticeList";
 
-		String upload = sesssion.getServletContext().
-				getRealPath("resources/board_dept");
-		//	         String upload = "D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/board_dept";
+//		String upload = sesssion.getServletContext().
+//				getRealPath("resources/board_dept");
+		String upload="D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/board_dept/";
 		System.out.println("파일경로"+upload);
 		boardVO.setBoard_bc(req.getParameter("board_bc"));
 		boardVO.setBoard_cont(req.getParameter("board_cont"));
@@ -1384,19 +1388,6 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		ArrayList<BoardVO> boardList = null;
 
 		BoardVO boardVO = new BoardVO();
-
-//		String bc_num = "DEPT";
-//		boardVO.setBoard_writer("");
-//		if(select.equals("글쓴이")){
-//			boardVO.setBoard_writer(value);
-//		}else if(value!=null && !value.equals("") && select.equals("학과")){
-//			bc_num = value;
-//		}else if(select.equals("제목")){
-//			boardVO.setBoard_title(value);
-//		}
-//		boardVO.setBoard_bc(bc_num);
-		
-		//value  DEPT1 들어올수도잇어. => select가  dept이면 학과관련입력이
 		boardVO.setBoard_bc("DEPT");
 		
 		

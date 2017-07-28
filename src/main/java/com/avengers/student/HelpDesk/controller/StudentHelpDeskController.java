@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.avengers.admin.mypage.service.AdminMypageService;
 import com.avengers.db.dto.BoardVO;
@@ -43,6 +44,23 @@ public class StudentHelpDeskController {
 	@Autowired
 	public StudentHelpDeskService service;
 
+	/**
+	 * 파일 다운로드
+	 * @param request
+	 * @param fileName
+	 * @return
+	 */
+	@RequestMapping("/main/download")
+	public ModelAndView download(HttpServletRequest request
+			,@RequestParam("fileName")String fileName){
+		System.out.println(fileName);
+		String Path = "D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/"
+				+ "org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/board_dept/" + fileName;
+		File file = new File(Path);
+		return new ModelAndView("download", "downloadFile", file);
+	}
+	
+	
 	
 	/**
 	 * 학사일정등록
@@ -225,7 +243,7 @@ public class StudentHelpDeskController {
 		try {
 			int success = myPageService.updatePerschd(perschd);
 			if (success !=-1) {
-				message="일저정수정을 성공하였습니다";
+				message="일정수정을 성공하였습니다";
 			}else if(success ==-1){
 				message="일정수정을 실패하였습니다.";
 			}

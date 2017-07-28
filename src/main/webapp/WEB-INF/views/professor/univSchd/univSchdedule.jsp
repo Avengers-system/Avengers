@@ -211,8 +211,7 @@ ol, ul {
 														<div class="col-md-8 col-md-offset-1">
 															<button type="button" class="btn btn-default"
 																data-dismiss="modal">Close</button>
-															<input type="submit" class="btn btn-primary"> <input
-																type="button" value="삭제" onclick="deleteSchd()" />
+															
 														</div>
 													</div>
 
