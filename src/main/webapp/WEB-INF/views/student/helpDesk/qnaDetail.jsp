@@ -2,12 +2,18 @@
     pageEncoding="UTF-8"%>
     <%@ page trimDirectiveWhitespaces="true"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@include file="../common/studHelpDeskSide.jsp"%>
 
-
-	
-
-<h1>Q&A 상세보기 출력</h1>
-
+<div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading"
+			style="background-color: #2196F3; margin-top: 0px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
+<!-- 제목 -->
+				Q&A</h4>
+		</div>
+		<div class="panel-body" style="height: 800px; text-align: left;">
+<!-- 		내용 -->
 <c:choose>
       <c:when test="${not empty qnaNoticeList}">
       <form name="updateQnaBoard" action="qnaStudUpdate">
@@ -20,6 +26,11 @@
          
         <input type="submit" value="수정"> 
 		<a href="qnaStudDelete?board_num=${qnaNoticeList.board_num}"><input type="button" value="삭제"></a>
+		<input type="button" value="목록으로" 
+
+
+
+onclick="history.go(-1)">
       </form>      
          
          
@@ -32,4 +43,11 @@
             </tr>
          </c:otherwise>
 </c:choose>
+
+		</div>
+		
+	</div>
+</div>	
+
+
 

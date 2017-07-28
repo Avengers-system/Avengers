@@ -63,6 +63,9 @@
 					<input type="text" name="board_count" readonly value="0" ><br>
 					
 					<input type="submit" value="등록" >
+					<input type="button" value="목록으로" 
+
+onclick="history.go(-1)">
 					</form>
 					
 		</div>

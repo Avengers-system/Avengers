@@ -10,7 +10,7 @@
 	<div class="panel panel-default">
 		<!--  메뉴제목 -->
 		<div class="panel-heading"
-			style="background-color: #2196F3; margin-top: 10px;">
+			style="background-color: #CC0000; margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 
 				학과소식 상세보기</h4>
@@ -49,6 +49,9 @@
 						<input type="submit" value="수정"> <a
 							href="deptDelete?board_num=${deptNoticeList.board_num}"><input
 							type="button" value="삭제"></a>
+						<input type="button" value="목록으로" onclick="history.go(-1)">
+							
+							
 					</form>
 
 

@@ -12,7 +12,7 @@
 	<div class="panel panel-default">
 		<!--  메뉴제목 -->
 		<div class="panel-heading"
-			style="background-color: #2196F3; margin-top: 10px;">
+			style="background-color: #CC0000; margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 
 				학생Q&A글쓰기</h4>
@@ -25,9 +25,8 @@
 				게시판번호 :<input type="text" name="board_num" readonly
 					value="${insertBoard.board_num}"><br> 제목 :<input
 					type="text" name="board_title"><br> 내용 :<input
-					type="text" name="board_cont"><br> 날짜 :<input
-					type="text" name="board_date" readonly
-					value="${insertBoard.board_date}"><br>
+					type="text" name="board_cont"><br>
+					
 				<%
 					User user = (User) SecurityContextHolder.getContext()
 							.getAuthentication().getPrincipal();
@@ -38,7 +37,7 @@
 					type="text" name="board_bc" readonly value="Q&A"><br>
 				조회수:<input type="text" name="board_count" readonly value="0"><br>
 				<input type="submit" value="등록">
-
+<input type="button" value="목록으로" onclick="history.go(-1)">
 
 			</form>
 

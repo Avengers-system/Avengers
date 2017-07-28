@@ -801,18 +801,26 @@ public class ProfessorHelpDeskController {
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				service.updateBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
+			}
+			} else{
+				boardVO.setBoard_af("");
+			}
+			
+			try {
+				service.updateBoard(boardVO);
+				System.out.println("업뎃!");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
+			return url;
+			
 		}
 
-		return url;
-	}
 
 	@RequestMapping(value="/deptProfUpdate", method=RequestMethod.POST)// 학과게시판수정
 	public String profdeptUpdate(@RequestParam("boardtoa") MultipartFile af, 
@@ -829,14 +837,20 @@ public class ProfessorHelpDeskController {
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				service.updateBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			} 
+			
+		}else{
+			boardVO.setBoard_af("");
+		}
+		try {
+			service.updateBoard(boardVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		return url;

@@ -9,7 +9,7 @@
 	<div class="panel panel-default">
 		<!--  메뉴제목 -->
 		<div class="panel-heading"
-			style="background-color: #2196F3; margin-top: 0px;">
+			style="background-color: #666666; margin-top: 0px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 
 				Q&A</h4>
