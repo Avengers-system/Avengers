@@ -41,6 +41,12 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 	@Autowired
 	private AdminHelpDeskService adminHelpDeskService;
 
+	/**
+	 * 파일 다운로드
+	 * @param request
+	 * @param fileName
+	 * @return
+	 */
 	@RequestMapping("/main/download")
 	public ModelAndView download(HttpServletRequest request
 			,@RequestParam("fileName")String fileName){
@@ -352,7 +358,7 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 	}
 
 	@RequestMapping("/deptNoticeList")//학과게시판조회
-	public String adminDeptList(Model model, Principal principal, String pageNo){
+	public String adminDeptList(Model model, Principal principal, String pageNum){
 
 		BoardVO boardVO = new BoardVO();
 		ArrayList<BoardVO> boardList = null;
@@ -363,8 +369,8 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		boardVO.setBoard_bc(bc_num);
 		boardVO.setBoard_writer(key);
 
-		if(pageNo!=null && !pageNo.equals("")){
-			boardVO.setPageNo(Integer.parseInt(pageNo));
+		if(pageNum!=null && !pageNum.equals("")){
+			boardVO.setPageNo(Integer.parseInt(pageNum));
 		}
 
 		int totalCount = 0;
@@ -572,15 +578,12 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 
 		BoardVO boardVo=null;
 
-		System.out.println("controller" + bc_num);
 		try {
 			boardVo = adminHelpDeskService.selectInsertBaseData();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-//		model.addAttribute("insertBoard",boardVo);
-		model.addAttribute("insertBoard",new BoardVO());
-		model.addAttribute("resultUrl","portalWrite");
+		model.addAttribute("insertBoard",boardVo);
 
 		return "admin/helpDesk/portalWrite";
 	}
@@ -601,6 +604,7 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		System.out.println(boardVo.getBoard_num()+"controller");
 		return "admin/helpDesk/deptWrite";
 	}
+	
 	@RequestMapping("/faqWriteForm")// FAQ게시판 글쓰기 양식
 	public String adminFaqWriteForm(@ModelAttribute BoardVO boardVO, Model model,
 			String bc_num){
@@ -666,6 +670,8 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 	@RequestMapping("/univWriteForm")// 학교게시판 글쓰기 양식
 	public String adminUnivWriteForm(@ModelAttribute BoardVO boardVO, Model model,
 			String bc_num){
+		System.out.println("univWriteFrom입니다."+boardVO+"잇나요"+bc_num);
+		
 		BoardVO boardVo=null;
 
 		try {
@@ -704,9 +710,9 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		BoardVO boardVO = new BoardVO();
 		String url = "redirect:portalNoticeList";
 
-		String upload = sesssion.getServletContext().
-				getRealPath("resources/board_dept");
-		//	         String upload = "D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/board_dept";
+//		String upload = sesssion.getServletContext().
+//				getRealPath("resources/board_dept");
+		String upload="D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/board_dept/";
 		System.out.println("파일경로"+upload);
 		boardVO.setBoard_bc(req.getParameter("board_bc"));
 		boardVO.setBoard_cont(req.getParameter("board_cont"));
@@ -719,14 +725,19 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				adminHelpDeskService.insertBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+		}else{
+			boardVO.setBoard_af("");
+		}
+		
+		try {
+			adminHelpDeskService.insertBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return url;
 	}
@@ -751,14 +762,19 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				adminHelpDeskService.insertBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+		}else{
+			boardVO.setBoard_af("");
+		}
+		
+		try {
+			adminHelpDeskService.insertBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return url;
 	}
@@ -779,21 +795,28 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		boardVO.setBoard_title(req.getParameter("board_title"));
 		boardVO.setBoard_num(Integer.parseInt(req.getParameter("board_num")));
 
+		System.out.println("유니브컨트롤러"+af);
 		if (!af.isEmpty()) {
 			File file = new File(upload, af.getOriginalFilename());
 			System.out.println("파일이름"+af.getOriginalFilename());
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				adminHelpDeskService.insertBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+		}else{
+			boardVO.setBoard_af("");
 		}
+		
+		try {
+			adminHelpDeskService.insertBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return url;
 	}
 
@@ -933,14 +956,19 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				adminHelpDeskService.updateBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+		}else{
+			boardVO.setBoard_af("");
+		}
+		
+		try {
+			adminHelpDeskService.updateBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 		return url;
@@ -961,14 +989,19 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				adminHelpDeskService.updateBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+		}else{
+			boardVO.setBoard_af("");
+		}
+		
+		try {
+			adminHelpDeskService.updateBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 		return url;
@@ -990,16 +1023,21 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				adminHelpDeskService.updateBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+		}else{
+			boardVO.setBoard_af("");
 		}
 
+		try {
+			adminHelpDeskService.updateBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return url;
 	}
 
@@ -1344,28 +1382,18 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 	}
 
 	@RequestMapping("deptSearch")// 학과게시판 글 검색
-	public String deptSearch(@RequestParam("board_title")String board_title,
+	public String deptSearch(@RequestParam("value")String value,
 			Model model, Principal principal, String pageNo, String select){
 
 		ArrayList<BoardVO> boardList = null;
 
 		BoardVO boardVO = new BoardVO();
-
-		String bc_num = "DEPT";
-
-
-
-
-		boardVO.setBoard_writer("");
-		if(select.equals("글쓴이")){
-			boardVO.setBoard_writer(board_title);
-		}else if(board_title!=null && !board_title.equals("") && select.equals("학과")){
-			bc_num = board_title;
-		}else if(select.equals("제목")){
-			boardVO.setBoard_title(board_title);
-		}
-		boardVO.setBoard_bc(bc_num);
-
+		boardVO.setBoard_bc("DEPT");
+		
+		
+		boardVO.setSearchFiled(select);
+		boardVO.setSearchValue(value);
+		
 
 		if(pageNo!=null && !pageNo.equals("")){
 			boardVO.setPageNo(Integer.parseInt(pageNo));
@@ -1373,9 +1401,9 @@ public class AdminHelpDeskController implements ApplicationContextAware{
 		int totalCount = 0;
 
 		try {
-			totalCount = adminHelpDeskService.selectBoardCount(boardVO);
+			totalCount = adminHelpDeskService.selectMultiBoardCount(boardVO);
 			boardVO.setTotalCount(totalCount);
-			boardList = adminHelpDeskService.searchBoardList(boardVO);
+			boardList = adminHelpDeskService.searchMultiBoardList(boardVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

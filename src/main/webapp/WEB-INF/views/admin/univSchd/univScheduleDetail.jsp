@@ -12,11 +12,8 @@
 	<c:remove var="message" scope="session"/>
 </c:if>
 
-<!-- Admin Header -->
-<%@include file="../common/topCategory.jsp"%>
 <!-- Content -->
 <div class="col-md-2" id="commonLeftSide">
-	<%@include file="../common/myPageSideCategory.jsp"%>
 </div>
 <c:choose>
 		<c:when test="${not empty perschd}">

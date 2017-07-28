@@ -241,7 +241,7 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 		map.put("searchFiled", boardVO.getSearchFiled());
 		map.put("searchValue", boardVO.getSearchValue());
 		map.put("board_title", boardVO.getBoard_title());
-		count = (Integer) sqlSession.selectOne("selectBoardCount", map);
+		count = (Integer) sqlSession.selectOne("board.selectBoardCount", map);
 		return count;
 	}
 

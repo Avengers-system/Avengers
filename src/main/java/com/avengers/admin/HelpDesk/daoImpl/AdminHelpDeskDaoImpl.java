@@ -111,11 +111,31 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 		map.put("BOARD_BC", boardVO.getBoard_bc());
 		map.put("BOARD_TITLE", boardVO.getBoard_title());
 		map.put("BOARD_WRITER", boardVO.getBoard_writer());
+		
+		map.put("searchFiled", boardVO.getSearchFiled());
+		map.put("searchValue", boardVO.getSearchValue());
 		System.out.println("여긴 서치리스트다오이플"+boardVO.getBoard_bc()+","+boardVO.getBoard_title()+","+boardVO.getBoard_writer());
 		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("board.selectSearchList", map,rowBounds);
 		return boardList;
 	}
 
+	@Override
+	public ArrayList<BoardVO> selectMultiSearchList(BoardVO boardVO) {
+		int offset=boardVO.getStartRowNo()-1;
+		int limit = boardVO.getEndRowNo()-boardVO.getStartRowNo()+1;
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		HashMap map = new HashMap();
+
+		map.put("BOARD_BC", boardVO.getBoard_bc());
+		
+		map.put("searchFiled", boardVO.getSearchFiled());
+		map.put("searchValue", boardVO.getSearchValue());
+		System.out.println("여긴 서치리스트다오이플"+boardVO.getBoard_bc()+","+boardVO.getBoard_title()+","+boardVO.getBoard_writer());
+		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("board.selectMultiSearchList", map,rowBounds);
+		return boardList;
+	}
+	
 	public int updateBoardCount(String board_num, String board_count) throws SQLException{
 		HashMap map = new HashMap();
 		
@@ -139,7 +159,16 @@ public class AdminHelpDeskDaoImpl implements AdminHelpDeskDao {
 		return count;
 	}
 
-	
+	public int selectMultiBoardCount(BoardVO boardVO) throws SQLException{
+		int count = 0;
+		HashMap map = new HashMap();
+		
+		map.put("BOARD_BC", boardVO.getBoard_bc());
+		map.put("searchFiled", boardVO.getSearchFiled());
+		map.put("searchValue", boardVO.getSearchValue());
+		count = (Integer) sqlSession.selectOne("board.selectMultiBoardCount", map);
+		return count;
+	}
 	
 	
 

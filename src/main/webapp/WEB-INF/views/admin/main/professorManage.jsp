@@ -14,6 +14,14 @@
 	 text-align: center;
  
  }
+ 
+ 
+button #searchProf, button #addProf{
+
+background-color:#CC0000; 
+}
+
+ 
 </style>
 
 
@@ -21,7 +29,6 @@
  <!-- 페이지 이동 스크립트 -->
  <script type="text/javascript">
     function fn_movePage(val){
-    	alert('누른 페이지 : '+val);
         jQuery("input[name=pageNo]").val(val);
         jQuery("form[name=frm]").attr("method", "post");
         jQuery("form[name=frm]").attr("action","").submit();
@@ -73,7 +80,7 @@
 						                       
 						                       <input type="search" id="searchI" name="searchValue" style="margin-bottom:7px;" class="form-control input-sm" placeholder="" aria-controls="datatables-example"> 
 						                       <!-- 검색버튼  -->
-						                       <button id ="searchProf" style="margin-bottom:7px;" class="btn btn-primary" onclick="fn_search();">검색</button>
+						                       <button id ="searchProf" style="background-color:#CC0000;  margin-bottom:7px;" class="btn btn-primary" onclick="fn_search();">검색</button>
 						                       <!-- 추가버튼  -->
 						                       
 						                       <button id ="addProf" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/professorInsert'">교수추가하기</button>
@@ -96,6 +103,9 @@
                       	<thead>
                       
 	                        <tr role="row">
+	                        	<!-- 활성화여부 컬럼 -->
+	                        	<th class="sorting_asc" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="교수 번호: activate to sort column descending" 
+								aria-sort="ascending" style="width: 90px;">재직여부</th>
 								<th class="sorting_asc" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="교수 번호: activate to sort column descending" 
 								aria-sort="ascending" style="width: 208px;">교수 번호</th>
 								<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="이름: activate to sort column ascending" style="width: 150px;">이름</th>
@@ -117,8 +127,16 @@
                       <c:forEach items="${professorList }" var="professor" >
                         
 		                      <tr role="row" class="odd">
+		                          <c:choose>
+		                        	  <c:when test="${professor.enabled eq '1'}">
+		                          		<td>Y</td>
+		                          	  </c:when>
+		                          	  <c:otherwise>
+		                        	  	<td>N</td>
+		                          	  </c:otherwise>
+		                          </c:choose>
 		                          <td class="sorting_1">${professor.prfs_num}</td>
-		                          <td ><a href="${pageContext.request.contextPath}/admin/professorDetail?prfs_num=${professor.prfs_num}">${professor.prfs_nm}</a></td>
+		                          <td ><a href="${pageContext.request.contextPath}/admin/professorDetail?prfs_num=${professor.prfs_num}&pageNo=${pageVO.pageNo}">${professor.prfs_nm}</a></td>
 		                          <td >${professor.prfs_eng_nm}</td>
 		                          <td >${professor.prfs_dept}</td>
 		                          <td ><fmt:formatDate pattern = "yyyy-MM-dd" value = "${professor.prfs_bir}" /></td>

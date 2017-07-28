@@ -87,10 +87,12 @@ public class AdminStudentManageController {
 				CommandStudVO commandStudVO,
 				HttpServletRequest request,
 				@RequestParam("stud_pic")MultipartFile stud_pic,
+				@RequestParam("stud_max_crd")Integer stud_max_crd,
 				HttpSession session
 				){
 		commandStudVO.setStud_pic(stud_pic);
 		StudVO studVO = commandStudVO.toStudVO();
+		studVO.setStud_max_crd(stud_max_crd+"");
 		String path = request.getSession().getServletContext().getRealPath("resources/admin_student_images");
 		
 		

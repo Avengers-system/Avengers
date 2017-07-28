@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.List"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <style>
@@ -47,15 +48,16 @@ ol, ul {
 </div>
 <script>
  
- 
    $(function() {
+      swal("Here's a message!");
       var id; 
-      
       var todayDate = moment().startOf('day');
       var YM = todayDate.format('YYYY-MM');
       var YESTERDAY = todayDate.clone().subtract(1, 'day').format('YYYY-MM-DD');
       var TODAY = todayDate.format('YYYY-MM-DD');
       var TOMORROW = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
+
+       
       $('#calendar').fullCalendar({
          header: {
             left: 'prev,today,next', 
@@ -96,7 +98,7 @@ ol, ul {
                type : 'post',
                data : "perschd_num="+event.number,
                success : function(perschd){                  
-               $('#perschd_num').val(perschd.perschd_num);
+               $('#perschd_num').val(event.number);
                $('#perschd_writer').val(perschd.perschd_writer);
                $('#perschd_title').val(perschd.perschd_title);
                $('#perschd_start_date').val(perschd.perschd_start_date);
@@ -119,7 +121,7 @@ ol, ul {
          
       })
  
-      
+        
    function deleteSchd(){
       myForm.method="post";
       myForm.action="myScheduleDelete";
@@ -147,7 +149,7 @@ ol, ul {
                         <form action="myScheduleUpdate" method="POST" name="myForm" >
                         
                         <ul>
-                           <input id="perschd_num" type="hidden" class="form-control" name="perschd_num" value="" >
+                           <input id="perschd_num" type="text" class="form-control" name="perschd_num" value="" >
                            <input id="perschd_writer" type="hidden"  name="perschd_writer" value="" class="form-control" >
                            <li>
                               <label class='control-label'>title</label>
@@ -170,7 +172,7 @@ ol, ul {
 <!--                            <input id="perschd_date" type="text" name="perschd_date" value="" class="form-control" > -->
 <!--                            </li> -->
                      </ul>
-                     
+                     </form>
                      </div>
                       
                          <!-- button -->
@@ -184,7 +186,7 @@ ol, ul {
                                  </div>
                                  </div>
                            </div>
-                     </form>
+<!--                      </form> -->
          </div>
          
          </div>
@@ -217,7 +219,7 @@ ol, ul {
                <div class="row"> 
                         <div class="col-md-12">
                         <div class="col-md-8 col-md-offset-2">
-                        <form action="myScheduleInsert" method="POST">
+                        <form name="insertFrm" action="myScheduleInsert" method="POST">
                         <ul>
                            <input type="hidden" class="form-control" name="PERSCHD_NUM" >
                            <li>
