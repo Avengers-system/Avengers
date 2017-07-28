@@ -13,7 +13,6 @@
 				<c:choose>
 					<c:when test="${prfsExamList eq null}">
 						<th colspan="9">등록된 시험이 존재하지 않습니다.</th>
-						
 					</c:when>
 					<c:otherwise>
 						<thead>
