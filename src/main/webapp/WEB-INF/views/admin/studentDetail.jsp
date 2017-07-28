@@ -76,7 +76,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<select id="select" style="width:253px;" name="stud_dept" class="selectpicker show-tick">
+								<select id="select" style="width:248px;" name="stud_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
 									<option value="DEPT2">컴퓨터공학과</option> 
 									<option value="DEPT3">영어영문학과</option> 
@@ -285,14 +285,18 @@
 						</div>
 				</div>   
 					
-				<div class="col-md-8 col-md-offset-4" style="margin-top:120px;">
-				<div class="col-md-4">
+				<div class="col-md-8 col-md-offset-4" style="margin-top:200px;">
 						<input class="submit btn btn-danger" type="submit" value="수정하기">
-				</div>		 
-				<div class="col-md-4">
 						<input class="submit btn btn-danger" type="button" value="삭제하기" onclick="location.href='${pageContext.request.contextPath}/admin/deleteStudent?stud_num=${student.stud_num}'">
-				</div>
-				</div>		 
+				</div>	
+				
+				
+<!-- 				<div class="col-md-2" style="margin-top:225px;"> -->
+<!-- 					<input class="submit btn btn-danger" type="submit" value="수정하기"> -->
+<!-- 					<input class="submit btn btn-danger" type="button" value="삭제하기" onclick="location.href='/avengers/admin/deleteProfessor?prfs_num=2017064'"> -->
+<!-- 				</div> -->
+				
+					 
 					</div>
 			 
 			</form>
