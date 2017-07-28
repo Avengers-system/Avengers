@@ -5,6 +5,23 @@
 <mapper namespace="admin">
  
  
+ 
+ <!-- department nm 검색 -->
+<!--  <select id="selectDept" parameterType="java.lang.String" resultType="com.avengers.db.dto.DeptVO"> -->
+<!--  	SELECT DEPT_NM  -->
+<!--  	FROM DEPARTMENT -->
+<!--  	<if test="prfs_dept != null and prfs_dept != ''"> -->
+<!--             WHERE DEPT_NUM = #{prfs_dept}  -->
+<!--     </if> -->
+
+<!--  	<if test="stud_dept != null and stud_dept != ''"> -->
+<!--             WHERE DEPT_NUM = #{stud_dept}  -->
+<!--     </if> -->
+
+<!--  </select> -->
+ 
+ 
+ 
  <!-- 교수 enable 0으로 변경 -->
  <update id="updatePrfsEnable" parameterType="java.lang.String">
  	UPDATE PROFESSOR
@@ -24,7 +41,7 @@
 
 	<select id="getStudEmpList" parameterType="com.avengers.db.dto.StudVO" resultType="com.avengers.db.dto.StudVO">
     SELECT 
-        a.STUD_NUM, a.STUD_NM, a.STUD_ENG_NM, a.STUD_DEPT, a.STUD_BIR, a.STUD_EMAIL, a.STUD_PW, a.STUD_GRD,
+        a.STUD_NUM, a.STUD_NM, a.STUD_ENG_NM, (SELECT D.DEPT_NM FROM DEPARTMENT D WHERE DEPT_NUM = a.STUD_DEPT )as STUD_DEPT, a.STUD_BIR, a.STUD_EMAIL, a.STUD_PW, a.STUD_GRD,
         a.STUD_REGNO, a.STUD_HP, a.STUD_ZIP, a.STUD_ADDR, a.STUD_GEN, a.STUD_QTR, a.STUD_SCHREG_CODE, a.STUD_PIC, a.STUD_ACT_NUM, a.STUD_BANK, 
         a.STUD_AH
     FROM (
@@ -60,7 +77,7 @@
     SELECT 
         a.PRFS_NUM, a.PRFS_NM, a.PRFS_ENG_NM, a.PRFS_BIR, a.PRFS_EMAIL, a.PRFS_PW, a.PRFS_REGNO,
         a.PRFS_GEN, a.PRFS_PIC, a.PRFS_ACT_NUM, a.PRFS_BANK, a.PRFS_AH, a.PRFS_ADDR, a.PRFS_ZIP, 
-        a.PRFS_TEL, a.PRFS_HP, a.PRFS_DEPT, a.ENABLED
+        a.PRFS_TEL, a.PRFS_HP, (SELECT D.DEPT_NM FROM DEPARTMENT D WHERE DEPT_NUM = a.PRFS_DEPT )as PRFS_DEPT, a.ENABLED
     FROM (
         	SELECT ROWNUM rnum, s.*
         	FROM (

@@ -23,7 +23,7 @@ $(function() {
 
 <div class="col-md-10">
 	<div class="panel panel-default">
-		<div class="panel-heading" style="background-color: #666666; margin-top: 10px;">
+		<div class="panel-heading" style="background-color: #666666;c margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">시험등록</h4>
 		</div>
 		<div class="panel-body">
@@ -35,23 +35,44 @@ $(function() {
 <!-- 		4.시험의 시작시간과 종료시간은 숫자로만 이루어집니다.<br/> -->
 <!-- 		5.시간은 00~24시, 분은 00~59분으로 입력이 가능합니다.<br/> -->
 <!-- 	</fieldset> -->
-			<form name="exam" method="post" action="${pageContext.request.contextPath}/professor/classManage/registryExam">
-				시험유형 : <select name="exam_type">
+			<form name="exam" method="post" action="${pageContext.request.contextPath}/professor/classManage/registryExam" class="form-horizontal">
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="exam_type">시험유형</label>
+					<div class="col-sm-2">
+						<select name="exam_type" class="form-control">
 							<option value="1">중간고사</option>
 							<option value="2">기말고사</option>
 						</select>
-						<br/>
-				시험일  : <input type="text" name="exam_date" id="datepicker"/><br/>
-				시험시작시간<br/> 
-				<input type="text" name="startHour" style="width:20px"/>시:
-				<input type="text" name="startMi" style="width:20px"/>분
-				<br/>
-				시험종료시간
-				<br/> 
-				<input type="text" name="endHour" style="width:20px"/>시:
-				<input type="text" name="endMi" style="width:20px"/>분<br/>
-				<input type="submit" value="등록"/>
-				<input type="button" onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureExam'" value="뒤로가기"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="exam_date">시험일</label>
+					<div class="col-sm-2">
+						<input type="date" placeholder="시험일" class="form-control" name="exam_date" value="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="startHour">시작시간</label>
+					<div class="col-sm-3">
+						<input type="text" name="startHour" class="form-control" style="width:50px;display:inline-block;text-align:center"/>시
+						<input type="text" name="startMi" class="form-control" style="width:50px;display:inline-block;text-align:center"/>분
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="endHour">종료시간</label>
+					<div class="col-sm-3">
+						<input type="text" name="endHour" class="form-control" style="width:50px;display:inline-block;text-align:center"/>시
+						<input type="text" name="endMi" class="form-control" style="width:50px;display:inline-block;text-align:center"/>분
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for=""></label>
+					<div class="col-sm-3">
+						<input type="submit" class="btn btn-outline btn-primary" value="등록"/>
+						<input type="button" class="btn btn-outline btn-primary" onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureExam'" value="뒤로가기"/>
+						
+					</div>
+				</div>
 			</form>
 		</div>
 	</div>

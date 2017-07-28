@@ -2,6 +2,7 @@ package com.avengers.admin.lectureManage.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.avengers.db.dto.LctVO;
 
@@ -11,4 +12,6 @@ public interface AdminLectureManageService {
 	public int insertLct(LctVO lctVO)throws SQLException;//강의 등록
 	public int updateLct(LctVO lctVO,String lct_num)throws SQLException;//강의 수정
 	public int deleteLct(String lct_num)throws SQLException;//강의 삭제
+	
+	public ArrayList<Map<String, String>> selectAllLctList() throws SQLException;
 }
