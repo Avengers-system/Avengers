@@ -35,24 +35,29 @@
 						<div class="col-md-12">
 							<!-- 이미지 미리보기 -->
 							<div class="filess">
-								<img style="height: 150px; width: 130px;" alt="User Pic"
-									src="${myContextPath}/resources/myInfo_images/${admin.admin_pic}"
-									id="admin-image"  class="img-circle img-responsive"> 
+								<img style="height:150px;width:130px; margin-left:50px; " 
+								src="${myContextPath}/resources/myInfo_images/${admin.admin_pic}" 
+								id="profile-image" class="img-circle img-responsive">
 								<input
 									style="width: 100px;" id="profile-image-input"
 									accept="image/png, image/jpeg, image/gif" class="hidden"
 									type="file">
 							</div>
 
-							<label class="control-label">이미지</label> <span
-								class="input-group-btn"> <input type="text"
-								class="form-control" style="width: 230px;"
-								id="image-preview-filename" disabled="disabled">
-								<div class="btn btn-default image-preview-input">
-									<input type="file" accept="image/png, image/jpeg, image/gif"
-										name="file"> <span class="image-preview-input-title"></span>
-								</div>
-							</span>
+							<span class="input-group-btn">
+	                   		<div class="col-md-8">
+	                   		<div class="col-md-4">
+	                   			<input type="text" class="form-control" style="width:310px;" id="image-preview-filename" disabled="disabled">
+	                   		</div>
+	                   		<div class="col-md-1">
+		                   		<div class="btn btn-default image-preview-input">
+		                           <input type="file" accept="image/png, image/jpeg, image/gif" name="prfs_pic">
+		                           <span class="image-preview-input-title">업로드</span>
+		                        </div>
+		                   	</div>
+	                   		
+	                        </div>
+	                   </span>
 
 						</div>
 
@@ -82,7 +87,8 @@
 									value="${admin.admin_regno}">
 							</div>
 							<div class="col-md-5">
-								<label class="control-label">휴대폰번호</label> <input type="text"
+								<label class="control-label">휴대폰번호</label> 
+								<input type="text"
 									class="form-control" name="admin_hp" value="${admin.admin_hp}">
 								<label class="control-label">집전화번호</label> <input type="text"
 									class="form-control" name="admin_tel"
@@ -100,8 +106,9 @@
 									class="form-control" name="admin_act_num"
 									value="${admin.admin_act_num}"> <label class="control-label">계좌주</label>
 								<input type="text" class="form-control" name="admin_ah"
-									value="${admin.admin_ah}"> <input
-									class="submit btn btn-danger" type="submit" value="수정">
+									value="${admin.admin_ah}"> 
+								<input
+									class="submit btn btn-danger" type="submit" value="수정" style="margin-top:30px;">
 							</div>
 						</div>
 					</form>
