@@ -13,11 +13,21 @@
       <form name="updateUnivBoard" action="univProfUpdate"
        method="post" enctype="multipart/form-data">
          
-          숫자:<input type="text" name="board_num" value="${univNoticeList.board_num}" readonly><br>
+          번호:<input type="text" name="board_num" value="${univNoticeList.board_num}" readonly><br>
           제목:<input type="text" name="board_title" value="${univNoticeList.board_title}"><br>
           내용:<input type="text" name="board_cont" value="${univNoticeList.board_cont}"><br>
           작성자:<input type="text" name="board_writer" value="${univNoticeList.board_writer}" readonly><br>
-          첨부된파일:<input type="text" name="board_af" value="${univNoticeList.board_af}"><br>
+          
+          
+         첨부파일다운:<a href="<%=request.getContextPath()%>/professor/helpDesk/main/download?fileName=
+
+${univNoticeList.board_af}&board_num=${board_num}" style="text-decoration: underline;">
+					${univNoticeList.board_af}
+					</a><br>
+
+          
+          
+          
           <sec:authorize access="hasRole('ROLE_ADMIN')">첨부할파일:<input type="file" name="boardtoa" value="${univNoticeList.board_af}"><br></sec:authorize>
           게시판코드:<input type="text" name="board_bc" value="${univNoticeList.board_bc}" readonly><br>
          <sec:authorize access="hasRole('ROLE_ADMIN')">

@@ -50,7 +50,7 @@
 			<div class="row">
 
 				<form
-					action="<%=request.getContextPath()%>/admin/deptSearch?board_title=${deptSearch.board_title}">
+					action="<%=request.getContextPath()%>/admin/deptSearch?pageNum=${pageVO.firstPageNo}">
 					<div
 						style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
 
@@ -60,12 +60,12 @@
 						<div id="datatables-example_filter" class="dataTables_filter"
 							style="width: 20%;">
 							<select name="select" id="select">
-								<option name="dept" id="dept">학과</option>
-								<option name="writer" id="writer">글쓴이</option>
-								<option name="title" id="title">제목</option>
+								<option name="bc_num" id="dept" value="bc_num">학과</option>
+								<option name="board_writer" id="writer" value="board_writer">글쓴이</option>
+								<option name="board_title" id="title" value="board_title">제목</option>
 							</select> <label><input type="search"
 								class="form-control input-sm" placeholder="검색할 내용을 입력해주세요"
-								aria-controls="datatables-example" name="board_title"
+								aria-controls="datatables-example" name="value"
 								style="width: 200px; text-align: center;"> </label>
 							<!-- 검색 -->
 						</div>
@@ -88,7 +88,7 @@
 			</form>
 
 			<form name="frm">
-				<input type="hidden" name="pageNo" />
+				<input type="hidden" name="pageNo" value="${pageVO.firstPageNo}"/>
 				<!-- //페이지 번호 -->
 				<input type="hidden" name="searchFiled"
 					value="${pageVO.searchFiled }" />

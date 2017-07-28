@@ -17,7 +17,16 @@
           내용:<input type="text" name="board_cont" value="${deptNoticeList.board_cont}"><br>
 <%--           날짜:<input type="text" name="board_date" value="${portalNoticeList.board_date}" readonly> --%>
           작성자:<input type="text" name="board_writer" value="${deptNoticeList.board_writer}" readonly><br>
-          첨부된파일:<input type="text" name="board_af" value="${deptNoticeList.board_af}"><br>
+          
+          
+         첨부파일다운:<a href="<%=request.getContextPath()%>/professor/helpDesk/main/download?fileName=
+
+${deptNoticeList.board_af}&board_num=${board_num}" style="text-decoration: underline;">
+					${deptNoticeList.board_af}
+					</a><br>
+
+          
+          
     <sec:authorize access="hasRole('ROLE_WSS')">      
           첨부할파일:<input type="file" name="boardtoa" value="${deptNoticeList.board_af}"><br>
     </sec:authorize>

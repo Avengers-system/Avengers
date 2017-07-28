@@ -46,6 +46,7 @@
 
 										<form
 											action="<%=request.getContextPath()%>/admin/faqProfSearch?board_title=${faqProfSearch.board_title}">
+											
 											<div
 												style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
 
@@ -157,11 +158,7 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-sm-5">
-												<div class="dataTables_info" id="datatables-example_info"
-													role="status" aria-live="polite">Showing 1 to 57 of
-													57 entries</div>
-											</div>
+											
 
 										</div>
 										<!-- 페이징처리 -->
