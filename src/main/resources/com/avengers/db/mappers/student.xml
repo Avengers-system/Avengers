@@ -175,7 +175,7 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 	<update id="updatePwd" parameterType="com.avengers.db.dto.StudVO">
 	UPDATE STUDENT 
 	SET STUD_PW = #{stud_pw}
-	WHERE  STUD_NUM = #{stud_num} AND STUD_EMAIL = #{std_email}
+	WHERE  STUD_NUM = #{stud_num} AND STUD_EMAIL = #{stud_email}
 	</update> 
 	
 	

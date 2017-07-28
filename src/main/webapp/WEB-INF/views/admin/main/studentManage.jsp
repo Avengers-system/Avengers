@@ -193,6 +193,9 @@
                       <thead>
                       
                         <tr role="row">
+                        
+                     <th class="sorting_asc" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="교수 번호: activate to sort column descending" 
+								aria-sort="ascending" style="width: 90px;">재학여부</th>
                      <th class="sorting_asc" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="학번: activate to sort column descending" 
                      aria-sort="ascending" style="width: 100px;">학번</th>
                      <th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="이름: activate to sort column ascending" style="width: 100px;">이름</th>
@@ -224,6 +227,7 @@
                                <c:when test="${!empty studentList}">
                                <c:forEach var="student" items="${studentList}">
                                   <tr role="row" class="odd">
+                                  	  <td>${student.stud_schreg_code}</td>
                                       <td class="sorting_1">${student.stud_num }</td>
                                       <td ><a href="${pageContext.request.contextPath}/admin/studentDetail?stud_num=${student.stud_num}">${student.stud_nm}</a></td>
                                       <td >${student.stud_schreg_code }</td>

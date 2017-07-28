@@ -85,4 +85,9 @@ public class AdminProfessorManageServiceImpl implements AdminProfessorManageServ
 		return prfsList;
 	}
 
+	@Override
+	public void updatePrfsEnabled(String prfs_num) throws SQLException {
+		proDAO.updatePrfsEnabled(prfs_num);
+	}
+
 }

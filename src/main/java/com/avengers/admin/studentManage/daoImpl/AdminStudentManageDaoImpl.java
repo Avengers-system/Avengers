@@ -46,7 +46,6 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 
 	@Override
 	public int updateStud(StudVO studVO) throws SQLException {
-		
 		HashMap map = new HashMap();
 		map.put("stud_nm", studVO.getStud_nm());
 		map.put("stud_eng_nm", studVO.getStud_eng_nm());
@@ -58,7 +57,6 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 		map.put("stud_gen", studVO.getStud_gen());	
 		map.put("stud_qtr", studVO.getStud_qtr());	
 		map.put("stud_schreg_code", studVO.getStud_schreg_code());	
-
 		map.put("stud_act_num", studVO.getStud_act_num());
 		map.put("stud_bank", studVO.getStud_bank());
 		map.put("stud_ah", studVO.getStud_ah());	
@@ -71,6 +69,7 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 		map.put("stud_guad_rel", studVO.getStud_guad_rel());
 		map.put("stud_guad_hp", studVO.getStud_hp());
 		map.put("stud_num", studVO.getStud_num());
+		map.put("stud_max_crd", studVO.getStud_max_crd());
 		
 		if(!studVO.getStud_pic().isEmpty()){
 			map.put("stud_pic", studVO.getStud_pic());	

@@ -20,12 +20,13 @@
 
 			<div class="row">
   	<div class="col-md-12">
- 		 <form name="insertProfessor"  method="post" action="${pageContext.request.contextPath }/admin/updateProfessor" enctype="multipart/form-data">
+ 		 <form name="updateProfessor"  method="post" action="${pageContext.request.contextPath }/admin/updateProfessor?pageNo=${professor.pageNo}" enctype="multipart/form-data">
   		<div class="col-md-12" style="margin-top:30px;">
   		   <!-- 이미지 미리보기 -->
   		   				<div class="col-md-12">
 			               <div class="filess" style="margin-bottom:20px;">
 			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="<%=request.getContextPath()%>/resources/admin_professor_images/${professor.prfs_pic}"
+<%-- 			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="${path }" --%>
 			                     id="profile-image" class="img-circle img-responsive">
 			                  <input style="width:100px;" id="profile-image-input"  accept="image/png, image/jpeg, image/gif" class="hidden" type="file" name="prfs_pic" value="${professor.prfs_pic}">
 			               </div>
@@ -84,7 +85,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<select style="width:334px;" name="prfs_dept" class="selectpicker show-tick">
+								<select id="select" style="width:334px;" name="prfs_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
 									<option value="DEPT2">컴퓨터공학과</option> 
 									<option value="DEPT3">영어영문학과</option> 
@@ -286,6 +287,20 @@
 	    });
 	 
 	});
+	
+	
+	//학과 select 선택되도록 추가
+	
+	  $('#select option').each(function(){
+
+    if($(this).val()=="${professor.prfs_dept}"){
+
+      $(this).attr("selected","selected"); // attr적용안될경우 prop으로 
+
+    }
+
+  });
+	
 </script>
  
  
