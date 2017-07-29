@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!-- Content -->
@@ -151,7 +151,7 @@
 							<td>${status.count}</td>
 							<td>${school.board_title}</td>
 							<td>${school.board_writer}</td>
-							<td>${school.board_date}</td>
+							<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${school.board_date}" /></td>
 						</tr>
 						</c:if>
 					</c:forEach>	
