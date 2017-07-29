@@ -38,7 +38,7 @@ ol, ul {
             개인일정
          </h4>
       </div>
-      <div class="panel-body" style="height: 580px; text-align: center;" >
+      <div class="panel-body" style="height: 800px; text-align: center;" >
          <div class="col-md-3 col-md-offset-9" style="padding-left:0px;">
             <a href="#" class="button" data-toggle="modal" data-target="#addSchedule">일정등록 </a>
          </div>
