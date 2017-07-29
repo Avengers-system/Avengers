@@ -11,6 +11,9 @@ import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.crypto.Cipher;
@@ -26,15 +29,18 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.avengers.common.serviceImpl.CommonServiceImpl;
 import com.avengers.db.dto.AdminVO;
 import com.avengers.db.dto.BoardVO;
+import com.avengers.db.dto.TestVO;
 
 
 
@@ -134,7 +140,7 @@ public class CommonController implements ApplicationContextAware{
 		return model;
 	}
 	
-	@RequestMapping("/test")
+	@RequestMapping("/rsaLogin")
 	public ModelAndView loginFom(HttpServletRequest request, HttpServletResponse response) throws ServletException{
 		ModelAndView model = new ModelAndView();
 		model.setViewName("common/commonMain");
@@ -309,6 +315,60 @@ public class CommonController implements ApplicationContextAware{
     }
 	
 	
+    
+    //게시판 상세보기
+    @RequestMapping("boardDetail")
+    @ResponseBody 
+    public TestVO boardDetail(@RequestBody Map<String, String>data){
+    	
+    	
+    	
+    	TestVO vo = new TestVO();
+    	vo.setName(data.get("message"));
+    	return vo;
+    
+    }
+    
+    
+    
+    
+    
+    @ResponseBody
+    @RequestMapping(value = "/testajax", method = RequestMethod.POST)
+    public HashMap<String, Object> checkId(@RequestParam HashMap<String, Object> param) {
+         
+        System.out.println(param);
+        System.out.println("id is "+param.get("id"));
+     
+        //your logic
+     
+        HashMap<String, Object> hashmap = new HashMap<String, Object>();
+        hashmap.put("KEY", "YES");
+         
+        return hashmap;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 	
 }

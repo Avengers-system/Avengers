@@ -326,7 +326,17 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.7.4</version>
 		</dependency>
-		
+		        <!-- jackson-mapper-asl 라이브러리 -->
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+
+
+
+
 
 
 		<!-- Test -->

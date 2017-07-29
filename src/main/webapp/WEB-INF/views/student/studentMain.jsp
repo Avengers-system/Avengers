@@ -20,7 +20,7 @@
 			<span class="label label-outline label-default" style="font-size: 15px;">이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름</span>
 			<span class="label label-outline label-default" style="display:inline-block;font-size: 15px; width: 160px;">${studentInfo.stud_nm}</span><br>
 			<span class="label label-outline label-default" style="font-size: 15px;">학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;과</span>
-			 <span class="label label-outline label-default" style="display:inline-block;font-size: 15px; width: 160px;">${dept.dept_nm }</span><br>
+			<span class="label label-outline label-default" style="display:inline-block;font-size: 15px; width: 160px;">${dept.dept_nm }</span><br>
 			<span class="label label-outline label-default" style="font-size: 15px;">학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;년</span>
 			<span class="label label-outline label-default" style="display:inline-block;font-size: 15px; width: 160px;">${studentInfo.stud_grd}</span><br>
 			<span class="label label-outline label-default" style="font-size: 15px;">학적상태</span>
@@ -222,5 +222,6 @@
 		</div>
 	</div>
 </div>
+
 
 

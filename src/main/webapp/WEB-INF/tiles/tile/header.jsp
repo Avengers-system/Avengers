@@ -42,6 +42,7 @@ initTimer = function() {
 	} 
 	else if(iSecond == 0){
         location.href="${pageContext.request.contextPath}/logout";
+        
      } 
 	
 	else {

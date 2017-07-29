@@ -101,7 +101,7 @@
 <div class="container">
         <input type="hidden" id="rsaPublicKeyModulus" value="${publicKeyModulus}" />
         <input type="hidden" id="rsaPublicKeyExponent" value="${publicKeyExponent}" />
-        <form id="securedLoginForm" name="securedLoginForm" action="<c:url value='/test'/>" method="post" style="display: none;">
+        <form id="securedLoginForm" name="securedLoginForm" action="<c:url value='/rsaLogin'/>" method="post" style="display: none;">
             <input type="hidden" name="securedUsername" id="securedUsername" value="" />
             <input type="hidden" name="securedPassword" id="securedPassword" value="" />
         </form>
