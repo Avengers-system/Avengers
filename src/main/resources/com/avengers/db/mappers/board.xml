@@ -63,21 +63,8 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
    insert into board (board_num, board_title, board_cont, board_writer, board_date, board_af, board_bc, board_count, board_aff)
    values ((select max(board_num) from board)+1, #{board_title}, #{board_cont}, 'admin', sysdate, #{board_af},'FAQ','0',#{board_aff}) 
 </insert>
-
-
-
-
-
-
-
-
-
-
-
-   
-   <!-- 게시판중 포탈공지사항을 검색하는 구문  -->   
-
-
+ 
+	<!-- 게시판중 포탈공지사항을 검색하는 구문  -->	
    <select id="selectPortalNoticeList" resultType="com.avengers.db.dto.BoardVO">
       SELECT * FROM BOARD WHERE BOARD_BC='PORTAL' 
    </select>
@@ -97,11 +84,28 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 <!--    다른 -->
    <select id="selectSearchList" parameterType="map" 
    resultType="com.avengers.db.dto.BoardVO">
-   SELECT * FROM BOARD 
-   WHERE  BOARD_TITLE LIKE '%'||#{BOARD_TITLE}||'%' 
-   AND BOARD_BC=#{BOARD_BC, jdbcType=VARCHAR} 
+   SELECT * FROM BOARD B, BC BC 
+   WHERE 1=1
+   AND B.BOARD_BC = BC.BC_NUM
+   AND B.BOARD_BC = #{BOARD_BC, jdbcType=VARCHAR}
+   <if test="searchFiled != null and searchFiled != ''">
+   	  AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
+   </if> 
+   <if test="BOARD_TITLE != null and BOARD_TITLE != ''">
+       and BOARD_TITLE like '%' || #{BOARD_TITLE} || '%'
+   </if>
    ORDER BY BOARD_NUM DESC 
-
+   </select>
+   
+   <select id="selectMultiSearchList" parameterType="map" resultType="com.avengers.db.dto.BoardVO">
+   SELECT * FROM BOARD B, BC BC 
+   WHERE 1=1
+   AND B.BOARD_BC = BC.BC_NUM
+   AND B.BOARD_BC LIKE '%'|| #{BOARD_BC, jdbcType=VARCHAR} || '%'
+   <if test="searchFiled != null and searchFiled != ''">
+   	  AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
+   </if> 
+   ORDER BY BOARD_NUM DESC 
    </select>
    
    <select id="insertBaseData" resultType="com.avengers.db.dto.BoardVO">
@@ -120,7 +124,7 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
       ,BOARD_CONT
       ,BOARD_WRITER
       ,BOARD_DATE
-      <if test="BOARD_AF != null">
+      <if test="BOARD_AF != null and BOARD_AF != ''">
       ,BOARD_AF
       </if>
       ,BOARD_BC
@@ -132,7 +136,7 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
       ,#{BOARD_CONT, jdbcType=VARCHAR}
       ,#{BOARD_WRITER, jdbcType=VARCHAR}
       ,SYSDATE
-      <if test="BOARD_AF != null">
+      <if test="BOARD_AF != null and BOARD_AF != ''">
       ,#{BOARD_AF, jdbcType=VARCHAR}
       </if>
       ,#{BOARD_BC, jdbcType=VARCHAR}
@@ -145,7 +149,9 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
    update board set BOARD_TITLE=#{BOARD_TITLE, jdbcType=VARCHAR}
                ,BOARD_CONT=#{BOARD_CONT, jdbcType=VARCHAR}
                ,BOARD_DATE=sysdate
+               <if test="BOARD_AF != null and BOARD_AF != ''">
                ,BOARD_AF=#{BOARD_AF, jdbcType=VARCHAR}
+               </if>
                where BOARD_NUM=#{BOARD_NUM, jdbcType=VARCHAR}
    </update>
 
@@ -175,11 +181,27 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
    <!-- 추가 -->
    <select id="selectBoardCount" parameterType="com.avengers.db.dto.BoardVO" resultType="Integer">
       select count(*)
-      from board
-      where BOARD_BC=#{BOARD_BC}
+      from BOARD B, BC BC
+      where 1=1
+      and B.BOARD_BC = BC.BC_NUM
+      and B.BOARD_BC = #{BOARD_BC}
+      <if test="searchFiled != null and searchFiled != ''">
+            AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
+      </if>
       <if test="board_title != null and board_title != ''">
-       and board_title like '%' || #{board_title} || '%'
-       </if>
+      		and board_title like '%' || #{board_title} || '%'
+      </if>
+   </select>
+   
+   <select id="selectMultiBoardCount" parameterType="com.avengers.db.dto.BoardVO" resultType="Integer">
+      select count(*)
+      from BOARD B, BC BC
+      where 1=1
+      and B.BOARD_BC = BC.BC_NUM
+      and B.BOARD_BC LIKE '%'|| #{BOARD_BC} ||'%'
+      <if test="searchFiled != null and searchFiled != ''">
+            AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
+      </if>
    </select>
    
    <update id="updateBoardCount" parameterType="map">

@@ -87,10 +87,12 @@ public class AdminStudentManageController {
 				CommandStudVO commandStudVO,
 				HttpServletRequest request,
 				@RequestParam("stud_pic")MultipartFile stud_pic,
+				@RequestParam("stud_max_crd")Integer stud_max_crd,
 				HttpSession session
 				){
 		commandStudVO.setStud_pic(stud_pic);
 		StudVO studVO = commandStudVO.toStudVO();
+		studVO.setStud_max_crd(stud_max_crd+"");
 		String path = request.getSession().getServletContext().getRealPath("resources/admin_student_images");
 		
 		
@@ -198,27 +200,6 @@ public class AdminStudentManageController {
 	return "redirect:studentManage";	
 	}
 	
-	
-	/**
-	 * 학생 리스트 조회
-	 * @param principal
-	 * @param model
-	 * @return
-	 */
-//	@RequestMapping("/studentManage")
-//	public String studentList(Principal principal, Model model){
-//		List<StudVO> studList = null;
-//
-//		// key??
-//		String key = principal.getName();
-//		try {
-//			studList = adminStudentManageService.selectStudList();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		model.addAttribute("studentList", studList);
-//		return "admin/main/studentManage"; 
-//	}
 	
 	/**
 	 * 학생 상세보기

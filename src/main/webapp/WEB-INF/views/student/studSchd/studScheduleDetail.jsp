@@ -6,7 +6,6 @@
 
 <div class="studScheduleDetail">
 <c:set var="alertstudschd" value="${message}"/>
-<c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
 <c:if test="${!empty message }">
 	<script type="text/javascript">alert('${message}');</script>
 	<c:remove var="message" scope="session"/>
@@ -40,7 +39,7 @@
 			
 			$.ajax({
 				type : "post",
-				url :"${myContextPath}/student/studSchd/studScheduleUpdate",
+				url :"${pageContext.request.contextPath}/student/mypage/studSchd/studScheduleUpdate",
 				cache : false,
 				data :  formData,
 				success: onModSuccess()
@@ -48,14 +47,14 @@
 		});
 	});
 	function onModSuccess(){
-		location.href="${myContextPath}/student/studSchd/studSchededule";
+		location.href="${pageContext.request.contextPath}/student/studSchd/studSchededule";
 	}
 	$(document).ready(function(){
 		$("#scheduleDel").click(function(){
 			var formData = $("#scheduleDetail").serialize();
 				$.ajax({
 					type : "post",
-					url :"${myContextPath}/student/studSchd/studScheduleDelete",
+					url :"${pageContext.request.contextPath}/student/mypage/studSchd/studScheduleDelete",
 					cache : false,
 					data :  formData,
 					success: onDelSuccess()
@@ -63,7 +62,7 @@
 		});
 	});
 	function onDelSuccess(){
-		location.href="${myContextPath}/student/studSchd/studSchedule";
+		location.href="${pageContext.request.contextPath}/student/studSchd/studSchedule";
 	}
 </script>
 

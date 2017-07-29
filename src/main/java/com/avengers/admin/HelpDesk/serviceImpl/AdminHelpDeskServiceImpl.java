@@ -59,6 +59,11 @@ public class AdminHelpDeskServiceImpl implements AdminHelpDeskService {
 	public ArrayList<BoardVO> searchBoardList(BoardVO boardVO) throws SQLException {
 		return helpDeskDAO.selectSearchList(boardVO);
 	}
+	
+	@Override
+	public ArrayList<BoardVO> searchMultiBoardList(BoardVO boardVO) throws SQLException {
+		return helpDeskDAO.selectMultiSearchList(boardVO);
+	}
 
 	@Override
 	public int updateBoardCount(String board_num, String board_count)
@@ -71,6 +76,9 @@ public class AdminHelpDeskServiceImpl implements AdminHelpDeskService {
 		return helpDeskDAO.selectBoardCount(boardVO);
 	}
 
-	
+	@Override
+	public int selectMultiBoardCount(BoardVO boardVO) throws SQLException {
+		return helpDeskDAO.selectMultiBoardCount(boardVO);
+	}
 
 }

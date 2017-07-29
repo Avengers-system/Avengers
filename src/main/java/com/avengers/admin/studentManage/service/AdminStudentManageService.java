@@ -41,4 +41,5 @@ public interface AdminStudentManageService {
 	 *  2017.07.27일자 추가 -배진 
 	 */
 	public int updateRtsList(RtsVO rtsVO)throws SQLException;
+	 
 }

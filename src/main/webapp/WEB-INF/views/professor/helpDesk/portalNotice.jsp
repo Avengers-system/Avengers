@@ -154,7 +154,7 @@
 																	<td><a
 																		href="${pageContext.request.contextPath}/professor/helpDesk/portalProfDetail?board_num=${portalNoticeList.board_num}&board_count=${portalNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 																			${portalNoticeList.board_title} </a></td>
-																	<td>${portalNoticeList.board_date}</td>
+																	<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${portalNoticeList.board_date}" /></td>
 																	<td>${portalNoticeList.board_writer}</td>
 																	<td>${portalNoticeList.board_af}</td>
 																	<td>${portalNoticeList.board_bc}</td>

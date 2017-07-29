@@ -2,6 +2,7 @@ package com.avengers.admin.lectureManage.daoImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,12 @@ public class AdminLectureManageDaoImpl implements AdminLectureManageDao {
 	@Override
 	public int deleteLct(String lct_num)throws SQLException {
 		return 0;
+	}
+	@Override
+	public ArrayList<Map<String, String>> selectAllLctList()
+			throws SQLException {
+		ArrayList<Map<String, String>> allLctList = (ArrayList<Map<String, String>>) sqlSession.selectList("lct.selectAllLctList");
+		return allLctList;
 	}
 
 }

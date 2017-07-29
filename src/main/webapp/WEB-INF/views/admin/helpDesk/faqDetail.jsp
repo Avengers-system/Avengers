@@ -11,7 +11,7 @@
 	<div class="panel panel-default">
 		<!--  메뉴제목 -->
 		<div class="panel-heading"
-			style="background-color: #2196F3; margin-top: 10px;">
+			style="background-color: #CC0000; margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">학생
 				FAQ상세보기</h4>
 		</div>
@@ -22,7 +22,7 @@
 				<c:when test="${not empty faqNoticeList}">
 					<form name="updatefaqBoard" action="faqUpdate">
 
-						숫자:<input type="text" name="board_num"
+						번호:<input type="text" name="board_num"
 							value="${faqNoticeList.board_num}" readonly><br> 제목:<input
 							type="text" name="board_title"
 							value="${faqNoticeList.board_title}"><br> 내용:<input

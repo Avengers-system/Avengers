@@ -1084,12 +1084,10 @@ ul li a:focus {
   }
 
   .btn-danger,
-  .label-danger,
-  .alert-danger,
   .badge-danger {
     color: #fff !important;
     border: none !important;
-    background-color: #FF6656 !important;
+    background-color: #CC0000 !important;
   }
 
   .btn-warning,
