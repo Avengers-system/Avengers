@@ -128,5 +128,7 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 			throws SQLException {
 		return amdinStudentDAO.updateRtsList(rtsVO);
 	}
+	
+	 
 
 }

@@ -173,7 +173,7 @@
 						</c:when>
 						</c:choose>
 					</select> 
-					<input type = "submit" value="검색">
+					<input type = "submit" class="btn btn-danger" value="검색">
 			</form>		
 			<ul id="tabs-demo4" class="nav nav-tabs nav-tabs-v1" role="tablist"
 			style=" font-size: 15px;">
@@ -308,7 +308,7 @@
 						</c:when>
 						</c:choose>
 					</select> 
-					<input type = "submit" value="검색">
+					<input type = "submit" class="btn btn-danger" value="검색">
 			</form>		
 			<ul id="tabs-demo4" class="nav nav-tabs nav-tabs-v1" role="tablist"
 			style=" font-size: 15px;">

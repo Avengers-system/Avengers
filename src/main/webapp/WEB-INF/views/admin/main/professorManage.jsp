@@ -75,15 +75,15 @@ background-color:#CC0000;
 						                       <!-- 셀렉트 -->
 						                       <select id="searchS" name="key">
 						                       		<option value="prfs_nm">이름</option>
-						                       		<option value="prfs_dept">학과</option>
+						                       		<option value="dept_nm">학과</option>
 						                       </select>
 						                       
-						                       <input type="search" id="searchI" name="searchValue" style="margin-bottom:7px;" class="form-control input-sm" placeholder="" aria-controls="datatables-example"> 
+						                       <input type="search" id="searchI" name="searchValue" style="margin-bottom:7px;" class="form-control input-sm " placeholder="" aria-controls="datatables-example"> 
 						                       <!-- 검색버튼  -->
-						                       <button id ="searchProf" style="background-color:#CC0000;  margin-bottom:7px;" class="btn btn-primary" onclick="fn_search();">검색</button>
+						                       <button id ="searchProf" style="background-color:#CC0000;  margin-bottom:7px;" class="btn btn-danger" onclick="fn_search();">검색</button>
 						                       <!-- 추가버튼  -->
 						                       
-						                       <button id ="addProf" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/professorInsert'">교수추가하기</button>
+						                       <button id ="addProf" style="margin-bottom:7px;" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/admin/professorInsert'">교수추가하기</button>
 				                       </div>
 		                       </div>
                        

@@ -106,7 +106,7 @@ public class AdminProfessorManageController {
 	@RequestMapping("/professorDetail")
 	public String professorDetail(
 			@RequestParam("prfs_num") String prfs_num,
-			@RequestParam("pageNo")Integer pageNo,
+//			@RequestParam("pageNo")Integer pageNo,
 			Model model){
 		
 	 
@@ -119,9 +119,9 @@ public class AdminProfessorManageController {
 		
 		String path="D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/admin_professor_images/";
 		path += prfsVO.getPrfs_pic();
-		prfsVO.setPageNo(pageNo);
+//		prfsVO.setPageNo(pageNo);
 		System.out.println("교수 디테일 이미지 경로 : "+path);
-		System.out.println("교수 디테일 페이지번호 : "+pageNo);
+//		System.out.println("교수 디테일 페이지번호 : "+pageNo);
 		model.addAttribute("path",path);
 		model.addAttribute("professor",prfsVO);
 		return "admin/professorDetail";
@@ -163,7 +163,7 @@ public class AdminProfessorManageController {
 	public String updateProfessor(
 						CommandPrfsVO commandPrfsVO,
 						@RequestParam("prfs_pic")MultipartFile prfs_pic,
-						@RequestParam("pageNo")Integer pageNo,
+//						@RequestParam("pageNo")Integer pageNo,
 						HttpServletRequest request,
 						HttpSession session
 						){
@@ -175,8 +175,8 @@ public class AdminProfessorManageController {
 		String filename= prfsVO.getPrfs_pic();
 		
 		System.out.println("filename : "+filename);
-		prfsVO.setPageNo(pageNo);
-		System.out.println("교수 수정 페이지번호 : "+pageNo );
+//		prfsVO.setPageNo(pageNo);
+//		System.out.println("교수 수정 페이지번호 : "+pageNo );
 		System.out.println(commandPrfsVO.toString());
  
 		

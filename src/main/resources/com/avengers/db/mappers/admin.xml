@@ -5,22 +5,7 @@
 <mapper namespace="admin">
  
  
- 
- <!-- department nm 검색 -->
-<!--  <select id="selectDept" parameterType="java.lang.String" resultType="com.avengers.db.dto.DeptVO"> -->
-<!--  	SELECT DEPT_NM  -->
-<!--  	FROM DEPARTMENT -->
-<!--  	<if test="prfs_dept != null and prfs_dept != ''"> -->
-<!--             WHERE DEPT_NUM = #{prfs_dept}  -->
-<!--     </if> -->
-
-<!--  	<if test="stud_dept != null and stud_dept != ''"> -->
-<!--             WHERE DEPT_NUM = #{stud_dept}  -->
-<!--     </if> -->
-
-<!--  </select> -->
- 
- 
+  
  
  <!-- 교수 enable 0으로 변경 -->
  <update id="updatePrfsEnable" parameterType="java.lang.String">

@@ -202,27 +202,6 @@ public class AdminStudentManageController {
 	
 	
 	/**
-	 * 학생 리스트 조회
-	 * @param principal
-	 * @param model
-	 * @return
-	 */
-//	@RequestMapping("/studentManage")
-//	public String studentList(Principal principal, Model model){
-//		List<StudVO> studList = null;
-//
-//		// key??
-//		String key = principal.getName();
-//		try {
-//			studList = adminStudentManageService.selectStudList();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		model.addAttribute("studentList", studList);
-//		return "admin/main/studentManage"; 
-//	}
-	
-	/**
 	 * 학생 상세보기
 	 * @param stud_num
 	 * @param model
