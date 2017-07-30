@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="col-md-2" id="commonLeftSide">
-	<%@include file="../common/classManageLectureSideCategory.jsp"%>
-</div>
+<%@include file="../common/classManageLectureSideCategory.jsp"%>
 
 <div class="col-md-10">
 	<div class="panel panel-default">
@@ -15,7 +13,6 @@
 				<c:choose>
 					<c:when test="${prfsExamList eq null}">
 						<th colspan="9">등록된 시험이 존재하지 않습니다.</th>
-						
 					</c:when>
 					<c:otherwise>
 						<thead>
@@ -51,7 +48,7 @@
 					</c:otherwise>
 				</c:choose>
 			</table>
-			<button onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureRegistryExam'">시험등록</button>
+			<button style="float:right" class="btn btn-outline btn-primary" onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureRegistryExam'">시험등록</button>
 		</div>
 	</div>
 </div>

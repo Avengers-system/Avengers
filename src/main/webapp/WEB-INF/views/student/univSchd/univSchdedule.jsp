@@ -66,6 +66,8 @@ ol, ul {
 	margin-top: 50px;
 }
 </style>
+
+
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<!--  메뉴제목 -->
@@ -210,8 +212,6 @@ ol, ul {
 										<div class="col-md-8 col-md-offset-1">
 											<button type="button" class="btn btn-default"
 												data-dismiss="modal">Close</button>
-											<input type="submit" class="btn btn-primary"> <input
-												type="button" value="삭제" onclick="deleteSchd()" />
 										</div>
 									</div>
 
@@ -280,7 +280,7 @@ ol, ul {
 								<div class="col-md-8">
 									<button type="button" class="btn btn-default"
 										data-dismiss="modal">Close</button>
-									<input type="submit" class="btn btn-primary">
+									
 								</div>
 							</div>
 						</div>

@@ -104,6 +104,14 @@
 	<script	src='${pageContext.request.contextPath}/resources/asset/js/main.js'></script>
 
 
+<!-- RSA 암호화 JS -->
+     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/rsa/jsbn.js"></script>
+     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/rsa/rsa.js"></script>
+     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/rsa/prng4.js"></script>
+     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/rsa/rng.js"></script>
+     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/rsa/login.js"></script>
+
+
 
 </body>
 </html>

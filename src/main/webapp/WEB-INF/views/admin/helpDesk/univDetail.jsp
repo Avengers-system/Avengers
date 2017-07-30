@@ -12,7 +12,7 @@
 	<div class="panel panel-default">
 		<!--  메뉴제목 -->
 		<div class="panel-heading"
-			style="background-color: #2196F3; margin-top: 10px;">
+			style="background-color: #CC0000; margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 
 				대학소식 상세보기</h4>
@@ -33,11 +33,16 @@
 							value="${univNoticeList.board_cont}"><br> 작성자:<input
 							type="text" name="board_writer"
 							value="${univNoticeList.board_writer}" readonly><br>
-						첨부된파일:<input type="text" name="board_af"
-							value="${univNoticeList.board_af}"><br> 첨부할파일:<input
+						첨부파일다운:<a href="<%=request.getContextPath()%>/admin/main/download?fileName=${univNoticeList.board_af}&board_num=${board_num}" style="text-decoration: underline;">
+					${univNoticeList.board_af}
+					</a><br>
+							
+						첨부할파일:<input
 							type="file" name="boardtoa" value="${univNoticeList.board_af}"><br>
 						게시판코드:<input type="text" name="board_bc"
-							value="${univNoticeList.board_bc}" readonly><br> <input
+							value="${univNoticeList.board_bc}" readonly><br>
+							<a href="<%=request.getContextPath()%>/admin/main/download?fileName=${univNoticeList.board_af}&board_num=${board_num}">다운</a>
+							 <input
 							type="submit" value="수정"> <a
 							href="univDelete?board_num=${univNoticeList.board_num}"><input
 							type="button" value="삭제"></a>

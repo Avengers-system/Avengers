@@ -52,7 +52,7 @@
 							<sec:authorize access="hasRole('ROLE_WSS')">
 								<div
 									style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
-									<a ref="<%=request.getContextPath()%>/student/helpDesk/deptStudWriteForm">글쓰기</a>
+									<a href="<%=request.getContextPath()%>/student/helpDesk/deptStudWriteForm">글쓰기</a>
 								</div>
 							</sec:authorize>
 
@@ -146,7 +146,7 @@
 													<td><a
 														href="${pageContext.request.contextPath}/student/helpDesk/deptStudDetail?board_num=${deptNoticeList.board_num}&board_count=${deptNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 															${deptNoticeList.board_title} </a></td>
-													<td>${deptNoticeList.board_date}</td>
+													<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${deptNoticeList.board_date}" /></td>
 													<td>${deptNoticeList.board_writer}</td>
 													<td>${deptNoticeList.board_af}</td>
 													<td>${deptNoticeList.board_bc}</td>

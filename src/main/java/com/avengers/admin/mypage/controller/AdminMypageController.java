@@ -254,6 +254,7 @@ public class AdminMypageController {
 			@RequestParam("PERSCHD_END_DATE")String perschd_end_date,
 			@RequestParam("PERSCHD_TITLE")String perschd_title,
 			@RequestParam("PERSCHD_CONT")String perschd_cont
+			
 			){
 		
 		String message="일정등록을 실패하였습니다.";

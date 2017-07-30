@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,13 @@ public class AdminLectureManageServiceImpl implements AdminLectureManageService 
 	@Override
 	public int deleteLct(String lct_num)throws SQLException {
 		return 0;
+	}
+
+	@Override
+	public ArrayList<Map<String, String>> selectAllLctList()
+			throws SQLException {
+		ArrayList<Map<String, String>> allLctList = lectureDAO.selectAllLctList();
+		return allLctList;
 	}
 
 }

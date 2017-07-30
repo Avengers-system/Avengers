@@ -33,10 +33,10 @@
 							<div class="col-md-12" style="margin-top: 30px;">
 								<!-- 이미지 미리보기 -->
 								<div class="col-md-12">
-									<div class="filess" style="margin-bottom: 20px;">
+									<div class="files" style="margin-bottom: 20px;">
 										<img style="height: 150px; width: 130px; margin-left: 50px;"
 											alt="User Pic"
-											src="${myContextPath}/resources/myInfo_images/${prfs.prfs_pic}"
+											src="${pageContext.request.contextPath}/resources/myInfo_images/${prfs.prfs_pic}"
 											id="profile-image" class="img-circle img-responsive"> 
 										<input
 											style="width: 100px;" id="profile-image-input"

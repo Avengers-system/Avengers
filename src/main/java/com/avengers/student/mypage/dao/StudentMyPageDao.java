@@ -18,7 +18,7 @@ public interface StudentMyPageDao {
 	
 	//개인정보 수정
 	//1은 성공,-1은 실패
-	public int updateMyInfo(StudVO stud,DeptVO dept) throws SQLException;
+	public int updateMyInfo(StudVO stud) throws SQLException;
 	
 	//개인정보 조회
 	//학생의 학과번호로 학과 이름을 찾는다.

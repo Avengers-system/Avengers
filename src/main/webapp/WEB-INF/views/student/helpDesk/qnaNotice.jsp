@@ -47,11 +47,11 @@
 					<div class="row">
 
 						<form
-							action="<%=request.getContextPath()%>/admin/qnaSearch?board_title=${qnaSearch.board_title}">
+							action="<%=request.getContextPath()%>/student/helpDesk/qnaStudSearch?board_title=${qnaSearch.board_title}">
 							<div
 								style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
 
-								<a href="<%=request.getContextPath()%>/admin/qnaWriteForm">글쓰기</a>
+								<a href="<%=request.getContextPath()%>/student/helpDesk/qnaStudWriteForm">글쓰기</a>
 							</div>
 							<div class="col-sm-6" style="float: left; width: 225px;">
 								<div id="datatables-example_filter" class="dataTables_filter"
@@ -138,9 +138,9 @@
 													<tr role="row" class="odd">
 														<td>${qnaNoticeList.board_num}</td>
 														<td><a
-															href="${pageContext.request.contextPath}/admin/qnaDetail?board_num=${qnaNoticeList.board_num}&board_count=${qnaNoticeList.board_count}&pageNo=${pageVO.pageNo}">
+															href="${pageContext.request.contextPath}/student/helpDesk/qnaStudDetail?board_num=${qnaNoticeList.board_num}&board_count=${qnaNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 																${qnaNoticeList.board_title} </a></td>
-														<td>${qnaNoticeList.board_date}</td>
+														<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${qnaNoticeList.board_date}" /></td>
 														<td>${qnaNoticeList.board_writer}</td>
 														<td>${qnaNoticeList.board_bc}</td>
 														<td>${qnaNoticeList.board_count}</td>

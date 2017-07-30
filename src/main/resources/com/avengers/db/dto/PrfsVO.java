@@ -26,7 +26,17 @@ public class PrfsVO extends PageVO{
 	private String prfs_tel;// 전화번호
 	private String prfs_hp;// 휴대폰번호
 	private String prfs_dept;// 학과번호
+	//enabled추가용
+	private String enabled;
 	
+
+	public String getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
 
 	public String getPrfs_num() {
 		return prfs_num;
@@ -164,4 +174,19 @@ public class PrfsVO extends PageVO{
 		this.prfs_dept = prfs_dept;
 	}
 
+	@Override
+	public String toString() {
+		return "PrfsVO [prfs_num=" + prfs_num + ", prfs_nm=" + prfs_nm
+				+ ", prfs_eng_nm=" + prfs_eng_nm + ", prfs_bir=" + prfs_bir
+				+ ", prfs_email=" + prfs_email + ", prfs_pw=" + prfs_pw
+				+ ", prfs_regno=" + prfs_regno + ", prfs_gen=" + prfs_gen
+				+ ", prfs_pic=" + prfs_pic + ", prfs_act_num=" + prfs_act_num
+				+ ", prfs_bank=" + prfs_bank + ", prfs_ah=" + prfs_ah
+				+ ", prfs_addr=" + prfs_addr + ", prfs_zip=" + prfs_zip
+				+ ", prfs_tel=" + prfs_tel + ", prfs_hp=" + prfs_hp
+				+ ", prfs_dept=" + prfs_dept + ", enabled=" + enabled + "]";
+	}
+
+	
+	
 }

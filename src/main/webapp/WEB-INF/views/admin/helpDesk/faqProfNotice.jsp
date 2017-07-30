@@ -9,7 +9,7 @@
 	<div class="panel panel-default">
 		<!--  메뉴제목 -->
 		<div class="panel-heading"
-			style="background-color: #2196F3; margin-top: 10px;">
+			style="background-color: #CC0000; margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 
 				교수FAQ</h4>
@@ -139,7 +139,7 @@
 														<td><a
 															href="${pageContext.request.contextPath}/admin/faqProfDetail?board_num=${faqProfNoticeList.board_num}&board_count=${faqProfNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 																${faqProfNoticeList.board_title} </a></td>
-														<td>${faqProfNoticeList.board_date}</td>
+														<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${faqProfNoticeList.board_date}" /></td>
 														<td>${faqProfNoticeList.board_writer}</td>
 														<td>${faqProfNoticeList.board_bc}</td>
 														<td>${faqProfNoticeList.board_count}</td>
@@ -148,14 +148,6 @@
 											</c:forEach>
 								</table>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-5">
-								<div class="dataTables_info" id="datatables-example_info"
-									role="status" aria-live="polite">Showing 1 to 57 of 57
-									entries</div>
-							</div>
-
 						</div>
 						<!-- 페이징처리 -->
 						<div class="dataTables_paginate paging_simple_numbers"

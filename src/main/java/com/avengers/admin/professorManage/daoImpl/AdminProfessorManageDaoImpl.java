@@ -108,8 +108,7 @@ public class AdminProfessorManageDaoImpl implements AdminProfessorManageDao {
 	
 	@Override
 	public int getEmpListCount(PrfsVO prfsVO) throws SQLException {
-		int result = (Integer) sqlSession.selectOne("admin.getPrfsEmpListCount",prfsVO);
-		System.out.println("daoimpl getEmpListCount result : "+result);
+		int result = (int) sqlSession.selectOne("admin.getPrfsEmpListCount",prfsVO);
 		return result;
 	}
 	
@@ -117,6 +116,11 @@ public class AdminProfessorManageDaoImpl implements AdminProfessorManageDao {
 	public ArrayList<PrfsVO> getEmpList(PrfsVO prfsVO) throws SQLException {
 		ArrayList<PrfsVO> prfsList = (ArrayList<PrfsVO>) sqlSession.selectList("admin.getPrfsEmpList",prfsVO);
 		return prfsList;
+	}
+	@Override
+	public void updatePrfsEnabled(String prfs_num) throws SQLException {
+		sqlSession.update("admin.updatePrfsEnable",prfs_num);
+		
 	}
 
 }

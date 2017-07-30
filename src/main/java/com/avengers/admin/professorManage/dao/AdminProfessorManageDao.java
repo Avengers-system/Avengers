@@ -19,4 +19,11 @@ public interface AdminProfessorManageDao {
 	public ArrayList<DeptVO> selectDeptList() throws SQLException; //전체 과목 리스트
 	public int getEmpListCount(PrfsVO prfsVO) throws SQLException;
 	public ArrayList<PrfsVO> getEmpList(PrfsVO prfsVO)throws SQLException;
+	/**
+	 * 교수vo enabled변경
+	 * @param prfs_num
+	 * @throws SQLException
+	 */
+	public void updatePrfsEnabled(String prfs_num)throws SQLException;
+	 
 }

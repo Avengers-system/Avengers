@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.avengers.db.dto.BoardVO;
 import com.avengers.db.dto.PerschdVO;
@@ -37,6 +38,27 @@ public class ProfessorHelpDeskController {
 
 	@Autowired
 	public ProfessorHelpDeskService service;
+	
+	
+	/**
+	 * 파일 다운로드
+	 * @param request
+	 * @param fileName
+	 * @return
+	 */
+	@RequestMapping("/main/download")
+	public ModelAndView download(HttpServletRequest request
+			,@RequestParam("fileName")String fileName){
+		System.out.println(fileName);
+		String Path = "D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/"
+				+ "org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/board_dept/" + fileName;
+		File file = new File(Path);
+		return new ModelAndView("download", "downloadFile", file);
+	}
+	
+	
+	
+	
 
 	/**
 	 * 학사일정등록
@@ -517,7 +539,6 @@ public class ProfessorHelpDeskController {
 
 		BoardVO boardVo=null;
 
-		System.out.println("controller" + bc_num);
 		try {
 			boardVo = service.selectInsertBaseData();
 		} catch (SQLException e) {
@@ -653,17 +674,26 @@ public class ProfessorHelpDeskController {
 			try {
 				af.transferTo(file);
 				boardVO.setBoard_af(file.getName());
-				service.insertBoard(boardVO);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+			}else{
+				boardVO.setBoard_af("");
+			}
+			
+		try {
+			service.insertBoard(boardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+
+		
+		
 		return url;
-	}
+		}
+	
 
 	@RequestMapping(value="/univProfWrite", method = RequestMethod.POST)// 학교게시판 글쓰기 저장
 	public String profUnivWrite(HttpServletRequest req

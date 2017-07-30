@@ -244,6 +244,13 @@ public class ProfessorClassManageDaoImpl implements ProfessorClassManageDao {
 		int result = sqlSession.update("asgn.updateAsgn",asgnVO);
 		return result;
 	}
+
+	@Override
+	public Map<String, String> selectLctNmInfo(String lct_num)
+			throws SQLException {
+		Map<String, String> lctNmInfo = (Map<String, String>) sqlSession.selectOne("lct.selectLctNmInfo", lct_num);
+		return lctNmInfo;
+	}
 	
 
 }

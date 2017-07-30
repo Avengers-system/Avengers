@@ -3,12 +3,10 @@ package com.avengers.student.mypage.daoImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.avengers.db.dto.DeptVO;
 import com.avengers.db.dto.PerschdVO;
 import com.avengers.db.dto.StudVO;
 import com.avengers.student.mypage.dao.StudentMyPageDao;
@@ -29,15 +27,17 @@ public class StudentMyPageDaoImpl implements StudentMyPageDao{
 	}
 
 	@Override
-	public int updateMyInfo(StudVO stud, DeptVO dept) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateMyInfo(StudVO stud) throws SQLException {
+		int success = -1;
+		success = sqlSession.update("student.updateStud",stud);
+		return success;
 	}
 
 	@Override
 	public StudVO selectMyInfo(String stud_num) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		StudVO studVO = new StudVO();
+		studVO = (StudVO) sqlSession.selectOne("student.getStudentInfo", stud_num);
+		return studVO;
 	}
 
 	@Override // 일정등록

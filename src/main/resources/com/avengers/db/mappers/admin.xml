@@ -5,6 +5,17 @@
 <mapper namespace="admin">
  
  
+  
+ 
+ <!-- 교수 enable 0으로 변경 -->
+ <update id="updatePrfsEnable" parameterType="java.lang.String">
+ 	UPDATE PROFESSOR
+ 	SET ENABLED = '0'
+ 	WHERE PRFS_NUM = #{prfs_num}
+ </update>
+ 
+ 
+ 
  <!-- 학생검색+페이징 -->
 	<select id="getStudEmpListCount" parameterType="com.avengers.db.dto.StudVO" resultType="int">
     	SELECT COUNT(*)  FROM STUDENT WHERE 1=1  
@@ -15,7 +26,7 @@
 
 	<select id="getStudEmpList" parameterType="com.avengers.db.dto.StudVO" resultType="com.avengers.db.dto.StudVO">
     SELECT 
-        a.STUD_NUM, a.STUD_NM, a.STUD_ENG_NM, a.STUD_DEPT, a.STUD_BIR, a.STUD_EMAIL, a.STUD_PW, a.STUD_GRD,
+        a.STUD_NUM, a.STUD_NM, a.STUD_ENG_NM, (SELECT D.DEPT_NM FROM DEPARTMENT D WHERE DEPT_NUM = a.STUD_DEPT )as STUD_DEPT, a.STUD_BIR, a.STUD_EMAIL, a.STUD_PW, a.STUD_GRD,
         a.STUD_REGNO, a.STUD_HP, a.STUD_ZIP, a.STUD_ADDR, a.STUD_GEN, a.STUD_QTR, a.STUD_SCHREG_CODE, a.STUD_PIC, a.STUD_ACT_NUM, a.STUD_BANK, 
         a.STUD_AH
     FROM (
@@ -45,19 +56,19 @@
         </if>
 	</select>
 
-
+<!-- 삭제 시 ENABLED 0인 교수 제외하고 출력 -->
 	<select id="getPrfsEmpList" parameterType="com.avengers.db.dto.PrfsVO" resultType="com.avengers.db.dto.PrfsVO">
     
     SELECT 
         a.PRFS_NUM, a.PRFS_NM, a.PRFS_ENG_NM, a.PRFS_BIR, a.PRFS_EMAIL, a.PRFS_PW, a.PRFS_REGNO,
         a.PRFS_GEN, a.PRFS_PIC, a.PRFS_ACT_NUM, a.PRFS_BANK, a.PRFS_AH, a.PRFS_ADDR, a.PRFS_ZIP, 
-        a.PRFS_TEL, a.PRFS_HP, a.PRFS_DEPT
+        a.PRFS_TEL, a.PRFS_HP, (SELECT D.DEPT_NM FROM DEPARTMENT D WHERE DEPT_NUM = a.PRFS_DEPT )as PRFS_DEPT, a.ENABLED
     FROM (
         	SELECT ROWNUM rnum, s.*
         	FROM (
 	            SELECT PRFS_NUM, PRFS_NM, PRFS_ENG_NM, PRFS_BIR, PRFS_EMAIL, PRFS_PW, PRFS_REGNO, PRFS_GEN,
 	            PRFS_PIC, PRFS_ACT_NUM, PRFS_BANK, PRFS_AH, PRFS_ADDR, PRFS_ZIP, PRFS_TEL, PRFS_HP,
-	             PRFS_DEPT 
+	             PRFS_DEPT,ENABLED
 	            FROM PROFESSOR
 	            WHERE 1=1  
 	            <if test="searchFiled != null and searchFiled != ''">
@@ -68,7 +79,6 @@
     )a 
 	
 	WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
-	
 	</select>
 	
  
@@ -159,7 +169,8 @@
 	STUD_DEPT= #{stud_dept jdbcType=VARCHAR},
 	STUD_GUAD_NM= #{stud_guad_nm jdbcType=VARCHAR},
 	STUD_GUAD_REL= #{stud_guad_rel jdbcType=VARCHAR},
-	STUD_GUAD_HP= #{stud_guad_hp jdbcType=VARCHAR} 
+	STUD_GUAD_HP= #{stud_guad_hp jdbcType=VARCHAR},
+	STUD_MAX_CRD= #{stud_max_crd}	
 	where STUD_NUM = #{stud_num}
 	
 	</update>

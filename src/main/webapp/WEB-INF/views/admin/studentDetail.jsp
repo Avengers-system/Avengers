@@ -76,7 +76,18 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_dept" value="${student.stud_dept}">
+								<select id="select" style="width:248px;" name="stud_dept" class="selectpicker show-tick">
+									<option value="DEPT1">멀티미디어공학과</option> 
+									<option value="DEPT2">컴퓨터공학과</option> 
+									<option value="DEPT3">영어영문학과</option> 
+									<option value="DEPT4">문예창작학과</option> 
+									<option value="DEPT5">경영학과</option> 
+									<option value="DEPT6">회계학과</option> 
+									<option value="DEPT7">간호학과</option> 
+									<option value="DEPT8">생활체육학과</option> 
+									<option value="DEPT9">국어교육과</option> 
+									<option value="DEPT10">수학교육과</option> 
+						 		 </select>
 							</div>
 						</div>
 				</div>     
@@ -166,6 +177,16 @@
 							</div>
 						</div>
 				</div>  
+				 
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">학점</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_max_crd" value="${student.stud_max_crd}">
+							</div>
+						</div>
+				</div> 
+				 
 				 
 				 
 			   <div class="col-md-12">
@@ -264,14 +285,18 @@
 						</div>
 				</div>   
 					
-				<div class="col-md-8 col-md-offset-4" style="margin-top:120px;">
-				<div class="col-md-4">
+				<div class="col-md-8 col-md-offset-4" style="margin-top:200px;">
 						<input class="submit btn btn-danger" type="submit" value="수정하기">
-				</div>		 
-				<div class="col-md-4">
 						<input class="submit btn btn-danger" type="button" value="삭제하기" onclick="location.href='${pageContext.request.contextPath}/admin/deleteStudent?stud_num=${student.stud_num}'">
-				</div>
-				</div>		 
+				</div>	
+				
+				
+<!-- 				<div class="col-md-2" style="margin-top:225px;"> -->
+<!-- 					<input class="submit btn btn-danger" type="submit" value="수정하기"> -->
+<!-- 					<input class="submit btn btn-danger" type="button" value="삭제하기" onclick="location.href='/avengers/admin/deleteProfessor?prfs_num=2017064'"> -->
+<!-- 				</div> -->
+				
+					 
 					</div>
 			 
 			</form>
@@ -315,6 +340,21 @@
 	    });
 	 
 	});
+	
+	
+	
+	//학과 select 선택되도록 추가
+	
+	  $('#select option').each(function(){
+
+  if($(this).val()=="${student.stud_dept}"){
+
+    $(this).attr("selected","selected"); // attr적용안될경우 prop으로 
+
+  }
+
+});
+	
 </script>
  
 

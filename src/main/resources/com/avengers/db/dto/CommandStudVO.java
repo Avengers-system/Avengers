@@ -88,8 +88,8 @@ public class CommandStudVO {
 
 
 
-	public void setStud_email(String std_email) {
-		this.stud_email = std_email;
+	public void setStud_email(String stud_email) {
+		this.stud_email = stud_email;
 	}
 
 

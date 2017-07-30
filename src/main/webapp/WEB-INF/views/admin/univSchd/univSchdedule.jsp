@@ -72,7 +72,7 @@ ol, ul {
 	<div class="panel panel-default">
 		<!--  메뉴제목 -->
 		<div class="panel-heading"
-			style="background-color: #2196F3; margin-top: 0px;">
+			style="background-color: #CC0000; margin-top: 0px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 
 				학사일정</h4>
@@ -126,6 +126,7 @@ ol, ul {
                      if(i>0) out.print(",");
                      PerschdVO perschdVO = perschdList.get(i);%>
            { 
+        	   number :'<%=perschdVO.getPerschd_num()%>',
               title: '<%=perschdVO.getPerschd_title()%>',
                start:'<%=perschdVO.getPerschd_start_date()%>',
                end:'<%=perschdVO.getPerschd_end_date()%>',

@@ -45,7 +45,8 @@
 					<div class="row">
 
 						<form
-							action="<%=request.getContextPath()%>/professor/helpDesk/deptProfSearch?board_title=${deptSearch.board_title}">
+							action="<%=request.getContextPath()%>/professor/helpDesk/deptProfSearch?board_title=
+							${deptSearch.board_title}">
 
 							<div
 								style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
@@ -143,7 +144,7 @@
 														<td><a
 															href="${pageContext.request.contextPath}/professor/helpDesk/deptProfDetail?board_num=${deptNoticeList.board_num}&board_count=${deptNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 																${deptNoticeList.board_title} </a></td>
-														<td>${deptNoticeList.board_date}</td>
+														<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${deptNoticeList.board_date}" /></td>
 														<td>${deptNoticeList.board_writer}</td>
 														<td>${deptNoticeList.board_af}</td>
 														<td>${deptNoticeList.board_bc}</td>

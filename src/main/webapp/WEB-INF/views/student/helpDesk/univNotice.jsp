@@ -141,7 +141,7 @@ uri="http://www.springframework.org/security/tags"%>
 											<td><a
 												href="${pageContext.request.contextPath}/student/helpDesk/univStudDetail?board_num=${univNoticeList.board_num}&board_count=${univNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 													${univNoticeList.board_title} </a></td>
-											<td>${univNoticeList.board_date}</td>
+											<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${univNoticeList.board_date}" /></td>
 											<td>${univNoticeList.board_writer}</td>
 											<td>${univNoticeList.board_af}</td>
 											<td>${univNoticeList.board_bc}</td>
