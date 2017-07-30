@@ -11,7 +11,7 @@
 	<div class="panel panel-default">
 		<!--  메뉴제목 -->
 		<div class="panel-heading"
-			style="background-color: #2196F3; margin-top: 0px;">
+			style="background-color: #666666; margin-top: 0px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 
 				포탈소식</h4>
@@ -164,14 +164,6 @@
 														</c:forEach>
 											</table>
 										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-5">
-											<div class="dataTables_info" id="datatables-example_info"
-												role="status" aria-live="polite">Showing 1 to 57 of 57
-												entries</div>
-										</div>
-
 									</div>
 									<!-- 페이징처리 -->
 									<div class="dataTables_paginate paging_simple_numbers"

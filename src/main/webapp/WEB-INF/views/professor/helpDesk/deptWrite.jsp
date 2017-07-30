@@ -5,12 +5,13 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="../common/profHelpDeskSide.jsp"%>
 
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<!--  메뉴제목 -->
 		<div class="panel-heading"
-			style="background-color: #2196F3; margin-top: 10px;">
+			style="background-color: #666666; margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 
 				학과소식글쓰기</h4>
@@ -40,9 +41,9 @@
 
 
 				조회수 <input type="text" name="board_count" readonly value="0">
-				<br> <input type="submit" value="등록">
-
-
+				<br> <input type="submit" value="등록"><br>
+				 <input type="button" value="목록으로" onclick="history.go(-1)">
+				
 			</form>
 
 
