@@ -9,10 +9,12 @@
 <script>
 
 var iSecond ; //초단위로 환산
+var removeCheck;
 var timerchecker = null;
 window.onload = function() {
 	fncClearTime();
-	initTimer();	
+	initTimer();
+	removeCheck=0;
 }
 
 function fncClearTime() {	
@@ -50,7 +52,16 @@ initTimer = function() {
 	}
 }
 function removeTimer(){
+	if(removeCheck==0){
+	$(this).val('타이머시작');	
 	clearInterval(timerchecker);
+	removeCheck=1;
+	}else if(removeCheck==1){
+	$(this).val('타이머중단');	
+	initTimer();
+	removeCheck=0;
+	}
+	
 }
 function refreshTimer() {
 	var xhr = initAjax();
@@ -110,8 +121,8 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 					<button class=" btn btn-outline btn-primary"
 						onclick="removeTimer()">
 						<div>
-							<span>타이머중단</span>
-						</div>
+							<span id="timerCheck">타이머중단</span>
+						</div>						
 					</button>
 					<button class="btn btn-outline btn-primary"
 						onclick="location.href='${pageContext.request.contextPath}/logout'">
@@ -164,7 +175,7 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 					<button class=" btn btn-outline btn-primary"
 						onclick="removeTimer()">
 						<div>
-							<span>타이머중단</span>
+							<span id="timerCheck">타이머중단</span>
 						</div>
 					</button>
 					<button class="btn btn-outline btn-primary"
@@ -214,9 +225,9 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 						</div>
 					</button>
 					<button class=" btn btn-outline btn-primary"
-						onclick="removeTimer()">
+						onclick="removeTimer()" value="타이머중단" id="timerCheck" >
 						<div>
-							<span>타이머중단</span>
+							<span id="timerCheck">타이머중단</span>
 						</div>
 					</button>
 					<button class="btn btn-outline btn-primary"

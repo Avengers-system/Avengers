@@ -2,6 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
+//2017.07.30추가
+window.onload = function() {
+		fncClearTime();
+		initTimer();
+		removeCheck=0;
+		removeTimer();
+	}
 	$(function(){
 		var index = 0;
 		var qtnas = [];
@@ -128,6 +135,7 @@
 			$(this).removeClass();
 		})
 	});
+	
 </script>
 
 <style>
