@@ -34,9 +34,15 @@ public class StudVO extends PageVO{
 	private String stud_guad_rel;//보호자 관계
 	private String stud_guad_hp;//보호자 핸드폰
 	private String stud_max_crd;//최대신청가능 학점
+	private String enabled;// 2017.07.30추가 
 	
 	
-	
+	public String getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
 	@Override
 	public String toString() {
 		return "StudVO [stud_num=" + stud_num + ", stud_nm=" + stud_nm

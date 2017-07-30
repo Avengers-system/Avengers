@@ -219,6 +219,8 @@
                      우편번호</th>
                      <th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="주소: activate to sort column ascending" style="width: 176px;">
                      주소</th>
+                     <th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="비고: activate to sort column ascending" style="width: 130px;">
+                     비고</th>
                   </tr>
                       </thead>
                       
@@ -249,6 +251,12 @@
                                     <td>${student.stud_regno}</td>
                                     <td>${student.stud_zip}</td>
                                     <td>${student.stud_addr}</td>
+                                    <c:if test="${student.enabled =='2'}">
+                                    <td>제적</td>                                    
+                                    </c:if>
+                                    <c:if test="${student.enabled =='1'}">
+                                    <td></td>                                    
+                                    </c:if>
                                  </tr>
                         </c:forEach>
                                </c:when>

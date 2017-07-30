@@ -82,9 +82,11 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
       return result;
    }
 
+
    @Override
    public int deleteStud(String stud_num) throws SQLException {
       int result = sqlSession.delete("admin.deleteStudent",stud_num);
+      int result2 = sqlSession.delete("admin.deleteStudentEnabled",stud_num); //2017.07.30추가
       System.out.println("dao : "+ result + ", stud_num : "+stud_num);
       return result;
    }

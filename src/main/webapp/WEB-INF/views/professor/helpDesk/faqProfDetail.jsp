@@ -3,11 +3,20 @@
     <%@ page trimDirectiveWhitespaces="true"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
+	<%@include file="../common/profHelpDeskSide.jsp"%>
 	
 
-<h1>교수님 FAQ 상세보기 </h1>
 
+<div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading"
+			style="background-color: #666666; margin-top: 0px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
+<!-- 제목 -->
+				FAQ</h4>
+		</div>
+		<div class="panel-body" style="height: 800px; text-align: left;">
+<!-- 		내용 -->
 <c:choose>
       <c:when test="${not empty faqProfNoticeList}">
       <form name="updatefaqProfBoard" action="faqProfUpdate">
@@ -35,4 +44,11 @@
             </tr>
          </c:otherwise>
 </c:choose>
+
+		</div>
+		
+	</div>
+</div>
+<h1>FAQ </h1>
+
 
