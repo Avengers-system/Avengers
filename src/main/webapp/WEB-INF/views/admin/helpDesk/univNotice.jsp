@@ -53,26 +53,24 @@
 					action="<%=request.getContextPath()%>/admin/univSearch?board_title=${univSearch.board_title}">
 					<div
 						style="text-align: right; margin-right: 28px; margin-top: 5px; margin-bottom: -20px;">
-
 						<a href="<%=request.getContextPath()%>/admin/univWriteForm">글쓰기</a>
 					</div>
-					<div class="col-sm-6" style="float: left; width: 225px;">
-						<div id="datatables-example_filter" class="dataTables_filter"
-							style="width: 20%;">
-
-							<label><input type="search" class="form-control input-sm"
-								placeholder="글 제목을 입력해주세요" aria-controls="datatables-example"
+					<div class="col-md-4" style="float: left; ">
+						<div id="datatables-example_filter" class="dataTables_filter">
+							<label>
+								<input type="search" class="form-control input-sm" placeholder="글 제목을 입력해주세요" aria-controls="datatables-example"
 								name="board_title" style="width: 200px; text-align: center;">
 							</label>
 							<!-- 검색 -->
+							<input type="submit" value="검색" class="btn btn-danger" >
 						</div>
-
+						
 					</div>
-					<div style="margin-bottom: -6px; margin-top: 5px;"
-						class="dataTables_paginate paging_simple_numbers"
-						id="datatables-example_paginate" style="text-align: center;">
-						<input type="submit" value="검색" style="margin-bottom: -6px;">
-					</div>
+<!-- 					<div style="margin-bottom: -6px; margin-top: 5px;" -->
+<!-- 						class="dataTables_paginate paging_simple_numbers" -->
+<!-- 						id="datatables-example_paginate" style="text-align: center;"> -->
+<!-- 						<input type="submit" value="검색" class="btn btn-danger" style="margin-bottom: -6px;"> -->
+<!-- 					</div> -->
 					<div class="col-sm-6"
 						style="width: 50px; height: 0px; flaot: right;">
 						<div class="dataTables_length" id="datatables-example_length"
@@ -141,8 +139,8 @@
 										<tbody>
 											<tr role="row" class="odd">
 												<td>${univNoticeList.board_num}</td>
-												<td><a
-													href="${pageContext.request.contextPath}/admin/univDetail?board_num=${univNoticeList.board_num}&board_count=${univNoticeList.board_count}&pageNo=${pageVO.pageNo}">
+												<td style="text-align: left;" >
+												<a href="${pageContext.request.contextPath}/admin/univDetail?board_num=${univNoticeList.board_num}&board_count=${univNoticeList.board_count}&pageNo=${pageVO.pageNo}">
 														${univNoticeList.board_title} </a></td>
 												<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${univNoticeList.board_date}" /></td>
 												<td>${univNoticeList.board_writer}</td>

@@ -59,7 +59,7 @@ margin-bottom:20px;
 						    <div class="form-group">
 						      <label class="col-sm-2 control-label text-right" style="  padding-top: 8px;"><strong>내용</strong></label>
 						      <div class="col-sm-8">
-						      <textarea class="form-control" rows="5" id="board_cont"></textarea>
+						      <textarea name="board_cont" class="form-control" rows="5" id="board_cont"></textarea>
 						      </div>
 						    </div>
 						</div>
