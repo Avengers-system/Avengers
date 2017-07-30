@@ -108,7 +108,7 @@ public class AdminProfessorManageDaoImpl implements AdminProfessorManageDao {
 	
 	@Override
 	public int getEmpListCount(PrfsVO prfsVO) throws SQLException {
-		int result = (int) sqlSession.selectOne("admin.getPrfsEmpListCount",prfsVO);
+		int result = (Integer) sqlSession.selectOne("admin.getPrfsEmpListCount",prfsVO);
 		System.out.println("daoimpl getEmpListCount result : "+result);
 		return result;
 	}

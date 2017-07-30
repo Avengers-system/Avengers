@@ -121,7 +121,7 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
 	//페이징 
 	@Override
 	public int getEmpListCount(StudVO studVO) throws SQLException {
-		int result = (int) sqlSession.selectOne("admin.getStudEmpListCount",studVO);
+		int result = (Integer) sqlSession.selectOne("admin.getStudEmpListCount",studVO);
 		System.out.println("daoimpl getEmpListCount result : "+result);
 		return result;
 	}

@@ -333,9 +333,19 @@ public class AdminStudentManageController {
 			LoaVO loaVO = new LoaVO();
 		try {
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy");
-			Date untreatYear = transFormat.parse(untreat_year);
-			Date treatYear = transFormat.parse(treat_year);
-			Date cancelYear = transFormat.parse(cancel_year);
+			Date untreatYear = new Date();
+			Date treatYear= new Date();
+			Date cancelYear= new Date();
+			if(untreat_year!=null&&!untreat_year.equals("전체")){
+			 untreatYear = transFormat.parse(untreat_year);
+			}
+			if(treatYear!=null&&!treatYear.equals("전체")){
+				 treatYear = transFormat.parse(treat_year);
+			}
+			if(cancelYear!=null&&!cancelYear.equals("전체")){
+				cancelYear = transFormat.parse(cancel_year);
+			}
+		
 			
 			rtsVO.setRts_appr_check("3");
 			rtsVO.setRts_appl_date(untreatYear);
