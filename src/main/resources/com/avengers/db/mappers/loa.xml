@@ -46,6 +46,9 @@
 	AND STUD_DEPT=DEPT_NUM
 	<if test="loa_appl_date !=null and loa_appl_date != '전체'">
 	AND LOA_APPL_DATE LIKE SUBSTR(#{loa_appl_date},3,2)||'%'
+	</if>
+	<if test="loa_appr_check !=null">
+	AND LOA_APPR_CHECK = #{loa_appr_check}
 	</if>	
 	GROUP BY LOA_START_DATE
 		  ,LOA_END_DATE

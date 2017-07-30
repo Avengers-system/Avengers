@@ -24,16 +24,17 @@
         </if>
 	</select>
 
+<!-- 2017.07.30 enabled 컬럼하나 추가 -->
 	<select id="getStudEmpList" parameterType="com.avengers.db.dto.StudVO" resultType="com.avengers.db.dto.StudVO">
     SELECT 
         a.STUD_NUM, a.STUD_NM, a.STUD_ENG_NM, (SELECT D.DEPT_NM FROM DEPARTMENT D WHERE DEPT_NUM = a.STUD_DEPT )as STUD_DEPT, a.STUD_BIR, a.STUD_EMAIL, a.STUD_PW, a.STUD_GRD,
         a.STUD_REGNO, a.STUD_HP, a.STUD_ZIP, a.STUD_ADDR, a.STUD_GEN, a.STUD_QTR, a.STUD_SCHREG_CODE, a.STUD_PIC, a.STUD_ACT_NUM, a.STUD_BANK, 
-        a.STUD_AH
+        a.STUD_AH, a.ENABLED
     FROM (
         	SELECT ROWNUM rnum, s.*
         	FROM (
 	            SELECT STUD_NUM, STUD_NM, STUD_ENG_NM, STUD_DEPT,STUD_BIR, STUD_EMAIL, STUD_PW, STUD_GRD, STUD_REGNO,
-	            STUD_HP, STUD_ZIP, STUD_ADDR, STUD_GEN, STUD_QTR, STUD_SCHREG_CODE, STUD_PIC, STUD_ACT_NUM, STUD_BANK, STUD_AH 
+	            STUD_HP, STUD_ZIP, STUD_ADDR, STUD_GEN, STUD_QTR, STUD_SCHREG_CODE, STUD_PIC, STUD_ACT_NUM, STUD_BANK, STUD_AH ,ENABLED
 	            FROM STUDENT
 	            WHERE 1=1  
 	            <if test="searchFiled != null and searchFiled != ''">
@@ -186,6 +187,12 @@
    UPDATE SECURITY
       SET ENABLED = '0'
       WHERE ID = #{stud_num jdbcType=VARCHAR}
+   </update>
+   <!-- 2017.07.30 학생삭제 -->
+   <update id="deleteStudentEnabled" parameterType="java.lang.String">
+   UPDATE STUDENT
+      SET ENABLED = '2',STUD_SCHREG_CODE = '제적'
+      WHERE STUD_NUM = #{stud_num jdbcType=VARCHAR}
    </update>
 
 
