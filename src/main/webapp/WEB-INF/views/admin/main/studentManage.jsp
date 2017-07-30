@@ -150,7 +150,7 @@
          학생목록
          </h4>
       </div>
-      <div class="panel-body" style="height: 580px; text-align: center;" >
+      <div class="panel-body" style="text-align: center;" >
 
                   <div class="panel">
                     <div class="panel-body">
@@ -171,11 +171,11 @@
                                    </select>
                   
                                          <input type="search" id="searchI" name="searchValue" style="margin-bottom:7px;" class="form-control input-sm" aria-controls="datatables-example"> 
-                                         <button  id ="searchStud" style="margin-bottom:7px;" class="btn btn-primary" onclick="fn_search();">검색</button>
+                                         <button  id ="searchStud" style="margin-bottom:7px;" class="btn btn-danger" onclick="fn_search();">검색</button>
                                          <!-- 검색버튼  -->
                                          <!-- 추가버튼  -->
                                          
-                                         <button id ="addStud" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/studentInsert'">학생추가하기</button>
+                                         <button id ="addStud" style="margin-bottom:7px;" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/admin/studentInsert'">학생추가</button>
                                    </div>
                            </div>
                         </div>
@@ -313,9 +313,12 @@
 
 
 
-
-
-
-
+<style>
+ .btn-danger, .alert-danger, .badge-danger {
+    color: #fff !important;
+    border: none !important;
+    background-color: #CC0000 !important;
+  }
+</style>
 
 

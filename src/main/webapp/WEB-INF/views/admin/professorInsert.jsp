@@ -7,21 +7,14 @@
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 
 
-<!-- Counsel Content -->
-<!-- Counsel Left Side -->
-<%@include file="common/adminManageCategory.jsp" %>
-<!--  Counsel Right Side -->
 <style>
 div.col-md-12{
 margin-bottom:20px;
 
 }
 
-
-
-
 </style>
-<div class="col-md-10" id="commonRightSide">
+<div class="col-md-12" id="commonRightSide">
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #CC0000;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">등록</h4>
@@ -46,12 +39,10 @@ margin-bottom:20px;
                	<div class="col-md-9 col-md-offset-1" style="margin-left:188px;">
                		<div class="col-md-5">
                		
-               		
-               		
-               		<div class="col-md-12">
+               		<div class="col-md-12 col-md-offset-1">
 						<div class="form-group">
 							  	<span class="input-group-btn">
-								<input type="text" class="form-control" style="width:342px;" id="image-preview-filename" disabled="disabled">  	                   
+								<input type="text" class="form-control" style="width:430px;" id="image-preview-filename" disabled="disabled">  	                   
 	                   			</span>
 						</div>
 					</div>
@@ -104,7 +95,7 @@ margin-bottom:20px;
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<select style="width:342.95px;" name="prfs_dept" class="selectpicker show-tick">
+								<select style="width:430px;" name="prfs_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
 									<option value="DEPT2">컴퓨터공학과</option> 
 									<option value="DEPT3">영어영문학과</option> 
@@ -233,7 +224,7 @@ margin-bottom:20px;
 								<div class="col-sm-8">
 									<div class="radio" >
 									<div class="col-md-6"><label><input type="radio" name="prfs_gen" value="1">남자</label></div>
-							      	<div class="col-md-6"><label><input type="radio" name="prfs_gen" value="2">여자</label></div>
+							      	<div class="col-md-3"><label><input type="radio" name="prfs_gen" value="2">여자</label></div>
 						   	  </div>
 								</div>
 							</div>
