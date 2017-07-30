@@ -87,12 +87,12 @@
 								<label class="control-label">휴대폰번호</label> 
 								<input type="text"
 									class="form-control" name="admin_hp" value="${admin.admin_hp}" style="width:350px;"
-									pattern="/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/"
+									pattern="(010)-\d{3,4}-\d{4}"
 									>
 								<label class="control-label">집전화번호</label>
 								<input type="text" class="form-control" name="admin_tel"
 									value="${admin.admin_tel}" style="width:350px;"
-									pattern="/^\d{2,3}-\d{3,4}-\d{4}$/"
+									pattern="0\d{2}--\{3}-\{4}"
 									>
 								<label class="control-label">주소</label>
 								<input type="text" class="form-control" name="admin_addr"
@@ -133,6 +133,42 @@
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	$(function() {
+	   //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
+	   $('#profile-image').on('click', function() {
+	      $('#profile-image-input').click();
+	      
+	      $("#profile-image-input").change(function (){     
+	           
+	           var file = this.files[0];
+	           var reader = new FileReader();
+	           // Set preview image into the popover data-content
+	           reader.onload = function (e) {
+	               $(".image-preview-input-title").text("변경");
+	                $("#image-preview-filename").val(file.name);            
+	               $("#profile-image").attr('src', e.target.result);
+	           }        
+	           reader.readAsDataURL(file);
+	       });
+	   });
+	   
+	   // 업로드 버튼으로 그림피일 업로드 후 미리보기
+	   $(".image-preview-input input:file").change(function (){     
+	        
+	        var file = this.files[0];
+	        var reader = new FileReader();
+	        //Set preview image into the popover data-content
+	        reader.onload = function (e) {
+	            $(".image-preview-input-title").text("변경");
+	            $("#image-preview-filename").val(file.name);            
+	            $("#profile-image").attr('src', e.target.result);
+	        }        
+	        reader.readAsDataURL(file);
+	    });
+	 
+	});
+</script>
 <script>
 $('input[name=admin_pw_confirm]').focusin(function(){
 	$(document).ready(function() {
