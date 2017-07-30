@@ -31,21 +31,29 @@
 			               </div>
               			</div>
               
-               
+               <div class="row">
+                <input type="hidden" name="prfs_num">
+               	<div class="col-md-9">
+               		<div class="col-md-5">
 	                   <span class="input-group-btn">
-	                   		<div class="col-md-8">
-	                   		<div class="col-md-4">
-	                   			<input type="text" class="form-control" style="width:310px;" id="image-preview-filename" disabled="disabled">
-	                   		</div>
-	                   		<div class="col-md-1">
-		                   		<div class="btn btn-default image-preview-input">
-		                           <input type="file" accept="image/png, image/jpeg, image/gif" name="prfs_pic"/>
-		                           <span class="image-preview-input-title">업로드</span>
-		                        </div>
-		                   	</div>
-	                   		
-	                        </div>
+							<input type="text" class="form-control" style="width:310px;" id="image-preview-filename" disabled="disabled">  	                   
 	                   </span>
+					</div>				
+										<div class="col-md-4 form-group">
+												<div class="btn btn-default image-preview-input">
+						                           <input type="file" accept="image/png, image/jpeg, image/gif" name="prfs_pic"/>
+						                           <span class="image-preview-input-title">업로드</span>
+						                        </div>
+					   					</div>
+			    </div>
+	                   
+				</div>
+				
+							
+				
+				</div>
+
+						 
               
   		</div> 
 
