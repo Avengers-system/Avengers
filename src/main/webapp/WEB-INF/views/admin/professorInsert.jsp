@@ -11,19 +11,29 @@
 <!-- Counsel Left Side -->
 <%@include file="common/adminManageCategory.jsp" %>
 <!--  Counsel Right Side -->
+<style>
+div.col-md-12{
+margin-bottom:20px;
+
+}
+
+
+
+
+</style>
 <div class="col-md-10" id="commonRightSide">
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #CC0000;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">등록</h4>
 		</div>
-		<div class="panel-body" style="height: 580px; text-align: center;" >
+		<div class="panel-body" style="text-align: center;" >
 
 			<div class="row">
-  	<div class="col-md-12">
+  	<div class="col-md-12" style="margin-bottom:-30px;">
  		 <form name="insertProfessor"  method="post" action="${pageContext.request.contextPath }/admin/insertProfessor" enctype="multipart/form-data">
   		<div class="col-md-12" style="margin-top:30px;">
   		   <!-- 이미지 미리보기 -->
-  		   				<div class="col-md-12">
+  		   				<div class="col-md-12 col-md-offset-1">
 			               <div class="filess" style="margin-bottom:20px;">
 			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
 			                     id="profile-image" class="img-circle img-responsive">
@@ -33,16 +43,24 @@
               
                <div class="row">
                 <input type="hidden" name="prfs_num">
-               	<div class="col-md-9">
+               	<div class="col-md-9 col-md-offset-1" style="margin-left:188px;">
                		<div class="col-md-5">
-	                   <span class="input-group-btn">
-							<input type="text" class="form-control" style="width:310px;" id="image-preview-filename" disabled="disabled">  	                   
-	                   </span>
+               		
+               		
+               		
+               		<div class="col-md-12">
+						<div class="form-group">
+							  	<span class="input-group-btn">
+								<input type="text" class="form-control" style="width:342px;" id="image-preview-filename" disabled="disabled">  	                   
+	                   			</span>
+						</div>
+					</div>
+				 
 					</div>				
-										<div class="col-md-4 form-group">
+										<div class="col-md-4 form-group" style="margin-left:-210px;">
 												<div class="btn btn-default image-preview-input">
 						                           <input type="file" accept="image/png, image/jpeg, image/gif" name="prfs_pic"/>
-						                           <span class="image-preview-input-title">업로드</span>
+						                           <span class="image-preview-input-title" >업로드</span>
 						                        </div>
 					   					</div>
 			    </div>
@@ -62,6 +80,9 @@
 				<div class="col-md-5">
 					 <input type="hidden" name="prfs_num">
 				<div class="col-md-12">
+				
+				 
+				
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">이름</label>
 							<div class="col-sm-8">
@@ -83,7 +104,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<select style="width:334px;" name="prfs_dept" class="selectpicker show-tick">
+								<select style="width:342.95px;" name="prfs_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
 									<option value="DEPT2">컴퓨터공학과</option> 
 									<option value="DEPT3">영어영문학과</option> 
@@ -219,7 +240,7 @@
 					</div>	
 							 
 					</div>
-					<div class="col-md-2" style="margin-top:225px;">
+					<div class="col-md-2" style="margin-top:400px;">
 					<input class="submit btn btn-danger" type="submit" value="등록하기">
 					</div>
 					
@@ -333,10 +354,7 @@
       opacity: 0;
       filter: alpha(opacity=0);
    }
-   .image-preview-input-title {
-       margin-left:2px;
-   }
- 
+   
    img {
       cursor:pointer;
    }
@@ -353,9 +371,6 @@
     border-bottom-left-radius: 0;
 }
 
-	div#prof_inform{
-		margin-top:50px;
-	}
 
 </style>
 
