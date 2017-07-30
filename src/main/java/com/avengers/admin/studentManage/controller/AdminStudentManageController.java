@@ -317,36 +317,21 @@ public class AdminStudentManageController {
 			Date untreatYear = new Date();
 			Date treatYear= new Date();
 			Date cancelYear= new Date();
-			if(untreat_year!=null&&!untreat_year.equals("전체")){
-			 untreatYear = transFormat.parse(untreat_year);
-			}
-			if(treatYear!=null&&!treatYear.equals("전체")){
-				 treatYear = transFormat.parse(treat_year);
-			}
-			if(cancelYear!=null&&!cancelYear.equals("전체")){
-				cancelYear = transFormat.parse(cancel_year);
-			}
 		
 			
 			rtsVO.setRts_appr_check("3");
-			rtsVO.setRts_appl_date(untreatYear);
 			loaVO.setLoa_appr_check("3");
-			loaVO.setLoa_appl_date(untreatYear);
 			List<HashMap<String,String>> untreatLoaList =adminStudentManageService.selectLoaList(loaVO);
 			List<HashMap<String,String>> untreatRtsList =adminStudentManageService.selectRtsList(rtsVO);
 			
 			rtsVO.setRts_appr_check("1");
-			rtsVO.setRts_appl_date(treatYear);
 			loaVO.setLoa_appr_check("1");
-			loaVO.setLoa_appl_date(treatYear);
 			List<HashMap<String,String>> treatLoaList =adminStudentManageService.selectLoaList(loaVO);
 			List<HashMap<String,String>> treatRtsList =adminStudentManageService.selectRtsList(rtsVO);
 			
 			
 			rtsVO.setRts_appr_check("2");
-			rtsVO.setRts_appl_date(cancelYear);
 			loaVO.setLoa_appr_check("2");
-			loaVO.setLoa_appl_date(cancelYear);
 			List<HashMap<String,String>> cancelLoaList =adminStudentManageService.selectLoaList(loaVO);
 			List<HashMap<String,String>> cancelRtsList =adminStudentManageService.selectRtsList(rtsVO);
 			
@@ -368,8 +353,6 @@ public class AdminStudentManageController {
 			}
 			model.addAttribute("yearList",yearList);
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		return "admin/studentManage/studentLoaRtsList";

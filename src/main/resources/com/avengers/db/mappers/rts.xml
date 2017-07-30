@@ -40,6 +40,9 @@
 	AND STUD_DEPT=DEPT_NUM
 	<if test="rts_appl_date !=null and rts_appl_date != '전체'">
 	AND RTS_APPL_DATE LIKE SUBSTR(#{rts_appl_date},3,2)||'%'
+	</if>
+	<if test="rts_appr_check !=null">
+	AND RTS_APPR_CHECK = #{rts_appr_check}
 	</if>	
 	GROUP BY RTS_DATE
 		  ,STUD_NUM
