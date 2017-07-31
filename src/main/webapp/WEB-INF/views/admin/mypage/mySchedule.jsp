@@ -90,7 +90,7 @@ ol, ul {
                    %> 
          ],
          eventClick:function(event) {
-            alert(event.number);
+            
             $.ajax({
                url  : 'myScheduleDetail',
                type : 'post',

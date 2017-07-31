@@ -91,13 +91,18 @@ public class ProfessorClassManageController {
 	 * @return
 	 */
 	@RequestMapping("professor/classManage/lectureDetail")
-	public String professorLectureDetail(HttpServletRequest request, Model model){
+	public String professorLectureDetail(HttpServletRequest request, Model model,@RequestParam(value="lct",required=false)String lct){
 		String view = "professor/classManage/lectureDetail";
 		
 		Map<String, String> detailLct = null;
 		
 		try {
+			if((String)request.getSession().getAttribute("lct_num")!=null){
 			detailLct = pcmService.selectDetailLct((String)request.getSession().getAttribute("lct_num"));
+			}
+			if(lct!=null){
+				detailLct = pcmService.selectDetailLct(lct);	
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

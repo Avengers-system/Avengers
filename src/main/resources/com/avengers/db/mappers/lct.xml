@@ -83,8 +83,6 @@
 		from LR, LECTURE  
 		where LR_LCT = LCT_NUM 
 		AND LCT_PRFS = #{lct_prfs}
-		AND LCT_YR =  #{lct_yr} 
-		AND LCT_QTR =  #{lct_qtr}  
 		
 	</select>
 	
