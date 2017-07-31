@@ -3,6 +3,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+<link href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
+
+ 
 <!-- 템플릿 페이지 -->
 <style>
 	#professorTable,  #professorTable td{

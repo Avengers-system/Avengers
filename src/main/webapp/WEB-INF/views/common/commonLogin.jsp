@@ -105,6 +105,8 @@
             <input type="hidden" name="securedUsername" id="securedUsername" value="" />
             <input type="hidden" name="securedPassword" id="securedPassword" value="" />
         </form>
+        	<form  action="<c:url value='/loginForm'/>" method="post" >
+
          <div class="form-signin">
           <div class="panel periodic-login">
               <span class="atomic-number">&copy;Avengers</span>
@@ -115,16 +117,16 @@
 
                   <i class="icons icon-arrow-down"></i>
                   <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                    <input type="text" class="form-text" required id="username">
+                    <input type="text" class="form-text" name="id" required id="username">
                     <span class="bar"></span>
                     <label>Username</label>
                   </div>
                   <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                    <input type="password" class="form-text" required id="password">
+                    <input type="password" class="form-text"  name="pwd" required id="password">
                     <span class="bar"></span>
                     <label>Password</label>
                   </div>
-     			  <button onclick="validateEncryptedForm(); return false;" class="btn col-md-12">SignIn</button>
+                  <input type="submit" class="btn col-md-12" value="SignIn"/>
               </div>
                 <div class="text-center" style="padding:5px;">
                     <a href="#" data-toggle="modal" data-target="#findId">Forgot Username </a>
@@ -132,6 +134,7 @@
                 </div>
           </div>
 		</div>
+			</form>
       </div>
 
 

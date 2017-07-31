@@ -46,6 +46,9 @@
 							type="submit" value="수정"> <a
 							href="univDelete?board_num=${univNoticeList.board_num}"><input
 							type="button" value="삭제"></a>
+							<input type="button" value="목록으로" 
+
+ onclick="history.go(-1)">
 					</form>
 
 

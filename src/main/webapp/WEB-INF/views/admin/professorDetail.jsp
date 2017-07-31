@@ -7,23 +7,19 @@
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 
 
-<!-- Counsel Content -->
-<!-- Counsel Left Side -->
-<%@include file="common/adminManageCategory.jsp" %>
-<!--  Counsel Right Side -->
-<div class="col-md-10" id="commonRightSide">
+<div class="col-md-12" id="commonRightSide">
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #CC0000;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">상세정보</h4>
 		</div>
-		<div class="panel-body" style="height: 580px; text-align: center;" >
+		<div class="panel-body" >
 
 			<div class="row">
   	<div class="col-md-12">
  		 <form name="updateProfessor"  method="post" action="${pageContext.request.contextPath }/admin/updateProfessor?pageNo=${professor.pageNo}" enctype="multipart/form-data">
   		<div class="col-md-12" style="margin-top:30px;">
   		   <!-- 이미지 미리보기 -->
-  		   				<div class="col-md-12">
+  		   				<div class="col-md-12 col-md-offset-1">
 			               <div class="filess" style="margin-bottom:20px;">
 			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="<%=request.getContextPath()%>/resources/admin_professor_images/${professor.prfs_pic}"
 <%-- 			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="${path }" --%>
@@ -34,11 +30,11 @@
               
                
 	                   <span class="input-group-btn">
-	                   		<div class="col-md-8">
-	                   		<div class="col-md-4">
+	                   		<div class="col-md-8" style="margin-left:53px;">
+	                   		<div class="col-md-4 col-md-offset-2">
 	                   			<input type="text" value="${professor.prfs_pic}" class="form-control" style="width:310px;" id="image-preview-filename" >
 	                   		</div>
-	                   		<div class="col-md-1">
+	                   		<div class="col-md-1" style="margin-left:-100px;">
 		                   		<div class="btn btn-default image-preview-input">
 		                           <input type="file" accept="image/png, image/jpeg, image/gif" name="prfs_pic" />
 		                           <span class="image-preview-input-title">업로드</span>
@@ -54,7 +50,7 @@
 		<div class="col-md-12" id="prof_inform">
 				<div class="col-md-5">
 					 
-				<div class="col-md-12">
+				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">교수번호</label>
 							<div class="col-sm-8">
@@ -63,7 +59,7 @@
 							</div>
 						</div>
 				</div>
-				<div class="col-md-12">
+				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">이름</label>
 							<div class="col-sm-8">
@@ -72,7 +68,7 @@
 						</div>
 				</div>
 				  
-				<div class="col-md-12">
+				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">영문이름</label>
 							<div class="col-sm-8">
@@ -81,11 +77,32 @@
 						</div>
 				</div>
 
-				<div class="col-md-12">
+				<div class="col-md-12" style="margin-bottom:20px;">
+							<div class="form-group">
+								<label class="col-sm-4 control-label text-right">비밀번호</label>
+								<div class="col-sm-8">
+									<input type="password" class="form-control" name="prfs_pw" value="${professor.prfs_pw }">
+								</div>
+							</div>
+				</div>	
+ 
+				  
+				<div class="col-md-12" style="margin-bottom:20px;">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">주민등록번호</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="prfs_regno"  value="${professor.prfs_regno }">
+							</div>
+						</div>
+				</div>
+					 
+					 
+				
+				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<select id="select" style="width:334px;" name="prfs_dept" class="selectpicker show-tick">
+								<select id="select" style="width:480px;" name="prfs_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
 									<option value="DEPT2">컴퓨터공학과</option> 
 									<option value="DEPT3">영어영문학과</option> 
@@ -100,17 +117,9 @@
 							</div>
 						</div>
 				</div>
-				  
-				<div class="col-md-12">
-						<div class="form-group">
-							<label class="col-sm-4 control-label text-right">주민등록번호</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" name="prfs_regno"  value="${professor.prfs_regno }">
-							</div>
-						</div>
-				</div>
-					 
-				<div class="col-md-12">
+									 
+			
+				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">생년월일</label>
 							<div class="col-sm-8">
@@ -119,7 +128,7 @@
 						</div>
 				</div>
 					 	   
-				<div class="col-md-12">
+				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">전화번호</label>
 							<div class="col-sm-8">
@@ -128,23 +137,14 @@
 						</div>
 				</div>	 
 				
-				<div class="col-md-12">
-						<div class="form-group">
-							<label class="col-sm-4 control-label text-right">계좌번호</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" name="prfs_act_num" value="${professor.prfs_act_num }" >
-							</div>
-						</div>
-				</div>	
+				 
 				
 				</div>
-
-
 
 					<div class="col-md-5">
 					
 					
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">은행명</label>
 								<div class="col-sm-8">
@@ -153,8 +153,16 @@
 							</div>
 					</div>
 					
+					<div class="col-md-12" style="margin-bottom:20px;">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">계좌번호</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="prfs_act_num" value="${professor.prfs_act_num }" >
+							</div>
+						</div>
+					</div>	
 			 
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">예금주</label>
 								<div class="col-sm-8">
@@ -163,7 +171,7 @@
 							</div>
 					</div>
 							 
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">우편번호</label>
 								<div class="col-sm-8">
@@ -172,7 +180,7 @@
 							</div>
 					</div>
 							 
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">주소</label>
 								<div class="col-sm-8">
@@ -181,7 +189,7 @@
 							</div>
 					</div>
 							 		 
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">휴대폰번호</label>
 								<div class="col-sm-8">
@@ -190,7 +198,7 @@
 							</div>
 					</div>		 
 							 
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">이메일</label>
 								<div class="col-sm-8">
@@ -199,16 +207,9 @@
 							</div>
 					</div>		  
 		
-					<div class="col-md-12">
-							<div class="form-group">
-								<label class="col-sm-4 control-label text-right">비밀번호</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" name="prfs_pw" value="${professor.prfs_pw }">
-								</div>
-							</div>
-					</div>		  
+						  
 			 
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">성별</label>
 								<div class="col-sm-8">
@@ -229,7 +230,7 @@
 					</div>	
 							 
 					</div>
-					<div class="col-md-2" style="margin-top:225px;">
+					<div class="col-md-2" style="margin-top:450px;">
 					<input class="submit btn btn-danger" type="submit" value="수정하기">
 					<input class="submit btn btn-danger" type="button" value="삭제하기" onclick="location.href='${pageContext.request.contextPath }/admin/deleteProfessor?prfs_num=${professor.prfs_num}'">
 					</div>
@@ -305,6 +306,10 @@
  
  
 <style>
+ 
+ 
+ 
+ 
  
     .table-bordered>thead>tr>th {
 	text-align: center;

@@ -84,10 +84,6 @@ Lpad = function(str, len) {
 </sec:authorize>
 
 
-
-
-
-
 <!-- 관리자 로그인시 보여주는 화면 -->
 <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
 <nav class="navbar navbar-default header bg-white "	style="height: 100px; margin: 0;">
@@ -123,8 +119,8 @@ Lpad = function(str, len) {
 		</div>
 	</nav>
 
-	<nav class="navbar navbar-default header bg-blue" style="height: 100%;  margin-top: 17px;">
-		<div class="col-xs-12 nav-wrapper" style="background-color: #CC0000;">
+	<nav class="navbar navbar-default header bg-#CC0000" style="height: 100%;  margin-top: 17px;">
+		<div class="col-xs-12 nav-wrapper" style="background-color: #CC0000; ">
 			<div class="navbar-header">
 				<ul class="nav nav-tabs nav-tabs-v1">
 					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/main/adminMain">Main</a></li>
@@ -176,8 +172,6 @@ Lpad = function(str, len) {
 				</div>
 		</div>
 	</nav>
-	<nav class="navbar navbar-default header bg-blue" style="height: 100%;  margin-top: 17px;">
-		<div class="col-xs-12 nav-wrapper" style=" background-color: #666666;">
 			<div class="navbar-header">
 				<ul class="nav nav-tabs nav-tabs-v1">
 					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/main">Main</a></li>
@@ -187,8 +181,6 @@ Lpad = function(str, len) {
 					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/helpDesk/univSchd/univSchdedule">Help Desk</a></li>
 				</ul>
 			</div>
-		</div>
-	</nav>
 </sec:authorize>
 
 
@@ -228,7 +220,6 @@ Lpad = function(str, len) {
 				</div>
 		</div>
 	</nav>
-	<nav class="navbar navbar-default header bg-blue" style="height: 100%; margin-top: 17px;">
 		<div class="col-xs-12 nav-wrapper">
 			<div class="navbar-header">
 				<ul class="nav nav-tabs nav-tabs-v1">
@@ -239,9 +230,8 @@ Lpad = function(str, len) {
 					<li role="presentation"><a href="${pageContext.request.contextPath}/student/admissionApplication">수강신청</a></li>
 					<li role="presentation"><a href="${pageContext.request.contextPath}/student/studRes">등록&장학</a></li>
 
-					<li role="presentation"><a href="${pageContext.request.contextPath}/student/helpDesk/univSchd/univSchdedule">Help Desk</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath}/student/helpDesk/deptStudNoticeList">Help Desk</a></li>
 				</ul>
 			</div>
 		</div>
-	</nav>
 </sec:authorize>

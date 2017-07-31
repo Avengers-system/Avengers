@@ -94,7 +94,6 @@ public class CommonController implements ApplicationContextAware{
 		,HttpServletRequest request, HttpServletResponse response) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		
 		ModelAndView model = new ModelAndView();
-		System.out.println("login폼 들어오나요?");
 		if (error != null && logout==null) {
 			model.addObject("error", "Invalid username and password!");
 		}
@@ -126,7 +125,6 @@ public class CommonController implements ApplicationContextAware{
     	String publicKeyModulus = publicSpec.getModulus().toString(16);
     	String publicKeyExponent = publicSpec.getPublicExponent().toString(16);
     	
-    	System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     	System.out.println(publicKeyModulus);
     	System.out.println(publicKeyExponent);
     	

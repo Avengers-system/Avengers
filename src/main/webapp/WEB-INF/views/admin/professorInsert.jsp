@@ -5,15 +5,7 @@
   <!-- jQuery와 Postcodify를 로딩한다 -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-
-
-<style>
-div.col-md-12{
-margin-bottom:20px;
-
-}
-
-</style>
+ 
 <div class="col-md-12" id="commonRightSide">
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #CC0000;  margin-top: 10px;">
@@ -42,13 +34,13 @@ margin-bottom:20px;
                		<div class="col-md-12 col-md-offset-1">
 						<div class="form-group">
 							  	<span class="input-group-btn">
-								<input type="text" class="form-control" style="width:430px;" id="image-preview-filename" disabled="disabled">  	                   
+								<input type="text" class="form-control" style="width:250px; margin-left:22px;" id="image-preview-filename" disabled="disabled">  	                   
 	                   			</span>
 						</div>
 					</div>
 				 
 					</div>				
-										<div class="col-md-4 form-group" style="margin-left:-210px;">
+										<div class="col-md-4 form-group" style="margin-left:-450px;">
 												<div class="btn btn-default image-preview-input">
 						                           <input type="file" accept="image/png, image/jpeg, image/gif" name="prfs_pic"/>
 						                           <span class="image-preview-input-title" >업로드</span>
@@ -95,7 +87,7 @@ margin-bottom:20px;
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<select style="width:430px;" name="prfs_dept" class="selectpicker show-tick">
+								<select style="width:487px;" name="prfs_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
 									<option value="DEPT2">컴퓨터공학과</option> 
 									<option value="DEPT3">영어영문학과</option> 
@@ -213,7 +205,7 @@ margin-bottom:20px;
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">비밀번호</label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" name="prfs_pw" >
+									<input type="password" class="form-control" name="prfs_pw" >
 								</div>
 							</div>
 					</div>		  
@@ -355,7 +347,10 @@ margin-bottom:20px;
    }
 
  	 
+div.col-md-12{
 
+margin-bottom:20px;
+}
 
 .input-group .form-control:last-child, .input-group-addon:last-child {
     border-top-left-radius: 0;

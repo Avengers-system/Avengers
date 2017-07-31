@@ -180,7 +180,7 @@
 							<td>${status.count}</td>
 							<td>${depart.board_title}</td>
 							<td>${depart.board_writer}</td>
-							<td>${depart.board_date}</td>
+							<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${depart.board_date}" /></td>
 						</tr>
 						</c:if>
 					</c:forEach>
@@ -210,6 +210,7 @@
 									<td>${potal.board_title}</td>
 									<td>${potal.board_writer}</td>
 									<td>${potal.board_date}</td>
+									<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${potal.board_date}" /></td>
 								</tr>
 							</c:if>
 						</c:forEach>
