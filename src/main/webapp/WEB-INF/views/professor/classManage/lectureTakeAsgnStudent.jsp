@@ -45,7 +45,7 @@
 											<td>${asgnOfStud.get('sub_sjt_point') }</td>									
 										</c:otherwise>
 									</c:choose>
-									<td><button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureAsgnStudentDetail?sub_num=${asgnOfStud.get('sub_num')}'">이동</button></td>
+									<td><button style="padding:5px" class="btn btn-outline btn-primary" onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureAsgnStudentDetail?sub_num=${asgnOfStud.get('sub_num')}'">이동</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>			

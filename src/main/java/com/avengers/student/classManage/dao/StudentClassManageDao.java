@@ -69,6 +69,18 @@ public interface StudentClassManageDao {
 	//배현상
 	//시험시간 정보 가져오기
 	public Map<String, String> selectExamTimeInfo(String exam_num) throws SQLException;
+	
+	//배현상
+	//TL테이블에 총점이 널인지 아닌지 판단하기
+	public ArrayList<Map<String,String>> checkTlPoint(String stud_num) throws SQLException;
+	
+	//배현상
+	//시험점수 계산
+	public void updateLectureResultPoint(ArrayList<String> lctNumList, String stud_num) throws SQLException;
+	
+	//배현상
+	//성적 가져오기
+	public ArrayList<Map<String, String>> selectResultScore(String stud_num) throws SQLException;
 	//////강의 상세 페이지
 	
 	//강의계획서

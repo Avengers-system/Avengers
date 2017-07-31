@@ -72,7 +72,7 @@ public class ProfessorClassManageController {
 	 */
 	@RequestMapping("professor/classManage/lectureMain")
 	public String professorLectureMain(HttpServletRequest request, Model model){
-		String view = "professor/classManage/lectureMain";
+		String view = "redirect:lectureDetail";
 		
 		String lct_num = request.getParameter("lct_num");
 		

@@ -45,7 +45,7 @@
     )a 
 	
 	WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
-	
+	ORDER BY a.STUD_NUM DESC
 	</select>
 
 
@@ -80,6 +80,7 @@
     )a 
 	
 	WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
+	ORDER BY a.PRFS_NUM DESC
 	</select>
 	
  

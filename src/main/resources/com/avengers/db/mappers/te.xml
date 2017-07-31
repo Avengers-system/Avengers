@@ -68,4 +68,28 @@
 		                        AND    SA_CHECK = '1')
 		WHERE  TE_NUM = #{te_num}
 	</update>
+	
+	<!-- 학생의 중간고사 점수를 학점결정비율과 계산하여 가져온다. -->
+	<select id="selectTeMeScore" parameterType="java.util.HashMap" resultType="java.lang.String">
+		SELECT TRUNC(SUM(TE_EXAM_POINT) * (LCT_ME_RATE / 100),0)
+		FROM   TE T, EXAM E, LECTURE L
+		WHERE  TE_EXAM = EXAM_NUM
+		AND    EXAM_LCT = LCT_NUM
+		AND    TE_STUD = #{stud_num}
+		AND    EXAM_TYPE = '1'
+		AND    LCT_NUM = #{lct_num}
+		GROUP BY LCT_ME_RATE
+	</select>
+    
+	<!-- 학생의 기말고사 점수를 학점결정비율과 계산하여 가져온다. -->
+	<select id="selectTeFeScore" parameterType="java.util.HashMap" resultType="java.lang.String">
+		SELECT TRUNC(SUM(TE_EXAM_POINT) * (LCT_FE_RATE / 100),0)
+		FROM   TE T, EXAM E, LECTURE L
+		WHERE  TE_EXAM = EXAM_NUM
+		AND    EXAM_LCT = LCT_NUM
+		AND    TE_STUD = #{stud_num}
+		AND    EXAM_TYPE = '2'
+		AND    LCT_NUM = #{lct_num}
+		GROUP BY LCT_FE_RATE
+	</select>
 </mapper>

@@ -202,7 +202,7 @@
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">비밀번호</label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" name="prfs_pw" >
+									<input type="password" class="form-control" name="prfs_pw" >
 								</div>
 							</div>
 					</div>		  
