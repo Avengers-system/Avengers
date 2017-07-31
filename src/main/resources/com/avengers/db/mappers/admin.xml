@@ -170,8 +170,8 @@
 	STUD_DEPT= #{stud_dept jdbcType=VARCHAR},
 	STUD_GUAD_NM= #{stud_guad_nm jdbcType=VARCHAR},
 	STUD_GUAD_REL= #{stud_guad_rel jdbcType=VARCHAR},
-	STUD_GUAD_HP= #{stud_guad_hp jdbcType=VARCHAR},
-	STUD_MAX_CRD= #{stud_max_crd}	
+	STUD_GUAD_HP= #{stud_guad_hp jdbcType=VARCHAR} 
+ 
 	where STUD_NUM = #{stud_num}
 	
 	</update>
