@@ -1637,7 +1637,7 @@ a.bg-warning:focus, a.bg-warning:hover {
 }
 
 .bg-danger {
-	background-color: #f2dede
+	background-color: #CC0000
 }
 
 a.bg-danger:focus, a.bg-danger:hover {
@@ -2717,7 +2717,7 @@ table td[class*=col-], table th[class*=col-] {
 	.table>tfoot>tr>td.danger, .table>tfoot>tr>th.danger, .table>thead>tr.danger>td,
 	.table>thead>tr.danger>th, .table>thead>tr>td.danger, .table>thead>tr>th.danger
 	{
-	background-color: #f2dede
+	background-color: #CC0000
 }
 
 .table-hover>tbody>tr.danger:hover>td, .table-hover>tbody>tr.danger:hover>th,

@@ -32,7 +32,7 @@
 	                   <span class="input-group-btn">
 	                   		<div class="col-md-8" style="margin-left:53px;">
 	                   		<div class="col-md-4 col-md-offset-2">
-	                   			<input type="text" value="${professor.prfs_pic}" class="form-control" style="width:310px;" id="image-preview-filename" >
+	                   			<input type="text" value="${professor.prfs_pic}" class="form-control" style="width:270px;" id="image-preview-filename" >
 	                   		</div>
 	                   		<div class="col-md-1" style="margin-left:-100px;">
 		                   		<div class="btn btn-default image-preview-input">
@@ -102,7 +102,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<select id="select" style="width:480px;" name="prfs_dept" class="selectpicker show-tick">
+								<select id="select" style="width:420px;" name="prfs_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
 									<option value="DEPT2">컴퓨터공학과</option> 
 									<option value="DEPT3">영어영문학과</option> 

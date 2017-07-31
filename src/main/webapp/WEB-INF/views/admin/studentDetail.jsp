@@ -30,9 +30,9 @@
 	                   <span class="input-group-btn">
 	                   		<div class="col-md-8 col-md-offset-1">
 	                   		<div class="col-md-4">
-	                   			<input type="text" value="${student.stud_pic}" class="form-control" style="width:292.48px;" id="image-preview-filename" disabled="disabled">
+	                   			<input type="text" value="${student.stud_pic}" class="form-control" style="width:254px;" id="image-preview-filename" disabled="disabled">
 	                   		</div>
-	                   		<div class="col-md-1" style="margin-left:-50px;">
+	                   		<div class="col-md-1" style="margin-left:-30px;" >
 		                   		<div class="btn btn-default image-preview-input">
 		                           <input type="file" accept="image/png, image/jpeg, image/gif" />
 		                           <span class="image-preview-input-title">업로드</span>

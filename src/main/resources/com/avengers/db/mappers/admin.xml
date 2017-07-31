@@ -399,8 +399,8 @@
    
    <!-- 등록한학생번호찾기 -->
    
-   <select id="studNumCurr" resultType="String">
-   SELECT '2017'|| lpad(stud_seq.currval,3,0 )
+   <select id="studNumCurr" parameterType="String" resultType="String">
+   SELECT '2017'||(select LPAD(SUBSTR( #{stud_dept}, 5),2,0) from department WHERE DEPT_NUM = #{stud_dept})||lpad(stud_seq.currval,2,0 )
       FROM DUAL
    </select>
    
