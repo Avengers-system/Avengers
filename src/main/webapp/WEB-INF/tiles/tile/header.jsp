@@ -7,7 +7,6 @@
 
 
 <script>
-
 var iSecond ; //초단위로 환산
 var removeCheck;
 var timerchecker = null;
@@ -16,19 +15,9 @@ window.onload = function() {
 	initTimer();
 	removeCheck=0;
 }
-
 function fncClearTime() {	
 	iSecond = 60*10
 }
-
-Lpad = function(str, len) {
-	str = str + "";
-	while (str.length < len) {
-		str = "0" + str;
-	}
-	return str;
-}
-
 initTimer = function() {
 	var timer = document.getElementById("timer");
 	rHour = parseInt(iSecond / 3600);
@@ -45,19 +34,13 @@ initTimer = function() {
 	else if(iSecond == 0){
         location.href="${pageContext.request.contextPath}/logout";
         
-     } 
-	
-	else {
-		logoutUser();
-	}
+     }
 }
 function removeTimer(){
 	if(removeCheck==0){
-	$(this).val('타이머시작');	
 	clearInterval(timerchecker);
 	removeCheck=1;
 	}else if(removeCheck==1){
-	$(this).val('타이머중단');	
 	initTimer();
 	removeCheck=0;
 	}
@@ -87,7 +70,13 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 	}
 	return xmlhttp;
 }
-
+Lpad = function(str, len) {
+	str = str + "";
+	while (str.length < len) {
+		str = "0" + str;
+	}
+	return str;
+}
 </script>
 
 <!-- 비로그인시 보여주는 화면 -->

@@ -278,8 +278,8 @@ public class StudentSchoolRegisterController {
 		            document.add(new Paragraph("   "));
 		            document.add(new Paragraph("   "));
 		            document.add(new Paragraph("   "));
-		            document.add(new Paragraph("   "));
-		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "+" 위 사람은 학점인정 등에 관한 법률 제 9조 및 학칙",font));
+		            document.add(new Paragraph("   "+"제 35조의 2규정에 의하여 위의 사실을 증명합니다 ",font));
 		            document.add(new Paragraph("   "));
 		            document.add(new Paragraph("   "));
 		            document.add(new Paragraph("   "));
@@ -296,7 +296,7 @@ public class StudentSchoolRegisterController {
 //		            document.add(new Paragraph("  " + sdf.format(today), font));
 		            paragraph5.add(chunk5);
 		            document.add(paragraph5);
-		            Chunk chunk3 = new Chunk("위의 사실을 증명합니다", font);
+		            Chunk chunk3 = new Chunk("", font);
 //		            document.add(new Paragraph2("  위의 사실을 증명합니다.", font));
 		            document.add(new Paragraph("   "));
 		            paragraph4.add(chunk3);   
