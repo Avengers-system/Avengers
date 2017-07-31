@@ -31,7 +31,7 @@
 						enctype="multipart/form-data" method="post">
 						
 							<div class="col-md-12" style="margin-top:30px;">
-  		   <!-- 이미지 미리보기 -->
+  		  				 <!-- 이미지 미리보기 -->
   		   				<div class="col-md-12">
 			               <div class="filess" style="margin-bottom:20px;">
 			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="${pageContext.request.contextPath}/resources/myInfo_images/${admin.admin_pic}"
@@ -42,7 +42,7 @@
 	                   <span class="input-group-btn">
 	                   		<div class="col-md-8">
 	                   		<div class="col-md-4">
-	                   			<input type="text" value="${professor.prfs_pic}" class="form-control" style="width:310px;" id="image-preview-filename" >
+	                   			<input type="text" value="${admin.admin_pic}" class="form-control" style="width:310px;" id="image-preview-filename" >
 	                   		</div>
 	                   		<div class="col-md-1">
 		                   		<div class="btn btn-default image-preview-input">
