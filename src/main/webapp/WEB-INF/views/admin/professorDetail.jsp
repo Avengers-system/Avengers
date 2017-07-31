@@ -78,6 +78,27 @@
 				</div>
 
 				<div class="col-md-12" style="margin-bottom:20px;">
+							<div class="form-group">
+								<label class="col-sm-4 control-label text-right">비밀번호</label>
+								<div class="col-sm-8">
+									<input type="password" class="form-control" name="prfs_pw" value="${professor.prfs_pw }">
+								</div>
+							</div>
+				</div>	
+ 
+				  
+				<div class="col-md-12" style="margin-bottom:20px;">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">주민등록번호</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="prfs_regno"  value="${professor.prfs_regno }">
+							</div>
+						</div>
+				</div>
+					 
+					 
+				
+				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
@@ -96,16 +117,8 @@
 							</div>
 						</div>
 				</div>
-				  
-				<div class="col-md-12" style="margin-bottom:20px;">
-						<div class="form-group">
-							<label class="col-sm-4 control-label text-right">주민등록번호</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" name="prfs_regno"  value="${professor.prfs_regno }">
-							</div>
-						</div>
-				</div>
-					 
+									 
+			
 				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">생년월일</label>
@@ -124,18 +137,9 @@
 						</div>
 				</div>	 
 				
-				<div class="col-md-12" style="margin-bottom:20px;">
-						<div class="form-group">
-							<label class="col-sm-4 control-label text-right">계좌번호</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" name="prfs_act_num" value="${professor.prfs_act_num }" >
-							</div>
-						</div>
-				</div>	
+				 
 				
 				</div>
-
-
 
 					<div class="col-md-5">
 					
@@ -149,6 +153,14 @@
 							</div>
 					</div>
 					
+					<div class="col-md-12" style="margin-bottom:20px;">
+						<div class="form-group">
+							<label class="col-sm-4 control-label text-right">계좌번호</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="prfs_act_num" value="${professor.prfs_act_num }" >
+							</div>
+						</div>
+					</div>	
 			 
 					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
@@ -195,14 +207,7 @@
 							</div>
 					</div>		  
 		
-					<div class="col-md-12" style="margin-bottom:20px;">
-							<div class="form-group">
-								<label class="col-sm-4 control-label text-right">비밀번호</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" name="prfs_pw" value="${professor.prfs_pw }">
-								</div>
-							</div>
-					</div>		  
+						  
 			 
 					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
