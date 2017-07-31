@@ -80,7 +80,7 @@
 								<label class="control-label">휴대폰번호</label> 
 								<input type="text"
 									class="form-control" name="admin_hp" value="${admin.admin_hp}" style="width:350px;"
-									pattern="(010)-\d{3,4}-\d{4}"
+									pattern="010-\d{3,4}-\d{4}"
 									>
 								<label class="control-label">집전화번호</label>
 								<input type="text" class="form-control" name="admin_tel"
@@ -163,6 +163,22 @@
 	});
 </script>
 <script>
+$('input[name=admin_pw_confirm]').focusout(function(){
+	   $(document).ready(function() {
+	          var admin_pw = $('input[name=admin_pw]').val();
+	          var admin_pw_confirm = $('input[name=admin_pw_confirm]').val();
+	          
+	         if( admin_pw != admin_pw_confirm){
+	            $('font[name=check]').text();
+	            $('font[name=check]').html("비밀번호가 일치하지 않습니다.");
+	         }else{
+	            $('font[name=check]').text();
+	            $('font[name=check]').html("비밀번호가 일치합니다.");
+	         }
+	         
+	      });
+	});
+	
 function admin_mod(){
 	$(document).ready(function() {
 		 	var admin_pw = $('input[name=admin_pw]').val();
@@ -172,6 +188,7 @@ function admin_mod(){
 			if( admin_pw != admin_pw_confirm){
 				$('font[name=check]').text();
 				$('font[name=check]').html("비밀번호가 일치하지 않습니다.");
+				alert('비밀번호가 일치하지 않습니다.');
 			}else{
 				$('font[name=check]').text();
 				$('font[name=check]').html("비밀번호가 일치합니다.");
