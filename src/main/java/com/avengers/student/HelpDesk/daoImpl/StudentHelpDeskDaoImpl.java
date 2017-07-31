@@ -28,11 +28,11 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 
 	@Autowired
 	protected SqlSession sqlSession;
-	
+
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-	
+
 
 	@Override
 	public ArrayList<BoardVO> selectStuBoardList(String bc_num, String key,
@@ -42,11 +42,11 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 	}
 
 
-	
+
 
 	@Override
 	public ArrayList<BoardVO> selectFAQList(BoardVO boardVO) throws SQLException {
-		
+
 		ArrayList<BoardVO> list = (ArrayList<BoardVO>) sqlSession.selectList("board.getStudentFAQList");
 		return list;
 	}
@@ -54,38 +54,38 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 
 	@Override
 	public Object selectPagingList(String queryId, Object params) {
-	    Map<String,Object> map = (Map<String,Object>)params;
-	     
-	    String strPageIndex = (String)map.get("PAGE_INDEX");
-	    String strPageRow = (String)map.get("PAGE_ROW");
-	    int nPageIndex = 0;
-	    int nPageRow = 20;
-	     
-	    if(StringUtils.isEmpty(strPageIndex) == false){
-	        nPageIndex = Integer.parseInt(strPageIndex)-1;
-	    }
-	    if(StringUtils.isEmpty(strPageRow) == false){
-	        nPageRow = Integer.parseInt(strPageRow);
-	    }
-	    map.put("START", (nPageIndex * nPageRow) + 1);
-	    map.put("END", (nPageIndex * nPageRow) + nPageRow);
-	     
-	    return sqlSession.selectList(queryId, map);
+		Map<String,Object> map = (Map<String,Object>)params;
+
+		String strPageIndex = (String)map.get("PAGE_INDEX");
+		String strPageRow = (String)map.get("PAGE_ROW");
+		int nPageIndex = 0;
+		int nPageRow = 20;
+
+		if(StringUtils.isEmpty(strPageIndex) == false){
+			nPageIndex = Integer.parseInt(strPageIndex)-1;
+		}
+		if(StringUtils.isEmpty(strPageRow) == false){
+			nPageRow = Integer.parseInt(strPageRow);
+		}
+		map.put("START", (nPageIndex * nPageRow) + 1);
+		map.put("END", (nPageIndex * nPageRow) + nPageRow);
+
+		return sqlSession.selectList(queryId, map);
 	}
 
 
 	@Override
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map)
 			throws Exception {
-		
+
 		return (List<Map<String, Object>>)selectPagingList("board.selectFAQList", map);
 	}
 
 
 	@Override
 	public int getTotalCount() throws SQLException {
-		
-		
+
+
 		return (Integer)sqlSession.selectOne("board.getFAQListCount");
 	}
 
@@ -123,7 +123,7 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 	@Override
 	public void updateStudentFAQ(BoardVO boardVO) {
 		sqlSession.update("board.updateStudentFAQ",boardVO);
-		
+
 	}
 
 
@@ -144,33 +144,33 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 	 * 검색
 	 * @param bc_num 
 	 * */
-	
 
-	
+
+
 	@Override
 	public BoardVO selectStuBoard(String bc_num)throws SQLException {
-		
+
 		BoardVO result = (BoardVO)sqlSession.selectOne("board.selectBoardOne",bc_num);
-		
-		
+
+
 		System.out.println("dao"+result.getBoard_date());
-		
+
 		return result;
 	}
 
 	@Override
 	public int insertStuBoard(BoardVO boardVO)throws SQLException {
-		
+
 		HashMap map = new HashMap();
-		
+
 		map.put("BOARD_NUM", boardVO.getBoard_num());
 		map.put("BOARD_TITLE", boardVO.getBoard_title());
 		map.put("BOARD_CONT", boardVO.getBoard_cont());
 		map.put("BOARD_WRITER", boardVO.getBoard_writer());
 		map.put("BOARD_BC", boardVO.getBoard_bc());
-		
+
 		map.put("BOARD_AF", boardVO.getBoard_af());		
-				
+
 		int boardInsert = sqlSession.update("board.insertBoard", map);
 		System.out.println("뭔가찍힘");
 		System.out.println(boardVO.getBoard_title());
@@ -187,7 +187,7 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 		map.put("BOARD_CONT", boardVO.getBoard_cont());
 		map.put("BOARD_AF", boardVO.getBoard_af());	
 		int boardUpdate = sqlSession.update("board.updateBoard", map);
-		
+
 		return boardUpdate;
 	}
 
@@ -210,33 +210,32 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 		int offset=boardVO.getStartRowNo()-1;
 		int limit = boardVO.getEndRowNo()-boardVO.getStartRowNo()+1;
 		RowBounds rowBounds = new RowBounds(offset,limit);
-		
-		
+
+
 		HashMap map = new HashMap();
 
 		map.put("BOARD_BC", boardVO.getBoard_bc());
 		map.put("BOARD_TITLE", boardVO.getBoard_title());
-		
+
 		System.out.println(map.get("BOARD_TITLE")+"dao 이전");
 		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("board.selectSearchList", map,rowBounds);
-		System.out.println(boardList.get(0).getBoard_title()+boardList.size());
 		return boardList;
 	}
 
 	public int updateStuBoardCount(String board_num, String board_count) throws SQLException{
 		HashMap map = new HashMap();
-		
+
 		map.put("BOARD_NUM", board_num);
 		map.put("BOARD_COUNT", board_count);
 		int result = (int) sqlSession.update("board.updateBoardCount", map);
-		
+
 		return result;
 	}
 
 	public int selectStuBoardCount(BoardVO boardVO) throws SQLException{
 		int count = 0;
 		HashMap map = new HashMap();
-		
+
 		map.put("BOARD_BC", boardVO.getBoard_bc());
 		map.put("searchFiled", boardVO.getSearchFiled());
 		map.put("searchValue", boardVO.getSearchValue());
@@ -252,12 +251,12 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 		int offset=firstRow-1;
 		int limit = lastRow-firstRow+1;
 		RowBounds rowBounds = new RowBounds(offset,limit);
-		
+
 		HashMap map = new HashMap();
 		map.put("BOARD_BC", boardVO.getBoard_bc());
 		System.out.println(map.get("BOARD_BC"));
 		ArrayList<BoardVO> boardList = (ArrayList<BoardVO>) sqlSession.selectList("board.selectBoardNoticeList",map,rowBounds);
-		
+
 		return boardList;
 	}
 
@@ -266,6 +265,13 @@ public class StudentHelpDeskDaoImpl implements StudentHelpDeskDao {
 	public String selectStuDept(String key) throws SQLException {
 		StudVO vo = (StudVO) sqlSession.selectOne("student.getStudentInfo",key);
 		return vo.getStud_dept();
+	}
+
+
+	@Override
+	public String selectDeptName(String bc_num) throws SQLException {
+		String deptName = (String) sqlSession.selectOne("student.getStudentDeptName", bc_num);
+		return deptName;
 	}
 
 

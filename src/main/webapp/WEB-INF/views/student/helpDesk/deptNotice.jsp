@@ -6,6 +6,9 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@include file="../common/studHelpDeskSide.jsp"%>
 
+
+
+
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<!--  메뉴제목 -->
@@ -13,10 +16,10 @@
 			style="background-color: #2196F3; margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 
-				학과소식</h4>
+				${deptName}에 오신것을 환영합니다!</h4>
 
 		</div>
-		<div class="panel-body" style="height: 580px; text-align: center;">
+		<div class="panel-body" style="height: 580px; text-align: left;">
 		
 			<script type="text/javascript">
 	//페이지 이동
@@ -63,15 +66,15 @@
 									<label><input type="search"
 										class="form-control input-sm" placeholder="글 제목을 입력해주세요"
 										aria-controls="datatables-example" name="board_title"
-										style="width: 200px; text-align: center;"> </label>
+										style="width: 200px; margin-bottom:2px; margin-top:-4px; height:35px; text-align: center;"> </label>
 									<!-- 검색 -->
 								</div>
 
 							</div>
-							<div style="margin-bottom: -6px; margin-top: 5px;"
+							<div style="margin-bottom: -6px; width:0px;  text-align: center;"
 								class="dataTables_paginate paging_simple_numbers"
-								id="datatables-example_paginate" style="text-align: center;">
-								<input type="submit" value="검색" style="margin-bottom: -6px;">
+								id="datatables-example_paginate">
+								<input type="submit" class="btn btn-default" value="Search!" style="margin-bottom: -6px;">
 							</div>
 							<div class="col-sm-6"
 								style="width: 50px; height: 0px; flaot: right;">
@@ -103,7 +106,7 @@
 								aria-describedby="datatables-example_info"
 								style="width: 100%; text-align: center;">
 								<thead>
-									<tr role="row">
+									<tr role="row" style="text-align: left;">
 										<th class="sorting_asc" tabindex="0"
 											aria-controls="datatables-example" rowspan="1" colspan="1"
 											aria-label="Name: activate to sort column descending"
@@ -125,10 +128,10 @@
 											aria-controls="datatables-example" rowspan="1" colspan="1"
 											aria-label="Start date: activate to sort column ascending"
 											style="width: 220px; text-align: center;">첨부파일</th>
-										<th class="sorting" tabindex="0"
-											aria-controls="datatables-example" rowspan="1" colspan="1"
-											aria-label="Salary: activate to sort column ascending"
-											style="width: 176px; text-align: center;">게시판분류</th>
+<!-- 										<th class="sorting" tabindex="0" -->
+<!-- 											aria-controls="datatables-example" rowspan="1" colspan="1" -->
+<!-- 											aria-label="Salary: activate to sort column ascending" -->
+<!-- 											style="width: 176px; text-align: center;">게시판분류</th> -->
 										<th class="sorting" tabindex="0"
 											aria-controls="datatables-example" rowspan="1" colspan="1"
 											aria-label="Salary: activate to sort column ascending"
@@ -141,15 +144,16 @@
 									<c:when test="${not empty deptNoticeList}">
 										<c:forEach var="deptNoticeList" items="${deptNoticeList }">
 											<tbody>
-												<tr role="row" class="odd">
+												<tr role="row" class="odd" >
 													<td>${deptNoticeList.board_num}</td>
-													<td><a
-														href="${pageContext.request.contextPath}/student/helpDesk/deptStudDetail?board_num=${deptNoticeList.board_num}&board_count=${deptNoticeList.board_count}&pageNo=${pageVO.pageNo}">
+													<td style="text-align: left;">
+													<a href="${pageContext.request.contextPath}/student/helpDesk/deptStudDetail?board_num=${deptNoticeList.board_num}&board_count=${deptNoticeList.board_count}
+													&pageNo=${pageVO.pageNo}">
 															${deptNoticeList.board_title} </a></td>
 													<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${deptNoticeList.board_date}" /></td>
 													<td>${deptNoticeList.board_writer}</td>
 													<td>${deptNoticeList.board_af}</td>
-													<td>${deptNoticeList.board_bc}</td>
+<%-- 													<td>${deptNoticeList.board_bc}</td> --%>
 													<td>${deptNoticeList.board_count}</td>
 												</tr>
 											</tbody>
