@@ -36,44 +36,26 @@
               
               
               
-              
               <div class="col-md-9 col-md-offset-1" style="margin-left:188px;">
                		<div class="col-md-5">
                		
-               		<div class="col-md-12 col-md-offset-1">
+               		<div class="col-md-12" style="margin-left:-5px;">
 						<div class="form-group">
 							  	<span class="input-group-btn">
-								<input type="text" class="form-control" style="width:334px;" id="image-preview-filename" disabled="disabled">  	                   
+<!-- 								<input type="text" class="form-control" style="width:334px;" id="image-preview-filename" disabled="disabled">  	  -->
 	                   			</span>
+
+	                   			<div class="col-md-7 image-preview-input" style="margin-left:8px; margin-bottom:10px;">
+						                           <input type="file" accept="image/png, image/jpeg, image/gif" name="stud_pic">
+						                        </div>
+						                            
 						</div>
 					</div>
 				 
 					</div>				
-										<div class="col-md-4 form-group" style="margin-left:-210px;">
-												<div class="btn btn-default image-preview-input">
-						                           <input type="file" accept="image/png, image/jpeg, image/gif" name="stud_pic">
-						                           <span class="image-preview-input-title">업로드</span>
-						                        </div>
-					   					</div>
+												
 			    </div>
               
-               
-  
-<!--                <div class="filess" > -->
-<!--                   <img  style="height:150px;width:130px;" alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" -->
-<!--                      id="profile-image" class="img-circle img-responsive"> -->
-<!--                   <input style="width:100px;" id="profile-image-input"  accept="image/png, image/jpeg, image/gif" class="hidden" type="file"> -->
-<!--                </div> -->
-               
-<!--                <label class='control-label'>이미지</label> -->
-<!--                       <span class="input-group-btn"> -->
-                       
-<!--                        <input type="text" class="form-control" style="width:230px;" id="image-preview-filename" disabled="disabled"> -->
-<!--                             <div class="btn btn-default image-preview-input"> -->
-<!--                               <input type="file" accept="image/png, image/jpeg, image/gif" name="stud_pic"/> -->
-<!--                               <span class="image-preview-input-title">업로드</span> -->
-<!--                            </div> -->
-<!--                       </span> -->
               
         </div>
         
@@ -82,7 +64,7 @@
             
                          
       <input type="hidden" name="stud_num"/>  
-      			<div class="col-md-12">
+      			<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">이름</label>
 							<div class="col-sm-8">
@@ -91,7 +73,7 @@
 						</div>
 				</div>
 
-      			<div class="col-md-12">
+      			<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">영문이름</label>
 							<div class="col-sm-8">
@@ -100,7 +82,7 @@
 						</div>
 				</div>
       
-      			<div class="col-md-12">
+      			<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
@@ -120,7 +102,7 @@
 						</div>
 				</div>
       
-      			<div class="col-md-12">
+      			<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">주민등록번호</label>
 							<div class="col-sm-8">
@@ -129,7 +111,7 @@
 						</div>
 				</div>
       
-            	<div class="col-md-12">
+            	<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">생년월일</label>
 							<div class="col-sm-8">
@@ -138,7 +120,7 @@
 						</div>
 				</div>
       
-            	<div class="col-md-12">
+            	<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">전화번호</label>
 							<div class="col-sm-8">
@@ -147,7 +129,7 @@
 						</div>
 				</div>
       
-            	<div class="col-md-12">
+            	<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">휴대폰번호</label>
 							<div class="col-sm-8">
@@ -156,7 +138,7 @@
 						</div>
 				</div>
       
-                <div class="col-md-12">
+                <div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">현재학년</label>
 							<div class="col-sm-8">
@@ -171,7 +153,7 @@
 				</div>
                
               
-              <div class="col-md-12">
+              <div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">현재학기</label>
 							<div class="col-sm-8">
@@ -183,16 +165,16 @@
 						</div>
 				</div>
       
-              	<div class="col-md-12">
+              	<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학점</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_max_crd" value="25">
+								<input type="text" class="form-control" name="stud_max_crd" value="20">
 							</div>
 						</div>
 				</div>
       
-                <div class="col-md-12">
+                <div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학적상태</label>
 							<div class="col-sm-8">
@@ -209,16 +191,16 @@
              
              <div class="col-md-5">
              
-             <div class="col-md-12">
+             <div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">이메일</label>
 							<div class="col-sm-8">
-								<input type="date" class="form-control" name="stud_email" >
+								<input type="text" class="form-control" name="stud_email" >
 							</div>
 						</div>
 				</div>
              
-           <div class="col-md-12">
+           <div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">비밀번호</label>
 							<div class="col-sm-8">
@@ -227,7 +209,7 @@
 						</div>
 				</div>
              
-            <div class="col-md-12">
+            <div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">성별</label>
 							<div class="col-sm-8">
@@ -241,7 +223,7 @@
  
                 
 
-				 <div class="col-md-12">
+				 <div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">계좌번호</label>
 							<div class="col-sm-8">
@@ -250,7 +232,7 @@
 						</div>
 				</div>
 
-  				<div class="col-md-12">
+  				<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">은행명</label>
 							<div class="col-sm-8">
@@ -259,7 +241,7 @@
 						</div>
 				</div>
 
-  				<div class="col-md-12">
+  				<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">예금주</label>
 							<div class="col-sm-8">
@@ -268,7 +250,7 @@
 						</div>
 				</div>
 
-  				<div class="col-md-12">
+  				<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">주소</label>
 							<div class="col-sm-8">
@@ -278,7 +260,7 @@
 				</div>
 
 
-  				<div class="col-md-12">
+  				<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">우편번호</label>
 							<div class="col-sm-8">
@@ -287,7 +269,7 @@
 						</div>
 				</div>
 
-  				<div class="col-md-12">
+  				<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">보호자</label>
 							<div class="col-sm-8">
@@ -296,20 +278,20 @@
 						</div>
 				</div>
 
-   				<div class="col-md-12">
+   				<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">보호자 관계</label>
 							<div class="col-sm-8">
 								<div class="radio" >
 				                     <label><input type="radio" name="stud_guad_rel" value="1">부</label>
-				                     <label><input type="radio" name="stud_guad_rel" value="2">모</label>
+				                     <label><input type="radio" name="stud_guad_rel" value="2" style="margin-bottom">모</label>
 				                 </div>
 							</div>
 						</div>
 				</div>
 
   
-  				<div class="col-md-12">
+  				<div class="col-md-12"  style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">보호자 핸드폰</label>
 							<div class="col-sm-8">
@@ -325,7 +307,7 @@
             </div>
 						      
 						      <div class="col-md-12 input-group">
-				            	   <div class="col-md-4 col-md-offset-8">
+				            	   <div class="col-md-4 col-md-offset-9">
 				                		<input type="submit" class="btn btn-danger" value="등록하기">
 					  		 		</div>
 				       		  </div>
@@ -352,6 +334,10 @@
  
  <style>
 
+label.col-sm-4 control-label text-right{
+margin-bottom:3px;
+
+}
 
 .form-control {
     display: block;
@@ -394,13 +380,7 @@
 }
    
    
-.checkbox label, .radio label {
-    min-height: 20px;
-    padding-left: 40px;
-    padding-right: 10px;
-    font-weight: 400;
-    cursor: pointer;
-}
+ 
 
  .image-preview-input {
     position: relative;
@@ -433,25 +413,6 @@
       height: 220px;
    }
  
-
-.input-group .form-control:last-child, .input-group-addon:last-child {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-   div#prof_inform{
-      margin-top:50px;
-   }
-
-
-
-div.col-md-12{
-
-margin-top:20px;
-
-}
-
-
 </style>  
   
   

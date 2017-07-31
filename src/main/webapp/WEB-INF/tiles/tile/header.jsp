@@ -95,10 +95,6 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 </sec:authorize>
 
 
-
-
-
-
 <!-- 관리자 로그인시 보여주는 화면 -->
 <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
 <nav class="navbar navbar-default header bg-white "	style="height: 100px; margin: 0;">
@@ -134,8 +130,8 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 		</div>
 	</nav>
 
-	<nav class="navbar navbar-default header bg-blue" style="height: 100%;  margin-top: 17px;">
-		<div class="col-xs-12 nav-wrapper" style="background-color: #CC0000;">
+	<nav class="navbar navbar-default header bg-#CC0000" style="height: 100%;  margin-top: 17px;">
+		<div class="col-xs-12 nav-wrapper" style="background-color: #CC0000; ">
 			<div class="navbar-header">
 				<ul class="nav nav-tabs nav-tabs-v1">
 					<li role="presentation"><a href="${pageContext.request.contextPath}/admin/main/adminMain">Main</a></li>
@@ -187,8 +183,6 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 				</div>
 		</div>
 	</nav>
-	<nav class="navbar navbar-default header bg-blue" style="height: 100%;  margin-top: 17px;">
-		<div class="col-xs-12 nav-wrapper" style=" background-color: #666666;">
 			<div class="navbar-header">
 				<ul class="nav nav-tabs nav-tabs-v1">
 					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/main">Main</a></li>
@@ -198,8 +192,6 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 					<li role="presentation"><a href="${pageContext.request.contextPath}/professor/helpDesk/univSchd/univSchdedule">Help Desk</a></li>
 				</ul>
 			</div>
-		</div>
-	</nav>
 </sec:authorize>
 
 
@@ -239,7 +231,6 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 				</div>
 		</div>
 	</nav>
-	<nav class="navbar navbar-default header bg-blue" style="height: 100%; margin-top: 17px;">
 		<div class="col-xs-12 nav-wrapper">
 			<div class="navbar-header">
 				<ul class="nav nav-tabs nav-tabs-v1">
@@ -254,5 +245,4 @@ function initAjax() { // 브라우저에 따른 AjaxObject 인스턴스 분기 �
 				</ul>
 			</div>
 		</div>
-	</nav>
 </sec:authorize>
