@@ -41,10 +41,10 @@
               			</div>
 	                   <span class="input-group-btn">
 	                   		<div class="col-md-8">
-	                   		<div class="col-md-4">
-	                   			<input type="text" value="${professor.prfs_pic}" class="form-control" style="width:310px;" id="image-preview-filename" >
+	                   		<div class="col-md-4" style="margin-left:-17px;">
+	                   			<input type="text" value="${professor.prfs_pic}" class="form-control" style="width:350px;" id="image-preview-filename" >
 	                   		</div>
-	                   		<div class="col-md-1">
+	                   		<div class="col-md-1 col-md-offset-1">
 		                   		<div class="btn btn-default image-preview-input">
 		                           <input type="file" accept="image/png, image/jpeg, image/gif" name="file"  style="display: inline-block;"/>
 		                           <span class="image-preview-input-title">업로드</span>
