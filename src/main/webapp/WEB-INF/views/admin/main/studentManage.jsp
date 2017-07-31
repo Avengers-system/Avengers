@@ -150,7 +150,7 @@
          학생목록
          </h4>
       </div>
-      <div class="panel-body" style="height: 580px; text-align: center;" >
+      <div class="panel-body" style="text-align: center;" >
 
                   <div class="panel">
                     <div class="panel-body">
@@ -307,9 +307,12 @@
 
 
 
-
-
-
-
+<style>
+ .btn-danger, .alert-danger, .badge-danger {
+    color: #fff !important;
+    border: none !important;
+    background-color: #CC0000 !important;
+  }
+</style>
 
 
