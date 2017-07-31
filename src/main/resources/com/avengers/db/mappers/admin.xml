@@ -365,7 +365,7 @@
 	            AUTHORITY,
 	            STUD_MAX_CRD
   			 ) VALUES (
-  			        '2017'||lpad(stud_seq.nextval,3,0),
+  			         '2017'||(select LPAD(SUBSTR( #{stud_dept}, 5),2,0) from department WHERE DEPT_NUM =  #{stud_dept})||lpad(stud_seq.nextval,2,0),
 			         #{stud_nm},   
 			         #{stud_eng_nm},   
 			         #{stud_bir},   
