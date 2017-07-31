@@ -106,12 +106,6 @@
 					<textarea class="form-control" rows="10" cols="100" readonly>${detailLct.get('lct_cont')}</textarea><br/>
 				</div>
 		    </div>
-		    <div class="form-group">
-				<label class="control-label col-sm-1"></label>
-				<div class="col-sm-10">
-					<input type="button" class="btn btn-outline btn-primary" onclick="location.href='${pageContext.request.contextPath }/student/admissionApplication'" value="뒤로가기"/>
-				</div>
-		    </div>
 			</form>
 		</div>
 	</div>
