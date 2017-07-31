@@ -145,8 +145,6 @@ public class AdminProfessorManageController {
 				System.out.println("교수삭제실패");
 			}
 			//enabled 만 1로 바꾸면 됨 
-			String msg = "삭제 완료되었습니다.";
-			model.addAttribute("msg",msg);
 	return "redirect:professorManage";	
 	}
 	
