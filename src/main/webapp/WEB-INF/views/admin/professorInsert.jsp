@@ -5,15 +5,7 @@
   <!-- jQuery와 Postcodify를 로딩한다 -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-
-
-<style>
-div.col-md-12{
-margin-bottom:20px;
-
-}
-
-</style>
+ 
 <div class="col-md-12" id="commonRightSide">
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #CC0000;  margin-top: 10px;">
@@ -26,7 +18,7 @@ margin-bottom:20px;
  		 <form name="insertProfessor"  method="post" action="${pageContext.request.contextPath }/admin/insertProfessor" enctype="multipart/form-data">
   		<div class="col-md-12" style="margin-top:30px;">
   		   <!-- 이미지 미리보기 -->
-  		   				<div class="col-md-12 col-md-offset-1">
+  		   				<div class="col-md-12 col-md-offset-1" style="margin-bottom:20px;">
 			               <div class="filess" style="margin-bottom:20px;">
 			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
 			                     id="profile-image" class="img-circle img-responsive">
@@ -34,21 +26,21 @@ margin-bottom:20px;
 			               </div>
               			</div>
               
-               <div class="row">
+               <div class="row" style="margin-bottom:20px;">
                 <input type="hidden" name="prfs_num">
                	<div class="col-md-9 col-md-offset-1" style="margin-left:188px;">
                		<div class="col-md-5">
                		
-               		<div class="col-md-12 col-md-offset-1">
+               		<div class="col-md-12 " style="margin-left:20px;">
 						<div class="form-group">
 							  	<span class="input-group-btn">
-								<input type="text" class="form-control" style="width:430px;" id="image-preview-filename" disabled="disabled">  	                   
+								<input type="text" class="form-control" style="width:250px; margin-left:22px;" id="image-preview-filename" disabled="disabled">  	                   
 	                   			</span>
 						</div>
 					</div>
 				 
 					</div>				
-										<div class="col-md-4 form-group" style="margin-left:-210px;">
+										<div class="col-md-4 form-group" style="margin-left:-400px;">
 												<div class="btn btn-default image-preview-input">
 						                           <input type="file" accept="image/png, image/jpeg, image/gif" name="prfs_pic"/>
 						                           <span class="image-preview-input-title" >업로드</span>
@@ -70,10 +62,7 @@ margin-bottom:20px;
 		<div class="col-md-12" id="prof_inform">
 				<div class="col-md-5">
 					 <input type="hidden" name="prfs_num">
-				<div class="col-md-12">
-				
-				 
-				
+				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">이름</label>
 							<div class="col-sm-8">
@@ -82,7 +71,7 @@ margin-bottom:20px;
 						</div>
 				</div>
 				  
-				<div class="col-md-12">
+				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">영문이름</label>
 							<div class="col-sm-8">
@@ -91,11 +80,11 @@ margin-bottom:20px;
 						</div>
 				</div>
 
-				<div class="col-md-12">
+				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<select style="width:430px;" name="prfs_dept" class="selectpicker show-tick">
+								<select style="width:428.88px;" name="prfs_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
 									<option value="DEPT2">컴퓨터공학과</option> 
 									<option value="DEPT3">영어영문학과</option> 
@@ -111,7 +100,7 @@ margin-bottom:20px;
 						</div>
 				</div>
 				  
-				<div class="col-md-12">
+				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">주민등록번호</label>
 							<div class="col-sm-8">
@@ -120,7 +109,7 @@ margin-bottom:20px;
 						</div>
 				</div>
 					 
-				<div class="col-md-12">
+				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">생년월일</label>
 							<div class="col-sm-8">
@@ -129,7 +118,7 @@ margin-bottom:20px;
 						</div>
 				</div>
 					 	   
-				<div class="col-md-12">
+				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">전화번호</label>
 							<div class="col-sm-8">
@@ -138,7 +127,7 @@ margin-bottom:20px;
 						</div>
 				</div>	 
 				
-				<div class="col-md-12">
+				<div class="col-md-12" style="margin-bottom:20px;">
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">계좌번호</label>
 							<div class="col-sm-8">
@@ -154,7 +143,7 @@ margin-bottom:20px;
 					<div class="col-md-5">
 					
 					
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">은행명</label>
 								<div class="col-sm-8">
@@ -164,7 +153,7 @@ margin-bottom:20px;
 					</div>
 					
 			 
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">예금주</label>
 								<div class="col-sm-8">
@@ -173,7 +162,7 @@ margin-bottom:20px;
 							</div>
 					</div>
 							 
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">우편번호</label>
 								<div class="col-sm-8">
@@ -182,7 +171,7 @@ margin-bottom:20px;
 							</div>
 					</div>
 							 
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">주소</label>
 								<div class="col-sm-8">
@@ -191,7 +180,7 @@ margin-bottom:20px;
 							</div>
 					</div>
 							 		 
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">휴대폰번호</label>
 								<div class="col-sm-8">
@@ -200,7 +189,7 @@ margin-bottom:20px;
 							</div>
 					</div>		 
 							 
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">이메일</label>
 								<div class="col-sm-8">
@@ -209,16 +198,16 @@ margin-bottom:20px;
 							</div>
 					</div>		  
 		
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">비밀번호</label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" name="prfs_pw" >
+									<input type="password" class="form-control" name="prfs_pw" >
 								</div>
 							</div>
 					</div>		  
 			 
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom:20px;">
 							<div class="form-group">
 								<label class="col-sm-4 control-label text-right">성별</label>
 								<div class="col-sm-8">
@@ -355,7 +344,7 @@ margin-bottom:20px;
    }
 
  	 
-
+ 
 
 .input-group .form-control:last-child, .input-group-addon:last-child {
     border-top-left-radius: 0;

@@ -4,13 +4,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="myContextPath" value="${pageContext.request.contextPath}" />
-<c:if test="${!empty message }">
-	<script type="text/javascript">
-		alert('${message}');
-	</script>
-	<c:remove var="message" scope="session" />
-</c:if>
 <!-- Content -->
 <!-- side menu -->
 <%@include file="../common/myPageSideCategory.jsp"%>
@@ -27,7 +20,7 @@
 		<div class="panel-body">
 			<c:choose>
 				<c:when test="${not empty admin}">
-					<form name="modAdmin" id="modAdmin" action="${myContextPath}/admin/mypage/myInfoUpdate"
+					<form name="modAdmin" id="modAdmin" action="${pageContext.request.contextPath}/admin/mypage/myInfoUpdate"
 						enctype="multipart/form-data" method="post">
 						
 							<div class="col-md-12" style="margin-top:30px;">
@@ -44,7 +37,7 @@
 	                   		<div class="col-md-4">
 	                   			<input type="text" value="${admin.admin_pic}" class="form-control" style="width:310px;" id="image-preview-filename" >
 	                   		</div>
-	                   		<div class="col-md-1">
+	                   		<div class="col-md-1 col-md-offset-1">
 		                   		<div class="btn btn-default image-preview-input">
 		                           <input type="file" accept="image/png, image/jpeg, image/gif" name="file"  style="display: inline-block;"/>
 		                           <span class="image-preview-input-title">업로드</span>
@@ -110,7 +103,7 @@
 								<input type="text" class="form-control" name="admin_ah"
 									value="${admin.admin_ah}" style="width:350px;">
 								<input
-									class="submit btn btn-danger" type="submit" value="수정" style="margin-top:30px;">
+									class="submit btn btn-danger" type="button" onclick="admin_mod()" value="수정" style="margin-top:30px;">
 							</div>
 						</div>
 					</form>
@@ -170,10 +163,11 @@
 	});
 </script>
 <script>
-$('input[name=admin_pw_confirm]').focusin(function(){
+function admin_mod(){
 	$(document).ready(function() {
 		 	var admin_pw = $('input[name=admin_pw]').val();
 		 	var admin_pw_confirm = $('input[name=admin_pw_confirm]').val();
+		 	var admin_frm  = document.modAdmin;
 		 	
 			if( admin_pw != admin_pw_confirm){
 				$('font[name=check]').text();
@@ -181,8 +175,14 @@ $('input[name=admin_pw_confirm]').focusin(function(){
 			}else{
 				$('font[name=check]').text();
 				$('font[name=check]').html("비밀번호가 일치합니다.");
+				
+				admin_frm.method='post';
+				admin_frm.encoding='multipart/form-data';
+				admin_frm.action='${pageContext.request.contextPath}/admin/mypage/myInfoUpdate';
+				admin_frm.submit();
+				
 			}
 			
 		});
-});
+}
 </script>

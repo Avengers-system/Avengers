@@ -317,10 +317,7 @@ public class StudentResManageController {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		
-		
-		
+		}		
 		return url;		
 	}
 	

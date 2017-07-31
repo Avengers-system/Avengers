@@ -52,6 +52,7 @@ public interface StudentHelpDeskDao {
 		public ArrayList<BoardVO> selectStuBoardList(BoardVO boardVO,
 				int firstRow, int lastRow);
 		public String selectStuDept(String key) throws SQLException;
+		public String selectDeptName(String bc_num) throws SQLException;
 	
 	
 }

@@ -18,32 +18,32 @@
     <meta name="dcterms.rightsHolder" content="(c)Copyright_Avengers">
     <meta name="keywords" content="학사관리시스템">
 <!-- Icons -->
-	<!-- PC 주소줄 아이콘 -->
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ico/avengers_favicon.ico">
-	<link rel="icon" href="${pageContext.request.contextPath}/resources/ico/avengers_thumbnail.png">
-	<!-- 썸네일 -->
-	<meta property="og:title" content="Avengers_학사관리시스템"/>
-	<meta property="og:description" content="204호 1조 Avengers <br> 최종프로젝트 학사관리시스템"/>
-	<meta property="og:image" content="${pageContext.request.contextPath}/resources/ico/avengers_thumbnail.png" />
-	
+   <!-- PC 주소줄 아이콘 -->
+   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ico/avengers_favicon.ico">
+   <link rel="icon" href="${pageContext.request.contextPath}/resources/ico/avengers_thumbnail.png">
+   <!-- 썸네일 -->
+   <meta property="og:title" content="Avengers_학사관리시스템"/>
+   <meta property="og:description" content="204호 1조 Avengers <br> 최종프로젝트 학사관리시스템"/>
+   <meta property="og:image" content="${pageContext.request.contextPath}/resources/ico/avengers_thumbnail.png" />
+   
 <!-- Style -->
 
 <!-- start: Css -->
-	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/asset/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/css/morris.css">
+   <link rel="stylesheet" type="text/css"   href="${pageContext.request.contextPath}/resources/asset/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css"   href="${pageContext.request.contextPath}/resources/css/morris.css">
 
 <!-- plugins -->
-	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/asset/css/plugins/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/asset/css/plugins/simple-line-icons.css" />
-	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/asset/css/plugins/animate.min.css" />
-	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/asset/css/plugins/icheck/skins/flat/aero.css" />
-	<link href="${pageContext.request.contextPath}/resources/asset/css/style.css" rel="stylesheet">
-	
+   <link rel="stylesheet" type="text/css"   href="${pageContext.request.contextPath}/resources/asset/css/plugins/font-awesome.min.css" />
+   <link rel="stylesheet" type="text/css"   href="${pageContext.request.contextPath}/resources/asset/css/plugins/simple-line-icons.css" />
+   <link rel="stylesheet" type="text/css"   href="${pageContext.request.contextPath}/resources/asset/css/plugins/animate.min.css" />
+   <link rel="stylesheet" type="text/css"   href="${pageContext.request.contextPath}/resources/asset/css/plugins/icheck/skins/flat/aero.css" />
+   <link href="${pageContext.request.contextPath}/resources/asset/css/style.css" rel="stylesheet">
+   
 <!-- 풀캘린더 -->
-	<link href='${pageContext.request.contextPath}/resources/css/full_calender/base.css' rel='stylesheet' />
-	<link rel='stylesheet' href='${pageContext.request.contextPath}/resources/css/full_calender/fullcalendar.min.css' />
-	<script src='${pageContext.request.contextPath}/resources/js/full_calender/jquery.min.js'></script>
-	
+   <link href='${pageContext.request.contextPath}/resources/css/full_calender/base.css' rel='stylesheet' />
+   <link rel='stylesheet' href='${pageContext.request.contextPath}/resources/css/full_calender/fullcalendar.min.css' />
+   <script src='${pageContext.request.contextPath}/resources/js/full_calender/jquery.min.js'></script>
+   
 <!-- end: Css -->
 
 </head>
@@ -57,7 +57,7 @@
 
 <!-- Common Header -->
 <div class="container-fluid">
-	<tiles:insertAttribute name="header"/>
+   <tiles:insertAttribute name="header"/>
 </div>
 
 
@@ -65,43 +65,43 @@
 <!-- Common Content -->
 <sec:authorize access="isAnonymous()">
 <div class="container-fluid">
-	<tiles:insertAttribute name="content" />
+   <tiles:insertAttribute name="content" />
 </div>
 </sec:authorize>
 <sec:authorize access="isAuthenticated()">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="panel" style="height: 690px; overflow: scroll;">
-					<tiles:insertAttribute name="content" /> 
-				</div>
-			</div>
-		</div>
-	</div>
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-xs-12">
+            <div class="panel" style="height: 690px; overflow: scroll;">
+               <tiles:insertAttribute name="content" /> 
+            </div>
+         </div>
+      </div>
+   </div>
 </sec:authorize>
 
 <!-- Common Footer -->
 <div class="container-fluid">
-	<tiles:insertAttribute name="footer" />
-</div>	
+   <tiles:insertAttribute name="footer" />
+</div>   
 <!-- start: Javascript -->
-	<script	src="${pageContext.request.contextPath}/resources/asset/js/jquery.min.js"></script>
-	<script	src="${pageContext.request.contextPath}/resources/asset/js/jquery.ui.min.js"></script>
-	<script	src="${pageContext.request.contextPath}/resources/asset/js/bootstrap.min.js"></script>
+   <script   src="${pageContext.request.contextPath}/resources/asset/js/jquery.min.js"></script>
+   <script   src="${pageContext.request.contextPath}/resources/asset/js/jquery.ui.min.js"></script>
+   <script   src="${pageContext.request.contextPath}/resources/asset/js/bootstrap.min.js"></script>
 <!-- plugins -->
-	<script	src="${pageContext.request.contextPath}/resources/asset/js/plugins/moment.min.js"></script>
-	<script	src="${pageContext.request.contextPath}/resources/asset/js/plugins/morris.min.js"></script>
-	<script	src="${pageContext.request.contextPath}/resources/asset/js/plugins/raphael.min.js"></script>
-	<script	src="${pageContext.request.contextPath}/resources/asset/js/plugins/jquery.nicescroll.js"></script>
-	<script	src="${pageContext.request.contextPath}/resources/asset/js/plugins/icheck.min.js"></script>
-	
+   <script   src="${pageContext.request.contextPath}/resources/asset/js/plugins/moment.min.js"></script>
+   <script   src="${pageContext.request.contextPath}/resources/asset/js/plugins/morris.min.js"></script>
+   <script   src="${pageContext.request.contextPath}/resources/asset/js/plugins/raphael.min.js"></script>
+   <script   src="${pageContext.request.contextPath}/resources/asset/js/plugins/jquery.nicescroll.js"></script>
+   <script   src="${pageContext.request.contextPath}/resources/asset/js/plugins/icheck.min.js"></script>
+   
 <!-- Full calender -->
-	<script	src='${pageContext.request.contextPath}/resources/js/full_calender/moment.min.js'></script>
-	<script	src='${pageContext.request.contextPath}/resources/js/full_calender/jquery-ui.min.js'></script>
-	<script	src='${pageContext.request.contextPath}/resources/js/full_calender/fullcalendar.min.js'></script>
-	<script	src='${pageContext.request.contextPath}/resources/js/full_calender/ko.js'></script>
+   <script   src='${pageContext.request.contextPath}/resources/js/full_calender/moment.min.js'></script>
+   <script   src='${pageContext.request.contextPath}/resources/js/full_calender/jquery-ui.min.js'></script>
+   <script   src='${pageContext.request.contextPath}/resources/js/full_calender/fullcalendar.min.js'></script>
+   <script   src='${pageContext.request.contextPath}/resources/js/full_calender/ko.js'></script>
 <!-- morris -->
-	<script	src='${pageContext.request.contextPath}/resources/asset/js/main.js'></script>
+   <script   src='${pageContext.request.contextPath}/resources/asset/js/main.js'></script>
 
 
 <!-- RSA 암호화 JS -->

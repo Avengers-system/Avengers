@@ -49,4 +49,50 @@
 		</if>		 
 	</select>
 	
+	<resultMap type="java.util.HashMap" id="checkTlPoint">
+		<result javaType="java.lang.String" column="TL_POINT" property="tl_point"/>	
+		<result javaType="java.lang.String" column="TL_LCT" property="tl_lct"/>	
+	</resultMap>
+	
+	<select id="selectLctNumList" parameterType="java.lang.String" resultMap="checkTlPoint">
+		SELECT NVL(TL_POINT, -1) AS TL_POINT
+			  ,TL_LCT
+		FROM   TL
+		WHERE  TL_STUD = #{stud_num}
+	</select>
+	
+	<update id="updateTlScore" parameterType="java.util.HashMap">
+		UPDATE TL
+		SET    TL_POINT = #{tl_point}
+			  ,TL_LEV = #{tl_lev}
+			  ,TL_MARK = #{tl_mark}
+		WHERE  TL_STUD = #{stud_num}
+		AND    TL_LCT = #{lct_num}
+	</update>
+	
+	<resultMap type="java.util.HashMap" id="resultScore">
+		<result javaType="java.lang.String" column="LCT_YR" property="lct_yr"/>
+		<result javaType="java.lang.String" column="LCT_QTR" property="lct_qtr"/>
+		<result javaType="java.lang.String" column="SJT_NM" property="sjt_nm"/>
+		<result javaType="java.lang.String" column="SJT_CD" property="sjt_cd"/>
+		<result javaType="java.lang.String" column="SJT_CRD" property="sjt_crd"/>
+		<result javaType="java.lang.String" column="TL_POINT" property="tl_point"/>
+		<result javaType="java.lang.String" column="TL_LEV" property="tl_lev"/>
+		<result javaType="java.lang.String" column="TL_MARK" property="tl_mark"/>
+	</resultMap>
+	
+	<select id="selectResultScore" parameterType="java.lang.String" resultMap="resultScore">
+		SELECT LCT_YR
+		      ,LCT_QTR
+		      ,SJT_NM
+		      ,SJT_CD
+		      ,SJT_CRD
+		      ,TL_POINT
+		      ,TL_LEV
+		      ,TL_MARK
+		FROM   LECTURE, TL, SUBJECT
+		WHERE  LCT_NUM = TL_LCT
+		AND    LCT_SJT = SJT_NUM
+		AND    TL_STUD = #{stud_num}
+	</select>
 </mapper>

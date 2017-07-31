@@ -43,4 +43,6 @@ public interface StudentHelpDeskService {
 	public int updateStuBoardCount(String board_num, String board_count) throws SQLException;
 	public int selectStuBoardCount(BoardVO boardVO) throws SQLException;
 	public String selectStuDept(String key) throws SQLException;
+	public String selectDeptName(String bc_num) throws SQLException;
+	
 }

@@ -18,7 +18,7 @@
       <c:when test="${not empty qnaNoticeList}">
       <form name="updateQnaBoard" action="qnaStudUpdate">
          
-          숫자:<input type="text" name="board_num" value="${qnaNoticeList.board_num}" readonly><br>
+          번호:<input type="text" name="board_num" value="${qnaNoticeList.board_num}" readonly><br>
           제목:<input type="text" name="board_title" value="${qnaNoticeList.board_title}"><br>
           내용:<input type="text" name="board_cont" value="${qnaNoticeList.board_cont}"><br>
           작성자:<input type="text" name="board_writer" value="${qnaNoticeList.board_writer}" readonly><br>

@@ -217,6 +217,7 @@ p.quote{
   background-color: transparent;
   background-image: none;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  cursor: not-allowed;
 }
 .megamenu.dropdown-header {
   color: #428bca;
@@ -1084,10 +1085,12 @@ ul li a:focus {
   }
 
   .btn-danger,
+  .label-danger,
+  .alert-danger,
   .badge-danger {
     color: #fff !important;
     border: none !important;
-    background-color: #CC0000 !important;
+    background-color: #FF6656 !important;
   }
 
   .btn-warning,

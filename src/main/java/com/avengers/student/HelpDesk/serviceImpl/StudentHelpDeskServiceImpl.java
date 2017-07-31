@@ -137,6 +137,13 @@ public class StudentHelpDeskServiceImpl implements StudentHelpDeskService {
 		return stuHelpDeskDAO.selectStuDept(key);
 	}
 
+
+	@Override
+	public String selectDeptName(String bc_num) throws SQLException {
+		
+		return stuHelpDeskDAO.selectDeptName(bc_num);
+	}
+
 	
 	
 
