@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.avengers.db.dto.EqVO;
 import com.avengers.db.dto.SubVO;
@@ -40,6 +41,13 @@ public class StudentClassManageController {
 		this.scmService = scmService;
 	}
 	
+	@RequestMapping("student/download")
+	public ModelAndView download(HttpServletRequest request,
+								@RequestParam("fileName")String fileName){
+		String path = request.getSession().getServletContext().getRealPath("resources/asgn/"+fileName);
+		File file = new File(path);
+		return new ModelAndView("download", "downloadFile", file);
+	}
 	/**
 	 * 강의메인
 	 * @param request
@@ -49,7 +57,7 @@ public class StudentClassManageController {
 	 */
 	@RequestMapping("student/classManage/lectureMain")
 	public String studentLectureMain(HttpServletRequest request){
-		String view = "student/classManage/lectureMain";
+		String view = "redirect:lectureDetail";
 		
 		HttpSession session = request.getSession();
 		if(request.getParameter("lct_num")!=null && !request.getParameter("lct_num").equals("")){
@@ -238,6 +246,9 @@ public class StudentClassManageController {
 		
 		String asgn_num = request.getParameter("asgn_num");
 		String stud_num = principal.getName();
+		String lct_num = (String) request.getSession().getAttribute("lct_num");
+		
+		//등록된 과제는 화면에 출력해줌
 		
 		Map<String, String> key = new HashMap<String, String>();
 		Map<String, String> asgnInfo = null;
@@ -356,7 +367,32 @@ public class StudentClassManageController {
 		return String.valueOf(result);
 	}
 	
-	
+	@RequestMapping(value="student/classManage/lectureClassResult")
+	public String studentLectureClassResult(Principal principal, Model model){
+		String view = "student/classManage/lectureClassResult";
+		
+		String stud_num = principal.getName();
+		
+		ArrayList<Map<String, String>> resultScoreList = null;
+		try {
+			//1.학생이 수강하고 있는 강의의 기본키가져오기
+			//2.만약 TL테이블에 총점이 있으면 이미 계산된 것임으로 계산에서 제외한다.
+			ArrayList<String> lctNumList = scmService.checkTlPoint(stud_num);
+			System.out.println(lctNumList);
+			//3.강의에 대해 중간고사, 기말고사, 과제점수를 학점결정비율과 계산하여 TL테이블에 업데이트한다.
+			if(lctNumList != null && !lctNumList.isEmpty()){
+				scmService.updateLectureResultPoint(lctNumList, stud_num);
+			}
+			
+			resultScoreList = scmService.selectResultScore(stud_num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("scoreList", resultScoreList);
+		
+		return view;
+	}
 	
 	
 	

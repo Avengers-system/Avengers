@@ -78,7 +78,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<select id="select" style="width:292.48px;" name="stud_dept" class="selectpicker show-tick">
+								<select id="select" style="width:254.42px;" name="stud_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
 									<option value="DEPT2">컴퓨터공학과</option> 
 									<option value="DEPT3">영어영문학과</option> 
