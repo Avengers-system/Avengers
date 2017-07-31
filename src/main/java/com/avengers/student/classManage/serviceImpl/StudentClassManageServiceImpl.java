@@ -265,4 +265,32 @@ public class StudentClassManageServiceImpl implements StudentClassManageService 
 		return examTimeInfo;
 	}
 
+	@Override
+	public ArrayList<String> checkTlPoint(String stud_num)
+			throws SQLException {
+		ArrayList<Map<String, String>> lctNumList = stuClassDAO.checkTlPoint(stud_num);
+		ArrayList<String> lctNum = new ArrayList<String>();
+		for (int i = 0; i < lctNumList.size(); i++) {
+			if(lctNumList.get(i).get("tl_point").equals("-1")){
+				lctNum.add(lctNumList.get(i).get("tl_lct"));
+			}
+		}
+		return lctNum;
+	}
+
+	@Override
+	public void updateLectureResultPoint(ArrayList<String> lctNumList,
+			String stud_num) throws SQLException {
+		stuClassDAO.updateLectureResultPoint(lctNumList, stud_num);
+		
+	}
+
+	@Override
+	public ArrayList<Map<String, String>> selectResultScore(String stud_num)
+			throws SQLException {
+		ArrayList<Map<String, String>> resultScoreList = stuClassDAO.selectResultScore(stud_num);
+		return resultScoreList;
+	}
+
+
 }

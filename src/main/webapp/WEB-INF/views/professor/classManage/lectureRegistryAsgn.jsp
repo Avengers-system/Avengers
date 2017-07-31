@@ -2,6 +2,25 @@
     pageEncoding="UTF-8"%>
 <!-- Content -->
 <%@include file="../common/classManageLectureSideCategory.jsp"%>
+<style>
+	.fileBox .fileName {display:inline-block;width:190px;height:30px;padding-left:10px;margin-right:5px;line-height:30px;border:1px solid #aaa;background-color:#fff;vertical-align:middle}
+	.fileBox .btn_file {display:inline-block;border:1px solid #000;width:100px;height:30px;font-size:13px;line-height:30px;text-align:center;vertical-align:middle}
+	.fileBox input[type="file"] {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+</style>
+
+<script>
+var uploadFile = $('.fileBox .uploadBtn');
+uploadFile.on('change', function(){
+    if(window.FileReader){
+        var filename = $(this)[0].files[0].name;
+    } else {
+        var filename = $(this).val().split('/').pop().split('\\').pop();
+    }
+    $(this).siblings('.fileName').val(filename);
+});
+</script>
+
+
 <div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #666666;  margin-top: 10px;">
@@ -54,6 +73,11 @@
 		    <div class="form-group">
 				<label class="control-label col-sm-1" for="asgn_sub_form">첨부파일</label>
 				<div class="col-sm-3">
+					<div class="fileBox">
+					    <input type="file" id="uploadBtn" class="uploadBtn">
+					    <input type="button" class="btn_file btn-outline btn-primary" style="padding:0px" value="찾아보기"/>
+					    <input type="text" class="fileName" readonly="readonly">
+					</div>
 					<input type="file" name="asgn_sub_form" style="font-size:15px"/>
 				</div>
 		    </div>

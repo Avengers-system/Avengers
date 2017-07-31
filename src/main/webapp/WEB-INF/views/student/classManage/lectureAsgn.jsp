@@ -38,7 +38,7 @@
 							<td>${asgn.get("asgn_start_date") }</td>
 							<td>${asgn.get("asgn_dl_date") }</td>
 							<td>${asgn.get("sub_check") }</td>
-							<td><button onclick="location.href='<%=request.getContextPath()%>/student/classManage/lectureAsgnDetail?asgn_num=${asgn.get('asgn_num') }'">상세페이지</button></td>
+							<td><button style="padding:5px" class="btn btn-outline btn-primary" onclick="location.href='<%=request.getContextPath()%>/student/classManage/lectureAsgnDetail?asgn_num=${asgn.get('asgn_num') }'">상세페이지</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>
