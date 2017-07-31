@@ -41,7 +41,7 @@
 		padding: 10px;
 	}
 	table{
-		overflow:auto;
+		overflow:scroll;
 	}	
 </style>
 
@@ -93,7 +93,7 @@
         </div>
         		
          	
-		
+<!-- 2017.07.30 여기부터수정 -->		
         <div class="col-xs-12">
 	<div class="panel panel-default">
        	 	<!-- 강의리스트 -->
@@ -101,9 +101,9 @@
 			style="background-color: #2196F3; margin-top: 10px;">      	 	
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">강의리스트</h4>
 			</div>
-			<div class="panel-body">
-			<div class="responsive-table">
-			<table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+			<div class="panel-body"  >
+			<div class="responsive-table" style="height:350px; overflow:scroll;">
+			<table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0" style="font-size: 15px;">
 				<thead>
 				<tr>
 					<td>장바구니담기</td>
@@ -128,7 +128,7 @@
 								<td>
 									<form action = "${pageContext.request.contextPath}/student/insertCart" method="post">
 									<input type="hidden" name="cart_lct" value="${lct.get('lct_num')}" />
-									<input class="btn btn-outline btn-primary" type = "submit" value="장바구니담기">
+									<input class="btn btn-outline btn-primary" style="padding:5px;" type = "submit" value="장바구니담기">
 									</form>
 								</td>
 								<c:choose>		
@@ -136,7 +136,7 @@
 										<td>
 											<form action = "${pageContext.request.contextPath}/student/insertTl" method="post">
 											<input type="hidden" name="lct_num" value="${lct.get('lct_num')}" />
-											<input class="btn btn-outline btn-primary" type = "submit" value="신청">
+											<input class="btn btn-outline btn-primary"  style="padding:5px;" type = "submit" value="신청">
 											</form>
 										</td>
 									</c:when>
@@ -153,7 +153,7 @@
 								<td>
 								<form action = "${pageContext.request.contextPath}/student/lectureDetail" method="post">
 								<input type="hidden" name="lct_num" value="${lct.get('lct_num')}" />
-								<input class="btn btn-outline btn-primary" type = "submit" value="강의계획서">
+								<input class="btn btn-outline btn-primary"  style="padding: 5px;"type = "submit" value="강의계획서">
 								</form>
 								</td>
 							</tr>
@@ -181,7 +181,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="responsive-table">
-					<table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+					<table id="datatables-example" class="table table-striped table-bordered" style="font-size: 15px;" width="100%" cellspacing="0">
 					<thead>
 					<tr>
 						<td>취소</td>
@@ -216,7 +216,7 @@
 											<td>
 											<form action = "${pageContext.request.contextPath}/student/insertTl" method="post">
 											<input type="hidden" name="lct_num" value="${cart.get('lct_num')}" />
-											<input class="btn btn-outline btn-primary" type = "submit" value="신청">
+											<input class="btn btn-outline btn-primary" style="padding: 5px;" type = "submit" value="신청">
 											</form>
 											</td>
 										</c:when>
@@ -231,7 +231,7 @@
 									<td>
 									<form action = "${pageContext.request.contextPath}/student/lectureDetail" method="post">
 									<input type="hidden" name="lct_num" value="${cart.get('lct_num')}" />
-									<input class="btn btn-outline btn-primary" type = "submit" value="강의계획서">
+									<input class="btn btn-outline btn-primary" style="padding: 5px;" type = "submit" value="강의계획서">
 									</form>
 									</td>
 								</tr>
@@ -261,7 +261,7 @@
 					</div>
 					<div class="panel-body">
 					<div class="responsive-table">
-					<table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+					<table id="datatables-example" class="table table-striped table-bordered" style="font-size: 15px;" width="100%" cellspacing="0">
 					<thead>						
 							<tr>
 								<td>취소</td>
@@ -283,7 +283,7 @@
 											<td>
 											<form action = "${pageContext.request.contextPath}/student/deleteTl" method="post">
 											<input type="hidden" name="tl_num" value="${admission.get('tl_num')}" />
-											<input class="btn btn-outline btn-primary" type = "submit" value="취소">
+											<input class="btn btn-outline btn-primary" style="padding: 5px;" type = "submit" value="취소">
 											</form>
 											</td>								
 											<td>${admission.get("lct_num")}</td>
@@ -296,7 +296,7 @@
 											<td>
 											<form action = "${pageContext.request.contextPath}/student/lectureDetail" method="post">
 											<input type="hidden" name="lct_num" value="${admission.get('lct_num')}" />
-											<input class="btn btn-outline btn-primary" type = "submit" value="강의계획서">
+											<input class="btn btn-outline btn-primary" style="padding: 5px;" type = "submit" value="강의계획서">
 											</form>
 											</td>
 										</tr>
@@ -314,4 +314,4 @@
 							</div>						
         	</div>
         	</div>
-
+<!-- 2017.07.30 여기까지수정 -->

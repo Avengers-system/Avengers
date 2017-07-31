@@ -12,13 +12,13 @@
 			상세정보
 			</h4>
 		</div>
-		<div class="panel-body" style="height: 650px; text-align: center;" >
+		<div class="panel-body" >
 		 <div class="row">
 		  	<div class="col-md-12">
      <form enctype="multipart/form-data" action="${pageContext.request.contextPath }/admin/updateStudent" method="post">  
   	  	<div class="col-md-12" style="margin-top:30px;">
   		   <!-- 이미지 미리보기 -->
-  		   				<div class="col-md-12">
+  		   				<div class="col-md-12"style="margin-left:40px;">
 			               <div class="filess" style="margin-bottom:20px;">
 			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="${pageContext.request.contextPath }/resources/admin_student_images/${student.stud_pic}"
 			                     id="profile-image" class="img-circle img-responsive">
@@ -28,11 +28,11 @@
               
                
 	                   <span class="input-group-btn">
-	                   		<div class="col-md-8">
+	                   		<div class="col-md-8 col-md-offset-1">
 	                   		<div class="col-md-4">
-	                   			<input type="text" value="${student.stud_pic}" class="form-control" style="width:310px;" id="image-preview-filename" disabled="disabled">
+	                   			<input type="text" value="${student.stud_pic}" class="form-control" style="width:292.48px;" id="image-preview-filename" disabled="disabled">
 	                   		</div>
-	                   		<div class="col-md-1">
+	                   		<div class="col-md-1" style="margin-left:-50px;">
 		                   		<div class="btn btn-default image-preview-input">
 		                           <input type="file" accept="image/png, image/jpeg, image/gif" />
 		                           <span class="image-preview-input-title">업로드</span>
@@ -49,7 +49,8 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label text-right">학적상태</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_schreg_code" value="${student.stud_schreg_code}">
+								<input type="hidden" class="form-control" name="stud_schreg_code" value="${student.stud_schreg_code}">
+								<input type="text" class="form-control"  value="${student.stud_schreg_code}"  disabled="disabled">
 							</div>
 						</div>
 				</div> 
@@ -58,7 +59,8 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label text-right">학번</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_num" value="${student.stud_num }" >
+								<input type="hidden" class="form-control" name="stud_num" value="${student.stud_num }" >
+								<input type="text" class="form-control" value="${student.stud_num }" disabled="disabled">
 							</div>
 						</div>
 				</div>
@@ -67,7 +69,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label text-right">비밀번호</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_pw" value="${student.stud_pw}">
+								<input type="password" class="form-control" name="stud_pw" value="${student.stud_pw}">
 							</div>
 						</div>
 				</div>
@@ -76,7 +78,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<select id="select" style="width:248px;" name="stud_dept" class="selectpicker show-tick">
+								<select id="select" style="width:292.48px;" name="stud_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
 									<option value="DEPT2">컴퓨터공학과</option> 
 									<option value="DEPT3">영어영문학과</option> 
@@ -283,7 +285,16 @@
 								<input type="text" class="form-control" name="stud_guad_hp" value="${student.stud_guad_hp}">
 							</div>
 						</div>
-				</div>   
+				</div> 
+				
+				<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-sm-3 control-label text-right">학점</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="stud_max_crd" value="20">
+							</div>
+						</div>
+				</div>  
 					
 				<div class="col-md-8 col-md-offset-4" style="margin-top:200px;">
 						<input class="submit btn btn-danger" type="submit" value="수정하기">
@@ -359,6 +370,12 @@
  
 
 <style>
+ 	div.col-md-4>div.col-md-12{
+ 	margin-bottom:20px;
+ 	
+ 	}
+ 
+ 
  
     .table-bordered>thead>tr>th {
 	text-align: center;
