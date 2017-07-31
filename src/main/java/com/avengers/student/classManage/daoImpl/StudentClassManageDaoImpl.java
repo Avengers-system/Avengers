@@ -273,4 +273,111 @@ public class StudentClassManageDaoImpl implements StudentClassManageDao{
 		return examTimeInfo;
 	}
 
+	@Override
+	public ArrayList<Map<String, String>> checkTlPoint(String stud_num)
+			throws SQLException {
+		ArrayList<Map<String, String>> lctNumList = (ArrayList<Map<String, String>>) sqlSession.selectList("tl.selectLctNumList",stud_num);
+		return lctNumList;
+	}
+
+	@Override
+	public void updateLectureResultPoint(ArrayList<String> lctNumList,
+			String stud_num) throws SQLException {
+		Map<String, String> lctNum = new HashMap<String, String>();
+		//1.중간고사 2.기말고사 3.과제점수
+		ArrayList<ArrayList<String>> scoreTotalList = new ArrayList<ArrayList<String>>();
+		lctNum.put("stud_num", stud_num);
+		for(int i=0; i<lctNumList.size(); i++){
+			lctNum.put("lct_num", lctNumList.get(i));
+			String meScore = (String) sqlSession.selectOne("te.selectTeMeScore", lctNum);
+			String feScore = (String) sqlSession.selectOne("te.selectTeFeScore", lctNum);
+			String asgnScore = (String) sqlSession.selectOne("asgn.selectAsgnScore", lctNum);
+			if(meScore != null && !meScore.equals("-1") 
+					&& feScore != null && !feScore.equals("-1")
+					&& asgnScore != null && !asgnScore.equals("-1")){
+				ArrayList<String> scoreList = new ArrayList<String>();
+				scoreList.add(meScore);
+				scoreList.add(feScore);
+				scoreList.add(asgnScore);
+				scoreList.add(lctNumList.get(i));
+				scoreTotalList.add(scoreList);
+			}
+		}
+		
+		//자 위에 점수 다 가지고 왔다. 이제 합산해서 tl테이블에 넣자.
+		Map<String, String> updateTotalPoint = new HashMap<String, String>();
+		for(int scoreTotalIndex=0; scoreTotalIndex<scoreTotalList.size(); scoreTotalIndex++){
+			int tl_point = 0;
+			String tl_lev = "";
+			String tl_mark = "";
+			for(int scoreIndex=0; scoreIndex < scoreTotalList.get(scoreTotalIndex).size()-1; scoreIndex++){
+				System.out.println(scoreTotalList.get(scoreTotalIndex).get(scoreIndex));
+				tl_point += Integer.valueOf(scoreTotalList.get(scoreTotalIndex).get(scoreIndex));
+			}
+			if(91<=tl_point && tl_point<=100){
+				tl_lev = "A+";
+				tl_mark = "4.5";
+			} else if(81<=tl_point && tl_point<=90){
+				if(tl_point == 81){
+					tl_lev = "A-";
+					tl_mark = "4.0";
+				}else{
+					tl_lev = "A0";
+					tl_mark = "4.3";
+				}
+			} else if(71<=tl_point && tl_point<=80){
+				tl_lev = "B+";
+				tl_mark = "3.5";
+			} else if(61<=tl_point && tl_point<=70){
+				if(tl_point == 61){
+					tl_lev = "B-";
+					tl_mark = "3.0";
+				}else{
+					tl_lev = "B0";
+					tl_mark = "3.3";
+				}
+			} else if(51<=tl_point && tl_point<=60){
+				tl_lev = "C+";
+				tl_mark = "2.5";
+			} else if(41<=tl_point && tl_point<=50){
+				if(tl_point == 41){
+					tl_lev = "C-";
+					tl_mark = "2.0";
+				} else{
+					tl_lev = "C0";
+					tl_mark = "2.3";
+				}
+			} else if(31<=tl_point && tl_point<=40){
+				tl_lev = "D+";
+				tl_mark = "1.5";
+			} else if(21<=tl_point && tl_point<=30){
+				if(tl_point == 21){
+					tl_lev = "D-";
+					tl_mark = "1.0";
+				}else{
+					tl_lev = "D0";
+					tl_mark = "1.3";
+				}
+			} else{
+				tl_lev = "F";
+				tl_mark = "0";
+			}
+			updateTotalPoint.put("tl_point", String.valueOf(tl_point));
+			updateTotalPoint.put("tl_lev", tl_lev);
+			updateTotalPoint.put("tl_mark", tl_mark);
+			updateTotalPoint.put("stud_num", stud_num);
+			updateTotalPoint.put("lct_num", scoreTotalList.get(scoreTotalIndex).get(scoreTotalList.get(scoreTotalIndex).size()-1));
+			System.out.println(updateTotalPoint);
+			sqlSession.update("tl.updateTlScore", updateTotalPoint);
+		}
+	}
+
+	@Override
+	public ArrayList<Map<String, String>> selectResultScore(String stud_num)
+			throws SQLException {
+		ArrayList<Map<String, String>> resultScoreList = (ArrayList<Map<String, String>>) sqlSession.selectList("tl.selectResultScore", stud_num);
+		return resultScoreList;
+	}
+
+
 }

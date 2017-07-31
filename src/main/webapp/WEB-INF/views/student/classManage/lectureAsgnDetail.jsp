@@ -46,7 +46,7 @@
 					<div class="form-group">
 						<label class="control-label col-sm-1" for="">제출양식</label>
 						<div class="col-sm-2">
-							<a style="font-size:20px" href="${pageContext.request.contextPath}/professor/download?fileName=${asgn.get('asgn_sub_form')}">${asgn.get('asgn_sub_form')}</a>
+							<a style="font-size:20px" href="${pageContext.request.contextPath}/student/download?fileName=${asgn.get('asgn_sub_form')}">${asgn.get('asgn_sub_form')}</a>
 						</div>
 						<label class="control-label col-sm-1" for="sub_check">제출여부</label>
 						<div class="col-sm-2">
