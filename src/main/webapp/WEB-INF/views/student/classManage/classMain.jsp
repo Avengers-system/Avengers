@@ -32,7 +32,7 @@
 						<td>${classList.get("prfs_nm") }</td>
 						<td>${classList.get("lr_date") }</td>
 						<td>${classList.get("lr_lrc") }</td>
-						<td><button onclick="location.href='<%=request.getContextPath()%>/student/classManage/lectureMain?lct_num=${classList.get('lct_num')}'">상세페이지</button></td>
+						<td><button style="padding:5px" class="btn btn-outline btn-primary" onclick="location.href='<%=request.getContextPath()%>/student/classManage/lectureMain?lct_num=${classList.get('lct_num')}'">상세페이지</button></td>
 					</tr>
 				</c:forEach>
 				</tbody>

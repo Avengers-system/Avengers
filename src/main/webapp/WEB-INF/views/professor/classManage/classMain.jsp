@@ -30,7 +30,7 @@
 						<td>${ prfsLct.get("lct_nm_class")}</td>
 						<td>${ prfsLct.get("lr_date")}</td>
 						<td>${ prfsLct.get("lr_lrc")}</td>
-						<td><button onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureMain?lct_num=${prfsLct.get('lct_num')}'">강의홈이동</button></td>
+						<td><button style="padding:5px" class="btn btn-outline btn-primary" onclick="location.href='${pageContext.request.contextPath }/professor/classManage/lectureMain?lct_num=${prfsLct.get('lct_num')}'">강의홈이동</button></td>
 					</tr>
 				</c:forEach>
 				</tbody>

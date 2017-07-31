@@ -188,7 +188,15 @@
 	</update>
 	
 	
-	
+	<select id="selectAsgnScore" parameterType="java.util.HashMap" resultType="java.lang.String">
+		SELECT SUM(SUB_SJT_POINT) * (LCT_ASGN_RATE / 100)
+		FROM   SUBMISSION, ASGN, LECTURE
+		WHERE  SUB_ASGN = ASGN_NUM
+		AND    ASGN_LCT = LCT_NUM 
+		AND    SUB_STUD = #{stud_num}
+		AND    LCT_NUM = #{lct_num}
+		GROUP BY LCT_ASGN_RATE
+	</select>
 	
 	
 	

@@ -59,7 +59,7 @@
 									<td>미채점</td>
 								</c:otherwise>
 							</c:choose>
-							<td><button onclick="javascript:takeExamCheck('${studTe.get('te_check')}','${studTe.get('te_num') }','${studTe.get('stud_num')}','${exam_num }');">이동</button></td>
+							<td><button style="padding:5px" class="btn btn-outline btn-primary" onclick="javascript:takeExamCheck('${studTe.get('te_check')}','${studTe.get('te_num') }','${studTe.get('stud_num')}','${exam_num }');">이동</button></td>
 		<%-- 					<td><button onclick="location.href='${pageContext.request.contextPath}/professor/classManage/lectureStudentAnswer?te_num=${studTe.get('te_num') }&stud_num=${studTe.get('stud_num')}&exam_num=${exam_num }'">보러가기</button></td> --%>
 						</tr>
 					</c:forEach>

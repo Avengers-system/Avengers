@@ -30,9 +30,7 @@
 						<td>${exam.get("exam_date") }</td>
 						<td>${exam.get("exam_start_date") }~${exam.get("exam_end_date") }</td>
 						<td>${exam.get("te_check") }</td>
-						<td><button onclick="javascript:takeExamTimeCheck('${exam.get('te_check')}','${exam.get('exam_num') }','${exam.get('te_num') }')">입장</button></td>
-						
-					
+						<td><button style="padding:5px" class="btn btn-outline btn-primary" onclick="javascript:takeExamTimeCheck('${exam.get('te_check')}','${exam.get('exam_num') }','${exam.get('te_num') }')">입장</button></td>
 					</tr>
 				</c:forEach>
 				</tbody>
