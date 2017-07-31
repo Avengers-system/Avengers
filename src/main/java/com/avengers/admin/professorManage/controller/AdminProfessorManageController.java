@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -74,30 +75,6 @@ public class AdminProfessorManageController {
 	}
 	
 	/**
-	 * 교수리스트 조회
-	 * @param principal
-	 * @param model
-	 * @return
-	 */
-//	@RequestMapping("/professorManage")
-//	public String professorList(Principal principal, Model model) {
-//
-//		List<PrfsVO> professorList = null;
-//
-//		String key = principal.getName();
-//		try {
-////			professorList = adminProfessorManageService.selectPrfsList(key, 1,	10);
-//			professorList = adminProfessorManageService.selectPrfsList();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		model.addAttribute("professorList", professorList);
-//
-//		return "admin/main/professorManage";
-//	}
-
-	
-	/**
 	 * 교수 상세보기
 	 * @param prfs_num
 	 * @param model
@@ -145,8 +122,7 @@ public class AdminProfessorManageController {
 				System.out.println("교수삭제실패");
 			}
 			//enabled 만 1로 바꾸면 됨 
-			String msg = "삭제 완료되었습니다.";
-			model.addAttribute("msg",msg);
+			
 	return "redirect:professorManage";	
 	}
 	

@@ -29,8 +29,6 @@ ol, ul {
 <!-- side menu -->
 <%@include file="../common/myPageSideCategory.jsp"%>
 <!--  Counsel Right Side -->
-<link href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css" rel="stylesheet">
-<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
 <div class="col-md-10">
    <div class="panel panel-default">
       <div class="panel-heading" style="background-color: #CC0000;  margin-top: 10px;">
@@ -49,7 +47,7 @@ ol, ul {
 <script>
  
    $(function() {
-      swal("Here's a message!");
+     
       var id; 
       var todayDate = moment().startOf('day');
       var YM = todayDate.format('YYYY-MM');
