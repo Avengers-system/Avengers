@@ -106,8 +106,7 @@ public class AdminMypageController {
 	
 	
 	
-	
-	@RequestMapping(value="/myInfoUpdate")
+	@RequestMapping(value="/myInfoUpdate",method=RequestMethod.POST)
 	public String myInfoUpdate(
 			@RequestParam("file")MultipartFile myImage
 			,@ModelAttribute("admin") AdminVO admin
@@ -145,7 +144,7 @@ public class AdminMypageController {
 			e.printStackTrace();
 		}
 		
-		session.setAttribute("message",message);
+//		session.setAttribute("message",message);
 		return url;
 	}
 	

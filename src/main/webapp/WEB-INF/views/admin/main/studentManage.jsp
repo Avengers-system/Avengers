@@ -175,7 +175,7 @@
                                          <!-- 검색버튼  -->
                                          <!-- 추가버튼  -->
                                          
-                                         <button id ="addStud" style="margin-bottom:7px;" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/admin/studentInsert'">학생추가하기</button>
+                                         <button id ="addStud" style="margin-bottom:7px;" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/admin/studentInsert'">학생추가</button>
                                    </div>
                            </div>
                         </div>
@@ -194,8 +194,6 @@
                       
                         <tr role="row">
                         
-                     <th class="sorting_asc" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="교수 번호: activate to sort column descending" 
-								aria-sort="ascending" style="width: 90px;">재학여부</th>
                      <th class="sorting_asc" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="학번: activate to sort column descending" 
                      aria-sort="ascending" style="width: 100px;">학번</th>
                      <th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="이름: activate to sort column ascending" style="width: 100px;">이름</th>
@@ -213,14 +211,10 @@
                      생년월일</th>
                      <th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="휴대폰번호: activate to sort column ascending" style="width: 150px;">
                      휴대폰번호</th>
-                     <th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="주민등록번호: activate to sort column ascending" style="width: 146px;">
-                     주민등록번호</th>
                      <th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="우편번호: activate to sort column ascending" style="width: 100px;">
                      우편번호</th>
                      <th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="주소: activate to sort column ascending" style="width: 176px;">
                      주소</th>
-                     <th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="비고: activate to sort column ascending" style="width: 130px;">
-                     비고</th>
                   </tr>
                       </thead>
                       
@@ -229,7 +223,6 @@
                                <c:when test="${!empty studentList}">
                                <c:forEach var="student" items="${studentList}">
                                   <tr role="row" class="odd">
-                                  	  <td>${student.stud_schreg_code}</td>
                                       <td class="sorting_1">${student.stud_num }</td>
                                       <td ><a href="${pageContext.request.contextPath}/admin/studentDetail?stud_num=${student.stud_num}">${student.stud_nm}</a></td>
                                       <td >${student.stud_schreg_code }</td>
@@ -248,15 +241,8 @@
                                
                                          <td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${student.stud_bir}" /></td>
                                     <td>${student.stud_hp }</td>
-                                    <td>${student.stud_regno}</td>
                                     <td>${student.stud_zip}</td>
                                     <td>${student.stud_addr}</td>
-                                    <c:if test="${student.enabled =='2'}">
-                                    <td>제적</td>                                    
-                                    </c:if>
-                                    <c:if test="${student.enabled =='1'}">
-                                    <td></td>                                    
-                                    </c:if>
                                  </tr>
                         </c:forEach>
                                </c:when>
