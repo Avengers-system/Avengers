@@ -59,7 +59,8 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label text-right">학번</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_num" value="${student.stud_num }" >
+								<input type="hidden" class="form-control" name="stud_num" value="${student.stud_num }" >
+								<input type="text" class="form-control" value="${student.stud_num }" disabled="disabled">
 							</div>
 						</div>
 				</div>
@@ -68,7 +69,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label text-right">비밀번호</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_pw" value="${student.stud_pw}">
+								<input type="password" class="form-control" name="stud_pw" value="${student.stud_pw}">
 							</div>
 						</div>
 				</div>
