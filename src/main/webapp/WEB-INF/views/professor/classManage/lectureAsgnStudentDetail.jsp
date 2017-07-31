@@ -64,15 +64,15 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-1" for="sub_sjt_point">점수:</label>
-					<div class="col-sm-2">
-						<input type="text" class="form-control" name="sub_sjt_point" value="${subDetail.get('sub_sjt_point') }">
-					</div>
-				</div>
-				<div class="form-group">
 					<label class="control-label col-sm-1" for="sub_sjt_point">첨부파일:</label>
 					<div class="col-sm-2">
 						<a style="font-size:20px" href="${pageContext.request.contextPath}/professor/download?fileName=${subDetail.get('sub_af')}">${subDetail.get('sub_af')}</a>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="sub_sjt_point">점수:</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" name="sub_sjt_point" value="${subDetail.get('sub_sjt_point') }">
 					</div>
 				</div>
 				<div class="form-group">

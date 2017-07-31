@@ -8,8 +8,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #2196F3;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
-			
-			개인정보
+				개인정보
 			</h4>
 		</div>
 		<div class="panel-body" style="height: 580px; text-align: center;" >

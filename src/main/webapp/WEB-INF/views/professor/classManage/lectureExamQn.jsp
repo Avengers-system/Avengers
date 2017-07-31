@@ -47,7 +47,7 @@
 </div>
 <script>
 //2017.07.30추가
-window.onload = function() {
+	window.onload = function() {
 		fncClearTime();
 		initTimer();
 		removeCheck=0;

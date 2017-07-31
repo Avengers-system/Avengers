@@ -5,12 +5,6 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="myContextPath" value="${pageContext.request.contextPath}" />
-<c:if test="${!empty message }">
-	<script type="text/javascript">
-		alert('${message}');
-	</script>
-	<c:remove var="message" scope="session" />
-</c:if>
 <!-- Content -->
 <!-- side menu -->
 <%@include file="../common/myPageSideCategory.jsp"%>
