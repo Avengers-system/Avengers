@@ -45,7 +45,7 @@
     )a 
 	
 	WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
-	
+	ORDER BY a.STUD_NUM DESC
 	</select>
 
 
@@ -80,6 +80,7 @@
     )a 
 	
 	WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
+	ORDER BY a.PRFS_NUM DESC
 	</select>
 	
  
@@ -170,8 +171,8 @@
 	STUD_DEPT= #{stud_dept jdbcType=VARCHAR},
 	STUD_GUAD_NM= #{stud_guad_nm jdbcType=VARCHAR},
 	STUD_GUAD_REL= #{stud_guad_rel jdbcType=VARCHAR},
-	STUD_GUAD_HP= #{stud_guad_hp jdbcType=VARCHAR},
-	STUD_MAX_CRD= #{stud_max_crd}	
+	STUD_GUAD_HP= #{stud_guad_hp jdbcType=VARCHAR} 
+ 
 	where STUD_NUM = #{stud_num}
 	
 	</update>
@@ -238,7 +239,6 @@
          ADMIN_BIR=TO_DATE(#{admin_bir},'YYYY-MM-DD HH24:MI:SS'),
          ADMIN_POST = #{admin_post},
          ADMIN_ENG_NM = #{admin_eng_nm},
-         ADMIN_REGNO = #{admin_regno},
          ADMIN_EMAIL = #{admin_email},         
          ADMIN_TEL = #{admin_tel},
          ADMIN_HP = #{admin_hp},
@@ -365,7 +365,7 @@
 	            AUTHORITY,
 	            STUD_MAX_CRD
   			 ) VALUES (
-  			        '2017'||lpad(stud_seq.nextval,3,0),
+  			             '2017'||(select LPAD(SUBSTR( #{stud_dept}, 5),2,0) from department WHERE DEPT_NUM =  #{stud_dept})||lpad(stud_seq.nextval,2,0),
 			         #{stud_nm},   
 			         #{stud_eng_nm},   
 			         #{stud_bir},   

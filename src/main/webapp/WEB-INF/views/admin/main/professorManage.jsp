@@ -3,6 +3,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+<link href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
+
+ 
 <!-- 템플릿 페이지 -->
 <style>
 	#professorTable,  #professorTable td{
@@ -49,9 +55,8 @@ background-color:#CC0000;
     }
 </script>
 
- <%@include file="../common/adminManageCategory.jsp" %>
 <!--  Counsel Right Side -->
-<div class="col-md-10">
+<div class="col-md-12">
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #CC0000;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
@@ -83,7 +88,7 @@ background-color:#CC0000;
 						                       <button id ="searchProf" style="background-color:#CC0000;  margin-bottom:7px;" class="btn btn-danger" onclick="fn_search();">검색</button>
 						                       <!-- 추가버튼  -->
 						                       
-						                       <button id ="addProf" style="margin-bottom:7px;" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/admin/professorInsert'">교수추가하기</button>
+						                       <button id ="addProf" style="margin-bottom:7px;" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/admin/professorInsert'">교수추가</button>
 				                       </div>
 		                       </div>
                        
@@ -209,5 +214,12 @@ background-color:#CC0000;
 	</div>
 </div>
  
+<style>
+ .btn-danger, .alert-danger, .badge-danger {
+    color: #fff !important;
+    border: none !important;
+    background-color: #CC0000 !important;
+  }
+</style>
 
  
