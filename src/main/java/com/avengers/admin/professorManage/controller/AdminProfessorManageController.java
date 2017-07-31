@@ -122,7 +122,6 @@ public class AdminProfessorManageController {
 				System.out.println("교수삭제실패");
 			}
 			//enabled 만 1로 바꾸면 됨 
-			
 	return "redirect:professorManage";	
 	}
 	
