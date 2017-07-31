@@ -4,13 +4,20 @@
 
 <!--side Category-->
 	<%@include file="../common/studentDetailSideCategory.jsp" %>
+<style>
+select{
+	color:black;
+}
+
+</style>
 
 <div class="col-md-10">
 	<div class="panel panel-default">
-		<div class="panel-heading" style="background-color: #CC0000; color: #fff;  margin-top: 10px;">
+		<div class="panel-heading" style="background-color: #CC0000; color: #fff; font-color:#fff;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">장학신청 미처리 내역</h4>
-			<form action = "${pageContext.request.contextPath}/admin/studentScrList" method="post">
-					년도<select name="scr_year" id="scr_year">
+			<form action = "${pageContext.request.contextPath}/admin/studentScrList" method="post"
+			style="color:#fff;">
+					년도<select name="scr_year" id="scr_year" style="color:black;">
 						<option selected="selected">전체</option>
 						<c:choose>
 					<c:when test="${not empty yearList}">
@@ -25,7 +32,7 @@
 						<option value="1">1</option>
 						<option value="2">2</option>
 					</select>
-					<input type = "submit" value="검색">
+					<input style="margin-bottom:8px;"class="btn btn-default" type = "submit" value="검색">
 					</form>
 				</div>
 			<div class="panel-body">
@@ -100,7 +107,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #CC0000; color: #fff;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">장학신청 처리내역</h4>
-			<form action = "${pageContext.request.contextPath}/admin/studentScrList" method="post">
+			<form action = "${pageContext.request.contextPath}/admin/studentScrList" method="post" style="color:#fff;">
 			년도<select name="scrappl_year" id="scrappl_year">
 						<option selected="selected" >전체</option>
 						<c:choose>
@@ -115,7 +122,7 @@
 						<option value="1">1</option>
 						<option value="2">2</option>
 					</select>
-					<input type = "submit" value="검색">
+					<input style="margin-bottom:8px;"class="btn btn-default" type = "submit" value="검색">
 			</form>		
 			</div>
 			<div class="panel-body">
@@ -180,7 +187,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #CC0000; color: #fff;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">장학반려 처리내역</h4>
-			<form action = "${pageContext.request.contextPath}/admin/studentScrList" method="post">
+			<form action = "${pageContext.request.contextPath}/admin/studentScrList" method="post" style="color:#fff;">
 			년도<select name="scrCancel_year" id="scrCancel_year">
 						<option selected="selected" >전체</option>
 						<c:choose>
@@ -195,7 +202,7 @@
 						<option value="1">1</option>
 						<option value="2">2</option>
 					</select>
-					<input type = "submit" value="검색">
+					<input style="margin-bottom:8px;" class="btn btn-default" type = "submit" value="검색">
 			</form>		
 			</div>
 			<div class="panel-body">

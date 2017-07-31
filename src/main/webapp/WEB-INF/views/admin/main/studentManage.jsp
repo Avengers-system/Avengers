@@ -150,7 +150,7 @@
          학생목록
          </h4>
       </div>
-      <div class="panel-body" style="height: 580px; text-align: center;" >
+      <div class="panel-body" style="text-align: center;" >
 
                   <div class="panel">
                     <div class="panel-body">
@@ -171,11 +171,11 @@
                                    </select>
                   
                                          <input type="search" id="searchI" name="searchValue" style="margin-bottom:7px;" class="form-control input-sm" aria-controls="datatables-example"> 
-                                         <button  id ="searchStud" style="margin-bottom:7px;" class="btn btn-primary" onclick="fn_search();">검색</button>
+                                         <button  id ="searchStud" style="margin-bottom:7px;" class="btn btn-danger" onclick="fn_search();">검색</button>
                                          <!-- 검색버튼  -->
                                          <!-- 추가버튼  -->
                                          
-                                         <button id ="addStud" style="margin-bottom:7px;" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/studentInsert'">학생추가하기</button>
+                                         <button id ="addStud" style="margin-bottom:7px;" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/admin/studentInsert'">학생추가</button>
                                    </div>
                            </div>
                         </div>
@@ -194,8 +194,6 @@
                       
                         <tr role="row">
                         
-                     <th class="sorting_asc" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="교수 번호: activate to sort column descending" 
-								aria-sort="ascending" style="width: 90px;">재학여부</th>
                      <th class="sorting_asc" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="학번: activate to sort column descending" 
                      aria-sort="ascending" style="width: 100px;">학번</th>
                      <th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="이름: activate to sort column ascending" style="width: 100px;">이름</th>
@@ -213,8 +211,6 @@
                      생년월일</th>
                      <th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="휴대폰번호: activate to sort column ascending" style="width: 150px;">
                      휴대폰번호</th>
-                     <th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="주민등록번호: activate to sort column ascending" style="width: 146px;">
-                     주민등록번호</th>
                      <th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="우편번호: activate to sort column ascending" style="width: 100px;">
                      우편번호</th>
                      <th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="주소: activate to sort column ascending" style="width: 176px;">
@@ -227,7 +223,6 @@
                                <c:when test="${!empty studentList}">
                                <c:forEach var="student" items="${studentList}">
                                   <tr role="row" class="odd">
-                                  	  <td>${student.stud_schreg_code}</td>
                                       <td class="sorting_1">${student.stud_num }</td>
                                       <td ><a href="${pageContext.request.contextPath}/admin/studentDetail?stud_num=${student.stud_num}">${student.stud_nm}</a></td>
                                       <td >${student.stud_schreg_code }</td>
@@ -246,7 +241,6 @@
                                
                                          <td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${student.stud_bir}" /></td>
                                     <td>${student.stud_hp }</td>
-                                    <td>${student.stud_regno}</td>
                                     <td>${student.stud_zip}</td>
                                     <td>${student.stud_addr}</td>
                                  </tr>
@@ -313,9 +307,12 @@
 
 
 
-
-
-
-
+<style>
+ .btn-danger, .alert-danger, .badge-danger {
+    color: #fff !important;
+    border: none !important;
+    background-color: #CC0000 !important;
+  }
+</style>
 
 

@@ -9,19 +9,8 @@
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #CC0000;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">복학/휴학신청 미처리 내역</h4>			
-			<form action = "${pageContext.request.contextPath}/admin/studentLoaRtsList" method="post">			
-					신청년도<select name="untreat_year" id="untreat_year">
-						<option selected="selected">전체</option>				
-						<c:choose>
-					<c:when test="${not empty yearList}">
-						<c:forEach var="year" items="${yearList}" varStatus="status">
-							<option value="${year}">${year}</option>
-						</c:forEach>
-						</c:when>			
-						</c:choose>
-					</select>
-					<input type = "submit" value="검색">
-					</form>
+			
+					
 			<ul id="tabs-demo4" class="nav nav-tabs nav-tabs-v1" role="tablist"
 			style=" font-size: 15px;">
 			<li role="presentation" class="active"><a
@@ -39,7 +28,7 @@
 			<!-- 휴학 -->
 			<div role="tabpanel" class="tab-pane fade active in"
 				id="tabs-demo4-area1" aria-labelledby="tabs-demo4-area1"
-				style="height: 290px;">
+				>
 			<table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
 				<thead>
 				<tr>
@@ -97,7 +86,7 @@
 			<!-- 복학 -->
 			<div role="tabpanel" class="tab-pane fade "
 				id="tabs-demo4-area2" aria-labelledby="tabs-demo4-area2"
-				style="height: 290px;">
+				>
 			<table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
 				<thead>
 				<tr>
@@ -162,19 +151,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #CC0000;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">복학/휴학신청 처리내역</h4>
-			<form action = "${pageContext.request.contextPath}/admin/studentLoaRtsList" method="post">
-			신청년도<select name="treat_year" id="treat_year">
-						<option selected="selected" >전체</option>
-						<c:choose>
-					<c:when test="${not empty yearList}">
-						<c:forEach var="year" items="${yearList}" varStatus="status">
-							<option value="${year}">${year}</option>
-						</c:forEach>
-						</c:when>
-						</c:choose>
-					</select> 
-					<input type = "submit" value="검색">
-			</form>		
+				
 			<ul id="tabs-demo4" class="nav nav-tabs nav-tabs-v1" role="tablist"
 			style=" font-size: 15px;">
 			<li role="presentation" class="active"><a
@@ -192,7 +169,7 @@
 			<!-- 휴학 -->
 			<div role="tabpanel" class="tab-pane fade active in"
 				id="tabs-demo4-area1" aria-labelledby="tabs-demo4-area1"
-				style="height: 290px;">
+				>
 			<table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
 				<thead>
 				<tr>
@@ -242,7 +219,7 @@
 			<!-- 복학 -->
 			<div role="tabpanel" class="tab-pane fade "
 				id="tabs-demo4-area2" aria-labelledby="tabs-demo4-area2"
-				style="height: 290px;">
+				>
 			<table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
 				<thead>
 				<tr>
@@ -297,19 +274,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color: #CC0000;  margin-top: 10px;">
 			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">복학/휴학신청 반려내역</h4>
-			<form action = "${pageContext.request.contextPath}/admin/studentLoaRtsList" method="post">
-			신청년도<select name="cancel_year" id="cancel_year">
-						<option selected="selected" >전체</option>
-						<c:choose>
-					<c:when test="${not empty yearList}">
-						<c:forEach var="year" items="${yearList}" varStatus="status">
-							<option value="${year}">${year}</option>
-						</c:forEach>
-						</c:when>
-						</c:choose>
-					</select> 
-					<input type = "submit" value="검색">
-			</form>		
+				
 			<ul id="tabs-demo4" class="nav nav-tabs nav-tabs-v1" role="tablist"
 			style=" font-size: 15px;">
 			<li role="presentation" class="active"><a
@@ -327,11 +292,11 @@
 			<!-- 휴학 -->
 			<div role="tabpanel" class="tab-pane fade active in"
 				id="tabs-demo4-area1" aria-labelledby="tabs-demo4-area1"
-				style="height: 290px;">
+				>
 			<table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
 				<thead>
 				<tr>
-					<td>승인취소</td>
+					<td>반려취소</td>
 					<td>휴학시작일</td>
 					<td>휴학종료일</td>
 					<td>복학예정일</td>
@@ -351,7 +316,7 @@
 									<form action = "${pageContext.request.contextPath}/admin/studentUpdateLoaList" method="post">
 									<input type="hidden" name="loa_num" value="${loa.get('loa_num')}" />
 									<input type="hidden" name="loa_appr_check" value="3" />
-									<input class="btn btn-outline btn-primary" type = "submit" value="승인취소">
+									<input class="btn btn-outline btn-primary" type = "submit" value="반려취소">
 									</form>
 								</td>												
 								<td>${loa.get("loa_start_date")}</td>
@@ -377,7 +342,7 @@
 			<!-- 복학 -->
 			<div role="tabpanel" class="tab-pane fade "
 				id="tabs-demo4-area2" aria-labelledby="tabs-demo4-area2"
-				style="height: 290px;">
+				>
 			<table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
 				<thead>
 				<tr>

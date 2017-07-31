@@ -29,8 +29,6 @@ ol, ul {
 <!-- side menu -->
 <%@include file="../common/myPageSideCategory.jsp"%>
 <!--  Counsel Right Side -->
-<link href="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.css" rel="stylesheet">
-<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
 <div class="col-md-10">
    <div class="panel panel-default">
       <div class="panel-heading" style="background-color: #CC0000;  margin-top: 10px;">
@@ -38,7 +36,7 @@ ol, ul {
             개인일정
          </h4>
       </div>
-      <div class="panel-body" style="height: 580px; text-align: center;" >
+      <div class="panel-body" style="height: 800px; text-align: center;" >
          <div class="col-md-3 col-md-offset-9" style="padding-left:0px;">
             <a href="#" class="button" data-toggle="modal" data-target="#addSchedule">일정등록 </a>
          </div>
@@ -49,7 +47,7 @@ ol, ul {
 <script>
  
    $(function() {
-      swal("Here's a message!");
+     
       var id; 
       var todayDate = moment().startOf('day');
       var YM = todayDate.format('YYYY-MM');

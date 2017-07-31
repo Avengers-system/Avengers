@@ -205,82 +205,122 @@ public class StudentSchoolRegisterController {
 	}
 	
 	
-	public void createGraduatedCertificate(HashMap<String,String> gradeInfo, String path)throws DocumentException, IOException{
-		//pdf 만들기
+	   public void createGraduatedCertificate(HashMap<String,String> gradeInfo, String path)throws DocumentException, IOException{
+		      //pdf 만들기
 
-				String filename = path+"resources/upload/graduated.pdf";
-				
-				
-				
-				Document document = new Document();
-				PdfWriter.getInstance(document, new FileOutputStream(filename));
+		            String filename = path+"resources/upload/graduated.pdf";
+		            
+		            
+		            
+		            Document document = new Document();
+		            PdfWriter.getInstance(document, new FileOutputStream(filename));
 
-				document.open();
+		            document.open();
 
-				Rectangle rect = new Rectangle(550, 800, 50, 70);
-				rect.setBorder(Rectangle.BOX);
-				rect.setBorderWidth(2);
-				rect.setBorderColor(BaseColor.BLACK);
-				document.add(rect);
+		            Rectangle rect = new Rectangle(550, 800, 50, 70);
+		            rect.setBorder(Rectangle.BOX);
+		            rect.setBorderWidth(2);
+		            rect.setBorderColor(BaseColor.BLACK);
+		            document.add(rect);
 
-				BaseFont basefont = BaseFont.createFont(path+"resources/upload/malgun.TTF",
-						BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-				Font font = new Font(basefont, 20);
+		            BaseFont basefont = BaseFont.createFont(path+"resources/upload/malgun.TTF",
+		                  BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+		            Font font1 = new Font(basefont, 50);
+		            Font font = new Font(basefont, 20);
+		            Font font2 = new Font(basefont, 35);
+		            Font font3 = new Font(basefont, 15);
+		            document.add(new Paragraph("증명서"));
 
-				document.add(new Paragraph("증명서"));
+		            Paragraph paragraph2 = new Paragraph();
+		            Paragraph paragraph3 = new Paragraph();
+		            Paragraph paragraph4 = new Paragraph();
+		            Paragraph paragraph5 = new Paragraph();
 
-				Paragraph paragraph2 = new Paragraph();
-				Paragraph paragraph3 = new Paragraph();
+		            paragraph2.setSpacingAfter(25);
+		            paragraph2.setSpacingBefore(25);
+		            paragraph2.setAlignment(Element.ALIGN_CENTER);
+		            paragraph2.setIndentationLeft(50);
+		            paragraph2.setIndentationRight(50);
 
-				paragraph2.setSpacingAfter(25);
-				paragraph2.setSpacingBefore(25);
-				paragraph2.setAlignment(Element.ALIGN_CENTER);
-				paragraph2.setIndentationLeft(50);
-				paragraph2.setIndentationRight(50);
+		            paragraph3.setSpacingAfter(25);
+		            paragraph3.setSpacingBefore(25);
+		            paragraph3.setAlignment(Element.ALIGN_CENTER);
+		            paragraph3.setIndentationLeft(50);
+		            paragraph3.setIndentationRight(50);
+		            
+		            
+		            paragraph4.setAlignment(Element.ALIGN_CENTER);
+		            paragraph4.setIndentationLeft(50);
+		            paragraph4.setIndentationRight(50);
+		            
+		            paragraph5.setSpacingAfter(25);
+		            paragraph5.setSpacingBefore(25);
+		            paragraph5.setAlignment(Element.ALIGN_CENTER);
+		            paragraph5.setIndentationLeft(50);
+		            paragraph5.setIndentationRight(50);
 
-				paragraph3.setSpacingAfter(25);
-				paragraph3.setSpacingBefore(25);
-				paragraph3.setAlignment(Element.ALIGN_CENTER);
-				paragraph3.setIndentationLeft(50);
-				paragraph3.setIndentationRight(50);
+		            document.addTitle("졸업 증명서");
+		            // 제목
+		            Chunk chunk = new Chunk("졸 업 증 명 서", font1);
+		            
+		            paragraph2.add(chunk);
+		            document.add(paragraph2);
 
-				document.addTitle("졸업 증명서");
-				// 제목
-				Chunk chunk = new Chunk("졸 업 증 명 서", font);
-				paragraph2.add(chunk);
-				document.add(paragraph2);
+		            // 내용
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("    "+"성             명 : " + gradeInfo.get("stud_nm"), font));
+		            document.add(new Paragraph("    "+"학             번 : "+ gradeInfo.get("stud_num"), font));
+		            document.add(new Paragraph("    "+"학             과 : "+ gradeInfo.get("dept_nm"), font));
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "+" 위 사람은 학점인정 등에 관한 법률 제 9조 및 학칙",font));
+		            document.add(new Paragraph("   "+"제 35조의 2규정에 의하여 위의 사실을 증명합니다 ",font));
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "));
+		            document.add(new Paragraph("   "));
+		            // 증명서 날짜 출력
+		            Date today = new Date();
+		            SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+		            
+		            Chunk chunk5 = new Chunk("  " + sdf.format(today), font3);
+//		            document.add(new Paragraph("  " + sdf.format(today), font));
+		            paragraph5.add(chunk5);
+		            document.add(paragraph5);
+		            Chunk chunk3 = new Chunk("", font);
+//		            document.add(new Paragraph2("  위의 사실을 증명합니다.", font));
+		            document.add(new Paragraph("   "));
+		            paragraph4.add(chunk3);   
+		                document.add(paragraph4);
+		                
+		            // ㅇㅇ 대학교
+		            Chunk chunk2 = new Chunk("[A]  U N I V E R S I T Y", font2);
+		            paragraph3.add(chunk2);
+		            document.add(paragraph3);
 
-				// 내용
-				document.add(new Paragraph("  성             명 : " + gradeInfo.get("stud_nm"), font));
-				document.add(new Paragraph("  학             번 : "+ gradeInfo.get("stud_num"), font));
-				document.add(new Paragraph("  학             과 : "+ gradeInfo.get("dept_nm"), font));
-				
-				document.add(new Paragraph("  위의 사실을 증명합니다.", font));
+		               
+		            // 도장 추가
+		            Image image2 = Image.getInstance(path+"resources/upload/sign.png");
+		            image2.setAbsolutePosition(450f, 95f);
+		            image2.scaleAbsolute(50, 50);
+		            document.add(image2);
 
-				// 증명서 날짜 출력
-				Date today = new Date();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
-				document.add(new Paragraph("  " + sdf.format(today), font));
-
-				// ㅇㅇ 대학교
-				Chunk chunk2 = new Chunk("[A]  U N I V E R S I T Y", font);
-				paragraph3.add(chunk2);
-				document.add(paragraph3);
-
-					
-				// 도장 추가
-				Image image2 = Image.getInstance(path+"resources/upload/sign.png");
-				image2.setAbsolutePosition(450f, 95f);
-				image2.scaleAbsolute(50, 50);
-				document.add(image2);
-
-				// step 5
-				document.close();
-				
-				
-				
-		
-	}
+		            // step 5
+		            document.close();
+		            
+		            
+		            
+		      
+		   }
 	
 	
 	

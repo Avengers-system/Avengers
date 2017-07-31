@@ -514,10 +514,12 @@ public class StudentHelpDeskController {
 		ArrayList<BoardVO> boardList = null;
 
 		String key = principal.getName();
-		String bc_num = "B";
-
+		String bc_num = "B";// 게시판 분류코드 
+		String deptName = "";
+		
 		try {
 			bc_num += service.selectStuDept(key);
+			deptName = service.selectDeptName(bc_num);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
@@ -538,6 +540,7 @@ public class StudentHelpDeskController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		model.addAttribute("deptName",deptName);
 		model.addAttribute("pageVO", boardVO);
 		model.addAttribute("deptNoticeList", boardList);
 		return "student/helpDesk/deptNotice";
@@ -1215,6 +1218,8 @@ public class StudentHelpDeskController {
 
 		BoardVO boardVO = new BoardVO();
 		String bc_num = "B";
+		String deptName = "";
+		
 		String key = principal.getName();
 		int totalCount = 0;
 
@@ -1226,14 +1231,16 @@ public class StudentHelpDeskController {
 			bc_num += service.selectStuDept(key);
 			boardVO.setBoard_bc(bc_num);
 			boardVO.setBoard_title(board_title);
-
+			deptName = service.selectDeptName(bc_num); 
+					
 			totalCount = service.selectStuBoardCount(boardVO);
 			boardVO.setTotalCount(totalCount);
 			boardList = service.searchStuBoardList(boardVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
+		model.addAttribute("deptName",deptName);
 		model.addAttribute("deptNoticeList", boardList);
 		model.addAttribute("pageVO", boardVO);
 		return "student/helpDesk/deptNotice";

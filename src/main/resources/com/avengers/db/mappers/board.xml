@@ -63,21 +63,8 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
    insert into board (board_num, board_title, board_cont, board_writer, board_date, board_af, board_bc, board_count, board_aff)
    values ((select max(board_num) from board)+1, #{board_title}, #{board_cont}, 'admin', sysdate, #{board_af},'FAQ','0',#{board_aff}) 
 </insert>
-
-
-
-
-
-
-
-
-
-
-
-   
-   <!-- 게시판중 포탈공지사항을 검색하는 구문  -->   
-
-
+ 
+	<!-- 게시판중 포탈공지사항을 검색하는 구문  -->	
    <select id="selectPortalNoticeList" resultType="com.avengers.db.dto.BoardVO">
       SELECT * FROM BOARD WHERE BOARD_BC='PORTAL' 
    </select>
@@ -120,6 +107,9 @@ WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
    </if> 
    ORDER BY BOARD_NUM DESC 
    </select>
+   
+   
+   
    
    <select id="insertBaseData" resultType="com.avengers.db.dto.BoardVO">
       SELECT

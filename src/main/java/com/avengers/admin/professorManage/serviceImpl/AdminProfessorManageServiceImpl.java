@@ -76,6 +76,7 @@ public class AdminProfessorManageServiceImpl implements AdminProfessorManageServ
 	@Override
 	public int getEmpListCount(PrfsVO prfsVO) throws SQLException {
 		int result = proDAO.getEmpListCount(prfsVO);
+		System.out.println("prfsVO.getPrfs_dept() :" + prfsVO.getPrfs_dept());
 		return result;
 	}
 

@@ -2,7 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
-$(function(){
+//2017.07.30추가
+window.onload = function() {
+		fncClearTime();
+		initTimer();
+		removeCheck=0;
+		removeTimer();
+	}
+$(function(){	
 	$(document).on("click", "#addExamBtn", function(){	
 		
 		var count = $(".examQn").length+1;

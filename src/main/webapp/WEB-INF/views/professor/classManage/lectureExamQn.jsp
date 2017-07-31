@@ -46,6 +46,13 @@
 	</div>
 </div>
 <script>
+//2017.07.30추가
+window.onload = function() {
+		fncClearTime();
+		initTimer();
+		removeCheck=0;
+		removeTimer();
+	}
 	//이제부터 시험기간 등록 및 정정기간에만 등록버튼이 눌리는 걸 만들꺼야
 	$(function(){
 		$("#ExamEqRegistryBtn").click(function(){
@@ -76,6 +83,9 @@
 			})
 		})
 	})
+	
+	
+	
 </script>
 
 

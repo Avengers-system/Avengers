@@ -68,6 +68,8 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 
 	@Override
 	public int updateStud(StudVO studVO) throws SQLException {
+		System.out.println("서비스  : "+studVO.toString());
+		
 		int result = amdinStudentDAO.updateStud(studVO);
 		return result;
 	}
@@ -128,5 +130,7 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 			throws SQLException {
 		return amdinStudentDAO.updateRtsList(rtsVO);
 	}
+	
+	 
 
 }

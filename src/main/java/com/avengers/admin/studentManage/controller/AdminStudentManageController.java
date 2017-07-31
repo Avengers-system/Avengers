@@ -202,27 +202,6 @@ public class AdminStudentManageController {
 	
 	
 	/**
-	 * 학생 리스트 조회
-	 * @param principal
-	 * @param model
-	 * @return
-	 */
-//	@RequestMapping("/studentManage")
-//	public String studentList(Principal principal, Model model){
-//		List<StudVO> studList = null;
-//
-//		// key??
-//		String key = principal.getName();
-//		try {
-//			studList = adminStudentManageService.selectStudList();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		model.addAttribute("studentList", studList);
-//		return "admin/main/studentManage"; 
-//	}
-	
-	/**
 	 * 학생 상세보기
 	 * @param stud_num
 	 * @param model
@@ -335,29 +314,24 @@ public class AdminStudentManageController {
 			LoaVO loaVO = new LoaVO();
 		try {
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy");
-			Date untreatYear = transFormat.parse(untreat_year);
-			Date treatYear = transFormat.parse(treat_year);
-			Date cancelYear = transFormat.parse(cancel_year);
+			Date untreatYear = new Date();
+			Date treatYear= new Date();
+			Date cancelYear= new Date();
+		
 			
 			rtsVO.setRts_appr_check("3");
-			rtsVO.setRts_appl_date(untreatYear);
 			loaVO.setLoa_appr_check("3");
-			loaVO.setLoa_appl_date(untreatYear);
 			List<HashMap<String,String>> untreatLoaList =adminStudentManageService.selectLoaList(loaVO);
 			List<HashMap<String,String>> untreatRtsList =adminStudentManageService.selectRtsList(rtsVO);
 			
 			rtsVO.setRts_appr_check("1");
-			rtsVO.setRts_appl_date(treatYear);
 			loaVO.setLoa_appr_check("1");
-			loaVO.setLoa_appl_date(treatYear);
 			List<HashMap<String,String>> treatLoaList =adminStudentManageService.selectLoaList(loaVO);
 			List<HashMap<String,String>> treatRtsList =adminStudentManageService.selectRtsList(rtsVO);
 			
 			
 			rtsVO.setRts_appr_check("2");
-			rtsVO.setRts_appl_date(cancelYear);
 			loaVO.setLoa_appr_check("2");
-			loaVO.setLoa_appl_date(cancelYear);
 			List<HashMap<String,String>> cancelLoaList =adminStudentManageService.selectLoaList(loaVO);
 			List<HashMap<String,String>> cancelRtsList =adminStudentManageService.selectRtsList(rtsVO);
 			
@@ -379,8 +353,6 @@ public class AdminStudentManageController {
 			}
 			model.addAttribute("yearList",yearList);
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		return "admin/studentManage/studentLoaRtsList";

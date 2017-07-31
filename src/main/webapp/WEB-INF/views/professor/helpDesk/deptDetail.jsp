@@ -2,10 +2,17 @@
     pageEncoding="UTF-8"%>
     <%@ page trimDirectiveWhitespaces="true"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-	
-
-<h1>학과 소식 출력</h1>
+	<%@include file="../common/profHelpDeskSide.jsp"%>
+	<div class="col-md-10">
+	<div class="panel panel-default">
+		<div class="panel-heading"
+			style="background-color: #666666; margin-top: 0px;">
+			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
+<!-- 제목 -->
+				학과 소식 출력</h4>
+		</div>
+		<div class="panel-body" style="height: 800px; text-align: left;">
+<!-- 		내용 -->
 <c:set var="myContextPath" value="${pageContext.request.contextPath}"/>
 <c:choose>
       <c:when test="${not empty deptNoticeList}">
@@ -47,4 +54,10 @@ ${deptNoticeList.board_af}&board_num=${board_num}" style="text-decoration: under
             </tr>
          </c:otherwise>
 </c:choose>
+
+		</div>
+		
+	</div>
+</div>
+
 

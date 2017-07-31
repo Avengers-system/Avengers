@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!-- Content -->
@@ -20,7 +20,7 @@
 			<span class="label label-outline label-default" style="font-size: 15px;">이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름</span>
 			<span class="label label-outline label-default" style="display:inline-block;font-size: 15px; width: 160px;">${studentInfo.stud_nm}</span><br>
 			<span class="label label-outline label-default" style="font-size: 15px;">학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;과</span>
-			 <span class="label label-outline label-default" style="display:inline-block;font-size: 15px; width: 160px;">${dept.dept_nm }</span><br>
+			<span class="label label-outline label-default" style="display:inline-block;font-size: 15px; width: 160px;">${dept.dept_nm }</span><br>
 			<span class="label label-outline label-default" style="font-size: 15px;">학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;년</span>
 			<span class="label label-outline label-default" style="display:inline-block;font-size: 15px; width: 160px;">${studentInfo.stud_grd}</span><br>
 			<span class="label label-outline label-default" style="font-size: 15px;">학적상태</span>
@@ -151,7 +151,7 @@
 							<td>${status.count}</td>
 							<td>${school.board_title}</td>
 							<td>${school.board_writer}</td>
-							<td>${school.board_date}</td>
+							<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${school.board_date}" /></td>
 						</tr>
 						</c:if>
 					</c:forEach>	
@@ -180,7 +180,7 @@
 							<td>${status.count}</td>
 							<td>${depart.board_title}</td>
 							<td>${depart.board_writer}</td>
-							<td>${depart.board_date}</td>
+							<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${depart.board_date}" /></td>
 						</tr>
 						</c:if>
 					</c:forEach>
@@ -210,6 +210,7 @@
 									<td>${potal.board_title}</td>
 									<td>${potal.board_writer}</td>
 									<td>${potal.board_date}</td>
+									<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${potal.board_date}" /></td>
 								</tr>
 							</c:if>
 						</c:forEach>
@@ -222,3 +223,6 @@
 		</div>
 	</div>
 </div>
+
+
+

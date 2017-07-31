@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="rts">
-	
-	<select id="selectBackList" parameterType="java.lang.String" resultType="com.avengers.db.dto.RtsVO">
-		select * from rts where rts_stud=#{stud_num}
-	</select>
-	
-		<insert id="insertBack" parameterType="com.avengers.db.dto.RtsVO">
-		insert into rts(rts_num, rts_date, rts_cause, rts_appl_date, rts_appr_check, rts_appr_date, rts_stud, rts_admin)
-		values(#{rts_num},#{rts_date},#{rts_cause},#{rts_appl_date},#{rts_appr_check},#{rts_appr_date},#{rts_stud},#{rts_admin})
-	</insert>
-	
-	<!-- 2017.07.27일자 추가 -배진 -->
-	<resultMap id="rtsMap" type="java.util.HashMap">
+   
+   <select id="selectBackList" parameterType="java.lang.String" resultType="com.avengers.db.dto.RtsVO">
+      select * from rts where rts_stud=#{stud_num}
+   </select>
+   
+      <insert id="insertBack" parameterType="com.avengers.db.dto.RtsVO">
+      insert into rts(rts_num, rts_date, rts_cause, rts_appl_date, rts_appr_check, rts_appr_date, rts_stud, rts_admin)
+      values(#{rts_num},#{rts_date},#{rts_cause},#{rts_appl_date},#{rts_appr_check},#{rts_appr_date},#{rts_stud},#{rts_admin})
+   </insert>
+   
+   <!-- 2017.07.27일자 추가 -배진 -->
+   <resultMap id="rtsMap" type="java.util.HashMap">
         <result javaType="java.lang.String" column="RTS_DATE" property="rts_date"/>
         <result javaType="java.lang.String" column="STUD_NUM" property="stud_num"/>
         <result javaType="java.lang.String" column="STUD_NM" property="stud_nm"/>
@@ -25,36 +25,39 @@
         <result javaType="java.lang.String" column="RTS_NUM" property="rts_num"/>
         <result javaType="java.lang.String" column="MIN_YR" property="min_yr"/>
   </resultMap> 
-	<!-- 2017.07.27일자 추가 -배진 -->
-	<select id="selectRtsList" parameterType="com.avengers.db.dto.RtsVO" resultMap="rtsMap">
-	SELECT RTS_DATE
-		  ,STUD_NUM
-		  ,STUD_NM
-		  ,DEPT_NM
-		  ,RTS_CAUSE
-		  ,RTS_APPL_DATE
-		  ,RTS_NUM
-		  ,MIN(RTS_APPL_DATE) as MIN_YR
-	FROM RTS,DEPARTMENT,STUDENT
-	WHERE RTS_STUD=STUD_NUM
-	AND STUD_DEPT=DEPT_NUM
-	<if test="rts_appl_date !=null and rts_appl_date != '전체'">
-	AND RTS_APPL_DATE LIKE SUBSTR(#{rts_appl_date},3,2)||'%'
-	</if>	
-	GROUP BY RTS_DATE
-		  ,STUD_NUM
-		  ,STUD_NM
-		  ,DEPT_NM
-		  ,RTS_CAUSE
-		  ,RTS_APPL_DATE
-		  ,RTS_NUM
-	</select>
-	
-	<update id="updateRts" parameterType="com.avengers.db.dto.RtsVO">
-	UPDATE RTS 
-	SET RTS_APPR_CHECK = #{rts_appr_check}
-	WHERE  RTS_NUM = #{rts_num} 
-	</update>	
-	
-	
+   <!-- 2017.07.27일자 추가 -배진 -->
+   <select id="selectRtsList" parameterType="com.avengers.db.dto.RtsVO" resultMap="rtsMap">
+   SELECT RTS_DATE
+        ,STUD_NUM
+        ,STUD_NM
+        ,DEPT_NM
+        ,RTS_CAUSE
+        ,RTS_APPL_DATE
+        ,RTS_NUM
+        ,MIN(RTS_APPL_DATE) as MIN_YR
+   FROM RTS,DEPARTMENT,STUDENT
+   WHERE RTS_STUD=STUD_NUM
+   AND STUD_DEPT=DEPT_NUM
+   <if test="rts_appl_date !=null and rts_appl_date != '전체'">
+   AND RTS_APPL_DATE LIKE SUBSTR(#{rts_appl_date},3,2)||'%'
+   </if>
+   <if test="rts_appr_check !=null">
+   AND RTS_APPR_CHECK = #{rts_appr_check}
+   </if>   
+   GROUP BY RTS_DATE
+        ,STUD_NUM
+        ,STUD_NM
+        ,DEPT_NM
+        ,RTS_CAUSE
+        ,RTS_APPL_DATE
+        ,RTS_NUM
+   </select>
+   
+   <update id="updateRts" parameterType="com.avengers.db.dto.RtsVO">
+   UPDATE RTS 
+   SET RTS_APPR_CHECK = #{rts_appr_check}
+   WHERE  RTS_NUM = #{rts_num} 
+   </update>   
+   
+   
 </mapper>
