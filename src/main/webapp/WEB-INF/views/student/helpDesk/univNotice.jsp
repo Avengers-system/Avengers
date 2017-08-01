@@ -46,13 +46,9 @@ uri="http://www.springframework.org/security/tags"%>
 			<div class="row">
 
 			<form
-				action="<%=request.getContextPath()%>/student/helpDesk/univStudSearch?board_title=${univSearch.board_title}">
+				action="<%=request.getContextPath()%>/student/helpDesk/univStudSearch?board_title=
+				${univSearch.board_title}">
 				<sec:authorize access="hasRole('ROLE_WSS')">
-<!-- 					<div -->
-<!-- 						style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;"> -->
-<!-- 						<a -->
-<%-- 							href="<%=request.getContextPath()%>/student/helpDesk/univStudWriteForm">글쓰기</a> --%>
-<!-- 					</div> -->
 				</sec:authorize>
 				<div class="col-sm-6" style="float: left; width: 225px;">
 					<div id="datatables-example_filter" class="dataTables_filter"

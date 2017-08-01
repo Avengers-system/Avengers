@@ -54,11 +54,16 @@
 
 							<sec:authorize access="hasRole('ROLE_WSS')">
 								<div
-									style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -20px;">
-									<a href="<%=request.getContextPath()%>/student/helpDesk/deptStudWriteForm">글쓰기</a>
+									style="text-align: right; margin-right: 28px; margin-top: 13px; margin-bottom: -40px;">
+									<label><input type="button" onclick="location.href='${pageContext.request.contextPath }/student/helpDesk/deptStudWriteForm'"
+									 class="btn btn-default" value="글쓰기"
+									 class="form-control input-sm" style="width: 90px; margin-bottom:2px; margin-left:-25px; height:35px; text-align: center;" >
+
+
+									</label>
 								</div>
 							</sec:authorize>
-
+							<!-- 글 제목입력 -->
 							<div class="col-sm-6" style="float: left; width: 225px;">
 								<div id="datatables-example_filter" class="dataTables_filter"
 									style="width: 20%;">
