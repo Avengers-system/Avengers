@@ -1,225 +1,225 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="student">
 
-	<select id="getInSchoolCount" resultType="int">
-		SELECT count(*) FROM
-		STUDENT WHERE STUD_SCHREG_CODE = '재학'
-	</select>
+   <select id="getInSchoolCount" resultType="int">
+      SELECT count(*) FROM
+      STUDENT WHERE STUD_SCHREG_CODE = '재학'
+   </select>
 
-	<select id="getRestSchoolCount" resultType="int">
-		SELECT count(*) FROM
-		STUDENT WHERE STUD_SCHREG_CODE = '휴학'
-	</select>
+   <select id="getRestSchoolCount" resultType="int">
+      SELECT count(*) FROM
+      STUDENT WHERE STUD_SCHREG_CODE = '휴학'
+   </select>
 
-	<select id="getLeaveSchoolCount" resultType="int">
-		SELECT count(*) FROM
-		STUDENT WHERE STUD_SCHREG_CODE = '자퇴'
-	</select>
+   <select id="getLeaveSchoolCount" resultType="int">
+      SELECT count(*) FROM
+      STUDENT WHERE STUD_SCHREG_CODE = '자퇴'
+   </select>
 
-	<select id="getGetOutSchoolCount" resultType="int">
-		SELECT count(*)
-		FROM STUDENT WHERE STUD_SCHREG_CODE = '제적'
-	</select>
+   <select id="getGetOutSchoolCount" resultType="int">
+      SELECT count(*)
+      FROM STUDENT WHERE STUD_SCHREG_CODE = '제적'
+   </select>
 
-	<select id="getUntreatedLoa" resultType="com.avengers.db.dto.LoaVO">
-		SELECT LOA_NUM,
-		LOA_START_DATE,
-		LOA_END_DATE,
-		LOA_CAUSE,
-		LOA_APPL_DATE,
-		LOA_RS_SHCD_DATE,
-		LOA_STUD
-		FROM LOA
-		WHERE LOA_APPR_CHECK = '3'
-	</select>
+   <select id="getUntreatedLoa" resultType="com.avengers.db.dto.LoaVO">
+      SELECT LOA_NUM,
+      LOA_START_DATE,
+      LOA_END_DATE,
+      LOA_CAUSE,
+      LOA_APPL_DATE,
+      LOA_RS_SHCD_DATE,
+      LOA_STUD
+      FROM LOA
+      WHERE LOA_APPR_CHECK = '3'
+   </select>
 
-	<select id="getUntreatedRts" resultType="com.avengers.db.dto.RtsVO">
-		SELECT RTS_NUM,
-		RTS_DATE,
-		RTS_CAUSE,
-		RTS_APPL_DATE,
-		RTS_STUD
-		FROM RTS
-		WHERE RTS_APPR_CHECK = '3'
-	</select>
+   <select id="getUntreatedRts" resultType="com.avengers.db.dto.RtsVO">
+      SELECT RTS_NUM,
+      RTS_DATE,
+      RTS_CAUSE,
+      RTS_APPL_DATE,
+      RTS_STUD
+      FROM RTS
+      WHERE RTS_APPR_CHECK = '3'
+   </select>
 
-	<select id="getStudentInfo" parameterType="String"
-		resultType="com.avengers.db.dto.StudVO">
-		select * from student where stud_num=#{stud_num}
-	</select>
+   <select id="getStudentInfo" parameterType="String"
+      resultType="com.avengers.db.dto.StudVO">
+      select * from student where stud_num=#{stud_num}
+   </select>
 
-	<select id="selectDepartmentStudentList" parameterType="String"
-		resultType="com.avengers.db.dto.StudVO">
-		SELECT *
-		FROM STUDENT, PROFESSOR
-		WHERE PRFS_DEPT = STUD_DEPT
-		AND PRFS_NUM = #{prfs_num}
-	</select>
-
-
-	<select id="selectAllStud" resultType="com.avengers.db.dto.StudVO">
-		SELECT
-		STUD_NUM,
-		STUD_NM,
-		STUD_ENG_NM,
-		STUD_BIR,
-		STUD_EMAIL,
-		STUD_PW,
-		STUD_GRD,
-		STUD_REGNO,
-		STUD_GEN,
-		STUD_QTR,
-		STUD_SCHREG_CODE,
-		STUD_PIC,
-		STUD_ACT_NUM,
-		STUD_BANK,
-		STUD_AH,
-		STUD_ADDR,
-		STUD_ZIP,
-		STUD_TEL,
-		STUD_HP,
-		(
-		SELECT DEPT_NM FROM DEPARTMENT
-		where DEPT_NUM = STUD_DEPT
-		) AS stud_dept,
-		STUD_GUAD_NM,
-		STUD_GUAD_REL,
-		STUD_GUAD_HP,
-		ENABLED,
-		AUTHORITY,
-		STUD_MAX_CRD
-
-		FROM STUDENT S
+   <select id="selectDepartmentStudentList" parameterType="String"
+      resultType="com.avengers.db.dto.StudVO">
+      SELECT *
+      FROM STUDENT, PROFESSOR
+      WHERE PRFS_DEPT = STUD_DEPT
+      AND PRFS_NUM = #{prfs_num}
+   </select>
 
 
-	</select>
+   <select id="selectAllStud" resultType="com.avengers.db.dto.StudVO">
+      SELECT
+      STUD_NUM,
+      STUD_NM,
+      STUD_ENG_NM,
+      STUD_BIR,
+      STUD_EMAIL,
+      STUD_PW,
+      STUD_GRD,
+      STUD_REGNO,
+      STUD_GEN,
+      STUD_QTR,
+      STUD_SCHREG_CODE,
+      STUD_PIC,
+      STUD_ACT_NUM,
+      STUD_BANK,
+      STUD_AH,
+      STUD_ADDR,
+      STUD_ZIP,
+      STUD_TEL,
+      STUD_HP,
+      (
+      SELECT DEPT_NM FROM DEPARTMENT
+      where DEPT_NUM = STUD_DEPT
+      ) AS stud_dept,
+      STUD_GUAD_NM,
+      STUD_GUAD_REL,
+      STUD_GUAD_HP,
+      ENABLED,
+      AUTHORITY,
+      STUD_MAX_CRD
 
-	<select id="selectStud" parameterType="String"
-		resultType="com.avengers.db.dto.StudVO">
-		SELECT * FROM STUDENT
-		WHERE stud_num = #{stud_num}
-	</select>
-
-	<update id="updateStud" parameterType="com.avengers.db.dto.StudVO">
-		UPDATE STUDENT
-		SET
-		<if test="stud_pic != null">
-			STUD_PIC=#{stud_pic},
-		</if>
-		STUD_PW=#{stud_pw},
-		STUD_ENG_NM=#{stud_eng_nm},
-		STUD_BANK=#{stud_bank},
-		STUD_AH=#{stud_ah},
-		STUD_ACT_NUM=#{stud_act_num},
-		STUD_ADDR=#{stud_addr},
-		STUD_ZIP=#{stud_zip},
-		STUD_TEL=#{stud_tel},
-		STUD_HP=#{stud_hp},
-		STUD_EMAIL=#{stud_email}
-		WHERE STUD_NUM=#{stud_num}
-
-
-	</update>
-
-
-	<select id="getDepartmentStudentListCount" parameterType="com.avengers.db.dto.PrfsVO"
-		resultType="int">
-		SELECT COUNT(*)
-		FROM STUDENT, PROFESSOR
-		WHERE PRFS_DEPT = STUD_DEPT
-		AND
-		PRFS_NUM = #{prfs_num}
-		<if test="searchFiled != null and searchFiled != ''">
-			AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
-		</if>
-	</select>
-
-	<select id="getDepartmentStudentList" parameterType="com.avengers.db.dto.PrfsVO"
-		resultType="com.avengers.db.dto.StudVO">
-		SELECT
-		a.stud_num,
-		a.stud_nm,a.stud_email,a.stud_grd,a.stud_gen,a.stud_schreg_code,a.stud_hp,a.stud_dept
-		FROM (
-		SELECT ROWNUM rnum, s.*
-		FROM (
-		SELECT stud_num,
-		stud_nm,stud_email,stud_grd,stud_gen,stud_schreg_code,stud_hp,stud_dept
-		FROM STUDENT, PROFESSOR
-		WHERE PRFS_DEPT = STUD_DEPT
-		AND PRFS_NUM = #{prfs_num}
-		<if test="searchFiled != null and searchFiled != ''">
-			AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
-		</if>
-		)s
-		)a
-		WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
-	</select>
+      FROM STUDENT S
 
 
-	<!-- 학생답안에서 사용할 학생정보 -->
-	<resultMap id="studColDeptInfo" type="java.util.HashMap">
-		<result javaType="String" column="STUD_NUM" property="stud_num" />
-		<result javaType="String" column="STUD_NM" property="stud_nm" />
-		<result javaType="String" column="STUD_HP" property="stud_hp" />
-		<result javaType="String" column="STUD_EMAIL" property="stud_email" />
-		<result javaType="String" column="COL_NM" property="col_nm" />
-		<result javaType="String" column="DEPT_NM" property="dept_nm" />
-	</resultMap>
+   </select>
 
-	<!-- 학생답안에서 사용할 학생정보 -->
-	<select id="selectStudColDeptInfo" parameterType="String"
-		resultMap="studColDeptInfo">
-		SELECT STUD_NUM
-		,STUD_NM
-		,STUD_HP
-		,STUD_EMAIL
-		,COL_NM
-		,DEPT_NM
-		FROM STUDENT, COLLEAGE, DEPARTMENT
-		WHERE STUD_DEPT = DEPT_NUM
-		AND
-		DEPT_COL = COL_CODE
-		AND STUD_NUM = #{stud_num}
-	</select>
+   <select id="selectStud" parameterType="String"
+      resultType="com.avengers.db.dto.StudVO">
+      SELECT * FROM STUDENT
+      WHERE stud_num = #{stud_num}
+   </select>
 
-
-	<select id="findInfo" parameterType="com.avengers.db.dto.AdminVO"
-		resultType="com.avengers.db.dto.StudVO">
-		SELECT STUD_NUM
-		FROM STUDENT
-		WHERE STUD_EMAIL=#{admin_email}
-		<if test="admin_nm != null">
-			AND STUD_NM=#{admin_nm}
-		</if>
-		<if test="admin_id != null">
-			AND STUD_NUM=#{admin_id}
-		</if>
+   <update id="updateStud" parameterType="com.avengers.db.dto.StudVO">
+      UPDATE STUDENT
+      SET
+      <if test="stud_pic != null">
+         STUD_PIC=#{stud_pic},
+      </if>
+      STUD_PW=#{stud_pw},
+      STUD_ENG_NM=#{stud_eng_nm},
+      STUD_BANK=#{stud_bank},
+      STUD_AH=#{stud_ah},
+      STUD_ACT_NUM=#{stud_act_num},
+      STUD_ADDR=#{stud_addr},
+      STUD_ZIP=#{stud_zip},
+      STUD_TEL=#{stud_tel},
+      STUD_HP=#{stud_hp},
+      STUD_EMAIL=#{stud_email}
+      WHERE STUD_NUM=#{stud_num}
 
 
-	</select>
-
-	<update id="updatePwd" parameterType="com.avengers.db.dto.StudVO">
-		UPDATE STUDENT
-		SET STUD_PW = #{stud_pw}
-		WHERE STUD_NUM = #{stud_num} AND STUD_EMAIL = #{stud_email}
-	</update>
+   </update>
 
 
-	<select id="selectStudentDeptNum" parameterType="java.lang.String"
-		resultType="java.lang.String">
-		select 'B'||stud_dept from Student where
-		stud_num=#{stud_num}
-	</select>
+   <select id="getDepartmentStudentListCount" parameterType="com.avengers.db.dto.PrfsVO"
+      resultType="int">
+      SELECT COUNT(*)
+      FROM STUDENT, PROFESSOR
+      WHERE PRFS_DEPT = STUD_DEPT
+      AND
+      PRFS_NUM = #{prfs_num}
+      <if test="searchFiled != null and searchFiled != ''">
+         AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
+      </if>
+   </select>
 
-	<select id="getStudentDeptName" parameterType="String"
-		resultType="String">
-		SELECT BC_NM
-		FROM BC
-		WHERE BC_NUM = #{bc_num}
-	</select>
+   <select id="getDepartmentStudentList" parameterType="com.avengers.db.dto.PrfsVO"
+      resultType="com.avengers.db.dto.StudVO">
+      SELECT
+      a.stud_num,
+      a.stud_nm,a.stud_email,a.stud_grd,a.stud_gen,a.stud_schreg_code,a.stud_hp,a.stud_dept
+      FROM (
+      SELECT ROWNUM rnum, s.*
+      FROM (
+      SELECT stud_num,
+      stud_nm,stud_email,stud_grd,stud_gen,stud_schreg_code,stud_hp,stud_dept
+      FROM STUDENT, PROFESSOR
+      WHERE PRFS_DEPT = STUD_DEPT
+      AND PRFS_NUM = #{prfs_num}
+      <if test="searchFiled != null and searchFiled != ''">
+         AND ${searchFiled} LIKE '%' || #{searchValue} || '%'
+      </if>
+      )s
+      )a
+      WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
+   </select>
+
+
+   <!-- 학생답안에서 사용할 학생정보 -->
+   <resultMap id="studColDeptInfo" type="java.util.HashMap">
+      <result javaType="String" column="STUD_NUM" property="stud_num" />
+      <result javaType="String" column="STUD_NM" property="stud_nm" />
+      <result javaType="String" column="STUD_HP" property="stud_hp" />
+      <result javaType="String" column="STUD_EMAIL" property="stud_email" />
+      <result javaType="String" column="COL_NM" property="col_nm" />
+      <result javaType="String" column="DEPT_NM" property="dept_nm" />
+   </resultMap>
+
+   <!-- 학생답안에서 사용할 학생정보 -->
+   <select id="selectStudColDeptInfo" parameterType="String"
+      resultMap="studColDeptInfo">
+      SELECT STUD_NUM
+      ,STUD_NM
+      ,STUD_HP
+      ,STUD_EMAIL
+      ,COL_NM
+      ,DEPT_NM
+      FROM STUDENT, COLLEAGE, DEPARTMENT
+      WHERE STUD_DEPT = DEPT_NUM
+      AND
+      DEPT_COL = COL_CODE
+      AND STUD_NUM = #{stud_num}
+   </select>
+
+
+   <select id="findInfo" parameterType="com.avengers.db.dto.AdminVO"
+      resultType="com.avengers.db.dto.StudVO">
+      SELECT STUD_NUM
+      FROM STUDENT
+      WHERE STUD_EMAIL=#{admin_email}
+      <if test="admin_nm != null">
+         AND STUD_NM=#{admin_nm}
+      </if>
+      <if test="admin_id != null">
+         AND STUD_NUM=#{admin_id}
+      </if>
+
+
+   </select>
+
+   <update id="updatePwd" parameterType="com.avengers.db.dto.StudVO">
+      UPDATE STUDENT
+      SET STUD_PW = #{stud_pw}
+      WHERE STUD_NUM = #{stud_num} AND STUD_EMAIL = #{stud_email}
+   </update>
+
+
+   <select id="selectStudentDeptNum" parameterType="java.lang.String"
+      resultType="java.lang.String">
+      select 'B'||stud_dept from Student where
+      stud_num=#{stud_num}
+   </select>
+
+   <select id="getStudentDeptName" parameterType="String"
+      resultType="String">
+      SELECT BC_NM
+      FROM BC
+      WHERE BC_NUM = #{bc_num}
+   </select>
 
 </mapper>
