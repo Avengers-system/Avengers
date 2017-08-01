@@ -101,7 +101,7 @@ div.row {
 								</div>
 							</div>
 						</div>
-
+						<!-- 첨부파일 업로드 -->
 						<sec:authorize access="hasRole('ROLE_WSS')">
 
 							<div class="row">
@@ -110,7 +110,7 @@ div.row {
 										<label class="col-sm-2 control-label text-right"
 											style="padding-top: 8px;"> <strong>첨부파일</strong></label>
 										<div class="col-sm-8">
-											<input type="file" name="boardtoa"
+											<input type="file" name="boardtoa" class="upload" id="inputa"
 												value="${deptNoticeList.board_af}">
 										</div>
 									</div>

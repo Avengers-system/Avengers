@@ -23,6 +23,7 @@ div.row {
 
 <div class="col-md-10">
 	<div class="panel panel-default">
+	
 		<!--  메뉴제목 -->
 		<div class="panel-heading"
 			style="background-color: #2196F3; margin-top: 10px;">
@@ -54,6 +55,7 @@ div.row {
 					</div>
 				</div>
 
+				<!-- 내용 -->
 				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group">
@@ -85,6 +87,7 @@ div.row {
 						</div>
 					</div>
 				</div>
+				
 				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group">
@@ -122,6 +125,3 @@ div.row {
 		</div>
 	</div>
 </div>
-
-<!-- /////////////////////// -->
-
