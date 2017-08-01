@@ -104,7 +104,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">주민등록번호</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="prfs_regno" >
+								<input type="text" class="form-control" id="prfs_regno" name="prfs_regno" >
 							</div>
 						</div>
 				</div>
@@ -113,7 +113,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">생년월일</label>
 							<div class="col-sm-8">
-								<input type="date" class="form-control" name="prfs_bir" >
+								<input id="prfs_bir" type="date" class="form-control" name="prfs_bir" >
 							</div>
 						</div>
 				</div>
@@ -212,8 +212,8 @@
 								<label class="col-sm-4 control-label text-right">성별</label>
 								<div class="col-sm-8">
 									<div class="radio" >
-									<div class="col-md-6"><label><input type="radio" name="prfs_gen" value="1">남자</label></div>
-							      	<div class="col-md-3"><label><input type="radio" name="prfs_gen" value="2">여자</label></div>
+									<div class="col-md-6"><label><input id="male" type="radio" class="prfs_gen" name="prfs_gen" value="1">남자</label></div>
+							      	<div class="col-md-3"><label><input id="female" type="radio" class="prfs_gen" name="prfs_gen" value="2">여자</label></div>
 						   	  </div>
 								</div>
 							</div>
@@ -240,9 +240,30 @@
 
 		</div>
 	</div>
-
+ 
 <script>
 	$(function() {
+		 
+		//생년월일, 성별 자동입력
+		 $("#prfs_regno").change(function(){
+			    var prfs_regno = $("#prfs_regno").val().substring(0,6);
+				var year = '19'+$("#prfs_regno").val().substring(0,2)+"-";
+				var month = $("#prfs_regno").val().substring(2,4)+"-";
+				var date =$("#prfs_regno").val().substring(4,6);
+// 			    alert(year+month+date);
+			    $("#prfs_bir").val(year+month+date);
+			        
+			    var gender = $("#prfs_regno").val().substring(7, 8);
+// 			    alert(gender);
+			       if(gender == '1' || gender == '3'){
+				       $('#male').attr("checked","checked");
+			       }else{
+				       $('#female').attr("checked","checked");
+			       }
+			        
+			    });
+			 
+		
 	   //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
 	   $('#profile-image').on('click', function() {
 	      $('#profile-image-input').click();
@@ -352,6 +373,12 @@
 }
 
 
+
+ .btn-danger, .alert-danger, .badge-danger {
+    color: #fff !important;
+    border: none !important;
+    background-color: #CC0000 !important;
+  }
 </style>
 
  

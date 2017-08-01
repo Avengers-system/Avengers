@@ -76,6 +76,7 @@
 				<div class="col-sm-1">
 					<input type="text" readonly class="form-control" value="${detailLct.get('lct_asgn_rate')}">
 				</div>
+				
 				<label class="control-label col-sm-1" for="lct_atdc_rate">출석</label>
 				<div class="col-sm-1">
 					<input type="text" readonly class="form-control" value="${detailLct.get('lct_atdc_rate')}">

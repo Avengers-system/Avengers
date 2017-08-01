@@ -54,8 +54,8 @@ public class AdminStudentManageServiceImpl implements AdminStudentManageService 
 
 
 	@Override
-	public String selectStudNum() throws SQLException {
-		String studNum = amdinStudentDAO.selectStudNum();
+	public String selectStudNum(String stud_dept) throws SQLException {
+		String studNum = amdinStudentDAO.selectStudNum(stud_dept);
 		return studNum;
 	}
 

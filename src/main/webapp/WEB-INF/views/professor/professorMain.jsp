@@ -42,9 +42,9 @@
 					<thead>
 						<tr>
 							<td>강의번호</td>
-							<td>강의시간</td>
-							<td>강의날짜</td>
 							<td>강의실번호</td>
+							<td>강의날짜</td>
+							<td>강의상세페이지</td>
 						</tr>
 					</thead>
 					</tbody>
@@ -52,10 +52,15 @@
 						<c:when test="${not empty lctList}">
 							<c:forEach var="lct" items="${lctList}">
 								<tr>
-									<td>${lct.lct_num}</td>
-									<td>${lct.lr_num}</td>
-									<td>${lct.lr_date}</td>
-									<td>${lct.lr_lct}</td>
+									<td>${lct.get("lct_num")}</td>
+									<td>${lct.get("lr_num")}</td>
+									<td>${lct.get("lr_date")}</td>
+									<td>
+									<form action = "${pageContext.request.contextPath}/professor/classManage/lectureDetail" method="post">
+									<input type="hidden" name="lct" value="${lct.get('lct_num')}" />
+									<input class="btn btn-outline btn-primary" style="padding:5px;" type = "submit" value="강의상세페이지">
+									</form>
+								</td>
 								</tr>
 							</c:forEach>
 						</c:when>

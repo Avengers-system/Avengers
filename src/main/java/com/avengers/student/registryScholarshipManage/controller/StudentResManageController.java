@@ -6,7 +6,6 @@ import java.security.Principal;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +23,9 @@ import com.avengers.db.dto.LoaRtsVO;
 import com.avengers.db.dto.RegVO;
 import com.avengers.db.dto.ScrVO;
 import com.avengers.db.dto.ScrapplVO;
+import com.avengers.db.dto.StudVO;
 import com.avengers.db.dto.resSchStudentVO;
+import com.avengers.student.main.serviceImpl.StudentMainServiceImpl;
 import com.avengers.student.registryScholarshipManage.serviceImpl.StudentResManageServiceImpl;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
@@ -34,13 +35,11 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.lowagie.text.Cell;
 /**
  * 학생 등록/장학관리
  * @author 조영훈
@@ -54,6 +53,9 @@ public class StudentResManageController {
 
 	@Autowired
 	private StudentResManageServiceImpl stuResService;
+	@Autowired
+	private StudentMainServiceImpl stuMainService;
+	
 	
 	@RequestMapping("/studRes")
 	public String studRes(Principal princiapl
@@ -148,12 +150,14 @@ public class StudentResManageController {
 	 * @return
 	 */
 	@RequestMapping("/schAppl")
-	public String schAppl(Model model){	
+	public String schAppl(Model model,Principal principal){	
 		String url="student/registryScholarshipManage/registryScholarshipApplication";
+		String stud_num = principal.getName();
 		try {
 			ArrayList<ScrVO> scrList = stuResService.selectScrVO();
+			StudVO studVO = stuMainService.selectStudInfo(stud_num);
 			model.addAttribute("scrList",scrList);
-			
+			model.addAttribute("stud",studVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -193,7 +197,7 @@ public class StudentResManageController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:schAppl";	
+		return "redirect:studRes";	
 	}
 	/**
 	 * 등록현황 조회

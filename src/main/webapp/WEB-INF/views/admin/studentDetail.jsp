@@ -18,7 +18,7 @@
      <form enctype="multipart/form-data" action="${pageContext.request.contextPath }/admin/updateStudent" method="post">  
   	  	<div class="col-md-12" style="margin-top:30px;">
   		   <!-- 이미지 미리보기 -->
-  		   				<div class="col-md-12"style="margin-left:40px;">
+  		   				<div class="col-md-12 col-md-12 col-md-offset-1" >
 			               <div class="filess" style="margin-bottom:20px;">
 			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="${pageContext.request.contextPath }/resources/admin_student_images/${student.stud_pic}"
 			                     id="profile-image" class="img-circle img-responsive">
@@ -28,11 +28,11 @@
               
                
 	                   <span class="input-group-btn">
-	                   		<div class="col-md-8 col-md-offset-1">
+	                   		<div class="col-md-8 col-md-offset-1" style="margin-left:155px;">
 	                   		<div class="col-md-4">
-	                   			<input type="text" value="${student.stud_pic}" class="form-control" style="width:292.48px;" id="image-preview-filename" disabled="disabled">
+	                   			<input type="text" value="${student.stud_pic}" class="form-control" style="width:254px;" id="image-preview-filename" disabled="disabled">
 	                   		</div>
-	                   		<div class="col-md-1" style="margin-left:-50px;">
+	                   		<div class="col-md-1" style="margin-left:-30px;" >
 		                   		<div class="btn btn-default image-preview-input">
 		                           <input type="file" accept="image/png, image/jpeg, image/gif" />
 		                           <span class="image-preview-input-title">업로드</span>
@@ -47,7 +47,7 @@
 				<div class="col-md-4">
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">학적상태</label>
+							<label class="col-sm-4 control-label text-right">학적상태</label>
 							<div class="col-sm-8">
 								<input type="hidden" class="form-control" name="stud_schreg_code" value="${student.stud_schreg_code}">
 								<input type="text" class="form-control"  value="${student.stud_schreg_code}"  disabled="disabled">
@@ -57,7 +57,7 @@
 				
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">학번</label>
+							<label class="col-sm-4 control-label text-right">학번</label>
 							<div class="col-sm-8">
 								<input type="hidden" class="form-control" name="stud_num" value="${student.stud_num }" >
 								<input type="text" class="form-control" value="${student.stud_num }" disabled="disabled">
@@ -67,7 +67,7 @@
 				
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">비밀번호</label>
+							<label class="col-sm-4 control-label text-right">비밀번호</label>
 							<div class="col-sm-8">
 								<input type="password" class="form-control" name="stud_pw" value="${student.stud_pw}">
 							</div>
@@ -76,7 +76,7 @@
 				
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">학과</label>
+							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
 								<select id="select" style="width:254.42px;" name="stud_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
@@ -95,7 +95,7 @@
 				</div>     
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">이름</label>
+							<label class="col-sm-4 control-label text-right">이름</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_nm" value="${student.stud_nm }">
 							</div>
@@ -104,7 +104,7 @@
 				   
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">영문이름</label>
+							<label class="col-sm-4 control-label text-right">영문이름</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_eng_nm" value="${student.stud_eng_nm }">
 							</div>
@@ -113,7 +113,7 @@
 				   
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">생년월일</label>
+							<label class="col-sm-4 control-label text-right">생년월일</label>
 							<div class="col-sm-8">
 								<input type="date" class="form-control" name="stud_bir" value='<fmt:formatDate pattern = "yyyy-MM-dd" value = "${student.stud_bir}" />'>
 							</div>
@@ -122,7 +122,7 @@
 				    
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">이메일</label>
+							<label class="col-sm-4 control-label text-right">이메일</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_email" value="${student.stud_email}">
 							</div>
@@ -132,7 +132,7 @@
 						
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">주민등록번호</label>
+							<label class="col-sm-4 control-label text-right">주민등록번호</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_regno" value="${student.stud_regno}">
 							</div>
@@ -141,7 +141,7 @@
 				
 			   <div class="col-md-12">
 							<div class="form-group">
-								<label class="col-sm-3 control-label text-right">성별</label>
+								<label class="col-sm-4 control-label text-right">성별</label>
 								<div class="col-sm-8">
 									<div class="radio" >
 									<c:choose>
@@ -164,7 +164,7 @@
 				 
 				 <div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">학년</label>
+							<label class="col-sm-4 control-label text-right">학년</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_grd" value="${student.stud_grd}">
 							</div>
@@ -173,7 +173,7 @@
 				 
 				 <div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">학기</label>
+							<label class="col-sm-4 control-label text-right">학기</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_qtr" value="${student.stud_qtr}">
 							</div>
@@ -182,7 +182,7 @@
 				 
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">학점</label>
+							<label class="col-sm-4 control-label text-right">학점</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_max_crd" value="${student.stud_max_crd}">
 							</div>
@@ -193,7 +193,7 @@
 				 
 			   <div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">계좌번호</label>
+							<label class="col-sm-4 control-label text-right">계좌번호</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_act_num" value="${student.stud_act_num}">
 							</div>
@@ -202,7 +202,7 @@
 				 
 				 <div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">은행</label>
+							<label class="col-sm-4 control-label text-right">은행</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_bank" value="${student.stud_bank}">
 							</div>
@@ -211,7 +211,7 @@
 				
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">예금주</label>
+							<label class="col-sm-4 control-label text-right">예금주</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_ah" value="${student.stud_ah}">
 							</div>
@@ -220,7 +220,7 @@
 				
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">주소</label>
+							<label class="col-sm-4 control-label text-right">주소</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_addr" value="${student.stud_addr}">
 							</div>
@@ -229,7 +229,7 @@
 				 
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">우편번호</label>
+							<label class="col-sm-4 control-label text-right">우편번호</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_zip" value="${student.stud_zip}">
 							</div>
@@ -238,7 +238,7 @@
 				 
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">전화번호</label>
+							<label class="col-sm-4 control-label text-right">전화번호</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_tel" value="${student.stud_tel}">
 							</div>
@@ -247,7 +247,7 @@
 				 
 			 	<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">휴대폰번호</label>
+							<label class="col-sm-4 control-label text-right">휴대폰번호</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_hp" value="${student.stud_hp}">
 							</div>
@@ -262,7 +262,7 @@
 					
 						<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">보호자이름</label>
+							<label class="col-sm-4 control-label text-right">보호자이름</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_guad_nm" value="${student.stud_guad_nm}">
 							</div>
@@ -271,7 +271,7 @@
 				
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">보호자관계</label>
+							<label class="col-sm-4 control-label text-right">보호자관계</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_guad_rel" value="${student.stud_guad_rel}">
 							</div>
@@ -280,7 +280,7 @@
 				
 			   <div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">보호자휴대폰번호</label>
+							<label class="col-sm-4 control-label text-right">보호자 휴대폰번호</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_guad_hp" value="${student.stud_guad_hp}">
 							</div>
@@ -289,7 +289,7 @@
 				
 				<div class="col-md-12">
 						<div class="form-group">
-							<label class="col-sm-3 control-label text-right">학점</label>
+							<label class="col-sm-4 control-label text-right">학점</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="stud_max_crd" value="20">
 							</div>

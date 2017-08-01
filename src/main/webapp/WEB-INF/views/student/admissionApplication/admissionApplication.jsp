@@ -208,7 +208,7 @@
 									<td>
 									<form action = "${pageContext.request.contextPath}/student/deleteCart" method="post">
 									<input type="hidden" name="cart_lct" value="${cart.get('lct_num')}" />
-									<input class="btn btn-outline btn-primary" type = "submit" value="취소">
+									<input class="btn btn-outline btn-primary"  style="padding: 5px;" type = "submit" value="취소">
 									</form>
 									</td>
 									<c:choose>		

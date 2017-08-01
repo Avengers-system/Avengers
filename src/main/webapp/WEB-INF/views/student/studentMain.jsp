@@ -63,12 +63,10 @@
 											<td>${admission.get("lr_date") }</td>
 											<td>${admission.get("lct_crd") }</td>
 											<td>
-											<form action = "${pageContext.request.contextPath}/student/lectureDetail" method="post">
-											<input type="hidden" name="lct_num" value="${admission.get('lct_num')}" /> 
-											<input type="submit" class="btn btn-outline btn-primary"
-												style="font-size: 13px; padding: 0; width: 80px;"
-												value="View">
-										</form>
+											<form action = "${pageContext.request.contextPath}/student/classManage/lectureDetail" method="post">
+									<input type="hidden" name="lct" value="${admission.get('lct_num')}" />
+									<input class="btn btn-outline btn-primary" style="padding:5px;" type = "submit" value="강의상세페이지">
+									</form>
 											</td>
 										</tr>
 									</c:forEach>
