@@ -435,11 +435,9 @@ $(function() {
 			var year = '19'+$("#stud_regno").val().substring(0,2)+"-";
 			var month = $("#stud_regno").val().substring(2,4)+"-";
 			var date =$("#stud_regno").val().substring(4,6);
-// 		    alert(year+month+date);
 		    $("#stud_bir").val(year+month+date);
 		        
 		    var gender = $("#stud_regno").val().substring(7, 8);
-// 		    alert(gender);
 		       if(gender == '1' || gender == '3'){
 			       $('#male').attr("checked","checked");
 		       }else{
