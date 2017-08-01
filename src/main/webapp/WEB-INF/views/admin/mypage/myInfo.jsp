@@ -15,17 +15,16 @@
       <div class="panel-heading"
          style="background-color: #CC0000; margin-top: 10px;">
          <h4 style="color: #fff; font-weight: bold; font-size: 20px;">
-
 				개인정보</h4>
 		</div>
 		<div class="panel-body">
 			<c:choose>
 				<c:when test="${not empty admin}">
-					<form name="modAdmin" id="modAdmin" action="${myContextPath}/admin/mypage/myInfoUpdate"
+					<form name="modAdmin" id="modAdmin" action="${pageContext.request.contextPath}/admin/mypage/myInfoUpdate"
 						enctype="multipart/form-data" method="post">
 						
 							<div class="col-md-12" style="margin-top:30px;">
-  		   <!-- 이미지 미리보기 -->
+  		  				 <!-- 이미지 미리보기 -->
   		   				<div class="col-md-12">
 			               <div class="filess" style="margin-bottom:20px;">
 			                  <img  style="height:150px;width:130px; margin-left:50px; " alt="User Pic" src="${pageContext.request.contextPath}/resources/myInfo_images/${admin.admin_pic}"
@@ -35,8 +34,8 @@
               			</div>
 	                   <span class="input-group-btn">
 	                   		<div class="col-md-8">
-	                   		<div class="col-md-4" style="margin-left:-15px;">
-	                   			<input type="text" value="${professor.prfs_pic}" class="form-control" style="width:350px;" id="image-preview-filename" >
+	                   		<div class="col-md-4">
+	                   			<input type="text" value="${admin.admin_pic}" class="form-control" style="width:310px;" id="image-preview-filename" >
 	                   		</div>
 	                   		<div class="col-md-1 col-md-offset-1">
 		                   		<div class="btn btn-default image-preview-input">
@@ -81,7 +80,7 @@
 								<label class="control-label">휴대폰번호</label> 
 								<input type="text"
 									class="form-control" name="admin_hp" value="${admin.admin_hp}" style="width:350px;"
-									pattern="(010)-\d{3,4}-\d{4}"
+									pattern="010-\d{3,4}-\d{4}"
 									>
 								<label class="control-label">집전화번호</label>
 								<input type="text" class="form-control" name="admin_tel"
@@ -104,7 +103,7 @@
 								<input type="text" class="form-control" name="admin_ah"
 									value="${admin.admin_ah}" style="width:350px;">
 								<input
-									class="submit btn btn-danger" type="submit" value="수정" style="margin-top:30px;">
+									class="submit btn btn-danger" type="button" onclick="admin_mod()" value="수정" style="margin-top:30px;">
 							</div>
 						</div>
 					</form>
@@ -165,42 +164,42 @@
 </script>
 <script>
 $('input[name=admin_pw_confirm]').focusout(function(){
-      $(document).ready(function() {
-             var admin_pw = $('input[name=admin_pw]').val();
-             var admin_pw_confirm = $('input[name=admin_pw_confirm]').val();
-             
-            if( admin_pw != admin_pw_confirm){
-               $('font[name=check]').text();
-               $('font[name=check]').html("비밀번호가 일치하지 않습니다.");
-            }else{
-               $('font[name=check]').text();
-               $('font[name=check]').html("비밀번호가 일치합니다.");
-            }
-            
-         });
-   });
-   
+	   $(document).ready(function() {
+	          var admin_pw = $('input[name=admin_pw]').val();
+	          var admin_pw_confirm = $('input[name=admin_pw_confirm]').val();
+	          
+	         if( admin_pw != admin_pw_confirm){
+	            $('font[name=check]').text();
+	            $('font[name=check]').html("비밀번호가 일치하지 않습니다.");
+	         }else{
+	            $('font[name=check]').text();
+	            $('font[name=check]').html("비밀번호가 일치합니다.");
+	         }
+	         
+	      });
+	});
+	
 function admin_mod(){
-   $(document).ready(function() {
-          var admin_pw = $('input[name=admin_pw]').val();
-          var admin_pw_confirm = $('input[name=admin_pw_confirm]').val();
-          var admin_frm  = document.modAdmin;
-          
-         if( admin_pw != admin_pw_confirm){
-            $('font[name=check]').text();
-            $('font[name=check]').html("비밀번호가 일치하지 않습니다.");
-            alert('비밀번호가 일치하지 않습니다.');
-         }else{
-            $('font[name=check]').text();
-            $('font[name=check]').html("비밀번호가 일치합니다.");
-            
-            admin_frm.method='post';
-            admin_frm.encoding='multipart/form-data';
-            admin_frm.action='${pageContext.request.contextPath}/admin/mypage/myInfoUpdate';
-            admin_frm.submit();
-            
-         }
-         
-      });
+	$(document).ready(function() {
+		 	var admin_pw = $('input[name=admin_pw]').val();
+		 	var admin_pw_confirm = $('input[name=admin_pw_confirm]').val();
+		 	var admin_frm  = document.modAdmin;
+		 	
+			if( admin_pw != admin_pw_confirm){
+				$('font[name=check]').text();
+				$('font[name=check]').html("비밀번호가 일치하지 않습니다.");
+				alert('비밀번호가 일치하지 않습니다.');
+			}else{
+				$('font[name=check]').text();
+				$('font[name=check]').html("비밀번호가 일치합니다.");
+				
+				admin_frm.method='post';
+				admin_frm.encoding='multipart/form-data';
+				admin_frm.action='${pageContext.request.contextPath}/admin/mypage/myInfoUpdate';
+				admin_frm.submit();
+				
+			}
+			
+		});
 }
 </script>

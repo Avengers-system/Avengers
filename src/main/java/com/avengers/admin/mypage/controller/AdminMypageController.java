@@ -117,7 +117,6 @@ public class AdminMypageController {
 		String upload = request.getSession().getServletContext().getRealPath("resources/myInfo_images");	
 		String message="수정이 실패하였습니다.";
 		
-		
 		//파일 저장
 		if(!myImage.isEmpty()){
 			File file = new File(upload,myImage.getOriginalFilename());
