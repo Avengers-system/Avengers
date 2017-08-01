@@ -125,6 +125,12 @@ ol, ul {
       myForm.action="myScheduleDelete";
       myForm.submit();
    }
+   
+   function updateSchd(){
+      myForm.method="post";
+      myForm.action="myScheduleUpdate";
+      myForm.submit();
+   }
       
    </script>
 
@@ -147,7 +153,7 @@ ol, ul {
                         <form action="myScheduleUpdate" method="POST" name="myForm" >
                         
                         <ul>
-                           <input id="perschd_num" type="text" class="form-control" name="perschd_num" value="" >
+                           <input id="perschd_num" type="hidden" class="form-control" name="perschd_num" value="" >
                            <input id="perschd_writer" type="hidden"  name="perschd_writer" value="" class="form-control" >
                            <li>
                               <label class='control-label'>title</label>
@@ -178,9 +184,8 @@ ol, ul {
                                  <div class="modal-footer">
                                  <div class="col-md-8 col-md-offset-1">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-<%--                                     <button type="button" onclick="location.href='myScheduleDelete?perschd_num=${perschd.perschd_num}" class="btn btn-default" >삭제</button> --%>
-                                    <input type="submit" class="btn btn-primary">
-                                    <input type="button" value="삭제" onclick="deleteSchd()"/>
+                                    <input type="button" class="btn btn-primary" value="수정" onclick="updateSchd()" />
+                                    <input type="button" class="btn btn-primary" value="삭제" onclick="deleteSchd()"/>
                                  </div>
                                  </div>
                            </div>

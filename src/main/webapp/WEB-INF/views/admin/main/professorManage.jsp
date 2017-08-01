@@ -114,13 +114,12 @@ background-color:#CC0000;
 								<th class="sorting_asc" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="교수 번호: activate to sort column descending" 
 								aria-sort="ascending" style="width: 208px;">교수 번호</th>
 								<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="이름: activate to sort column ascending" style="width: 150px;">이름</th>
-								<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="영문이름: activate to sort column ascending" style="width: 218px;">영문이름
+								<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="영문이름: activate to sort column ascending" style="width: 150px;">영문이름
 								</th>
 								<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="학과: activate to sort column ascending" style="width: 190px;">학과</th>
-								<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="생년월일: activate to sort column ascending" style="width: 201px;">생년월일</th>
-								<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="주민등록번호: activate to sort column ascending" style="width: 176px;">주민등록번호
-								</th>
-								<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="성별: activate to sort column ascending" style="width: 176px;">성별
+								<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="생년월일: activate to sort column ascending" style="width: 150px;">생년월일</th>
+<!-- 								<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="주민등록번호: activate to sort column ascending" style="width: 176px;">주민등록번호	</th> -->
+								<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="성별: activate to sort column ascending" style="width: 100px;">성별
 								</th>
 								<th class="sorting" tabindex="0" aria-controls="datatables-example" rowspan="1" colspan="1" aria-label="휴대폰번호: activate to sort column ascending" style="width: 176px;">휴대폰번호
 								</th>
@@ -145,7 +144,7 @@ background-color:#CC0000;
 		                          <td >${professor.prfs_eng_nm}</td>
 		                          <td >${professor.prfs_dept}</td>
 		                          <td ><fmt:formatDate pattern = "yyyy-MM-dd" value = "${professor.prfs_bir}" /></td>
-		                          <td >${professor.prfs_regno}</td>
+<%-- 		                          <td >${professor.prfs_regno}</td> --%>
 		                          <c:choose>
 											<c:when test="${professor.prfs_gen == '2'}">
 												<td>여자</td>
@@ -220,6 +219,11 @@ background-color:#CC0000;
     border: none !important;
     background-color: #CC0000 !important;
   }
+  
+  
+ .table>caption+thead>tr:first-child>td, .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>td, .table>thead:first-child>tr:first-child>th {
+    text-align: center;
+}
 </style>
 
  

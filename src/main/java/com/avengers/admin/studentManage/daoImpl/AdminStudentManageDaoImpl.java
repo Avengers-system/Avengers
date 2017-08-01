@@ -99,8 +99,8 @@ public class AdminStudentManageDaoImpl implements AdminStudentManageDao {
    }
    
    @Override
-   public String selectStudNum() throws SQLException {
-      String stud_num = (String) sqlSession.selectOne("admin.studNumCurr");
+   public String selectStudNum(String stud_dept) throws SQLException {
+      String stud_num = (String) sqlSession.selectOne("admin.studNumCurr",stud_dept);
       System.out.println("빨리나와"+stud_num);
       return stud_num;
    }
