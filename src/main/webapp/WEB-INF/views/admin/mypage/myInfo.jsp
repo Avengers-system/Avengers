@@ -41,7 +41,7 @@
               			</div>
 	                   <span class="input-group-btn">
 	                   		<div class="col-md-8">
-	                   		<div class="col-md-4" style="margin-left:-17px;">
+	                   		<div class="col-md-4" style="margin-left:-15px;">
 	                   			<input type="text" value="${professor.prfs_pic}" class="form-control" style="width:350px;" id="image-preview-filename" >
 	                   		</div>
 	                   		<div class="col-md-1 col-md-offset-1">
