@@ -202,4 +202,3 @@ function admin_mod(){
 		});
 }
 </script>
-

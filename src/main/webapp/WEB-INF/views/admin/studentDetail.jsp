@@ -273,7 +273,20 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">보호자관계</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_guad_rel" value="${student.stud_guad_rel}">
+								
+								<div class="radio" >
+										<c:choose>
+											<c:when test="${student.stud_guad_rel eq '1'}">
+												<label><input type="radio" name="stud_guad_rel" checked="checked" value="1">부</label> 
+										      	<label><input type="radio" name="stud_guad_rel" value="2">모</label> 
+									      	</c:when>
+									      	<c:otherwise>
+												<label><input type="radio" name="stud_guad_rel" value="1">부</label> 
+										      	<label><input type="radio" name="stud_guad_rel" checked="checked" value="2">모</label>
+									      	</c:otherwise>
+								      	</c:choose>
+							   	  </div>
+							 
 							</div>
 						</div>
 				</div>    
