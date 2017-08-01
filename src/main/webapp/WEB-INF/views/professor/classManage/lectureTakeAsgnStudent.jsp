@@ -53,7 +53,7 @@
 				</c:choose>
 			</table>
 		<div>
-			<button onclick="location.href='lectureAsgnMain'" style="float:right">돌아가기</button>
+			<button onclick="location.href='lectureAsgnMain'" style="float:right" class="btn btn-outline btn-primary">돌아가기</button>
 		</div>
 		</div>
 	</div>

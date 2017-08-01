@@ -27,7 +27,6 @@ window.onload = function() {
 			$(".studEq").eq(qtna-1).find($("a")).eq(ans-1).prepend(imgTag);
 			var imgTag = "<img src='../../resources/images/circle.png' class='answerImg' width='20px' style='position:absolute; left:"+(horizental+(ans-1)*49)+"px; top:"+(vertical+((qtna-1)*39))+"px'/>";
 			$(".answerSheet").eq(qtna-1).find($("td")).eq(ans-1).prepend(imgTag);
-			alert($(".answerSheet").eq(qtna-1).find($("td")).eq(ans-1));
 			if(index == 0){
 				qtnas[index] = qtna;
 				answers[index] = ans;
@@ -49,7 +48,7 @@ window.onload = function() {
 		
 		//시험응시
 		exam_submit = function (){
-			if(confirm("시험을 응시하시겠습니까??")){
+			if(confirm("시험을 제출하시겠습니까??")){
 				if(qtnas.length == eqSize){
 					var lct = '<c:out value="${lct_num}"/>';
 					var te = '<c:out value="${te_num}"/>';
@@ -181,7 +180,7 @@ window.onload = function() {
 					</div>
 				</c:forEach>
 			</form>
-			<button onclick="javascript:exam_submit();">제출</button>
+			<button onclick="javascript:exam_submit();" class="btn btn-outline btn-primary">제출</button>
 		</div>
 	</div>
 </div>

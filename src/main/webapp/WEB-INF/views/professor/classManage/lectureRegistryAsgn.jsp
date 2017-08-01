@@ -73,11 +73,11 @@ uploadFile.on('change', function(){
 		    <div class="form-group">
 				<label class="control-label col-sm-1" for="asgn_sub_form">첨부파일</label>
 				<div class="col-sm-3">
-					<div class="fileBox">
-					    <input type="file" id="uploadBtn" class="uploadBtn">
-					    <input type="button" class="btn_file btn-outline btn-primary" style="padding:0px" value="찾아보기"/>
-					    <input type="text" class="fileName" readonly="readonly">
-					</div>
+<!-- 					<div class="fileBox"> -->
+<!-- 					    <input type="file" id="uploadBtn" class="uploadBtn"> -->
+<!-- 					    <input type="button" class="btn_file btn-outline btn-primary" style="padding:0px" value="찾아보기"/> -->
+<!-- 					    <input type="text" class="fileName" readonly="readonly"> -->
+<!-- 					</div> -->
 					<input type="file" name="asgn_sub_form" style="font-size:15px"/>
 				</div>
 		    </div>

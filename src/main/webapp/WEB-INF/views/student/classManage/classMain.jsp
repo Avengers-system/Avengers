@@ -11,7 +11,7 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>학번</th>
+						<th>번호</th>
 						<th>강의번호</th>
 						<th>강의명</th>
 						<th>분반</th>

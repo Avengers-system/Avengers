@@ -90,7 +90,6 @@ ol, ul {
                    %> 
          ],
          eventClick:function(event) {
-            
             $.ajax({
                url  : 'myScheduleDetail',
                type : 'post',
