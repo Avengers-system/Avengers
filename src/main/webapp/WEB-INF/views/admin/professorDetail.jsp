@@ -32,7 +32,7 @@
 	                   <span class="input-group-btn">
 	                   		<div class="col-md-8" style="margin-left:53px;">
 	                   		<div class="col-md-4 col-md-offset-2">
-	                   			<input type="text" value="${professor.prfs_pic}" class="form-control" style="width:310px;" id="image-preview-filename" >
+	                   			<input type="text" value="${professor.prfs_pic}" class="form-control" style="width:270px;" id="image-preview-filename" >
 	                   		</div>
 	                   		<div class="col-md-1" style="margin-left:-100px;">
 		                   		<div class="btn btn-default image-preview-input">
@@ -91,7 +91,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">주민등록번호</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="prfs_regno"  value="${professor.prfs_regno }">
+								<input id="prfs_regno" type="text" class="form-control" name="prfs_regno"  value="${professor.prfs_regno }">
 							</div>
 						</div>
 				</div>
@@ -102,7 +102,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
-								<select id="select" style="width:480px;" name="prfs_dept" class="selectpicker show-tick">
+								<select id="select" style="width:420px;" name="prfs_dept" class="selectpicker show-tick">
 									<option value="DEPT1">멀티미디어공학과</option> 
 									<option value="DEPT2">컴퓨터공학과</option> 
 									<option value="DEPT3">영어영문학과</option> 
@@ -123,7 +123,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">생년월일</label>
 							<div class="col-sm-8">
-								<input type="date" class="form-control" name="prfs_bir" value='<fmt:formatDate pattern = "yyyy-MM-dd" value = "${professor.prfs_bir}" />'>
+								<input id="prfs_bir" type="date" class="form-control" name="prfs_bir" value='<fmt:formatDate pattern = "yyyy-MM-dd" value = "${professor.prfs_bir}" />'>
 							</div>
 						</div>
 				</div>
@@ -255,6 +255,25 @@
 
 <script>
 	$(function() {
+		
+		
+		//생년월일, 성별 자동입력
+		 $("#prfs_regno").change(function(){
+			    var prfs_regno = $("#prfs_regno").val().substring(0,6);
+				var year = '19'+$("#prfs_regno").val().substring(0,2)+"-";
+				var month = $("#prfs_regno").val().substring(2,4)+"-";
+				var date =$("#prfs_regno").val().substring(4,6);
+			    $("#prfs_bir").val(year+month+date);
+			        
+			        
+			    });
+		
+		
+		
+		
+		
+		
+		
 	   //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
 	   $('#profile-image').on('click', function() {
 	      $('#profile-image-input').click();

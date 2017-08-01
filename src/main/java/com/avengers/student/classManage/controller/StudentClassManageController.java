@@ -88,13 +88,18 @@ public class StudentClassManageController {
 	 * @return
 	 */
 	@RequestMapping("student/classManage/lectureDetail")
-	public String studentLectureDetail(HttpServletRequest request, Principal principal, Model model){
+	public String studentLectureDetail(HttpServletRequest request, Principal principal, Model model,@RequestParam(value="lct",required=false)String lct){
 		String view = "student/classManage/lectureDetail";
 		
-		String lct_num = (String) request.getSession().getAttribute("lct_num");
 		Map<String, String> detailLct = null;
 		try {
+			if((String) request.getSession().getAttribute("lct_num")!=null){
+			String lct_num = (String) request.getSession().getAttribute("lct_num");
 			detailLct = scmService.selectDetailLct(lct_num);
+			}
+			if(lct!=null){
+			detailLct = scmService.selectDetailLct(lct);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

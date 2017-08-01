@@ -16,7 +16,7 @@ public interface AdminStudentManageDao {
    public int updateStud(StudVO studVO)throws SQLException;//학생 수정
    public int deleteStud(String stud_num)throws SQLException;//학생 삭제
    public ArrayList<StudVO> selectStudList() throws SQLException;//학생 전체목록
-   public String selectStudNum()throws SQLException; //학생번호(최근)
+   public String selectStudNum(String stud_dept)throws SQLException; //학생번호(최근)
    public int insertSecurity(StudVO studVO); //시큐리티등록
    public ArrayList<StudVO> selectStudbyKeyword(String keyword);
    public int getEmpListCount(StudVO studVO)throws SQLException;

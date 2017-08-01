@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -10,11 +10,10 @@
 <!-- Right content -->
 <!--  Counsel Right Side -->
 <div class="col-md-10">
-	<div class="panel panel-default">
-		<div class="panel-heading"
-			style="background-color: #CC0000; margin-top: 10px;">
-			<h4 style="color: #fff; font-weight: bold; font-size: 20px;">
-
+   <div class="panel panel-default">
+      <div class="panel-heading"
+         style="background-color: #CC0000; margin-top: 10px;">
+         <h4 style="color: #fff; font-weight: bold; font-size: 20px;">
 				개인정보</h4>
 		</div>
 		<div class="panel-body">
@@ -127,40 +126,40 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
-	$(function() {
-	   //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
-	   $('#profile-image').on('click', function() {
-	      $('#profile-image-input').click();
-	      
-	      $("#profile-image-input").change(function (){     
-	           
-	           var file = this.files[0];
-	           var reader = new FileReader();
-	           // Set preview image into the popover data-content
-	           reader.onload = function (e) {
-	               $(".image-preview-input-title").text("변경");
-	                $("#image-preview-filename").val(file.name);            
-	               $("#profile-image").attr('src', e.target.result);
-	           }        
-	           reader.readAsDataURL(file);
-	       });
-	   });
-	   
-	   // 업로드 버튼으로 그림피일 업로드 후 미리보기
-	   $(".image-preview-input input:file").change(function (){     
-	        
-	        var file = this.files[0];
-	        var reader = new FileReader();
-	        //Set preview image into the popover data-content
-	        reader.onload = function (e) {
-	            $(".image-preview-input-title").text("변경");
-	            $("#image-preview-filename").val(file.name);            
-	            $("#profile-image").attr('src', e.target.result);
-	        }        
-	        reader.readAsDataURL(file);
-	    });
-	 
-	});
+   $(function() {
+      //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
+      $('#profile-image').on('click', function() {
+         $('#profile-image-input').click();
+         
+         $("#profile-image-input").change(function (){     
+              
+              var file = this.files[0];
+              var reader = new FileReader();
+              // Set preview image into the popover data-content
+              reader.onload = function (e) {
+                  $(".image-preview-input-title").text("변경");
+                   $("#image-preview-filename").val(file.name);            
+                  $("#profile-image").attr('src', e.target.result);
+              }        
+              reader.readAsDataURL(file);
+          });
+      });
+      
+      // 업로드 버튼으로 그림피일 업로드 후 미리보기
+      $(".image-preview-input input:file").change(function (){     
+           
+           var file = this.files[0];
+           var reader = new FileReader();
+           //Set preview image into the popover data-content
+           reader.onload = function (e) {
+               $(".image-preview-input-title").text("변경");
+               $("#image-preview-filename").val(file.name);            
+               $("#profile-image").attr('src', e.target.result);
+           }        
+           reader.readAsDataURL(file);
+       });
+    
+   });
 </script>
 <script>
 $('input[name=admin_pw_confirm]').focusout(function(){
@@ -203,3 +202,4 @@ function admin_mod(){
 		});
 }
 </script>
+

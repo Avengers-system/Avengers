@@ -158,7 +158,7 @@ public class AdminStudentManageController {
 						commandStudVO.getStud_pic().transferTo(file); // 깃 위치로 전송
 						
 						adminStudentManageService.insertStud(studVO);
-						studVO.setStud_num(adminStudentManageService.selectStudNum());
+						studVO.setStud_num(adminStudentManageService.selectStudNum(studVO.getStud_dept()));
 						adminStudentManageService.insertSecurity(studVO);
 						
 						System.out.println("성공");
