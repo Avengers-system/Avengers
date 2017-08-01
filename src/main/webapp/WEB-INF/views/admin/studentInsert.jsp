@@ -106,7 +106,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">주민등록번호</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_regno" >
+								<input type="text" id="stud_regno" class="form-control" name="stud_regno" >
 							</div>
 						</div>
 				</div>
@@ -115,7 +115,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">생년월일</label>
 							<div class="col-sm-8">
-								<input type="date" class="form-control" name="stud_bir" >
+								<input id="stud_bir" type="date" class="form-control" name="stud_bir" >
 							</div>
 						</div>
 				</div>
@@ -214,8 +214,8 @@
 							<label class="col-sm-4 control-label text-right">성별</label>
 							<div class="col-sm-8">
 								<div class="radio" >
-				                     <label><input type="radio" name="stud_gen" value="1">남자</label>
-				                     <label><input type="radio" name="stud_gen" value="2">여자</label>
+				                     <label><input id="male" type="radio" name="stud_gen" value="1">남자</label>
+				                     <label><input id="female" type="radio" name="stud_gen" value="2">여자</label>
 				                 </div>
 							</div>
 						</div>
@@ -413,12 +413,42 @@ margin-bottom:3px;
       height: 220px;
    }
  
+ 
+  .btn-danger,.badge-danger {
+    color: #fff !important;
+    border: none !important;
+    background-color: #CC0000 !important;
+  }
+ 
+ 
 </style>  
   
   
    
 <script>
 $(function() {
+	
+	
+	//생년월일, 성별 자동입력
+	 $("#stud_regno").change(function(){
+		    var prfs_regno = $("#stud_regno").val().substring(0,6);
+			var year = '19'+$("#stud_regno").val().substring(0,2)+"-";
+			var month = $("#stud_regno").val().substring(2,4)+"-";
+			var date =$("#stud_regno").val().substring(4,6);
+// 		    alert(year+month+date);
+		    $("#stud_bir").val(year+month+date);
+		        
+		    var gender = $("#stud_regno").val().substring(7, 8);
+// 		    alert(gender);
+		       if(gender == '1' || gender == '3'){
+			       $('#male').attr("checked","checked");
+		       }else{
+			       $('#female').attr("checked","checked");
+		       }
+		        
+		    });
+	
+	
    //그림 클릭 시 업로드 창 띄워 업로드 후 미리보기
    $('#profile-image').on('click', function() {
       $('#profile-image-input').click();
