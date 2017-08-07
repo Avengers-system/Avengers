@@ -68,7 +68,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">이름</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_nm" >
+								<input type="text" class="form-control" name="stud_nm" value="김우빈">
 							</div>
 						</div>
 				</div>
@@ -77,7 +77,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">영문이름</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_eng_nm" >
+								<input type="text" class="form-control" name="stud_eng_nm" value="Bae Jin">
 							</div>
 						</div>
 				</div>
@@ -87,7 +87,7 @@
 							<label class="col-sm-4 control-label text-right">학과</label>
 							<div class="col-sm-8">
 								<select name="stud_dept" class="selectpicker show-tick" style="width:334px;">
-					                  <option value="DEPT1">멀티미디어공학과</option> 
+					                  <option value="DEPT1" selected="selected">멀티미디어공학과</option> 
 					                  <option value="DEPT2">컴퓨터공학과</option> 
 					                  <option value="DEPT3">영어영문학과</option> 
 					                  <option value="DEPT4">문예창작학과</option> 
@@ -106,7 +106,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">주민등록번호</label>
 							<div class="col-sm-8">
-								<input type="text" id="stud_regno" class="form-control" name="stud_regno" >
+								<input type="text" id="stud_regno" class="form-control" name="stud_regno" value="921203-1155215">
 							</div>
 						</div>
 				</div>
@@ -115,7 +115,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">생년월일</label>
 							<div class="col-sm-8">
-								<input id="stud_bir" type="date" class="form-control" name="stud_bir" >
+								<input id="stud_bir" type="date" class="form-control" name="stud_bir" value="1992-12-03">
 							</div>
 						</div>
 				</div>
@@ -124,7 +124,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">전화번호</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_tel" >
+								<input type="text" class="form-control" name="stud_tel" value="041-741-8598">
 							</div>
 						</div>
 				</div>
@@ -133,7 +133,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">휴대폰번호</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_hp" >
+								<input type="text" class="form-control" name="stud_hp" value="010-3105-7570">
 							</div>
 						</div>
 				</div>
@@ -143,7 +143,7 @@
 							<label class="col-sm-4 control-label text-right">현재학년</label>
 							<div class="col-sm-8">
 								<div class="radio" >
-				                     <label><input type="radio" name="stud_grd" value="1">1</label>
+				                     <label><input type="radio" name="stud_grd" value="1" checked="checked">1</label>
 				                     <label><input type="radio" name="stud_grd" value="2">2</label>
 				                     <label><input type="radio" name="stud_grd" value="3">3</label>
 				                     <label><input type="radio" name="stud_grd" value="4">4</label>
@@ -158,7 +158,7 @@
 							<label class="col-sm-4 control-label text-right">현재학기</label>
 							<div class="col-sm-8">
 							<div class="radio" >
-			                     <label><input type="radio" name="stud_qtr" value="1">1</label>
+			                     <label><input type="radio" name="stud_qtr" value="1" checked="checked">1</label>
 			                     <label><input type="radio" name="stud_qtr" value="2">2</label>
 			                </div>
 							</div>
@@ -195,7 +195,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">이메일</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_email" >
+								<input type="text" class="form-control" name="stud_email" value="pl3mse21@naver.com">
 							</div>
 						</div>
 				</div>
@@ -204,7 +204,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">비밀번호</label>
 							<div class="col-sm-8">
-								<input type="password" class="form-control" name="stud_pw" >
+								<input type="password" class="form-control" name="stud_pw" value="1234">
 							</div>
 						</div>
 				</div>
@@ -214,7 +214,7 @@
 							<label class="col-sm-4 control-label text-right">성별</label>
 							<div class="col-sm-8">
 								<div class="radio" >
-				                     <label><input id="male" type="radio" name="stud_gen" value="1">남자</label>
+				                     <label><input id="male" type="radio" name="stud_gen" value="1" checked="checked">남자</label>
 				                     <label><input id="female" type="radio" name="stud_gen" value="2">여자</label>
 				                 </div>
 							</div>
@@ -227,7 +227,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">계좌번호</label>
 							<div class="col-sm-8">
-								  <input type="text" class="form-control" name="stud_act_num" >
+								  <input type="text" class="form-control" name="stud_act_num" value="659-910582-89598">
 							</div>
 						</div>
 				</div>
@@ -236,7 +236,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">은행명</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_bank" >
+								<input type="text" class="form-control" name="stud_bank" value="하나">
 							</div>
 						</div>
 				</div>
@@ -245,7 +245,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">예금주</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_ah" >
+								<input type="text" class="form-control" name="stud_ah" value="배진">
 							</div>
 						</div>
 				</div>
@@ -254,7 +254,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">주소</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_addr" >
+								<input type="text" class="form-control" name="stud_addr" value="대전광역시 동구 용전동 81-27번지 캐슬파인 205호">
 							</div>
 						</div>
 				</div>
@@ -264,7 +264,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">우편번호</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_zip" >
+								<input type="text" class="form-control" name="stud_zip" value="320-844">
 							</div>
 						</div>
 				</div>
@@ -273,7 +273,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">보호자</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_guad_nm" >
+								<input type="text" class="form-control" name="stud_guad_nm" value="배현상">
 							</div>
 						</div>
 				</div>
@@ -283,7 +283,7 @@
 							<label class="col-sm-4 control-label text-right">보호자 관계</label>
 							<div class="col-sm-8">
 								<div class="radio" >
-				                     <label><input type="radio" name="stud_guad_rel" value="1">부</label>
+				                     <label><input type="radio" name="stud_guad_rel" value="1" checked="checked">부</label>
 				                     <label><input type="radio" name="stud_guad_rel" value="2" style="margin-bottom">모</label>
 				                 </div>
 							</div>
@@ -295,7 +295,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label text-right">보호자 핸드폰</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="stud_guad_hp" >
+								<input type="text" class="form-control" name="stud_guad_hp" value="010-8598-8975">
 							</div>
 						</div>
 				</div>

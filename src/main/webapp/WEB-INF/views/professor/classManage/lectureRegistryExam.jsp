@@ -48,7 +48,7 @@ $(function() {
 				<div class="form-group">
 					<label class="control-label col-sm-1" for="exam_date">시험일</label>
 					<div class="col-sm-2">
-						<input type="date" placeholder="시험일" class="form-control" name="exam_date" value="">
+						<input type="date" placeholder="시험일" class="form-control" name="exam_date" value="2017-08-02">
 					</div>
 				</div>
 				<div class="form-group">

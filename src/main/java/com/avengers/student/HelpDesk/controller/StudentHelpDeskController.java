@@ -54,8 +54,7 @@ public class StudentHelpDeskController {
 	public ModelAndView download(HttpServletRequest request
 			,@RequestParam("fileName")String fileName){
 		System.out.println(fileName);
-		String Path = "D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/"
-				+ "org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/board_dept/" + fileName;
+		String Path = request.getSession().getServletContext().getRealPath("/resources/board_dept/"+ fileName); 
 		File file = new File(Path);
 		return new ModelAndView("download", "downloadFile", file);
 	}
@@ -776,8 +775,7 @@ public class StudentHelpDeskController {
 			, HttpSession session){
 		BoardVO boardVO = new BoardVO();
 		String url="redirect:deptStudNoticeList";
-		String upload="D:/A_TeachingMaterial/8.LastProject/workspace/common/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Avengers/resources/board_dept";
-		System.out.println("파일경로"+upload);
+		String upload=req.getSession().getServletContext().getRealPath("/resources/board_dept");
 		boardVO.setBoard_bc(req.getParameter("board_bc"));
 		boardVO.setBoard_cont(req.getParameter("board_cont"));
 		boardVO.setBoard_writer(req.getParameter("board_writer"));

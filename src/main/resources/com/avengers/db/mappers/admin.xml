@@ -211,7 +211,7 @@
             ADMIN_NM,
             ADMIN_ENG_NM,
             ADMIN_REGNO,
-            ADMIN_BIR,
+            TO_CHAR(ADMIN_BIR,'YYYY-MM-DD') AS ADMIN_BIR,
             ADMIN_EMAIL,
             ADMIN_TEL,
             ADMIN_HP,

@@ -381,7 +381,6 @@ public class StudentClassManageController {
 			//1.학생이 수강하고 있는 강의의 기본키가져오기
 			//2.만약 TL테이블에 총점이 있으면 이미 계산된 것임으로 계산에서 제외한다.
 			ArrayList<String> lctNumList = scmService.checkTlPoint(stud_num);
-			System.out.println(lctNumList);
 			//3.강의에 대해 중간고사, 기말고사, 과제점수를 학점결정비율과 계산하여 TL테이블에 업데이트한다.
 			if(lctNumList != null && !lctNumList.isEmpty()){
 				scmService.updateLectureResultPoint(lctNumList, stud_num);

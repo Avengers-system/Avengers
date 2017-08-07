@@ -16,9 +16,9 @@ $(function(){
 		var qn1 = '';
 // 		<input type="hidden" name="eq_qtn_type${status.count}" value="${eqInfo.getEq_qtn_type() }"/>
 		if($('#select').val() == 1){
-			qn1 = "<div class='examQn'><input type='hidden' class='eq_qtn_type' name='eq_qtn_type"+count+"' value='1'/><input type='hidden' class='eq_num' name='eq_num"+count+"' value='-1' /><table class='registryExamQnTable'><tr><th>문항</th><td colspan='4' style='font-size:15px'><input type='text' class='eq_qtna' readonly name='eq_qtna"+count+"' value='"+count+"'/></td></tr><tr><th>문제</th><td colspan='4'><input type='text' class='eq_qtn' name='eq_qtn"+count+"' value='' style='width:900px;padding-top:5px;padding-bottom:5px'/></td></tr><tr><th>①</th><td colspan='4'><input type='text' class='eq_exmp_one' name='eq_exmp_one"+count+"' value='' style='width:900px;padding-top:5px;padding-bottom:5px'/></td></tr><tr><th>②</th><td colspan='4'><input type='text' class='eq_exmp_two' name='eq_exmp_two"+count+"' value='' style='width:900px;padding-top:5px;padding-bottom:5px'/></td></tr><tr><th>③</th><td colspan='4'><input type='text' class='eq_exmp_three' name='eq_exmp_three"+count+"' value='' style='width:900px;padding-top:5px;padding-bottom:5px'/></td></tr><tr><th>④</th><td colspan='4'><input type='text' class='eq_exmp_four' name='eq_exmp_four"+count+"' value='' style='width:900px;padding-top:5px;padding-bottom:5px'/></td></tr><tr><th>정답</th><td style='width:250px'><input type='text' class='eq_ans' name='eq_ans"+count+"' value=''/></td><th>점수</th><td style='width:250px'><input type='text' name='eq_score"+count+"' class='eq_score' value=''/></td><td style='width:50px;text-align:center'><input type='button' id='removeExamBtn' class='btn btn-outline btn-primary' value='삭제'/></td></tr></table><hr/></div>";
+			qn1 = "<div class='examQn'><input type='hidden' class='eq_qtn_type' name='eq_qtn_type"+count+"' value='1'/><input type='hidden' class='eq_num' name='eq_num"+count+"' value='-1' /><table class='registryExamQnTable'><tr><th>문항</th><td colspan='4' style='font-size:15px'><input type='text' class='eq_qtna' readonly name='eq_qtna"+count+"' value='"+count+"'/></td></tr><tr><th>문제</th><td colspan='4'><input type='text' class='eq_qtn' name='eq_qtn"+count+"' value='' style='width:900px;padding-top:5px;padding-bottom:5px'/></td></tr><tr><th>①</th><td colspan='4'><input type='text' class='eq_exmp_one' name='eq_exmp_one"+count+"' value='' style='width:900px;padding-top:5px;padding-bottom:5px'/></td></tr><tr><th>②</th><td colspan='4'><input type='text' class='eq_exmp_two' name='eq_exmp_two"+count+"' value='' style='width:900px;padding-top:5px;padding-bottom:5px'/></td></tr><tr><th>③</th><td colspan='4'><input type='text' class='eq_exmp_three' name='eq_exmp_three"+count+"' value='' style='width:900px;padding-top:5px;padding-bottom:5px'/></td></tr><tr><th>④</th><td colspan='4'><input type='text' class='eq_exmp_four' name='eq_exmp_four"+count+"' value='' style='width:900px;padding-top:5px;padding-bottom:5px'/></td></tr><tr><th>정답</th><td style='width:250px'><input type='text' class='eq_ans' name='eq_ans"+count+"' value=''/></td><th>점수</th><td style='width:250px'><input type='text' name='eq_score"+count+"' class='eq_score' value='50'/></td><td style='width:50px;text-align:center'><input type='button' id='removeExamBtn' class='btn btn-outline btn-primary' value='삭제'/></td></tr></table><hr/></div>";
 		} else{
-			qn1 = "<div class='examQn'><input type='hidden' class='eq_qtn_type' name='eq_qtn_type"+count+"' value='2'/><input type='hidden' class='eq_num' name='eq_num"+count+"' value='-1' /><table class='registryExamQnTable'><tr><th>문항</th><td colspan='4' style='font-size:15px'><input type='text' class='eq_qtna' readonly name='eq_qtna"+count+"' value='"+count+"'/></td></tr><tr><th>문제</th><td colspan='4'><input type='text' class='eq_qtn' name='eq_qtn"+count+"' value='' style='width:900px;padding-top:5px;padding-bottom:5px'/></td></tr><tr><th></th><td colspan='4'>주관식 문항은 문제등록만 가능합니다.</td></tr><tr><th>점수</th><td style='width:250px'><input type='text' name='eq_score"+count+"' class='eq_score' value=''/></td><td style='width:50px;text-align:center'><input type='button' id='removeExamBtn' class='btn btn-outline btn-primary' value='삭제'/></td></tr></table><hr/></div>";
+			qn1 = "<div class='examQn'><input type='hidden' class='eq_qtn_type' name='eq_qtn_type"+count+"' value='2'/><input type='hidden' class='eq_num' name='eq_num"+count+"' value='-1' /><table class='registryExamQnTable'><tr><th>문항</th><td colspan='4' style='font-size:15px'><input type='text' class='eq_qtna' readonly name='eq_qtna"+count+"' value='"+count+"'/></td></tr><tr><th>문제</th><td colspan='4'><input type='text' class='eq_qtn' name='eq_qtn"+count+"' value='' style='width:900px;padding-top:5px;padding-bottom:5px'/></td></tr><tr><th></th><td colspan='4'>주관식 문항은 문제등록만 가능합니다.</td></tr><tr><th>점수</th><td style='width:250px'><input type='text' name='eq_score"+count+"' class='eq_score' value='50'/></td><td style='width:50px;text-align:center'><input type='button' id='removeExamBtn' class='btn btn-outline btn-primary' value='삭제'/></td></tr></table><hr/></div>";
 		}
 		if(count == 1){
 // 			$("form[name=examRegistry]").after(qn1);
@@ -28,17 +28,6 @@ $(function(){
 			$(".examQn").last().css("margin-bottom","30px");
 		}
 	});
-	
-	$(document).on("click","#removeExamBtn1",function(){
-		alert($(".examQn").eq(0).find($(".registryExamQnTable")).eq(0).find($(".eq_qtna")).val());	
-		alert($(".examQn").eq(1).find($(".registryExamQnTable")).eq(0).find($(".eq_qtna")).val());
-		alert($(".examQn").eq(2).find($(".registryExamQnTable")).eq(0).find($(".eq_qtna")).val());
-		alert($(".examQn").eq(0).find($(".eq_num")).val());
-		alert($(this).parents(".examQn").find($(".eq_qtna")).val());
-		alert($(".examQn").length);
-		alert($(this).parents(".examQn").remove());
-		
-	})
 	
 	$(document).on("click","#removeExamBtn",function(){
 // 		$(this).prevAll("input[name]")
@@ -202,7 +191,14 @@ $(function(){
 										<th>정답</th>
 										<td style="width:250px"><input type="text" class="eq_ans" name="eq_ans${status.count}" value="${eqInfo.getEq_ans() }"/></td>
 										<th>점수</th>
-										<td style="width:250px"><input type="text" name="eq_score${status.count }" class="eq_score" value="${eqInfo.getEq_score()}"/></td>
+										<c:choose>
+											<c:when test="${eqInfo.getEq_score() eq null }">
+												<td style="width:250px"><input type="text" name="eq_score${status.count}" class="eq_score" value="50"/></td>
+											</c:when>
+											<c:otherwise>
+												<td style="width:250px"><input type="text" name="eq_score${status.count}" class="eq_score" value="${eqInfo.getEq_score()}"/></td>
+											</c:otherwise>
+										</c:choose>
 										<td style="width:50px;text-align:center"><input type="button" id="removeExamBtn" class="btn btn-outline btn-primary" value="삭제"/></td>			
 									</tr>
 								</c:when>

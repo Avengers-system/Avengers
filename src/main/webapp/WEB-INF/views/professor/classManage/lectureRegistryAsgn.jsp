@@ -51,11 +51,11 @@ uploadFile.on('change', function(){
 		    <div class="form-group">
 				<label class="control-label col-sm-1" for="lct_nm_class">제출시작일:</label>
 				<div class="col-sm-2">
-					<input type="date" class="form-control" name="asgn_start_date">
+					<input type="date" class="form-control" name="asgn_start_date" value="2017-08-02">
 				</div>
 				<label class="control-label col-sm-1" for="sjt_cd">제출마감일:</label>
 				<div class="col-sm-2">
-					<input type="date" class="form-control" name="asgn_dl_date">
+					<input type="date" class="form-control" name="asgn_dl_date" value="2017-08-30">
 				</div>
 		    </div>
 		    <div class="form-group">

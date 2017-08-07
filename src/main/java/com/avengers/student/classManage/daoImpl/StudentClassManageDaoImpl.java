@@ -290,14 +290,14 @@ public class StudentClassManageDaoImpl implements StudentClassManageDao{
 		for(int i=0; i<lctNumList.size(); i++){
 			lctNum.put("lct_num", lctNumList.get(i));
 			String meScore = (String) sqlSession.selectOne("te.selectTeMeScore", lctNum);
-			String feScore = (String) sqlSession.selectOne("te.selectTeFeScore", lctNum);
+//			String feScore = (String) sqlSession.selectOne("te.selectTeFeScore", lctNum);
 			String asgnScore = (String) sqlSession.selectOne("asgn.selectAsgnScore", lctNum);
 			if(meScore != null && !meScore.equals("-1") 
-					&& feScore != null && !feScore.equals("-1")
+//					&& feScore != null && !feScore.equals("-1")
 					&& asgnScore != null && !asgnScore.equals("-1")){
 				ArrayList<String> scoreList = new ArrayList<String>();
 				scoreList.add(meScore);
-				scoreList.add(feScore);
+//				scoreList.add(feScore);
 				scoreList.add(asgnScore);
 				scoreList.add(lctNumList.get(i));
 				scoreTotalList.add(scoreList);
@@ -311,7 +311,6 @@ public class StudentClassManageDaoImpl implements StudentClassManageDao{
 			String tl_lev = "";
 			String tl_mark = "";
 			for(int scoreIndex=0; scoreIndex < scoreTotalList.get(scoreTotalIndex).size()-1; scoreIndex++){
-				System.out.println(scoreTotalList.get(scoreTotalIndex).get(scoreIndex));
 				tl_point += Integer.valueOf(scoreTotalList.get(scoreTotalIndex).get(scoreIndex));
 			}
 			if(91<=tl_point && tl_point<=100){
@@ -367,7 +366,6 @@ public class StudentClassManageDaoImpl implements StudentClassManageDao{
 			updateTotalPoint.put("tl_mark", tl_mark);
 			updateTotalPoint.put("stud_num", stud_num);
 			updateTotalPoint.put("lct_num", scoreTotalList.get(scoreTotalIndex).get(scoreTotalList.get(scoreTotalIndex).size()-1));
-			System.out.println(updateTotalPoint);
 			sqlSession.update("tl.updateTlScore", updateTotalPoint);
 		}
 	}
